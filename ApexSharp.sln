@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apex", "Apex\Apex.csproj", "{269B0981-154B-4DDE-9B0A-18685C38BD9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForceAPI", "SalesForceAPI\SalesForceAPI.csproj", "{A13785DB-05BB-4842-957D-56D5B251D608}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpDemo", "ApexSharpDemo\ApexSharpDemo.csproj", "{B66B3389-06C9-4973-BEAD-7569F620BE36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{269B0981-154B-4DDE-9B0A-18685C38BD9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{269B0981-154B-4DDE-9B0A-18685C38BD9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{269B0981-154B-4DDE-9B0A-18685C38BD9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{269B0981-154B-4DDE-9B0A-18685C38BD9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A13785DB-05BB-4842-957D-56D5B251D608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A13785DB-05BB-4842-957D-56D5B251D608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A13785DB-05BB-4842-957D-56D5B251D608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A13785DB-05BB-4842-957D-56D5B251D608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

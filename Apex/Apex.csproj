@@ -1,0 +1,1167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.3.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.3.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{269B0981-154B-4DDE-9B0A-18685C38BD9B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apex</RootNamespace>
+    <AssemblyName>Apex</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.2.3.0\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.2.3.0\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.FileVersionInfo.4.3.0\lib\net46\System.Diagnostics.FileVersionInfo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.StackTrace.4.3.0\lib\net46\System.Diagnostics.StackTrace.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection.Metadata, Version=1.4.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.4.2\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.3.0\lib\net46\System.Text.Encoding.CodePages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Thread, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Thread.4.3.0\lib\net46\System.Threading.Thread.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.4.3.0\lib\net46\System.Xml.XPath.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.XDocument.4.3.0\lib\net46\System.Xml.XPath.XDocument.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApexPages\Action.cs" />
+    <Compile Include="ApexPages\Component.cs" />
+    <Compile Include="ApexPages\ComponentIteration.cs" />
+    <Compile Include="ApexPages\IdeaStandardController.cs" />
+    <Compile Include="ApexPages\IdeaStandardSetController.cs" />
+    <Compile Include="ApexPages\KnowledgeArticleVersionStandardController.cs" />
+    <Compile Include="ApexPages\Message.cs" />
+    <Compile Include="ApexPages\Severity.cs" />
+    <Compile Include="ApexPages\StandardController.cs" />
+    <Compile Include="ApexPages\StandardSetController.cs" />
+    <Compile Include="ApexSharp\ApexSharp.cs" />
+    <Compile Include="ApexSharp\Attribute\ApexSharpAttribute.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexClassContainer.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexClassCreator.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexFormater.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexList.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexParser.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexTocken.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexTokenizer.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ApexTokenList.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ClassNameManager.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\CommentClean.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\ConvertToCSharpPrimitives.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\CSharpGenerator.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\Lexer\Lexer.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\Lexer\RegexMatcher.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\Lexer\Result.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\Lexer\TokenDefinition.cs" />
+    <Compile Include="ApexSharp\ApexToSharp\MethodNameManager.cs" />
+    <Compile Include="ApexSharp\MetaClass\ApexClassDeclarationSyntax.cs" />
+    <Compile Include="ApexSharp\SharpToApex\ApexGenerator.cs" />
+    <Compile Include="ApexSharp\SharpToApex\ApexGeneratorUtil.cs" />
+    <Compile Include="ApexSharp\SharpToApex\CSharpParser.cs" />
+    <Compile Include="ApexSharp\Api\Soql.cs" />
+    <Compile Include="ApexSharp\UtilAndExt\ExtensionMethods.cs" />
+    <Compile Include="ApexSharp\UtilAndExt\PrintToken.cs" />
+    <Compile Include="Apex\EmptyStackException.cs" />
+    <Compile Include="Apex\Stack.cs" />
+    <Compile Include="Applauncher\AccountSettingsController.cs" />
+    <Compile Include="Applauncher\AppLauncherDesktopController.cs" />
+    <Compile Include="Applauncher\AppLauncherHeaderController.cs" />
+    <Compile Include="Applauncher\AppLauncherHelper.cs" />
+    <Compile Include="Applauncher\AppLauncherSetupDesktopController.cs" />
+    <Compile Include="Applauncher\AppLauncherSetupReordererController.cs" />
+    <Compile Include="Applauncher\AppLauncherSetupTileController.cs" />
+    <Compile Include="Applauncher\AppMenu.cs" />
+    <Compile Include="Applauncher\ChangePasswordController.cs" />
+    <Compile Include="Applauncher\CommunityLogoController.cs" />
+    <Compile Include="Applauncher\EmployeeLoginLinkController.cs" />
+    <Compile Include="Applauncher\ForgotPasswordController.cs" />
+    <Compile Include="Applauncher\IdentityHeaderController.cs" />
+    <Compile Include="Applauncher\LoginFormController.cs" />
+    <Compile Include="Applauncher\SelfRegisterController.cs" />
+    <Compile Include="Applauncher\SocialLoginController.cs" />
+    <Compile Include="Approval\LockResult.cs" />
+    <Compile Include="Approval\ProcessRequest.cs" />
+    <Compile Include="Approval\ProcessResult.cs" />
+    <Compile Include="Approval\ProcessSubmitRequest.cs" />
+    <Compile Include="Approval\ProcessWorkitemRequest.cs" />
+    <Compile Include="Approval\UnlockResult.cs" />
+    <Compile Include="Cache\CacheException.cs" />
+    <Compile Include="Cache\InvalidParamException.cs" />
+    <Compile Include="Cache\ItemSizeLimitExceededException.cs" />
+    <Compile Include="Cache\Org.cs" />
+    <Compile Include="Cache\OrgCacheException.cs" />
+    <Compile Include="Cache\OrgPartition.cs" />
+    <Compile Include="Cache\Partition.cs" />
+    <Compile Include="Cache\PlatformCacheDelegateWrapper.cs" />
+    <Compile Include="Cache\PlatformCacheInvalidOperationException.cs" />
+    <Compile Include="Cache\Session.cs" />
+    <Compile Include="Cache\SessionCacheException.cs" />
+    <Compile Include="Cache\SessionCacheNoSessionException.cs" />
+    <Compile Include="Cache\SessionPartition.cs" />
+    <Compile Include="Cache\Visibility.cs" />
+    <Compile Include="Canvas\ApplicationContext.cs" />
+    <Compile Include="Canvas\CanvasLifecycleHandler.cs" />
+    <Compile Include="Canvas\CanvasRenderException.cs" />
+    <Compile Include="Canvas\ContextTypeEnum.cs" />
+    <Compile Include="Canvas\EnvironmentContext.cs" />
+    <Compile Include="Canvas\RenderContext.cs" />
+    <Compile Include="Canvas\Test.cs" />
+    <Compile Include="ChatterAnswers\AccountCreator.cs" />
+    <Compile Include="ChatterAnswers\ChatterServiceRegisterController.cs" />
+    <Compile Include="ChatterAnswers\SCCChangePasswordController.cs" />
+    <Compile Include="ChatterAnswers\SCCForgotPasswordConfirmController.cs" />
+    <Compile Include="ChatterAnswers\SCCForgotPasswordController.cs" />
+    <Compile Include="ConnectApi\AbstractContentHubItemType.cs" />
+    <Compile Include="ConnectApi\AbstractDirectoryEntrySummary.cs" />
+    <Compile Include="ConnectApi\AbstractMessageBody.cs" />
+    <Compile Include="ConnectApi\AbstractRecommendation.cs" />
+    <Compile Include="ConnectApi\AbstractRecommendationExplanation.cs" />
+    <Compile Include="ConnectApi\AbstractRecordField.cs" />
+    <Compile Include="ConnectApi\AbstractRecordView.cs" />
+    <Compile Include="ConnectApi\AbstractRepositoryFile.cs" />
+    <Compile Include="ConnectApi\AbstractRepositoryFolder.cs" />
+    <Compile Include="ConnectApi\AbstractRepositoryItem.cs" />
+    <Compile Include="ConnectApi\ActionLinkDefinition.cs" />
+    <Compile Include="ConnectApi\ActionLinkDefinitionInput.cs" />
+    <Compile Include="ConnectApi\ActionLinkDiagnosticInfo.cs" />
+    <Compile Include="ConnectApi\ActionLinkExecutionsAllowed.cs" />
+    <Compile Include="ConnectApi\ActionLinkGroupDefinition.cs" />
+    <Compile Include="ConnectApi\ActionLinkGroupDefinitionInput.cs" />
+    <Compile Include="ConnectApi\ActionLinks.cs" />
+    <Compile Include="ConnectApi\ActionLinkTemplateBindingInput.cs" />
+    <Compile Include="ConnectApi\ActionLinkType.cs" />
+    <Compile Include="ConnectApi\ActivitySharingInput.cs" />
+    <Compile Include="ConnectApi\ActivitySharingResult.cs" />
+    <Compile Include="ConnectApi\ActivitySharingType.cs" />
+    <Compile Include="ConnectApi\Actor.cs" />
+    <Compile Include="ConnectApi\ActorWithId.cs" />
+    <Compile Include="ConnectApi\Address.cs" />
+    <Compile Include="ConnectApi\Announcement.cs" />
+    <Compile Include="ConnectApi\AnnouncementInput.cs" />
+    <Compile Include="ConnectApi\AnnouncementPage.cs" />
+    <Compile Include="ConnectApi\Announcements.cs" />
+    <Compile Include="ConnectApi\ApprovalAttachment.cs" />
+    <Compile Include="ConnectApi\ApprovalCapability.cs" />
+    <Compile Include="ConnectApi\ApprovalIntent.cs" />
+    <Compile Include="ConnectApi\ApprovalPostTemplateField.cs" />
+    <Compile Include="ConnectApi\ArticleItem.cs" />
+    <Compile Include="ConnectApi\ArticleSummary.cs" />
+    <Compile Include="ConnectApi\AssociatedActionsCapability.cs" />
+    <Compile Include="ConnectApi\AssociatedActionsCapabilityInput.cs" />
+    <Compile Include="ConnectApi\AudienceCriteria.cs" />
+    <Compile Include="ConnectApi\AudienceCriteriaInput.cs" />
+    <Compile Include="ConnectApi\BannerCapability.cs" />
+    <Compile Include="ConnectApi\BannerPhoto.cs" />
+    <Compile Include="ConnectApi\BannerPhotoInput.cs" />
+    <Compile Include="ConnectApi\BannerStyle.cs" />
+    <Compile Include="ConnectApi\BasicTemplateAttachment.cs" />
+    <Compile Include="ConnectApi\BatchInput.cs" />
+    <Compile Include="ConnectApi\BatchResult.cs" />
+    <Compile Include="ConnectApi\BinaryInput.cs" />
+    <Compile Include="ConnectApi\BlankRecordField.cs" />
+    <Compile Include="ConnectApi\BookmarksCapability.cs" />
+    <Compile Include="ConnectApi\BookmarksCapabilityInput.cs" />
+    <Compile Include="ConnectApi\BundleCapability.cs" />
+    <Compile Include="ConnectApi\BundleType.cs" />
+    <Compile Include="ConnectApi\CanvasAttachmentInput.cs" />
+    <Compile Include="ConnectApi\CanvasCapability.cs" />
+    <Compile Include="ConnectApi\CanvasCapabilityInput.cs" />
+    <Compile Include="ConnectApi\CanvasTemplateAttachment.cs" />
+    <Compile Include="ConnectApi\CaseActorType.cs" />
+    <Compile Include="ConnectApi\CaseComment.cs" />
+    <Compile Include="ConnectApi\CaseCommentCapability.cs" />
+    <Compile Include="ConnectApi\CaseCommentEventType.cs" />
+    <Compile Include="ConnectApi\Chatter.cs" />
+    <Compile Include="ConnectApi\ChatterActivity.cs" />
+    <Compile Include="ConnectApi\ChatterConversation.cs" />
+    <Compile Include="ConnectApi\ChatterConversationPage.cs" />
+    <Compile Include="ConnectApi\ChatterConversationSummary.cs" />
+    <Compile Include="ConnectApi\ChatterFavorites.cs" />
+    <Compile Include="ConnectApi\ChatterFeeds.cs" />
+    <Compile Include="ConnectApi\ChatterGroup.cs" />
+    <Compile Include="ConnectApi\ChatterGroupDetail.cs" />
+    <Compile Include="ConnectApi\ChatterGroupInput.cs" />
+    <Compile Include="ConnectApi\ChatterGroupPage.cs" />
+    <Compile Include="ConnectApi\ChatterGroups.cs" />
+    <Compile Include="ConnectApi\ChatterGroupSummary.cs" />
+    <Compile Include="ConnectApi\ChatterLike.cs" />
+    <Compile Include="ConnectApi\ChatterLikePage.cs" />
+    <Compile Include="ConnectApi\ChatterLikesCapability.cs" />
+    <Compile Include="ConnectApi\ChatterMessage.cs" />
+    <Compile Include="ConnectApi\ChatterMessagePage.cs" />
+    <Compile Include="ConnectApi\ChatterMessages.cs" />
+    <Compile Include="ConnectApi\ChatterStream.cs" />
+    <Compile Include="ConnectApi\ChatterStreamInput.cs" />
+    <Compile Include="ConnectApi\ChatterStreamPage.cs" />
+    <Compile Include="ConnectApi\ChatterUsers.cs" />
+    <Compile Include="ConnectApi\ClientInfo.cs" />
+    <Compile Include="ConnectApi\Comment.cs" />
+    <Compile Include="ConnectApi\CommentCapabilities.cs" />
+    <Compile Include="ConnectApi\CommentCapabilitiesInput.cs" />
+    <Compile Include="ConnectApi\CommentInput.cs" />
+    <Compile Include="ConnectApi\CommentPage.cs" />
+    <Compile Include="ConnectApi\CommentsCapability.cs" />
+    <Compile Include="ConnectApi\CommentType.cs" />
+    <Compile Include="ConnectApi\Communities.cs" />
+    <Compile Include="ConnectApi\Community.cs" />
+    <Compile Include="ConnectApi\CommunityFlagType.cs" />
+    <Compile Include="ConnectApi\CommunityFlagVisibility.cs" />
+    <Compile Include="ConnectApi\CommunityModeration.cs" />
+    <Compile Include="ConnectApi\CommunityPage.cs" />
+    <Compile Include="ConnectApi\CommunityStatus.cs" />
+    <Compile Include="ConnectApi\ComplexSegment.cs" />
+    <Compile Include="ConnectApi\CompoundRecordField.cs" />
+    <Compile Include="ConnectApi\ConnectApiException.cs" />
+    <Compile Include="ConnectApi\Content.cs" />
+    <Compile Include="ConnectApi\ContentAttachment.cs" />
+    <Compile Include="ConnectApi\ContentAttachmentInput.cs" />
+    <Compile Include="ConnectApi\ContentCapability.cs" />
+    <Compile Include="ConnectApi\ContentCapabilityInput.cs" />
+    <Compile Include="ConnectApi\ContentHub.cs" />
+    <Compile Include="ConnectApi\ContentHubAllowedItemTypeCollection.cs" />
+    <Compile Include="ConnectApi\ContentHubDirectoryEntryType.cs" />
+    <Compile Include="ConnectApi\ContentHubExternalItemSharingType.cs" />
+    <Compile Include="ConnectApi\ContentHubFieldDefinition.cs" />
+    <Compile Include="ConnectApi\ContentHubFieldValueInput.cs" />
+    <Compile Include="ConnectApi\ContentHubGroupType.cs" />
+    <Compile Include="ConnectApi\ContentHubItemInput.cs" />
+    <Compile Include="ConnectApi\ContentHubItemType.cs" />
+    <Compile Include="ConnectApi\ContentHubItemTypeDetail.cs" />
+    <Compile Include="ConnectApi\ContentHubItemTypeSummary.cs" />
+    <Compile Include="ConnectApi\ContentHubPermission.cs" />
+    <Compile Include="ConnectApi\ContentHubPermissionCollection.cs" />
+    <Compile Include="ConnectApi\ContentHubPermissionType.cs" />
+    <Compile Include="ConnectApi\ContentHubProviderType.cs" />
+    <Compile Include="ConnectApi\ContentHubRepository.cs" />
+    <Compile Include="ConnectApi\ContentHubRepositoryCollection.cs" />
+    <Compile Include="ConnectApi\ContentHubRepositoryFeatures.cs" />
+    <Compile Include="ConnectApi\ContentHubStreamSupport.cs" />
+    <Compile Include="ConnectApi\ContentHubVariableType.cs" />
+    <Compile Include="ConnectApi\ContentImageFile.cs" />
+    <Compile Include="ConnectApi\ContentImageFileDetails.cs" />
+    <Compile Include="ConnectApi\CurrencyRecordField.cs" />
+    <Compile Include="ConnectApi\CustomListAudienceCriteria.cs" />
+    <Compile Include="ConnectApi\CustomListAudienceCriteriaInput.cs" />
+    <Compile Include="ConnectApi\DashboardComponentAttachment.cs" />
+    <Compile Include="ConnectApi\DashboardComponentSnapshot.cs" />
+    <Compile Include="ConnectApi\DashboardComponentSnapshotCapability.cs" />
+    <Compile Include="ConnectApi\Datacloud.cs" />
+    <Compile Include="ConnectApi\DatacloudCompanies.cs" />
+    <Compile Include="ConnectApi\DatacloudCompany.cs" />
+    <Compile Include="ConnectApi\DatacloudCompanyIdentifier.cs" />
+    <Compile Include="ConnectApi\DatacloudContact.cs" />
+    <Compile Include="ConnectApi\DatacloudContacts.cs" />
+    <Compile Include="ConnectApi\DatacloudImport.cs" />
+    <Compile Include="ConnectApi\DatacloudImportStatus.cs" />
+    <Compile Include="ConnectApi\DatacloudImportStatusType.cs" />
+    <Compile Include="ConnectApi\DatacloudInternalCompany.cs" />
+    <Compile Include="ConnectApi\DatacloudOrder.cs" />
+    <Compile Include="ConnectApi\DatacloudOrderInput.cs" />
+    <Compile Include="ConnectApi\DatacloudPurchaseUsage.cs" />
+    <Compile Include="ConnectApi\DatacloudUserType.cs" />
+    <Compile Include="ConnectApi\DateRecordField.cs" />
+    <Compile Include="ConnectApi\DeleteIntent.cs" />
+    <Compile Include="ConnectApi\DeleteIntents.cs" />
+    <Compile Include="ConnectApi\DeleteSocialPostIntent.cs" />
+    <Compile Include="ConnectApi\DigestJobRepresentation.cs" />
+    <Compile Include="ConnectApi\DigestPeriod.cs" />
+    <Compile Include="ConnectApi\DirectMessageCapability.cs" />
+    <Compile Include="ConnectApi\DirectMessageCapabilityInput.cs" />
+    <Compile Include="ConnectApi\DirectMessageMemberPage.cs" />
+    <Compile Include="ConnectApi\EditCapability.cs" />
+    <Compile Include="ConnectApi\EmailAddress.cs" />
+    <Compile Include="ConnectApi\EmailAttachment.cs" />
+    <Compile Include="ConnectApi\EmailMergeFieldCollectionInfo.cs" />
+    <Compile Include="ConnectApi\EmailMergeFieldInfo.cs" />
+    <Compile Include="ConnectApi\EmailMergeFieldService.cs" />
+    <Compile Include="ConnectApi\EmailMessage.cs" />
+    <Compile Include="ConnectApi\EmailMessageCapability.cs" />
+    <Compile Include="ConnectApi\EmailMessageDirection.cs" />
+    <Compile Include="ConnectApi\Emoji.cs" />
+    <Compile Include="ConnectApi\EmojiCollection.cs" />
+    <Compile Include="ConnectApi\EnhancedLinkCapability.cs" />
+    <Compile Include="ConnectApi\EntityLinkSegment.cs" />
+    <Compile Include="ConnectApi\EntityRecommendation.cs" />
+    <Compile Include="ConnectApi\ExternalEmailService.cs" />
+    <Compile Include="ConnectApi\ExternalFilePermissionInformation.cs" />
+    <Compile Include="ConnectApi\ExternalSocialAccountRelationship.cs" />
+    <Compile Include="ConnectApi\Features.cs" />
+    <Compile Include="ConnectApi\Feed.cs" />
+    <Compile Include="ConnectApi\FeedBody.cs" />
+    <Compile Include="ConnectApi\FeedDensity.cs" />
+    <Compile Include="ConnectApi\FeedDirectory.cs" />
+    <Compile Include="ConnectApi\FeedDirectoryItem.cs" />
+    <Compile Include="ConnectApi\FeedElement.cs" />
+    <Compile Include="ConnectApi\FeedElementCapabilities.cs" />
+    <Compile Include="ConnectApi\FeedElementCapabilitiesInput.cs" />
+    <Compile Include="ConnectApi\FeedElementCapability.cs" />
+    <Compile Include="ConnectApi\FeedElementCapabilityInput.cs" />
+    <Compile Include="ConnectApi\FeedElementCapabilityType.cs" />
+    <Compile Include="ConnectApi\FeedElementInput.cs" />
+    <Compile Include="ConnectApi\FeedElementPage.cs" />
+    <Compile Include="ConnectApi\FeedElementType.cs" />
+    <Compile Include="ConnectApi\FeedEnabledEntity.cs" />
+    <Compile Include="ConnectApi\FeedEntityIsEditable.cs" />
+    <Compile Include="ConnectApi\FeedEntityNotAvailableSummary.cs" />
+    <Compile Include="ConnectApi\FeedEntityShareCapability.cs" />
+    <Compile Include="ConnectApi\FeedEntityShareCapabilityInput.cs" />
+    <Compile Include="ConnectApi\FeedEntityStatus.cs" />
+    <Compile Include="ConnectApi\FeedEntitySummary.cs" />
+    <Compile Include="ConnectApi\FeedFavorite.cs" />
+    <Compile Include="ConnectApi\FeedFavorites.cs" />
+    <Compile Include="ConnectApi\FeedFavoriteType.cs" />
+    <Compile Include="ConnectApi\FeedFilter.cs" />
+    <Compile Include="ConnectApi\FeedItem.cs" />
+    <Compile Include="ConnectApi\FeedItemAttachment.cs" />
+    <Compile Include="ConnectApi\FeedItemAttachmentInput.cs" />
+    <Compile Include="ConnectApi\FeedItemAttachmentType.cs" />
+    <Compile Include="ConnectApi\FeedItemInput.cs" />
+    <Compile Include="ConnectApi\FeedItemPage.cs" />
+    <Compile Include="ConnectApi\FeedItemSummary.cs" />
+    <Compile Include="ConnectApi\FeedItemTopicPage.cs" />
+    <Compile Include="ConnectApi\FeedItemType.cs" />
+    <Compile Include="ConnectApi\FeedItemVisibilityType.cs" />
+    <Compile Include="ConnectApi\FeedModifiedInfo.cs" />
+    <Compile Include="ConnectApi\FeedPoll.cs" />
+    <Compile Include="ConnectApi\FeedPollChoice.cs" />
+    <Compile Include="ConnectApi\FeedReadStatus.cs" />
+    <Compile Include="ConnectApi\FeedReadStatusInput.cs" />
+    <Compile Include="ConnectApi\FeedSortOrder.cs" />
+    <Compile Include="ConnectApi\FeedType.cs" />
+    <Compile Include="ConnectApi\FieldChangeNameSegment.cs" />
+    <Compile Include="ConnectApi\FieldChangeSegment.cs" />
+    <Compile Include="ConnectApi\FieldChangeValueSegment.cs" />
+    <Compile Include="ConnectApi\FieldChangeValueType.cs" />
+    <Compile Include="ConnectApi\File.cs" />
+    <Compile Include="ConnectApi\FileIdInput.cs" />
+    <Compile Include="ConnectApi\FilePreview.cs" />
+    <Compile Include="ConnectApi\FilePreviewCollection.cs" />
+    <Compile Include="ConnectApi\FilePreviewFormat.cs" />
+    <Compile Include="ConnectApi\FilePreviewStatus.cs" />
+    <Compile Include="ConnectApi\FilePreviewUrl.cs" />
+    <Compile Include="ConnectApi\FilePublishStatus.cs" />
+    <Compile Include="ConnectApi\FilesCapability.cs" />
+    <Compile Include="ConnectApi\FilesCapabilityInput.cs" />
+    <Compile Include="ConnectApi\FileSharingOption.cs" />
+    <Compile Include="ConnectApi\FileSharingType.cs" />
+    <Compile Include="ConnectApi\FileSummary.cs" />
+    <Compile Include="ConnectApi\FolderItemType.cs" />
+    <Compile Include="ConnectApi\FollowerPage.cs" />
+    <Compile Include="ConnectApi\FollowingCounts.cs" />
+    <Compile Include="ConnectApi\FollowingPage.cs" />
+    <Compile Include="ConnectApi\GenericBundleCapability.cs" />
+    <Compile Include="ConnectApi\GenericFeedElement.cs" />
+    <Compile Include="ConnectApi\GlobalInfluence.cs" />
+    <Compile Include="ConnectApi\GroupArchiveStatus.cs" />
+    <Compile Include="ConnectApi\GroupChatterSettings.cs" />
+    <Compile Include="ConnectApi\GroupEmailFrequency.cs" />
+    <Compile Include="ConnectApi\GroupInformation.cs" />
+    <Compile Include="ConnectApi\GroupInformationInput.cs" />
+    <Compile Include="ConnectApi\GroupMember.cs" />
+    <Compile Include="ConnectApi\GroupMemberPage.cs" />
+    <Compile Include="ConnectApi\GroupMembershipRequest.cs" />
+    <Compile Include="ConnectApi\GroupMembershipRequests.cs" />
+    <Compile Include="ConnectApi\GroupMembershipRequestStatus.cs" />
+    <Compile Include="ConnectApi\GroupMembershipType.cs" />
+    <Compile Include="ConnectApi\GroupRecord.cs" />
+    <Compile Include="ConnectApi\GroupRecordInput.cs" />
+    <Compile Include="ConnectApi\GroupRecordPage.cs" />
+    <Compile Include="ConnectApi\GroupViralInvitationsStatus.cs" />
+    <Compile Include="ConnectApi\GroupVisibilityType.cs" />
+    <Compile Include="ConnectApi\HashtagSegment.cs" />
+    <Compile Include="ConnectApi\HashtagSegmentInput.cs" />
+    <Compile Include="ConnectApi\HttpRequestMethod.cs" />
+    <Compile Include="ConnectApi\Icon.cs" />
+    <Compile Include="ConnectApi\InlineImageSegment.cs" />
+    <Compile Include="ConnectApi\InlineImageSegmentInput.cs" />
+    <Compile Include="ConnectApi\InteractionsCapability.cs" />
+    <Compile Include="ConnectApi\Invitation.cs" />
+    <Compile Include="ConnectApi\Invitations.cs" />
+    <Compile Include="ConnectApi\InviteInput.cs" />
+    <Compile Include="ConnectApi\Knowledge.cs" />
+    <Compile Include="ConnectApi\KnowledgeArticleVersion.cs" />
+    <Compile Include="ConnectApi\KnowledgeArticleVersionCollection.cs" />
+    <Compile Include="ConnectApi\LabeledRecordField.cs" />
+    <Compile Include="ConnectApi\LikeIntent.cs" />
+    <Compile Include="ConnectApi\LikeIntents.cs" />
+    <Compile Include="ConnectApi\LikeSocialPostIntent.cs" />
+    <Compile Include="ConnectApi\LinkAttachment.cs" />
+    <Compile Include="ConnectApi\LinkAttachmentInput.cs" />
+    <Compile Include="ConnectApi\LinkCapability.cs" />
+    <Compile Include="ConnectApi\LinkCapabilityInput.cs" />
+    <Compile Include="ConnectApi\LinkSegment.cs" />
+    <Compile Include="ConnectApi\LinkSegmentInput.cs" />
+    <Compile Include="ConnectApi\MaintenanceInfo.cs" />
+    <Compile Include="ConnectApi\MaintenanceType.cs" />
+    <Compile Include="ConnectApi\ManagedSocialAccount.cs" />
+    <Compile Include="ConnectApi\ManagedSocialAccounts.cs" />
+    <Compile Include="ConnectApi\ManagedTopic.cs" />
+    <Compile Include="ConnectApi\ManagedTopicCollection.cs" />
+    <Compile Include="ConnectApi\ManagedTopicPositionCollectionInput.cs" />
+    <Compile Include="ConnectApi\ManagedTopicPositionInput.cs" />
+    <Compile Include="ConnectApi\ManagedTopics.cs" />
+    <Compile Include="ConnectApi\ManagedTopicType.cs" />
+    <Compile Include="ConnectApi\MarkupBeginSegment.cs" />
+    <Compile Include="ConnectApi\MarkupBeginSegmentInput.cs" />
+    <Compile Include="ConnectApi\MarkupEndSegment.cs" />
+    <Compile Include="ConnectApi\MarkupEndSegmentInput.cs" />
+    <Compile Include="ConnectApi\MarkupType.cs" />
+    <Compile Include="ConnectApi\MentionCompletion.cs" />
+    <Compile Include="ConnectApi\MentionCompletionPage.cs" />
+    <Compile Include="ConnectApi\MentionCompletionType.cs" />
+    <Compile Include="ConnectApi\Mentions.cs" />
+    <Compile Include="ConnectApi\MentionSegment.cs" />
+    <Compile Include="ConnectApi\MentionSegmentInput.cs" />
+    <Compile Include="ConnectApi\MentionValidation.cs" />
+    <Compile Include="ConnectApi\MentionValidations.cs" />
+    <Compile Include="ConnectApi\MentionValidationStatus.cs" />
+    <Compile Include="ConnectApi\MessageBody.cs" />
+    <Compile Include="ConnectApi\MessageBodyInput.cs" />
+    <Compile Include="ConnectApi\MessageSegment.cs" />
+    <Compile Include="ConnectApi\MessageSegmentInput.cs" />
+    <Compile Include="ConnectApi\MessageSegmentType.cs" />
+    <Compile Include="ConnectApi\ModerationCapability.cs" />
+    <Compile Include="ConnectApi\ModerationFlags.cs" />
+    <Compile Include="ConnectApi\MoreChangesSegment.cs" />
+    <Compile Include="ConnectApi\Motif.cs" />
+    <Compile Include="ConnectApi\MuteCapability.cs" />
+    <Compile Include="ConnectApi\MuteCapabilityInput.cs" />
+    <Compile Include="ConnectApi\NewFileAttachmentInput.cs" />
+    <Compile Include="ConnectApi\NewUserAudienceCriteria.cs" />
+    <Compile Include="ConnectApi\NewUserAudienceCriteriaInput.cs" />
+    <Compile Include="ConnectApi\NonEntityRecommendation.cs" />
+    <Compile Include="ConnectApi\NotFoundException.cs" />
+    <Compile Include="ConnectApi\OauthProviderInfo.cs" />
+    <Compile Include="ConnectApi\OperationType.cs" />
+    <Compile Include="ConnectApi\Organization.cs" />
+    <Compile Include="ConnectApi\OrganizationSettings.cs" />
+    <Compile Include="ConnectApi\OriginCapability.cs" />
+    <Compile Include="ConnectApi\PercentRecordField.cs" />
+    <Compile Include="ConnectApi\PeriodTypesEnum.cs" />
+    <Compile Include="ConnectApi\PhoneNumber.cs" />
+    <Compile Include="ConnectApi\Photo.cs" />
+    <Compile Include="ConnectApi\PhotoInput.cs" />
+    <Compile Include="ConnectApi\PicklistRecordField.cs" />
+    <Compile Include="ConnectApi\PlatformAction.cs" />
+    <Compile Include="ConnectApi\PlatformActionGroup.cs" />
+    <Compile Include="ConnectApi\PlatformActionGroupCategory.cs" />
+    <Compile Include="ConnectApi\PlatformActionStatus.cs" />
+    <Compile Include="ConnectApi\PlatformActionType.cs" />
+    <Compile Include="ConnectApi\PollAttachmentInput.cs" />
+    <Compile Include="ConnectApi\PollCapability.cs" />
+    <Compile Include="ConnectApi\PollCapabilityInput.cs" />
+    <Compile Include="ConnectApi\QuestionAndAnswers.cs" />
+    <Compile Include="ConnectApi\QuestionAndAnswersCapability.cs" />
+    <Compile Include="ConnectApi\QuestionAndAnswersCapabilityInput.cs" />
+    <Compile Include="ConnectApi\QuestionAndAnswersSuggestions.cs" />
+    <Compile Include="ConnectApi\QuestionAttachment.cs" />
+    <Compile Include="ConnectApi\QuestionAttachmentInput.cs" />
+    <Compile Include="ConnectApi\RateLimitException.cs" />
+    <Compile Include="ConnectApi\ReadCapability.cs" />
+    <Compile Include="ConnectApi\ReadCapabilityInput.cs" />
+    <Compile Include="ConnectApi\RecommendationActionType.cs" />
+    <Compile Include="ConnectApi\RecommendationAudience.cs" />
+    <Compile Include="ConnectApi\RecommendationAudienceCriteriaType.cs" />
+    <Compile Include="ConnectApi\RecommendationAudienceInput.cs" />
+    <Compile Include="ConnectApi\RecommendationAudienceMemberOperationType.cs" />
+    <Compile Include="ConnectApi\RecommendationAudiencePage.cs" />
+    <Compile Include="ConnectApi\RecommendationChannel.cs" />
+    <Compile Include="ConnectApi\RecommendationCollection.cs" />
+    <Compile Include="ConnectApi\RecommendationDefinition.cs" />
+    <Compile Include="ConnectApi\RecommendationDefinitionInput.cs" />
+    <Compile Include="ConnectApi\RecommendationDefinitionPage.cs" />
+    <Compile Include="ConnectApi\RecommendationExplanation.cs" />
+    <Compile Include="ConnectApi\RecommendationExplanationType.cs" />
+    <Compile Include="ConnectApi\Recommendations.cs" />
+    <Compile Include="ConnectApi\RecommendationsCapability.cs" />
+    <Compile Include="ConnectApi\RecommendationType.cs" />
+    <Compile Include="ConnectApi\RecommendedObject.cs" />
+    <Compile Include="ConnectApi\RecommendedObjectType.cs" />
+    <Compile Include="ConnectApi\RecordColumnOrder.cs" />
+    <Compile Include="ConnectApi\RecordField.cs" />
+    <Compile Include="ConnectApi\RecordFieldType.cs" />
+    <Compile Include="ConnectApi\Records.cs" />
+    <Compile Include="ConnectApi\RecordSnapshotAttachment.cs" />
+    <Compile Include="ConnectApi\RecordSnapshotCapability.cs" />
+    <Compile Include="ConnectApi\RecordSummary.cs" />
+    <Compile Include="ConnectApi\RecordSummaryList.cs" />
+    <Compile Include="ConnectApi\RecordView.cs" />
+    <Compile Include="ConnectApi\RecordViewSection.cs" />
+    <Compile Include="ConnectApi\Reference.cs" />
+    <Compile Include="ConnectApi\ReferenceRecordField.cs" />
+    <Compile Include="ConnectApi\ReferenceWithDateRecordField.cs" />
+    <Compile Include="ConnectApi\RelatedFeedPost.cs" />
+    <Compile Include="ConnectApi\RelatedFeedPosts.cs" />
+    <Compile Include="ConnectApi\RelatedFeedPostType.cs" />
+    <Compile Include="ConnectApi\RelatedQuestion.cs" />
+    <Compile Include="ConnectApi\ReplyIntent.cs" />
+    <Compile Include="ConnectApi\ReplyIntents.cs" />
+    <Compile Include="ConnectApi\RepositoryDirectoryEntryCollection.cs" />
+    <Compile Include="ConnectApi\RepositoryFileDetail.cs" />
+    <Compile Include="ConnectApi\RepositoryFileSummary.cs" />
+    <Compile Include="ConnectApi\RepositoryFolderDetail.cs" />
+    <Compile Include="ConnectApi\RepositoryFolderItem.cs" />
+    <Compile Include="ConnectApi\RepositoryFolderItemsCollection.cs" />
+    <Compile Include="ConnectApi\RepositoryFolderSummary.cs" />
+    <Compile Include="ConnectApi\RepositoryGroupSummary.cs" />
+    <Compile Include="ConnectApi\RepositoryPermissionTypeCollection.cs" />
+    <Compile Include="ConnectApi\RepositoryUserSummary.cs" />
+    <Compile Include="ConnectApi\Reputation.cs" />
+    <Compile Include="ConnectApi\ReputationLevel.cs" />
+    <Compile Include="ConnectApi\RequestHeader.cs" />
+    <Compile Include="ConnectApi\RequestHeaderInput.cs" />
+    <Compile Include="ConnectApi\ResourceLinkSegment.cs" />
+    <Compile Include="ConnectApi\ScheduledRecommendation.cs" />
+    <Compile Include="ConnectApi\ScheduledRecommendationInput.cs" />
+    <Compile Include="ConnectApi\ScheduledRecommendationPage.cs" />
+    <Compile Include="ConnectApi\SocialAccount.cs" />
+    <Compile Include="ConnectApi\SocialCustomerServiceConfig.cs" />
+    <Compile Include="ConnectApi\SocialEngagement.cs" />
+    <Compile Include="ConnectApi\SocialNetworkAutenticationInformation.cs" />
+    <Compile Include="ConnectApi\SocialNetworkProvider.cs" />
+    <Compile Include="ConnectApi\SocialPostCapability.cs" />
+    <Compile Include="ConnectApi\SocialPostIntents.cs" />
+    <Compile Include="ConnectApi\SocialPostMessageType.cs" />
+    <Compile Include="ConnectApi\SocialPostStatus.cs" />
+    <Compile Include="ConnectApi\SocialPostStatusType.cs" />
+    <Compile Include="ConnectApi\SortOrder.cs" />
+    <Compile Include="ConnectApi\Stamp.cs" />
+    <Compile Include="ConnectApi\StatusCapability.cs" />
+    <Compile Include="ConnectApi\StatusCapabilityInput.cs" />
+    <Compile Include="ConnectApi\StreamSubscriptionInput.cs" />
+    <Compile Include="ConnectApi\Subscription.cs" />
+    <Compile Include="ConnectApi\SupportedEmojis.cs" />
+    <Compile Include="ConnectApi\TermsOfService.cs" />
+    <Compile Include="ConnectApi\TextSegment.cs" />
+    <Compile Include="ConnectApi\TextSegmentInput.cs" />
+    <Compile Include="ConnectApi\TimeZone.cs" />
+    <Compile Include="ConnectApi\Topic.cs" />
+    <Compile Include="ConnectApi\TopicImages.cs" />
+    <Compile Include="ConnectApi\TopicInput.cs" />
+    <Compile Include="ConnectApi\TopicNamesInput.cs" />
+    <Compile Include="ConnectApi\TopicPage.cs" />
+    <Compile Include="ConnectApi\Topics.cs" />
+    <Compile Include="ConnectApi\TopicsCapability.cs" />
+    <Compile Include="ConnectApi\TopicsCapabilityInput.cs" />
+    <Compile Include="ConnectApi\TopicSort.cs" />
+    <Compile Include="ConnectApi\TopicSuggestion.cs" />
+    <Compile Include="ConnectApi\TopicSuggestionPage.cs" />
+    <Compile Include="ConnectApi\TrackedChangeAttachment.cs" />
+    <Compile Include="ConnectApi\TrackedChangeBundleCapability.cs" />
+    <Compile Include="ConnectApi\TrackedChangeItem.cs" />
+    <Compile Include="ConnectApi\TrackedChangesCapability.cs" />
+    <Compile Include="ConnectApi\UnauthenticatedUser.cs" />
+    <Compile Include="ConnectApi\UnreadConversationCount.cs" />
+    <Compile Include="ConnectApi\User.cs" />
+    <Compile Include="ConnectApi\UserCapabilities.cs" />
+    <Compile Include="ConnectApi\UserChatterSettings.cs" />
+    <Compile Include="ConnectApi\UserDetail.cs" />
+    <Compile Include="ConnectApi\UserGroupPage.cs" />
+    <Compile Include="ConnectApi\UserInput.cs" />
+    <Compile Include="ConnectApi\UserOauthInfo.cs" />
+    <Compile Include="ConnectApi\UserPage.cs" />
+    <Compile Include="ConnectApi\UserProfile.cs" />
+    <Compile Include="ConnectApi\UserProfiles.cs" />
+    <Compile Include="ConnectApi\UserProfileTab.cs" />
+    <Compile Include="ConnectApi\UserProfileTabType.cs" />
+    <Compile Include="ConnectApi\UserReferencePage.cs" />
+    <Compile Include="ConnectApi\UserSettings.cs" />
+    <Compile Include="ConnectApi\UserSummary.cs" />
+    <Compile Include="ConnectApi\UserType.cs" />
+    <Compile Include="ConnectApi\WorkflowProcessStatus.cs" />
+    <Compile Include="ConnectApi\WorkspacePermission.cs" />
+    <Compile Include="ConnectApi\Zone.cs" />
+    <Compile Include="ConnectApi\ZonePage.cs" />
+    <Compile Include="ConnectApi\Zones.cs" />
+    <Compile Include="ConnectApi\ZoneSearchPage.cs" />
+    <Compile Include="ConnectApi\ZoneSearchResult.cs" />
+    <Compile Include="ConnectApi\ZoneSearchResultType.cs" />
+    <Compile Include="ConnectApi\ZoneShowIn.cs" />
+    <Compile Include="Database\AssignmentRuleHeader.cs" />
+    <Compile Include="Database\Batchable.cs" />
+    <Compile Include="Database\BatchableContext.cs" />
+    <Compile Include="Database\BatchableContextImpl.cs" />
+    <Compile Include="Database\DeletedRecord.cs" />
+    <Compile Include="Database\DeleteResult.cs" />
+    <Compile Include="Database\DMLOptions.cs" />
+    <Compile Include="Database\DuplicateError.cs" />
+    <Compile Include="Database\DuplicateRuleHeader.cs" />
+    <Compile Include="Database\EmailHeader.cs" />
+    <Compile Include="Database\EmptyRecycleBinResult.cs" />
+    <Compile Include="Database\Error.cs" />
+    <Compile Include="Database\GetDeletedResult.cs" />
+    <Compile Include="Database\GetUpdatedResult.cs" />
+    <Compile Include="Database\LeadConvert.cs" />
+    <Compile Include="Database\LeadConvertResult.cs" />
+    <Compile Include="Database\MergeRequest.cs" />
+    <Compile Include="Database\MergeResult.cs" />
+    <Compile Include="Database\QueryLocator.cs" />
+    <Compile Include="Database\QueryLocatorChunkIterator.cs" />
+    <Compile Include="Database\QueryLocatorIterator.cs" />
+    <Compile Include="Database\SaveResult.cs" />
+    <Compile Include="Database\UndeleteResult.cs" />
+    <Compile Include="Database\UpsertResult.cs" />
+    <Compile Include="Databinding\ObjectMapper.cs" />
+    <Compile Include="Databinding\ObjectMappingException.cs" />
+    <Compile Include="Datacloud\AdditionalInformationMap.cs" />
+    <Compile Include="Datacloud\DuplicateResult.cs" />
+    <Compile Include="Datacloud\FieldDiff.cs" />
+    <Compile Include="Datacloud\FieldDifferenceType.cs" />
+    <Compile Include="Datacloud\MatchRecord.cs" />
+    <Compile Include="Datacloud\MatchResult.cs" />
+    <Compile Include="DataProtection\DbBackupPortalConnector.cs" />
+    <Compile Include="Dom\Document.cs" />
+    <Compile Include="Dom\XmlNode.cs" />
+    <Compile Include="Dom\XmlNodeType.cs" />
+    <Compile Include="Eventbus\RetryableException.cs" />
+    <Compile Include="Eventbus\TriggerContext.cs" />
+    <Compile Include="Flow\Interview.cs" />
+    <Compile Include="KbManagement\PublishingService.cs" />
+    <Compile Include="LiveAgent\LiveAgentRealTimeSystem.cs" />
+    <Compile Include="LiveAgent\LiveChatRouter.cs" />
+    <Compile Include="LiveAgent\LiveChatRoutingRequest.cs" />
+    <Compile Include="LiveAgent\LiveChatRoutingResult.cs" />
+    <Compile Include="LiveAgent\LiveChatRoutingResultType.cs" />
+    <Compile Include="LiveAgent\LiveChatRoutingRoute.cs" />
+    <Compile Include="Messaging\BinaryAttachment.cs" />
+    <Compile Include="Messaging\Email.cs" />
+    <Compile Include="Messaging\EmailAttachment.cs" />
+    <Compile Include="Messaging\EmailFileAttachment.cs" />
+    <Compile Include="Messaging\EmailToSalesforceHandler.cs" />
+    <Compile Include="Messaging\Header.cs" />
+    <Compile Include="Messaging\InboundEmail.cs" />
+    <Compile Include="Messaging\InboundEmailHandler.cs" />
+    <Compile Include="Messaging\InboundEmailResult.cs" />
+    <Compile Include="Messaging\InboundEnvelope.cs" />
+    <Compile Include="Messaging\MassEmailMessage.cs" />
+    <Compile Include="Messaging\PushNotification.cs" />
+    <Compile Include="Messaging\PushNotificationPayload.cs" />
+    <Compile Include="Messaging\RenderEmailTemplateBodyResult.cs" />
+    <Compile Include="Messaging\RenderEmailTemplateError.cs" />
+    <Compile Include="Messaging\SendEmailError.cs" />
+    <Compile Include="Messaging\SendEmailResult.cs" />
+    <Compile Include="Messaging\SingleEmailMessage.cs" />
+    <Compile Include="Messaging\TextAttachment.cs" />
+    <Compile Include="Networkspulse\ApproveFeedItemActionControllerExtension.cs" />
+    <Compile Include="Networkspulse\DeleteActionsControllerExtension.cs" />
+    <Compile Include="Networkspulse\PulseApexActionsUtil.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Package\Version.cs" />
+    <Compile Include="Predictive\AnalysisException.cs" />
+    <Compile Include="Predictive\BasePredictedFieldImpl.cs" />
+    <Compile Include="Predictive\BooleanPredictedField.cs" />
+    <Compile Include="Predictive\CategoricalFieldTreatment.cs" />
+    <Compile Include="Predictive\DatePredictedField.cs" />
+    <Compile Include="Predictive\DoublePredictedField.cs" />
+    <Compile Include="Predictive\FieldTreatment.cs" />
+    <Compile Include="Predictive\FieldTreatmentType.cs" />
+    <Compile Include="Predictive\ItemPresenceReason.cs" />
+    <Compile Include="Predictive\NumberFieldTreatment.cs" />
+    <Compile Include="Predictive\ObjectAnalysis.cs" />
+    <Compile Include="Predictive\ObjectAnalysisService.cs" />
+    <Compile Include="Predictive\ObjectRefreshState.cs" />
+    <Compile Include="Predictive\ObjectRefreshStatus.cs" />
+    <Compile Include="Predictive\ObjectTreatment.cs" />
+    <Compile Include="Predictive\OmittedFieldTreatment.cs" />
+    <Compile Include="Predictive\PredictedField.cs" />
+    <Compile Include="Predictive\PredictedFieldType.cs" />
+    <Compile Include="Predictive\PredictedResult.cs" />
+    <Compile Include="Predictive\PredictiveException.cs" />
+    <Compile Include="Predictive\PresenceFlagFieldTreatment.cs" />
+    <Compile Include="Predictive\PresenceReason.cs" />
+    <Compile Include="Predictive\QueryException.cs" />
+    <Compile Include="Predictive\Reason.cs" />
+    <Compile Include="Predictive\ReasonType.cs" />
+    <Compile Include="Predictive\RelatedField.cs" />
+    <Compile Include="Predictive\RelatedResult.cs" />
+    <Compile Include="Predictive\Row.cs" />
+    <Compile Include="Predictive\SetFieldTreatment.cs" />
+    <Compile Include="Predictive\SimilarRecord.cs" />
+    <Compile Include="Predictive\SimilarResult.cs" />
+    <Compile Include="Predictive\StringPredictedField.cs" />
+    <Compile Include="Predictive\TextFieldTreatment.cs" />
+    <Compile Include="Predictive\TimeDeltaFieldTreatment.cs" />
+    <Compile Include="Predictive\ValueReason.cs" />
+    <Compile Include="Predictive\WordPresenceReason.cs" />
+    <Compile Include="Process\InputParameter.cs" />
+    <Compile Include="Process\OutputParameter.cs" />
+    <Compile Include="Process\ParameterType.cs" />
+    <Compile Include="Process\Plugin.cs" />
+    <Compile Include="Process\PluginDescribeResult.cs" />
+    <Compile Include="Process\PluginRequest.cs" />
+    <Compile Include="Process\PluginResult.cs" />
+    <Compile Include="Process\SparkPlugApi.cs" />
+    <Compile Include="Process\SparkPlugDescribeResult.cs" />
+    <Compile Include="Process\SparkPlugParameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickAction\Control.cs" />
+    <Compile Include="QuickAction\DescribeAvailableQuickActionResult.cs" />
+    <Compile Include="QuickAction\DescribeLayoutComponent.cs" />
+    <Compile Include="QuickAction\DescribeLayoutItem.cs" />
+    <Compile Include="QuickAction\DescribeLayoutRow.cs" />
+    <Compile Include="QuickAction\DescribeLayoutSection.cs" />
+    <Compile Include="QuickAction\DescribeQuickActionDefaultValue.cs" />
+    <Compile Include="QuickAction\DescribeQuickActionResult.cs" />
+    <Compile Include="QuickAction\EmptySpace.cs" />
+    <Compile Include="QuickAction\ExpandedLookup.cs" />
+    <Compile Include="QuickAction\Field.cs" />
+    <Compile Include="QuickAction\FieldLayoutComponent.cs" />
+    <Compile Include="QuickAction\QuickActionDefaults.cs" />
+    <Compile Include="QuickAction\QuickActionDefaultsHandler.cs" />
+    <Compile Include="QuickAction\QuickActionRequest.cs" />
+    <Compile Include="QuickAction\QuickActionResult.cs" />
+    <Compile Include="QuickAction\QuickActionTemplateResult.cs" />
+    <Compile Include="QuickAction\ReportChartComponent.cs" />
+    <Compile Include="QuickAction\SControl.cs" />
+    <Compile Include="QuickAction\SendEmailQuickActionDefaults.cs" />
+    <Compile Include="QuickAction\Separator.cs" />
+    <Compile Include="QuickAction\VisualforcePage.cs" />
+    <Compile Include="Reports\AggregateColumn.cs" />
+    <Compile Include="Reports\BucketField.cs" />
+    <Compile Include="Reports\BucketFieldValue.cs" />
+    <Compile Include="Reports\BucketType.cs" />
+    <Compile Include="Reports\ColumnDataType.cs" />
+    <Compile Include="Reports\ColumnSortOrder.cs" />
+    <Compile Include="Reports\CrossFilter.cs" />
+    <Compile Include="Reports\CsfGroupType.cs" />
+    <Compile Include="Reports\DateGranularity.cs" />
+    <Compile Include="Reports\DetailColumn.cs" />
+    <Compile Include="Reports\Dimension.cs" />
+    <Compile Include="Reports\EvaluatedCondition.cs" />
+    <Compile Include="Reports\EvaluatedConditionOperator.cs" />
+    <Compile Include="Reports\FeatureNotSupportedException.cs" />
+    <Compile Include="Reports\FilterOperator.cs" />
+    <Compile Include="Reports\FilterValue.cs" />
+    <Compile Include="Reports\FormulaType.cs" />
+    <Compile Include="Reports\GroupingColumn.cs" />
+    <Compile Include="Reports\GroupingInfo.cs" />
+    <Compile Include="Reports\GroupingValue.cs" />
+    <Compile Include="Reports\InstanceAccessException.cs" />
+    <Compile Include="Reports\InvalidFilterException.cs" />
+    <Compile Include="Reports\InvalidReportMetadataException.cs" />
+    <Compile Include="Reports\InvalidSnapshotDateException.cs" />
+    <Compile Include="Reports\MetadataException.cs" />
+    <Compile Include="Reports\NotificationAction.cs" />
+    <Compile Include="Reports\NotificationActionContext.cs" />
+    <Compile Include="Reports\ReportCsf.cs" />
+    <Compile Include="Reports\ReportCurrency.cs" />
+    <Compile Include="Reports\ReportDataCell.cs" />
+    <Compile Include="Reports\ReportDescribeResult.cs" />
+    <Compile Include="Reports\ReportDetailRow.cs" />
+    <Compile Include="Reports\ReportDivisionInfo.cs" />
+    <Compile Include="Reports\ReportExtendedMetadata.cs" />
+    <Compile Include="Reports\ReportFact.cs" />
+    <Compile Include="Reports\ReportFactWithDetails.cs" />
+    <Compile Include="Reports\ReportFactWithSummaries.cs" />
+    <Compile Include="Reports\ReportFilter.cs" />
+    <Compile Include="Reports\ReportFormat.cs" />
+    <Compile Include="Reports\ReportInstance.cs" />
+    <Compile Include="Reports\ReportInstanceAttributes.cs" />
+    <Compile Include="Reports\ReportManager.cs" />
+    <Compile Include="Reports\ReportMetadata.cs" />
+    <Compile Include="Reports\ReportResults.cs" />
+    <Compile Include="Reports\ReportRunException.cs" />
+    <Compile Include="Reports\ReportScopeInfo.cs" />
+    <Compile Include="Reports\ReportScopeValue.cs" />
+    <Compile Include="Reports\ReportType.cs" />
+    <Compile Include="Reports\ReportTypeColumn.cs" />
+    <Compile Include="Reports\ReportTypeColumnCategory.cs" />
+    <Compile Include="Reports\ReportTypeMetadata.cs" />
+    <Compile Include="Reports\SortColumn.cs" />
+    <Compile Include="Reports\StandardDateFilter.cs" />
+    <Compile Include="Reports\StandardDateFilterDuration.cs" />
+    <Compile Include="Reports\StandardDateFilterDurationGroup.cs" />
+    <Compile Include="Reports\StandardFilter.cs" />
+    <Compile Include="Reports\StandardFilterInfo.cs" />
+    <Compile Include="Reports\StandardFilterInfoPicklist.cs" />
+    <Compile Include="Reports\StandardFilterType.cs" />
+    <Compile Include="Reports\SummaryValue.cs" />
+    <Compile Include="Reports\ThresholdInformation.cs" />
+    <Compile Include="Reports\TopRows.cs" />
+    <Compile Include="Reports\UnsupportedOperationException.cs" />
+    <Compile Include="Schema\ChildRelationship.cs" />
+    <Compile Include="Schema\DataCategory.cs" />
+    <Compile Include="Schema\DataCategoryGroupSobjectTypePair.cs" />
+    <Compile Include="Schema\DescribeColorResult.cs" />
+    <Compile Include="Schema\DescribeDataCategoryGroupResult.cs" />
+    <Compile Include="Schema\DescribeDataCategoryGroupStructureResult.cs" />
+    <Compile Include="Schema\DescribeFieldResult.cs" />
+    <Compile Include="Schema\DescribeIconResult.cs" />
+    <Compile Include="Schema\DescribeSObjectResult.cs" />
+    <Compile Include="Schema\DescribeTabResult.cs" />
+    <Compile Include="Schema\DescribeTabSetResult.cs" />
+    <Compile Include="Schema\DisplayType.cs" />
+    <Compile Include="Schema\FieldSet.cs" />
+    <Compile Include="Schema\FieldSetMember.cs" />
+    <Compile Include="Schema\FilteredLookupInfo.cs" />
+    <Compile Include="Schema\PicklistEntry.cs" />
+    <Compile Include="Schema\RecordTypeInfo.cs" />
+    <Compile Include="Schema\SoapType.cs" />
+    <Compile Include="Schema\SObjectField.cs" />
+    <Compile Include="Schema\SObjectType.cs" />
+    <Compile Include="Search\KnowledgeSuggestionFilter.cs" />
+    <Compile Include="Search\QuestionSuggestionFilter.cs" />
+    <Compile Include="Search\SearchResult.cs" />
+    <Compile Include="Search\SearchResults.cs" />
+    <Compile Include="Search\SuggestionOption.cs" />
+    <Compile Include="Search\SuggestionResult.cs" />
+    <Compile Include="Search\SuggestionResults.cs" />
+    <Compile Include="Site\UrlRewriter.cs" />
+    <Compile Include="Social\DefaultInboundSocialPostHandler.cs" />
+    <Compile Include="Social\InboundSocialPostHandler.cs" />
+    <Compile Include="Social\InboundSocialPostHandlerImpl.cs" />
+    <Compile Include="Social\InboundSocialPostHandlerImplTest.cs" />
+    <Compile Include="Social\InboundSocialPostResult.cs" />
+    <Compile Include="Support\EmailTemplateSelector.cs" />
+    <Compile Include="Support\EmailToCaseHandler.cs" />
+    <Compile Include="Support\MilestoneTriggerTimeCalculator.cs" />
+    <Compile Include="System\Address.cs" />
+    <Compile Include="System\Answers.cs" />
+    <Compile Include="System\ApexPages.cs" />
+    <Compile Include="System\Approval.cs" />
+    <Compile Include="System\AssertException.cs" />
+    <Compile Include="System\AsyncException.cs" />
+    <Compile Include="System\Aura.cs" />
+    <Compile Include="System\Blob.cs" />
+    <Compile Include="System\Boolean.cs" />
+    <Compile Include="System\BusinessHours.cs" />
+    <Compile Include="System\CalloutException.cs" />
+    <Compile Include="System\CanvasException.cs" />
+    <Compile Include="System\Cases.cs" />
+    <Compile Include="System\Communities.cs" />
+    <Compile Include="System\Comparable.cs" />
+    <Compile Include="System\Continuation.cs" />
+    <Compile Include="System\Cookie.cs" />
+    <Compile Include="System\Crypto.cs" />
+    <Compile Include="System\CURRENCY.cs" />
+    <Compile Include="System\Database.cs" />
+    <Compile Include="System\Date.cs" />
+    <Compile Include="System\Datetime.cs" />
+    <Compile Include="System\Decimal.cs" />
+    <Compile Include="System\DmlException.cs" />
+    <Compile Include="System\Double.cs" />
+    <Compile Include="System\EmailException.cs" />
+    <Compile Include="System\EmailTemplateRenderException.cs" />
+    <Compile Include="System\EncodingUtil.cs" />
+    <Compile Include="System\EventBus.cs" />
+    <Compile Include="System\Exception.cs" />
+    <Compile Include="System\ExternalObjectException.cs" />
+    <Compile Include="System\FinalException.cs" />
+    <Compile Include="System\FlexQueue.cs" />
+    <Compile Include="System\FlowException.cs" />
+    <Compile Include="System\HandledException.cs" />
+    <Compile Include="System\Http.cs" />
+    <Compile Include="System\HttpCalloutMock.cs" />
+    <Compile Include="System\HttpRequest.cs" />
+    <Compile Include="System\HttpResponse.cs" />
+    <Compile Include="System\Id.cs" />
+    <Compile Include="System\Ideas.cs" />
+    <Compile Include="System\Integer.cs" />
+    <Compile Include="System\InvalidHeaderException.cs" />
+    <Compile Include="System\InvalidParameterValueException.cs" />
+    <Compile Include="System\InvalidReadOnlyUserDmlException.cs" />
+    <Compile Include="System\Iterable.cs" />
+    <Compile Include="System\Iterator.cs" />
+    <Compile Include="System\JSON.cs" />
+    <Compile Include="System\JSONException.cs" />
+    <Compile Include="System\JSONGenerator.cs" />
+    <Compile Include="System\JSONParser.cs" />
+    <Compile Include="System\JSONToken.cs" />
+    <Compile Include="System\LicenseException.cs" />
+    <Compile Include="System\LimitException.cs" />
+    <Compile Include="System\Limits.cs" />
+    <Compile Include="System\List.cs" />
+    <Compile Include="System\ListException.cs" />
+    <Compile Include="System\Location.cs" />
+    <Compile Include="System\LoggingLevel.cs" />
+    <Compile Include="System\Long.cs" />
+    <Compile Include="System\Map.cs" />
+    <Compile Include="System\Matcher.cs" />
+    <Compile Include="System\Math.cs" />
+    <Compile Include="System\MathException.cs" />
+    <Compile Include="System\Messaging.cs" />
+    <Compile Include="System\MultiStaticResourceCalloutMock.cs" />
+    <Compile Include="System\Network.cs" />
+    <Compile Include="System\NoAccessException.cs" />
+    <Compile Include="System\NoDataFoundException.cs" />
+    <Compile Include="System\NoSuchElementException.cs" />
+    <Compile Include="System\NullPointerException.cs" />
+    <Compile Include="System\PageReference.cs" />
+    <Compile Include="System\Pattern.cs" />
+    <Compile Include="System\PlatformCacheException.cs" />
+    <Compile Include="System\ProcedureException.cs" />
+    <Compile Include="System\QueryException.cs" />
+    <Compile Include="System\Queueable.cs" />
+    <Compile Include="System\QueueableContext.cs" />
+    <Compile Include="System\QueueableContextImpl.cs" />
+    <Compile Include="System\QuickAction.cs" />
+    <Compile Include="System\RemoteObjectController.cs" />
+    <Compile Include="System\RequiredFeatureMissingException.cs" />
+    <Compile Include="System\ResetPasswordResult.cs" />
+    <Compile Include="System\RestContext.cs" />
+    <Compile Include="System\RestRequest.cs" />
+    <Compile Include="System\RestResponse.cs" />
+    <Compile Include="System\RoundingMode.cs" />
+    <Compile Include="System\SandboxContext.cs" />
+    <Compile Include="System\SandboxPostCopy.cs" />
+    <Compile Include="System\Schedulable.cs" />
+    <Compile Include="System\SchedulableContext.cs" />
+    <Compile Include="System\SchedulableContextImpl.cs" />
+    <Compile Include="System\Schema.cs" />
+    <Compile Include="System\Search.cs" />
+    <Compile Include="System\SearchException.cs" />
+    <Compile Include="System\SecurityException.cs" />
+    <Compile Include="System\SelectOption.cs" />
+    <Compile Include="System\SerializationException.cs" />
+    <Compile Include="System\Set.cs" />
+    <Compile Include="System\SetupScope.cs" />
+    <Compile Include="System\SfdcOps.cs" />
+    <Compile Include="System\Site.cs" />
+    <Compile Include="System\SObject.cs" />
+    <Compile Include="System\SObjectException.cs" />
+    <Compile Include="System\StaticResourceCalloutMock.cs" />
+    <Compile Include="System\StatusCode.cs" />
+    <Compile Include="System\String.cs" />
+    <Compile Include="System\StringException.cs" />
+    <Compile Include="System\StubProvider.cs" />
+    <Compile Include="System\SupportPredictiveService.cs" />
+    <Compile Include="System\System.cs" />
+    <Compile Include="System\Test.cs" />
+    <Compile Include="System\Time.cs" />
+    <Compile Include="System\TimeZone.cs" />
+    <Compile Include="System\TouchHandledException.cs" />
+    <Compile Include="System\Type.cs" />
+    <Compile Include="System\TypeException.cs" />
+    <Compile Include="System\UnexpectedException.cs" />
+    <Compile Include="System\UnsupportedOperationException.cs" />
+    <Compile Include="System\Url.cs" />
+    <Compile Include="System\UserInfo.cs" />
+    <Compile Include="System\Version.cs" />
+    <Compile Include="System\VisualforceException.cs" />
+    <Compile Include="System\WaveTemplateException.cs" />
+    <Compile Include="System\WebServiceCallout.cs" />
+    <Compile Include="System\WebServiceCalloutFuture.cs" />
+    <Compile Include="System\WebServiceMock.cs" />
+    <Compile Include="System\XmlException.cs" />
+    <Compile Include="System\XmlStreamReader.cs" />
+    <Compile Include="System\XmlStreamWriter.cs" />
+    <Compile Include="System\XmlTag.cs" />
+    <Compile Include="TerritoryMgmt\OpportunityTerritory2AssignmentFilter.cs" />
+    <Compile Include="TxnSecurity\Event.cs" />
+    <Compile Include="TxnSecurity\PolicyCondition.cs" />
+    <Compile Include="UserProvisioning\CollectingBatchable.cs" />
+    <Compile Include="UserProvisioning\CommittingBatchable.cs" />
+    <Compile Include="UserProvisioning\ConnectorTestUtil.cs" />
+    <Compile Include="UserProvisioning\DeletingBatchable.cs" />
+    <Compile Include="UserProvisioning\DummyConnectorApexHandler.cs" />
+    <Compile Include="UserProvisioning\FlowProvisionBase.cs" />
+    <Compile Include="UserProvisioning\LinkingBatchable.cs" />
+    <Compile Include="UserProvisioning\PluginBatchable.cs" />
+    <Compile Include="UserProvisioning\ProvisioningBatchable.cs" />
+    <Compile Include="UserProvisioning\ProvisioningProcessHandlerInput.cs" />
+    <Compile Include="UserProvisioning\ProvisioningProcessHandlerOutput.cs" />
+    <Compile Include="UserProvisioning\RequestingBatchable.cs" />
+    <Compile Include="UserProvisioning\UPASCleaningBatchable.cs" />
+    <Compile Include="UserProvisioning\UserProvisioningLog.cs" />
+    <Compile Include="UserProvisioning\UserProvisioningPlugin.cs" />
+    <Compile Include="UserProvisioning\UserProvisioningProcessHandler.cs" />
+    <Compile Include="VisualEditor\DataRow.cs" />
+    <Compile Include="VisualEditor\DesignTimePageContext.cs" />
+    <Compile Include="VisualEditor\DynamicPickList.cs" />
+    <Compile Include="VisualEditor\DynamicPickListRows.cs" />
+    <Compile Include="Wavetemplate\Answers.cs" />
+    <Compile Include="Wavetemplate\ReleaseInfo.cs" />
+    <Compile Include="Wavetemplate\SalesWaveConfigurationModifier.cs" />
+    <Compile Include="Wavetemplate\ServiceWaveConfigurationModifier.cs" />
+    <Compile Include="Wavetemplate\TemplateApexException.cs" />
+    <Compile Include="Wavetemplate\TemplateInterruptException.cs" />
+    <Compile Include="Wavetemplate\Test.cs" />
+    <Compile Include="Wavetemplate\UI.cs" />
+    <Compile Include="Wavetemplate\UIPage.cs" />
+    <Compile Include="Wavetemplate\Variable.cs" />
+    <Compile Include="Wavetemplate\VariableDefinition.cs" />
+    <Compile Include="Wavetemplate\VariableType.cs" />
+    <Compile Include="Wavetemplate\VariableTypeEnum.cs" />
+    <Compile Include="Wavetemplate\VisibilityEnum.cs" />
+    <Compile Include="Wavetemplate\WaveTemplateConfigurationModifier.cs" />
+    <Compile Include="Wavetemplate\WaveTemplateInfo.cs" />
+    <Compile Include="Wave\Query.cs" />
+    <Compile Include="Wave\TrendedDatasetProcessor.cs" />
+    <Compile Include="Wave\WaveQueryException.cs" />
+    <Compile Include="Workflow\Action.cs" />
+    <Compile Include="Workflow\ActionDml.cs" />
+    <Compile Include="Workflow\Context.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="bin\Debug\Apex.dll.config" />
+    <None Include="obj\Debug\Apex.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Apex.dll" />
+    <Content Include="bin\Debug\Apex.pdb" />
+    <Content Include="bin\Debug\ApexImp.dll" />
+    <Content Include="bin\Debug\ApexImp.pdb" />
+    <Content Include="obj\Debug\Apex.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Apex.dll" />
+    <Content Include="obj\Debug\Apex.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SalesForceAPI\SalesForceAPI.csproj">
+      <Project>{a13785db-05bb-4842-957d-56d5b251d608}</Project>
+      <Name>SalesForceAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.3.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.3.0\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
