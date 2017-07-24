@@ -20,9 +20,6 @@ namespace ApexSharpDemo
                 //apexSharp.ConvertToCSharpAndAddToProject("Demo", overWrite: true);
 
                 apexSharp.ConvertToApexAndAddToProject("UnitTest", overWrite: true);
-
-
-
             }
             else
             {

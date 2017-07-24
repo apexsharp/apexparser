@@ -1,4 +1,12 @@
-# apexsharp
-Apex <> C# - Two Way Transpiler 
+[![IMAGE ALT TEXT HERE](apexsharplogo.jpg)](https://vimeo.com/224927838)
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+
+Apex <> C# - Two Way [Transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)
+
+A Quick 10 Min Video https://vimeo.com/224927838
+
+This is very early stage Alpha Software use it at your own risk :-)
+
+Jay
+EMail: <Jay@JayOnSoftware.com> 
+[LinkedIn](https://www.linkedin.com/in/jayonsoftware/) 
