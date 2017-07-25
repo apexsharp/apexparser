@@ -33,6 +33,7 @@ namespace Apex.ApexSharp.ApexToSharp
                 apexTokens = apexTokens.Where(x => x.TockenType != TockenType.Space).ToList();
 
                 var returnLexar = Lexar(apexTokens);
+
                 if (returnLexar == "CommentLine")
                 {
                     apexComments = apexLine;
@@ -49,7 +50,7 @@ namespace Apex.ApexSharp.ApexToSharp
                 else if (returnLexar == "Method")
                 {
                     apexMethod = ApexClassCreator.CreateMethod(apexTokens);
-                    apexClass.ApexMethods.Add(apexMethod);
+                    apexClass.ChildNodes.Add(apexMethod);
 
                     if (apexComments.Length != 0)
                     {
@@ -92,14 +93,14 @@ namespace Apex.ApexSharp.ApexToSharp
         {
             foreach (var code in apexClass.CodeInsideClass)
             {
-                Console.WriteLine((string) code);
+                Console.WriteLine((string)code);
             }
 
             foreach (var apexMethod in apexClass.ApexMethods)
             {
                 foreach (var apexLine in apexMethod.CodeInsideMethod)
                 {
-                    Console.WriteLine((string) apexLine);
+                    Console.WriteLine((string)apexLine);
                 }
             }
         }
@@ -161,7 +162,7 @@ namespace Apex.ApexSharp.ApexToSharp
             var indexOne = apexTokens.FindIndex(x => x.TockenType == TockenType.AccessModifier);
             var indexTwo = apexTokens.FindIndex(x => x.TockenType == TockenType.OpenBrackets);
             var indexThree = apexTokens.FindIndex(x => x.TockenType == TockenType.CloseBrackets);
-            if (indexOne > 0 && indexTwo > 0 && indexThree > 0)
+            if (indexOne == 0 && indexTwo > 0 && indexThree > 0)
             {
                 return "Method";
             }

@@ -9,61 +9,6 @@ namespace Apex.ApexSharp.ApexToSharp
 {
     public class ApexParser
     {
-        public static void FormatApex(List<FileInfo> apexFileList)
-        {
-            List<ApexClassContainer> apexClassContainerList = new List<ApexClassContainer>();
-
-
-            // Read all the classes and create a list of ApexClassContainer objects
-            foreach (FileInfo apexFile in apexFileList)
-            {
-                ApexClassContainer apexClass = new ApexClassContainer(apexFile);
-                apexClassContainerList.Add(apexClass);
-
-                string lowerClassName = apexClass.GetClassName().ToLower();
-                ClassNameManager.ClassNameList.Add(lowerClassName);
-            }
-
-            foreach (ApexClassContainer apexClassContainer in apexClassContainerList)
-            {
-                Console.WriteLine($"Loading {apexClassContainer.ApexSource.FullName}");
-
-                // Read the file, Parase It
-                string apexCode = File.ReadAllText(apexClassContainer.ApexSource.FullName);
-                apexClassContainer.ApexTokens = Parse(apexClassContainer.ApexSource.FullName, apexCode);
-
-                // Remove Mulit Lines Comments 
-                apexClassContainer.ApexTokens = CommentClean.RemoveApexTokens(apexClassContainer.ApexTokens);
-
-                // Remove Return, Space, ApexError Tokens
-                // apexClassContainer.ApexTokens = apexClassContainer.ApexTokens.Where(x => x.TockenType != TockenType.CommentLine).ToList();
-                apexClassContainer.ApexTokens = apexClassContainer.ApexTokens
-                    .Where(x => x.TockenType != TockenType.Return).ToList();
-                apexClassContainer.ApexTokens = apexClassContainer.ApexTokens
-                    .Where(x => x.TockenType != TockenType.Space).ToList();
-                apexClassContainer.ApexTokens = apexClassContainer.ApexTokens
-                    .Where(x => x.TockenType != TockenType.ApexError).ToList();
-
-                // Print the Token List for Debugging 
-                foreach (ApexTocken apexToken in apexClassContainer.ApexTokens)
-                {
-                    Console.WriteLine($"{apexToken.TockenType}:{apexToken.Tocken}");
-                }
-
-                // Brake Code into lines 
-                var apexCodeList = ApexTokenizer.GetApexList(apexClassContainer.ApexTokens);
-                apexCodeList = ApexTokenizer.ForLoopFix(apexCodeList);
-
-                foreach (var apexCodeString in apexCodeList)
-                {
-                    // Console.WriteLine(apexCodeString);
-                }
-
-                File.WriteAllLines(apexClassContainer.ApexSource.FullName, apexCodeList);
-            }
-        }
-
-
         public static void Parse(List<FileInfo> apexFileList)
         {
             List<ApexClassContainer> apexClassContainerList = new List<ApexClassContainer>();
@@ -98,42 +43,42 @@ namespace Apex.ApexSharp.ApexToSharp
                 apexClassContainer.ApexTokens = apexClassContainer.ApexTokens
                     .Where(x => x.TockenType != TockenType.ApexError).ToList();
 
-                //ApexTokenizer.Lexar(apexClassContainer.ApexTokens);
+                //    ApexTokenizer.Lexar(apexClassContainer.ApexTokens);
 
-                return;
+
                 // ToDo: If we have any classes on the parsed list then mark them. 
 
 
-                // mark all words that are class name
-                for (int i = 0; i < apexClassContainer.ApexTokens.Count - 1; i++)
-                {
-                    if (apexClassContainer.ApexTokens[i].TockenType == TockenType.Word)
-                    {
-                        string className = apexClassContainer.ApexTokens[i].Tocken;
+                //// mark all words that are class name
+                //for (int i = 0; i < apexClassContainer.ApexTokens.Count - 1; i++)
+                //{
+                //    if (apexClassContainer.ApexTokens[i].TockenType == TockenType.Word)
+                //    {
+                //        string className = apexClassContainer.ApexTokens[i].Tocken;
 
-                        if (ClassNameManager.ClassNameList.Contains(className, StringComparer.CurrentCultureIgnoreCase))
-                        {
-                            apexClassContainer.ApexTokens[i].TockenType = TockenType.ClassName;
-                        }
-                    }
-                }
+                //        if (ClassNameManager.ClassNameList.Contains(className, StringComparer.CurrentCultureIgnoreCase))
+                //        {
+                //            apexClassContainer.ApexTokens[i].TockenType = TockenType.ClassName;
+                //        }
+                //    }
+                //}
 
-                // Mark Methods
-                for (int i = 0; i < apexClassContainer.ApexTokens.Count - 2; i++)
-                {
-                    if (apexClassContainer.ApexTokens[i].TockenType == TockenType.ClassName &&
-                        apexClassContainer.ApexTokens[i + 1].TockenType == TockenType.Dot &&
-                        apexClassContainer.ApexTokens[i + 2].TockenType == TockenType.Word)
-                    {
-                        string methodName = apexClassContainer.ApexTokens[i + 2].Tocken;
+                //// Mark Methods
+                //for (int i = 0; i < apexClassContainer.ApexTokens.Count - 2; i++)
+                //{
+                //    if (apexClassContainer.ApexTokens[i].TockenType == TockenType.ClassName &&
+                //        apexClassContainer.ApexTokens[i + 1].TockenType == TockenType.Dot &&
+                //        apexClassContainer.ApexTokens[i + 2].TockenType == TockenType.Word)
+                //    {
+                //        string methodName = apexClassContainer.ApexTokens[i + 2].Tocken;
 
-                        if (MethodNameManager.MethodNameList.Contains(methodName,
-                            StringComparer.CurrentCultureIgnoreCase))
-                        {
-                            apexClassContainer.ApexTokens[i + 2].TockenType = TockenType.MethodName;
-                        }
-                    }
-                }
+                //        if (MethodNameManager.MethodNameList.Contains(methodName,
+                //            StringComparer.CurrentCultureIgnoreCase))
+                //        {
+                //            apexClassContainer.ApexTokens[i + 2].TockenType = TockenType.MethodName;
+                //        }
+                //    }
+                //}
 
 
                 // ToDo: Better Error Management
@@ -148,7 +93,7 @@ namespace Apex.ApexSharp.ApexToSharp
                     }
                 }
 
-                //File.WriteAllText(_apexSharp.ApexDirectory.FullName + apexClass.GetClassName() + ".cls", apexClass.GetFromatedApexCode(1));
+
 
                 // Build the Nested Syntex Tree
                 Stack<ApexSyntaxNode> apexStack = new Stack<ApexSyntaxNode>();
@@ -250,8 +195,60 @@ namespace Apex.ApexSharp.ApexToSharp
                             break;
                     }
                 }
+            }
+        }
 
-                apexClassDeclarationSyntaxList.Add(rootApexClass);
+        public static void FormatApex(List<FileInfo> apexFileList)
+        {
+            List<ApexClassContainer> apexClassContainerList = new List<ApexClassContainer>();
+
+
+            // Read all the classes and create a list of ApexClassContainer objects
+            foreach (FileInfo apexFile in apexFileList)
+            {
+                ApexClassContainer apexClass = new ApexClassContainer(apexFile);
+                apexClassContainerList.Add(apexClass);
+
+                string lowerClassName = apexClass.GetClassName().ToLower();
+                ClassNameManager.ClassNameList.Add(lowerClassName);
+            }
+
+            foreach (ApexClassContainer apexClassContainer in apexClassContainerList)
+            {
+                Console.WriteLine($"Loading {apexClassContainer.ApexSource.FullName}");
+
+                // Read the file, Parase It
+                string apexCode = File.ReadAllText(apexClassContainer.ApexSource.FullName);
+                apexClassContainer.ApexTokens = Parse(apexClassContainer.ApexSource.FullName, apexCode);
+
+                // Remove Mulit Lines Comments 
+                apexClassContainer.ApexTokens = CommentClean.RemoveApexTokens(apexClassContainer.ApexTokens);
+
+                // Remove Return, Space, ApexError Tokens
+                // apexClassContainer.ApexTokens = apexClassContainer.ApexTokens.Where(x => x.TockenType != TockenType.CommentLine).ToList();
+                apexClassContainer.ApexTokens = apexClassContainer.ApexTokens
+                    .Where(x => x.TockenType != TockenType.Return).ToList();
+                apexClassContainer.ApexTokens = apexClassContainer.ApexTokens
+                    .Where(x => x.TockenType != TockenType.Space).ToList();
+                apexClassContainer.ApexTokens = apexClassContainer.ApexTokens
+                    .Where(x => x.TockenType != TockenType.ApexError).ToList();
+
+                // Print the Token List for Debugging 
+                foreach (ApexTocken apexToken in apexClassContainer.ApexTokens)
+                {
+                    Console.WriteLine($"{apexToken.TockenType}:{apexToken.Tocken}");
+                }
+
+                // Brake Code into lines 
+                var apexCodeList = ApexTokenizer.GetApexList(apexClassContainer.ApexTokens);
+                apexCodeList = ApexTokenizer.ForLoopFix(apexCodeList);
+
+                foreach (var apexCodeString in apexCodeList)
+                {
+                    // Console.WriteLine(apexCodeString);
+                }
+
+                File.WriteAllLines(apexClassContainer.ApexSource.FullName, apexCodeList);
             }
         }
 

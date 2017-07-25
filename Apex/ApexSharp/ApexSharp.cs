@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Apex.ApexSharp.ApexToSharp;
 using Apex.ApexSharp.SharpToApex;
 using Newtonsoft.Json;
 using SalesForceAPI;
@@ -201,7 +202,7 @@ namespace Apex.ApexSharp
         {
             CSharpParser parser = new CSharpParser();
             var apexClassDeclarationSyntax = parser.ParseCSharpFromFile(fullFileName);
-            var convertedApex = apexClassDeclarationSyntax.GetCApexCode();
+            var convertedApex = apexClassDeclarationSyntax.GetApexCode();
 
             var apexFileName = fullFileName.Name.Replace(".cs", "");
             apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
@@ -215,28 +216,26 @@ namespace Apex.ApexSharp
             File.WriteAllLines(apexFileName, convertedApex);
         }
 
+
+        public void ConvertToCSharpAndAddToProject(string apexFileName, bool overWrite)
+        {
+            apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
+            Console.WriteLine($"Converting APEX File and Saving {apexFileName}");
+
+            FileInfo newFileInfo = new FileInfo(apexFileName);
+            List<FileInfo> newFileInfos = new List<FileInfo> { newFileInfo };
+
+            var apexClassDeclarationSyntax = ApexTokenizer.Parse(newFileInfo);
+            Console.WriteLine();
+
+            Console.WriteLine(String.Join("\n", apexClassDeclarationSyntax.GetCSharpCode()));
+        }
+
+
         public void CreateOfflineClasses(string sObjectName)
         {
             ModelGen modelGen = new ModelGen();
             modelGen.CreateOfflineSymbolTable(sObjectName);
-        }
-
-        public void ConvertToCSharpAndAddToProject(string apexFileName, bool overWrite)
-        {
-            var cSharpFile = ConvertToCSharp(apexFileName + ".cls");
-            AddCSharpToProject(apexFileName + ".cs", cSharpFile);
-        }
-
-        public string ConvertToCSharp(string apexFileName)
-        {
-            Console.WriteLine($"Convertings and Saving {apexFileName}");
-            return apexFileName;
-        }
-
-        public string AddCSharpToProject(string apexFileName, string convertedCSharpCode)
-        {
-            Console.WriteLine($"Convertings and Saving {apexFileName}");
-            return apexFileName;
         }
     }
 }

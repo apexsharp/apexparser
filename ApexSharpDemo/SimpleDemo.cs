@@ -1,11 +1,12 @@
 ﻿using System;
 using Apex.ApexSharp;
+using ApexSharpDemo.ApexCode;
 
 namespace ApexSharpDemo
 {
     public class SimpleDemo
     {
-        public static void StartDemo()
+        public static void Main(string[] args)
         {
             ApexSharp apexSharp = new ApexSharp();
 
@@ -26,20 +27,22 @@ namespace ApexSharpDemo
                 // Create a local C# for Contact object in SF
                 apexSharp.CreateOfflineClasses("Contact");
 
-                // Run the method on the Demo object
-                ApexCode.Demo.RunContactDemo();
+                // Demo.cs is a simple C# code that we will convert APEX. This can be executed now.
+                // Take a look at the Demo.cs file int he /ApexCode Folder.  
+                Demo.RunContactDemo();
 
                 // Convert the Demo.cs File to APEX
                 apexSharp.ConvertToApexAndAddToProject("Demo", overWrite: true);
-
-                // Convert the Demo.cls APEX to C#
-                apexSharp.ConvertToCSharpAndAddToProject("Demo", overWrite: true);
             }
             else
             {
                 // Printout any errors
                 Console.WriteLine(String.Join("\n", apexSharp.GetErrorMessage()));
             }
+
+
+            Console.WriteLine("Done");
+            Console.ReadLine();
         }
     }
 }

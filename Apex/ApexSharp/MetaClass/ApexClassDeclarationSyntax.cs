@@ -64,6 +64,11 @@ namespace Apex.ApexSharp.MetaClass
         {
             return new List<string>() { "Not Implemented" };
         }
+
+        public List<string> GetCSharpCode()
+        {
+            return new List<string>() { "Not Implemented" };
+        }
     }
 
     public class ApexClassDeclarationSyntax : ApexSyntaxNode
@@ -86,7 +91,7 @@ namespace Apex.ApexSharp.MetaClass
         public string Identifier { set; get; }
         public string Extending { set; get; }
 
-        public List<string> GetCApexCode()
+        public List<string> GetApexCode()
         {
             List<string> apexCodeList = new List<string>();
 
@@ -148,7 +153,7 @@ namespace Apex.ApexSharp.MetaClass
         }
 
 
-        public List<string> GetCShaprCode()
+        public List<string> GetCSharpCode()
         {
             List<string> code = new List<string>();
 
@@ -189,6 +194,12 @@ namespace Apex.ApexSharp.MetaClass
             }
 
             code.Add("{");
+
+            foreach (var apexFieldDeclarationSyntax in ChildNodes)
+            {
+                code.AddRange(apexFieldDeclarationSyntax.GetCSharpCode());
+            }
+
             code.Add("}");
             code.Add("}");
 

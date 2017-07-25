@@ -6,7 +6,7 @@ namespace ApexSharpDemo
 {
     public class AdvanceDemo
     {
-        public static void StartDemo()
+        public static void Main(string[] args)
         {
             // If you had the settings saved in advance.
             ApexSharp apexSharp = new ApexSharp().LoadApexSharpConfig("setup.json");
@@ -17,14 +17,17 @@ namespace ApexSharpDemo
                 //apexSharp.CreateOfflineClasses("Contact");
                 //ApexCode.Demo.RunContactDemo();
                 //apexSharp.ConvertToApexAndAddToProject("Demo", overWrite: true);
-                //apexSharp.ConvertToCSharpAndAddToProject("Demo", overWrite: true);
+                apexSharp.ConvertToCSharpAndAddToProject("Demo", overWrite: true);
 
-                apexSharp.ConvertToApexAndAddToProject("UnitTest", overWrite: true);
+                //apexSharp.ConvertToApexAndAddToProject("UnitTest", overWrite: true);
             }
             else
             {
                 Console.WriteLine(String.Join("\n", apexSharp.GetErrorMessage()));
             }
+
+            Console.WriteLine("Done");
+            Console.ReadLine();
         }
     }
 }
