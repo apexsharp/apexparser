@@ -1,10 +1,14 @@
+
+
 namespace Apex.Apex
 {
-    public class Stack
+    public class Stack<T>
     {
+        readonly global::System.Collections.Generic.Stack<T> _Stack;
+
         public Stack()
         {
-            throw new global::System.NotImplementedException("Stack");
+            _Stack = new global::System.Collections.Generic.Stack<T>();
         }
 
         public object Clone()
@@ -14,22 +18,27 @@ namespace Apex.Apex
 
         public bool Empty()
         {
-            throw new global::System.NotImplementedException("Stack.Empty");
+            _Stack.Clear();
+            return true;
         }
 
-        public string Peek()
+        public T Peek()
         {
-            throw new global::System.NotImplementedException("Stack.Peek");
+            return _Stack.Peek();
         }
 
-        public string Pop()
+        public T Pop()
         {
-            throw new global::System.NotImplementedException("Stack.Pop");
+            if (_Stack.Count == 0) throw new EmptyStackException();
+            else
+            {
+                return _Stack.Pop();
+            }
         }
 
-        public void Push(string item)
+        public void Push(T item)
         {
-            throw new global::System.NotImplementedException("Stack.Push");
+            _Stack.Push(item);
         }
     }
 }

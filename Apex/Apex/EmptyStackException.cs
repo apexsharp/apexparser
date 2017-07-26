@@ -2,11 +2,11 @@ using Apex.System;
 
 namespace Apex.Apex
 {
-    public class EmptyStackException
+    public class EmptyStackException : Exception
     {
         public EmptyStackException()
         {
-            throw new global::System.NotImplementedException("EmptyStackException");
+
         }
 
         public EmptyStackException(Exception param1)
