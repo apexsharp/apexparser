@@ -44,8 +44,7 @@ namespace Apex.ApexSharp.SharpToApex
             return apexClassDeclarationSyntax;
         }
 
-        private ApexClassDeclarationSyntax GetApexClass(NamespaceDeclarationSyntax namespaceDeclarationSyntax,
-            ClassDeclarationSyntax classDeclarationSyntax)
+        private ApexClassDeclarationSyntax GetApexClass(NamespaceDeclarationSyntax namespaceDeclarationSyntax, ClassDeclarationSyntax classDeclarationSyntax)
         {
             ApexClassDeclarationSyntax apexClass = new ApexClassDeclarationSyntax
             {
@@ -366,6 +365,7 @@ namespace Apex.ApexSharp.SharpToApex
             var apexElseIfStatementSyntax = new ApexElseStatementSyntax
             {
                 CodeComments = GetComments(syntax.GetLeadingTrivia()),
+                Condition = syntax.Statement.ToFullString()
             };
 
             if (syntax.Statement.Kind() == SyntaxKind.Block)

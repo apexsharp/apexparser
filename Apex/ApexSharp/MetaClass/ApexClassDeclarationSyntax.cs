@@ -62,12 +62,12 @@ namespace Apex.ApexSharp.MetaClass
 
         public List<string> GetApexCode()
         {
-            return new List<string>() { "Not Implemented" };
+            return new List<string>() { "Not Implemented " + this.GetType() };
         }
 
         public List<string> GetCSharpCode()
         {
-            return new List<string>() { "Not Implemented" };
+            return new List<string>() { "Not Implemented CSharp" };
         }
     }
 
@@ -446,7 +446,7 @@ namespace Apex.ApexSharp.MetaClass
 
         public string Expression { get; set; }
 
-        public new List<string> GetApexCode()
+        public List<string> GetApexCode()
         {
             ApexGenerator gen = new ApexGenerator();
 
@@ -570,7 +570,18 @@ namespace Apex.ApexSharp.MetaClass
 
 
             apexList.Add("if(" + Condition + "){");
-            //   apexList.AddRange(ChildNodes)
+            foreach (var apexFieldDeclarationSyntax in ChildNodes)
+            {
+                if (apexFieldDeclarationSyntax.Kind() == ApexType.ApexExpressionStatementSyntax)
+                {
+                    var apexExpressionStatementSyntax = (ApexExpressionStatementSyntax)apexFieldDeclarationSyntax;
+                    apexList.AddRange(apexExpressionStatementSyntax.GetApexCode());
+                }
+
+
+
+            }
+
             apexList.Add("}");
 
             if (ElseStatementSyntax != null)
@@ -584,9 +595,39 @@ namespace Apex.ApexSharp.MetaClass
 
     public class ApexElseStatementSyntax : ApexSyntaxNode
     {
+
+        public string Condition { get; set; }
+
         public ApexElseStatementSyntax()
         {
             ApexKind = ApexType.ApexElseStatementSyntax;
+        }
+
+        public List<string> GetApexCode()
+        {
+
+            List<string> apexList = new List<string>();
+            apexList.AddRange(CodeComments);
+
+
+            apexList.Add("else if(" + Condition + "){");
+            foreach (var apexFieldDeclarationSyntax in ChildNodes)
+            {
+                if (apexFieldDeclarationSyntax.Kind() == ApexType.ApexExpressionStatementSyntax)
+                {
+                    var apexExpressionStatementSyntax = (ApexExpressionStatementSyntax)apexFieldDeclarationSyntax;
+                    apexList.AddRange(apexExpressionStatementSyntax.GetApexCode());
+                }
+
+
+
+            }
+
+            apexList.Add("}");
+
+
+
+            return apexList;
         }
     }
 

@@ -200,20 +200,24 @@ namespace Apex.ApexSharp
 
         private void ConvertToApexAndSave(FileInfo fullFileName)
         {
-            CSharpParser parser = new CSharpParser();
-            var apexClassDeclarationSyntax = parser.ParseCSharpFromFile(fullFileName);
-            var convertedApex = apexClassDeclarationSyntax.GetApexCode();
-
             var apexFileName = fullFileName.Name.Replace(".cs", "");
             apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
 
+            Console.WriteLine($"Converting {apexFileName}");
 
-            Console.WriteLine($"Converting and Saving {apexFileName}");
+            CSharpParser parser = new CSharpParser();
+
+            var apexClassDeclarationSyntax = parser.ParseCSharpFromFile(fullFileName);
+
+            var convertedApex = apexClassDeclarationSyntax.GetApexCode();
+
+
+            Console.WriteLine($"Saving {apexFileName}");
 
             Console.WriteLine();
             Console.WriteLine(String.Join("\n", convertedApex));
 
-            File.WriteAllLines(apexFileName, convertedApex);
+            //File.WriteAllLines(apexFileName, convertedApex);
         }
 
 
