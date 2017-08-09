@@ -127,9 +127,6 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ApexClasses\ApexClasses.csproj">
       <Project>{3b9fef01-c4d4-431a-acc8-b1d6a04ae435}</Project>
       <Name>ApexClasses</Name>
