@@ -1,4 +1,6 @@
-﻿namespace ApexSharpDemo.ApexCode
+﻿using ApexClasses;
+
+namespace ApexSharpDemo.ApexCode
 {
 
     using Apex.System;

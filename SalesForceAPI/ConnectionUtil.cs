@@ -122,9 +122,9 @@ namespace SalesForceAPI
         {
             try
             {
-                project = new Project(location);
+                //     project = new Project(location);
 
-                Console.WriteLine("Project Location " + project.DirectoryPath);
+                //Console.WriteLine("Project Location " + project.DirectoryPath);
             }
             catch (Microsoft.Build.Exceptions.InvalidProjectFileException e)
             {
@@ -308,14 +308,6 @@ namespace SalesForceAPI
         //}
 
 
-        public bool DdeleteImmediate<T>(T obj) where T : BaseObject
-        {
-            Db db = new Db(ConnectionDetail);
-            Task<bool> deleteRecord = db.DeleteRecord<T>(obj.Id);
-            deleteRecord.Wait();
-
-            return deleteRecord.Result;
-        }
 
 
         public string BulkRequest<T>(int checkIntervel)
@@ -328,7 +320,7 @@ namespace SalesForceAPI
         public BulkInsertReply BulkInsert<T>(System.Collections.Generic.List<T> dataList) where T : BaseObject
         {
             // ToDo limit to 200 Exception 
-            BulkInsertRequest<T> request = new BulkInsertRequest<T> {Records = new T[dataList.Count]};
+            BulkInsertRequest<T> request = new BulkInsertRequest<T> { Records = new T[dataList.Count] };
             request.Records = dataList.ToArray();
 
             BulkApi api = new BulkApi(ConnectionDetail);

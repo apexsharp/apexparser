@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Reflection;
+using Apex.System;
+using ApexClasses;
 using Newtonsoft.Json;
 using SalesForceAPI;
+using Exception = System.Exception;
 
 namespace Apex.ApexSharp.Api
 {
@@ -18,13 +21,19 @@ namespace Apex.ApexSharp.Api
 
                 if (p.PropertyType.Name == "Int32")
                 {
-                    int intValue = (int) p.GetValue(dynamicInput);
+                    int intValue = (int)p.GetValue(dynamicInput);
                     string intValueInString = Convert.ToString(intValue);
                     soql = soql.Replace(varName, " " + intValueInString + " ");
                 }
                 else if (p.PropertyType.Name == "String")
                 {
-                    string stringValue = (string) p.GetValue(dynamicInput);
+                    string stringValue = (string)p.GetValue(dynamicInput);
+                    soql = soql.Replace(varName, " '" + stringValue + "' ");
+                }
+                else if (p.PropertyType.Name == "Id")
+                {
+                    Id id = (Id)p.GetValue(dynamicInput);
+                    string stringValue = id.ToString();
                     soql = soql.Replace(varName, " '" + stringValue + "' ");
                 }
                 else
@@ -70,7 +79,7 @@ namespace Apex.ApexSharp.Api
 
             var asyncWait = db.Query<T>(soql);
             asyncWait.Wait();
-            var result = (global::System.Collections.Generic.List<T>) asyncWait.Result;
+            var result = (global::System.Collections.Generic.List<T>)asyncWait.Result;
 
 
             System.List<T> dataList = new System.List<T>();
@@ -82,27 +91,58 @@ namespace Apex.ApexSharp.Api
             return dataList[0];
         }
 
-        public static void Insert<T>(T sObject)
+        public static void Insert<T>(T sObject) where T : SObject
         {
             Db db = new Db(ConnectionUtil.GetConnectionDetail());
-            global::System.Threading.Tasks.Task<T> deleteRecord = db.CreateRecord<T>(sObject);
-            deleteRecord.Wait();
+            global::System.Threading.Tasks.Task<T> createRecord = db.CreateRecord<T>(sObject);
+            createRecord.Wait();
+            Console.WriteLine(createRecord.Result.Id);
         }
 
-        public static void Update<T>(T sObject)
+        public static void Update<T>(List<T> sObjectList) where T : SObject
         {
+
+            global::System.Collections.Generic.List<T> sObjects = new global::System.Collections.Generic.List<T>();
+
+            foreach (var obj in sObjectList)
+            {
+                sObjects.Add(obj);
+            }
+
+
             Db db = new Db(ConnectionUtil.GetConnectionDetail());
-            global::System.Threading.Tasks.Task<bool> updateRecord =
-                db.UpdateRecordString<T>(JsonConvert.SerializeObject(sObject));
+            global::System.Threading.Tasks.Task<bool> updateRecord = db.UpdateRecord<T>(sObjects);
             updateRecord.Wait();
+            Console.WriteLine(updateRecord.Result);
         }
 
-        public static void Delete<T>(T sObject)
+        public static void Update<T>(T sObject) where T : SObject
         {
             Db db = new Db(ConnectionUtil.GetConnectionDetail());
-            global::System.Threading.Tasks.Task<bool> deleteRecord =
-                db.DeleteRecord<T>(JsonConvert.SerializeObject(sObject));
-            deleteRecord.Wait();
+            global::System.Threading.Tasks.Task<bool> updateRecord = db.UpdateRecord<T>(sObject);
+            updateRecord.Wait();
+            Console.WriteLine(updateRecord.Result);
         }
+
+
+        public static void Delete<T>(List<T> sObjectList) where T : SObject
+        {
+
+            global::System.Collections.Generic.List<T> sObjects = new global::System.Collections.Generic.List<T>();
+
+            foreach (var obj in sObjectList)
+            {
+                sObjects.Add(obj);
+
+                Db db = new Db(ConnectionUtil.GetConnectionDetail());
+                global::System.Threading.Tasks.Task<bool> deleteRecord = db.DeleteRecord<T>(obj);
+                deleteRecord.Wait();
+                Console.WriteLine(deleteRecord.Result);
+            }
+
+
+
+        }
+
     }
 }

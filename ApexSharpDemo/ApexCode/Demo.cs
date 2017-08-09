@@ -1,4 +1,6 @@
-﻿namespace ApexSharpDemo.ApexCode
+﻿using ApexClasses;
+
+namespace ApexSharpDemo.ApexCode
 {
     using SObjects;
     using Apex.System;
@@ -8,19 +10,37 @@
     {
         public static void RunContactDemo()
         {
-            string newEmail = "Jay@JayOnSoftware.Com";
+            Contact contactNew = new Contact();
+            contactNew.LastName = "Jay";
+            contactNew.Email = "abc@abc.com";
 
-            List<Contact> listOfContact = Soql.Query<Contact>("SELECT Id, Email FROM Contact LIMIT 1");
+            Soql.Insert(contactNew);
 
-            System.Debug(listOfContact[0].Email);
+            Id contactNewId = contactNew.Id;
 
-            listOfContact[0].Email = newEmail;
+            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
+            foreach (var contact in contacts)
+            {
+                System.Debug(contact.Email);
+                contact.Email = "new@new.com";
+            }
 
-            Soql.Update(listOfContact[0]);
+            Soql.Update(contacts);
 
-            List<Contact> listOfContactNew = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :newEmail LIMIT 1", new { newEmail });
 
-            System.Debug(listOfContactNew[0].Email);
+            contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
+            foreach (var contact in contacts)
+            {
+                System.Debug(contact.Email);
+            }
+
+            Soql.Delete(contacts);
+
+            contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
+            if (contacts.IsEmpty())
+            {
+                System.Debug("Del Worked");
+            }
         }
     }
 }

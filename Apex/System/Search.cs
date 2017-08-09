@@ -1,4 +1,5 @@
 using Apex.Search;
+using ApexClasses;
 
 namespace Apex.System
 {

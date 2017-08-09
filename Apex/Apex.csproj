@@ -982,7 +982,6 @@
     <Compile Include="System\HttpCalloutMock.cs" />
     <Compile Include="System\HttpRequest.cs" />
     <Compile Include="System\HttpResponse.cs" />
-    <Compile Include="System\Id.cs" />
     <Compile Include="System\Ideas.cs" />
     <Compile Include="System\Integer.cs" />
     <Compile Include="System\InvalidHeaderException.cs" />
@@ -1045,7 +1044,6 @@
     <Compile Include="System\SetupScope.cs" />
     <Compile Include="System\SfdcOps.cs" />
     <Compile Include="System\Site.cs" />
-    <Compile Include="System\SObject.cs" />
     <Compile Include="System\SObjectException.cs" />
     <Compile Include="System\StaticResourceCalloutMock.cs" />
     <Compile Include="System\StatusCode.cs" />
@@ -1145,6 +1143,10 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ApexClasses\ApexClasses.csproj">
+      <Project>{3b9fef01-c4d4-431a-acc8-b1d6a04ae435}</Project>
+      <Name>ApexClasses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SalesForceAPI\SalesForceAPI.csproj">
       <Project>{a13785db-05bb-4842-957d-56d5b251d608}</Project>
       <Name>SalesForceAPI</Name>

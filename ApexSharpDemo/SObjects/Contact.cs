@@ -1,10 +1,10 @@
 using Apex.System;
+using ApexClasses;
 
 namespace ApexSharpDemo.SObjects
 {
     public class Contact : SObject
     {
-        public string Id { set; get; }
         public bool IsDeleted { set; get; }
         public string MasterRecordId { set; get; }
         public Contact MasterRecord { set; get; }

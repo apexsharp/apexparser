@@ -1,6 +1,4 @@
-using Apex.Schema;
-
-namespace Apex.System
+namespace ApexClasses
 {
 
     public class Id
@@ -42,7 +40,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Id.Equals");
         }
 
-        public SObjectType GetSobjectType() { throw new global::System.NotImplementedException("Id.GetSobjectType"); }
+        //    public SObjectType GetSobjectType() { throw new global::System.NotImplementedException("Id.GetSobjectType"); }
         public static Id ValueOf(string v)
         {
             var id = new Id { _id = v };

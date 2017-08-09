@@ -1,12 +1,8 @@
-using System;
-using Apex.Database;
-using Apex.Schema;
-
-namespace Apex.System
+namespace ApexClasses
 {
     public class SObject
     {
-        public string Id { get; set; }
+        public Id Id { get; set; }
 
         public void AddError(object msg)
         {
@@ -58,20 +54,20 @@ namespace Apex.System
             throw new global::System.NotImplementedException("SObject.Clone");
         }
 
-        public object Get(SObjectField field)
-        {
-            throw new global::System.NotImplementedException("SObject.Get");
-        }
+        //  public object Get(SObjectField field)
+        //  {
+        //      throw new global::System.NotImplementedException("SObject.Get");
+        //  }
 
         public object Get(string field)
         {
             throw new global::System.NotImplementedException("SObject.Get");
         }
 
-        public Map<String, SObject> GetAll()
-        {
-            throw new global::System.NotImplementedException("SObject.GetAll");
-        }
+        //public Map<String, SObject> GetAll()
+        //{
+        //    throw new global::System.NotImplementedException("SObject.GetAll");
+        // }
 
         public Id GetCloneSourceId()
         {
@@ -88,50 +84,50 @@ namespace Apex.System
             throw new global::System.NotImplementedException("SObject.GetInstance");
         }
 
-        public DMLOptions GetOptions()
-        {
-            throw new global::System.NotImplementedException("SObject.GetOptions");
-        }
+        //     public DMLOptions GetOptions()
+        //     {
+        //        throw new global::System.NotImplementedException("SObject.GetOptions");
+        //    }
 
         public SObject GetOrgDefaults()
         {
             throw new global::System.NotImplementedException("SObject.GetOrgDefaults");
         }
 
-        public Map<String, Object> GetPopulatedFieldsAsMap()
-        {
-            throw new global::System.NotImplementedException("SObject.GetPopulatedFieldsAsMap");
-        }
+        ////   public Map<String, Object> GetPopulatedFieldsAsMap()
+        //  {
+        //      throw new global::System.NotImplementedException("SObject.GetPopulatedFieldsAsMap");
+        //  }
 
-        public string GetQuickActionName()
-        {
-            throw new global::System.NotImplementedException("SObject.GetQuickActionName");
-        }
+        //  public string GetQuickActionName()
+        //  {
+        //       throw new global::System.NotImplementedException("SObject.GetQuickActionName");
+        //   }
 
-        public SObject GetSObject(SObjectField field)
-        {
-            throw new global::System.NotImplementedException("SObject.GetSObject");
-        }
+        //public SObject GetSObject(SObjectField field)
+        //{
+        //    throw new global::System.NotImplementedException("SObject.GetSObject");
+        //}
 
-        public SObject GetSObject(string field)
-        {
-            throw new global::System.NotImplementedException("SObject.GetSObject");
-        }
+        //public SObject GetSObject(string field)
+        //{
+        //    throw new global::System.NotImplementedException("SObject.GetSObject");
+        //}
 
-        public SObjectType GetSObjectType()
-        {
-            throw new global::System.NotImplementedException("SObject.GetSObjectType");
-        }
+        //public SObjectType GetSObjectType()
+        //{
+        //    throw new global::System.NotImplementedException("SObject.GetSObjectType");
+        //}
 
-        public List<SObject> GetSObjects(SObjectField field)
-        {
-            throw new global::System.NotImplementedException("SObject.GetSObjects");
-        }
+        //public List<SObject> GetSObjects(SObjectField field)
+        //{
+        //    throw new global::System.NotImplementedException("SObject.GetSObjects");
+        //}
 
-        public List<SObject> GetSObjects(string field)
-        {
-            throw new global::System.NotImplementedException("SObject.GetSObjects");
-        }
+        //public List<SObject> GetSObjects(string field)
+        //{
+        //    throw new global::System.NotImplementedException("SObject.GetSObjects");
+        //}
 
         public SObject GetValues(string id)
         {
@@ -143,20 +139,20 @@ namespace Apex.System
             throw new global::System.NotImplementedException("SObject.IsClone");
         }
 
-        public object Put(SObjectField field, object value)
-        {
-            throw new global::System.NotImplementedException("SObject.Put");
-        }
+        //public object Put(SObjectField field, object value)
+        //{
+        //    throw new global::System.NotImplementedException("SObject.Put");
+        //}
 
         public object Put(string field, object value)
         {
             throw new global::System.NotImplementedException("SObject.Put");
         }
 
-        public SObject PutSObject(SObjectField field, SObject value)
-        {
-            throw new global::System.NotImplementedException("SObject.PutSObject");
-        }
+        //public SObject PutSObject(SObjectField field, SObject value)
+        //{
+        //    throw new global::System.NotImplementedException("SObject.PutSObject");
+        //}
 
         public SObject PutSObject(string field, SObject value)
         {

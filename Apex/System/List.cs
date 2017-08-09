@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Apex.Schema;
+using ApexClasses;
 
 namespace Apex.System
 {
@@ -117,7 +119,7 @@ namespace Apex.System
 
         public bool IsEmpty()
         {
-            throw new global::System.NotImplementedException("List.IsEmpty");
+            return _internalList.Count == 0;
         }
 
         public Iterable Iterator()

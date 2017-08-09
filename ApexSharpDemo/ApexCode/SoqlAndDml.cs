@@ -51,7 +51,7 @@
             {
                 Apex.System.System.Debug(listOfContact[0].Email);
 
-                Soql.Delete(listOfContact[0]);
+                Soql.Delete(listOfContact);
             }
         }
 

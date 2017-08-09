@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ApexClasses;
 using Newtonsoft.Json;
 using SalesForceAPI.Attribute;
 using SalesForceAPI.Model;
@@ -27,8 +28,7 @@ namespace SalesForceAPI
         public string GetSalesForceObjectName<T>()
         {
             string objectName = typeof(T).Name;
-            ObjectNameAttribute objectNameAttrbute = typeof(T).GetCustomAttributes(typeof(ObjectNameAttribute), true)
-                .FirstOrDefault() as ObjectNameAttribute;
+            ObjectNameAttribute objectNameAttrbute = typeof(T).GetCustomAttributes(typeof(ObjectNameAttribute), true).FirstOrDefault() as ObjectNameAttribute;
             if (objectNameAttrbute != null)
             {
                 objectName = objectNameAttrbute.SalesForceObjectName;
@@ -76,25 +76,22 @@ namespace SalesForceAPI
             return 0;
         }
 
-        public async Task<T> CreateRecord<T>(T obj)
+        public async Task<T> CreateRecord<T>(T obj) where T : SObject
         {
             var objectName = GetSalesForceObjectName<T>();
 
             HttpRequestMessage request = new HttpRequestMessage
             {
-                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/sobjects/" + objectName),
+                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v40.0/sobjects/" + objectName),
                 Method = HttpMethod.Post
             };
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
 
-
-            JsonFactory jsonFactory = new JsonFactory();
-            var requestJson = jsonFactory.GetJson(obj);
-
+            var requestJson = JsonFactory.GetJson(obj);
             request.Content = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
 
@@ -102,9 +99,11 @@ namespace SalesForceAPI
             {
                 case HttpStatusCode.Created:
                     string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
-                    RecordCreateResponse recordCreateResponse =
-                        JsonConvert.DeserializeObject<RecordCreateResponse>(jsonData);
-                    //   obj.Id = recordCreateResponse.id;
+
+                    Console.WriteLine(jsonData);
+
+                    RecordCreateResponse recordCreateResponse = JsonConvert.DeserializeObject<RecordCreateResponse>(jsonData);
+                    obj.Id = recordCreateResponse.id;
                     return obj;
                 case HttpStatusCode.BadRequest:
                     Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
@@ -155,35 +154,36 @@ namespace SalesForceAPI
         }
 
 
-        public async Task<bool> UpdateRecordString<T>(string objectToUpdate)
+        public async Task<bool> UpdateRecord<T>(List<T> objList) where T : SObject
         {
-            BaseObject baseObject = JsonConvert.DeserializeObject<BaseObject>(objectToUpdate,
-                new JsonSerializerSettings { NullValueHandling = JsonNullValue });
-            T baseObject2 = JsonConvert.DeserializeObject<T>(objectToUpdate,
-                new JsonSerializerSettings { NullValueHandling = JsonNullValue });
-
+            foreach (var obj in objList)
+            {
+                await UpdateRecord<T>(obj);
+            }
+            return true;
+        }
+        public async Task<bool> UpdateRecord<T>(T obj) where T : SObject
+        {
             var objectName = GetSalesForceObjectName<T>();
 
 
             HttpRequestMessage request = new HttpRequestMessage
             {
-                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v38.0/sobjects/" + objectName + "/" +
-                                     baseObject.Id),
+                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v38.0/sobjects/" + objectName + "/" + obj.Id),
                 Method = new HttpMethod("PATCH")
             };
 
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
 
-            JsonFactory jsonFactory = new JsonFactory();
-            var requestJson = jsonFactory.GetJson(baseObject2);
 
 
+
+            var requestJson = JsonFactory.GetJsonUpdate(obj);
             request.Content = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpClient httpClient = new HttpClient();
-
-
             HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
 
 
@@ -205,26 +205,24 @@ namespace SalesForceAPI
             return false;
         }
 
-        public async Task<bool> DeleteRecord<T>(string IobjectToErase)
+        public async Task<bool> DeleteRecord<T>(T baseObject) where T : SObject
         {
-            BaseObject baseObject = JsonConvert.DeserializeObject<BaseObject>(IobjectToErase,
-                new JsonSerializerSettings { NullValueHandling = JsonNullValue });
-
             var objectName = GetSalesForceObjectName<T>();
 
             HttpRequestMessage request = new HttpRequestMessage
             {
-                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/sobjects/" + objectName + "/" +
+                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v40.0/sobjects/" + objectName + "/" +
                                      baseObject.Id),
                 Method = HttpMethod.Delete
             };
+
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
-
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
 
-            //Console.WriteLine("Deleted Records " + responseMessage.StatusCode);
+            Console.WriteLine("Deleted Records " + responseMessage.StatusCode);
 
             switch (responseMessage.StatusCode)
             {
