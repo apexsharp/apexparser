@@ -1,5 +1,5 @@
 using Apex.Search;
-using ApexClasses;
+using SalesForceAPI.Apex;
 
 namespace Apex.System
 {

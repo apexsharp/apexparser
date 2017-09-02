@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using Apex.System;
-using ApexClasses;
 using Newtonsoft.Json;
 using SalesForceAPI;
+using SalesForceAPI.Apex;
 using Exception = System.Exception;
 
 namespace Apex.ApexSharp.Api

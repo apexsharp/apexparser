@@ -100,6 +100,10 @@
       <Project>{269b0981-154b-4dde-9b0a-18685c38bd9b}</Project>
       <Name>Apex</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SalesForceAPI\SalesForceAPI.csproj">
+      <Project>{A13785DB-05BB-4842-957D-56D5B251D608}</Project>
+      <Name>SalesForceAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

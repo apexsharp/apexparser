@@ -1,5 +1,5 @@
 using Apex.Messaging;
-using ApexClasses;
+using SalesForceAPI.Apex;
 
 namespace Apex.System
 {

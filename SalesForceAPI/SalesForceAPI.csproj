@@ -43,6 +43,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Apex\Id.cs" />
+    <Compile Include="Apex\SObject.cs" />
     <Compile Include="AssertErase.cs" />
     <Compile Include="CompositeApi.cs" />
     <Compile Include="HttpManager.cs" />
@@ -132,6 +134,7 @@
       <Name>ApexClasses</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
