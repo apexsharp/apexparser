@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Id.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SoapType.cs" />
     <Compile Include="SObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
