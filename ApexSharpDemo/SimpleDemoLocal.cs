@@ -1,26 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Apex.ApexSharp;
 using ApexSharpDemo.ApexCode;
 
 namespace ApexSharpDemo
 {
-    public class SimpleDemo
+    public class SimpleDemoLocal
     {
         public static void Main(string[] args)
         {
-            var apexSharp = new ApexSharp();
-            // Setup connection info
-            apexSharp.SalesForceUrl("https://login.salesforce.com")
-               .AndHttpProxy("http://yourproxy.com")
-               .UseSalesForceApiVersion(40)
-               .WithUserId("SalesForce User Id")
-               .AndPassword("SalesForce Password")
-               .AndToken("SalesForce Token")
-               .SetApexFileLocation("Location Where you want your APEX Files to be saved")
-               .SetLogLevel(LogLevle.Info)
-               .SaveApexSharpConfig("Save this setup under this file Name");
-
-
+            var apexSharp = new ApexSharp().LoadApexSharpConfig("setup.json");
 
             // Always Initialize your settings before using it.
             if (apexSharp.Init())
@@ -30,7 +22,7 @@ namespace ApexSharpDemo
 
                 // Demo.cs is a simple C# code that we will convert APEX. This can be executed now.
                 // Take a look at the Demo.cs file in the /ApexCode Folder.  
-                Demo.RunContactDemo();
+                //Demo.RunContactDemo();
 
                 //Convert the Demo.cs File to APEX
                 apexSharp.ConvertToApexAndAddToProject("Demo", overWrite: true);

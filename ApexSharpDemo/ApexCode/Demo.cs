@@ -19,7 +19,7 @@ namespace ApexSharpDemo.ApexCode
             Id contactNewId = contactNew.Id;
 
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
-            foreach (var contact in contacts)
+            foreach (Contact contact in contacts)
             {
                 System.Debug(contact.Email);
                 contact.Email = "new@new.com";
@@ -29,7 +29,7 @@ namespace ApexSharpDemo.ApexCode
 
 
             contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
-            foreach (var contact in contacts)
+            foreach (Contact contact in contacts)
             {
                 System.Debug(contact.Email);
             }

@@ -334,10 +334,15 @@ namespace Apex.ApexSharp.MetaClass
                     var apexIfStatementSyntax = (ApexIfStatementSyntax)apexFieldDeclarationSyntax;
                     apexCodeList.AddRange(apexIfStatementSyntax.GetApexCode());
                 }
+                else if (apexFieldDeclarationSyntax.Kind() == ApexType.ApexForEachStatementSyntax)
+                {
+                    var apexForEachStatementSyntax = (ApexForEachStatementSyntax)apexFieldDeclarationSyntax;
+                    apexCodeList.AddRange(apexForEachStatementSyntax.GetApexCode());
+                }
 
                 else
                 {
-                    Console.WriteLine(">> Not Found " + apexFieldDeclarationSyntax.Kind());
+                    Console.WriteLine(">> Not Implemented " + apexFieldDeclarationSyntax.Kind());
                 }
             }
 
@@ -550,8 +555,45 @@ namespace Apex.ApexSharp.MetaClass
         public string Type { get; set; }
         public string Identifier { get; set; }
         public string Expression { get; set; }
-    }
 
+        public new List<string> GetApexCode()
+        {
+            List<string> apexCodeList = new List<string>();
+            apexCodeList.AddRange(CodeComments);
+            var apex = $"for({Type} {Identifier} : {Expression})";
+            apexCodeList.Add(apex);
+            apexCodeList.Add("{");
+
+            foreach (var apexFieldDeclarationSyntax in ChildNodes)
+            {
+                if (apexFieldDeclarationSyntax.Kind() == ApexType.ApexFieldDeclarationSyntax)
+                {
+                    var apexFieldDeclarationSyntax1 = (ApexFieldDeclarationSyntax)apexFieldDeclarationSyntax;
+                    apexCodeList.AddRange(apexFieldDeclarationSyntax1.GetApexCode());
+                }
+
+                else if (apexFieldDeclarationSyntax.Kind() == ApexType.ApexPropertyDeclarationSyntax)
+                {
+                    var apexFieldDeclarationSyntax1 = (ApexPropertyDeclarationSyntax)apexFieldDeclarationSyntax;
+                    apexCodeList.AddRange(apexFieldDeclarationSyntax1.GetApexCode());
+                }
+                else if (apexFieldDeclarationSyntax.Kind() == ApexType.ApexExpressionStatementSyntax)
+                {
+                    var apexFieldDeclarationSyntax1 = (ApexExpressionStatementSyntax)apexFieldDeclarationSyntax;
+                    apexCodeList.AddRange(apexFieldDeclarationSyntax1.GetApexCode());
+                }
+                else
+                {
+                    Console.WriteLine(">> Not Implemented " + apexFieldDeclarationSyntax.Kind());
+                }
+
+            }
+
+            apexCodeList.Add("}");
+
+            return apexCodeList;
+        }
+    }
 
     public class ApexIfStatementSyntax : ApexSyntaxNode
     {

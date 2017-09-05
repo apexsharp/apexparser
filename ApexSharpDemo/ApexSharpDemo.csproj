@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ApexSharpDemo.SimpleDemo</StartupObject>
+    <StartupObject>ApexSharpDemo.SimpleDemoLocal</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -75,6 +75,7 @@
     <Compile Include="NoApex\Serilog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleDemo.cs" />
+    <Compile Include="SimpleDemoLocal.cs" />
     <Compile Include="SObjects\Account.cs" />
     <Compile Include="SObjects\Contact.cs" />
     <Compile Include="SObjects\DandBCompany.cs" />
@@ -92,10 +93,6 @@
     <Folder Include="SObjectJson\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ApexClasses\ApexClasses.csproj">
-      <Project>{3b9fef01-c4d4-431a-acc8-b1d6a04ae435}</Project>
-      <Name>ApexClasses</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Apex\Apex.csproj">
       <Project>{269b0981-154b-4dde-9b0a-18685c38bd9b}</Project>
       <Name>Apex</Name>

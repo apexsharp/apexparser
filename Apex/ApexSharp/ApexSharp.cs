@@ -206,7 +206,6 @@ namespace Apex.ApexSharp
             Console.WriteLine($"Converting {apexFileName}");
 
             CSharpParser parser = new CSharpParser();
-
             var apexClassDeclarationSyntax = parser.ParseCSharpFromFile(fullFileName);
 
             var convertedApex = apexClassDeclarationSyntax.GetApexCode();
