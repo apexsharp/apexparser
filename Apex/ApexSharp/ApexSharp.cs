@@ -34,6 +34,7 @@ namespace Apex.ApexSharp
         public ApexSharp()
         {
             ApexSharpConfigSettings = new ApexSharpConfig();
+            ConfigFileName = String.Empty;
         }
 
         public ApexSharpConfig ApexSharpConfigSettings { get; set; }
@@ -69,11 +70,11 @@ namespace Apex.ApexSharp
             var connectionUtil = new ConnectionUtil();
             connectionUtil.DebugOn();
 
-            ConnectionDetail connectionDetail = connectionUtil.SalesForceUrl(ApexSharpConfigSettings.SalesForceUrl)
-                .WithUserId(ApexSharpConfigSettings.SalesForceUserId)
-                .AndPassword(ApexSharpConfigSettings.SalesForcePassword)
-                .AndToken(ApexSharpConfigSettings.SalesForcePasswordToken)
-                .ConnectToSalesForce();
+            //ConnectionDetail connectionDetail = connectionUtil.SalesForceUrl(ApexSharpConfigSettings.SalesForceUrl)
+            //    .WithUserId(ApexSharpConfigSettings.SalesForceUserId)
+            //    .AndPassword(ApexSharpConfigSettings.SalesForcePassword)
+            //    .AndToken(ApexSharpConfigSettings.SalesForcePasswordToken)
+            //    .ConnectToSalesForce();
 
 
             if (ApexSharpConfigSettings.ApexFileLocation == "")
@@ -216,7 +217,7 @@ namespace Apex.ApexSharp
             Console.WriteLine();
             Console.WriteLine(String.Join("\n", convertedApex));
 
-            //File.WriteAllLines(apexFileName, convertedApex);
+            File.WriteAllLines(apexFileName, convertedApex);
         }
 
 

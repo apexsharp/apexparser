@@ -126,12 +126,12 @@ namespace Apex.ApexSharp.ApexToSharp
             return resultList;
         }
 
-        private static string Lexar(List<ApexTocken> apexTokens)
+        public static string Lexar(List<ApexTocken> apexTokens)
         {
             // Print the Token List for Debugging 
             foreach (ApexTocken apexToken in apexTokens)
             {
-                //Console.WriteLine($"{apexToken.TockenType}:{apexToken.Tocken}");
+                Console.WriteLine($"{apexToken.TockenType}:{apexToken.Tocken}");
             }
 
             var index = apexTokens.FindIndex(x => x.TockenType == TockenType.CommentLine);
