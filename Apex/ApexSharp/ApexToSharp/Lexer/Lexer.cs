@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace Apex.ApexSharp.ApexToSharp.Lexer
 {
@@ -8,17 +9,25 @@ namespace Apex.ApexSharp.ApexToSharp.Lexer
         private readonly TokenDefinition[] _tokenDefinitions;
         private string _lineRemaining;
 
-        public Lexer(string fileName, string sample, TokenDefinition[] tokenDefinitions)
+        public Lexer(string fileName, string code, TokenDefinition[] tokenDefinitions)
         {
             _tokenDefinitions = tokenDefinitions;
-            _lineRemaining = sample;
+            _lineRemaining = code;
             _fileName = fileName;
+        }
+
+        public Lexer(FileInfo apexFileInfo, TokenDefinition[] tokenDefinitions)
+        {
+            var apexSourceCode = File.ReadAllText(apexFileInfo.FullName);
+            _tokenDefinitions = tokenDefinitions;
+            _lineRemaining = apexSourceCode;
+            _fileName = apexFileInfo.Name;
         }
 
 
         public Result Next()
         {
-            if (_lineRemaining.Length == 0) return new Result {IsGood = false};
+            if (_lineRemaining.Length == 0) return new Result { IsGood = false };
 
 
             foreach (var def in _tokenDefinitions)
@@ -53,7 +62,7 @@ namespace Apex.ApexSharp.ApexToSharp.Lexer
 
 
             Console.ReadLine();
-            return new Result {IsGood = true};
+            return new Result { IsGood = true };
         }
 
         private void PrintErrorMessage(string fileName, string issueCharctor, string remainingLine)

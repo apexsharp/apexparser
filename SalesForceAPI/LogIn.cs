@@ -22,7 +22,7 @@ namespace SalesForceAPI
 
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 
-            FileInfo configFileInfo = new FileInfo(path + @"\config.json");
+            FileInfo configFileInfo = new FileInfo(path + @"\confi1g.json");
 
             if (configFileInfo.Exists)
             {
@@ -90,6 +90,8 @@ namespace SalesForceAPI
                 "</urn:login>" +
                 "</soapenv:Body>" +
                 "</soapenv:Envelope>";
+
+            Console.WriteLine(xml);
 
             var waitTask = PostLoginTask(url, xml);
             waitTask.Wait();
