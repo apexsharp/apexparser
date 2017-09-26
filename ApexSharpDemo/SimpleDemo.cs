@@ -18,7 +18,7 @@ namespace ApexSharpDemo
                .AndToken("SalesForce Token")
                .SetApexFileLocation("Location Where you want your APEX Files to be saved")
                .SetLogLevel(LogLevle.Info)
-               .SaveApexSharpConfig("Save this setup under this file Name");
+               .SaveApexSharpConfig("login.json");
 
 
 

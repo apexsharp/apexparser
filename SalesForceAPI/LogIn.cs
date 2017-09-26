@@ -91,7 +91,6 @@ namespace SalesForceAPI
                 "</soapenv:Body>" +
                 "</soapenv:Envelope>";
 
-            Console.WriteLine(xml);
 
             var waitTask = PostLoginTask(url, xml);
             waitTask.Wait();

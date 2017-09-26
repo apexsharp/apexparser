@@ -70,11 +70,11 @@ namespace Apex.ApexSharp
             var connectionUtil = new ConnectionUtil();
             connectionUtil.DebugOn();
 
-            //ConnectionDetail connectionDetail = connectionUtil.SalesForceUrl(ApexSharpConfigSettings.SalesForceUrl)
-            //    .WithUserId(ApexSharpConfigSettings.SalesForceUserId)
-            //    .AndPassword(ApexSharpConfigSettings.SalesForcePassword)
-            //    .AndToken(ApexSharpConfigSettings.SalesForcePasswordToken)
-            //    .ConnectToSalesForce();
+            ConnectionDetail connectionDetail = connectionUtil.SalesForceUrl(ApexSharpConfigSettings.SalesForceUrl)
+                .WithUserId(ApexSharpConfigSettings.SalesForceUserId)
+                .AndPassword(ApexSharpConfigSettings.SalesForcePassword)
+                .AndToken(ApexSharpConfigSettings.SalesForcePasswordToken)
+                .ConnectToSalesForce();
 
 
             if (ApexSharpConfigSettings.ApexFileLocation == "")

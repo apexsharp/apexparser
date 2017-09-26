@@ -1,1 +1,0 @@
-{"ApexFileLocation":"Location Where you want your APEX Files to be saved","SalesForceUrl":"https://login.salesforce.com/services/Soap/c/40.0/","HttpProxy":"http://yourproxy.com","SalesForceUserId":"SalesForce User Id","SalesForcePassword":"SalesForce Password","SalesForcePasswordToken":"SalesForce Token","SalesForceApiVersion":40}
