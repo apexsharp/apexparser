@@ -11,8 +11,24 @@ I am working on a detail documentation, but for now I assume you are a C# develo
 
 1. Download the whole solution
 2. The **ApexSharpDemo** project contains sample code.
-2. Set the correct values on SimpleDemo.cs on the above project
-2. Run SimpleDemo.cs
+3. Set the correct values on SimpleDemo.cs on the above project
+
+ ```csharp
+ var apexSharp = new ApexSharp();
+// Setup connection info
+apexSharp.SalesForceUrl("https://login.salesforce.com")
+    .UseSalesForceApiVersion(40)
+    .WithUserId("SalesForce User Id")
+    .AndPassword("SalesForce Password")
+    .AndToken("SalesForce Token")
+    .SetApexFileLocation("Location Where you want your APEX Files to be saved")
+    .SetLogLevel(LogLevle.Info)
+    .SaveApexSharpConfig("login.json");
+```
+
+
+
+4. Run SimpleDemo.cs
 
 This is very early stage Alpha Software use it at your own risk :-).
 
