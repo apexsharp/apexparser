@@ -55,7 +55,7 @@ namespace Apex.ApexSharp
 
                     ApexSharpConfigSettings = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
 
-                    Log.LogMsg("Setup Info", ApexSharpConfigSettings);
+                    //Log.LogMsg("Setup Info", ApexSharpConfigSettings);
 
 
                 }

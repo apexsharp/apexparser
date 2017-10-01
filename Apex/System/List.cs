@@ -1,21 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Apex.Schema;
 using SalesForceAPI.Apex;
 
 namespace Apex.System
 {
-    public class List<T> : IEnumerable
+    public class List<T> : global::System.Collections.Generic.List<T>
     {
-        private readonly global::System.Collections.Generic.List<T> _internalList;
-        public T[] objects;
-
-
         public List()
         {
-            _internalList = new global::System.Collections.Generic.List<T>();
         }
 
         public List(int param1)
@@ -25,23 +21,18 @@ namespace Apex.System
 
         public T this[int index]
         {
-            get { return _internalList[index]; }
-            set { _internalList[index] = value; }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
+            get { return this[index]; }
+            set { this[index] = value; }
         }
 
         public void Add(T item)
         {
-            _internalList.Add(item);
+            base.Add(item);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _internalList.GetEnumerator();
+            return base.GetEnumerator();
         }
 
         public void AddAll(List<T> elements)
@@ -54,7 +45,7 @@ namespace Apex.System
 
         public int Size()
         {
-            return _internalList.Count;
+            return base.Count;
         }
 
         public void Add(int index, object element)
@@ -119,7 +110,7 @@ namespace Apex.System
 
         public bool IsEmpty()
         {
-            return _internalList.Count == 0;
+            return base.Count == 0;
         }
 
         public Iterable Iterator()

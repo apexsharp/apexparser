@@ -42,7 +42,7 @@ namespace SalesForceAPI
                 }
             }
 
-            Console.WriteLine("Session Expired or not found, Obtaining a new session for " + userId);
+            //Console.WriteLine("Session Expired or not found, Obtaining a new session for " + userId);
 
             var newConectionDetails = GetNewConnection(url, userId, password);
 
