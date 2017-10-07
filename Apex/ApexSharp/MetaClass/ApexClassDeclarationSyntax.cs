@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Apex.ApexSharp.ApexToSharp;
 using Apex.ApexSharp.SharpToApex;
 using Apex.ApexSharp.Util;
 using Microsoft.CodeAnalysis;
@@ -47,7 +46,7 @@ namespace Apex.ApexSharp.MetaClass
 
     public class ApexSyntaxNode
     {
-        public readonly List<ApexTocken> ApexTockens = new List<ApexTocken>();
+
         public readonly List<ApexSyntaxNode> ChildNodes = new List<ApexSyntaxNode>();
         public List<string> CodeComments = new List<string>();
         public string CommentMustGo { get; set; }
@@ -153,58 +152,6 @@ namespace Apex.ApexSharp.MetaClass
         }
 
 
-        public List<string> GetCSharpCode()
-        {
-            List<string> code = new List<string>();
-
-            code.Add("namespace SalesForceApiDemo.Code");
-            code.Add("{");
-
-
-            code.AddRange(CodeComments);
-            if (IsShareing == "YES")
-            {
-                code.Add("[ApexWithSharing]");
-            }
-
-
-            if (IsShareing == "NO")
-            {
-                code.Add("[ApexWithOutSharing]");
-            }
-
-
-            foreach (var attribute in AttributeLists)
-            {
-                code.Add(CSharpGenerator.AttributeCreater(attribute));
-            }
-
-
-            code.Add(CSharpGenerator.ModifierCreater(Modifiers) + " class " + Identifier);
-
-            if (Extending != null)
-                code.Add(" : " + Extending);
-
-            if (Implementing.Count > 0)
-            {
-                foreach (var implementing in Implementing)
-                {
-                    code.Add(", implementing" + implementing);
-                }
-            }
-
-            code.Add("{");
-
-            foreach (var apexFieldDeclarationSyntax in ChildNodes)
-            {
-                code.AddRange(apexFieldDeclarationSyntax.GetCSharpCode());
-            }
-
-            code.Add("}");
-            code.Add("}");
-
-            return code;
-        }
     }
 
     // ToDo : Fix class name

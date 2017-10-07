@@ -1,10 +1,11 @@
-﻿using SalesForceAPI.Apex;
+﻿
 
 namespace ApexSharpDemo.ApexCode
 {
     using SObjects;
     using Apex.System;
-    using Apex.ApexSharp.Api;
+    using Apex.ApexSharp;
+
 
     public class Demo
     {
@@ -22,7 +23,7 @@ namespace ApexSharpDemo.ApexCode
 
             Soql.Insert(contactNew);
 
-            Id contactNewId = contactNew.Id;
+            SalesForceAPI.Apex.Id contactNewId = contactNew.Id;
 
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
             foreach (Contact contact in contacts)

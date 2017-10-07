@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Apex.ApexSharp.ApexToSharp;
 using Apex.ApexSharp.SharpToApex;
 using Newtonsoft.Json;
 using SalesForceAPI;
@@ -221,19 +220,6 @@ namespace Apex.ApexSharp
         }
 
 
-        public void ConvertToCSharpAndAddToProject(string apexFileName, bool overWrite)
-        {
-            apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
-            Console.WriteLine($"Converting APEX File and Saving {apexFileName}");
-
-            FileInfo newFileInfo = new FileInfo(apexFileName);
-            List<FileInfo> newFileInfos = new List<FileInfo> { newFileInfo };
-
-            var apexClassDeclarationSyntax = ApexTokenizer.Parse(newFileInfo);
-            Console.WriteLine();
-
-            Console.WriteLine(String.Join("\n", apexClassDeclarationSyntax.GetCSharpCode()));
-        }
 
 
         public void CreateOfflineClasses(string sObjectName)

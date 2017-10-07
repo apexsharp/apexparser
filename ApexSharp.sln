@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForceAPI", "SalesForce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpDemo", "ApexSharpDemo\ApexSharpDemo.csproj", "{B66B3389-06C9-4973-BEAD-7569F620BE36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpBase", "ApexSharpBase\ApexSharpBase.csproj", "{2BBD10D7-1B35-4DBE-A2E7-61B1E7F4750D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BBD10D7-1B35-4DBE-A2E7-61B1E7F4750D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBD10D7-1B35-4DBE-A2E7-61B1E7F4750D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBD10D7-1B35-4DBE-A2E7-61B1E7F4750D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBD10D7-1B35-4DBE-A2E7-61B1E7F4750D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using Apex.System;
-using Newtonsoft.Json;
 using SalesForceAPI;
 using SalesForceAPI.Apex;
 using Exception = System.Exception;
 
-namespace Apex.ApexSharp.Api
+namespace Apex.ApexSharp
 {
     public class Soql
     {

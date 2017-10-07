@@ -151,6 +151,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApexAttrbutes\ApexGlobel.cs" />
+    <Compile Include="ApexAttrbutes\ApexHttpPut.cs" />
+    <Compile Include="ApexAttrbutes\ApexRest.cs" />
+    <Compile Include="ApexAttrbutes\ApexTestViewAllData.cs" />
+    <Compile Include="ApexAttrbutes\ApexWithOutSharing.cs" />
+    <Compile Include="ApexAttrbutes\ApexWithSharing.cs" />
     <Compile Include="ApexPages\Action.cs" />
     <Compile Include="ApexPages\Component.cs" />
     <Compile Include="ApexPages\ComponentIteration.cs" />
@@ -162,31 +168,12 @@
     <Compile Include="ApexPages\StandardController.cs" />
     <Compile Include="ApexPages\StandardSetController.cs" />
     <Compile Include="ApexSharp\ApexSharp.cs" />
-    <Compile Include="ApexSharp\Attribute\ApexSharpAttribute.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexClassContainer.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexClassCreator.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexFormater.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexList.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexParser.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexTocken.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexTokenizer.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ApexTokenList.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ClassNameManager.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\CommentClean.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\ConvertToCSharpPrimitives.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\CSharpGenerator.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\Lexer\Lexer.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\Lexer\RegexMatcher.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\Lexer\Result.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\Lexer\TokenDefinition.cs" />
-    <Compile Include="ApexSharp\ApexToSharp\MethodNameManager.cs" />
     <Compile Include="ApexSharp\MetaClass\ApexClassDeclarationSyntax.cs" />
     <Compile Include="ApexSharp\SharpToApex\ApexGenerator.cs" />
     <Compile Include="ApexSharp\SharpToApex\ApexGeneratorUtil.cs" />
     <Compile Include="ApexSharp\SharpToApex\CSharpParser.cs" />
-    <Compile Include="ApexSharp\Api\Soql.cs" />
+    <Compile Include="ApexSharp\Soql.cs" />
     <Compile Include="ApexSharp\UtilAndExt\ExtensionMethods.cs" />
-    <Compile Include="ApexSharp\UtilAndExt\PrintToken.cs" />
     <Compile Include="Apex\EmptyStackException.cs" />
     <Compile Include="Apex\Stack.cs" />
     <Compile Include="Applauncher\AccountSettingsController.cs" />

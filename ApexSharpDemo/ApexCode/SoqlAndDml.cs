@@ -2,7 +2,6 @@
 {
 
     using Apex.ApexSharp;
-    using Apex.ApexSharp.Api;
     using Apex.System;
     using ApexSharpDemo.SObjects;
     using NUnit.Framework;
