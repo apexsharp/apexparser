@@ -40,7 +40,7 @@ _TeamCity*
 
 
 # NuGet Packages Directory
-packages/
+# packages/
 
 
 # Others
