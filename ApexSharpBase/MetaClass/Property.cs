@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace ApexSharpBase.MetaClass
+﻿namespace ApexSharpBase.MetaClass
 {
-    public class PropertySyntax : BaseSyntax
+    using System.Collections.Generic;
+
+    public class Property : BaseSyntax
     {
         public readonly List<string> Modifiers = new List<string>();
         public List<string> AttributeLists = new List<string>();
 
-        public PropertySyntax()
+        public Property()
         {
         }
 

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using ApexSharpBase.Converter;
-
-namespace ApexSharpBase.MetaClass
+﻿namespace ApexSharpBase.MetaClass
 {
+    using System.Collections.Generic;
+    using ApexSharpBase.Converter;
+
     public class ClassSyntax : BaseSyntax
     {
         public bool IsShareable { get; set; }

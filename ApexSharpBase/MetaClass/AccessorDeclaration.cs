@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ApexSharpBase.MetaClass
+﻿namespace ApexSharpBase.MetaClass
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class AccessorDeclaration : BaseSyntax
     {
         public readonly List<string> Modifiers = new List<string>();
@@ -15,6 +15,7 @@ namespace ApexSharpBase.MetaClass
         }
 
         public string Accessor { get; set; }
+
         public bool ContainsChildren { get; set; }
     }
 }

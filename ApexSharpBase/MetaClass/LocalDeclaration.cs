@@ -1,10 +1,10 @@
 ﻿namespace ApexSharpBase.MetaClass
 {
-    public class LocalDeclarationStatement : BaseSyntax
+    public class LocalDeclaration : BaseSyntax
     {
 
 
-        public LocalDeclarationStatement()
+        public LocalDeclaration()
         {
 
         }

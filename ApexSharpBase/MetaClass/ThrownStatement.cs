@@ -1,8 +1,8 @@
 ﻿namespace ApexSharpBase.MetaClass
 {
-    public class ApexThrownStatementSyntax : BaseSyntax
+    public class ThrownStatement : BaseSyntax
     {
-        public ApexThrownStatementSyntax()
+        public ThrownStatement()
         {
 
         }

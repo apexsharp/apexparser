@@ -35,7 +35,7 @@
         Soql,
         Dml,
         CloseBrace,
-        OpenBrance
+        OpenBrance,
 
     }
 }

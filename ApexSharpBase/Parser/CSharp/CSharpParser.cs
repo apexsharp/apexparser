@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ApexSharpBase.MetaClass;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-
-namespace ApexSharpBase.Parser.CSharp
+﻿namespace ApexSharpBase.Parser.CSharp
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using ApexSharpBase.MetaClass;
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.CSharp;
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
+
     public class CSharpParser
     {
-        public NamespaceSyntax ParseCSharpFromFile(FileInfo apexFile)
+        public Namespace ParseCSharpFromFile(FileInfo apexFile)
         {
             var codeText = File.ReadAllText(apexFile.FullName);
-            return ConvertRosyln(codeText);
+            return this.ConvertRosyln(codeText);
         }
 
-        public NamespaceSyntax ParseCSharpFromText(string cSharpCode)
+        public Namespace ParseCSharpFromText(string cSharpCode)
         {
-            NamespaceSyntax apexClassDeclarationSyntaxList = ConvertRosyln(cSharpCode);
-            return apexClassDeclarationSyntaxList;
+            Namespace apexClassDeclarationList = this.ConvertRosyln(cSharpCode);
+            return apexClassDeclarationList;
         }
 
-        private NamespaceSyntax ConvertRosyln(string codeText)
+        private Namespace ConvertRosyln(string codeText)
         {
             CSharpParseOptions parseOption = new CSharpParseOptions();
             parseOption.WithDocumentationMode(DocumentationMode.Parse);
@@ -35,62 +32,62 @@ namespace ApexSharpBase.Parser.CSharp
             var root = syntaxTree.GetRoot();
 
             var namespaceDeclarationSyntaxSpace = root.DescendantNodes().OfType<NamespaceDeclarationSyntax>().First();
-            var nameSpace = new NamespaceSyntax { Name = namespaceDeclarationSyntaxSpace.Name.ToString() };
+            var nameSpace = new Namespace { Name = namespaceDeclarationSyntaxSpace.Name.ToString() };
 
             var syntaxNodes = namespaceDeclarationSyntaxSpace.Members;
             foreach (MemberDeclarationSyntax childNode in syntaxNodes)
             {
-                SyntaxKindSwitch(nameSpace, childNode);
+                this.SyntaxKindSwitch(nameSpace, childNode);
             }
             return nameSpace;
         }
 
         private void SyntaxKindSwitch(BaseSyntax parentNode, SyntaxNode childNode)
         {
-            //Console.WriteLine(childNode.Kind());
+            // Console.WriteLine(childNode.Kind());
 
             switch (childNode.Kind())
             {
                 case SyntaxKind.ClassDeclaration:
-                    parentNode.ChildNodes.Add(GetClassDeclaration(childNode));
+                    parentNode.ChildNodes.Add(this.GetClassDeclaration(childNode));
                     break;
                 case SyntaxKind.ConstructorDeclaration:
-                    parentNode.ChildNodes.Add(GetConstructorDeclarationSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetConstructorDeclarationSyntax(childNode));
                     break;
                 case SyntaxKind.MethodDeclaration:
-                    parentNode.ChildNodes.Add(GetMethodDeclarationSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetMethodDeclarationSyntax(childNode));
                     break;
                 case SyntaxKind.FieldDeclaration:
-                    parentNode.ChildNodes.Add(GetFieldDeclarationSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetFieldDeclarationSyntax(childNode));
                     break;
                 case SyntaxKind.PropertyDeclaration:
-                    parentNode.ChildNodes.Add(GetApexPropertyDeclarationSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetApexPropertyDeclarationSyntax(childNode));
                     break;
                 case SyntaxKind.ExpressionStatement:
-                    parentNode.ChildNodes.Add(GetApexExpressionStatementSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetApexExpressionStatementSyntax(childNode));
                     break;
                 case SyntaxKind.LocalDeclarationStatement:
-                    parentNode.ChildNodes.Add(GetLocalDeclarationStatement(childNode));
+                    parentNode.ChildNodes.Add(this.GetLocalDeclarationStatement(childNode));
                     break;
                 case SyntaxKind.ReturnStatement:
-                    parentNode.ChildNodes.Add(ReturnStatementSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.ReturnStatementSyntax(childNode));
                     break;
                 case SyntaxKind.IfStatement:
-                    parentNode.ChildNodes.Add(GetIfElseStatementSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetIfElseStatementSyntax(childNode));
                     break;
                 case SyntaxKind.ForEachStatement:
-                    parentNode.ChildNodes.Add(GetForEachStatement(childNode));
+                    parentNode.ChildNodes.Add(this.GetForEachStatement(childNode));
                     break;
                 case SyntaxKind.ForStatement:
-                    parentNode.ChildNodes.Add(GetForStatement(childNode));
+                    parentNode.ChildNodes.Add(this.GetForStatement(childNode));
                     break;
 
                 case SyntaxKind.TryStatement:
-                    parentNode.ChildNodes.Add(GetApexTryStatementSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetApexTryStatementSyntax(childNode));
                     break;
 
                 case SyntaxKind.ThrowStatement:
-                    parentNode.ChildNodes.Add(GetApexThrownStatementSyntax(childNode));
+                    parentNode.ChildNodes.Add(this.GetApexThrownStatementSyntax(childNode));
                     break;
                 //        case SyntaxKind.DoStatement:
                 //            parentNode.ChildNodes.Add(GetApexDoStatementSyntax(childNode));
@@ -121,12 +118,10 @@ namespace ApexSharpBase.Parser.CSharp
 
             foreach (MemberDeclarationSyntax childNode in classDeclarationSyntax.Members)
             {
-                SyntaxKindSwitch(apexClass, childNode);
+                this.SyntaxKindSwitch(apexClass, childNode);
             }
             return apexClass;
         }
-
-
 
         private MethodSyntax GetMethodDeclarationSyntax(SyntaxNode node)
         {
@@ -145,20 +140,19 @@ namespace ApexSharpBase.Parser.CSharp
 
             foreach (SyntaxNode childNode in method.Body.ChildNodes())
             {
-                SyntaxKindSwitch(methodSyntax, childNode);
+                this.SyntaxKindSwitch(methodSyntax, childNode);
             }
             return methodSyntax;
         }
 
-
-        private ConstructorSyntax GetConstructorDeclarationSyntax(SyntaxNode node)
+        private Constructor GetConstructorDeclarationSyntax(SyntaxNode node)
         {
             var constructor = (ConstructorDeclarationSyntax)node;
 
-            ConstructorSyntax apexConstructor = new ConstructorSyntax
+            Constructor apexConstructor = new Constructor
             {
                 CodeComments = GetComments(constructor.GetLeadingTrivia()),
-                Identifier = constructor.Identifier.Text
+                Identifier = constructor.Identifier.Text,
             };
 
             apexConstructor.Attributes.AddRange(GetAttribute(constructor.AttributeLists));
@@ -167,18 +161,17 @@ namespace ApexSharpBase.Parser.CSharp
 
             foreach (SyntaxNode childNode in constructor.Body.ChildNodes())
             {
-                SyntaxKindSwitch(apexConstructor, childNode);
+                this.SyntaxKindSwitch(apexConstructor, childNode);
             }
 
             return apexConstructor;
         }
 
-
-        private PropertySyntax GetApexPropertyDeclarationSyntax(SyntaxNode node)
+        private Property GetApexPropertyDeclarationSyntax(SyntaxNode node)
         {
             var propertyDeclarationSyntax = (PropertyDeclarationSyntax)node;
 
-            var propertySyntax = new PropertySyntax
+            var propertySyntax = new Property
             {
                 CodeComments = GetComments(propertyDeclarationSyntax.GetLeadingTrivia()),
                 Type = propertyDeclarationSyntax.Type.ToFullString().Trim(),
@@ -192,7 +185,7 @@ namespace ApexSharpBase.Parser.CSharp
             {
                 var apexAccessor = new AccessorDeclaration
                 {
-                    Accessor = accessorDeclarationSyntax.Keyword.ToString()
+                    Accessor = accessorDeclarationSyntax.Keyword.ToString(),
                 };
                 propertySyntax.AttributeLists.AddRange(GetAttribute(accessorDeclarationSyntax.AttributeLists));
                 apexAccessor.Modifiers.AddRange(GetModifiers(accessorDeclarationSyntax.Modifiers));
@@ -202,7 +195,7 @@ namespace ApexSharpBase.Parser.CSharp
                     SyntaxList<StatementSyntax> statementSyntaxList = accessorDeclarationSyntax.Body.Statements;
                     foreach (var statementSyntax in statementSyntaxList)
                     {
-                        SyntaxKindSwitch(apexAccessor, statementSyntax);
+                        this.SyntaxKindSwitch(apexAccessor, statementSyntax);
                     }
                 }
 
@@ -235,20 +228,18 @@ namespace ApexSharpBase.Parser.CSharp
             return fieldDeclaration;
         }
 
-        private LocalDeclarationStatement GetLocalDeclarationStatement(SyntaxNode node)
+        private LocalDeclaration GetLocalDeclarationStatement(SyntaxNode node)
         {
             var localDeclarationStatementSyntax = (LocalDeclarationStatementSyntax)node;
 
-            var apexLocalDeclarationStatement = new LocalDeclarationStatement
+            var apexLocalDeclarationStatement = new LocalDeclaration
             {
                 CodeComments = GetComments(localDeclarationStatementSyntax.GetLeadingTrivia()),
                 Expression = localDeclarationStatementSyntax.Declaration.ToString(),
-                LineNumber = localDeclarationStatementSyntax.GetLocation().GetLineSpan().StartLinePosition.Line
+                LineNumber = localDeclarationStatementSyntax.GetLocation().GetLineSpan().StartLinePosition.Line,
             };
             return apexLocalDeclarationStatement;
         }
-
-
 
         private ExpressionStatement GetApexExpressionStatementSyntax(SyntaxNode node)
         {
@@ -258,13 +249,11 @@ namespace ApexSharpBase.Parser.CSharp
             {
                 CodeComments = GetComments(expressionStatementSyntax.GetLeadingTrivia()),
                 Expression = expressionStatementSyntax.Expression.ToString(),
-                LineNumber = expressionStatementSyntax.GetLocation().GetLineSpan().StartLinePosition.Line
+                LineNumber = expressionStatementSyntax.GetLocation().GetLineSpan().StartLinePosition.Line,
             };
 
             return expressionStatement;
         }
-
-
 
         private ReturnStatement ReturnStatementSyntax(SyntaxNode node)
         {
@@ -272,7 +261,7 @@ namespace ApexSharpBase.Parser.CSharp
             var apexReturnStatementSyntax = new ReturnStatement
             {
                 CodeComments = GetComments(expressionStatementSyntax.GetLeadingTrivia()),
-                Expression = expressionStatementSyntax.Expression.ToString()
+                Expression = expressionStatementSyntax.Expression.ToString(),
             };
             return apexReturnStatementSyntax;
         }
@@ -284,7 +273,7 @@ namespace ApexSharpBase.Parser.CSharp
             var apexIfStatementSyntax = new IfStatement
             {
                 CodeComments = GetComments(syntax.GetLeadingTrivia()),
-                Condition = syntax.Condition.ToString()
+                Condition = syntax.Condition.ToString(),
             };
 
             // Code Block or Just One Line
@@ -293,12 +282,12 @@ namespace ApexSharpBase.Parser.CSharp
                 var blockSyntax = (BlockSyntax)syntax.Statement;
                 foreach (var childNode in blockSyntax.Statements)
                 {
-                    SyntaxKindSwitch(apexIfStatementSyntax, childNode);
+                    this.SyntaxKindSwitch(apexIfStatementSyntax, childNode);
                 }
             }
             else
             {
-                SyntaxKindSwitch(apexIfStatementSyntax, syntax.Statement);
+                this.SyntaxKindSwitch(apexIfStatementSyntax, syntax.Statement);
             }
 
             if (syntax.Else == null) return apexIfStatementSyntax;
@@ -309,7 +298,7 @@ namespace ApexSharpBase.Parser.CSharp
                 var apexElseIfStatementSyntax = new ElseStatement
                 {
                     CodeComments = GetComments(elseSyntax.GetLeadingTrivia()),
-                    Condition = syntax.Statement.ToFullString()
+                    Condition = syntax.Statement.ToFullString(),
                 };
 
                 if (syntax.Statement.Kind() == SyntaxKind.Block)
@@ -317,12 +306,12 @@ namespace ApexSharpBase.Parser.CSharp
                     var blockSyntax = (BlockSyntax)elseSyntax.Statement;
                     foreach (var childNode in blockSyntax.Statements)
                     {
-                        SyntaxKindSwitch(apexElseIfStatementSyntax, childNode);
+                        this.SyntaxKindSwitch(apexElseIfStatementSyntax, childNode);
                     }
                 }
                 else
                 {
-                    SyntaxKindSwitch(apexElseIfStatementSyntax, syntax.Statement);
+                    this.SyntaxKindSwitch(apexElseIfStatementSyntax, syntax.Statement);
                 }
 
                 apexIfStatementSyntax.ElseStatement = apexElseIfStatementSyntax;
@@ -340,18 +329,16 @@ namespace ApexSharpBase.Parser.CSharp
                 CodeComments = GetComments(syntax.GetLeadingTrivia()),
                 Type = syntax.Type.ToString(),
                 Identifier = syntax.Identifier.Text,
-                Expression = syntax.Expression.ToString()
+                Expression = syntax.Expression.ToString(),
             };
 
             foreach (var childNode in syntax.Statement.ChildNodes())
             {
-                SyntaxKindSwitch(forEachStatement, childNode);
+                this.SyntaxKindSwitch(forEachStatement, childNode);
             }
 
             return forEachStatement;
         }
-
-
 
         private ForStatement GetForStatement(SyntaxNode node)
         {
@@ -362,41 +349,39 @@ namespace ApexSharpBase.Parser.CSharp
                 CodeComments = GetComments(syntax.GetLeadingTrivia()),
                 Declaration = syntax.Declaration.ToString(),
                 Condition = syntax.Condition.ToString(),
-                Incrementors = syntax.Incrementors.ToString()
+                Incrementors = syntax.Incrementors.ToString(),
             };
 
             foreach (var childNode in syntax.Statement.ChildNodes())
             {
-                SyntaxKindSwitch(forStatement, childNode);
+                this.SyntaxKindSwitch(forStatement, childNode);
             }
             return forStatement;
         }
 
-
-
-        public ApexTryStatementSyntax GetApexTryStatementSyntax(SyntaxNode node)
+        private TryStatement GetApexTryStatementSyntax(SyntaxNode node)
         {
             var tryStatement = (TryStatementSyntax)node;
 
-            ApexTryStatementSyntax apex = new ApexTryStatementSyntax
+            TryStatement apex = new TryStatement
             {
-                CodeComments = GetComments(tryStatement.GetLeadingTrivia())
+                CodeComments = GetComments(tryStatement.GetLeadingTrivia()),
             };
 
             foreach (var childNode in tryStatement.Block.Statements)
             {
-                SyntaxKindSwitch(apex, childNode);
+                this.SyntaxKindSwitch(apex, childNode);
             }
 
             foreach (CatchClauseSyntax catchClauseSyntax in tryStatement.Catches)
             {
 
                 var catchStatement = (CatchClauseSyntax)catchClauseSyntax;
-                ApexCatchClauseSyntax apexCatch = new ApexCatchClauseSyntax
+                CatchClause apexCatch = new CatchClause
                 {
                     CodeComments = GetComments(catchStatement.GetLeadingTrivia()),
                     Type = catchStatement.Declaration.Type.ToString(),
-                    Identifier = catchStatement.Declaration.Identifier.ToString()
+                    Identifier = catchStatement.Declaration.Identifier.ToString(),
                 };
 
                 apex.ChildNodes.Add(apexCatch);
@@ -406,17 +391,15 @@ namespace ApexSharpBase.Parser.CSharp
             {
                 FinallyClauseSyntax finallyStatment = tryStatement.Finally;
 
-
                 var finallyStatement = (FinallyClauseSyntax)finallyStatment;
-                ApexFinallyClauseSyntax apexFinally = new ApexFinallyClauseSyntax()
+                FinallyClause apexFinally = new FinallyClause()
                 {
                     CodeComments = GetComments(finallyStatement.GetLeadingTrivia()),
                 };
 
-
                 foreach (var childNode in finallyStatement.Block.Statements)
                 {
-                    SyntaxKindSwitch(apex, childNode);
+                    this.SyntaxKindSwitch(apex, childNode);
                 }
 
                 apex.ChildNodes.Add(apexFinally);
@@ -425,26 +408,24 @@ namespace ApexSharpBase.Parser.CSharp
             return apex;
         }
 
-
-
-        private ApexThrownStatementSyntax GetApexThrownStatementSyntax(SyntaxNode node)
+        private ThrownStatement GetApexThrownStatementSyntax(SyntaxNode node)
         {
             var syntax = (ThrowStatementSyntax)node;
-            var apex = new ApexThrownStatementSyntax
+            var apex = new ThrownStatement
             {
                 CodeComments = GetComments(syntax.GetLeadingTrivia()),
-                Expression = syntax.Expression.ToString()
+                Expression = syntax.Expression.ToString(),
             };
             return apex;
         }
 
 
 
-        //public ApexWhileStatementSyntax GetApexWhileStatementSyntax(SyntaxNode node)
+        //public WhileStatement GetApexWhileStatementSyntax(SyntaxNode node)
         //{
         //    var syntax = (WhileStatementSyntax)node;
 
-        //    ApexWhileStatementSyntax apex = new ApexWhileStatementSyntax
+        //    WhileStatement apex = new WhileStatement
         //    {
         //        CodeComments = GetComments(syntax.GetLeadingTrivia()),
         //        Condition = syntax.Condition.ToString()
@@ -465,11 +446,11 @@ namespace ApexSharpBase.Parser.CSharp
 
         //    return apex;
         //}
-        //public ApexDoStatementSyntax GetApexDoStatementSyntax(SyntaxNode node)
+        //public DoStatement GetApexDoStatementSyntax(SyntaxNode node)
         //{
         //    var syntax = (DoStatementSyntax)node;
 
-        //    ApexDoStatementSyntax apex = new ApexDoStatementSyntax
+        //    DoStatement apex = new DoStatement
         //    {
         //        CodeComments = GetComments(syntax.GetLeadingTrivia()),
         //        Condition = syntax.Condition.ToString()
@@ -493,16 +474,16 @@ namespace ApexSharpBase.Parser.CSharp
 
 
 
-        private static List<MetaClass.ParameterSyntax> GetParameterSyntaxs(ParameterListSyntax parameter)
+        private static List<MetaClass.Parameter> GetParameterSyntaxs(ParameterListSyntax parameter)
         {
-            List<MetaClass.ParameterSyntax> parameterSyntaxs = new List<MetaClass.ParameterSyntax>();
+            List<MetaClass.Parameter> parameterSyntaxs = new List<MetaClass.Parameter>();
 
             foreach (var parameterSyntax in parameter.Parameters)
             {
-                var apexParamter = new MetaClass.ParameterSyntax
+                var apexParamter = new MetaClass.Parameter
                 {
                     Type = parameterSyntax.Type.ToString(),
-                    Identifier = parameterSyntax.Identifier.Text
+                    Identifier = parameterSyntax.Identifier.Text,
                 };
 
 

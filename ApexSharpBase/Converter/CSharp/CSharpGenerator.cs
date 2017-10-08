@@ -1,8 +1,8 @@
-﻿using System.Text;
-using ApexSharpBase.MetaClass;
-
-namespace ApexSharpBase.Converter.CSharp
+﻿namespace ApexSharpBase.Converter.CSharp
 {
+    using System.Text;
+    using ApexSharpBase.MetaClass;
+
     public class CSharpGenerator : BaseVisitor
     {
         private StringBuilder Code { get; } = new StringBuilder();
@@ -61,7 +61,7 @@ namespace ApexSharpBase.Converter.CSharp
         //    AppendIndentedLine("}}");
         //}
 
-        //public override void VisitMethodParameters(ParameterSyntax mp)
+        //public override void VisitMethodParameters(Parameter mp)
         //{
         //    Code.Append("(");
 

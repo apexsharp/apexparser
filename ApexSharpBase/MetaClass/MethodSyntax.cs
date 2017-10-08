@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ApexSharpBase.MetaClass
+﻿namespace ApexSharpBase.MetaClass
 {
+    using System.Collections.Generic;
+
     public class MethodSyntax : BaseSyntax
     {
         public List<string> Attributes = new List<string>();
@@ -9,7 +9,7 @@ namespace ApexSharpBase.MetaClass
         public string ReturnType { get; set; }
         public string Identifier { get; set; }
 
-        public List<ParameterSyntax> Parameters = new List<ParameterSyntax>();
+        public List<Parameter> Parameters = new List<Parameter>();
 
         public MethodSyntax()
         {

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ApexSharpBase.MetaClass
+﻿namespace ApexSharpBase.MetaClass
 {
+    using System.Collections.Generic;
+
     public class BaseSyntax
     {
         public List<BaseSyntax> ChildNodes = new List<BaseSyntax>();

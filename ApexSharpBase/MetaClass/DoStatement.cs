@@ -1,8 +1,8 @@
 ﻿namespace ApexSharpBase.MetaClass
 {
-    public class ApexWhileStatementSyntax : BaseSyntax
+    public class DoStatement : BaseSyntax
     {
-        public ApexWhileStatementSyntax()
+        public DoStatement()
         {
 
         }

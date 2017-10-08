@@ -1,12 +1,13 @@
 ﻿namespace ApexSharpBase.MetaClass
 {
-    public class ApexCatchClauseSyntax : BaseSyntax
+    public class ParameterList : BaseSyntax
     {
-        public ApexCatchClauseSyntax()
+        public ParameterList()
         {
-
+            IsGneric = false;
         }
 
+        public bool IsGneric { get; set; }
         public string Type { set; get; }
         public string Identifier { get; set; }
     }
