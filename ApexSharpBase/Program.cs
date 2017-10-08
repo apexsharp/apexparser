@@ -1,4 +1,6 @@
-﻿namespace ApexSharpBase
+﻿using System.Reflection;
+
+namespace ApexSharpBase
 {
     using System;
     using System.Collections.Generic;
@@ -14,11 +16,15 @@
     {
         public static void Main(string[] args)
         {
-            CSharpParser parser = new CSharpParser();
-            var reply = parser.ParseCSharpFromFile(new FileInfo(@"C:\DevSharp\ApexSharp\ApexSharpDemo\ApexCode\Demo.cs"));
+
+
+
+            // CSharpParser parser = new CSharpParser();
+            //var reply = parser.ParseCSharpFromFile(new FileInfo(@"C:\DevSharp\ApexSharp\ApexSharpDemo\ApexCode\Demo.cs"));
             //var reply = parser.ParseCSharpFromText(Properties.Resources.Demo);
-            string jsonString = JsonConvert.SerializeObject(reply, Formatting.Indented);
-            Console.WriteLine(jsonString);
+            //string jsonString = JsonConvert.SerializeObject(reply, Formatting.Indented);
+            // Console.WriteLine(jsonString);
+
 
             Console.WriteLine("Done");
             Console.ReadLine();
