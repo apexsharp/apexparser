@@ -54,7 +54,7 @@ namespace Apex.ApexSharp
 
                     ApexSharpConfigSettings = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
 
-                    //Log.LogMsg("Setup Info", ApexSharpConfigSettings);
+                    Log.LogMsg("Setup Info", ApexSharpConfigSettings);
 
 
                 }
@@ -155,9 +155,9 @@ namespace Apex.ApexSharp
             return this;
         }
 
-        public ApexSharp LoadApexSharpConfig(string configFileName)
+        public ApexSharp LoadApexSharpConfig()
         {
-            ConfigFileName = configFileName;
+            ConfigFileName = "ApexSharpProjectSetup.json";
             return this;
         }
 
@@ -167,11 +167,11 @@ namespace Apex.ApexSharp
         }
 
 
-        public ApexSharp SaveApexSharpConfig(string configFileName)
+        public ApexSharp SaveApexSharpConfig()
         {
             string json = JsonConvert.SerializeObject(ApexSharpConfigSettings);
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            File.WriteAllText(path + @"\" + configFileName, json);
+            File.WriteAllText(path + @"\" + "ApexSharpProjectSetup.json", json);
             return this;
         }
 

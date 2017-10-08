@@ -3,18 +3,11 @@
 
     using Apex.ApexSharp;
     using Apex.System;
-    using ApexSharpDemo.SObjects;
-    using NUnit.Framework;
+    using SObjects;
 
-    [TestFixture]
+
     public class SoqlAndDml
     {
-        [OneTimeSetUp]
-        public void Setup()
-        {
-            ApexSharp apexSharp = new ApexSharp().LoadApexSharpConfig("setup.json");
-            apexSharp.Init();
-        }
 
         public static void RunContactDemo()
         {
@@ -40,7 +33,7 @@
             }
         }
 
-        [Test]
+
         public void DeleteRecord()
         {
             string eMail = "jay@jayonsoftware.com";
@@ -48,23 +41,23 @@
                 Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :eMail LIMIT 1", new { eMail });
             if (listOfContact.Size() == 1)
             {
-                Apex.System.System.Debug(listOfContact[0].Email);
+                System.Debug(listOfContact[0].Email);
 
                 Soql.Delete(listOfContact);
             }
         }
 
-        [Test]
+
         public void MasterChildLookup()
         {
             List<Contact> listOfContact = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact LIMIT 1");
             if (listOfContact.Size() == 1)
             {
-                Apex.System.System.Debug(listOfContact[0].Email);
+                System.Debug(listOfContact[0].Email);
             }
         }
 
-        [Test]
+
         public void PassingSoqlVariabls()
         {
             string eMail = "jay@jayonsoftware.com";
@@ -76,7 +69,6 @@
             }
         }
 
-        [Test]
         public void SoqlLookup()
         {
             Contact contact = new Contact();
@@ -86,17 +78,14 @@
             Soql.Insert(contact);
 
 
-            List<Contact> listOfContact =
-                Soql.Query<Contact>("SELECT Id, Email, LastName FROM Contact WHERE LastName = 'Jay'");
+            List<Contact> listOfContact = Soql.Query<Contact>("SELECT Id, Email, LastName FROM Contact WHERE LastName = 'Jay'");
 
-            Apex.System.System.Debug(listOfContact.Size());
+            System.Debug(listOfContact.Size());
 
             if (listOfContact.Size() == 1)
             {
-                Apex.System.System.Debug(listOfContact[0].Email);
+                System.Debug(listOfContact[0].Email);
             }
-
-            Assert.AreEqual(listOfContact[0].Email, contact.Email);
         }
     }
 }

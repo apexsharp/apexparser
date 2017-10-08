@@ -9,12 +9,6 @@ namespace ApexSharpDemo.ApexCode
 
     public class Demo
     {
-        public static List<Contact> GetContacts()
-        {
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact LIMIT 5");
-            return contacts;
-        }
-
         public static void RunContactDemo()
         {
             Contact contactNew = new Contact();

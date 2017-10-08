@@ -1,35 +1,36 @@
 ﻿namespace ApexSharpDemo.ApexCode
 {
-    using Apex.System;
     using NUnit.Framework;
 
     [TestFixture]
     public class UnitTest
     {
+        private bool _isTrueSetup;
+
         [OneTimeSetUp]
         public void Setup()
         {
-            System.Debug("One Time Setup Got Called");
+            _isTrueSetup = true;
         }
 
         [Test]
-        public void Assert()
+        public void AssertIsTrue()
         {
-            System.Assert(true, "Assert True");
+            Assert.IsTrue(_isTrueSetup, "Assert True Test");
         }
 
 
         [Test]
         public void AssertEquals()
         {
-            System.AssertEquals(5, 5, "Assert Equal");
+            Assert.AreEqual(5, 5, "Assert Equal Test");
         }
 
 
         [Test]
         public void AssertNotEquals()
         {
-            System.AssertEquals(5, 0, "Assert Not Equal");
+            Assert.AreNotEqual(5, 0, "Assert Not Equal Test");
         }
     }
 }

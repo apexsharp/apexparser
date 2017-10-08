@@ -12,7 +12,7 @@ namespace ApexSharpDemo
     {
         public static void Main(string[] args)
         {
-            var apexSharp = new ApexSharp().LoadApexSharpConfig("setup.json");
+            var apexSharp = new ApexSharp().LoadApexSharpConfig();
 
             // Always Initialize your settings before using it.
             if (apexSharp.Init())
@@ -22,7 +22,7 @@ namespace ApexSharpDemo
 
                 // Demo.cs is a simple C# code that we will convert APEX. This can be executed now.
                 // Take a look at the Demo.cs file in the /ApexCode Folder.  
-                Demo.GetContacts();
+                Demo.RunContactDemo();
 
                 //Convert the Demo.cs File to APEX
                 //apexSharp.ConvertToApexAndAddToProject("Demo", overWrite: true);

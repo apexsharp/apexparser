@@ -9,6 +9,7 @@ namespace ApexSharpDemo
         public static void Main(string[] args)
         {
             var apexSharp = new ApexSharp();
+
             // Setup connection info
             apexSharp.SalesForceUrl("https://login.salesforce.com")
                .AndHttpProxy("http://yourproxy.com")
@@ -18,7 +19,7 @@ namespace ApexSharpDemo
                .AndToken("SalesForce Token")
                .SetApexFileLocation("Location Where you want your APEX Files to be saved")
                .SetLogLevel(LogLevle.Info)
-               .SaveApexSharpConfig("login.json");
+               .SaveApexSharpConfig();
 
 
 

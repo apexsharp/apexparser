@@ -11,32 +11,32 @@ namespace Apex.System
 
         public static void Assert(bool condition)
         {
-            throw new global::System.NotImplementedException("System.Assert");
+            throw new global::System.NotImplementedException("System.Assert : Use NUnit Asserts");
         }
 
         public static void Assert(bool condition, object msg)
         {
-            throw new global::System.NotImplementedException("System.Assert");
+            throw new global::System.NotImplementedException("System.Assert : Use NUnit Asserts");
         }
 
         public static void AssertEquals(object expected, object actual)
         {
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            throw new global::System.NotImplementedException("System.AssertEquals : Use NUnit Asserts");
         }
 
         public static void AssertEquals(object expected, object actual, object msg)
         {
-            throw new global::System.NotImplementedException("System.AssertEquals");
+            throw new global::System.NotImplementedException("System.AssertEquals : Use NUnit Asserts");
         }
 
         public static void AssertNotEquals(object expected, object actual)
         {
-            NUnit.Framework.Assert.AreNotEqual(expected, actual);
+            throw new global::System.NotImplementedException("System.AssertNotEquals : Use NUnit Asserts");
         }
 
         public static void AssertNotEquals(object expected, object actual, object msg)
         {
-            throw new global::System.NotImplementedException("System.AssertNotEquals");
+            throw new global::System.NotImplementedException("System.AssertNotEquals : Use NUnit Asserts");
         }
 
         public static void ChangeProtection(string apiName, string typeApiName, string protection)
@@ -81,7 +81,7 @@ namespace Apex.System
 
         public static void Debug(object logLevel, object o)
         {
-            throw new global::System.NotImplementedException("System.Debug");
+            global::System.Console.WriteLine(o);
         }
 
         public static Id EnqueueJob(object queueable)
