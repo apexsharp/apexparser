@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Apex.ApexAttrbutes.ApexSharpBase.Attribute
+namespace Apex.ApexAttrbutes
 {
     [AttributeUsage(AttributeTargets.All)]
     public class ApexTestViewAllData : global::System.Attribute

@@ -83,8 +83,10 @@ namespace SalesForceAPI
         public ConnectionDetail ConnectToSalesForce()
         {
             var salesForceConnect = new LogIn();
-            ConnectionDetail = salesForceConnect.Connect(_salesForceUrl, _salesForceUserId,
-                _salesForcePassword + _salesForcePasswordToken);
+            ConnectionDetail = salesForceConnect.Connect(_salesForceUrl, _salesForceUserId, _salesForcePassword + _salesForcePasswordToken);
+
+            Log.LogMsg("Connection Detail", ConnectionDetail);
+
             return ConnectionDetail;
         }
 

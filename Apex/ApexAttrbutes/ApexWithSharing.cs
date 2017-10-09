@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Apex.ApexAttrbutes.ApexSharpBase.Attribute
+namespace Apex.ApexAttrbutes
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class ApexWithSharing : global::System.Attribute

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace ApexSharpBase.Attribute
+namespace ApexSharpBase.Converter.Apex
 {
-
-    [AttributeUsage(AttributeTargets.All)]
-    public class ApexGlobel : global::System.Attribute
+    public class ApexGenerator
     {
     }
 }

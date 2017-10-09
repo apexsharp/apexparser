@@ -182,41 +182,28 @@ namespace Apex.ApexSharp
             path = path + "\\ApexCode\\" + fileName + ".cs";
 
             FileInfo cSharpFileInfo = new FileInfo(path);
-            ConvertToApexAndSave(cSharpFileInfo);
-        }
 
-        public void ConvertAllToApex()
-        {
-            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            path = path + "\\ApexCode\\";
 
-            var cShaprFileList = Directory.GetFileSystemEntries(path, "*.cs").ToList();
-            foreach (var cSharpFile in cShaprFileList)
-            {
-                FileInfo cShaFileInfo = new FileInfo(cSharpFile);
-                ConvertToApexAndSave(cShaFileInfo);
-            }
-        }
-
-        private void ConvertToApexAndSave(FileInfo fullFileName)
-        {
-            var apexFileName = fullFileName.Name.Replace(".cs", "");
+            var apexFileName = cSharpFileInfo.Name.Replace(".cs", "");
             apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
 
             Console.WriteLine($"Converting {apexFileName}");
 
+
+
+
             CSharpParser parser = new CSharpParser();
-            var apexClassDeclarationSyntax = parser.ParseCSharpFromFile(fullFileName);
-
-            var convertedApex = apexClassDeclarationSyntax.GetApexCode();
+            ApexClassDeclarationSyntax apexClassDeclarationSyntax = parser.ParseCSharpFromFile(cSharpFileInfo);
 
 
-            Console.WriteLine($"Saving {apexFileName}");
+            //Console.WriteLine(ConvertToApex.GetApexCode(apexClassDeclarationSyntax));
 
+
+            List<string> convertedApex = apexClassDeclarationSyntax.GetApexCode();
             Console.WriteLine();
             Console.WriteLine(String.Join("\n", convertedApex));
-
-            File.WriteAllLines(apexFileName, convertedApex);
+            Console.WriteLine($"Saving {apexFileName}");
+            //File.WriteAllLines(apexFileName, convertedApex);
         }
 
 

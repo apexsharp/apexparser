@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Apex.ApexSharp.MetaClass;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -59,20 +58,8 @@ namespace Apex.ApexSharp.SharpToApex
             {
                 foreach (var attributeSyntax in methodAttributeList.Attributes)
                 {
-                    if (attributeSyntax.ToString() == "ApexWithSharing")
-                    {
-                        apexClass.IsShareing = "YES";
-                    }
+                    apexClass.AttributeLists.Add(attributeSyntax.ToString());
 
-                    else if (attributeSyntax.ToString() == "ApexWithOutSharing")
-                    {
-                        apexClass.IsShareing = "NO";
-                    }
-
-                    else if (attributeSyntax.ToString() == "TestFixture")
-                    {
-                        apexClass.AttributeLists.Add("@isTest");
-                    }
                 }
             }
 
@@ -441,14 +428,9 @@ namespace Apex.ApexSharp.SharpToApex
             var apexExpressionStatementSyntax = new ApexExpressionStatementSyntax
             {
                 CodeComments = GetComments(expressionStatementSyntax.GetLeadingTrivia()),
-                Expression = expressionStatementSyntax.Expression.ToString()
+                Expression = expressionStatementSyntax.Expression.ToString(),
+                LineNumber = expressionStatementSyntax.GetLocation().GetLineSpan().StartLinePosition.Line
             };
-
-            if (apexExpressionStatementSyntax.Expression.Contains("Soql"))
-            {
-                var demo = apexExpressionStatementSyntax;
-            }
-
 
             return apexExpressionStatementSyntax;
         }
@@ -464,15 +446,6 @@ namespace Apex.ApexSharp.SharpToApex
                 LineNumber = localDeclarationStatementSyntax.GetLocation().GetLineSpan().StartLinePosition.Line
             };
 
-            if (apexLocalDeclarationStatement.Expression.Contains("Soql"))
-            {
-                var nodes = localDeclarationStatementSyntax.DescendantNodes().ToList();
-                var arg = localDeclarationStatementSyntax.DescendantNodes().OfType<ArgumentSyntax>().First();
-
-                apexLocalDeclarationStatement.Soql = arg.ToFullString();
-                apexLocalDeclarationStatement.Soql = apexLocalDeclarationStatement.Soql.Substring(1);
-                apexLocalDeclarationStatement.Soql = apexLocalDeclarationStatement.Soql.TrimEnd('"');
-            }
             return apexLocalDeclarationStatement;
         }
 

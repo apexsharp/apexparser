@@ -27,8 +27,7 @@ namespace SalesForceAPI
             if (configFileInfo.Exists)
             {
                 var connectionDetailJson = File.ReadAllText(configFileInfo.FullName);
-                conectionDetails =
-                    JsonConvert.DeserializeObject<Dictionary<string, ConnectionDetail>>(connectionDetailJson);
+                conectionDetails = JsonConvert.DeserializeObject<Dictionary<string, ConnectionDetail>>(connectionDetailJson);
 
                 ConnectionDetail connection;
                 if (conectionDetails.TryGetValue(userId, out connection))

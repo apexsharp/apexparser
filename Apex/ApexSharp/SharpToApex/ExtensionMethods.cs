@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Apex.ApexSharp.Util
+namespace Apex.ApexSharp.SharpToApex
 {
     public static class ExtensionMethods
     {

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Apex.ApexSharp.SharpToApex;
-using Apex.ApexSharp.Util;
 using Microsoft.CodeAnalysis;
 
-namespace Apex.ApexSharp.MetaClass
+namespace Apex.ApexSharp.SharpToApex
 {
     public enum ApexType
     {
@@ -49,6 +47,13 @@ namespace Apex.ApexSharp.MetaClass
 
         public readonly List<ApexSyntaxNode> ChildNodes = new List<ApexSyntaxNode>();
         public List<string> CodeComments = new List<string>();
+
+        public string GetCodeComments()
+        {
+            var result = String.Join("\n", CodeComments.ToArray());
+            return result;
+        }
+
         public string CommentMustGo { get; set; }
         public int LineNumber { get; set; }
 
@@ -86,7 +91,6 @@ namespace Apex.ApexSharp.MetaClass
         }
 
         public string NameSpace { get; set; }
-        public string IsShareing { get; set; } // Yes No Null        
         public string Identifier { set; get; }
         public string Extending { set; get; }
 
@@ -98,24 +102,11 @@ namespace Apex.ApexSharp.MetaClass
 
             string apexCode = "";
 
-            foreach (var attributeList in AttributeLists)
-            {
-                apexCode = apexCode + attributeList + " ";
-            }
 
-            if (IsShareing == "YES")
-            {
-                apexCode = apexCode + $"public with sharing class {Identifier}";
-            }
+            if (AttributeLists.Contains("ApexWithSharing")) apexCode = apexCode + $"public with sharing class {Identifier}";
+            else if (AttributeLists.Contains("ApexWithNoSharing")) apexCode = apexCode + $"public without sharing class {Identifier}";
+            else apexCode = apexCode + $"public class {Identifier}";
 
-            else if (IsShareing == "NO")
-            {
-                apexCode = apexCode + $"public without sharing class {Identifier}";
-            }
-            else
-            {
-                apexCode = apexCode + $"public class {Identifier}";
-            }
 
             apexCodeList.Add(apexCode);
             apexCodeList.Add("{");
@@ -177,11 +168,11 @@ namespace Apex.ApexSharp.MetaClass
 
             StringBuilder apex = new StringBuilder();
 
-            apex.Append(ApexGeneratorUtil.ModifierAttributeCreater(AttributeLists)).AppendSpace()
-                .Append(ApexGeneratorUtil.ModifierCreater(Modifiers)).AppendSpace()
+            apex.Append(ApexGenerator.ModifierAttributeCreater(AttributeLists)).AppendSpace()
+                .Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
                 .Append(Identifier)
                 .Append("(")
-                .Append(gen.ParameterCreater(ApexParameters))
+                .Append(ApexGenerator.ParameterCreater(ApexParameters))
                 .Append(")");
             apexCodeList.Add(apex.ToString());
 
@@ -222,6 +213,7 @@ namespace Apex.ApexSharp.MetaClass
     public class ApexMethodDeclarationSyntax : ApexSyntaxNode
     {
         public List<ApexParameterListSyntax> ApexParameters = new List<ApexParameterListSyntax>();
+
         public List<string> AttributeLists = new List<string>();
 
         public List<string> CodeInsideMethod = new List<string>();
@@ -237,7 +229,7 @@ namespace Apex.ApexSharp.MetaClass
 
         public new List<string> GetApexCode()
         {
-            ApexGenerator gen = new ApexGenerator();
+
 
             List<string> apexCodeList = new List<string>();
             apexCodeList.AddRange(CodeComments);
@@ -245,12 +237,12 @@ namespace Apex.ApexSharp.MetaClass
             StringBuilder apex = new StringBuilder();
 
 
-            apex.Append(ApexGeneratorUtil.ModifierAttributeCreater(AttributeLists)).AppendSpace()
-                .Append(ApexGeneratorUtil.ModifierCreater(Modifiers)).AppendSpace()
-                .Append(gen.GetApexTypes(ReturnType)).AppendSpace()
+            apex.Append(ApexGenerator.ModifierAttributeCreater(AttributeLists)).AppendSpace()
+                .Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
+                .Append(ApexGenerator.GetApexTypes(ReturnType)).AppendSpace()
                 .Append(Identifier)
                 .Append("(")
-                .Append(gen.ParameterCreater(ApexParameters))
+                .Append(ApexGenerator.ParameterCreater(ApexParameters))
                 .Append(")");
             apexCodeList.Add(apex.ToString());
 
@@ -298,6 +290,9 @@ namespace Apex.ApexSharp.MetaClass
         }
     }
 
+
+    // ***************************************************************************
+
     public class ApexFieldDeclarationSyntax : ApexSyntaxNode
     {
         public readonly List<string> AttributeLists = new List<string>();
@@ -322,14 +317,14 @@ namespace Apex.ApexSharp.MetaClass
 
             StringBuilder apex = new StringBuilder();
 
-            apex.Append(ApexGeneratorUtil.ModifierCreater(Modifiers)).AppendSpace()
-                .Append(gen.GetApexTypes(Type)).AppendSpace()
+            apex.Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
+                .Append(ApexGenerator.GetApexTypes(Type)).AppendSpace()
                 .Append(IdentifierList[0]);
 
             if (Initializaer != string.Empty)
             {
                 apex.Append(" = ")
-                    .Append(gen.GetApexLine(Initializaer));
+                    .Append(ApexGenerator.GetApexLine(Initializaer));
             }
 
             apex.AppendLine(";");
@@ -361,8 +356,8 @@ namespace Apex.ApexSharp.MetaClass
 
             StringBuilder apex = new StringBuilder();
 
-            apex.Append(ApexGeneratorUtil.ModifierCreater(Modifiers)).AppendSpace()
-                .Append(gen.GetApexTypes(Type)).AppendSpace()
+            apex.Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
+                .Append(ApexGenerator.GetApexTypes(Type)).AppendSpace()
                 .Append(Identifier);
 
 
@@ -375,20 +370,6 @@ namespace Apex.ApexSharp.MetaClass
     }
 
 
-    public class ApexAccessorDeclarationSyntax : ApexSyntaxNode
-    {
-        public readonly List<string> Modifiers = new List<string>();
-        public List<string> AttributeLists = new List<string>();
-
-        public ApexAccessorDeclarationSyntax()
-        {
-            ApexKind = ApexType.ApexAccessorDeclarationSyntax;
-        }
-
-        public string Accessor { get; set; }
-        public bool ContainsChildren { get; set; }
-    }
-
     public class ApexExpressionStatementSyntax : ApexSyntaxNode
     {
         public ApexExpressionStatementSyntax()
@@ -400,27 +381,13 @@ namespace Apex.ApexSharp.MetaClass
 
         public List<string> GetApexCode()
         {
-            ApexGenerator gen = new ApexGenerator();
+
 
             List<string> apexList = new List<string>();
             apexList.AddRange(CodeComments);
 
             StringBuilder apex = new StringBuilder();
-
-
-
-
-            if (Expression.Contains("Soql"))
-            {
-                apex.Append(gen.GetApexLineSoql(Expression, Expression)).Append(';');
-
-            }
-            else
-            {
-                apex.Append(gen.GetApexLine(Expression)).Append(';');
-            }
-
-
+            apex.Append(ApexGenerator.GetApexLine(Expression)).Append(';');
 
             apexList.Add(apex.ToString());
             return apexList;
@@ -433,13 +400,10 @@ namespace Apex.ApexSharp.MetaClass
 
         public ApexLocalDeclarationStatementSyntax()
         {
-            Soql = String.Empty;
             ApexKind = ApexType.ApexLocalDeclarationStatementSyntax;
         }
 
         public string Expression { get; set; }
-
-        public string Soql { get; set; }
 
         public new List<string> GetApexCode()
         {
@@ -450,14 +414,8 @@ namespace Apex.ApexSharp.MetaClass
 
             StringBuilder apex = new StringBuilder();
 
-            if (Soql == String.Empty)
-            {
-                apex.Append(gen.GetApexLine(Expression)).Append(';');
-            }
-            else
-            {
-                apex.Append(gen.GetApexLineSoql(Expression, Soql)).Append(';');
-            }
+
+            apex.Append(ApexGenerator.GetApexLine(Expression)).Append(';');
 
 
             apexList.Add(apex.ToString());
@@ -484,7 +442,7 @@ namespace Apex.ApexSharp.MetaClass
             StringBuilder apex = new StringBuilder();
 
 
-            apex.Append("return").AppendSpace().Append(gen.GetApexLine(Expression)).Append(';');
+            apex.Append("return").AppendSpace().Append(ApexGenerator.GetApexLine(Expression)).Append(';');
 
 
             apexList.Add(apex.ToString());
@@ -620,6 +578,9 @@ namespace Apex.ApexSharp.MetaClass
         }
     }
 
+
+    // ***************************************************************************
+
     public class ApexForStatementSyntax : ApexSyntaxNode
     {
         public ApexForStatementSyntax()
@@ -630,6 +591,20 @@ namespace Apex.ApexSharp.MetaClass
         public string Declaration { get; set; }
         public string Condition { get; set; }
         public string Incrementors { get; set; }
+    }
+
+    public class ApexAccessorDeclarationSyntax : ApexSyntaxNode
+    {
+        public readonly List<string> Modifiers = new List<string>();
+        public List<string> AttributeLists = new List<string>();
+
+        public ApexAccessorDeclarationSyntax()
+        {
+            ApexKind = ApexType.ApexAccessorDeclarationSyntax;
+        }
+
+        public string Accessor { get; set; }
+        public bool ContainsChildren { get; set; }
     }
 
     public class ApexParameterListSyntax : ApexSyntaxNode

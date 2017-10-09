@@ -7,12 +7,6 @@ namespace SalesForceAPI
 
     public static class Log
     {
-        public static void LogMsg(string logMessage)
-        {
-            Console.WriteLine(logMessage);
-            // SerilogLog.LogInfo(logMessage);
-        }
-
         public static void LogMsg(string logMessage, object obj)
         {
             Console.WriteLine(logMessage + ":" + JsonConvert.SerializeObject(obj, Formatting.Indented));
@@ -39,7 +33,7 @@ namespace SalesForceAPI
                 .WriteTo.ColoredConsole()
                 .CreateLogger();
 
-            Serilog.Log.Information(logMessage, obj);
+            Serilog.Log.Debug(logMessage, obj);
         }
 
         public static void LogDebug(string logMessage)

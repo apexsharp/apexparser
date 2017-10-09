@@ -2,41 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using ApexSharpBase.Ext;
+using ApexSharpBase.MetaClass;
 
-namespace Apex.ApexSharp.SharpToApex
+namespace ApexSharpBase.Converter.CSharp
 {
-    public class Type
+    public class CSharpLineConverter
     {
-        public Type(string apexType, string cSharpType)
-        {
-            ApexType = apexType;
-            CSharpType = cSharpType;
-        }
-        public string ApexType { get; set; }
-        public string CSharpType { get; set; }
-    }
-    public class ApexGenerator
-    {
-        public static List<Type> TypeList = new List<Type>()
-        {
-            new Type("Integer", "int"),
-            new Type("String", "string"),
-            new Type("Boolean", "bool")
-        };
-
-        public static string GetApexTypes(string cSharpType)
-        {
-            Type type = TypeList.Where(x => x.CSharpType.Equals(cSharpType)).FirstOrDefault();
-            return type?.ApexType;
-        }
-
-        public static string GetCSharpTypes(string apexType)
-        {
-            Type type = TypeList.Where(x => x.ApexType.Equals(apexType)).FirstOrDefault();
-            return type?.CSharpType;
-        }
-
-        public static string ParameterCreater(List<ApexParameterListSyntax> apexParameters)
+        public static string ParameterCreater(List<Parameter> apexParameters)
         {
             var sb = new StringBuilder();
 
@@ -109,7 +83,7 @@ namespace Apex.ApexSharp.SharpToApex
 
             if (cSharpLine.Contains("Soql.Query")) cSharpLine = SoqlSelect(cSharpLine);
             else if (cSharpLine.Contains("Soql.Update")) cSharpLine = SoqlUpdate(cSharpLine);
-            else if (cSharpLine.Contains("Soql.Upsert")) cSharpLine = SoqlUpdate(cSharpLine);
+            else if (cSharpLine.Contains("Soql.Upsert")) cSharpLine = SoqlUpsert(cSharpLine);
             else if (cSharpLine.Contains("Soql.Insert")) cSharpLine = SoqlInsert(cSharpLine);
             else if (cSharpLine.Contains("Soql.Delete")) cSharpLine = SoqlDelete(cSharpLine);
             else if (cSharpLine.Contains("Soql.UnDelete")) cSharpLine = SoqlUnDelete(cSharpLine);

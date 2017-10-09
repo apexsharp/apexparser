@@ -419,7 +419,7 @@ namespace SalesForceAPI
                         new JsonSerializerSettings { NullValueHandling = JsonNullValue });
                     return returnData.records;
                 default:
-                    Log.LogMsg(responseMessage.Content.ReadAsStringAsync().Result);
+                    Log.LogMsg("Query Error", responseMessage.Content.ReadAsStringAsync().Result);
                     throw new Exception(responseMessage.Content.ReadAsStringAsync().Result);
             }
         }
