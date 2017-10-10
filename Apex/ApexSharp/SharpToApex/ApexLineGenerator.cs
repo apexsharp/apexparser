@@ -5,17 +5,7 @@ using System.Text;
 
 namespace Apex.ApexSharp.SharpToApex
 {
-    public class Type
-    {
-        public Type(string apexType, string cSharpType)
-        {
-            ApexType = apexType;
-            CSharpType = cSharpType;
-        }
-        public string ApexType { get; set; }
-        public string CSharpType { get; set; }
-    }
-    public class ApexGenerator
+    public class ApexLineGenerator
     {
         public static List<Type> TypeList = new List<Type>()
         {

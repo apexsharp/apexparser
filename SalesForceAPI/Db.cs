@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 using SalesForceAPI.Attribute;
 using SalesForceAPI.Model;
 using SalesForceAPI.Model.RestApi;
@@ -23,6 +24,40 @@ namespace SalesForceAPI
         public Db(ConnectionDetail connectionDetail)
         {
             _connectionDetail = connectionDetail;
+        }
+
+
+        public async Task<List<T>> Query<T>(string query)
+        {
+            Console.WriteLine(query);
+
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/query/?q=" + query),
+                Method = HttpMethod.Get
+            };
+
+            var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
+            request.Headers.Accept.Add(mediaType);
+            request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
+
+
+            HttpClient httpClient = new HttpClient();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
+
+            switch (responseMessage.StatusCode)
+            {
+                case HttpStatusCode.OK:
+                    string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
+                    RecordReadList<T> returnData = JsonConvert.DeserializeObject<RecordReadList<T>>(jsonData,
+                        new JsonSerializerSettings { NullValueHandling = JsonNullValue });
+                    return returnData.records;
+                default:
+                    Log.LogMsg("Query Error", responseMessage.Content.ReadAsStringAsync().Result);
+                    throw new Exception(responseMessage.Content.ReadAsStringAsync().Result);
+            }
         }
 
         public string GetSalesForceObjectName<T>()
@@ -391,37 +426,5 @@ namespace SalesForceAPI
         }
 
 
-        public async Task<List<T>> Query<T>(string query)
-        {
-            Console.WriteLine(query);
-
-            HttpRequestMessage request = new HttpRequestMessage
-            {
-                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/query/?q=" + query),
-                Method = HttpMethod.Get
-            };
-
-            var mediaType = new MediaTypeWithQualityHeaderValue("application/json");
-            request.Headers.Accept.Add(mediaType);
-            request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
-
-
-            HttpClient httpClient = new HttpClient();
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
-
-            switch (responseMessage.StatusCode)
-            {
-                case HttpStatusCode.OK:
-                    string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
-                    RecordReadList<T> returnData = JsonConvert.DeserializeObject<RecordReadList<T>>(jsonData,
-                        new JsonSerializerSettings { NullValueHandling = JsonNullValue });
-                    return returnData.records;
-                default:
-                    Log.LogMsg("Query Error", responseMessage.Content.ReadAsStringAsync().Result);
-                    throw new Exception(responseMessage.Content.ReadAsStringAsync().Result);
-            }
-        }
     }
 }

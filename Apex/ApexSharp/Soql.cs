@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Reflection;
 using Apex.System;
-using SalesForceAPI;
 using SalesForceAPI.Apex;
-using Exception = System.Exception;
+using SalesForceAPI.ApexApi;
+
 
 namespace Apex.ApexSharp
 {
-    public class Soql
+    public class SOQL
     {
-        public static System.List<T> Query<T>(string soql, object dynamicInput)
+        public static List<T> Query<T>(string soql, object dynamicInput)
         {
             var dynamicType = dynamicInput.GetType();
             PropertyInfo[] pi = dynamicType.GetProperties();
@@ -43,104 +43,45 @@ namespace Apex.ApexSharp
             return Query<T>(soql);
         }
 
-        public static System.List<T> Query<T>(string soql)
+        public static List<T> Query<T>(string soql)
         {
-            var connectiondetail = ConnectionUtil.GetConnectionDetail();
-            Db db = new Db(connectiondetail);
+            SoqlApi api = new SoqlApi();
 
-            var asyncWait = db.Query<T>(soql);
+            global::System.Collections.Generic.List<T> result = api.Query<T>(soql);
 
-            try
-            {
-                asyncWait.Wait();
-            }
-            catch (Exception e)
-            {
-                return new List<T>();
-            }
-
-            System.List<T> dataList = new System.List<T>();
-            foreach (var record in asyncWait.Result)
-            {
-                dataList.Add(record);
-            }
-            return dataList;
-        }
-
-        public static T QuerySingle<T>(string soql, object expando)
-        {
-            return QuerySingle<T>(soql);
-        }
-
-        public static T QuerySingle<T>(string soql)
-        {
-            Db db = new Db(ConnectionUtil.GetConnectionDetail());
-
-            var asyncWait = db.Query<T>(soql);
-            asyncWait.Wait();
-            var result = (global::System.Collections.Generic.List<T>)asyncWait.Result;
-
-
-            System.List<T> dataList = new System.List<T>();
+            List<T> dataList = new List<T>();
 
             foreach (var record in result)
             {
                 dataList.Add(record);
             }
-            return dataList[0];
+
+            return dataList;
         }
 
         public static void Insert<T>(T sObject) where T : SObject
         {
-            Db db = new Db(ConnectionUtil.GetConnectionDetail());
-            global::System.Threading.Tasks.Task<T> createRecord = db.CreateRecord<T>(sObject);
-            createRecord.Wait();
-            Console.WriteLine(createRecord.Result.Id);
+            SoqlApi api = new SoqlApi();
+            api.Insert<T>(sObject);
         }
 
         public static void Update<T>(List<T> sObjectList) where T : SObject
         {
-
-            global::System.Collections.Generic.List<T> sObjects = new global::System.Collections.Generic.List<T>();
-
-            foreach (var obj in sObjectList)
-            {
-                sObjects.Add(obj);
-            }
-
-
-            Db db = new Db(ConnectionUtil.GetConnectionDetail());
-            global::System.Threading.Tasks.Task<bool> updateRecord = db.UpdateRecord<T>(sObjects);
-            updateRecord.Wait();
-            Console.WriteLine(updateRecord.Result);
+            SoqlApi api = new SoqlApi();
+            api.Update<T>(sObjectList);
         }
 
         public static void Update<T>(T sObject) where T : SObject
         {
-            Db db = new Db(ConnectionUtil.GetConnectionDetail());
-            global::System.Threading.Tasks.Task<bool> updateRecord = db.UpdateRecord<T>(sObject);
-            updateRecord.Wait();
-            Console.WriteLine(updateRecord.Result);
+            SoqlApi api = new SoqlApi();
+            api.Update<T>(sObject);
         }
 
 
         public static void Delete<T>(List<T> sObjectList) where T : SObject
         {
-
-            global::System.Collections.Generic.List<T> sObjects = new global::System.Collections.Generic.List<T>();
-
-            foreach (var obj in sObjectList)
-            {
-                sObjects.Add(obj);
-
-                Db db = new Db(ConnectionUtil.GetConnectionDetail());
-                global::System.Threading.Tasks.Task<bool> deleteRecord = db.DeleteRecord<T>(obj);
-                deleteRecord.Wait();
-                Console.WriteLine(deleteRecord.Result);
-            }
-
-
-
+            SoqlApi api = new SoqlApi();
+            api.Delete<T>(sObjectList);
         }
 
     }

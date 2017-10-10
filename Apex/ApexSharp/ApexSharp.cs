@@ -60,7 +60,7 @@ namespace Apex.ApexSharp
                 }
                 else
                 {
-                    _errorMessageList.Add("Setup File Not Found");
+                    Log.LogMsg("Setup File Not Found", "Setup File Not Found");
                     ConfigFileName = String.Empty;
                     return InitOk();
                 }

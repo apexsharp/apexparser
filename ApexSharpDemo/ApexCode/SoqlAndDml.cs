@@ -1,4 +1,7 @@
-﻿namespace ApexSharpDemo.ApexCode
+﻿using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
+
+namespace ApexSharpDemo.ApexCode
 {
 
     using Apex.ApexSharp;
@@ -13,7 +16,7 @@
         {
             string newEmail = "Jay@JayOnSoftware.Com";
 
-            List<Contact> listOfContact = Soql.Query<Contact>("SELECT Id, Email FROM Contact LIMIT 1");
+            List<Contact> listOfContact = SOQL.Query<Contact>("SELECT Id, Email FROM Contact LIMIT 1");
 
             if (listOfContact.Size() == 1)
             {
@@ -21,9 +24,9 @@
 
                 listOfContact[0].Email = newEmail;
 
-                Soql.Update(listOfContact[0]);
+                SOQL.Update(listOfContact[0]);
 
-                listOfContact = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :newEmail LIMIT 1", new { newEmail });
+                listOfContact = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :newEmail LIMIT 1", new { newEmail });
 
                 System.Debug(listOfContact[0].Email);
             }
@@ -38,19 +41,19 @@
         {
             string eMail = "jay@jayonsoftware.com";
             List<Contact> listOfContact =
-                Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :eMail LIMIT 1", new { eMail });
+                SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :eMail LIMIT 1", new { eMail });
             if (listOfContact.Size() == 1)
             {
                 System.Debug(listOfContact[0].Email);
 
-                Soql.Delete(listOfContact);
+                SOQL.Delete(listOfContact);
             }
         }
 
 
         public void MasterChildLookup()
         {
-            List<Contact> listOfContact = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact LIMIT 1");
+            List<Contact> listOfContact = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact LIMIT 1");
             if (listOfContact.Size() == 1)
             {
                 System.Debug(listOfContact[0].Email);
@@ -62,7 +65,7 @@
         {
             string eMail = "jay@jayonsoftware.com";
             List<Contact> listOfContact =
-                Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :eMail LIMIT 1", new { eMail });
+                SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :eMail LIMIT 1", new { eMail });
             if (listOfContact.Size() == 1)
             {
                 Apex.System.System.Debug(listOfContact[0].Email);
@@ -75,10 +78,10 @@
             contact.LastName = "Jay";
             contact.Email = "jay@jayonsoftware.com";
 
-            Soql.Insert(contact);
+            SOQL.Insert(contact);
 
 
-            List<Contact> listOfContact = Soql.Query<Contact>("SELECT Id, Email, LastName FROM Contact WHERE LastName = 'Jay'");
+            List<Contact> listOfContact = SOQL.Query<Contact>("SELECT Id, Email, LastName FROM Contact WHERE LastName = 'Jay'");
 
             System.Debug(listOfContact.Size());
 

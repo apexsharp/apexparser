@@ -43,8 +43,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Apex\Id.cs" />
-    <Compile Include="Apex\SObject.cs" />
+    <Compile Include="ApexApi\Id.cs" />
+    <Compile Include="ApexApi\SObject.cs" />
+    <Compile Include="ApexApi\SoqlApi.cs" />
     <Compile Include="AssertErase.cs" />
     <Compile Include="CompositeApi.cs" />
     <Compile Include="HttpManager.cs" />

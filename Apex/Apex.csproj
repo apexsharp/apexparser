@@ -169,10 +169,11 @@
     <Compile Include="ApexPages\StandardSetController.cs" />
     <Compile Include="ApexSharp\ApexSharp.cs" />
     <Compile Include="ApexSharp\SharpToApex\ApexClassDeclarationSyntax.cs" />
-    <Compile Include="ApexSharp\SharpToApex\ApexGenerator.cs" />
+    <Compile Include="ApexSharp\SharpToApex\ApexLineGenerator.cs" />
     <Compile Include="ApexSharp\SharpToApex\CSharpParser.cs" />
-    <Compile Include="ApexSharp\Soql.cs" />
+    <Compile Include="ApexSharp\SharpToApex\Type.cs" />
     <Compile Include="ApexSharp\SharpToApex\ExtensionMethods.cs" />
+    <Compile Include="ApexSharp\SOQL.cs" />
     <Compile Include="Apex\EmptyStackException.cs" />
     <Compile Include="Apex\Stack.cs" />
     <Compile Include="Applauncher\AccountSettingsController.cs" />

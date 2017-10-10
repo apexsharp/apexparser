@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpBase", "ApexSharpB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpBaseTest", "ApexSharpBaseTest\ApexSharpBaseTest.csproj", "{067456C0-086C-46A8-B37F-1405717B7BFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexTest", "ApexTest\ApexTest.csproj", "{4E839445-F283-4288-8E2E-6699B40EC2A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E839445-F283-4288-8E2E-6699B40EC2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E839445-F283-4288-8E2E-6699B40EC2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E839445-F283-4288-8E2E-6699B40EC2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E839445-F283-4288-8E2E-6699B40EC2A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

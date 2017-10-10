@@ -1,4 +1,6 @@
-namespace SalesForceAPI.Apex
+using SalesForceAPI.Apex;
+
+namespace SalesForceAPI.ApexApi
 {
     public class SObject
     {

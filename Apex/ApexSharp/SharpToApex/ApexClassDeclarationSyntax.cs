@@ -161,18 +161,18 @@ namespace Apex.ApexSharp.SharpToApex
 
         public new List<string> GetApexCode()
         {
-            ApexGenerator gen = new ApexGenerator();
+            ApexLineGenerator gen = new ApexLineGenerator();
 
             List<string> apexCodeList = new List<string>();
             apexCodeList.AddRange(CodeComments);
 
             StringBuilder apex = new StringBuilder();
 
-            apex.Append(ApexGenerator.ModifierAttributeCreater(AttributeLists)).AppendSpace()
-                .Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
+            apex.Append(ApexLineGenerator.ModifierAttributeCreater(AttributeLists)).AppendSpace()
+                .Append(ApexLineGenerator.ModifierCreater(Modifiers)).AppendSpace()
                 .Append(Identifier)
                 .Append("(")
-                .Append(ApexGenerator.ParameterCreater(ApexParameters))
+                .Append(ApexLineGenerator.ParameterCreater(ApexParameters))
                 .Append(")");
             apexCodeList.Add(apex.ToString());
 
@@ -237,12 +237,12 @@ namespace Apex.ApexSharp.SharpToApex
             StringBuilder apex = new StringBuilder();
 
 
-            apex.Append(ApexGenerator.ModifierAttributeCreater(AttributeLists)).AppendSpace()
-                .Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
-                .Append(ApexGenerator.GetApexTypes(ReturnType)).AppendSpace()
+            apex.Append(ApexLineGenerator.ModifierAttributeCreater(AttributeLists)).AppendSpace()
+                .Append(ApexLineGenerator.ModifierCreater(Modifiers)).AppendSpace()
+                .Append(ApexLineGenerator.GetApexTypes(ReturnType)).AppendSpace()
                 .Append(Identifier)
                 .Append("(")
-                .Append(ApexGenerator.ParameterCreater(ApexParameters))
+                .Append(ApexLineGenerator.ParameterCreater(ApexParameters))
                 .Append(")");
             apexCodeList.Add(apex.ToString());
 
@@ -310,21 +310,21 @@ namespace Apex.ApexSharp.SharpToApex
 
         public new List<string> GetApexCode()
         {
-            ApexGenerator gen = new ApexGenerator();
+            ApexLineGenerator gen = new ApexLineGenerator();
 
             List<string> apexList = new List<string>();
             apexList.AddRange(CodeComments);
 
             StringBuilder apex = new StringBuilder();
 
-            apex.Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
-                .Append(ApexGenerator.GetApexTypes(Type)).AppendSpace()
+            apex.Append(ApexLineGenerator.ModifierCreater(Modifiers)).AppendSpace()
+                .Append(ApexLineGenerator.GetApexTypes(Type)).AppendSpace()
                 .Append(IdentifierList[0]);
 
             if (Initializaer != string.Empty)
             {
                 apex.Append(" = ")
-                    .Append(ApexGenerator.GetApexLine(Initializaer));
+                    .Append(ApexLineGenerator.GetApexLine(Initializaer));
             }
 
             apex.AppendLine(";");
@@ -349,15 +349,15 @@ namespace Apex.ApexSharp.SharpToApex
 
         public new List<string> GetApexCode()
         {
-            ApexGenerator gen = new ApexGenerator();
+            ApexLineGenerator gen = new ApexLineGenerator();
 
             List<string> apexList = new List<string>();
             apexList.AddRange(CodeComments);
 
             StringBuilder apex = new StringBuilder();
 
-            apex.Append(ApexGenerator.ModifierCreater(Modifiers)).AppendSpace()
-                .Append(ApexGenerator.GetApexTypes(Type)).AppendSpace()
+            apex.Append(ApexLineGenerator.ModifierCreater(Modifiers)).AppendSpace()
+                .Append(ApexLineGenerator.GetApexTypes(Type)).AppendSpace()
                 .Append(Identifier);
 
 
@@ -387,7 +387,7 @@ namespace Apex.ApexSharp.SharpToApex
             apexList.AddRange(CodeComments);
 
             StringBuilder apex = new StringBuilder();
-            apex.Append(ApexGenerator.GetApexLine(Expression)).Append(';');
+            apex.Append(ApexLineGenerator.GetApexLine(Expression)).Append(';');
 
             apexList.Add(apex.ToString());
             return apexList;
@@ -407,7 +407,7 @@ namespace Apex.ApexSharp.SharpToApex
 
         public new List<string> GetApexCode()
         {
-            ApexGenerator gen = new ApexGenerator();
+            ApexLineGenerator gen = new ApexLineGenerator();
 
             List<string> apexList = new List<string>();
             apexList.AddRange(CodeComments);
@@ -415,7 +415,7 @@ namespace Apex.ApexSharp.SharpToApex
             StringBuilder apex = new StringBuilder();
 
 
-            apex.Append(ApexGenerator.GetApexLine(Expression)).Append(';');
+            apex.Append(ApexLineGenerator.GetApexLine(Expression)).Append(';');
 
 
             apexList.Add(apex.ToString());
@@ -434,7 +434,7 @@ namespace Apex.ApexSharp.SharpToApex
 
         public new List<string> GetCApexCode()
         {
-            ApexGenerator gen = new ApexGenerator();
+            ApexLineGenerator gen = new ApexLineGenerator();
 
             List<string> apexList = new List<string>();
             apexList.AddRange(CodeComments);
@@ -442,7 +442,7 @@ namespace Apex.ApexSharp.SharpToApex
             StringBuilder apex = new StringBuilder();
 
 
-            apex.Append("return").AppendSpace().Append(ApexGenerator.GetApexLine(Expression)).Append(';');
+            apex.Append("return").AppendSpace().Append(ApexLineGenerator.GetApexLine(Expression)).Append(';');
 
 
             apexList.Add(apex.ToString());

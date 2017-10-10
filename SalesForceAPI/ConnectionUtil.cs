@@ -12,8 +12,7 @@ namespace SalesForceAPI
 {
     public class ConnectionUtil
     {
-        // SF Connection Details
-        public static ConnectionDetail ConnectionDetail;
+
 
         private static Project project = null;
 
@@ -28,6 +27,9 @@ namespace SalesForceAPI
 
         public bool debug = true;
 
+
+        // SF Connection Details
+        public static ConnectionDetail ConnectionDetail;
         public static ConnectionDetail GetConnectionDetail()
         {
             return ConnectionDetail;

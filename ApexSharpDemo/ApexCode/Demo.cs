@@ -1,4 +1,6 @@
-﻿namespace ApexSharpDemo.ApexCode
+﻿using SalesForceAPI.ApexApi;
+
+namespace ApexSharpDemo.ApexCode
 {
     using SObjects;
     using Apex.System;
@@ -17,29 +19,29 @@
             contactNew.LastName = "Jay";
             contactNew.Email = "abc@abc.com";
 
-            Soql.Insert(contactNew);
+            SOQL.Insert(contactNew);
 
             Id contactNewId = contactNew.Id;
 
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
+            List<Contact> contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
             foreach (Contact contact in contacts)
             {
                 System.Debug(contact.Email);
                 contact.Email = "new@new.com";
             }
 
-            Soql.Update(contacts);
+            SOQL.Update(contacts);
 
 
-            contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
+            contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
             foreach (Contact contact in contacts)
             {
                 System.Debug(contact.Email);
             }
 
-            Soql.Delete(contacts);
+            SOQL.Delete(contacts);
 
-            contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
+            contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
             if (contacts.IsEmpty())
             {
                 System.Debug("Del Worked");
