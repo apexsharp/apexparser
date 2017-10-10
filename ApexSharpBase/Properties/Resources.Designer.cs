@@ -59,35 +59,5 @@ namespace ApexSharpBase.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 
-        ///
-        ///namespace ApexSharpDemo.ApexCode
-        ///{
-        ///    using SObjects;
-        ///    using Apex.System;
-        ///    using Apex.ApexSharp;
-        ///
-        ///
-        ///    public class Demo
-        ///    {
-        ///        public static List&lt;Contact&gt; GetContacts()
-        ///        {
-        ///            List&lt;Contact&gt; contacts = Soql.Query&lt;Contact&gt;(&quot;SELECT Id, Email, Name FROM Contact LIMIT 5&quot;);
-        ///            return contacts;
-        ///        }
-        ///
-        ///        public static void RunContactDemo()
-        ///        {
-        ///            Contact contactNew = new Contact();
-        ///            contactNew.LastName = &quot;Jay&quot;;
-        ///        [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Demo {
-            get {
-                return ResourceManager.GetString("Demo", resourceCulture);
-            }
-        }
     }
 }
