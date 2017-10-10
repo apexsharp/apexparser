@@ -37,8 +37,7 @@ namespace ApexTest.ApexSharp
 
             //List<SObject> contacts = Soql.Query<SObject>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
 
-            List<SObject> contacts =
-                SOQL.Query<SObject>("SELECT Id, Email, Name FROM Contact LIMIT 1");
+            List<SObject> contacts = SOQL.Query<SObject>("SELECT Id, Email, Name FROM Contact LIMIT 1");
 
             Console.WriteLine(contacts.Count);
         }

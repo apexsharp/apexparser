@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Apex.System;
-using SalesForceAPI.Apex;
+﻿using Apex.System;
 using SalesForceAPI.ApexApi;
 
 
@@ -11,36 +8,18 @@ namespace Apex.ApexSharp
     {
         public static List<T> Query<T>(string soql, object dynamicInput)
         {
-            var dynamicType = dynamicInput.GetType();
-            PropertyInfo[] pi = dynamicType.GetProperties();
+            SoqlApi api = new SoqlApi();
 
-            foreach (PropertyInfo p in pi)
+            global::System.Collections.Generic.List<T> result = api.Query<T>(soql, dynamicInput);
+
+            List<T> dataList = new List<T>();
+
+            foreach (var record in result)
             {
-                var varName = ":" + p.Name + " ";
-
-                if (p.PropertyType.Name == "Int32")
-                {
-                    int intValue = (int)p.GetValue(dynamicInput);
-                    string intValueInString = Convert.ToString(intValue);
-                    soql = soql.Replace(varName, " " + intValueInString + " ");
-                }
-                else if (p.PropertyType.Name == "String")
-                {
-                    string stringValue = (string)p.GetValue(dynamicInput);
-                    soql = soql.Replace(varName, " '" + stringValue + "' ");
-                }
-                else if (p.PropertyType.Name == "Id")
-                {
-                    Id id = (Id)p.GetValue(dynamicInput);
-                    string stringValue = id.ToString();
-                    soql = soql.Replace(varName, " '" + stringValue + "' ");
-                }
-                else
-                {
-                    Console.WriteLine("Soql.Query Missing Type");
-                }
+                dataList.Add(record);
             }
-            return Query<T>(soql);
+
+            return dataList;
         }
 
         public static List<T> Query<T>(string soql)
@@ -76,7 +55,6 @@ namespace Apex.ApexSharp
             SoqlApi api = new SoqlApi();
             api.Update<T>(sObject);
         }
-
 
         public static void Delete<T>(List<T> sObjectList) where T : SObject
         {
