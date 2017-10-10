@@ -11,19 +11,13 @@
 
     public class CSharpParser
     {
-        public Namespace ParseCSharpFromFile(FileInfo apexFile)
+        public ClassContainer ParseCSharpFromText(string cSharpCode)
         {
-            var codeText = File.ReadAllText(apexFile.FullName);
-            return this.ConvertRosyln(codeText);
-        }
-
-        public Namespace ParseCSharpFromText(string cSharpCode)
-        {
-            Namespace apexClassDeclarationList = this.ConvertRosyln(cSharpCode);
+            ClassContainer apexClassDeclarationList = this.ConvertRosyln(cSharpCode);
             return apexClassDeclarationList;
         }
 
-        private Namespace ConvertRosyln(string codeText)
+        private ClassContainer ConvertRosyln(string codeText)
         {
             CSharpParseOptions parseOption = new CSharpParseOptions();
             parseOption.WithDocumentationMode(DocumentationMode.Parse);
@@ -32,7 +26,8 @@
             var root = syntaxTree.GetRoot();
 
             var namespaceDeclarationSyntaxSpace = root.DescendantNodes().OfType<NamespaceDeclarationSyntax>().First();
-            var nameSpace = new Namespace { Name = namespaceDeclarationSyntaxSpace.Name.ToString() };
+
+            var nameSpace = new ClassContainer();
 
             var syntaxNodes = namespaceDeclarationSyntaxSpace.Members;
             foreach (MemberDeclarationSyntax childNode in syntaxNodes)

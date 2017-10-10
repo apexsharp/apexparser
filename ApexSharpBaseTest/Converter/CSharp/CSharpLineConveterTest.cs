@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ApexSharpBase.Converter.CSharp;
+﻿using ApexSharpBase.Converter.CSharp;
 using NUnit.Framework;
 
-namespace ApexSharpBaseTest
+namespace ApexSharpBaseTest.Converter.CSharp
 {
     [TestFixture]
     public class CSharpLineConveterTest
@@ -46,16 +41,20 @@ namespace ApexSharpBaseTest
             Assert.AreEqual("delete accountList", reply);
         }
 
+        [Test]
         public void SoqlUnDeleteTest()
         {
             var reply = CSharpLineConverter.GetApexLine(@"Soql.UnDelete(accountList);");
             Assert.AreEqual(@"undelete accountList", reply);
         }
 
+        [Test]
         public void JsonDeSerializeTest()
         {
-            var reply = CSharpLineConverter.GetApexLine(@"List<Account> newnewDateTime = JSON.deserialize<List<Account>>(newDateTimeJson)");
-            Assert.AreEqual(@"List<Account> newnewDateTime = (List<Account>)JSON.deserialize(newDateTimeJson, List<Account>.class)", reply);
+            var reply = CSharpLineConverter.GetApexLine(@"List<Account> accounts = JSON.deserialize<List<Account>>(objectToDeserialize)");
+            Assert.AreEqual(@"List<Account> accounts = (List<Account>)JSON.deserialize(objectToDeserialize,List<Account>.class)", reply);
         }
+
+        // string json = JSON.serialize(objectToDeserialize)
     }
 }

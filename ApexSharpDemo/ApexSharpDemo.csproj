@@ -87,11 +87,11 @@
   <ItemGroup>
     <None Include="ApexSharpProjectSetup.json" />
     <None Include="App.config" />
+    <None Include="config.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomSettings\" />
-    <Folder Include="SObjectJson\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apex\Apex.csproj">

@@ -6,8 +6,9 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Namespace : BaseSyntax
+    public class ClassContainer : BaseSyntax
     {
-        public string Name { get; set; }
+        // The source code belonging to this container. 
+        public string SoureCode { get; set; }
     }
 }
