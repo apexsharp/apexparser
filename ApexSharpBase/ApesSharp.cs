@@ -39,5 +39,17 @@
             return new ClassContainer();
         }
 
+        // Get APEX Code from a given ClassContainer
+        public string GetApexCode(ClassContainer classContainer)
+        {
+            return "";
+        }
+
+        // Get C# Code From a given ClassContainer
+        public string GetCSharpCode(ClassContainer classContainer)
+        {
+            return "";
+        }
+
     }
 }
