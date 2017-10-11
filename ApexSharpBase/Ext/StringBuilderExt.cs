@@ -15,7 +15,7 @@ namespace ApexSharpBase.Ext
 
         public static StringBuilder AppendTab(this StringBuilder value)
         {
-            return value.Append("\t");
+            return value.Append("    ");
         }
 
 

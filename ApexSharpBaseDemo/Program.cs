@@ -13,8 +13,12 @@ namespace ApexSharpBaseDemo
     {
         static void Main(string[] args)
         {
+            var path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var newPath = Path.GetFullPath(Path.Combine(path, @"..\..\..\..\"));
+
+
             ApesSharp apexSharp = new ApesSharp();
-            var cSharpFile = File.ReadAllText(@"C:\GitHub\apexsharp\ApexSharpDemo\ApexCode\Demo.cs");
+            var cSharpFile = File.ReadAllText(newPath + @"\ApexSharpDemo\ApexCode\DemoClass.cs");
             var classContainer = apexSharp.ParseCSharpCode(cSharpFile);
 
             CSharpGenerator cSharpGenerator = new CSharpGenerator();

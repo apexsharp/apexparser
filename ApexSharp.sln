@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apex", "Apex\Apex.csproj", "{269B0981-154B-4DDE-9B0A-18685C38BD9B}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexTest", "ApexTest\ApexTest.csproj", "{4E839445-F283-4288-8E2E-6699B40EC2A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpBaseDemo", "ApexSharpBaseDemo\ApexSharpBaseDemo.csproj", "{CFBF8A2F-841D-462E-9CFF-1CC918D8B2D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveUnitTesting", "LiveUnitTesting\LiveUnitTesting.csproj", "{9C013109-BD58-492F-9539-3FE1A16C197F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +53,15 @@ Global
 		{CFBF8A2F-841D-462E-9CFF-1CC918D8B2D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFBF8A2F-841D-462E-9CFF-1CC918D8B2D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFBF8A2F-841D-462E-9CFF-1CC918D8B2D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C013109-BD58-492F-9539-3FE1A16C197F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C013109-BD58-492F-9539-3FE1A16C197F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C013109-BD58-492F-9539-3FE1A16C197F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C013109-BD58-492F-9539-3FE1A16C197F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD1A452B-CD6E-44FF-A14F-1238ADF608FB}
 	EndGlobalSection
 EndGlobal

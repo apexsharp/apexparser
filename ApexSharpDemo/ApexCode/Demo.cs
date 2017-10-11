@@ -1,8 +1,4 @@
-﻿
-
-
-
-namespace ApexSharpDemo.ApexCode
+﻿namespace ApexSharpDemo.ApexCode
 {
     using SObjects;
     using Apex.System;
@@ -13,7 +9,6 @@ namespace ApexSharpDemo.ApexCode
     [ApexWithSharing]
     public class Demo
     {
-
         public static void RunContactDemo()
         {
             Contact contactNew = new Contact();

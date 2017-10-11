@@ -23,6 +23,7 @@ namespace ApexSharpBase.Converter.CSharp
             sb.AppendTab().AppendLine("using Apex.ApexSharp;");
             sb.AppendTab().AppendLine("using Apex.ApexAttrbutes;");
             sb.AppendTab().AppendLine("using SalesForceAPI.Apex;");
+            sb.AppendLine();
 
 
 
@@ -76,8 +77,8 @@ namespace ApexSharpBase.Converter.CSharp
         public void VisitClassDeclaration(StringBuilder sb, ClassSyntax cs)
         {
 
-            sb.AppendTab().AppendLine().AppendLine($"[{GetAttributes(cs)}]");
-            sb.AppendTab().AppendLine().AppendLine($"{GetModifiers(cs)} class {cs.Identifier}");
+            sb.AppendTab().Append($"[{GetAttributes(cs)}]").AppendLine(); ;
+            sb.AppendTab().Append($"{GetModifiers(cs)} class {cs.Identifier}").AppendLine(); ;
             sb.AppendTab().AppendLine("{");
 
             foreach (var childNode in cs.ChildNodes)
