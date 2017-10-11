@@ -1,4 +1,6 @@
-﻿using SalesForceAPI.ApexApi;
+﻿
+
+
 
 namespace ApexSharpDemo.ApexCode
 {
@@ -9,7 +11,6 @@ namespace ApexSharpDemo.ApexCode
     using SalesForceAPI.Apex;
 
     [ApexWithSharing]
-
     public class Demo
     {
 
@@ -24,6 +25,7 @@ namespace ApexSharpDemo.ApexCode
             Id contactNewId = contactNew.Id;
 
             List<Contact> contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
+
             foreach (Contact contact in contacts)
             {
                 System.Debug(contact.Email);

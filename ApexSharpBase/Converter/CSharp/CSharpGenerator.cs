@@ -1,17 +1,42 @@
-﻿namespace ApexSharpBase.Converter.CSharp
+﻿using System;
+using System.Linq;
+using ApexSharpBase.Ext;
+
+namespace ApexSharpBase.Converter.CSharp
 {
     using System.Text;
     using ApexSharpBase.MetaClass;
 
-    public class CSharpGenerator : BaseVisitor
+    public class CSharpGenerator //: BaseVisitor
     {
-        private StringBuilder Code { get; } = new StringBuilder();
 
-        public static string Generate(ClassSyntax classSyntax)
+
+        public string Generate(ClassContainer classContainer)
         {
-            var generator = new CSharpGenerator();
-            classSyntax.Accept(generator);
-            return generator.Code.ToString();
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.AppendLine("namespace ApexSharpDemo.ApexCode");
+            sb.AppendLine("{");
+            sb.AppendTab().AppendLine("using SObjects;");
+            sb.AppendTab().AppendLine("using Apex.System;");
+            sb.AppendTab().AppendLine("using Apex.ApexSharp;");
+            sb.AppendTab().AppendLine("using Apex.ApexAttrbutes;");
+            sb.AppendTab().AppendLine("using SalesForceAPI.Apex;");
+
+
+
+            foreach (var childNode in classContainer.ChildNodes)
+            {
+                if (childNode.Kind == SyntaxType.Class.ToString())
+                {
+                    VisitClassDeclaration(sb, (ClassSyntax)childNode);
+                }
+            }
+
+            sb.Append("}");
+
+            return sb.ToString();
         }
 
         private int IndentLevel { get; set; }
@@ -20,35 +45,49 @@
 
         private void Indent()
         {
-            Code.Append(new string(' ', IndentLevel * IndentSize));
+            //      Code.Append(new string(' ', IndentLevel * IndentSize));
         }
 
         private void AppendIndented(string format, params string[] args)
         {
             Indent();
-            Code.AppendFormat(format, args);
+            //     Code.AppendFormat(format, args);
         }
 
         private void AppendIndentedLine(string format, params string[] args)
         {
             Indent();
-            Code.AppendFormat(format, args);
-            Code.AppendLine();
+            //     Code.AppendFormat(format, args);
+            //     Code.AppendLine();
         }
 
-        public override void VisitClassDeclaration(ClassSyntax cd)
+        public string GetAttributes(ClassSyntax cs)
         {
-            //    AppendIndentedLine("class {0}", cd.ClassName);
-            //    AppendIndentedLine("{{");
+            if (cs.Attributes.Any()) return cs.Attributes[0];
+            return "";
+        }
 
-            //    IndentLevel++;
-            //    foreach (var md in cd.Methods)
-            //    {
-            //        md.Accept(this);
-            //    }
+        public string GetModifiers(ClassSyntax cs)
+        {
+            if (cs.Modifiers.Any()) return cs.Modifiers[0];
+            return "";
+        }
 
-            //    IndentLevel--;
-            //    AppendIndentedLine("}}");
+        public void VisitClassDeclaration(StringBuilder sb, ClassSyntax cs)
+        {
+
+            sb.AppendTab().AppendLine().AppendLine($"[{GetAttributes(cs)}]");
+            sb.AppendTab().AppendLine().AppendLine($"{GetModifiers(cs)} class {cs.Identifier}");
+            sb.AppendTab().AppendLine("{");
+
+            foreach (var childNode in cs.ChildNodes)
+            {
+
+                sb.AppendTab().AppendTab().AppendLine(childNode.Kind);
+
+            }
+
+            sb.AppendTab().AppendLine("}");
         }
 
         //public override void VisitMethodDeclaration(MethodSyntax md)

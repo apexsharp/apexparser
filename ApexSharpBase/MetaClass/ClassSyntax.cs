@@ -9,7 +9,7 @@
         public List<string> Attributes = new List<string>();
         public List<string> Modifiers = new List<string>();
         public string Identifier { get; set; }
-        public List<MethodSyntax> Methods = new List<MethodSyntax>();
+        public List<BaseSyntax> Methods = new List<BaseSyntax>();
 
         public ClassSyntax()
         {
