@@ -7,34 +7,18 @@ namespace ApexSharpBase.Converter.CSharp
     using System.Text;
     using ApexSharpBase.MetaClass;
 
-    public class CSharpGenerator 
+    public class CSharpGenerator
     {
-
-
         public string Generate(ClassContainer classContainer)
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("namespace ApexSharpDemo.ApexCode");
-            sb.AppendLine("{");
-            sb.AppendTab().AppendLine("using SObjects;");
-            sb.AppendTab().AppendLine("using Apex.System;");
-            sb.AppendTab().AppendLine("using Apex.ApexSharp;");
-            sb.AppendTab().AppendLine("using Apex.ApexAttrbutes;");
-            sb.AppendTab().AppendLine("using SalesForceAPI.Apex;");
-            sb.AppendLine();
-
-            foreach (var childNode in classContainer.ChildNodes)
-            {
-                GenerateCode(sb, childNode);
-            }
-
-            sb.Append("}");
+            GenerateCode(sb, classContainer);
 
             return sb.ToString();
         }
 
-       
+
         public string GetAttributes(ClassSyntax cs)
         {
             if (cs.Attributes.Any()) return cs.Attributes[0];
@@ -53,26 +37,44 @@ namespace ApexSharpBase.Converter.CSharp
             return "";
         }
 
-        public void GenerateCode(StringBuilder sb, BaseSyntax cs)
+        public void GenerateCode(StringBuilder sb, BaseSyntax baseSyntax)
         {
-            if(cs.Kind == SyntaxType.Class.ToString())
+            if (baseSyntax.Kind == SyntaxType.ClassContainer.ToString())
             {
-                var classSyntex = (ClassSyntax)cs;
+                var classContainer = (ClassContainer)baseSyntax;
+
+                sb.AppendLine("namespace ApexSharpDemo.ApexCode");
+                sb.AppendLine("{");
+                sb.AppendTab().AppendLine("using SObjects;");
+                sb.AppendTab().AppendLine("using Apex.System;");
+                sb.AppendTab().AppendLine("using Apex.ApexSharp;");
+                sb.AppendTab().AppendLine("using Apex.ApexAttrbutes;");
+                sb.AppendTab().AppendLine("using SalesForceAPI.Apex;");
+                sb.AppendLine();
+
+                foreach (var childNode in classContainer.ChildNodes) GenerateCode(sb, childNode);
+
+                sb.Append("}");
+            }
+
+            else if (baseSyntax.Kind == SyntaxType.Class.ToString())
+            {
+                var classSyntex = (ClassSyntax)baseSyntax;
                 sb.AppendTab().Append($"[{GetAttributes(classSyntex)}]").AppendLine(); ;
-                sb.AppendTab().Append($"{GetModifiers(classSyntex)} class {classSyntex.Identifier}").AppendLine(); 
+                sb.AppendTab().Append($"{GetModifiers(classSyntex)} class {classSyntex.Identifier}").AppendLine();
                 sb.AppendTab().AppendLine("{");
 
-                foreach (var childNode in cs.ChildNodes) GenerateCode(sb, childNode);
+                foreach (var childNode in baseSyntax.ChildNodes) GenerateCode(sb, childNode);
 
                 sb.AppendTab().AppendLine("}");
             }
-            else if (cs.Kind == SyntaxType.Method.ToString())
+            else if (baseSyntax.Kind == SyntaxType.Method.ToString())
             {
-                var classSyntex = (MethodSyntax)cs;
-                sb.AppendTab().AppendTab().Append($"{GetModifiers(classSyntex)} {classSyntex.ReturnType} {classSyntex.Identifier}()").AppendLine();
+                var methodSyntax = (MethodSyntax)baseSyntax;
+                sb.AppendTab().AppendTab().Append($"{GetModifiers(methodSyntax)} {methodSyntax.ReturnType} {methodSyntax.Identifier}()").AppendLine();
                 sb.AppendTab().AppendTab().AppendLine("{");
 
-                foreach (var childNode in cs.ChildNodes) GenerateCode(sb, childNode);
+                foreach (var childNode in baseSyntax.ChildNodes) GenerateCode(sb, childNode);
 
                 sb.AppendTab().AppendTab().AppendLine("}");
             }

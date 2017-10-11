@@ -10,5 +10,10 @@
     {
         // The source code belonging to this container. 
         public string SoureCode { get; set; }
+
+        public ClassContainer()
+        {
+            Kind = SyntaxType.ClassContainer.ToString();
+        }
     }
 }

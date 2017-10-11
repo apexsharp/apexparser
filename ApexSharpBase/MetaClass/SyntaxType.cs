@@ -3,6 +3,7 @@
     public enum SyntaxType
     {
         NotFound,
+        ClassContainer,
         Class,
         Constructor,
         Method,
