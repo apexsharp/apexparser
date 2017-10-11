@@ -9,5 +9,8 @@
     [ApexWithSharing]
     public class DemoClass
     {
+        public void Method()
+        {
+        }
     }
 }

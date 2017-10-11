@@ -7,14 +7,13 @@ namespace ApexSharpBase.Converter.CSharp
     using System.Text;
     using ApexSharpBase.MetaClass;
 
-    public class CSharpGenerator //: BaseVisitor
+    public class CSharpGenerator 
     {
 
 
         public string Generate(ClassContainer classContainer)
         {
             StringBuilder sb = new StringBuilder();
-
 
             sb.AppendLine("namespace ApexSharpDemo.ApexCode");
             sb.AppendLine("{");
@@ -25,14 +24,9 @@ namespace ApexSharpBase.Converter.CSharp
             sb.AppendTab().AppendLine("using SalesForceAPI.Apex;");
             sb.AppendLine();
 
-
-
             foreach (var childNode in classContainer.ChildNodes)
             {
-                if (childNode.Kind == SyntaxType.Class.ToString())
-                {
-                    VisitClassDeclaration(sb, (ClassSyntax)childNode);
-                }
+                GenerateCode(sb, childNode);
             }
 
             sb.Append("}");
@@ -40,28 +34,7 @@ namespace ApexSharpBase.Converter.CSharp
             return sb.ToString();
         }
 
-        private int IndentLevel { get; set; }
-
-        private int IndentSize { get; set; } = 4;
-
-        private void Indent()
-        {
-            //      Code.Append(new string(' ', IndentLevel * IndentSize));
-        }
-
-        private void AppendIndented(string format, params string[] args)
-        {
-            Indent();
-            //     Code.AppendFormat(format, args);
-        }
-
-        private void AppendIndentedLine(string format, params string[] args)
-        {
-            Indent();
-            //     Code.AppendFormat(format, args);
-            //     Code.AppendLine();
-        }
-
+       
         public string GetAttributes(ClassSyntax cs)
         {
             if (cs.Attributes.Any()) return cs.Attributes[0];
@@ -74,53 +47,35 @@ namespace ApexSharpBase.Converter.CSharp
             return "";
         }
 
-        public void VisitClassDeclaration(StringBuilder sb, ClassSyntax cs)
+        public string GetModifiers(MethodSyntax cs)
         {
-
-            sb.AppendTab().Append($"[{GetAttributes(cs)}]").AppendLine(); ;
-            sb.AppendTab().Append($"{GetModifiers(cs)} class {cs.Identifier}").AppendLine(); ;
-            sb.AppendTab().AppendLine("{");
-
-            foreach (var childNode in cs.ChildNodes)
-            {
-
-                sb.AppendTab().AppendTab().AppendLine(childNode.Kind);
-
-            }
-
-            sb.AppendTab().AppendLine("}");
+            if (cs.Modifiers.Any()) return cs.Modifiers[0];
+            return "";
         }
 
-        //public override void VisitMethodDeclaration(MethodSyntax md)
-        //{
-        //    AppendIndented("{0} {1}", md.ReturnType, md.MethodName);
-        //    md.Parameters.Accept(this);
+        public void GenerateCode(StringBuilder sb, BaseSyntax cs)
+        {
+            if(cs.Kind == SyntaxType.Class.ToString())
+            {
+                var classSyntex = (ClassSyntax)cs;
+                sb.AppendTab().Append($"[{GetAttributes(classSyntex)}]").AppendLine(); ;
+                sb.AppendTab().Append($"{GetModifiers(classSyntex)} class {classSyntex.Identifier}").AppendLine(); 
+                sb.AppendTab().AppendLine("{");
 
-        //    Code.AppendLine();
-        //    AppendIndentedLine("{{");
-        //    AppendIndentedLine("}}");
-        //}
+                foreach (var childNode in cs.ChildNodes) GenerateCode(sb, childNode);
 
-        //public override void VisitMethodParameters(Parameter mp)
-        //{
-        //    Code.Append("(");
+                sb.AppendTab().AppendLine("}");
+            }
+            else if (cs.Kind == SyntaxType.Method.ToString())
+            {
+                var classSyntex = (MethodSyntax)cs;
+                sb.AppendTab().AppendTab().Append($"{GetModifiers(classSyntex)} {classSyntex.ReturnType} {classSyntex.Identifier}()").AppendLine();
+                sb.AppendTab().AppendTab().AppendLine("{");
 
-        //    var last = mp.Parameters.LastOrDefault();
-        //    foreach (var pd in mp.Parameters)
-        //    {
-        //        pd.Accept(this);
-        //        if (pd != last)
-        //        {
-        //            Code.Append(", ");
-        //        }
-        //    }
+                foreach (var childNode in cs.ChildNodes) GenerateCode(sb, childNode);
 
-        //    Code.Append(")");
-        //}
-
-        //public override void VisitParameterDeclaration(ParameterDeclaration pd)
-        //{
-        //    Code.AppendFormat("{0} {1}", pd.ParameterType, pd.ParameterName);
-        //}
+                sb.AppendTab().AppendTab().AppendLine("}");
+            }
+        }
     }
 }
