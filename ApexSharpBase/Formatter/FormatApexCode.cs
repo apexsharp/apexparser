@@ -15,8 +15,6 @@ namespace ApexSharpBase.Formatter
             TokenType.OpenCurlyBrackets,
             TokenType.CloseCurlyBrackets,
             TokenType.StatementTerminator,
-            TokenType.AccessModifier,
-            TokenType.KwVoid
         };
 
         public static string GetFormattedApexCode(string apexCode)
