@@ -70,7 +70,6 @@
     <Compile Include="ApexCode\Json.cs" />
     <Compile Include="ApexCode\SoqlAndDml.cs" />
     <Compile Include="ApexCode\UnitTest.cs" />
-    <Compile Include="DemoWithCred.cs" />
     <Compile Include="NoApex\Console.cs" />
     <Compile Include="NoApex\Serilog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,9 +84,7 @@
     <Compile Include="SObjects\UserRole.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApexSharpProjectSetup.json" />
     <None Include="App.config" />
-    <None Include="config.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
