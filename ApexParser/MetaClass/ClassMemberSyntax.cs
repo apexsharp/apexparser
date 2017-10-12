@@ -30,7 +30,7 @@ namespace ApexParser.MetaClass
 
         public List<string> Modifiers { get; set; } = new List<string>();
 
-        public virtual ClassMemberSyntax WithTypeAndName(Tuple<TypeSyntax, IOption<string>> typeAndName)
+        public virtual ClassMemberSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
             return this;
         }

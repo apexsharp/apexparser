@@ -113,17 +113,17 @@ namespace ApexParser.Parser
             from methodBody in MethodParametersAndBody
             select new MethodSyntax(heading)
             {
-                Identifier = typeAndName.Item2.GetOrElse(typeAndName.Item1.Identifier),
-                ReturnType = typeAndName.Item1,
+                Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier,
+                ReturnType = typeAndName.Type,
                 MethodParameters = methodBody.MethodParameters,
                 Statement = methodBody.Statement
             };
 
         // examples: string Name, void Test
-        protected internal virtual Parser<Tuple<TypeSyntax, IOption<string>>> TypeAndName =>
+        protected internal virtual Parser<ParameterSyntax> TypeAndName =>
             from type in TypeReference
             from name in Identifier.Optional()
-            select Tuple.Create(type, name);
+            select new ParameterSyntax(type, name.GetOrDefault());
 
         // examples:
         // void Test() {}
@@ -144,10 +144,10 @@ namespace ApexParser.Parser
             from propertyBody in PropertyGetterAndSetter
             select new PropertySyntax(heading)
             {
-                Type = typeAndName.Item1,
-                Identifier = typeAndName.Item2.GetOrDefault(),
-                GetterCode = propertyBody.GetterCode,
-                SetterCode = propertyBody.SetterCode
+                Type = typeAndName.Type,
+                Identifier = typeAndName.Identifier,
+                GetterStatement = propertyBody.GetterStatement,
+                SetterStatement = propertyBody.SetterStatement
             };
 
         // example: { get; set; }
@@ -166,7 +166,7 @@ namespace ApexParser.Parser
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
             from comments in CommentParser.AnyComment.Token().Many()
-            from statement in IfStatement.XOr<StatementSyntax>(Block).XOr(UnknownGenericStatement)
+            from statement in IfStatement.Or<StatementSyntax>(Block).Or(UnknownGenericStatement)
             select statement.WithComments(comments);
 
         // dummy parser for the block with curly brace matching support
@@ -253,7 +253,7 @@ namespace ApexParser.Parser
         // class members: methods, classes, properties
         protected internal virtual Parser<ClassMemberSyntax> ClassMemberDeclaration =>
             from heading in ClassMemberHeading
-            from member in ClassDeclarationBody.Select(c => c as ClassMemberSyntax).XOr(MethodOrPropertyDeclaration)
+            from member in ClassDeclarationBody.Select(c => c as ClassMemberSyntax).Or(MethodOrPropertyDeclaration)
             select member.WithProperties(heading);
     }
 }

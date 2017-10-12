@@ -21,10 +21,10 @@ namespace ApexParser.MetaClass
 
         public StatementSyntax Statement { get; set; }
 
-        public override ClassMemberSyntax WithTypeAndName(Tuple<TypeSyntax, IOption<string>> typeAndName)
+        public override ClassMemberSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
-            ReturnType = typeAndName.Item1;
-            Identifier = typeAndName.Item2.GetOrElse(typeAndName.Item1.Identifier);
+            ReturnType = typeAndName.Type;
+            Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
             return this;
         }
     }

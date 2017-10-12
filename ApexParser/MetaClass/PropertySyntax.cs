@@ -23,11 +23,11 @@ namespace ApexParser.MetaClass
                 switch (item.Item1)
                 {
                     case "get":
-                        GetterCode = item.Item2;
+                        GetterStatement = item.Item2;
                         continue;
 
                     case "set":
-                        SetterCode = item.Item2;
+                        SetterStatement = item.Item2;
                         continue;
                 }
             }
@@ -37,14 +37,14 @@ namespace ApexParser.MetaClass
 
         public string Identifier { get; set; }
 
-        public StatementSyntax GetterCode { get; set; }
+        public StatementSyntax GetterStatement { get; set; }
 
-        public StatementSyntax SetterCode { get; set; }
+        public StatementSyntax SetterStatement { get; set; }
 
-        public override ClassMemberSyntax WithTypeAndName(Tuple<TypeSyntax, IOption<string>> typeAndName)
+        public override ClassMemberSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
-            Type = typeAndName.Item1;
-            Identifier = typeAndName.Item2.GetOrElse(typeAndName.Item1.Identifier);
+            Type = typeAndName.Type;
+            Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
             return this;
         }
     }

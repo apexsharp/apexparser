@@ -381,16 +381,16 @@ namespace ApexParserTest.Parser
         public void TypeAndNameIsJustATypeReferenceAndIdentifierPair()
         {
             var tn = Apex.TypeAndName.Parse("string a");
-            Assert.AreEqual("string", tn.Item1.Identifier);
-            Assert.AreEqual("a", tn.Item2.GetOrDefault());
+            Assert.AreEqual("string", tn.Type.Identifier);
+            Assert.AreEqual("a", tn.Identifier);
 
             tn = Apex.TypeAndName.Parse("void Test");
-            Assert.AreEqual("void", tn.Item1.Identifier);
-            Assert.AreEqual("Test", tn.Item2.GetOrDefault());
+            Assert.AreEqual("void", tn.Type.Identifier);
+            Assert.AreEqual("Test", tn.Identifier);
 
             tn = Apex.TypeAndName.Parse("ClassOne");
-            Assert.AreEqual("ClassOne", tn.Item1.Identifier);
-            Assert.IsNull(tn.Item2.GetOrDefault());
+            Assert.AreEqual("ClassOne", tn.Type.Identifier);
+            Assert.IsNull(tn.Identifier);
         }
 
         [Test]
@@ -441,15 +441,15 @@ namespace ApexParserTest.Parser
             var prop = Apex.PropertyDeclaration.Parse(" int x { get; }");
             Assert.AreEqual("int", prop.Type.Identifier);
             Assert.AreEqual("x", prop.Identifier);
-            Assert.AreEqual(null, prop.SetterCode);
-            Assert.True(prop.GetterCode.IsEmpty);
+            Assert.AreEqual(null, prop.SetterStatement);
+            Assert.True(prop.GetterStatement.IsEmpty);
 
             prop = Apex.PropertyDeclaration.Parse(" String Version { set { version = value; } }");
             Assert.AreEqual("String", prop.Type.Identifier);
             Assert.AreEqual("Version", prop.Identifier);
-            Assert.AreEqual(null, prop.GetterCode);
+            Assert.AreEqual(null, prop.GetterStatement);
 
-            var block = prop.SetterCode as BlockStatementSyntax;
+            var block = prop.SetterStatement as BlockStatementSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("version = value", block.Statements[0].Body);
@@ -507,8 +507,8 @@ namespace ApexParserTest.Parser
             Assert.NotNull(pd);
             Assert.AreEqual("string", pd.Type.Identifier);
             Assert.AreEqual("Test", pd.Identifier);
-            Assert.NotNull(pd.GetterCode);
-            Assert.Null(pd.SetterCode);
+            Assert.NotNull(pd.GetterStatement);
+            Assert.Null(pd.SetterStatement);
         }
 
         [Test]
@@ -640,15 +640,21 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual("flag", pd.Identifier);
             Assert.AreEqual("Boolean", pd.Type.Identifier);
-            Assert.NotNull(pd.GetterCode);
-            Assert.True(pd.GetterCode.IsEmpty);
+            Assert.NotNull(pd.GetterStatement);
+            Assert.True(pd.GetterStatement.IsEmpty);
 
-            block = pd.SetterCode as BlockStatementSyntax;
+            block = pd.SetterStatement as BlockStatementSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("throw", block.Statements[0].Body);
             Assert.AreEqual(1, pd.Attributes.Count);
             Assert.AreEqual("required", pd.Attributes[0]);
+
+            cm = Apex.ClassMemberDeclaration.Parse("className Test { get; set; }");
+            pd = cm as PropertySyntax;
+            Assert.NotNull(pd);
+            Assert.NotNull(pd.GetterStatement);
+            Assert.NotNull(pd.SetterStatement);
         }
 
         [Test]
@@ -720,6 +726,9 @@ namespace ApexParserTest.Parser
 
             stmt = Apex.Statement.Parse("return 'Hello World';");
             Assert.AreEqual("return 'Hello World'", stmt.Body);
+
+            stmt = Apex.Statement.Parse("insert something;");
+            Assert.AreEqual("insert something", stmt.Body);
         }
 
         [Test]
