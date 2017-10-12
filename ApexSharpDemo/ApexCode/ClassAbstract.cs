@@ -6,11 +6,8 @@
     using Apex.ApexAttrbutes;
     using SalesForceAPI.Apex;
 
-    [ApexWithSharing]
-    public class DemoClass
+    public abstract class ClassAbstract
     {
-        public void Method()
-        {
-        }
+        public abstract void MethodThree();
     }
 }

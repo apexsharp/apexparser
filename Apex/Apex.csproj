@@ -155,7 +155,6 @@
     <Compile Include="ApexAttrbutes\ApexHttpPut.cs" />
     <Compile Include="ApexAttrbutes\ApexRest.cs" />
     <Compile Include="ApexAttrbutes\ApexTestViewAllData.cs" />
-    <Compile Include="ApexAttrbutes\ApexWithOutSharing.cs" />
     <Compile Include="ApexAttrbutes\ApexWithSharing.cs" />
     <Compile Include="ApexPages\Action.cs" />
     <Compile Include="ApexPages\Component.cs" />

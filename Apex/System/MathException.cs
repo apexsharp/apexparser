@@ -1,6 +1,6 @@
 namespace Apex.System
 {
-    public class MathException
+    public class MathException : global::System.Exception
     {
         public MathException()
         {
