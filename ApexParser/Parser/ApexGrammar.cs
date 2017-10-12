@@ -115,8 +115,7 @@ namespace ApexParser.Parser
                 Identifier = methodBody.Identifier,
                 ReturnType = methodBody.ReturnType,
                 MethodParameters = methodBody.MethodParameters,
-                Statement = methodBody.Statement,
-                CodeInsideMethod = methodBody.CodeInsideMethod
+                Statement = methodBody.Statement
             };
 
         // examples:

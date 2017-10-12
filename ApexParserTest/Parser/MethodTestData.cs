@@ -15,7 +15,7 @@ namespace ApexParserTest.Parser
     {
         private ApexGrammar Apex { get; } = new ApexGrammar();
 
-        [Test, Ignore("TODO")]
+        [Test]
         public void MethodSigTestOne()
         {
             var methodSig = "public static void GetNumber(string name) { /* Comment */ }";
@@ -26,7 +26,6 @@ namespace ApexParserTest.Parser
             methodSyntax.ReturnType = new TypeSyntax("void");
             methodSyntax.Identifier = "GetNumber";
             methodSyntax.MethodParameters.Add(new ParameterSyntax("string", "name"));
-            methodSyntax.CodeInsideMethod = "/* Comment */";
 
             var method = Apex.MethodDeclaration.Parse(methodSig);
 
@@ -39,7 +38,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, method.MethodParameters.Count);
             Assert.AreEqual("string", method.MethodParameters[0].Type.Identifier);
             Assert.AreEqual("name", method.MethodParameters[0].Identifier);
-            Assert.AreEqual("/* Comment */", method.CodeInsideMethod);
+
+            var block = method.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.False(block.Statements.Any());
+            Assert.AreEqual(1, block.CodeComments.Count);
+            Assert.AreEqual(" Comment ", block.CodeComments[0]);
         }
 
         [Test]
