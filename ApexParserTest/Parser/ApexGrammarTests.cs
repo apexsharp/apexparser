@@ -560,5 +560,23 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, pd.Attributes.Count);
             Assert.AreEqual("required", pd.Attributes[0]);
         }
+
+        [Test]
+        public void UnknownGenericStatementIsAnythingExceptBlockEndingWithATerminator()
+        {
+            var stmt = Apex.UnknownGenericStatement.Parse("return 'Hello World';");
+            Assert.AreEqual("return 'Hello World'", stmt.StatementBody);
+
+            Assert.Throws<ParseException>(() => Apex.UnknownGenericStatement.Parse("if {}"));
+        }
+
+        [Test]
+        public void SimpleIfStatementCanCompileWithoutElseBranch()
+        {
+            var ifstmt = Apex.IfStatement.Parse("if (true) return null;");
+            Assert.AreEqual("true", ifstmt.Expression);
+            Assert.AreEqual("return null", ifstmt.ThenStatement.StatementBody);
+            Assert.IsNull(ifstmt.ElseStatement);
+        }
     }
 }

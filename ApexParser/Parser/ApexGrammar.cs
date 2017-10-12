@@ -184,6 +184,28 @@ namespace ApexParser.Parser
             from closeBrace in Parse.Char('}')
             select "{" + string.Join(string.Empty, contents) + "}";
 
+        // dummy generic parser for any unknown statement
+        protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
+            from contents in Parse.CharExcept("{};").Many().Text().Token()
+            from semicolon in Parse.Char(';')
+            select new StatementSyntax
+            {
+                StatementBody = contents
+            };
+
+        // simple if statement without the expressions support
+        protected internal virtual Parser<IfStatementSyntax> IfStatement =>
+            from ifKeyword in Parse.String("if").Token()
+            from openBrace in Parse.Char('(').Token()
+            from expression in Parse.CharExcept("()").Many().Text().Token()
+            from closeBrace in Parse.Char(')').Token()
+            from unknownStatement in UnknownGenericStatement
+            select new IfStatementSyntax
+            {
+                Expression = expression,
+                ThenStatement = unknownStatement
+            };
+
         // examples: /* this is a member */ @isTest public
         protected internal virtual Parser<ClassMemberSyntax> ClassMemberHeading =>
             from comments in CommentParser.AnyComment.Token().Many()

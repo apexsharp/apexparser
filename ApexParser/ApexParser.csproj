@@ -65,9 +65,11 @@
     <Compile Include="MetaClass\ClassMemberSyntax.cs" />
     <Compile Include="MetaClass\ClassSyntax.cs" />
     <Compile Include="MetaClass\ConstructorSyntax.cs" />
+    <Compile Include="MetaClass\IfStatementSyntax.cs" />
     <Compile Include="MetaClass\ParameterSyntax.cs" />
     <Compile Include="MetaClass\MethodSyntax.cs" />
     <Compile Include="MetaClass\PropertySyntax.cs" />
+    <Compile Include="MetaClass\StatementSyntax.cs" />
     <Compile Include="MetaClass\SyntaxType.cs" />
     <Compile Include="MetaClass\TypeSyntax.cs" />
     <Compile Include="Parser\ApexGrammar.cs" />
