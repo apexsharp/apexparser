@@ -62,6 +62,7 @@
     <Compile Include="Lexer\TokenType.cs" />
     <Compile Include="Lexer\TokenDefinition.cs" />
     <Compile Include="MetaClass\BaseSyntax.cs" />
+    <Compile Include="MetaClass\BlockStatementSyntax.cs" />
     <Compile Include="MetaClass\ClassMemberSyntax.cs" />
     <Compile Include="MetaClass\ClassSyntax.cs" />
     <Compile Include="MetaClass\ConstructorSyntax.cs" />

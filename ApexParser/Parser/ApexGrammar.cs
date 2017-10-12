@@ -131,13 +131,18 @@ namespace ApexParser.Parser
                 Identifier = methodName.GetOrElse(returnType.Identifier),
                 ReturnType = returnType,
                 MethodParameters = parameters,
-                CodeInsideMethod = StripOuterBlockBraces(methodBody).StatementBody
+                Statement = methodBody
             };
 
         // strips the outer curly braces from the method block
         private StatementSyntax StripOuterBlockBraces(StatementSyntax blockBody)
         {
-            var result = blockBody.StatementBody.Trim();
+            if (blockBody == null || string.IsNullOrWhiteSpace(blockBody.Body))
+            {
+                return blockBody;
+            }
+
+            var result = blockBody.Body.Trim();
             if (result.StartsWith("{") && result.EndsWith("}"))
             {
                 result = result.Substring(1, result.Length - 2).Trim();
@@ -174,30 +179,32 @@ namespace ApexParser.Parser
         // examples: get; set; get { ... }
         protected internal virtual Parser<Tuple<string, StatementSyntax>> GetterOrSetter =>
             from getOrSet in Parse.String("get").Or(Parse.String("set")).Token().Text()
-            from block in Parse.String(";").Token().Text().Select(s => new StatementSyntax(s)).Or(Block)
+            from block in Parse.String(";").Token().Text().Return(new StatementSyntax()).Or(Block)
             select Tuple.Create(getOrSet, StripOuterBlockBraces(block));
 
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
-            IfStatement.XOr(Block).XOr(UnknownGenericStatement);
+            from comment in CommentParser.AnyComment.Token().Many()
+            from statement in IfStatement.XOr<StatementSyntax>(Block).XOr(UnknownGenericStatement)
+            select statement;
 
         // dummy parser for the block with curly brace matching support
-        protected internal virtual Parser<StatementSyntax> Block =>
-            from openBrace in Parse.Char('{')
-            from contents in Parse.CharExcept("{}").Many().Text().Select(s => new StatementSyntax(s)).Or(Block).Many()
-            from closeBrace in Parse.Char('}')
-            select new StatementSyntax
+        protected internal virtual Parser<BlockStatementSyntax> Block =>
+            from openBrace in Parse.Char('{').Token()
+            from statements in Statement.Many()
+            from closeBrace in Parse.Char('}').Token()
+            select new BlockStatementSyntax
             {
-                StatementBody = "{" + string.Join(string.Empty, contents.Select(s => s.StatementBody)) + "}"
+                Statements = statements.ToList()
             };
 
         // dummy generic parser for any unknown statement
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
             from contents in Parse.CharExcept("{};").Many().Text().Token()
-            from semicolon in Parse.Char(';')
+            from semicolon in Parse.Char(';').Token()
             select new StatementSyntax
             {
-                StatementBody = contents
+                Body = contents
             };
 
         // simple if statement without the expressions support
@@ -206,8 +213,8 @@ namespace ApexParser.Parser
             from openBrace in Parse.Char('(').Token()
             from expression in Parse.CharExcept("()").Many().Text().Token()
             from closeBrace in Parse.Char(')').Token()
-            from thenBranch in UnknownGenericStatement
-            from elseBranch in Parse.String(ApexKeywords.Else).Token().Then(_ => UnknownGenericStatement).Optional()
+            from thenBranch in Statement
+            from elseBranch in Parse.String(ApexKeywords.Else).Token().Then(_ => Statement).Optional()
             select new IfStatementSyntax
             {
                 Expression = expression,

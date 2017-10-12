@@ -15,9 +15,11 @@ namespace ApexParser.MetaClass
 
         public StatementSyntax(string body) : this()
         {
-            StatementBody = body;
+            Body = body;
         }
 
-        public string StatementBody { get; set; }
+        public bool IsEmpty => string.IsNullOrWhiteSpace(Body);
+
+        public string Body { get; set; }
     }
 }

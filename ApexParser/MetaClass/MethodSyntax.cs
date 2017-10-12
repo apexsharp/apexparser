@@ -18,5 +18,7 @@ namespace ApexParser.MetaClass
         public List<ParameterSyntax> MethodParameters { get; set; } = new List<ParameterSyntax>();
 
         public string CodeInsideMethod { get; set; }
+
+        public StatementSyntax Statement { get; set; }
     }
 }
