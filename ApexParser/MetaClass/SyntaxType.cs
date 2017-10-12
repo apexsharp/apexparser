@@ -7,6 +7,7 @@
         Constructor,
         Method,
         MethodParameter,
-        Property
+        Property,
+        Statement
     }
 }

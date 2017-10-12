@@ -231,9 +231,9 @@ namespace ApexParserTest.Parser
         [Test]
         public void BlockSupportsNestedBlocks()
         {
-            Assert.AreEqual("{123}", Apex.Block.Parse("{123}"));
-            Assert.AreEqual("{ break; }", Apex.Block.Parse("{ break; }"));
-            Assert.AreEqual("{ while() { } }", Apex.Block.Parse("{ while() { } }"));
+            Assert.AreEqual("{123}", Apex.Block.Parse("{123}").StatementBody);
+            Assert.AreEqual("{ break; }", Apex.Block.Parse("{ break; }").StatementBody);
+            Assert.AreEqual("{ while() { } }", Apex.Block.Parse("{ while() { } }").StatementBody);
 
             // bad input
             Assert.Throws<ParseException>(() => Apex.Block.End().Parse("{}}"));
@@ -364,11 +364,11 @@ namespace ApexParserTest.Parser
         {
             var get = Apex.GetterOrSetter.Parse(" get ; ");
             Assert.AreEqual("get", get.Item1);
-            Assert.AreEqual(";", get.Item2);
+            Assert.AreEqual(";", get.Item2.StatementBody);
 
             var set = Apex.GetterOrSetter.Parse(" set ; ");
             Assert.AreEqual("set", set.Item1);
-            Assert.AreEqual(";", set.Item2);
+            Assert.AreEqual(";", set.Item2.StatementBody);
         }
 
         [Test]
@@ -376,11 +376,11 @@ namespace ApexParserTest.Parser
         {
             var get = Apex.GetterOrSetter.Parse(" get { return myProperty; } ");
             Assert.AreEqual("get", get.Item1);
-            Assert.AreEqual("return myProperty;", get.Item2);
+            Assert.AreEqual("return myProperty;", get.Item2.StatementBody);
 
             var set = Apex.GetterOrSetter.Parse(" set { myProperty = value; while(true) { value++; } } ");
             Assert.AreEqual("set", set.Item1);
-            Assert.AreEqual("myProperty = value; while(true) { value++; }", set.Item2);
+            Assert.AreEqual("myProperty = value; while(true) { value++; }", set.Item2.StatementBody);
         }
 
         [Test]
@@ -390,13 +390,13 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("int", prop.Type.Identifier);
             Assert.AreEqual("x", prop.Identifier);
             Assert.AreEqual(null, prop.SetterCode);
-            Assert.AreEqual(";", prop.GetterCode);
+            Assert.AreEqual(";", prop.GetterCode.StatementBody);
 
             prop = Apex.PropertyDeclaration.Parse(" String Version { set { version = value; } }");
             Assert.AreEqual("String", prop.Type.Identifier);
             Assert.AreEqual("Version", prop.Identifier);
             Assert.AreEqual(null, prop.GetterCode);
-            Assert.AreEqual("version = value;", prop.SetterCode);
+            Assert.AreEqual("version = value;", prop.SetterCode.StatementBody);
         }
 
         [Test]
@@ -555,8 +555,8 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual("flag", pd.Identifier);
             Assert.AreEqual("Boolean", pd.Type.Identifier);
-            Assert.AreEqual(";", pd.GetterCode);
-            Assert.AreEqual("throw;", pd.SetterCode);
+            Assert.AreEqual(";", pd.GetterCode.StatementBody);
+            Assert.AreEqual("throw;", pd.SetterCode.StatementBody);
             Assert.AreEqual(1, pd.Attributes.Count);
             Assert.AreEqual("required", pd.Attributes[0]);
         }

@@ -131,19 +131,19 @@ namespace ApexParser.Parser
                 Identifier = methodName.GetOrElse(returnType.Identifier),
                 ReturnType = returnType,
                 MethodParameters = parameters,
-                CodeInsideMethod = StripOuterBlockBraces(methodBody)
+                CodeInsideMethod = StripOuterBlockBraces(methodBody).StatementBody
             };
 
         // strips the outer curly braces from the method block
-        private string StripOuterBlockBraces(string blockBody)
+        private StatementSyntax StripOuterBlockBraces(StatementSyntax blockBody)
         {
-            var result = blockBody.Trim();
+            var result = blockBody.StatementBody.Trim();
             if (result.StartsWith("{") && result.EndsWith("}"))
             {
                 result = result.Substring(1, result.Length - 2).Trim();
             }
 
-            return result;
+            return new StatementSyntax(result);
         }
 
         // example: @required public String name { get; set; }
@@ -172,17 +172,20 @@ namespace ApexParser.Parser
             };
 
         // examples: get; set; get { ... }
-        protected internal virtual Parser<Tuple<string, string>> GetterOrSetter =>
+        protected internal virtual Parser<Tuple<string, StatementSyntax>> GetterOrSetter =>
             from getOrSet in Parse.String("get").Or(Parse.String("set")).Token().Text()
-            from block in Parse.String(";").Token().Text().Or(Block)
+            from block in Parse.String(";").Token().Text().Select(s => new StatementSyntax(s)).Or(Block)
             select Tuple.Create(getOrSet, StripOuterBlockBraces(block));
 
         // dummy parser for the block with curly brace matching support
-        protected internal virtual Parser<string> Block =>
+        protected internal virtual Parser<StatementSyntax> Block =>
             from openBrace in Parse.Char('{')
-            from contents in Parse.CharExcept("{}").Many().Text().Or(Block).Many()
+            from contents in Parse.CharExcept("{}").Many().Text().Select(s => new StatementSyntax(s)).Or(Block).Many()
             from closeBrace in Parse.Char('}')
-            select "{" + string.Join(string.Empty, contents) + "}";
+            select new StatementSyntax
+            {
+                StatementBody = "{" + string.Join(string.Empty, contents.Select(s => s.StatementBody)) + "}"
+            };
 
         // dummy generic parser for any unknown statement
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>

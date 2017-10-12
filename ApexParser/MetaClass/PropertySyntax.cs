@@ -14,7 +14,7 @@ namespace ApexParser.MetaClass
             Kind = SyntaxType.Property;
         }
 
-        public PropertySyntax(IEnumerable<Tuple<string, string>> gettersOrSetters, ClassMemberSyntax heading = null)
+        public PropertySyntax(IEnumerable<Tuple<string, StatementSyntax>> gettersOrSetters, ClassMemberSyntax heading = null)
             : this(heading)
         {
             foreach (var item in gettersOrSetters)
@@ -36,8 +36,8 @@ namespace ApexParser.MetaClass
 
         public string Identifier { get; set; }
 
-        public string GetterCode { get; set; }
+        public StatementSyntax GetterCode { get; set; }
 
-        public string SetterCode { get; set; }
+        public StatementSyntax SetterCode { get; set; }
     }
 }
