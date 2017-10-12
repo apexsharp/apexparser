@@ -177,6 +177,10 @@ namespace ApexParser.Parser
             from block in Parse.String(";").Token().Text().Select(s => new StatementSyntax(s)).Or(Block)
             select Tuple.Create(getOrSet, StripOuterBlockBraces(block));
 
+        // examples: return true; if (false) return; etc.
+        protected internal virtual Parser<StatementSyntax> Statement =>
+            IfStatement.XOr(Block).XOr(UnknownGenericStatement);
+
         // dummy parser for the block with curly brace matching support
         protected internal virtual Parser<StatementSyntax> Block =>
             from openBrace in Parse.Char('{')

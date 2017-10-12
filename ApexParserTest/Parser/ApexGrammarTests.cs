@@ -592,5 +592,23 @@ namespace ApexParserTest.Parser
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else}"));
         }
+
+        [Test]
+        public void StatementRuleParsesStatementsOfAnyKind()
+        {
+            var stmt = Apex.Statement.Parse("if (false) return 'yes'; else return 'no';");
+            var ifstmt = stmt as IfStatementSyntax;
+            Assert.NotNull(ifstmt);
+            Assert.AreEqual("false", ifstmt.Expression);
+            Assert.AreEqual("return 'yes'", ifstmt.ThenStatement.StatementBody);
+            Assert.AreEqual("return 'no'", ifstmt.ElseStatement.StatementBody);
+
+            stmt = Apex.Statement.Parse("{ while() { } }");
+            Assert.AreEqual("{ while() { } }", stmt.StatementBody);
+
+            stmt = Apex.UnknownGenericStatement.Parse("return 'Hello World';");
+            Assert.AreEqual("return 'Hello World'", stmt.StatementBody);
+
+        }
     }
 }
