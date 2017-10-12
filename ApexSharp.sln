@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpBaseTest", "ApexSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpDemo", "ApexSharpDemo\ApexSharpDemo.csproj", "{B66B3389-06C9-4973-BEAD-7569F620BE36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParser", "ApexParser\ApexParser.csproj", "{7F1C15E4-1B67-4F35-BF46-5B0506992A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParserTest", "ApexParserTest\ApexParserTest.csproj", "{CF5E395C-086F-4D21-B2B2-7595E348A557}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B66B3389-06C9-4973-BEAD-7569F620BE36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1C15E4-1B67-4F35-BF46-5B0506992A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1C15E4-1B67-4F35-BF46-5B0506992A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1C15E4-1B67-4F35-BF46-5B0506992A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1C15E4-1B67-4F35-BF46-5B0506992A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
