@@ -6,8 +6,9 @@
     {
         public void MethodIfClean(int place)
         {
-
             string modelColor;
+
+            if (place == 0) modelColor = "None";
 
             if (place == 1)
             {

@@ -29,13 +29,13 @@ namespace ApexSharpBase.Converter
         public static string GetApexTypes(string cSharpType)
         {
             Type type = TypeList.FirstOrDefault(x => x.CSharpType.Equals(cSharpType));
-            return type?.ApexType;
+            return type == null ? cSharpType : type.ApexType;
         }
 
         public static string GetCSharpTypes(string apexType)
         {
             Type type = TypeList.FirstOrDefault(x => x.ApexType.Equals(apexType));
-            return type?.CSharpType;
+            return type == null ? apexType : type.CSharpType;
         }
 
     }

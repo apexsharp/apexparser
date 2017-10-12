@@ -4,7 +4,7 @@
     {
         public ReturnStatement()
         {
-
+            Kind = SyntaxType.ReturnStatement.ToString();
         }
 
         public string Expression { get; set; }

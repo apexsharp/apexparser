@@ -14,12 +14,12 @@ namespace ApexSharpBaseTest
         public void ParseCSharpCodeTest()
         {
             ApesSharp apexSharp = new ApesSharp();
-            var cSharpFile = File.ReadAllText(@"C:\DevSharp\apexsharp\ApexSharpDemo\ApexCode\ClassUnitTest.cs");
+            var cSharpFile = File.ReadAllText(@"C:\DevSharp\apexsharp\ApexSharpDemo\ApexCode\ForIfWhile.cs");
             var classContainer = apexSharp.ParseCSharpCode(cSharpFile);
 
-            //CSharpGenerator cSharpGenerator = new CSharpGenerator();
-            //var cSharpCode = cSharpGenerator.Generate(classContainer);
-            //ValidateLineByLine(cSharpCode, cSharpFile);
+            CSharpGenerator cSharpGenerator = new CSharpGenerator();
+            var cSharpCode = cSharpGenerator.Generate(classContainer);
+            ValidateLineByLine(cSharpCode, cSharpFile);
 
     
         }
@@ -31,7 +31,7 @@ namespace ApexSharpBaseTest
 
             for (int i = 0; i < convertedCodeList.Length; i++)
             {
-                Assert.AreEqual(convertedCodeList[i], orginalCodeList[i], "\n\n" + orginalCode + "\n" + convertedCode);
+                Assert.AreEqual(orginalCodeList[i].Trim(), convertedCodeList[i].Trim(), "\n\n" + orginalCode + "\n" + convertedCode);
             }
         }
 
