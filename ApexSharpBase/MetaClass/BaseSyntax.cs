@@ -11,5 +11,8 @@
         public int LineNumber { get; set; }
 
         public string Kind { get; set; }
+
+        // The code block that belongs to this module.
+        public string CodeBlock { get; set; }
     }
 }

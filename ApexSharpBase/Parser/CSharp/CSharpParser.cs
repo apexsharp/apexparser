@@ -27,14 +27,15 @@
 
             var namespaceDeclarationSyntaxSpace = root.DescendantNodes().OfType<NamespaceDeclarationSyntax>().First();
 
-            var nameSpace = new ClassContainer();
+            var classContainer = new ClassContainer();
+            classContainer.ContainerLang = "C#";
 
             var syntaxNodes = namespaceDeclarationSyntaxSpace.Members;
             foreach (MemberDeclarationSyntax childNode in syntaxNodes)
             {
-                this.SyntaxKindSwitch(nameSpace, childNode);
+                this.SyntaxKindSwitch(classContainer, childNode);
             }
-            return nameSpace;
+            return classContainer;
         }
 
         private void SyntaxKindSwitch(BaseSyntax parentNode, SyntaxNode childNode)
@@ -102,20 +103,21 @@
         {
             ClassDeclarationSyntax classDeclarationSyntax = (ClassDeclarationSyntax)node;
 
-            ClassSyntax apexClass = new ClassSyntax
+            ClassSyntax classSyntax = new ClassSyntax
             {
                 CodeComments = GetComments(classDeclarationSyntax.GetLeadingTrivia()),
                 Identifier = classDeclarationSyntax.Identifier.Text,
+                CodeBlock = classDeclarationSyntax.GetText().ToString()
             };
 
-            apexClass.Modifiers.AddRange(GetModifiers(classDeclarationSyntax.Modifiers));
-            apexClass.Attributes.AddRange(GetAttribute(classDeclarationSyntax.AttributeLists));
+            classSyntax.Modifiers.AddRange(GetModifiers(classDeclarationSyntax.Modifiers));
+            classSyntax.Attributes.AddRange(GetAttribute(classDeclarationSyntax.AttributeLists));
 
             foreach (MemberDeclarationSyntax childNode in classDeclarationSyntax.Members)
             {
-                this.SyntaxKindSwitch(apexClass, childNode);
+                this.SyntaxKindSwitch(classSyntax, childNode);
             }
-            return apexClass;
+            return classSyntax;
         }
 
         private MethodSyntax GetMethodDeclarationSyntax(SyntaxNode node)
@@ -127,6 +129,7 @@
                 CodeComments = GetComments(method.GetLeadingTrivia()),
                 ReturnType = method.ReturnType.ToString(),
                 Identifier = method.Identifier.Text,
+                CodeBlock = method.Body.ToString()
             };
 
             methodSyntax.Attributes.AddRange(GetAttribute(method.AttributeLists));
@@ -148,6 +151,7 @@
             {
                 CodeComments = GetComments(constructor.GetLeadingTrivia()),
                 Identifier = constructor.Identifier.Text,
+                CodeBlock = constructor.Body.ToString()
             };
 
             apexConstructor.Attributes.AddRange(GetAttribute(constructor.AttributeLists));
@@ -171,6 +175,7 @@
                 CodeComments = GetComments(propertyDeclarationSyntax.GetLeadingTrivia()),
                 Type = propertyDeclarationSyntax.Type.ToFullString().Trim(),
                 Identifier = propertyDeclarationSyntax.Identifier.ToString(),
+
             };
 
             propertySyntax.AttributeLists.AddRange(GetAttribute(propertyDeclarationSyntax.AttributeLists));
@@ -263,7 +268,7 @@
 
         private IfStatement GetIfElseStatementSyntax(SyntaxNode node)
         {
-            var syntax = (Microsoft.CodeAnalysis.CSharp.Syntax.IfStatementSyntax)node;
+            var syntax = (IfStatementSyntax)node;
 
             var apexIfStatementSyntax = new IfStatement
             {

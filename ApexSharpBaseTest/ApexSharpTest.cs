@@ -6,19 +6,22 @@ using NUnit.Framework;
 
 namespace ApexSharpBaseTest
 {
+
     [TestFixture]
     public class ApexSharpTest
     {
-        [Test, Ignore("Appveyor can't find the required file")]
+       [Test]
         public void ParseCSharpCodeTest()
         {
             ApesSharp apexSharp = new ApesSharp();
-            var cSharpFile = File.ReadAllText(@"C:\DevSharp\apexsharp\ApexSharpDemo\ApexCode\ClassUnitTest.cs");
+            var cSharpFile = File.ReadAllText(@"C:\DevSharp\apexsharp\ApexSharpDemo\ApexCode\ForIfWhile.cs");
             var classContainer = apexSharp.ParseCSharpCode(cSharpFile);
 
-            //CSharpGenerator cSharpGenerator = new CSharpGenerator();
-            //var cSharpCode = cSharpGenerator.Generate(classContainer);
-            //ValidateLineByLine(cSharpCode, cSharpFile);
+            CSharpGenerator cSharpGenerator = new CSharpGenerator();
+            var cSharpCode = cSharpGenerator.Generate(classContainer);
+            ValidateLineByLine(cSharpCode, cSharpFile);
+
+    
         }
 
         public void ValidateLineByLine(string convertedCode, string orginalCode)
@@ -28,7 +31,7 @@ namespace ApexSharpBaseTest
 
             for (int i = 0; i < convertedCodeList.Length; i++)
             {
-                Assert.AreEqual(convertedCodeList[i], orginalCodeList[i], "\n\n" + orginalCode + "\n" + convertedCode);
+                Assert.AreEqual(orginalCodeList[i].Trim(), convertedCodeList[i].Trim(), "\n\n" + orginalCode + "\n" + convertedCode);
             }
         }
 
@@ -39,5 +42,7 @@ namespace ApexSharpBaseTest
 
             Assert.AreEqual(5, 5);
         }
+
+    
     }
 }

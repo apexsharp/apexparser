@@ -14,13 +14,13 @@ namespace ApexSharpDemo.ApexCode
         {
         }
 
-   [ApexFuture]
-    public static void FutureMethod()
+        [ApexFuture]
+        public static void FutureMethod()
         {
         }
 
-   [ApexFuture(true)]
-    public static void FutureMethodWithCallOut()
+        [ApexFuture(true)]
+        public static void FutureMethodWithCallOut()
         {
         }
     }

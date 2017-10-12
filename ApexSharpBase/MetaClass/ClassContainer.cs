@@ -8,8 +8,8 @@
 
     public class ClassContainer : BaseSyntax
     {
-        // The source code belonging to this container. 
-        public string SoureCode { get; set; }
+        // What Lang does this container contains , APEX or C#
+        public string ContainerLang { get; set; }
 
         public ClassContainer()
         {
