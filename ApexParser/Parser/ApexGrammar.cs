@@ -115,6 +115,7 @@ namespace ApexParser.Parser
                 Identifier = methodBody.Identifier,
                 ReturnType = methodBody.ReturnType,
                 MethodParameters = methodBody.MethodParameters,
+                Statement = methodBody.Statement,
                 CodeInsideMethod = methodBody.CodeInsideMethod
             };
 
@@ -184,18 +185,20 @@ namespace ApexParser.Parser
 
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
-            from comment in CommentParser.AnyComment.Token().Many()
+            from comments in CommentParser.AnyComment.Token().Many()
             from statement in IfStatement.XOr<StatementSyntax>(Block).XOr(UnknownGenericStatement)
-            select statement;
+            select statement.AddComments(comments);
 
         // dummy parser for the block with curly brace matching support
         protected internal virtual Parser<BlockStatementSyntax> Block =>
             from openBrace in Parse.Char('{').Token()
             from statements in Statement.Many()
+            from trailingComment in CommentParser.AnyComment.Token().Many()
             from closeBrace in Parse.Char('}').Token()
             select new BlockStatementSyntax
             {
-                Statements = statements.ToList()
+                Statements = statements.ToList(),
+                CodeComments = trailingComment.ToList()
             };
 
         // dummy generic parser for any unknown statement

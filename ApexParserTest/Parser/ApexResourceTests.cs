@@ -114,7 +114,7 @@ namespace ApexParserTest.Parser
             }
         }
 
-        [Test, Ignore("TODO")]
+        [Test]
         public void ClassWithCommentsIsParsed()
         {
             ParseAndValidate(ClassWithComments);
@@ -134,9 +134,13 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual(1, md.Modifiers.Count);
                 Assert.AreEqual("public", md.Modifiers[0]);
                 Assert.AreEqual("ClassTwo", md.ReturnType.Identifier);
-                CompareIgnoreFormatting(@"
-                    // constructor
-                    System.debug('Test');", md.CodeInsideMethod);
+
+                var block = md.Statement as BlockStatementSyntax;
+                Assert.NotNull(block);
+                Assert.AreEqual(1, block.Statements.Count);
+                Assert.AreEqual("System.debug('Test')", block.Statements[0].Body);
+                Assert.AreEqual(1, block.Statements[0].CodeComments.Count);
+                Assert.AreEqual("constructor", block.Statements[0].CodeComments[0].Trim());
 
                 md = cd.Methods[1];
                 Assert.AreEqual("ClassTwo", md.Identifier);
@@ -145,10 +149,16 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual(1, md.Modifiers.Count);
                 Assert.AreEqual("public", md.Modifiers[0]);
                 Assert.AreEqual("ClassTwo", md.ReturnType.Identifier);
-                CompareIgnoreFormatting(@"
-                    // another constructor
-                    // with a lot of misplaced comments", md.CodeInsideMethod);
                 Assert.AreEqual(1, md.MethodParameters.Count);
+                Assert.AreEqual("String", md.MethodParameters[0].Type.Identifier);
+                Assert.AreEqual("vin", md.MethodParameters[0].Identifier);
+
+                block = md.Statement as BlockStatementSyntax;
+                Assert.NotNull(block);
+                Assert.False(block.Statements.Any());
+                Assert.AreEqual(2, block.CodeComments.Count);
+                Assert.AreEqual("another constructor", block.CodeComments[0].Trim());
+                Assert.AreEqual("with a lot of misplaced comments", block.CodeComments[1].Trim());
 
                 var mp = md.MethodParameters[0];
                 Assert.AreEqual("String", mp.Type.Identifier);
@@ -167,8 +177,71 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual(1, md.Modifiers.Count);
                 Assert.AreEqual("public", md.Modifiers[0]);
                 Assert.AreEqual("void", md.ReturnType.Identifier);
-                CompareIgnoreFormatting(@"System.debug('Hello');", md.CodeInsideMethod);
+
+                block = md.Statement as BlockStatementSyntax;
+                Assert.NotNull(block);
+                Assert.AreEqual(1, block.Statements.Count);
+                Assert.AreEqual("System.debug('Hello')", block.Statements[0].Body);
             }
+        }
+
+        [Test]
+        public void Demo2IsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(Demo2);
+            Assert.AreEqual("Demo2", cd.Identifier);
+            Assert.AreEqual(1, cd.Methods.Count);
+
+            var md = cd.Methods[0];
+            Assert.AreEqual("MethodOne", md.Identifier);
+            Assert.False(md.CodeComments.Any());
+            Assert.False(md.Attributes.Any());
+            Assert.AreEqual(1, md.Modifiers.Count);
+            Assert.AreEqual("public", md.Modifiers[0]);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+
+            var block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+
+            var ifstmt = block.Statements[0] as IfStatementSyntax;
+            Assert.NotNull(ifstmt);
+            Assert.AreEqual("x == 5", ifstmt.Expression);
+            Assert.NotNull(ifstmt.ThenStatement);
+            Assert.NotNull(ifstmt.ElseStatement);
+
+            block = ifstmt.ThenStatement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(4, block.Statements.Count);
+            Assert.AreEqual("Console.WriteLine(1)", block.Statements[0].Body);
+            Assert.AreEqual("Console.WriteLine(2)", block.Statements[2].Body);
+            Assert.AreEqual("Console.WriteLine(3)", block.Statements[3].Body);
+
+            var innerIf = block.Statements[1] as IfStatementSyntax;
+            Assert.NotNull(innerIf);
+            Assert.AreEqual("x == 8", innerIf.Expression);
+            Assert.NotNull(innerIf.ThenStatement);
+            Assert.Null(innerIf.ElseStatement);
+
+            block = innerIf.ThenStatement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("Console.WriteLine(8)", block.Statements[0].Body);
+
+            ifstmt = ifstmt.ElseStatement as IfStatementSyntax;
+            Assert.NotNull(ifstmt);
+            Assert.NotNull(ifstmt.ThenStatement);
+            Assert.NotNull(ifstmt.ElseStatement);
+
+            block = ifstmt.ThenStatement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("Console.WriteLine(6)", block.Statements[0].Body);
+
+            block = ifstmt.ElseStatement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("Console.WriteLine(7)", block.Statements[0].Body);
         }
 
         [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\Demo.cls"), Ignore("TODO")]

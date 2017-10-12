@@ -42,7 +42,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("/* Comment */", method.CodeInsideMethod);
         }
 
-        [Test, Ignore("TODO")]
+        [Test]
         public void MethodWithSomeDummyBody()
         {
             var methodSig = @"public testMethod void MethodWithSomeDummyBody()
@@ -60,8 +60,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("MethodWithSomeDummyBody", method.Identifier);
 
             Assert.False(method.MethodParameters.Any());
-            Assert.AreEqual(@"final string methodSig = 'Something'; // method contents might not be valid
-                return new List<string>(); /* comments */", method.CodeInsideMethod);
+
+            var block = method.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
+            Assert.AreEqual("final string methodSig = 'Something'", block.Statements[0].Body);
+            Assert.AreEqual("return new List<string>()", block.Statements[1].Body);
         }
     }
 }

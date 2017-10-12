@@ -105,6 +105,7 @@
     <None Include="ApexTestClasses\FormatDemo_Formatted.cls" />
     <None Include="ApexTestClasses\CustomerDto.cls" />
     <None Include="ApexTestClasses\CustomerDto_Formatted.cls" />
+    <None Include="ApexTestClasses\Demo2.cls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

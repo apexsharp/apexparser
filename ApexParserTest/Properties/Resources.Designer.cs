@@ -244,6 +244,39 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public class Demo2
+        ///{
+        ///    public void MethodOne(int x)
+        ///    {
+        ///        if (x == 5)
+        ///        {
+        ///            Console.WriteLine(1);
+        ///
+        ///            if (x == 8)
+        ///            {
+        ///                Console.WriteLine(8);
+        ///            }
+        ///
+        ///            Console.WriteLine(2);
+        ///            Console.WriteLine(3);
+        ///        } else if (x == 6)
+        ///        {
+        ///            Console.WriteLine(6);
+        ///        }
+        ///        else
+        ///        {
+        ///            Console.WriteLine(7);
+        ///        }
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string Demo2 {
+            get {
+                return ResourceManager.GetString("Demo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /*
         ///* This  is a comment line one
         ///* This is a comment // line two

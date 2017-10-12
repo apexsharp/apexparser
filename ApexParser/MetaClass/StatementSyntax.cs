@@ -21,5 +21,15 @@ namespace ApexParser.MetaClass
         public bool IsEmpty => string.IsNullOrWhiteSpace(Body);
 
         public string Body { get; set; }
+
+        public StatementSyntax AddComments(IEnumerable<string> comments)
+        {
+            if (comments != null)
+            {
+                CodeComments.AddRange(comments);
+            }
+
+            return this;
+        }
     }
 }

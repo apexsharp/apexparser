@@ -698,5 +698,19 @@ namespace ApexParserTest.Parser
             stmt = Apex.Statement.Parse("/* greeting //*/ return 'Hello World';");
             Assert.AreEqual("return 'Hello World'", stmt.Body);
         }
+
+        [Test]
+        public void BlockStatementCanBeCommented()
+        {
+            var stmt = Apex.Block.Parse(@"
+            {
+                final string methodSig = 'Something'; // method contents might not be valid
+                return new List<string>(); /* comments */
+            }");
+
+            Assert.AreEqual(2, stmt.Statements.Count);
+            Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
+            Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
+        }
     }
 }
