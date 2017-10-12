@@ -143,6 +143,46 @@
             return methodSyntax;
         }
 
+        private IfStatement GetIfElseStatementSyntax(SyntaxNode node)
+        {
+            var syntax = (IfStatementSyntax)node;
+
+            var apexIfStatementSyntax = new IfStatement
+            {
+                CodeComments = GetComments(syntax.GetLeadingTrivia()),
+                Condition = syntax.Condition.ToString(),
+            };
+
+
+            foreach (var childNode in syntax.Statement.ChildNodes())
+            {
+                Console.WriteLine(childNode.Kind());
+                this.SyntaxKindSwitch(apexIfStatementSyntax, childNode);
+            }
+
+
+
+            if (syntax.Else != null)
+            {
+                var elseSyntax = (ElseClauseSyntax) syntax.Else;
+
+                var apexElseIfStatementSyntax = new ElseStatement
+                {
+                    CodeComments = GetComments(elseSyntax.GetLeadingTrivia()),
+                    Condition = syntax.Statement.ToFullString(),
+                };
+
+                foreach (var childNode in syntax.Statement.ChildNodes())
+                {
+                    Console.WriteLine(childNode.Kind());
+                    this.SyntaxKindSwitch(apexIfStatementSyntax, childNode);
+                }
+                apexIfStatementSyntax.ElseStatement = apexElseIfStatementSyntax;
+            }
+
+            return apexIfStatementSyntax;
+        }
+
         private Constructor GetConstructorDeclarationSyntax(SyntaxNode node)
         {
             var constructor = (ConstructorDeclarationSyntax)node;
@@ -266,59 +306,7 @@
             return apexReturnStatementSyntax;
         }
 
-        private IfStatement GetIfElseStatementSyntax(SyntaxNode node)
-        {
-            var syntax = (IfStatementSyntax)node;
 
-            var apexIfStatementSyntax = new IfStatement
-            {
-                CodeComments = GetComments(syntax.GetLeadingTrivia()),
-                Condition = syntax.Condition.ToString(),
-            };
-
-            // Code Block or Just One Line
-            if (syntax.Statement.Kind() == SyntaxKind.Block)
-            {
-                var blockSyntax = (BlockSyntax)syntax.Statement;
-                foreach (var childNode in blockSyntax.Statements)
-                {
-                    this.SyntaxKindSwitch(apexIfStatementSyntax, childNode);
-                }
-            }
-            else
-            {
-                this.SyntaxKindSwitch(apexIfStatementSyntax, syntax.Statement);
-            }
-
-            if (syntax.Else == null) return apexIfStatementSyntax;
-
-            {
-                var elseSyntax = (ElseClauseSyntax)syntax.Else;
-
-                var apexElseIfStatementSyntax = new ElseStatement
-                {
-                    CodeComments = GetComments(elseSyntax.GetLeadingTrivia()),
-                    Condition = syntax.Statement.ToFullString(),
-                };
-
-                if (syntax.Statement.Kind() == SyntaxKind.Block)
-                {
-                    var blockSyntax = (BlockSyntax)elseSyntax.Statement;
-                    foreach (var childNode in blockSyntax.Statements)
-                    {
-                        this.SyntaxKindSwitch(apexElseIfStatementSyntax, childNode);
-                    }
-                }
-                else
-                {
-                    this.SyntaxKindSwitch(apexElseIfStatementSyntax, syntax.Statement);
-                }
-
-                apexIfStatementSyntax.ElseStatement = apexElseIfStatementSyntax;
-            }
-
-            return apexIfStatementSyntax;
-        }
 
         private ForEachStatement GetForEachStatement(SyntaxNode node)
         {

@@ -7,7 +7,7 @@
 
         public ElseStatement()
         {
-
+            Kind = SyntaxType.ElseStatement.ToString();
         }
 
 
