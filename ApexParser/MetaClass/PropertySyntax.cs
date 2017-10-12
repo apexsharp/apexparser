@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sprache;
 
 namespace ApexParser.MetaClass
 {
@@ -39,5 +40,12 @@ namespace ApexParser.MetaClass
         public StatementSyntax GetterCode { get; set; }
 
         public StatementSyntax SetterCode { get; set; }
+
+        public override ClassMemberSyntax WithTypeAndName(Tuple<TypeSyntax, IOption<string>> typeAndName)
+        {
+            Type = typeAndName.Item1;
+            Identifier = typeAndName.Item2.GetOrElse(typeAndName.Item1.Identifier);
+            return this;
+        }
     }
 }

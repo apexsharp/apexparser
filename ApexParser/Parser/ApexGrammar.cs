@@ -109,84 +109,65 @@ namespace ApexParser.Parser
         // public static void Hello() {}
         protected internal virtual Parser<MethodSyntax> MethodDeclaration =>
             from heading in ClassMemberHeading
-            from methodBody in MethodDeclarationBody
+            from typeAndName in TypeAndName
+            from methodBody in MethodParametersAndBody
             select new MethodSyntax(heading)
             {
-                Identifier = methodBody.Identifier,
-                ReturnType = methodBody.ReturnType,
+                Identifier = typeAndName.Item2.GetOrElse(typeAndName.Item1.Identifier),
+                ReturnType = typeAndName.Item1,
                 MethodParameters = methodBody.MethodParameters,
                 Statement = methodBody.Statement
             };
 
+        // examples: string Name, void Test
+        protected internal virtual Parser<Tuple<TypeSyntax, IOption<string>>> TypeAndName =>
+            from type in TypeReference
+            from name in Identifier.Optional()
+            select Tuple.Create(type, name);
+
         // examples:
-        // @isTest void Test() {}
-        // public static void Hello() {}
-        protected internal virtual Parser<MethodSyntax> MethodDeclarationBody =>
-            from returnType in TypeReference
-            from methodName in Identifier.Optional()
+        // void Test() {}
+        // string Hello(string name) {}
+        protected internal virtual Parser<MethodSyntax> MethodParametersAndBody =>
             from parameters in MethodParameters
             from methodBody in Block.Token()
             select new MethodSyntax
             {
-                Identifier = methodName.GetOrElse(returnType.Identifier),
-                ReturnType = returnType,
                 MethodParameters = parameters,
                 Statement = methodBody
             };
 
-        // strips the outer curly braces from the method block
-        private StatementSyntax StripOuterBlockBraces(StatementSyntax blockBody)
-        {
-            if (blockBody == null || string.IsNullOrWhiteSpace(blockBody.Body))
-            {
-                return blockBody;
-            }
-
-            var result = blockBody.Body.Trim();
-            if (result.StartsWith("{") && result.EndsWith("}"))
-            {
-                result = result.Substring(1, result.Length - 2).Trim();
-            }
-
-            return new StatementSyntax(result);
-        }
-
         // example: @required public String name { get; set; }
         protected internal virtual Parser<PropertySyntax> PropertyDeclaration =>
             from heading in ClassMemberHeading
-            from propertyBody in PropertyDeclarationBody
+            from typeAndName in TypeAndName
+            from propertyBody in PropertyGetterAndSetter
             select new PropertySyntax(heading)
             {
-                Type = propertyBody.Type,
-                Identifier = propertyBody.Identifier,
+                Type = typeAndName.Item1,
+                Identifier = typeAndName.Item2.GetOrDefault(),
                 GetterCode = propertyBody.GetterCode,
                 SetterCode = propertyBody.SetterCode
             };
 
-        // example: String name { get; set; }
-        protected internal virtual Parser<PropertySyntax> PropertyDeclarationBody =>
-            from propertyType in TypeReference
-            from propertyName in Identifier
+        // example: { get; set; }
+        protected internal virtual Parser<PropertySyntax> PropertyGetterAndSetter =>
             from openBrace in Parse.Char('{').Token()
             from getterOrSetter in GetterOrSetter.Many()
             from closeBrace in Parse.Char('}').Token()
-            select new PropertySyntax(getterOrSetter)
-            {
-                Type = propertyType,
-                Identifier = propertyName
-            };
+            select new PropertySyntax(getterOrSetter);
 
         // examples: get; set; get { ... }
         protected internal virtual Parser<Tuple<string, StatementSyntax>> GetterOrSetter =>
             from getOrSet in Parse.String("get").Or(Parse.String("set")).Token().Text()
             from block in Parse.String(";").Token().Text().Return(new StatementSyntax()).Or(Block)
-            select Tuple.Create(getOrSet, StripOuterBlockBraces(block));
+            select Tuple.Create(getOrSet, block);
 
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
             from comments in CommentParser.AnyComment.Token().Many()
             from statement in IfStatement.XOr<StatementSyntax>(Block).XOr(UnknownGenericStatement)
-            select statement.AddComments(comments);
+            select statement.WithComments(comments);
 
         // dummy parser for the block with curly brace matching support
         protected internal virtual Parser<BlockStatementSyntax> Block =>
@@ -263,11 +244,16 @@ namespace ApexParser.Parser
                 InnerClasses = members.OfType<ClassSyntax>().ToList()
             };
 
+        // method or property declaration starting with the type and name
+        protected internal virtual Parser<ClassMemberSyntax> MethodOrPropertyDeclaration =>
+            from typeAndName in TypeAndName
+            from member in MethodParametersAndBody.Select(m => m as ClassMemberSyntax).XOr(PropertyGetterAndSetter)
+            select member.WithTypeAndName(typeAndName);
+
         // class members: methods, classes, properties
         protected internal virtual Parser<ClassMemberSyntax> ClassMemberDeclaration =>
             from heading in ClassMemberHeading
-            from member in ClassDeclarationBody.Select(c => c as ClassMemberSyntax)
-                .Or(MethodDeclarationBody).Or(PropertyDeclarationBody)
-            select member.CopyProperties(heading);
+            from member in ClassDeclarationBody.Select(c => c as ClassMemberSyntax).XOr(MethodOrPropertyDeclaration)
+            select member.WithProperties(heading);
     }
 }

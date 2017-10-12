@@ -22,7 +22,7 @@ namespace ApexParser.MetaClass
 
         public string Body { get; set; }
 
-        public StatementSyntax AddComments(IEnumerable<string> comments)
+        public StatementSyntax WithComments(IEnumerable<string> comments)
         {
             if (comments != null)
             {

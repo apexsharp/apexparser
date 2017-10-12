@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sprache;
 
 namespace ApexParser.MetaClass
 {
@@ -10,10 +11,10 @@ namespace ApexParser.MetaClass
     {
         public ClassMemberSyntax(ClassMemberSyntax other = null)
         {
-            CopyProperties(other);
+            WithProperties(other);
         }
 
-        public ClassMemberSyntax CopyProperties(ClassMemberSyntax other = null)
+        public ClassMemberSyntax WithProperties(ClassMemberSyntax other = null)
         {
             if (other != null)
             {
@@ -28,5 +29,10 @@ namespace ApexParser.MetaClass
         public List<string> Attributes { get; set; } = new List<string>();
 
         public List<string> Modifiers { get; set; } = new List<string>();
+
+        public virtual ClassMemberSyntax WithTypeAndName(Tuple<TypeSyntax, IOption<string>> typeAndName)
+        {
+            return this;
+        }
     }
 }

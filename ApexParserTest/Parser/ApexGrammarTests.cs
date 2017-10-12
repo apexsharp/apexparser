@@ -378,6 +378,22 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void TypeAndNameIsJustATypeReferenceAndIdentifierPair()
+        {
+            var tn = Apex.TypeAndName.Parse("string a");
+            Assert.AreEqual("string", tn.Item1.Identifier);
+            Assert.AreEqual("a", tn.Item2.GetOrDefault());
+
+            tn = Apex.TypeAndName.Parse("void Test");
+            Assert.AreEqual("void", tn.Item1.Identifier);
+            Assert.AreEqual("Test", tn.Item2.GetOrDefault());
+
+            tn = Apex.TypeAndName.Parse("ClassOne");
+            Assert.AreEqual("ClassOne", tn.Item1.Identifier);
+            Assert.IsNull(tn.Item2.GetOrDefault());
+        }
+
+        [Test]
         public void GetterOrSetterCanBeEmpty()
         {
             var get = Apex.GetterOrSetter.Parse(" get ; ");
@@ -419,7 +435,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("value++", block.Statements[0].Body);
         }
 
-        [Test, Ignore("TODO")]
+        [Test]
         public void PropertyHasTypeNameGettersAndOrSetters()
         {
             var prop = Apex.PropertyDeclaration.Parse(" int x { get; }");
@@ -432,7 +448,11 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("String", prop.Type.Identifier);
             Assert.AreEqual("Version", prop.Identifier);
             Assert.AreEqual(null, prop.GetterCode);
-            Assert.AreEqual("version = value;", prop.SetterCode.Body);
+
+            var block = prop.SetterCode as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("version = value", block.Statements[0].Body);
         }
 
         [Test]
@@ -464,6 +484,31 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(" my class ", cm.CodeComments[0]);
             Assert.AreEqual(1, cm.Modifiers.Count);
             Assert.AreEqual("override", cm.Modifiers[0]);
+        }
+
+        [Test]
+        public void MethodOrPropertyDeclarationCanReturnEitherMethodOrProperty()
+        {
+            var pm = Apex.MethodOrPropertyDeclaration.Parse("void Test(int x) {}");
+            var md = pm as MethodSyntax;
+            Assert.NotNull(md);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.AreEqual("Test", md.Identifier);
+            Assert.AreEqual(1, md.MethodParameters.Count);
+            Assert.AreEqual("int", md.MethodParameters[0].Type.Identifier);
+            Assert.AreEqual("x", md.MethodParameters[0].Identifier);
+
+            var block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.False(block.Statements.Any());
+
+            pm = Apex.MethodOrPropertyDeclaration.Parse("string Test { get; }");
+            var pd = pm as PropertySyntax;
+            Assert.NotNull(pd);
+            Assert.AreEqual("string", pd.Type.Identifier);
+            Assert.AreEqual("Test", pd.Identifier);
+            Assert.NotNull(pd.GetterCode);
+            Assert.Null(pd.SetterCode);
         }
 
         [Test]

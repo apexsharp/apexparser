@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ApexParser.Lexer;
+using Sprache;
 
 namespace ApexParser.MetaClass
 {
@@ -18,5 +20,12 @@ namespace ApexParser.MetaClass
         public List<ParameterSyntax> MethodParameters { get; set; } = new List<ParameterSyntax>();
 
         public StatementSyntax Statement { get; set; }
+
+        public override ClassMemberSyntax WithTypeAndName(Tuple<TypeSyntax, IOption<string>> typeAndName)
+        {
+            ReturnType = typeAndName.Item1;
+            Identifier = typeAndName.Item2.GetOrElse(typeAndName.Item1.Identifier);
+            return this;
+        }
     }
 }
