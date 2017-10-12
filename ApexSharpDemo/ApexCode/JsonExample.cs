@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Apex.System;
 
 namespace ApexSharpDemo.ApexCode
 {
-    class JsonExample
+    public class JsonExample
     {
+        public void JsonExampleMethod()
+        {
+            string name = "Jay";
+
+            string jsonString = JSON.Serialize(name);
+            string newName = JSON.Deserialize<string>(jsonString);
+        }
     }
 }

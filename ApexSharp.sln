@@ -20,7 +20,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{76248AF8-2153-4AC3-A013-C403352FAF43}"
 	ProjectSection(SolutionItems) = preProject
 		apexsharpLogo.jpg = apexsharpLogo.jpg
-		Doc.md = Doc.md
 		README.md = README.md
 	EndProjectSection
 EndProject

@@ -61,5 +61,29 @@
                 count++;
             }
         }
+
+        public void ForLoopTest()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                System.Debug(i + 1);
+            }
+        }
+
+        public static string GetContact(string nameString)
+        {
+
+            // Need to Create an ext Method
+            //if (nameString.Length() > 0)
+            //{
+            //    return nameString;
+            //}
+            //else
+            //{
+            //    return "";
+            //}
+
+            return null;
+        }
     }
 }

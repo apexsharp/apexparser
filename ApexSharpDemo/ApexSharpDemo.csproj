@@ -84,14 +84,15 @@
     <Compile Include="ApexCode\ClassVirtual.cs" />
     <Compile Include="ApexCode\ExceptionDemo.cs" />
     <Compile Include="ApexCode\ForIfWhile.cs" />
-    <Compile Include="ApexCode\ForLoop.cs" />
     <Compile Include="ApexCode\GetSetDemo.cs" />
     <Compile Include="ApexCode\IClassInterface.cs" />
     <Compile Include="ApexCode\ClassUnitTest.cs" />
     <Compile Include="ApexCode\Demo.cs" />
     <Compile Include="ApexCode\IClassInterfaceExt.cs" />
+    <Compile Include="ApexCode\JsonExample.cs" />
+    <Compile Include="ApexCode\ListAndArrayDemo.cs" />
     <Compile Include="ApexCode\PrimitiveTypes.cs" />
-    <Compile Include="ApexCode\UnitTest.cs" />
+    <Compile Include="ApexCode\PropertyAndField.cs" />
     <Compile Include="NoApex\Console.cs" />
     <Compile Include="NoApex\Serilog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

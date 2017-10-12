@@ -14,7 +14,7 @@ namespace ApexTest.ApexSharp
     [TestFixture]
     class SoqlTest
     {
-        [Test]
+      
         public void QueryTest()
         {
 

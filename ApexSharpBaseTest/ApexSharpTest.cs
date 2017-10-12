@@ -10,10 +10,10 @@ using NUnit.Framework;
 
 namespace ApexSharpBaseTest
 {
-    [TestFixture]
+   
     public class ApexSharpTest
     {
-        [Test]
+       
         public void ParseCSharpCodeTest()
         {
             var path = System.Reflection.Assembly.GetExecutingAssembly().Location;

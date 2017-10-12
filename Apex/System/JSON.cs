@@ -7,6 +7,15 @@ namespace Apex.System
             throw new global::System.NotImplementedException("JSON");
         }
 
+        public static string Serialize(object o)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(o);
+        }
+        public static T Deserialize<T>(string jsonString)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonString);
+        }
+
         public object Clone()
         {
             throw new global::System.NotImplementedException("JSON.Clone");
@@ -22,16 +31,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("JSON.CreateParser");
         }
 
-        public static object Deserialize(string jsonString, Type apexType)
-        {
-            throw new global::System.NotImplementedException("JSON.Deserialize");
-        }
-
-        public static T Deserialize<T>(string jsonString)
-        {
-            throw new global::System.NotImplementedException("JSON.Deserialize");
-        }
-
+ 
         public static object DeserializeStrict(string jsonString, Type apexType)
         {
             throw new global::System.NotImplementedException("JSON.DeserializeStrict");
@@ -42,10 +42,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("JSON.DeserializeUntyped");
         }
 
-        public static string Serialize(object o)
-        {
-            throw new global::System.NotImplementedException("JSON.Serialize");
-        }
+      
 
         public static string Serialize(object o, bool suppressApexObjectNulls)
         {
