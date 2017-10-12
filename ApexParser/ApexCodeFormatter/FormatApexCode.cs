@@ -18,9 +18,7 @@ namespace ApexParser.ApexCodeFormatter
         {
             TokenType.OpenCurlyBrackets,
             TokenType.CloseCurlyBrackets,
-            TokenType.StatementTerminator,
-            TokenType.AccessModifier,
-            TokenType.KwVoid
+            TokenType.StatementTerminator
         };
 
         public static string GetFormattedApexCode(string apexCode)
