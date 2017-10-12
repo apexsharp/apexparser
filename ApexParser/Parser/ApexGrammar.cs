@@ -195,15 +195,17 @@ namespace ApexParser.Parser
 
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>
-            from ifKeyword in Parse.String("if").Token()
+            from ifKeyword in Parse.String(ApexKeywords.If).Token()
             from openBrace in Parse.Char('(').Token()
             from expression in Parse.CharExcept("()").Many().Text().Token()
             from closeBrace in Parse.Char(')').Token()
-            from unknownStatement in UnknownGenericStatement
+            from thenBranch in UnknownGenericStatement
+            from elseBranch in Parse.String(ApexKeywords.Else).Token().Then(_ => UnknownGenericStatement).Optional()
             select new IfStatementSyntax
             {
                 Expression = expression,
-                ThenStatement = unknownStatement
+                ThenStatement = thenBranch,
+                ElseStatement = elseBranch.GetOrDefault()
             };
 
         // examples: /* this is a member */ @isTest public

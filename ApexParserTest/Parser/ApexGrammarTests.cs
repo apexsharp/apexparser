@@ -577,6 +577,20 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("true", ifstmt.Expression);
             Assert.AreEqual("return null", ifstmt.ThenStatement.StatementBody);
             Assert.IsNull(ifstmt.ElseStatement);
+
+            Assert.Throws<ParseException>(() => Apex.IfStatement.Parse("if {}"));
+            Assert.Throws<ParseException>(() => Apex.IfStatement.Parse("if )"));
+        }
+
+        [Test]
+        public void IfStatementCanCompileWithElseBranch()
+        {
+            var ifstmt = Apex.IfStatement.Parse("if (false) return 'yes'; else return 'no';");
+            Assert.AreEqual("false", ifstmt.Expression);
+            Assert.AreEqual("return 'yes'", ifstmt.ThenStatement.StatementBody);
+            Assert.AreEqual("return 'no'", ifstmt.ElseStatement.StatementBody);
+
+            Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else}"));
         }
     }
 }
