@@ -166,7 +166,7 @@ namespace ApexParser.Parser
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
             from comments in CommentParser.AnyComment.Token().Many()
-            from statement in IfStatement.Or<StatementSyntax>(Block).Or(UnknownGenericStatement)
+            from statement in IfStatement.Or<StatementSyntax>(ForStatement).Or(Block).Or(UnknownGenericStatement)
             select statement.WithComments(comments);
 
         // dummy parser for the block with curly brace matching support
@@ -190,12 +190,18 @@ namespace ApexParser.Parser
                 Body = contents
             };
 
+        // dummy generic parser for any expressions with matching braces
+        protected internal virtual Parser<string> GenericExpressionInBraces =>
+            from openBrace in Parse.Char('(').Token()
+            from subExpressions in Parse.CharExcept("()").Many().Text()
+                .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
+            from closeBrace in Parse.Char(')').Token()
+            select string.Join(string.Empty, subExpressions);
+
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>
             from ifKeyword in Parse.String(ApexKeywords.If).Token()
-            from openBrace in Parse.Char('(').Token()
-            from expression in Parse.CharExcept("()").Many().Text().Token()
-            from closeBrace in Parse.Char(')').Token()
+            from expression in GenericExpressionInBraces
             from thenBranch in Statement
             from elseBranch in Parse.String(ApexKeywords.Else).Token().Then(_ => Statement).Optional()
             select new IfStatementSyntax
@@ -203,6 +209,17 @@ namespace ApexParser.Parser
                 Expression = expression,
                 ThenStatement = thenBranch,
                 ElseStatement = elseBranch.GetOrDefault()
+            };
+
+        // simple for statement without the expression support
+        protected internal virtual Parser<ForStatementSyntax> ForStatement =>
+            from forKeyword in Parse.String(ApexKeywords.For).Token()
+            from expression in GenericExpressionInBraces
+            from loopBody in Statement
+            select new ForStatementSyntax
+            {
+                Expression = expression,
+                LoopBody = loopBody
             };
 
         // examples: /* this is a member */ @isTest public

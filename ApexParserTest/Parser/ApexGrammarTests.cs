@@ -667,6 +667,20 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void GenericExpressionInBracesCanBeAnythingProvidedThatBracesAreMatched()
+        {
+            var expr = Apex.GenericExpressionInBraces.Parse("(something.IsEmpty)");
+            Assert.AreEqual("something.IsEmpty", expr);
+
+            expr = Apex.GenericExpressionInBraces.Parse(" ( something.IsEmpty( ) ) ");
+            Assert.AreEqual("something.IsEmpty()", expr);
+
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("(something.IsEmpty(()"));
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("("));
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse(")"));
+        }
+
+        [Test]
         public void SimpleIfStatementCanCompileWithoutElseBranch()
         {
             var ifstmt = Apex.IfStatement.Parse("if (true) return null;");
@@ -709,6 +723,23 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void ForStatementHasAnExpressionAndABody()
+        {
+            var forStmt = Apex.ForStatement.Parse(@"
+            for (Contact c : contacts)
+            {
+                System.debug(c.Email);
+            }");
+            Assert.NotNull(forStmt);
+            Assert.AreEqual("Contact c : contacts", forStmt.Expression);
+
+            var blockStmt = forStmt.LoopBody as BlockStatementSyntax;
+            Assert.NotNull(blockStmt);
+            Assert.AreEqual(1, blockStmt.Statements.Count);
+            Assert.AreEqual("System.debug(c.Email)", blockStmt.Statements[0].Body);
+        }
+
+        [Test]
         public void StatementRuleParsesStatementsOfAnyKind()
         {
             var stmt = Apex.Statement.Parse("if (false) return 'yes'; else return 'no';");
@@ -729,6 +760,20 @@ namespace ApexParserTest.Parser
 
             stmt = Apex.Statement.Parse("insert something;");
             Assert.AreEqual("insert something", stmt.Body);
+
+            stmt = Apex.Statement.Parse(@"
+            for (Contact c : contacts)
+            {
+                System.debug(c.Email);
+            }");
+            var forStmt = stmt as ForStatementSyntax;
+            Assert.NotNull(forStmt);
+            Assert.AreEqual("Contact c : contacts", forStmt.Expression);
+
+            blockStmt = forStmt.LoopBody as BlockStatementSyntax;
+            Assert.NotNull(blockStmt);
+            Assert.AreEqual(1, blockStmt.Statements.Count);
+            Assert.AreEqual("System.debug(c.Email)", blockStmt.Statements[0].Body);
         }
 
         [Test]

@@ -244,7 +244,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Console.WriteLine(7)", block.Statements[0].Body);
         }
 
-        [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\Demo.cls"), Ignore("TODO")]
+        [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\Demo.cls")]
         public void DemoIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(Demo);
