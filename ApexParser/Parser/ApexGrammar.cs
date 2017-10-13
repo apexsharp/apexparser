@@ -64,7 +64,7 @@ namespace ApexParser.Parser
             from parameters in TypeParameters.Optional()
             select new TypeSyntax(type)
             {
-                TypeParameters = parameters.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList()
+                TypeParameters = parameters.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
             };
 
         // example: string name
@@ -116,7 +116,7 @@ namespace ApexParser.Parser
                 Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier,
                 ReturnType = typeAndName.Type,
                 MethodParameters = methodBody.MethodParameters,
-                Statement = methodBody.Statement
+                Statement = methodBody.Statement,
             };
 
         // examples: string Name, void Test
@@ -134,7 +134,7 @@ namespace ApexParser.Parser
             select new MethodSyntax
             {
                 MethodParameters = parameters,
-                Statement = methodBody
+                Statement = methodBody,
             };
 
         // example: @required public String name { get; set; }
@@ -147,7 +147,7 @@ namespace ApexParser.Parser
                 Type = typeAndName.Type,
                 Identifier = typeAndName.Identifier,
                 GetterStatement = propertyBody.GetterStatement,
-                SetterStatement = propertyBody.SetterStatement
+                SetterStatement = propertyBody.SetterStatement,
             };
 
         // example: { get; set; }
@@ -183,7 +183,7 @@ namespace ApexParser.Parser
             select new BlockStatementSyntax
             {
                 Statements = statements.ToList(),
-                CodeComments = trailingComment.ToList()
+                CodeComments = trailingComment.ToList(),
             };
 
         // dummy generic parser for any unknown statement
@@ -192,7 +192,7 @@ namespace ApexParser.Parser
             from semicolon in Parse.Char(';').Token()
             select new StatementSyntax
             {
-                Body = contents
+                Body = contents,
             };
 
         // dummy generic parser for any expressions with matching braces
@@ -213,7 +213,7 @@ namespace ApexParser.Parser
             {
                 Expression = expression,
                 ThenStatement = thenBranch,
-                ElseStatement = elseBranch.GetOrDefault()
+                ElseStatement = elseBranch.GetOrDefault(),
             };
 
         // simple for statement without the expression support
@@ -224,7 +224,7 @@ namespace ApexParser.Parser
             select new ForStatementSyntax
             {
                 Expression = expression,
-                LoopBody = loopBody
+                LoopBody = loopBody,
             };
 
         // simple do-while statement without the expression support
@@ -237,7 +237,7 @@ namespace ApexParser.Parser
             select new DoWhileStatementSyntax
             {
                 Expression = expression,
-                LoopBody = loopBody
+                LoopBody = loopBody,
             };
 
         // simple while statement without the expression support
@@ -248,7 +248,7 @@ namespace ApexParser.Parser
             select new WhileStatementSyntax
             {
                 Expression = expression,
-                LoopBody = loopBody
+                LoopBody = loopBody,
             };
 
         // examples: /* this is a member */ @isTest public
@@ -260,7 +260,7 @@ namespace ApexParser.Parser
             {
                 CodeComments = comments.ToList(),
                 Attributes = annotations.ToList(),
-                Modifiers = modifiers.ToList()
+                Modifiers = modifiers.ToList(),
             };
 
         // example: @TestFixture public static class Program { static void main() {} }
@@ -272,7 +272,7 @@ namespace ApexParser.Parser
                 Identifier = classBody.Identifier,
                 Methods = classBody.Methods,
                 Properties = classBody.Properties,
-                InnerClasses = classBody.InnerClasses
+                InnerClasses = classBody.InnerClasses,
             };
 
         // example: class Program { void main() {} }
@@ -287,7 +287,7 @@ namespace ApexParser.Parser
                 Identifier = className,
                 Methods = members.OfType<MethodSyntax>().ToList(),
                 Properties = members.OfType<PropertySyntax>().ToList(),
-                InnerClasses = members.OfType<ClassSyntax>().ToList()
+                InnerClasses = members.OfType<ClassSyntax>().ToList(),
             };
 
         // method or property declaration starting with the type and name

@@ -13,7 +13,8 @@ namespace ApexParser.MetaClass
             Kind = SyntaxType.Statement;
         }
 
-        public StatementSyntax(string body) : this()
+        public StatementSyntax(string body)
+            : this()
         {
             Body = body;
         }

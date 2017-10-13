@@ -120,7 +120,7 @@
                 new TokenDefinition(@"\s", TokenType.Space),
 
                 new TokenDefinition(@"\#|\^|\?|\`|\'|\-|\""|\(|\)|\[|\]|\=|\/|\+|\~|\<|\&|\%|\$|\*|\\|\|",
-                    TokenType.Anything)
+                    TokenType.Anything),
             };
 
             return regExList;

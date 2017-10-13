@@ -32,7 +32,7 @@ namespace ApexParser.Lexer
                     var newResult = new Result
                     {
                         TokenType = def.TokenType,
-                        TokenContent = LineRemaining.Substring(0, matched)
+                        TokenContent = LineRemaining.Substring(0, matched),
                     };
 
                     LineRemaining = LineRemaining.Substring(matched);

@@ -79,6 +79,6 @@
         DML,
 
         Dot,
-        Colon
+        Colon,
     }
 }
