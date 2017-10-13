@@ -277,6 +277,40 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public with sharing class ForIfWhile
+        ///{
+        ///    public void MethodIfClean()
+        ///    {
+        ///        String medal_color ;
+        ///        Integer place ;
+        ///        if (place == 1)
+        ///        {
+        ///            medal_color = &apos;gold&apos; ;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            medal_color = &apos;silver&apos; ;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            medal_color = &apos;bronze&apos; ;
+        ///        }
+        ///        else
+        ///        {
+        ///            medal_color = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional()
+        ///    {
+        ///        for (I [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile {
+            get {
+                return ResourceManager.GetString("ForIfWhile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /*
         ///* This  is a comment line one
         ///* This is a comment // line two

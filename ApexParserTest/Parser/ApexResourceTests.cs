@@ -259,27 +259,29 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", md.Modifiers[0]);
             Assert.AreEqual("static", md.Modifiers[1]);
             Assert.AreEqual("void", md.ReturnType.Identifier);
-            ////CompareIgnoreFormatting(@"Contact contactNew = new Contact(LastName = 'Jay1', EMail = 'abc@abc.com');
-            ////    insert contactNew;
-            ////    System.debug(contactNew.Id);
 
-            ////    List<Contact> contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
-            ////    for (Contact c : contacts)
-            ////    {
-            ////        System.debug(c.Email); c.Email = 'new@new.com';
-            ////    }
-            ////    update contacts;
-            ////    contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
-            ////    for (Contact c : contacts)
-            ////    {
-            ////        System.debug(c.Email);
-            ////    }
-            ////    delete contacts;
-            ////    contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
-            ////    if (contacts.isEmpty())
-            ////    {
-            ////        System.debug('Del Worked');
-            ////    }", md.CodeInsideMethod);
+            var block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(11, block.Statements.Count);
+
+            var forStmt = block.Statements[4] as ForStatementSyntax;
+            Assert.NotNull(forStmt);
+            Assert.AreEqual("Contact c : contacts", forStmt.Expression);
+            var loopBody = forStmt.LoopBody as BlockStatementSyntax;
+            Assert.NotNull(loopBody);
+            Assert.AreEqual(2, loopBody.Statements.Count);
+            Assert.AreEqual("System.debug(c.Email)", loopBody.Statements[0].Body);
+            Assert.AreEqual("c.Email = 'new@new.com'", loopBody.Statements[1].Body);
+
+            var ifStmt = block.Statements[10] as IfStatementSyntax;
+            Assert.NotNull(ifStmt);
+            Assert.NotNull(ifStmt.ThenStatement);
+            Assert.Null(ifStmt.ElseStatement);
+
+            block = ifStmt.ThenStatement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("System.debug('Del Worked')", block.Statements[0].Body);
         }
 
         [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\CustomerDto.cls")]
@@ -335,6 +337,12 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("string", pd.Type.Identifier);
                 Assert.AreEqual("userName", pd.Identifier);
             }
+        }
+
+        [Test, Ignore("TODO")]
+        public void ForIfWhileLoopsAreParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ForIfWhile);
         }
     }
 }

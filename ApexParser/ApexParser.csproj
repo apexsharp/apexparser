@@ -66,6 +66,7 @@
     <Compile Include="MetaClass\ClassMemberSyntax.cs" />
     <Compile Include="MetaClass\ClassSyntax.cs" />
     <Compile Include="MetaClass\ConstructorSyntax.cs" />
+    <Compile Include="MetaClass\DoWhileStatementSyntax.cs" />
     <Compile Include="MetaClass\ForStatementSyntax.cs" />
     <Compile Include="MetaClass\IfStatementSyntax.cs" />
     <Compile Include="MetaClass\ParameterSyntax.cs" />

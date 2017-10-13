@@ -166,7 +166,11 @@ namespace ApexParser.Parser
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
             from comments in CommentParser.AnyComment.Token().Many()
-            from statement in IfStatement.Or<StatementSyntax>(ForStatement).Or(Block).Or(UnknownGenericStatement)
+            from statement in IfStatement.Select(s => s as StatementSyntax)
+                .Or(ForStatement)
+                .Or(DoWhileStatement)
+                .Or(Block)
+                .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
 
         // dummy parser for the block with curly brace matching support
@@ -217,6 +221,18 @@ namespace ApexParser.Parser
             from expression in GenericExpressionInBraces
             from loopBody in Statement
             select new ForStatementSyntax
+            {
+                Expression = expression,
+                LoopBody = loopBody
+            };
+
+        // simple do-while statement without the expression support
+        protected internal virtual Parser<DoWhileStatementSyntax> DoWhileStatement =>
+            from doKeyword in Parse.String(ApexKeywords.Do).Token()
+            from loopBody in Statement
+            from whileKeyword in Parse.String(ApexKeywords.While).Token()
+            from expression in GenericExpressionInBraces
+            select new DoWhileStatementSyntax
             {
                 Expression = expression,
                 LoopBody = loopBody
