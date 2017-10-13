@@ -339,10 +339,62 @@ namespace ApexParserTest.Parser
             }
         }
 
-        [Test, Ignore("TODO")]
+        [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\ForIfWhile.cls")]
         public void ForIfWhileLoopsAreParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(ForIfWhile);
+            Assert.False(cd.Attributes.Any());
+            Assert.AreEqual("ForIfWhile", cd.Identifier);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("with_sharing", cd.Modifiers[1]);
+            Assert.AreEqual(5, cd.Methods.Count);
+            Assert.False(cd.Properties.Any());
+
+            var md = cd.Methods[0];
+            Assert.AreEqual("MethodIfClean", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Attributes.Any());
+            Assert.False(md.MethodParameters.Any());
+            var block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(3, block.Statements.Count);
+
+            md = cd.Methods[1];
+            Assert.AreEqual("MethodForTraditional", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Attributes.Any());
+            Assert.False(md.MethodParameters.Any());
+            block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+
+            md = cd.Methods[2];
+            Assert.AreEqual("MethodForIteration", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Attributes.Any());
+            Assert.False(md.MethodParameters.Any());
+            block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
+
+            md = cd.Methods[3];
+            Assert.AreEqual("MethodDo", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Attributes.Any());
+            Assert.False(md.MethodParameters.Any());
+            block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
+
+            md = cd.Methods[4];
+            Assert.AreEqual("MethodWhile", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Attributes.Any());
+            Assert.False(md.MethodParameters.Any());
+            block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
         }
     }
 }

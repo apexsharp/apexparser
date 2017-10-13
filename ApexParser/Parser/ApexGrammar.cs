@@ -169,6 +169,7 @@ namespace ApexParser.Parser
             from statement in IfStatement.Select(s => s as StatementSyntax)
                 .Or(ForStatement)
                 .Or(DoWhileStatement)
+                .Or(WhileStatement)
                 .Or(Block)
                 .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
@@ -232,7 +233,19 @@ namespace ApexParser.Parser
             from loopBody in Statement
             from whileKeyword in Parse.String(ApexKeywords.While).Token()
             from expression in GenericExpressionInBraces
+            from semicolon in Parse.Char(';').Token()
             select new DoWhileStatementSyntax
+            {
+                Expression = expression,
+                LoopBody = loopBody
+            };
+
+        // simple while statement without the expression support
+        protected internal virtual Parser<WhileStatementSyntax> WhileStatement =>
+            from whileKeyword in Parse.String(ApexKeywords.While).Token()
+            from expression in GenericExpressionInBraces
+            from loopBody in Statement
+            select new WhileStatementSyntax
             {
                 Expression = expression,
                 LoopBody = loopBody

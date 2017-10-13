@@ -758,6 +758,28 @@ namespace ApexParserTest.Parser
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
+
+            Assert.Throws<ParseException>(() => Apex.ForStatement.Parse("do {} while;"));
+        }
+
+        [Test]
+        public void WhileStatementHasAnExpressionAndABody()
+        {
+            var whileStmt = Apex.WhileStatement.Parse(@"
+            while (list.isEmpty())
+            {
+                list.add(c.Email);
+            }");
+
+            Assert.NotNull(whileStmt);
+            Assert.AreEqual("list.isEmpty()", whileStmt.Expression);
+
+            var blockStmt = whileStmt.LoopBody as BlockStatementSyntax;
+            Assert.NotNull(blockStmt);
+            Assert.AreEqual(1, blockStmt.Statements.Count);
+            Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
+
+            Assert.Throws<ParseException>(() => Apex.ForStatement.Parse("while true {}"));
         }
 
         [Test]
@@ -808,6 +830,21 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression);
 
             blockStmt = doWhileStmt.LoopBody as BlockStatementSyntax;
+            Assert.NotNull(blockStmt);
+            Assert.AreEqual(1, blockStmt.Statements.Count);
+            Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
+
+            stmt = Apex.Statement.Parse(@"
+            while (list.isEmpty())
+            {
+                list.add(c.Email);
+            }");
+
+            var whileStmt = stmt as WhileStatementSyntax;
+            Assert.NotNull(whileStmt);
+            Assert.AreEqual("list.isEmpty()", whileStmt.Expression);
+
+            blockStmt = whileStmt.LoopBody as BlockStatementSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
