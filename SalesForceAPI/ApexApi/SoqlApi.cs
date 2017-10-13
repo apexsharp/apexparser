@@ -54,7 +54,7 @@ namespace SalesForceAPI.ApexApi
             {
                 asyncWait.Wait();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new List<T>();
             }

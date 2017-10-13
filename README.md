@@ -1,5 +1,7 @@
 ### A C# to APEX Converter AND a APEX to C# Converter
 
+[![Build status](https://ci.appveyor.com/api/projects/status/mttmtji90iab1o7q?svg=true)](https://ci.appveyor.com/project/yallie/apexsharp)
+
 ![Logo](apexsharpLogo.jpg)
 
 

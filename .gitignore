@@ -46,3 +46,4 @@ packages/
 # Others
 *.json
 ApexSharpDemo/DemoWithCred.cs
+/*.bak
