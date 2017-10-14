@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
-using static ApexParser.ApexCodeFormatter.FormatApexCode;
-using static ApexParserTest.Properties.Resources;
+using static ApexSharpBase.Formatter.FormatApexCode;
+using static ApexSharpBaseTest.Properties.Resources;
 
-namespace ApexParserTest.ApexCodeFormatter
+namespace ApexSharpBaseTest.ApexCodeFormatter
 {
     [TestFixture]
     public class FormatterTests

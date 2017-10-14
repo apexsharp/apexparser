@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ApexParser.Lexer;
 using Sprache;
 
 namespace ApexParser.MetaClass

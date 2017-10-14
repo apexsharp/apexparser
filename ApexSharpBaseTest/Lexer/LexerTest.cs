@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ApexParser.Lexer;
+using ApexSharpBase.Lexer;
 
-namespace ApexParserTest.Lexer
+namespace ApexSharpBaseTest.Lexer
 {
     public class LexerTest
     {
@@ -13,6 +13,7 @@ namespace ApexParserTest.Lexer
             Console.WriteLine("Done");
             Console.ReadLine();
         }
+
         public static void Test()
         {
             var methodTestData = LexerTestData.GetMethods();

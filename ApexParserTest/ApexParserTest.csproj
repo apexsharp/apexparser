@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CF5E395C-086F-4D21-B2B2-7595E348A557}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ApexParserTest</RootNamespace>
     <AssemblyName>ApexParserTest</AssemblyName>
@@ -37,7 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ApexParserTest.Lexer.LexerTest</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -100,8 +101,6 @@
     <None Include="ApexTestClasses\CustomerDto.cls" />
     <None Include="ApexTestClasses\CustomerDto_Formatted.cls" />
     <None Include="ApexTestClasses\Demo2.cls" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ApexTestClasses\ForIfWhile.cls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
