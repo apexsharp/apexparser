@@ -38,6 +38,8 @@ namespace ApexParser.MetaClass
 
         public List<TypeSyntax> TypeParameters { get; set; }
 
+        // Note: arrays of arrays are not allowed
+        // https://developer.salesforce.com/page/Apex_Code:_The_Basics#Arrays
         public bool IsArray { get; set; }
     }
 }
