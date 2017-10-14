@@ -10,8 +10,8 @@
 
 namespace ApexSharpBaseTest.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace ApexSharpBaseTest.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace ApexSharpBaseTest.Properties {
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace ApexSharpBaseTest.Properties {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassOne {
         ///    public void CallClassTwo() {
@@ -73,15 +73,15 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("ClassOne", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassOne
         ///{
-        ///     public void CallClassTwo()
-        ///     {
-        ///          ClassTwo classTwo = new ClassTwo();
-        ///          System.debug(&apos;Test&apos;);
-        ///     }
+        ///    public void CallClassTwo()
+        ///    {
+        ///        ClassTwo classTwo = new ClassTwo();
+        ///        System.debug(&apos;Test&apos;);
+        ///    }
         ///}
         ///.
         /// </summary>
@@ -90,7 +90,7 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("ClassOne_Formatted", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassTwo {
         ///    public ClassTwo() {
@@ -106,18 +106,18 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("ClassTwo", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassTwo
         ///{
-        ///     public ClassTwo()
-        ///     {
-        ///          System.debug(&apos;Test&apos;);
-        ///     }
+        ///    public ClassTwo()
+        ///    {
+        ///        System.debug(&apos;Test&apos;);
+        ///    }
         ///
-        ///     public ClassTwo(String vin)
-        ///     {
-        ///     }
+        ///    public ClassTwo(String vin)
+        ///    {
+        ///    }
         ///}
         ///.
         /// </summary>
@@ -126,7 +126,7 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("ClassTwo_Formatted", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassTwo {
         ///    public ClassTwo() { // constructor
@@ -149,30 +149,30 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("ClassWithComments", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassTwo
         ///{
-        ///     public ClassTwo()
-        ///     {
-        ///          // constructor
-        ///          System.debug(&apos;Test&apos;);
-        ///     }
+        ///    public ClassTwo()
+        ///    {
+        ///        // constructor
+        ///        System.debug(&apos;Test&apos;);
+        ///    }
         ///
-        ///     public ClassTwo(String vin)
-        ///     {
-        ///          // another constructor
-        ///          // with a lot of misplaced comments
-        ///     }
+        ///    public ClassTwo(String vin)
+        ///    {
+        ///        // another constructor
+        ///        // with a lot of misplaced comments
+        ///    }
         ///
-        ///     /*
-        ///     * This  is a comment line one
-        ///     * This is a comment // line two
-        ///     */
-        ///     public void Hello()
-        ///     {
-        ///          System.debug(&apos;Hello&apos;);
-        ///     }
+        ///    /*
+        ///    * This  is a comment line one
+        ///    * This is a comment // line two
+        ///    */
+        ///    public void Hello()
+        ///    {
+        ///        System.debug(&apos;Hello&apos;);
+        ///    }
         ///}
         ///.
         /// </summary>
@@ -181,7 +181,7 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("ClassWithComments_Formatted", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public class CustomerDto
         ///{
@@ -199,18 +199,18 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("CustomerDto", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to public class CustomerDto
         ///{
-        ///     public String make { get;set; }
-        ///     public String year { get;set; }
-        ///     public CustomerDto.User user { get;set; }
+        ///    public String make { get;set; }
+        ///    public String year { get;set; }
+        ///    public CustomerDto.User user { get;set; }
         ///
-        ///     public class User
-        ///     {
-        ///          public string userName { get;set; }
-        ///     }
+        ///    public class User
+        ///    {
+        ///        public string userName { get;set; }
+        ///    }
         ///}
         ///.
         /// </summary>
@@ -219,97 +219,7 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("CustomerDto_Formatted", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to public class Demo
-        ///{
-        ///    public static void RunContactDemo()
-        ///    {
-        ///        Contact contactNew = new Contact(LastName = &apos;Jay1&apos;, EMail = &apos;abc@abc.com&apos;);
-        ///        insert contactNew;
-        ///        System.debug(contactNew.Id);
-        ///
-        ///        List&lt;Contact&gt; contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
-        ///        for (Contact c : contacts)
-        ///        {
-        ///            System.debug(c.Email); c.Email = &apos;new@new.com&apos;;
-        ///        }
-        ///        update contacts;
-        ///        contacts = [SELECT Id, Email FROM Contact W [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Demo {
-            get {
-                return ResourceManager.GetString("Demo", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to public class Demo2
-        ///{
-        ///    public void MethodOne(int x)
-        ///    {
-        ///        if (x == 5)
-        ///        {
-        ///            Console.WriteLine(1);
-        ///
-        ///            if (x == 8)
-        ///            {
-        ///                Console.WriteLine(8);
-        ///            }
-        ///
-        ///            Console.WriteLine(2);
-        ///            Console.WriteLine(3);
-        ///        } else if (x == 6)
-        ///        {
-        ///            Console.WriteLine(6);
-        ///        }
-        ///        else
-        ///        {
-        ///            Console.WriteLine(7);
-        ///        }
-        ///    }
-        ///}.
-        /// </summary>
-        internal static string Demo2 {
-            get {
-                return ResourceManager.GetString("Demo2", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to public with sharing class ForIfWhile
-        ///{
-        ///    public void MethodIfClean()
-        ///    {
-        ///        String medal_color ;
-        ///        Integer place ;
-        ///        if (place == 1)
-        ///        {
-        ///            medal_color = &apos;gold&apos; ;
-        ///        }
-        ///        else if (place == 2)
-        ///        {
-        ///            medal_color = &apos;silver&apos; ;
-        ///        }
-        ///        else if (place == 3)
-        ///        {
-        ///            medal_color = &apos;bronze&apos; ;
-        ///        }
-        ///        else
-        ///        {
-        ///            medal_color = null ;
-        ///        }
-        ///    }
-        ///    public void MethodForTraditional()
-        ///    {
-        ///        for (I [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string ForIfWhile {
-            get {
-                return ResourceManager.GetString("ForIfWhile", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to /*
         ///* This  is a comment line one
@@ -337,7 +247,7 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("FormatDemo", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to /*
         ///* This  is a comment line one
@@ -345,16 +255,16 @@ namespace ApexSharpBaseTest.Properties {
         ///*/
         ///public with sharing class FormatDemo
         ///{
-        ///     public Integer dateOfBirth { get; set; }
+        ///    public Integer dateOfBirth { get; set; }
         ///
-        ///     public void ForLoopTest()
-        ///     {
-        ///          for (Integer i = 0; i &lt; 10; i++)
-        ///          {
-        ///               // This is a middle line comment
-        ///               List&lt;Contact&gt; contacts = [ SELECT Name, Email From Contact Where Name = &apos;Jay&apos; ];
-        ///          }
-        ///     }
+        ///    public void ForLoopTest()
+        ///    {
+        ///        for (Integer i = 0; i &lt; 10; i++)
+        ///        {
+        ///            // This is a middle line comment
+        ///            List&lt;Contact&gt; contacts = [ SELECT Name, Email From Contact Where Name = &apos;Jay&apos; ];
+        ///        }
+        ///    }
         ///}
         ///.
         /// </summary>
