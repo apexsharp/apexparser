@@ -62,9 +62,11 @@ namespace ApexParser.Parser
         protected internal virtual Parser<TypeSyntax> TypeReference =>
             from type in NonGenericType
             from parameters in TypeParameters.Optional()
+            from arraySpecifier in Parse.Char('[').Token().Then(_ => Parse.Char(']').Token()).Optional()
             select new TypeSyntax(type)
             {
                 TypeParameters = parameters.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
+                IsArray = arraySpecifier.IsDefined,
             };
 
         // example: string name
@@ -116,7 +118,7 @@ namespace ApexParser.Parser
                 Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier,
                 ReturnType = typeAndName.Type,
                 MethodParameters = methodBody.MethodParameters,
-                Statement = methodBody.Statement,
+                Block = methodBody.Block,
             };
 
         // examples: string Name, void Test
@@ -134,7 +136,7 @@ namespace ApexParser.Parser
             select new MethodDeclarationSyntax
             {
                 MethodParameters = parameters,
-                Statement = methodBody,
+                Block = methodBody,
             };
 
         // example: @required public String name { get; set; }

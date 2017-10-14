@@ -391,5 +391,27 @@ namespace ApexParserTest.Properties {
                 return ResourceManager.GetString("FormatDemo_Formatted", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to // ClassDeclaration
+        ///public with sharing class PropertyAndField
+        ///{
+        ///    // PropertyDeclarationSyntax
+        ///    public DateTime DateTimeGetSet { get; set; }
+        ///    // PropertyDeclarationSyntax
+        ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///    // PropertyDeclarationSyntax
+        ///    public DateTime[] DateTimeGetSetArray { get; set; }
+        ///    // FieldDeclarationSyntax
+        ///    public DateTime DateTimeEmpty;
+        ///    // FieldDeclarationSyntax
+        ///    public DateTime DateTimeInitilized = DateTime.now();
+        ///    // FieldDeclarationSyntax [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PropertyAndField {
+            get {
+                return ResourceManager.GetString("PropertyAndField", resourceCulture);
+            }
+        }
     }
 }

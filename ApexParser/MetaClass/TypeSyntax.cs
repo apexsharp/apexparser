@@ -37,5 +37,7 @@ namespace ApexParser.MetaClass
         public string Identifier { get; set; }
 
         public List<TypeSyntax> TypeParameters { get; set; }
+
+        public bool IsArray { get; set; }
     }
 }

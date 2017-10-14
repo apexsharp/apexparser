@@ -117,26 +117,41 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("String", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
             Assert.False(tr.TypeParameters.Any());
+            Assert.False(tr.IsArray);
 
             tr = Apex.TypeReference.Parse("List<string>");
             Assert.AreEqual("List", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
+            Assert.False(tr.IsArray);
 
             Assert.AreEqual(1, tr.TypeParameters.Count);
             Assert.AreEqual("string", tr.TypeParameters[0].Identifier);
             Assert.False(tr.TypeParameters[0].Namespaces.Any());
+            Assert.False(tr.IsArray);
 
             tr = Apex.TypeReference.Parse(" System.Collections.Map < System.string, List<Guid> >");
             Assert.AreEqual("Map", tr.Identifier);
             Assert.AreEqual(2, tr.Namespaces.Count);
             Assert.AreEqual("System", tr.Namespaces[0]);
             Assert.AreEqual("Collections", tr.Namespaces[1]);
+            Assert.False(tr.IsArray);
 
             Assert.AreEqual(2, tr.TypeParameters.Count);
             var tp = tr.TypeParameters[0];
 
             Assert.AreEqual("string", tp.Identifier);
             Assert.AreEqual(1, tp.Namespaces.Count);
+            Assert.False(tp.IsArray);
+
+            tr = Apex.TypeReference.Parse(" string [ ] ");
+            Assert.AreEqual("string", tr.Identifier);
+            Assert.False(tr.Namespaces.Any());
+            Assert.True(tr.IsArray);
+
+            tr = Apex.TypeReference.Parse(" List <string>[]");
+            Assert.AreEqual("List", tr.Identifier);
+            Assert.False(tr.Namespaces.Any());
+            Assert.True(tr.IsArray);
         }
 
         [Test]
@@ -542,7 +557,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("int", md.MethodParameters[0].Type.Identifier);
             Assert.AreEqual("x", md.MethodParameters[0].Identifier);
 
-            var block = md.Statement as BlockStatementSyntax;
+            var block = md.Block;
             Assert.NotNull(block);
             Assert.False(block.Statements.Any());
 
@@ -680,7 +695,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("private", md.Modifiers[0]);
 
-            var block = md.Statement as BlockStatementSyntax;
+            var block = md.Block;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("return null", block.Statements[0].Body);
