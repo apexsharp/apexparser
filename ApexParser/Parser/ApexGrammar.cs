@@ -107,11 +107,11 @@ namespace ApexParser.Parser
         // examples:
         // @isTest void Test() {}
         // public static void Hello() {}
-        protected internal virtual Parser<MethodSyntax> MethodDeclaration =>
+        protected internal virtual Parser<MethodDeclarationSyntax> MethodDeclaration =>
             from heading in ClassMemberHeading
             from typeAndName in TypeAndName
             from methodBody in MethodParametersAndBody
-            select new MethodSyntax(heading)
+            select new MethodDeclarationSyntax(heading)
             {
                 Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier,
                 ReturnType = typeAndName.Type,
@@ -128,38 +128,38 @@ namespace ApexParser.Parser
         // examples:
         // void Test() {}
         // string Hello(string name) {}
-        protected internal virtual Parser<MethodSyntax> MethodParametersAndBody =>
+        protected internal virtual Parser<MethodDeclarationSyntax> MethodParametersAndBody =>
             from parameters in MethodParameters
             from methodBody in Block.Token()
-            select new MethodSyntax
+            select new MethodDeclarationSyntax
             {
                 MethodParameters = parameters,
                 Statement = methodBody,
             };
 
         // example: @required public String name { get; set; }
-        protected internal virtual Parser<PropertySyntax> PropertyDeclaration =>
+        protected internal virtual Parser<PropertyDeclarationSyntax> PropertyDeclaration =>
             from heading in ClassMemberHeading
             from typeAndName in TypeAndName
-            from propertyBody in PropertyGetterAndSetter
-            select new PropertySyntax(heading)
+            from accessors in PropertyAccessors
+            select new PropertyDeclarationSyntax(heading)
             {
                 Type = typeAndName.Type,
                 Identifier = typeAndName.Identifier,
-                GetterStatement = propertyBody.GetterStatement,
-                SetterStatement = propertyBody.SetterStatement,
+                GetterStatement = accessors.GetterStatement,
+                SetterStatement = accessors.SetterStatement,
             };
 
         // example: { get; set; }
-        protected internal virtual Parser<PropertySyntax> PropertyGetterAndSetter =>
+        protected internal virtual Parser<PropertyDeclarationSyntax> PropertyAccessors =>
             from openBrace in Parse.Char('{').Token()
-            from getterOrSetter in GetterOrSetter.Many()
+            from accessors in PropertyAccessor.Many()
             from closeBrace in Parse.Char('}').Token()
-            select new PropertySyntax(getterOrSetter);
+            select new PropertyDeclarationSyntax(accessors);
 
         // examples: get; set; get { ... }
-        protected internal virtual Parser<Tuple<string, StatementSyntax>> GetterOrSetter =>
-            from getOrSet in Parse.String("get").Or(Parse.String("set")).Token().Text()
+        protected internal virtual Parser<Tuple<string, StatementSyntax>> PropertyAccessor =>
+            from getOrSet in Parse.String(ApexKeywords.Get).Or(Parse.String(ApexKeywords.Set)).Token().Text()
             from block in Parse.String(";").Token().Text().Return(new StatementSyntax()).Or(Block)
             select Tuple.Create(getOrSet, block);
 
@@ -228,13 +228,13 @@ namespace ApexParser.Parser
             };
 
         // simple do-while statement without the expression support
-        protected internal virtual Parser<DoWhileStatementSyntax> DoWhileStatement =>
+        protected internal virtual Parser<DoStatementSyntax> DoWhileStatement =>
             from doKeyword in Parse.String(ApexKeywords.Do).Token()
             from loopBody in Statement
             from whileKeyword in Parse.String(ApexKeywords.While).Token()
             from expression in GenericExpressionInBraces
             from semicolon in Parse.Char(';').Token()
-            select new DoWhileStatementSyntax
+            select new DoStatementSyntax
             {
                 Expression = expression,
                 LoopBody = loopBody,
@@ -252,11 +252,11 @@ namespace ApexParser.Parser
             };
 
         // examples: /* this is a member */ @isTest public
-        protected internal virtual Parser<ClassMemberSyntax> ClassMemberHeading =>
+        protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberHeading =>
             from comments in CommentParser.AnyComment.Token().Many()
             from annotations in Annotation.Many()
             from modifiers in Modifier.Many()
-            select new ClassMemberSyntax
+            select new MemberDeclarationSyntax
             {
                 CodeComments = comments.ToList(),
                 Attributes = annotations.ToList(),
@@ -285,21 +285,21 @@ namespace ApexParser.Parser
             select new ClassSyntax()
             {
                 Identifier = className,
-                Methods = members.OfType<MethodSyntax>().ToList(),
-                Properties = members.OfType<PropertySyntax>().ToList(),
+                Methods = members.OfType<MethodDeclarationSyntax>().ToList(),
+                Properties = members.OfType<PropertyDeclarationSyntax>().ToList(),
                 InnerClasses = members.OfType<ClassSyntax>().ToList(),
             };
 
         // method or property declaration starting with the type and name
-        protected internal virtual Parser<ClassMemberSyntax> MethodOrPropertyDeclaration =>
+        protected internal virtual Parser<MemberDeclarationSyntax> MethodOrPropertyDeclaration =>
             from typeAndName in TypeAndName
-            from member in MethodParametersAndBody.Select(m => m as ClassMemberSyntax).XOr(PropertyGetterAndSetter)
+            from member in MethodParametersAndBody.Select(m => m as MemberDeclarationSyntax).XOr(PropertyAccessors)
             select member.WithTypeAndName(typeAndName);
 
         // class members: methods, classes, properties
-        protected internal virtual Parser<ClassMemberSyntax> ClassMemberDeclaration =>
+        protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberDeclaration =>
             from heading in ClassMemberHeading
-            from member in ClassDeclarationBody.Select(c => c as ClassMemberSyntax).Or(MethodOrPropertyDeclaration)
+            from member in ClassDeclarationBody.Select(c => c as MemberDeclarationSyntax).Or(MethodOrPropertyDeclaration)
             select member.WithProperties(heading);
     }
 }

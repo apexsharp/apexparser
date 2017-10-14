@@ -396,11 +396,11 @@ namespace ApexParserTest.Parser
         [Test]
         public void GetterOrSetterCanBeEmpty()
         {
-            var get = Apex.GetterOrSetter.Parse(" get ; ");
+            var get = Apex.PropertyAccessor.Parse(" get ; ");
             Assert.AreEqual("get", get.Item1);
             Assert.True(get.Item2.IsEmpty);
 
-            var set = Apex.GetterOrSetter.Parse(" set ; ");
+            var set = Apex.PropertyAccessor.Parse(" set ; ");
             Assert.AreEqual("set", set.Item1);
             Assert.True(set.Item2.IsEmpty);
         }
@@ -408,7 +408,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void GetterOrSetterCanHaveBlocks()
         {
-            var get = Apex.GetterOrSetter.Parse(" get { return myProperty; } ");
+            var get = Apex.PropertyAccessor.Parse(" get { return myProperty; } ");
             Assert.AreEqual("get", get.Item1);
 
             var block = get.Item2 as BlockStatementSyntax;
@@ -416,7 +416,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("return myProperty", block.Statements[0].Body);
 
-            var set = Apex.GetterOrSetter.Parse(" set { myProperty = value; if (true) { value++; } } ");
+            var set = Apex.PropertyAccessor.Parse(" set { myProperty = value; if (true) { value++; } } ");
             Assert.AreEqual("set", set.Item1);
 
             block = set.Item2 as BlockStatementSyntax;
@@ -490,7 +490,7 @@ namespace ApexParserTest.Parser
         public void MethodOrPropertyDeclarationCanReturnEitherMethodOrProperty()
         {
             var pm = Apex.MethodOrPropertyDeclaration.Parse("void Test(int x) {}");
-            var md = pm as MethodSyntax;
+            var md = pm as MethodDeclarationSyntax;
             Assert.NotNull(md);
             Assert.AreEqual("void", md.ReturnType.Identifier);
             Assert.AreEqual("Test", md.Identifier);
@@ -503,7 +503,7 @@ namespace ApexParserTest.Parser
             Assert.False(block.Statements.Any());
 
             pm = Apex.MethodOrPropertyDeclaration.Parse("string Test { get; }");
-            var pd = pm as PropertySyntax;
+            var pd = pm as PropertyDeclarationSyntax;
             Assert.NotNull(pd);
             Assert.AreEqual("string", pd.Type.Identifier);
             Assert.AreEqual("Test", pd.Identifier);
@@ -621,7 +621,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("with_sharing", cd.Modifiers[1]);
 
             cm = Apex.ClassMemberDeclaration.Parse("private Disposable() { return null; }");
-            var md = cm as MethodSyntax;
+            var md = cm as MethodDeclarationSyntax;
             Assert.NotNull(md);
 
             Assert.AreEqual("Disposable", md.Identifier);
@@ -635,7 +635,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("return null", block.Statements[0].Body);
 
             cm = Apex.ClassMemberDeclaration.Parse("@required Boolean flag { set { throw; } get; }");
-            var pd = cm as PropertySyntax;
+            var pd = cm as PropertyDeclarationSyntax;
             Assert.NotNull(pd);
 
             Assert.AreEqual("flag", pd.Identifier);
@@ -651,7 +651,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("required", pd.Attributes[0]);
 
             cm = Apex.ClassMemberDeclaration.Parse("className Test { get; set; }");
-            pd = cm as PropertySyntax;
+            pd = cm as PropertyDeclarationSyntax;
             Assert.NotNull(pd);
             Assert.NotNull(pd.GetterStatement);
             Assert.NotNull(pd.SetterStatement);
@@ -825,7 +825,7 @@ namespace ApexParserTest.Parser
             }
             while (list.isEmpty());");
 
-            var doWhileStmt = stmt as DoWhileStatementSyntax;
+            var doWhileStmt = stmt as DoStatementSyntax;
             Assert.NotNull(doWhileStmt);
             Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression);
 

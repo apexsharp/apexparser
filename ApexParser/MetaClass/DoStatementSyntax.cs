@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApexParser.MetaClass
 {
-    public class DoWhileStatementSyntax : StatementSyntax
+    public class DoStatementSyntax : StatementSyntax
     {
         public string Expression { get; set; }
 

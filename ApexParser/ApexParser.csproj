@@ -55,15 +55,15 @@
   <ItemGroup>
     <Compile Include="MetaClass\BaseSyntax.cs" />
     <Compile Include="MetaClass\BlockStatementSyntax.cs" />
-    <Compile Include="MetaClass\ClassMemberSyntax.cs" />
     <Compile Include="MetaClass\ClassSyntax.cs" />
     <Compile Include="MetaClass\ConstructorSyntax.cs" />
-    <Compile Include="MetaClass\DoWhileStatementSyntax.cs" />
+    <Compile Include="MetaClass\DoStatementSyntax.cs" />
     <Compile Include="MetaClass\ForStatementSyntax.cs" />
     <Compile Include="MetaClass\IfStatementSyntax.cs" />
+    <Compile Include="MetaClass\MemberDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\MethodDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ParameterSyntax.cs" />
-    <Compile Include="MetaClass\MethodSyntax.cs" />
-    <Compile Include="MetaClass\PropertySyntax.cs" />
+    <Compile Include="MetaClass\PropertyDeclarationSyntax.cs" />
     <Compile Include="MetaClass\StatementSyntax.cs" />
     <Compile Include="MetaClass\SyntaxType.cs" />
     <Compile Include="MetaClass\TypeSyntax.cs" />

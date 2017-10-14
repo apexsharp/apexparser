@@ -20,7 +20,7 @@ namespace ApexParserTest.Parser
         {
             var methodSig = "public static void GetNumber(string name) { /* Comment */ }";
 
-            MethodSyntax methodSyntax = new MethodSyntax();
+            MethodDeclarationSyntax methodSyntax = new MethodDeclarationSyntax();
             methodSyntax.Modifiers.Add("public");
             methodSyntax.Modifiers.Add("static");
             methodSyntax.ReturnType = new TypeSyntax("void");

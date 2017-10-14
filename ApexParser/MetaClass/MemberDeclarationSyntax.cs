@@ -7,14 +7,14 @@ using Sprache;
 
 namespace ApexParser.MetaClass
 {
-    public class ClassMemberSyntax : BaseSyntax
+    public class MemberDeclarationSyntax : BaseSyntax
     {
-        public ClassMemberSyntax(ClassMemberSyntax other = null)
+        public MemberDeclarationSyntax(MemberDeclarationSyntax other = null)
         {
             WithProperties(other);
         }
 
-        public ClassMemberSyntax WithProperties(ClassMemberSyntax other = null)
+        public MemberDeclarationSyntax WithProperties(MemberDeclarationSyntax other = null)
         {
             if (other != null)
             {
@@ -26,13 +26,13 @@ namespace ApexParser.MetaClass
             return this;
         }
 
-        public List<string> Attributes { get; set; } = new List<string>();
-
-        public List<string> Modifiers { get; set; } = new List<string>();
-
-        public virtual ClassMemberSyntax WithTypeAndName(ParameterSyntax typeAndName)
+        public virtual MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
             return this;
         }
+
+        public List<string> Attributes { get; set; } = new List<string>();
+
+        public List<string> Modifiers { get; set; } = new List<string>();
     }
 }

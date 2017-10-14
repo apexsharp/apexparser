@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ApexParser.MetaClass
 {
-    public class ClassSyntax : ClassMemberSyntax
+    public class ClassSyntax : MemberDeclarationSyntax
     {
-        public ClassSyntax(ClassMemberSyntax heading = null)
+        public ClassSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
             Kind = SyntaxType.Class;
@@ -16,9 +16,9 @@ namespace ApexParser.MetaClass
 
         public string Identifier { get; set; }
 
-        public List<MethodSyntax> Methods { get; set; } = new List<MethodSyntax>();
+        public List<MethodDeclarationSyntax> Methods { get; set; } = new List<MethodDeclarationSyntax>();
 
-        public List<PropertySyntax> Properties { get; set; } = new List<PropertySyntax>();
+        public List<PropertyDeclarationSyntax> Properties { get; set; } = new List<PropertyDeclarationSyntax>();
 
         public List<ClassSyntax> InnerClasses { get; set; } = new List<ClassSyntax>();
     }

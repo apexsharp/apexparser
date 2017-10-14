@@ -7,15 +7,15 @@ using Sprache;
 
 namespace ApexParser.MetaClass
 {
-    public class PropertySyntax : ClassMemberSyntax
+    public class PropertyDeclarationSyntax : MemberDeclarationSyntax
     {
-        public PropertySyntax(ClassMemberSyntax heading = null)
+        public PropertyDeclarationSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
             Kind = SyntaxType.Property;
         }
 
-        public PropertySyntax(IEnumerable<Tuple<string, StatementSyntax>> gettersOrSetters, ClassMemberSyntax heading = null)
+        public PropertyDeclarationSyntax(IEnumerable<Tuple<string, StatementSyntax>> gettersOrSetters, MemberDeclarationSyntax heading = null)
             : this(heading)
         {
             foreach (var item in gettersOrSetters)
@@ -41,7 +41,7 @@ namespace ApexParser.MetaClass
 
         public StatementSyntax SetterStatement { get; set; }
 
-        public override ClassMemberSyntax WithTypeAndName(ParameterSyntax typeAndName)
+        public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
             Type = typeAndName.Type;
             Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;

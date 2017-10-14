@@ -4,9 +4,9 @@ using Sprache;
 
 namespace ApexParser.MetaClass
 {
-    public class MethodSyntax : ClassMemberSyntax
+    public class MethodDeclarationSyntax : MemberDeclarationSyntax
     {
-        public MethodSyntax(ClassMemberSyntax heading = null)
+        public MethodDeclarationSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
             Kind = SyntaxType.Method;
@@ -20,7 +20,7 @@ namespace ApexParser.MetaClass
 
         public StatementSyntax Statement { get; set; }
 
-        public override ClassMemberSyntax WithTypeAndName(ParameterSyntax typeAndName)
+        public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
             ReturnType = typeAndName.Type;
             Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
