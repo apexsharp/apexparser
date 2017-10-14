@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ApexParser.Lexer;
+using ApexSharpBase.Lexer;
 
 namespace ApexParserTest.Lexer
 {
