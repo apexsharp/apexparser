@@ -9,6 +9,7 @@
         DoStatement,
         Field,
         ForStatement,
+        ForEachStatement,
         IfStatement,
         Method,
         Parameter,

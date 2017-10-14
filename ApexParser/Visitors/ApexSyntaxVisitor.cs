@@ -25,6 +25,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitForStatement(ForStatementSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitForEachStatement(ForEachStatementSyntax node) => DefaultVisit(node);
+
         public virtual void VisitIfStatement(IfStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitMethodDeclaration(MethodDeclarationSyntax node) => DefaultVisit(node);

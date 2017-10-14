@@ -266,9 +266,11 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(11, block.Statements.Count);
 
-            var forStmt = block.Statements[4] as ForStatementSyntax;
+            var forStmt = block.Statements[4] as ForEachStatementSyntax;
             Assert.NotNull(forStmt);
-            Assert.AreEqual("Contact c : contacts", forStmt.Expression);
+            Assert.AreEqual("Contact", forStmt.Type.Identifier);
+            Assert.AreEqual("c", forStmt.Identifier);
+            Assert.AreEqual("contacts", forStmt.Expression);
             var loopBody = forStmt.LoopBody as BlockSyntax;
             Assert.NotNull(loopBody);
             Assert.AreEqual(2, loopBody.Statements.Count);
@@ -371,6 +373,14 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
 
+            var forStmt = block.Statements[0] as ForStatementSyntax;
+            Assert.NotNull(forStmt);
+            Assert.True(forStmt.Expression.StartsWith("Integer i = 0, j = 0;"));
+            block = forStmt.LoopBody as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("System.debug (i + 1)", block.Statements[0].Body);
+
             md = cd.Methods[2];
             Assert.AreEqual("MethodForIteration", md.Identifier);
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -379,6 +389,16 @@ namespace ApexParserTest.Parser
             block = md.Block as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
+
+            var forEachStmt = block.Statements[1] as ForEachStatementSyntax;
+            Assert.NotNull(forEachStmt);
+            Assert.AreEqual("Integer", forEachStmt.Type.Identifier);
+            Assert.AreEqual("i", forEachStmt.Identifier);
+            Assert.AreEqual("myInts", forEachStmt.Expression);
+            block = forEachStmt.LoopBody as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("System.debug (i)", block.Statements[0].Body);
 
             md = cd.Methods[3];
             Assert.AreEqual("MethodDo", md.Identifier);

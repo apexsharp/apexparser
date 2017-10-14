@@ -59,6 +59,7 @@
     <Compile Include="MetaClass\ConstructorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\DoStatementSyntax.cs" />
     <Compile Include="MetaClass\FieldDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\ForEachStatementSyntax.cs" />
     <Compile Include="MetaClass\ForStatementSyntax.cs" />
     <Compile Include="MetaClass\IfStatementSyntax.cs" />
     <Compile Include="MetaClass\MemberDeclarationSyntax.cs" />

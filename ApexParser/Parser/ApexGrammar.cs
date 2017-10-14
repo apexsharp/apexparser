@@ -189,11 +189,12 @@ namespace ApexParser.Parser
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
             from comments in CommentParser.AnyComment.Token().Many()
-            from statement in IfStatement.Select(s => s as StatementSyntax)
-                .Or(ForStatement)
+            from statement in Block.Select(s => s as StatementSyntax)
+                .Or(IfStatement)
                 .Or(DoWhileStatement)
                 .Or(WhileStatement)
-                .Or(Block)
+                .Or(ForEachStatement)
+                .Or(ForStatement)
                 .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
 
@@ -215,7 +216,7 @@ namespace ApexParser.Parser
             from semicolon in Parse.Char(';').Token()
             select new StatementSyntax
             {
-                Body = contents,
+                Body = contents.Trim(),
             };
 
         // dummy generic parser for any expressions with matching braces
@@ -224,6 +225,12 @@ namespace ApexParser.Parser
             from subExpressions in Parse.CharExcept("()").Many().Text()
                 .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
             from closeBrace in Parse.Char(')').Token()
+            select string.Join(string.Empty, subExpressions);
+
+        // dummy generic parser for expressions with matching braces
+        protected internal virtual Parser<string> GenericExpression =>
+            from subExpressions in Parse.CharExcept("()").Many().Text().Token()
+                .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
             select string.Join(string.Empty, subExpressions);
 
         // simple if statement without the expressions support
@@ -237,6 +244,24 @@ namespace ApexParser.Parser
                 Expression = expression,
                 ThenStatement = thenBranch,
                 ElseStatement = elseBranch.GetOrDefault(),
+            };
+
+        // simple foreach statement without the expression support
+        protected internal virtual Parser<ForEachStatementSyntax> ForEachStatement =>
+            from forKeyword in Parse.String(ApexKeywords.For).Token()
+            from openBrace in Parse.Char('(').Token()
+            from typeReference in TypeReference
+            from identifier in Identifier
+            from colon in Parse.Char(':').Token()
+            from expression in GenericExpression
+            from closeBrace in Parse.Char(')').Token()
+            from loopBody in Statement
+            select new ForEachStatementSyntax
+            {
+                Type = typeReference,
+                Identifier = identifier,
+                Expression = expression,
+                LoopBody = loopBody,
             };
 
         // simple for statement without the expression support

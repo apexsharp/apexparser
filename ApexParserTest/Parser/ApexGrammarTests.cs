@@ -747,6 +747,23 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void GenericExpressionCanBeAnythingProvidedThatBracesAreMatched()
+        {
+            var expr = Apex.GenericExpression.Parse("something.IsEmpty()");
+            Assert.AreEqual("something.IsEmpty()", expr);
+
+            expr = Apex.GenericExpression.Parse("(something.IsEmpty)");
+            Assert.AreEqual("(something.IsEmpty)", expr);
+
+            expr = Apex.GenericExpression.Parse(" ( something.IsEmpty( ) ) ");
+            Assert.AreEqual("(something.IsEmpty())", expr);
+
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("(something.IsEmpty(()"));
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("("));
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse(")"));
+        }
+
+        [Test]
         public void SimpleIfStatementCanCompileWithoutElseBranch()
         {
             var ifstmt = Apex.IfStatement.Parse("if (true) return null;");
@@ -789,15 +806,36 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void ForStatementHasAnExpressionAndABody()
+        public void ForEachStatementHasAnExpressionAndABody()
         {
-            var forStmt = Apex.ForStatement.Parse(@"
+            var forStmt = Apex.ForEachStatement.Parse(@"
             for (Contact c : contacts)
             {
                 System.debug(c.Email);
             }");
+
+            Assert.AreEqual("Contact", forStmt.Type.Identifier);
+            Assert.AreEqual("c", forStmt.Identifier);
+            Assert.AreEqual("contacts", forStmt.Expression);
+
+            var blockStmt = forStmt.LoopBody as BlockSyntax;
+            Assert.NotNull(blockStmt);
+            Assert.AreEqual(1, blockStmt.Statements.Count);
+            Assert.AreEqual("System.debug(c.Email)", blockStmt.Statements[0].Body);
+
+            Assert.Throws<ParseException>(() => Apex.ForEachStatement.Parse("for (;;) {}"));
+        }
+
+        [Test]
+        public void ForStatementHasAnExpressionAndABody()
+        {
+            var forStmt = Apex.ForStatement.Parse(@"
+            for (;;)
+            {
+                System.debug(c.Email);
+            }");
             Assert.NotNull(forStmt);
-            Assert.AreEqual("Contact c : contacts", forStmt.Expression);
+            Assert.AreEqual(";;", forStmt.Expression);
 
             var blockStmt = forStmt.LoopBody as BlockSyntax;
             Assert.NotNull(blockStmt);
@@ -875,9 +913,11 @@ namespace ApexParserTest.Parser
             {
                 System.debug(c.Email);
             }");
-            var forStmt = stmt as ForStatementSyntax;
+            var forStmt = stmt as ForEachStatementSyntax;
             Assert.NotNull(forStmt);
-            Assert.AreEqual("Contact c : contacts", forStmt.Expression);
+            Assert.AreEqual("Contact", forStmt.Type.Identifier);
+            Assert.AreEqual("c", forStmt.Identifier);
+            Assert.AreEqual("contacts", forStmt.Expression);
 
             blockStmt = forStmt.LoopBody as BlockSyntax;
             Assert.NotNull(blockStmt);
