@@ -287,12 +287,13 @@ namespace ApexParser.Parser
             };
 
         // example: @TestFixture public static class Program { static void main() {} }
-        protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclaration =>
+        public virtual Parser<ClassDeclarationSyntax> ClassDeclaration =>
             from heading in MemberDeclarationHeading
             from classBody in ClassDeclarationBody
             select new ClassDeclarationSyntax(heading)
             {
                 Identifier = classBody.Identifier,
+                Constructors = classBody.Constructors,
                 Methods = classBody.Methods,
                 Fields = classBody.Fields,
                 Properties = classBody.Properties,
@@ -309,11 +310,30 @@ namespace ApexParser.Parser
             select new ClassDeclarationSyntax()
             {
                 Identifier = className,
-                Methods = members.OfType<MethodDeclarationSyntax>().ToList(),
-                Fields = members.OfType<FieldDeclarationSyntax>().ToList(),
-                Properties = members.OfType<PropertyDeclarationSyntax>().ToList(),
-                InnerClasses = members.OfType<ClassDeclarationSyntax>().ToList(),
+                Constructors = GetConstructors(members),
+                Methods = GetMethods(members),
+                Fields = GetFields(members),
+                Properties = GetProperties(members),
+                InnerClasses = GetClasses(members),
             };
+
+        private List<ClassDeclarationSyntax> GetClasses(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<ClassDeclarationSyntax>().ToList();
+
+        private List<FieldDeclarationSyntax> GetFields(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<FieldDeclarationSyntax>().ToList();
+
+        private List<PropertyDeclarationSyntax> GetProperties(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<PropertyDeclarationSyntax>().ToList();
+
+        private Func<MethodDeclarationSyntax, bool> IsConstructor { get; } =
+            ConstructorDeclarationSyntax.IsConstructor;
+
+        private List<ConstructorDeclarationSyntax> GetConstructors(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<MethodDeclarationSyntax>().Where(m => IsConstructor(m)).Select(m => new ConstructorDeclarationSyntax(m)).ToList();
+
+        private List<MethodDeclarationSyntax> GetMethods(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<MethodDeclarationSyntax>().Where(m => !IsConstructor(m)).ToList();
 
         // method or property declaration starting with the type and name
         protected internal virtual Parser<MemberDeclarationSyntax> MethodPropertyOrFieldDeclaration =>

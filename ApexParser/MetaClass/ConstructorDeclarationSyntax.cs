@@ -9,11 +9,23 @@ namespace ApexParser.MetaClass
 {
     public class ConstructorDeclarationSyntax : MethodDeclarationSyntax
     {
-        public ConstructorDeclarationSyntax(MemberDeclarationSyntax heading = null)
-            : base(heading)
+        public ConstructorDeclarationSyntax(MethodDeclarationSyntax method = null)
+            : base(method)
         {
             Kind = SyntaxType.Constructor;
+
+            if (method != null)
+            {
+                Block = method.Block;
+                ReturnType = method.ReturnType;
+                Identifier = method.Identifier;
+                Parameters = method.Parameters;
+            }
         }
+
+        public static bool IsConstructor(MethodDeclarationSyntax method) =>
+            method is ConstructorDeclarationSyntax ||
+            method.ReturnType.Identifier == method.Identifier;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitConstructorDeclaration(this);
 
