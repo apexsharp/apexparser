@@ -76,17 +76,15 @@ namespace ApexParser.Parser
             select new ParameterSyntax(type, name);
 
         // example: int a, Boolean flag
-        protected internal virtual Parser<List<ParameterSyntax>> ParameterDeclarations =>
-            from first in ParameterDeclaration.Once()
-            from rest in Parse.Char(',').Then(_ => ParameterDeclaration).Many()
-            select first.Concat(rest).ToList();
+        protected internal virtual Parser<IEnumerable<ParameterSyntax>> ParameterDeclarations =>
+            ParameterDeclaration.DelimitedBy(Parse.Char(',').Token());
 
         // example: (string a, char delimiter)
         protected internal virtual Parser<List<ParameterSyntax>> MethodParameters =>
             from openBrace in Parse.Char('(').Token()
             from param in ParameterDeclarations.Optional()
             from closeBrace in Parse.Char(')').Token()
-            select param.GetOrElse(new List<ParameterSyntax>());
+            select param.GetOrElse(Enumerable.Empty<ParameterSyntax>()).ToList();
 
         // examples: public, private, with sharing
         protected internal virtual Parser<string> Modifier =>
@@ -198,7 +196,7 @@ namespace ApexParser.Parser
                 .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
 
-        // dummy parser for the block with curly brace matching support
+        // examples: {}, { /* empty block */ }, { int a = 0; return; }
         protected internal virtual Parser<BlockSyntax> Block =>
             from openBrace in Parse.Char('{').Token()
             from statements in Statement.Many()
@@ -210,7 +208,7 @@ namespace ApexParser.Parser
                 CodeComments = trailingComment.ToList(),
             };
 
-        // dummy generic parser for any unknown statement
+        // dummy generic parser for any unknown statement ending with a semicolon
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
             from contents in Parse.CharExcept("{};").Many().Text().Token()
             from semicolon in Parse.Char(';').Token()
@@ -222,10 +220,9 @@ namespace ApexParser.Parser
         // dummy generic parser for any expressions with matching braces
         protected internal virtual Parser<string> GenericExpressionInBraces =>
             from openBrace in Parse.Char('(').Token()
-            from subExpressions in Parse.CharExcept("()").Many().Text()
-                .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
+            from expression in GenericExpression
             from closeBrace in Parse.Char(')').Token()
-            select string.Join(string.Empty, subExpressions);
+            select expression;
 
         // dummy generic parser for expressions with matching braces
         protected internal virtual Parser<string> GenericExpression =>

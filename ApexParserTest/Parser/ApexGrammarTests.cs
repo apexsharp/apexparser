@@ -177,7 +177,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void ParameterDeclarationsIsACommaSeparaterListOfParameterDeclarations()
         {
-            var pds = Apex.ParameterDeclarations.Parse(" int a, String b");
+            var pds = Apex.ParameterDeclarations.Parse(" int a, String b").ToList();
             Assert.AreEqual(2, pds.Count);
 
             var pd = pds[0];
