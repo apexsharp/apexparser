@@ -44,6 +44,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApexCodeFormatter\FormatterTests.cs" />
     <Compile Include="ApexSharpTest.cs" />
     <Compile Include="CodeFormatter\FormaterTestData.cs" />
     <Compile Include="CodeFormatter\FormatterTests.cs" />
@@ -66,6 +67,10 @@
     <ProjectReference Include="..\ApexSharpBase\ApexSharpBase.csproj">
       <Project>{2bbd10d7-1b35-4dbe-a2e7-61b1e7f4750d}</Project>
       <Name>ApexSharpBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apex\Apex.csproj">
+      <Project>{269b0981-154b-4dde-9b0a-18685c38bd9b}</Project>
+      <Name>Apex</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

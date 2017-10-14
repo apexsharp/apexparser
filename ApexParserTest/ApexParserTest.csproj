@@ -56,11 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApexCodeFormatter\FormatterTests.cs" />
     <Compile Include="Parser\ApexResourceTests.cs" />
-    <Compile Include="Lexer\LexerTest.cs" />
-    <Compile Include="Lexer\LexerTestData.cs" />
-    <Compile Include="Lexer\LexerTestElement.cs" />
     <Compile Include="Parser\ApexGrammarTests.cs" />
     <Compile Include="Parser\MethodTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,9 +79,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Visitors\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

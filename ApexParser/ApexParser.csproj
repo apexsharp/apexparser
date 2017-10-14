@@ -52,15 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApexCodeFormatter\FormatApexCode.cs" />
-    <Compile Include="Lexer\ApexLexer.cs" />
-    <Compile Include="Lexer\Lexer.cs" />
-    <Compile Include="Lexer\RegexMatcher.cs" />
-    <Compile Include="Lexer\Result.cs" />
-    <Compile Include="Lexer\Token.cs" />
-    <Compile Include="Lexer\ApexTokenRegEx.cs" />
-    <Compile Include="Lexer\TokenType.cs" />
-    <Compile Include="Lexer\TokenDefinition.cs" />
     <Compile Include="MetaClass\BaseSyntax.cs" />
     <Compile Include="MetaClass\BlockStatementSyntax.cs" />
     <Compile Include="MetaClass\ClassMemberSyntax.cs" />

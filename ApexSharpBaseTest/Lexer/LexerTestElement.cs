@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ApexSharpBase.Lexer;
+using ApexParser.Lexer;
 
-namespace ApexSharpBaseTest.Lexer
+namespace ApexParserTest.Lexer
 {
     public class LexerTestElement
     {
