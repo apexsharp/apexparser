@@ -8,6 +8,7 @@
         Method,
         MethodParameter,
         Property,
+        Field,
         Statement,
     }
 }

@@ -453,6 +453,50 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("version = value", block.Statements[0].Body);
+
+            prop = Apex.PropertyDeclaration.Parse(@"// length
+                @dataMember
+                int length { get; }");
+            Assert.AreEqual(1, prop.CodeComments.Count);
+            Assert.AreEqual("length", prop.CodeComments[0].Trim());
+            Assert.AreEqual(1, prop.Attributes.Count);
+            Assert.AreEqual("dataMember", prop.Attributes[0]);
+            Assert.AreEqual("int", prop.Type.Identifier);
+            Assert.AreEqual("length", prop.Identifier);
+            Assert.AreEqual(null, prop.SetterStatement);
+            Assert.True(prop.GetterStatement.IsEmpty);
+        }
+
+        [Test]
+        public void FieldHasTypeAndNameWithoutPropertyAccessors()
+        {
+            var field = Apex.FieldDeclaration.Parse(" /* Counter */ @dataMember public static int counter;");
+            Assert.AreEqual(1, field.CodeComments.Count);
+            Assert.AreEqual("Counter", field.CodeComments[0].Trim());
+            Assert.AreEqual(1, field.Attributes.Count);
+            Assert.AreEqual("dataMember", field.Attributes[0]);
+            Assert.AreEqual(2, field.Modifiers.Count);
+            Assert.AreEqual("public", field.Modifiers[0]);
+            Assert.AreEqual("static", field.Modifiers[1]);
+            Assert.AreEqual("int", field.Type.Identifier);
+            Assert.AreEqual("counter", field.Identifier);
+
+            // not a field declaration
+            Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x { get; }"));
+        }
+
+        [Test]
+        public void FieldDeclarationCanHaveInitializerExpression()
+        {
+            var field = Apex.FieldDeclaration.Parse(" public string name = 'Bozo';");
+            Assert.AreEqual(1, field.Modifiers.Count);
+            Assert.AreEqual("public", field.Modifiers[0]);
+            Assert.AreEqual("string", field.Type.Identifier);
+            Assert.AreEqual("name", field.Identifier);
+            Assert.AreEqual("'Bozo'", field.Expression);
+
+            // incomplete field declaration
+            Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x ="));
         }
 
         [Test]
@@ -487,9 +531,9 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void MethodOrPropertyDeclarationCanReturnEitherMethodOrProperty()
+        public void MethodOrPropertyOrFieldDeclarationCanReturnEitherMethodOrPropertyOrField()
         {
-            var pm = Apex.MethodOrPropertyDeclaration.Parse("void Test(int x) {}");
+            var pm = Apex.MethodPropertyOrFieldDeclaration.Parse("void Test(int x) {}");
             var md = pm as MethodDeclarationSyntax;
             Assert.NotNull(md);
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -502,13 +546,20 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.False(block.Statements.Any());
 
-            pm = Apex.MethodOrPropertyDeclaration.Parse("string Test { get; }");
+            pm = Apex.MethodPropertyOrFieldDeclaration.Parse("string Test { get; }");
             var pd = pm as PropertyDeclarationSyntax;
             Assert.NotNull(pd);
             Assert.AreEqual("string", pd.Type.Identifier);
             Assert.AreEqual("Test", pd.Identifier);
             Assert.NotNull(pd.GetterStatement);
             Assert.Null(pd.SetterStatement);
+
+            pm = Apex.MethodPropertyOrFieldDeclaration.Parse("DateTime now = DateTime.Now();");
+            var fd = pm as FieldDeclarationSyntax;
+            Assert.NotNull(fd);
+            Assert.AreEqual("DateTime", fd.Type.Identifier);
+            Assert.AreEqual("now", fd.Identifier);
+            Assert.AreEqual("DateTime.Now()", fd.Expression);
         }
 
         [Test]

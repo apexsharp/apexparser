@@ -33,6 +33,13 @@ namespace ApexParser.MetaClass
             }
         }
 
+        public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
+        {
+            Type = typeAndName.Type;
+            Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
+            return this;
+        }
+
         public TypeSyntax Type { get; set; }
 
         public string Identifier { get; set; }
@@ -40,12 +47,5 @@ namespace ApexParser.MetaClass
         public StatementSyntax GetterStatement { get; set; }
 
         public StatementSyntax SetterStatement { get; set; }
-
-        public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
-        {
-            Type = typeAndName.Type;
-            Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
-            return this;
-        }
     }
 }

@@ -221,6 +221,34 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public with sharing class DataAccessDemo
+        ///{
+        ///    private DataAccessLayerI dl;
+        ///
+        ///    public DataAccessDemo()
+        ///    {
+        ///        if (Test.isRunningTest())
+        ///        {
+        ///            dl = (DataAccessLayerMok) MokProvider.createMokProvidor(DataAccessLayerMok.class);
+        ///        }
+        ///        else
+        ///        {
+        ///            dl = new DataAccessLayer();
+        ///        }
+        ///    }
+        ///
+        ///    public String UpdateContactEmailAddress(string firstName, string lastName, string email)
+        ///    {
+        ///        Contact contact = dl.GetContactByName(firstName, lastName);
+        ///      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DataAccessDemo {
+            get {
+                return ResourceManager.GetString("DataAccessDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class Demo
         ///{
         ///    public static void RunContactDemo()

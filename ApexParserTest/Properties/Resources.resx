@@ -142,6 +142,9 @@
   <data name="CustomerDto_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\CustomerDto_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="DataAccessDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\DataAccessDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
   <data name="Demo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\Demo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>

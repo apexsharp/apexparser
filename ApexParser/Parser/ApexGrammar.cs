@@ -163,6 +163,27 @@ namespace ApexParser.Parser
             from block in Parse.String(";").Token().Text().Return(new StatementSyntax()).Or(Block)
             select Tuple.Create(getOrSet, block);
 
+        // example: private int width;
+        protected internal virtual Parser<FieldDeclarationSyntax> FieldDeclaration =>
+            from heading in ClassMemberHeading
+            from typeAndName in TypeAndName
+            from initializer in FieldInitializer
+            select new FieldDeclarationSyntax(heading)
+            {
+                Type = typeAndName.Type,
+                Identifier = typeAndName.Identifier,
+                Expression = initializer.Expression,
+            };
+
+        // example: = DateTime.Now();
+        protected internal virtual Parser<FieldDeclarationSyntax> FieldInitializer =>
+            from expression in Parse.Char('=').Token().Then(c => Parse.CharExcept(';').Many().Text().Token()).Optional()
+            from semicolon in Parse.Char(';').Token()
+            select new FieldDeclarationSyntax
+            {
+                Expression = expression.GetOrDefault(),
+            };
+
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
             from comments in CommentParser.AnyComment.Token().Many()
@@ -271,6 +292,7 @@ namespace ApexParser.Parser
             {
                 Identifier = classBody.Identifier,
                 Methods = classBody.Methods,
+                Fields = classBody.Fields,
                 Properties = classBody.Properties,
                 InnerClasses = classBody.InnerClasses,
             };
@@ -286,20 +308,23 @@ namespace ApexParser.Parser
             {
                 Identifier = className,
                 Methods = members.OfType<MethodDeclarationSyntax>().ToList(),
+                Fields = members.OfType<FieldDeclarationSyntax>().ToList(),
                 Properties = members.OfType<PropertyDeclarationSyntax>().ToList(),
                 InnerClasses = members.OfType<ClassSyntax>().ToList(),
             };
 
         // method or property declaration starting with the type and name
-        protected internal virtual Parser<MemberDeclarationSyntax> MethodOrPropertyDeclaration =>
+        protected internal virtual Parser<MemberDeclarationSyntax> MethodPropertyOrFieldDeclaration =>
             from typeAndName in TypeAndName
-            from member in MethodParametersAndBody.Select(m => m as MemberDeclarationSyntax).XOr(PropertyAccessors)
+            from member in MethodParametersAndBody.Select(c => c as MemberDeclarationSyntax)
+                .XOr(PropertyAccessors)
+                .XOr(FieldInitializer)
             select member.WithTypeAndName(typeAndName);
 
         // class members: methods, classes, properties
         protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberDeclaration =>
             from heading in ClassMemberHeading
-            from member in ClassDeclarationBody.Select(c => c as MemberDeclarationSyntax).Or(MethodOrPropertyDeclaration)
+            from member in ClassDeclarationBody.Select(c => c as MemberDeclarationSyntax).Or(MethodPropertyOrFieldDeclaration)
             select member.WithProperties(heading);
     }
 }

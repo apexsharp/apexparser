@@ -18,6 +18,8 @@ namespace ApexParser.MetaClass
 
         public List<MethodDeclarationSyntax> Methods { get; set; } = new List<MethodDeclarationSyntax>();
 
+        public List<FieldDeclarationSyntax> Fields { get; set; } = new List<FieldDeclarationSyntax>();
+
         public List<PropertyDeclarationSyntax> Properties { get; set; } = new List<PropertyDeclarationSyntax>();
 
         public List<ClassSyntax> InnerClasses { get; set; } = new List<ClassSyntax>();

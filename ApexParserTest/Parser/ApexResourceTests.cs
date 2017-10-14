@@ -75,7 +75,7 @@ namespace ApexParserTest.Parser
             }
         }
 
-        [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\ClassTwo.cls")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassTwo.cls")]
         public void ClassTwoIsParsed()
         {
             ParseAndValidate(ClassTwo);
@@ -244,7 +244,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Console.WriteLine(7)", block.Statements[0].Body);
         }
 
-        [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\Demo.cls")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\Demo.cls")]
         public void DemoIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(Demo);
@@ -284,7 +284,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("System.debug('Del Worked')", block.Statements[0].Body);
         }
 
-        [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\CustomerDto.cls")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\CustomerDto.cls")]
         public void CustomerDtoIsParsed()
         {
             ParseAndValidate(CustomerDto);
@@ -339,7 +339,7 @@ namespace ApexParserTest.Parser
             }
         }
 
-        [Test(Description = @"\ApexParser\SalesForceApexSharp\src\classes\ForIfWhile.cls")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\ForIfWhile.cls")]
         public void ForIfWhileLoopsAreParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(ForIfWhile);
@@ -395,6 +395,53 @@ namespace ApexParserTest.Parser
             block = md.Statement as BlockStatementSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\DataAccessDemo.cls")]
+        public void DataAccessDemoIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(DataAccessDemo);
+            Assert.False(cd.Attributes.Any());
+            Assert.AreEqual("DataAccessDemo", cd.Identifier);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("with_sharing", cd.Modifiers[1]);
+            Assert.AreEqual(2, cd.Methods.Count);
+            Assert.False(cd.Properties.Any());
+            Assert.AreEqual(1, cd.Fields.Count);
+
+            var fd = cd.Fields[0];
+            Assert.False(fd.Attributes.Any());
+            Assert.False(fd.CodeComments.Any());
+            Assert.AreEqual(1, fd.Modifiers.Count);
+            Assert.AreEqual("private", fd.Modifiers[0]);
+            Assert.AreEqual("DataAccessLayerI", fd.Type.Identifier);
+            Assert.AreEqual("dl", fd.Identifier);
+
+            var md = cd.Methods[0];
+            Assert.AreEqual("DataAccessDemo", md.Identifier);
+            Assert.AreEqual("DataAccessDemo", md.ReturnType.Identifier);
+            Assert.False(md.Attributes.Any());
+            Assert.False(md.MethodParameters.Any());
+            Assert.AreEqual(1, md.Modifiers.Count);
+            Assert.AreEqual("public", md.Modifiers[0]);
+
+            var block = md.Statement as BlockStatementSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+
+            var ifstmt = block.Statements[0] as IfStatementSyntax;
+            Assert.NotNull(ifstmt);
+            Assert.NotNull(ifstmt.ThenStatement as BlockStatementSyntax);
+            Assert.NotNull(ifstmt.ElseStatement as BlockStatementSyntax);
+
+            md = cd.Methods[1];
+            Assert.AreEqual("UpdateContactEmailAddress", md.Identifier);
+            Assert.AreEqual("String", md.ReturnType.Identifier);
+            Assert.False(md.Attributes.Any());
+            Assert.AreEqual(1, md.Modifiers.Count);
+            Assert.AreEqual("public", md.Modifiers[0]);
+            Assert.AreEqual(3, md.MethodParameters.Count);
         }
     }
 }
