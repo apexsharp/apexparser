@@ -3,12 +3,18 @@
     public enum SyntaxType
     {
         NotFound,
+        Block,
         Class,
         Constructor,
-        Method,
-        MethodParameter,
-        Property,
+        DoStatement,
         Field,
+        ForStatement,
+        IfStatement,
+        Method,
+        Parameter,
+        Property,
         Statement,
+        Type,
+        WhileStatement,
     }
 }

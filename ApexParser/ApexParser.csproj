@@ -54,9 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MetaClass\BaseSyntax.cs" />
-    <Compile Include="MetaClass\BlockStatementSyntax.cs" />
-    <Compile Include="MetaClass\ClassSyntax.cs" />
-    <Compile Include="MetaClass\ConstructorSyntax.cs" />
+    <Compile Include="MetaClass\BlockSyntax.cs" />
+    <Compile Include="MetaClass\ClassDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\ConstructorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\DoStatementSyntax.cs" />
     <Compile Include="MetaClass\FieldDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ForStatementSyntax.cs" />
@@ -72,6 +72,7 @@
     <Compile Include="Parser\ApexGrammar.cs" />
     <Compile Include="Parser\ApexKeywords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Visitors\ApexSyntaxVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,4 +1,6 @@
-﻿namespace ApexParser.MetaClass
+﻿using ApexParser.Visitors;
+
+namespace ApexParser.MetaClass
 {
     public class ParameterSyntax : BaseSyntax
     {
@@ -11,8 +13,10 @@
         {
             Type = type;
             Identifier = identifier;
-            Kind = SyntaxType.MethodParameter;
+            Kind = SyntaxType.Parameter;
         }
+
+        public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitParameter(this);
 
         public TypeSyntax Type { get; set; }
 

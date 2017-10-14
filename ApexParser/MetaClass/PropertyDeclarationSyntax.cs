@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Visitors;
 using Sprache;
 
 namespace ApexParser.MetaClass
@@ -33,12 +34,7 @@ namespace ApexParser.MetaClass
             }
         }
 
-        public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
-        {
-            Type = typeAndName.Type;
-            Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
-            return this;
-        }
+        public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitPropertyDeclaration(this);
 
         public TypeSyntax Type { get; set; }
 
@@ -47,5 +43,12 @@ namespace ApexParser.MetaClass
         public StatementSyntax GetterStatement { get; set; }
 
         public StatementSyntax SetterStatement { get; set; }
+
+        public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
+        {
+            Type = typeAndName.Type;
+            Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
+            return this;
+        }
     }
 }

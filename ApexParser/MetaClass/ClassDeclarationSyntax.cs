@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
 {
-    public class ClassSyntax : MemberDeclarationSyntax
+    public class ClassDeclarationSyntax : MemberDeclarationSyntax
     {
-        public ClassSyntax(MemberDeclarationSyntax heading = null)
+        public ClassDeclarationSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
             Kind = SyntaxType.Class;
         }
+
+        public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitClassDeclaration(this);
 
         public string Identifier { get; set; }
 
@@ -22,6 +25,6 @@ namespace ApexParser.MetaClass
 
         public List<PropertyDeclarationSyntax> Properties { get; set; } = new List<PropertyDeclarationSyntax>();
 
-        public List<ClassSyntax> InnerClasses { get; set; } = new List<ClassSyntax>();
+        public List<ClassDeclarationSyntax> InnerClasses { get; set; } = new List<ClassDeclarationSyntax>();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ApexParser.Visitors;
 using Sprache;
 
 namespace ApexParser.MetaClass
@@ -12,13 +13,15 @@ namespace ApexParser.MetaClass
             Kind = SyntaxType.Method;
         }
 
+        public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitMethodDeclaration(this);
+
         public TypeSyntax ReturnType { get; set; }
 
         public string Identifier { get; set; }
 
-        public List<ParameterSyntax> MethodParameters { get; set; } = new List<ParameterSyntax>();
+        public List<ParameterSyntax> Parameters { get; set; } = new List<ParameterSyntax>();
 
-        public BlockStatementSyntax Block { get; set; }
+        public BlockSyntax Block { get; set; }
 
         public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {

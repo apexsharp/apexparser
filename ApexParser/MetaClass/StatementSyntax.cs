@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
 {
     public class StatementSyntax : BaseSyntax
     {
-        public StatementSyntax()
+        public StatementSyntax(string body = null)
         {
             Kind = SyntaxType.Statement;
-        }
-
-        public StatementSyntax(string body)
-            : this()
-        {
             Body = body;
         }
+
+        public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitStatement(this);
 
         public bool IsEmpty => string.IsNullOrWhiteSpace(Body);
 

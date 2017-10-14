@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
 {
@@ -10,6 +11,7 @@ namespace ApexParser.MetaClass
     {
         public TypeSyntax(IEnumerable<string> qualifiedName)
         {
+            Kind = SyntaxType.Type;
             Namespaces = qualifiedName.ToList();
 
             if (Namespaces.Count > 0)
@@ -30,7 +32,10 @@ namespace ApexParser.MetaClass
             Namespaces = template.Namespaces;
             Identifier = template.Identifier;
             TypeParameters = template.TypeParameters;
+            Kind = SyntaxType.Type;
         }
+
+        public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitType(this);
 
         public List<string> Namespaces { get; set; }
 
