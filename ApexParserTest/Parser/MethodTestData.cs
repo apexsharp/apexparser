@@ -25,7 +25,7 @@ namespace ApexParserTest.Parser
             methodSyntax.Modifiers.Add("static");
             methodSyntax.ReturnType = new TypeSyntax("void");
             methodSyntax.Identifier = "GetNumber";
-            methodSyntax.MethodParameters.Add(new ParameterSyntax("string", "name"));
+            methodSyntax.Parameters.Add(new ParameterSyntax("string", "name"));
 
             var method = Apex.MethodDeclaration.Parse(methodSig);
 
@@ -35,11 +35,11 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", method.ReturnType.Identifier);
             Assert.AreEqual("GetNumber", method.Identifier);
 
-            Assert.AreEqual(1, method.MethodParameters.Count);
-            Assert.AreEqual("string", method.MethodParameters[0].Type.Identifier);
-            Assert.AreEqual("name", method.MethodParameters[0].Identifier);
+            Assert.AreEqual(1, method.Parameters.Count);
+            Assert.AreEqual("string", method.Parameters[0].Type.Identifier);
+            Assert.AreEqual("name", method.Parameters[0].Identifier);
 
-            var block = method.Block as BlockStatementSyntax;
+            var block = method.Block as BlockSyntax;
             Assert.NotNull(block);
             Assert.False(block.Statements.Any());
             Assert.AreEqual(1, block.CodeComments.Count);
@@ -63,9 +63,9 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", method.ReturnType.Identifier);
             Assert.AreEqual("MethodWithSomeDummyBody", method.Identifier);
 
-            Assert.False(method.MethodParameters.Any());
+            Assert.False(method.Parameters.Any());
 
-            var block = method.Block as BlockStatementSyntax;
+            var block = method.Block as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", block.Statements[0].Body);

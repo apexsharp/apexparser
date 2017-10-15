@@ -76,17 +76,15 @@ namespace ApexParser.Parser
             select new ParameterSyntax(type, name);
 
         // example: int a, Boolean flag
-        protected internal virtual Parser<List<ParameterSyntax>> ParameterDeclarations =>
-            from first in ParameterDeclaration.Once()
-            from rest in Parse.Char(',').Then(_ => ParameterDeclaration).Many()
-            select first.Concat(rest).ToList();
+        protected internal virtual Parser<IEnumerable<ParameterSyntax>> ParameterDeclarations =>
+            ParameterDeclaration.DelimitedBy(Parse.Char(',').Token());
 
         // example: (string a, char delimiter)
         protected internal virtual Parser<List<ParameterSyntax>> MethodParameters =>
             from openBrace in Parse.Char('(').Token()
             from param in ParameterDeclarations.Optional()
             from closeBrace in Parse.Char(')').Token()
-            select param.GetOrElse(new List<ParameterSyntax>());
+            select param.GetOrElse(Enumerable.Empty<ParameterSyntax>()).ToList();
 
         // examples: public, private, with sharing
         protected internal virtual Parser<string> Modifier =>
@@ -110,14 +108,14 @@ namespace ApexParser.Parser
         // @isTest void Test() {}
         // public static void Hello() {}
         protected internal virtual Parser<MethodDeclarationSyntax> MethodDeclaration =>
-            from heading in ClassMemberHeading
+            from heading in MemberDeclarationHeading
             from typeAndName in TypeAndName
             from methodBody in MethodParametersAndBody
             select new MethodDeclarationSyntax(heading)
             {
                 Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier,
                 ReturnType = typeAndName.Type,
-                MethodParameters = methodBody.MethodParameters,
+                Parameters = methodBody.Parameters,
                 Block = methodBody.Block,
             };
 
@@ -135,13 +133,13 @@ namespace ApexParser.Parser
             from methodBody in Block.Token()
             select new MethodDeclarationSyntax
             {
-                MethodParameters = parameters,
+                Parameters = parameters,
                 Block = methodBody,
             };
 
         // example: @required public String name { get; set; }
         protected internal virtual Parser<PropertyDeclarationSyntax> PropertyDeclaration =>
-            from heading in ClassMemberHeading
+            from heading in MemberDeclarationHeading
             from typeAndName in TypeAndName
             from accessors in PropertyAccessors
             select new PropertyDeclarationSyntax(heading)
@@ -167,7 +165,7 @@ namespace ApexParser.Parser
 
         // example: private int width;
         protected internal virtual Parser<FieldDeclarationSyntax> FieldDeclaration =>
-            from heading in ClassMemberHeading
+            from heading in MemberDeclarationHeading
             from typeAndName in TypeAndName
             from initializer in FieldInitializer
             select new FieldDeclarationSyntax(heading)
@@ -189,41 +187,47 @@ namespace ApexParser.Parser
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
             from comments in CommentParser.AnyComment.Token().Many()
-            from statement in IfStatement.Select(s => s as StatementSyntax)
-                .Or(ForStatement)
+            from statement in Block.Select(s => s as StatementSyntax)
+                .Or(IfStatement)
                 .Or(DoWhileStatement)
                 .Or(WhileStatement)
-                .Or(Block)
+                .Or(ForEachStatement)
+                .Or(ForStatement)
                 .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
 
-        // dummy parser for the block with curly brace matching support
-        protected internal virtual Parser<BlockStatementSyntax> Block =>
+        // examples: {}, { /* empty block */ }, { int a = 0; return; }
+        protected internal virtual Parser<BlockSyntax> Block =>
             from openBrace in Parse.Char('{').Token()
             from statements in Statement.Many()
             from trailingComment in CommentParser.AnyComment.Token().Many()
             from closeBrace in Parse.Char('}').Token()
-            select new BlockStatementSyntax
+            select new BlockSyntax
             {
                 Statements = statements.ToList(),
                 CodeComments = trailingComment.ToList(),
             };
 
-        // dummy generic parser for any unknown statement
+        // dummy generic parser for any unknown statement ending with a semicolon
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
             from contents in Parse.CharExcept("{};").Many().Text().Token()
             from semicolon in Parse.Char(';').Token()
             select new StatementSyntax
             {
-                Body = contents,
+                Body = contents.Trim(),
             };
 
         // dummy generic parser for any expressions with matching braces
         protected internal virtual Parser<string> GenericExpressionInBraces =>
             from openBrace in Parse.Char('(').Token()
-            from subExpressions in Parse.CharExcept("()").Many().Text()
-                .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
+            from expression in GenericExpression
             from closeBrace in Parse.Char(')').Token()
+            select expression;
+
+        // dummy generic parser for expressions with matching braces
+        protected internal virtual Parser<string> GenericExpression =>
+            from subExpressions in Parse.CharExcept("()").Many().Text().Token()
+                .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
             select string.Join(string.Empty, subExpressions);
 
         // simple if statement without the expressions support
@@ -237,6 +241,24 @@ namespace ApexParser.Parser
                 Expression = expression,
                 ThenStatement = thenBranch,
                 ElseStatement = elseBranch.GetOrDefault(),
+            };
+
+        // simple foreach statement without the expression support
+        protected internal virtual Parser<ForEachStatementSyntax> ForEachStatement =>
+            from forKeyword in Parse.String(ApexKeywords.For).Token()
+            from openBrace in Parse.Char('(').Token()
+            from typeReference in TypeReference
+            from identifier in Identifier
+            from colon in Parse.Char(':').Token()
+            from expression in GenericExpression
+            from closeBrace in Parse.Char(')').Token()
+            from loopBody in Statement
+            select new ForEachStatementSyntax
+            {
+                Type = typeReference,
+                Identifier = identifier,
+                Expression = expression,
+                LoopBody = loopBody,
             };
 
         // simple for statement without the expression support
@@ -275,7 +297,7 @@ namespace ApexParser.Parser
             };
 
         // examples: /* this is a member */ @isTest public
-        protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberHeading =>
+        protected internal virtual Parser<MemberDeclarationSyntax> MemberDeclarationHeading =>
             from comments in CommentParser.AnyComment.Token().Many()
             from annotations in Annotation.Many()
             from modifiers in Modifier.Many()
@@ -287,12 +309,13 @@ namespace ApexParser.Parser
             };
 
         // example: @TestFixture public static class Program { static void main() {} }
-        protected internal virtual Parser<ClassSyntax> ClassDeclaration =>
-            from heading in ClassMemberHeading
+        public virtual Parser<ClassDeclarationSyntax> ClassDeclaration =>
+            from heading in MemberDeclarationHeading
             from classBody in ClassDeclarationBody
-            select new ClassSyntax(heading)
+            select new ClassDeclarationSyntax(heading)
             {
                 Identifier = classBody.Identifier,
+                Constructors = classBody.Constructors,
                 Methods = classBody.Methods,
                 Fields = classBody.Fields,
                 Properties = classBody.Properties,
@@ -300,20 +323,39 @@ namespace ApexParser.Parser
             };
 
         // example: class Program { void main() {} }
-        protected internal virtual Parser<ClassSyntax> ClassDeclarationBody =>
+        protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclarationBody =>
             from @class in Parse.String(ApexKeywords.Class).Token()
             from className in Identifier
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
             from closeBrace in Parse.Char('}').Token()
-            select new ClassSyntax()
+            select new ClassDeclarationSyntax()
             {
                 Identifier = className,
-                Methods = members.OfType<MethodDeclarationSyntax>().ToList(),
-                Fields = members.OfType<FieldDeclarationSyntax>().ToList(),
-                Properties = members.OfType<PropertyDeclarationSyntax>().ToList(),
-                InnerClasses = members.OfType<ClassSyntax>().ToList(),
+                Constructors = GetConstructors(members),
+                Methods = GetMethods(members),
+                Fields = GetFields(members),
+                Properties = GetProperties(members),
+                InnerClasses = GetClasses(members),
             };
+
+        private List<ClassDeclarationSyntax> GetClasses(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<ClassDeclarationSyntax>().ToList();
+
+        private List<FieldDeclarationSyntax> GetFields(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<FieldDeclarationSyntax>().ToList();
+
+        private List<PropertyDeclarationSyntax> GetProperties(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<PropertyDeclarationSyntax>().ToList();
+
+        private Func<MethodDeclarationSyntax, bool> IsConstructor { get; } =
+            ConstructorDeclarationSyntax.IsConstructor;
+
+        private List<ConstructorDeclarationSyntax> GetConstructors(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<MethodDeclarationSyntax>().Where(m => IsConstructor(m)).Select(m => new ConstructorDeclarationSyntax(m)).ToList();
+
+        private List<MethodDeclarationSyntax> GetMethods(IEnumerable<MemberDeclarationSyntax> members) =>
+            members.OfType<MethodDeclarationSyntax>().Where(m => !IsConstructor(m)).ToList();
 
         // method or property declaration starting with the type and name
         protected internal virtual Parser<MemberDeclarationSyntax> MethodPropertyOrFieldDeclaration =>
@@ -325,7 +367,7 @@ namespace ApexParser.Parser
 
         // class members: methods, classes, properties
         protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberDeclaration =>
-            from heading in ClassMemberHeading
+            from heading in MemberDeclarationHeading
             from member in ClassDeclarationBody.Select(c => c as MemberDeclarationSyntax).Or(MethodPropertyOrFieldDeclaration)
             select member.WithProperties(heading);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
 {
@@ -13,6 +14,8 @@ namespace ApexParser.MetaClass
         {
             Kind = SyntaxType.Field;
         }
+
+        public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitFieldDeclaration(this);
 
         public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
