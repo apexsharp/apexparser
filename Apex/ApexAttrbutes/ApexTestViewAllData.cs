@@ -30,14 +30,14 @@ namespace Apex.ApexAttrbutes
         protected virtual bool CallOut{ get; }
     }
 
-  
+
 
     [AttributeUsage(AttributeTargets.All)]
     public class ApexTransient : global::System.Attribute
     {
         public ApexTransient()
         {
-      
-        }
 
+        }
+    }
 }
