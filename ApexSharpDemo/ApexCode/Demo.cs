@@ -6,7 +6,6 @@
     using Apex.ApexAttrbutes;
     using SalesForceAPI.Apex;
 
-    [ApexWithSharing]
     public class Demo
     {
         public static void RunContactDemo()
