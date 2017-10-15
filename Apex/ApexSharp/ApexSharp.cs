@@ -85,11 +85,11 @@ namespace Apex.ApexSharp
                 _errorMessageList.Add("Apex Dir Location Missing");
             }
 
-            var process = global::System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            if (process.Contains(".vshost") == false)
-            {
-                _errorMessageList.Add("The code must be run using Visual Studio");
-            }
+            //var process = global::System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            //if (process.Contains(".vshost") == false)
+            //{
+            //    _errorMessageList.Add("The code must be run using Visual Studio");
+            //}
 
 
             List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
