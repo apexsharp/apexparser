@@ -95,22 +95,30 @@ namespace SalesForceAPI
             waitTask.Wait();
 
 
-            Envelope envelope = UtilXml.DeSerilizeFromXML<Envelope>(waitTask.Result);
-
-            var soapIndex = envelope.Body.loginResponse.result.serverUrl.IndexOf(@"/Soap", StringComparison.Ordinal);
-            var restUrl = envelope.Body.loginResponse.result.serverUrl.Substring(0, soapIndex);
-            var restSessionId = "Bearer " + envelope.Body.loginResponse.result.sessionId;
-
-            var connectDetail = new ConnectionDetail()
+            if (waitTask.Result != null)
             {
-                Url = envelope.Body.loginResponse.result.serverUrl,
-                SessionId = envelope.Body.loginResponse.result.sessionId,
-                RestUrl = restUrl,
-                RestSessionId = restSessionId,
-                SessionCreationDateTime = DateTime.Now
-            };
+                Envelope envelope = UtilXml.DeSerilizeFromXML<Envelope>(waitTask.Result);
 
-            return connectDetail;
+                var soapIndex =
+                    envelope.Body.loginResponse.result.serverUrl.IndexOf(@"/Soap", StringComparison.Ordinal);
+                var restUrl = envelope.Body.loginResponse.result.serverUrl.Substring(0, soapIndex);
+                var restSessionId = "Bearer " + envelope.Body.loginResponse.result.sessionId;
+
+                var connectDetail = new ConnectionDetail()
+                {
+                    Url = envelope.Body.loginResponse.result.serverUrl,
+                    SessionId = envelope.Body.loginResponse.result.sessionId,
+                    RestUrl = restUrl,
+                    RestSessionId = restSessionId,
+                    SessionCreationDateTime = DateTime.Now
+                };
+
+                return connectDetail;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private async Task<string> PostLoginTask(string url, string json)
@@ -136,9 +144,8 @@ namespace SalesForceAPI
                 default:
                     Console.WriteLine("Error on Posting To " + url);
                     Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    break;
+                    return null;
             }
-            return null;
         }
     }
 }

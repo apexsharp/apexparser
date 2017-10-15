@@ -75,6 +75,10 @@ namespace Apex.ApexSharp
                 .AndToken(ApexSharpConfigSettings.SalesForcePasswordToken)
                 .ConnectToSalesForce();
 
+            if (connectionDetail.Message == "Error")
+            {
+                _errorMessageList.Add("Cant Connect");
+            }
 
             if (ApexSharpConfigSettings.ApexFileLocation == "")
             {
