@@ -22,7 +22,7 @@ namespace ApexSharpDemo
 
                 // Demo.cs is a simple C# code that we will convert APEX. This can be executed now.
                 // Take a look at the Demo.cs file in the /ApexCode Folder.  
-                Demo.RunContactDemo();
+                //Demo.RunContactDemo();
 
                 //Convert the Demo.cs File to APEX
                 //apexSharp.ConvertToApexAndAddToProject("Demo", overWrite: true);
