@@ -116,7 +116,7 @@ namespace ApexParser.Parser
                 Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier,
                 ReturnType = typeAndName.Type,
                 Parameters = methodBody.Parameters,
-                Block = methodBody.Block,
+                Body = methodBody.Body,
             };
 
         // examples: string Name, void Test
@@ -134,7 +134,7 @@ namespace ApexParser.Parser
             select new MethodDeclarationSyntax
             {
                 Parameters = parameters,
-                Block = methodBody,
+                Body = methodBody,
             };
 
         // example: @required public String name { get; set; }
@@ -189,10 +189,11 @@ namespace ApexParser.Parser
             from comments in CommentParser.AnyComment.Token().Many()
             from statement in Block.Select(s => s as StatementSyntax)
                 .Or(IfStatement)
-                .Or(DoWhileStatement)
+                .Or(DoStatement)
                 .Or(WhileStatement)
                 .Or(ForEachStatement)
                 .Or(ForStatement)
+                .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
 
@@ -208,6 +209,27 @@ namespace ApexParser.Parser
                 CodeComments = trailingComment.ToList(),
             };
 
+        // example: int x, y, z = 3;
+        protected internal virtual Parser<VariableDeclarationSyntax> VariableDeclaration =>
+            from type in TypeReference
+            from declarators in VariableDeclarator.DelimitedBy(Parse.Char(',').Token())
+            from semicolon in Parse.Char(';').Token()
+            select new VariableDeclarationSyntax
+            {
+                Type = type,
+                Variables = declarators.ToList(),
+            };
+
+        // example: now = DateTime.Now()
+        protected internal virtual Parser<VariableDeclaratorSyntax> VariableDeclarator =>
+            from identifier in Identifier
+            from expression in Parse.Char('=').Token().Then(c => GenericExpression).Optional()
+            select new VariableDeclaratorSyntax
+            {
+                Identifier = identifier,
+                Expression = expression.GetOrDefault(),
+            };
+
         // dummy generic parser for any unknown statement ending with a semicolon
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
             from contents in Parse.CharExcept("{};").Many().Text().Token()
@@ -220,15 +242,17 @@ namespace ApexParser.Parser
         // dummy generic parser for any expressions with matching braces
         protected internal virtual Parser<string> GenericExpressionInBraces =>
             from openBrace in Parse.Char('(').Token()
-            from expression in GenericExpression
+            from expression in GenericExpression.Optional()
             from closeBrace in Parse.Char(')').Token()
-            select expression;
+            select expression.GetOrDefault();
 
         // dummy generic parser for expressions with matching braces
         protected internal virtual Parser<string> GenericExpression =>
-            from subExpressions in Parse.CharExcept("()").Many().Text().Token()
+            from subExpressions in Parse.CharExcept("();,").Many().Text().Token()
                 .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
-            select string.Join(string.Empty, subExpressions);
+            let expr = string.Join(string.Empty, subExpressions)
+            where !string.IsNullOrWhiteSpace(expr)
+            select expr;
 
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>
@@ -258,22 +282,29 @@ namespace ApexParser.Parser
                 Type = typeReference,
                 Identifier = identifier,
                 Expression = expression,
-                LoopBody = loopBody,
+                Statement = loopBody,
             };
 
         // simple for statement without the expression support
         protected internal virtual Parser<ForStatementSyntax> ForStatement =>
             from forKeyword in Parse.String(ApexKeywords.For).Token()
-            from expression in GenericExpressionInBraces
+            from openBrace in Parse.Char('(').Token()
+            from declaration in VariableDeclaration.Or(Parse.Char(';').Token().Return(default(VariableDeclarationSyntax)))
+            from condition in GenericExpression.Optional()
+            from semicolon in Parse.Char(';').Token()
+            from incrementors in GenericExpression.DelimitedBy(Parse.Char(',').Token()).Optional()
+            from closeBrace in Parse.Char(')').Token()
             from loopBody in Statement
             select new ForStatementSyntax
             {
-                Expression = expression,
-                LoopBody = loopBody,
+                Declaration = declaration,
+                Condition = condition.GetOrDefault(),
+                Incrementors = incrementors.GetOrElse(Enumerable.Empty<string>()).ToList(),
+                Statement = loopBody,
             };
 
         // simple do-while statement without the expression support
-        protected internal virtual Parser<DoStatementSyntax> DoWhileStatement =>
+        protected internal virtual Parser<DoStatementSyntax> DoStatement =>
             from doKeyword in Parse.String(ApexKeywords.Do).Token()
             from loopBody in Statement
             from whileKeyword in Parse.String(ApexKeywords.While).Token()
@@ -282,7 +313,7 @@ namespace ApexParser.Parser
             select new DoStatementSyntax
             {
                 Expression = expression,
-                LoopBody = loopBody,
+                Statement = loopBody,
             };
 
         // simple while statement without the expression support
@@ -293,7 +324,7 @@ namespace ApexParser.Parser
             select new WhileStatementSyntax
             {
                 Expression = expression,
-                LoopBody = loopBody,
+                Statement = loopBody,
             };
 
         // examples: /* this is a member */ @isTest public

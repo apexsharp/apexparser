@@ -18,6 +18,6 @@ namespace ApexParser.MetaClass
 
         public string Expression { get; set; }
 
-        public StatementSyntax LoopBody { get; set; }
+        public StatementSyntax Statement { get; set; }
     }
 }

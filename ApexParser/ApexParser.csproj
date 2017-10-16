@@ -69,6 +69,8 @@
     <Compile Include="MetaClass\StatementSyntax.cs" />
     <Compile Include="MetaClass\SyntaxType.cs" />
     <Compile Include="MetaClass\TypeSyntax.cs" />
+    <Compile Include="MetaClass\VariableDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\VariableDeclaratorSyntax.cs" />
     <Compile Include="MetaClass\WhileStatementSyntax.cs" />
     <Compile Include="Parser\ApexGrammar.cs" />
     <Compile Include="Parser\ApexKeywords.cs" />

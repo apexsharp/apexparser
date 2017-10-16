@@ -40,6 +40,10 @@ namespace ApexParser.Visitors
 
         public virtual void VisitType(TypeSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitVariableDeclaration(VariableDeclarationSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitVariableDeclarator(VariableDeclaratorSyntax node) => DefaultVisit(node);
+
         public virtual void VisitWhileStatement(WhileStatementSyntax node) => DefaultVisit(node);
     }
 }

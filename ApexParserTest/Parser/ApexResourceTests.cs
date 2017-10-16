@@ -67,10 +67,16 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("public", md.Modifiers[0]);
                 Assert.AreEqual("void", md.ReturnType.Identifier);
 
-                var block = md.Block as BlockSyntax;
+                var block = md.Body as BlockSyntax;
                 Assert.NotNull(block);
                 Assert.AreEqual(2, block.Statements.Count);
-                Assert.AreEqual("ClassTwo classTwo = new ClassTwo()", block.Statements[0].Body);
+
+                var varDecl = block.Statements[0] as VariableDeclarationSyntax;
+                Assert.NotNull(varDecl);
+                Assert.AreEqual("ClassTwo", varDecl.Type.Identifier);
+                Assert.AreEqual(1, varDecl.Variables.Count);
+                Assert.AreEqual("classTwo", varDecl.Variables[0].Identifier);
+                Assert.AreEqual("new ClassTwo()", varDecl.Variables[0].Expression);
                 Assert.AreEqual("System.debug('Test')", block.Statements[1].Body);
             }
         }
@@ -96,7 +102,7 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("public", md.Modifiers[0]);
                 Assert.AreEqual("ClassTwo", md.ReturnType.Identifier);
 
-                var block = md.Block;
+                var block = md.Body;
                 Assert.NotNull(block);
                 Assert.AreEqual(1, block.Statements.Count);
                 Assert.AreEqual("System.debug('Test')", block.Statements[0].Body);
@@ -109,7 +115,7 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("public", md.Modifiers[0]);
                 Assert.AreEqual("ClassTwo", md.ReturnType.Identifier);
 
-                block = md.Block;
+                block = md.Body;
                 Assert.NotNull(block);
                 Assert.False(block.Statements.Any());
             }
@@ -137,7 +143,7 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("public", cc.Modifiers[0]);
                 Assert.AreEqual("ClassTwo", cc.ReturnType.Identifier);
 
-                var block = cc.Block;
+                var block = cc.Body;
                 Assert.NotNull(block);
                 Assert.AreEqual(1, block.Statements.Count);
                 Assert.AreEqual("System.debug('Test')", block.Statements[0].Body);
@@ -155,7 +161,7 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("String", cc.Parameters[0].Type.Identifier);
                 Assert.AreEqual("vin", cc.Parameters[0].Identifier);
 
-                block = cc.Block;
+                block = cc.Body;
                 Assert.NotNull(block);
                 Assert.False(block.Statements.Any());
                 Assert.AreEqual(2, block.CodeComments.Count);
@@ -180,7 +186,7 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("public", md.Modifiers[0]);
                 Assert.AreEqual("void", md.ReturnType.Identifier);
 
-                block = md.Block;
+                block = md.Body;
                 Assert.NotNull(block);
                 Assert.AreEqual(1, block.Statements.Count);
                 Assert.AreEqual("System.debug('Hello')", block.Statements[0].Body);
@@ -202,7 +208,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", md.Modifiers[0]);
             Assert.AreEqual("void", md.ReturnType.Identifier);
 
-            var block = md.Block as BlockSyntax;
+            var block = md.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
 
@@ -262,7 +268,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("static", md.Modifiers[1]);
             Assert.AreEqual("void", md.ReturnType.Identifier);
 
-            var block = md.Block as BlockSyntax;
+            var block = md.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(11, block.Statements.Count);
 
@@ -271,7 +277,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Contact", forStmt.Type.Identifier);
             Assert.AreEqual("c", forStmt.Identifier);
             Assert.AreEqual("contacts", forStmt.Expression);
-            var loopBody = forStmt.LoopBody as BlockSyntax;
+            var loopBody = forStmt.Statement as BlockSyntax;
             Assert.NotNull(loopBody);
             Assert.AreEqual(2, loopBody.Statements.Count);
             Assert.AreEqual("System.debug(c.Email)", loopBody.Statements[0].Body);
@@ -360,7 +366,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", md.ReturnType.Identifier);
             Assert.False(md.Attributes.Any());
             Assert.False(md.Parameters.Any());
-            var block = md.Block as BlockSyntax;
+            var block = md.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(3, block.Statements.Count);
 
@@ -369,14 +375,25 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", md.ReturnType.Identifier);
             Assert.False(md.Attributes.Any());
             Assert.False(md.Parameters.Any());
-            block = md.Block as BlockSyntax;
+            block = md.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
 
             var forStmt = block.Statements[0] as ForStatementSyntax;
             Assert.NotNull(forStmt);
-            Assert.True(forStmt.Expression.StartsWith("Integer i = 0, j = 0;"));
-            block = forStmt.LoopBody as BlockSyntax;
+            Assert.NotNull(forStmt.Declaration);
+            Assert.AreEqual("Integer", forStmt.Declaration.Type.Identifier);
+            Assert.AreEqual(2, forStmt.Declaration.Variables.Count);
+            Assert.AreEqual("i", forStmt.Declaration.Variables[0].Identifier);
+            Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression);
+            Assert.AreEqual("j", forStmt.Declaration.Variables[1].Identifier);
+            Assert.AreEqual("0", forStmt.Declaration.Variables[1].Expression);
+            Assert.AreEqual("i < 10", forStmt.Condition);
+            Assert.NotNull(forStmt.Incrementors);
+            Assert.AreEqual(1, forStmt.Incrementors.Count);
+            Assert.AreEqual("i++", forStmt.Incrementors[0]);
+
+            block = forStmt.Statement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("System.debug (i + 1)", block.Statements[0].Body);
@@ -386,7 +403,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", md.ReturnType.Identifier);
             Assert.False(md.Attributes.Any());
             Assert.False(md.Parameters.Any());
-            block = md.Block as BlockSyntax;
+            block = md.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
 
@@ -395,7 +412,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Integer", forEachStmt.Type.Identifier);
             Assert.AreEqual("i", forEachStmt.Identifier);
             Assert.AreEqual("myInts", forEachStmt.Expression);
-            block = forEachStmt.LoopBody as BlockSyntax;
+            block = forEachStmt.Statement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("System.debug (i)", block.Statements[0].Body);
@@ -405,7 +422,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", md.ReturnType.Identifier);
             Assert.False(md.Attributes.Any());
             Assert.False(md.Parameters.Any());
-            block = md.Block as BlockSyntax;
+            block = md.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
 
@@ -414,7 +431,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", md.ReturnType.Identifier);
             Assert.False(md.Attributes.Any());
             Assert.False(md.Parameters.Any());
-            block = md.Block as BlockSyntax;
+            block = md.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
         }
@@ -449,7 +466,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, cc.Modifiers.Count);
             Assert.AreEqual("public", cc.Modifiers[0]);
 
-            var block = cc.Block;
+            var block = cc.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
 
@@ -524,7 +541,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("public", md.Modifiers[0]);
 
-            var block = md.Block;
+            var block = md.Body;
             Assert.NotNull(block);
             Assert.AreEqual(8, block.Statements.Count);
         }

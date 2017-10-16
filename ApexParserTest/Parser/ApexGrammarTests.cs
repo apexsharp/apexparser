@@ -557,7 +557,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("int", md.Parameters[0].Type.Identifier);
             Assert.AreEqual("x", md.Parameters[0].Identifier);
 
-            var block = md.Block;
+            var block = md.Body;
             Assert.NotNull(block);
             Assert.False(block.Statements.Any());
 
@@ -695,7 +695,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("private", md.Modifiers[0]);
 
-            var block = md.Block;
+            var block = md.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("return null", block.Statements[0].Body);
@@ -818,7 +818,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("c", forStmt.Identifier);
             Assert.AreEqual("contacts", forStmt.Expression);
 
-            var blockStmt = forStmt.LoopBody as BlockSyntax;
+            var blockStmt = forStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("System.debug(c.Email)", blockStmt.Statements[0].Body);
@@ -835,9 +835,12 @@ namespace ApexParserTest.Parser
                 System.debug(c.Email);
             }");
             Assert.NotNull(forStmt);
-            Assert.AreEqual(";;", forStmt.Expression);
+            Assert.IsNull(forStmt.Declaration);
+            Assert.IsNull(forStmt.Condition);
+            Assert.NotNull(forStmt.Incrementors);
+            Assert.False(forStmt.Incrementors.Any());
 
-            var blockStmt = forStmt.LoopBody as BlockSyntax;
+            var blockStmt = forStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("System.debug(c.Email)", blockStmt.Statements[0].Body);
@@ -846,9 +849,9 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void DoWhileStatementHasABodyAndAnExpression()
+        public void DoStatementHasABodyAndAnExpression()
         {
-            var doWhileStmt = Apex.DoWhileStatement.Parse(@"
+            var doWhileStmt = Apex.DoStatement.Parse(@"
             do
             {
                 list.add(c.Email);
@@ -858,12 +861,70 @@ namespace ApexParserTest.Parser
             Assert.NotNull(doWhileStmt);
             Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression);
 
-            var blockStmt = doWhileStmt.LoopBody as BlockSyntax;
+            var blockStmt = doWhileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
 
             Assert.Throws<ParseException>(() => Apex.ForStatement.Parse("do {} while;"));
+        }
+
+        [Test]
+        public void VariableDeclarationCanDeclareOneOrMoreVariablesWithOptionalInitializerExpressions()
+        {
+            var variable = Apex.VariableDeclaration.Parse(" int x ; ");
+            Assert.AreEqual("int", variable.Type.Identifier);
+            Assert.IsFalse(variable.Type.IsArray);
+            Assert.AreEqual(1, variable.Variables.Count);
+            Assert.AreEqual("x", variable.Variables[0].Identifier);
+            Assert.IsNull(variable.Variables[0].Expression);
+
+            variable = Apex.VariableDeclaration.Parse(" string name, lastName; ");
+            Assert.AreEqual("string", variable.Type.Identifier);
+            Assert.IsFalse(variable.Type.IsArray);
+            Assert.AreEqual(2, variable.Variables.Count);
+            Assert.AreEqual("name", variable.Variables[0].Identifier);
+            Assert.IsNull(variable.Variables[0].Expression);
+            Assert.AreEqual("lastName", variable.Variables[1].Identifier);
+            Assert.IsNull(variable.Variables[1].Expression);
+
+            variable = Apex.VariableDeclaration.Parse(" Map<string, DateTime>[] dates = GetDates(), temp, other; ");
+            Assert.AreEqual("Map", variable.Type.Identifier);
+            Assert.IsTrue(variable.Type.IsArray);
+            Assert.AreEqual(2, variable.Type.TypeParameters.Count);
+            Assert.AreEqual("string", variable.Type.TypeParameters[0].Identifier);
+            Assert.AreEqual("DateTime", variable.Type.TypeParameters[1].Identifier);
+            Assert.AreEqual(3, variable.Variables.Count);
+            Assert.AreEqual("dates", variable.Variables[0].Identifier);
+            Assert.AreEqual("GetDates()", variable.Variables[0].Expression);
+            Assert.AreEqual("temp", variable.Variables[1].Identifier);
+            Assert.IsNull(variable.Variables[1].Expression);
+            Assert.AreEqual("other", variable.Variables[2].Identifier);
+            Assert.IsNull(variable.Variables[2].Expression);
+
+            // incomplete variable declarations
+            Assert.Throws<ParseException>(() => Apex.VariableDeclarator.End().Parse("int x = "));
+            Assert.Throws<ParseException>(() => Apex.VariableDeclarator.End().Parse("char c, b = ;"));
+        }
+
+        [Test]
+        public void VariableDeclaratorIsAnIdentifierFollowedByOptionalExpression()
+        {
+            var variable = Apex.VariableDeclarator.Parse(" name = 'Bozo'");
+            Assert.AreEqual("name", variable.Identifier);
+            Assert.AreEqual("'Bozo'", variable.Expression);
+
+            variable = Apex.VariableDeclarator.Parse(" date ");
+            Assert.AreEqual("date", variable.Identifier);
+            Assert.IsNull(variable.Expression);
+
+            variable = Apex.VariableDeclarator.Parse(" now = DateTime.Now()");
+            Assert.AreEqual("now", variable.Identifier);
+            Assert.AreEqual("DateTime.Now()", variable.Expression);
+
+            // incomplete variable declarator
+            Assert.Throws<ParseException>(() => Apex.VariableDeclarator.End().Parse("x = "));
+            Assert.Throws<ParseException>(() => Apex.VariableDeclarator.End().Parse("y = ;"));
         }
 
         [Test]
@@ -878,7 +939,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(whileStmt);
             Assert.AreEqual("list.isEmpty()", whileStmt.Expression);
 
-            var blockStmt = whileStmt.LoopBody as BlockSyntax;
+            var blockStmt = whileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
@@ -913,13 +974,30 @@ namespace ApexParserTest.Parser
             {
                 System.debug(c.Email);
             }");
-            var forStmt = stmt as ForEachStatementSyntax;
-            Assert.NotNull(forStmt);
-            Assert.AreEqual("Contact", forStmt.Type.Identifier);
-            Assert.AreEqual("c", forStmt.Identifier);
-            Assert.AreEqual("contacts", forStmt.Expression);
+            var forEachStmt = stmt as ForEachStatementSyntax;
+            Assert.NotNull(forEachStmt);
+            Assert.AreEqual("Contact", forEachStmt.Type.Identifier);
+            Assert.AreEqual("c", forEachStmt.Identifier);
+            Assert.AreEqual("contacts", forEachStmt.Expression);
 
-            blockStmt = forStmt.LoopBody as BlockSyntax;
+            blockStmt = forEachStmt.Statement as BlockSyntax;
+            Assert.NotNull(blockStmt);
+            Assert.AreEqual(1, blockStmt.Statements.Count);
+            Assert.AreEqual("System.debug(c.Email)", blockStmt.Statements[0].Body);
+
+            stmt = Apex.ForStatement.Parse(@"
+            for (;;)
+            {
+                System.debug(c.Email);
+            }");
+            var forStmt = stmt as ForStatementSyntax;
+            Assert.NotNull(forStmt);
+            Assert.IsNull(forStmt.Declaration);
+            Assert.IsNull(forStmt.Condition);
+            Assert.NotNull(forStmt.Incrementors);
+            Assert.False(forStmt.Incrementors.Any());
+
+            blockStmt = forStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("System.debug(c.Email)", blockStmt.Statements[0].Body);
@@ -935,7 +1013,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(doWhileStmt);
             Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression);
 
-            blockStmt = doWhileStmt.LoopBody as BlockSyntax;
+            blockStmt = doWhileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
@@ -950,10 +1028,14 @@ namespace ApexParserTest.Parser
             Assert.NotNull(whileStmt);
             Assert.AreEqual("list.isEmpty()", whileStmt.Expression);
 
-            blockStmt = whileStmt.LoopBody as BlockSyntax;
+            blockStmt = whileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
             Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
+
+            stmt = Apex.Statement.Parse(@" int x = 10;");
+            var varDecl = stmt as VariableDeclarationSyntax;
+            Assert.NotNull(varDecl);
         }
 
         [Test]

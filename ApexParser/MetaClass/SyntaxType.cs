@@ -16,6 +16,8 @@
         Property,
         Statement,
         Type,
+        VariableDeclaration,
+        VariableDeclarator,
         WhileStatement,
     }
 }

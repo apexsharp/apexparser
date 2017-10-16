@@ -21,7 +21,7 @@ namespace ApexParser.MetaClass
 
         public List<ParameterSyntax> Parameters { get; set; } = new List<ParameterSyntax>();
 
-        public BlockSyntax Block { get; set; }
+        public BlockSyntax Body { get; set; }
 
         public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
