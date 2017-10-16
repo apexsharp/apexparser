@@ -25,6 +25,7 @@ namespace ApexParser.Parser
         public const string Continue = "continue";
         public const string Database = "database";
         public const string Default = "default";
+        public const string Delete = "delete"; // apex soql
         public const string Do = "do";
         public const string Double = "double";
         public const string Else = "else";
@@ -41,6 +42,7 @@ namespace ApexParser.Parser
         public const string Implements = "implements";
         public const string Import = "import";
         public const string InstanceOf = "instanceof";
+        public const string Insert = "insert"; // apex soql
         public const string Int = "int";
         public const string Interface = "interface";
         public const string Long = "long";

@@ -16,8 +16,12 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitForStatement(this);
 
-        public string Expression { get; set; }
+        public VariableDeclarationSyntax Declaration { get; set; }
 
-        public StatementSyntax LoopBody { get; set; }
+        public string Condition { get; set; }
+
+        public List<string> Incrementors { get; set; }
+
+        public StatementSyntax Statement { get; set; }
     }
 }

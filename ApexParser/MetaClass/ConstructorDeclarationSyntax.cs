@@ -16,7 +16,7 @@ namespace ApexParser.MetaClass
 
             if (method != null)
             {
-                Block = method.Block;
+                Body = method.Body;
                 ReturnType = method.ReturnType;
                 Identifier = method.Identifier;
                 Parameters = method.Parameters;
