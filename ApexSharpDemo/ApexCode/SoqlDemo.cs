@@ -1,10 +1,8 @@
-﻿
-using ApexSharpDemo.SObjects;
-
-namespace ApexSharpDemo.ApexCode
+﻿namespace ApexSharpDemo.ApexCode
 {
     using Apex.ApexSharp;
     using Apex.System;
+    using SObjects;
 
     /**
     * A simple CRUD Example
