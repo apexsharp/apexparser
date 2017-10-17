@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGenerators\CSharpGeneratorTests.cs" />
+    <Compile Include="CodeGenerators\CSharpResourceTests.cs" />
     <Compile Include="CodeGenerators\TestFixtureBase.cs" />
     <Compile Include="Parser\ApexResourceTests.cs" />
     <Compile Include="Parser\ApexGrammarTests.cs" />

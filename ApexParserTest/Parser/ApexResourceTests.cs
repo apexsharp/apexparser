@@ -545,5 +545,14 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(8, block.Statements.Count);
         }
+
+        [Test]
+        public void SoqlDemoIsParsed()
+        {
+            var soql = Apex.ClassDeclaration.Parse(SoqlDemo);
+            Assert.AreEqual(1, soql.Methods.Count);
+            Assert.AreEqual("void", soql.Methods[0].ReturnType.Identifier);
+            Assert.AreEqual("CrudExample", soql.Methods[0].Identifier);
+        }
     }
 }

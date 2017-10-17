@@ -30,47 +30,47 @@ namespace ApexParser.Visitors
 
         public override void VisitClassDeclaration(ClassDeclarationSyntax node)
         {
-            var unindent = default(IDisposable);
+            var optionalIndent = default(IDisposable);
             if (HasRootNamespace)
             {
                 AppendIndentedLine("namespace {0}", Namespace);
                 AppendIndentedLine("{{");
-                unindent = Indented();
+                optionalIndent = Indented();
             }
 
-            foreach (var ns in Usings.AsSmart())
+            using (optionalIndent)
             {
-                AppendIndentedLine("using {0};", ns.Value);
-                if (ns.IsLast)
+                foreach (var ns in Usings.AsSmart())
                 {
-                    AppendLine();
-                }
-            }
-
-            AppendAttributesAndModifiers(node);
-            AppendIndentedLine("class {0}", node.Identifier);
-            AppendIndentedLine("{{");
-
-            using (Indented())
-            {
-                foreach (var md in node.Methods.AsSmart())
-                {
-                    md.Value.Accept(this);
-                    if (!md.IsLast)
+                    AppendIndentedLine("using {0};", ns.Value);
+                    if (ns.IsLast)
                     {
                         AppendLine();
                     }
                 }
-            }
 
-            AppendIndentedLine("}}");
+                AppendAttributesAndModifiers(node);
+                AppendLine("class {0}", node.Identifier);
+                AppendIndentedLine("{{");
+
+                using (Indented())
+                {
+                    foreach (var md in node.Methods.AsSmart())
+                    {
+                        md.Value.Accept(this);
+                        if (!md.IsLast)
+                        {
+                            AppendLine();
+                        }
+                    }
+                }
+
+                AppendIndentedLine("}}");
+            }
 
             if (HasRootNamespace)
             {
-                using (unindent)
-                {
-                    AppendIndentedLine("}}");
-                }
+                AppendIndentedLine("}}");
             }
         }
 
@@ -115,8 +115,16 @@ namespace ApexParser.Visitors
             }
 
             AppendLine(")");
-            AppendIndentedLine("{{");
-            AppendIndentedLine("}}");
+
+            if (node.Body != null)
+            {
+                node.Body.Accept(this);
+            }
+            else
+            {
+                AppendIndentedLine("{{");
+                AppendIndentedLine("}}");
+            }
         }
 
         public override void VisitParameter(ParameterSyntax pd)
@@ -165,10 +173,7 @@ namespace ApexParser.Visitors
             AppendIndentedLine("if ({0})", node.Expression);
             if (node.ThenStatement != null)
             {
-                using (Indented())
-                {
-                    node.ThenStatement.Accept(this);
-                }
+                AppendStatementWithOptionalIndent(node.ThenStatement);
             }
 
             if (node.ElseStatement != null)
@@ -184,10 +189,7 @@ namespace ApexParser.Visitors
                 else
                 {
                     AppendLine();
-                    using (Indented())
-                    {
-                        node.ElseStatement.Accept(this);
-                    }
+                    AppendStatementWithOptionalIndent(node.ElseStatement);
                 }
             }
         }
@@ -196,8 +198,10 @@ namespace ApexParser.Visitors
         {
             if (!string.IsNullOrWhiteSpace(node.Body))
             {
-                AppendIndentedLine(node.Body);
+                AppendIndented(node.Body);
             }
+
+            AppendLine(";");
         }
 
         public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
@@ -231,9 +235,9 @@ namespace ApexParser.Visitors
 
         public override void VisitForStatement(ForStatementSyntax node)
         {
+            AppendIndented("for (");
             using (SkipNewLines())
             {
-                AppendIndentedLine("for (");
                 if (node.Declaration != null)
                 {
                     node.Declaration.Accept(this);
@@ -265,17 +269,14 @@ namespace ApexParser.Visitors
             }
 
             AppendLine();
-            using (Indented())
-            {
-                node.Statement.Accept(this);
-            }
+            AppendStatementWithOptionalIndent(node.Statement);
         }
 
         public override void VisitForEachStatement(ForEachStatementSyntax node)
         {
+            AppendIndented("foreach (");
             using (SkipNewLines())
             {
-                AppendIndentedLine("foreach (");
                 if (node.Type != null)
                 {
                     node.Type.Accept(this);
@@ -290,9 +291,33 @@ namespace ApexParser.Visitors
             }
 
             AppendLine();
-            using (Indented())
+            AppendStatementWithOptionalIndent(node.Statement);
+        }
+
+        public override void VisitDoStatement(DoStatementSyntax node)
+        {
+            AppendIndentedLine("do");
+            AppendStatementWithOptionalIndent(node.Statement);
+            AppendIndentedLine("while ({0});", node.Expression);
+        }
+
+        public override void VisitWhileStatement(WhileStatementSyntax node)
+        {
+            AppendIndentedLine("while ({0})", node.Expression);
+            AppendStatementWithOptionalIndent(node.Statement);
+        }
+
+        private void AppendStatementWithOptionalIndent(StatementSyntax node)
+        {
+            var optionalIndent = default(IDisposable);
+            if (!(node is BlockSyntax))
             {
-                node.Statement.Accept(this);
+                optionalIndent = Indented();
+            }
+
+            using (optionalIndent)
+            {
+                node.Accept(this);
             }
         }
 

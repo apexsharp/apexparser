@@ -82,7 +82,7 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void UnknownGenericStatementIsEmittedAsIs()
         {
-            var st = new StatementSyntax("UnknownGenericStatement();");
+            var st = new StatementSyntax("UnknownGenericStatement()");
             Assert.AreEqual("UnknownGenericStatement();", st.ToCSharp().Trim());
         }
 
@@ -106,7 +106,7 @@ namespace ApexParserTest.CodeGenerators
             var ifStatement = new IfStatementSyntax
             {
                 Expression = "true",
-                ThenStatement = new StatementSyntax("hello();"),
+                ThenStatement = new StatementSyntax("hello()"),
                 ElseStatement = new BreakStatementSyntax(),
             };
 
@@ -123,11 +123,11 @@ namespace ApexParserTest.CodeGenerators
             var ifStatement = new IfStatementSyntax
             {
                 Expression = "true",
-                ThenStatement = new StatementSyntax("hello();"),
+                ThenStatement = new StatementSyntax("hello()"),
                 ElseStatement = new IfStatementSyntax
                 {
                     Expression = "false",
-                    ThenStatement = new StatementSyntax("goodbye();"),
+                    ThenStatement = new StatementSyntax("goodbye()"),
                     ElseStatement = new BreakStatementSyntax()
                 }
             };
@@ -183,7 +183,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var block = new BlockSyntax
             {
-                new StatementSyntax("CallSomeMethod();"),
+                new StatementSyntax("CallSomeMethod()"),
                 new BreakStatementSyntax()
             };
 
@@ -324,6 +324,60 @@ namespace ApexParserTest.CodeGenerators
             Check(forEachStatement,
                 @"foreach (Contact c in contacts)
                 {
+                }");
+        }
+
+        [Test]
+        public void ApexDoStatementWithBlockSyntaxIsSupported()
+        {
+            var doStatement = new DoStatementSyntax
+            {
+                Expression = "contacts.IsEmpty()",
+                Statement = new BlockSyntax
+                {
+                    new BreakStatementSyntax()
+                }
+            };
+
+            Check(doStatement,
+                @"do
+                {
+                    break;
+                }
+                while (contacts.IsEmpty());");
+        }
+
+        [Test]
+        public void ApexDoStatementWithoutBlockSyntaxIsSupported()
+        {
+            var doStatement = new DoStatementSyntax
+            {
+                Expression = "true",
+                Statement = new BreakStatementSyntax()
+            };
+
+            Check(doStatement,
+                @"do
+                    break;
+                while (true);");
+        }
+
+        [Test]
+        public void ApexWhileStatementIsSupported()
+        {
+            var whileStatement = new WhileStatementSyntax
+            {
+                Expression = "contacts.IsEmpty()",
+                Statement = new BlockSyntax
+                {
+                    new BreakStatementSyntax()
+                }
+            };
+
+            Check(whileStatement,
+                @"while (contacts.IsEmpty())
+                {
+                    break;
                 }");
         }
     }
