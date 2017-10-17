@@ -73,6 +73,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Toolbox\IEnumerableExtensionTests.cs" />
+    <Compile Include="Toolbox\ParseExtensionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
