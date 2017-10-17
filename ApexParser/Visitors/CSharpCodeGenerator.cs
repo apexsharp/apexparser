@@ -157,7 +157,7 @@ namespace ApexParser.Visitors
 
         public override void VisitBreakStatement(BreakStatementSyntax node)
         {
-            AppendIndented("break;");
+            AppendIndentedLine("break;");
         }
 
         public override void VisitIfStatement(IfStatementSyntax node)
@@ -231,8 +231,84 @@ namespace ApexParser.Visitors
 
         public override void VisitForStatement(ForStatementSyntax node)
         {
-            AppendIndentedLine("for (;;)");
-            node.Statement.Accept(this);
+            using (SkipNewLines())
+            {
+                AppendIndentedLine("for (");
+                if (node.Declaration != null)
+                {
+                    node.Declaration.Accept(this);
+                }
+                else
+                {
+                    Append(";");
+                }
+
+                if (!string.IsNullOrWhiteSpace(node.Condition))
+                {
+                    Append(" {0};", node.Condition);
+                }
+                else
+                {
+                    Append(";");
+                }
+
+                foreach (var inc in node.Incrementors.AsSmart())
+                {
+                    Append(" {0}", inc.Value);
+                    if (!inc.IsLast)
+                    {
+                        Append(",");
+                    }
+                }
+
+                Append(")");
+            }
+
+            AppendLine();
+            using (Indented())
+            {
+                node.Statement.Accept(this);
+            }
+        }
+
+        public override void VisitForEachStatement(ForEachStatementSyntax node)
+        {
+            using (SkipNewLines())
+            {
+                AppendIndentedLine("foreach (");
+                if (node.Type != null)
+                {
+                    node.Type.Accept(this);
+                }
+
+                if (!string.IsNullOrWhiteSpace(node.Identifier))
+                {
+                    Append(" {0} in ", node.Identifier);
+                }
+
+                Append("{0})", node.Expression);
+            }
+
+            AppendLine();
+            using (Indented())
+            {
+                node.Statement.Accept(this);
+            }
+        }
+
+        public override void VisitBlock(BlockSyntax node)
+        {
+            AppendIndentedLine("{{");
+
+            using (Indented())
+            {
+                foreach (var st in node.Statements.AsSmart())
+                {
+                    st.Value.Accept(this);
+                }
+            }
+
+            AppendIndentedLine("}}");
         }
     }
 }

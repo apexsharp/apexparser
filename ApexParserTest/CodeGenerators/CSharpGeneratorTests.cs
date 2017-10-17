@@ -177,5 +177,154 @@ namespace ApexParserTest.CodeGenerators
 
             Check(decl, @"CustomerDto.User alice = 'alice@wonderland.net', bob = 'bob@microsoft.com';");
         }
+
+        [Test]
+        public void ApexBlockSyntaxIsSupported()
+        {
+            var block = new BlockSyntax
+            {
+                new StatementSyntax("CallSomeMethod();"),
+                new BreakStatementSyntax()
+            };
+
+            Check(block,
+                @"{
+                    CallSomeMethod();
+                    break;
+                }");
+        }
+
+        [Test]
+        public void ApexForStatementWithVariableDeclarationIsSupported()
+        {
+            var forStatement = new ForStatementSyntax
+            {
+                Declaration = new VariableDeclarationSyntax
+                {
+                    Type = new TypeSyntax("int"),
+                    Variables = new List<VariableDeclaratorSyntax>
+                    {
+                        new VariableDeclaratorSyntax
+                        {
+                            Identifier = "i",
+                            Expression = "0"
+                        },
+                        new VariableDeclaratorSyntax
+                        {
+                            Identifier = "j",
+                            Expression = "100"
+                        }
+                    }
+                },
+                Statement = new BlockSyntax
+                {
+                    new BreakStatementSyntax()
+                }
+            };
+
+            Check(forStatement,
+                @"for (int i = 0, j = 100;;)
+                {
+                    break;
+                }");
+        }
+
+        [Test]
+        public void ApexForStatementWithConditionIsSupported()
+        {
+            var forStatement = new ForStatementSyntax
+            {
+                Condition = "i < 10",
+                Statement = new BlockSyntax
+                {
+                    new BreakStatementSyntax()
+                }
+            };
+
+            Check(forStatement,
+                @"for (; i < 10;)
+                {
+                    break;
+                }");
+        }
+
+        [Test]
+        public void ApexForStatementWithIncrementorsIsSupported()
+        {
+            var forStatement = new ForStatementSyntax
+            {
+                Incrementors = new List<string>
+                {
+                    "i++", "j *= 2"
+                },
+                Statement = new BlockSyntax
+                {
+                    new BreakStatementSyntax()
+                }
+            };
+
+            Check(forStatement,
+                @"for (;; i++, j *= 2)
+                {
+                    break;
+                }");
+        }
+
+        [Test]
+        public void ApexForStatementWithVariableDeclarationConditionAndIncrementorsIsSupported()
+        {
+            var forStatement = new ForStatementSyntax
+            {
+                Declaration = new VariableDeclarationSyntax
+                {
+                    Type = new TypeSyntax("int"),
+                    Variables = new List<VariableDeclaratorSyntax>
+                    {
+                        new VariableDeclaratorSyntax
+                        {
+                            Identifier = "i",
+                            Expression = "0"
+                        },
+                        new VariableDeclaratorSyntax
+                        {
+                            Identifier = "j",
+                            Expression = "1"
+                        }
+                    }
+                },
+                Condition = "j < 1000",
+                Incrementors = new List<string>
+                {
+                    "i++", "j *= 2"
+                },
+                Statement = new BlockSyntax
+                {
+                    new BreakStatementSyntax()
+                }
+            };
+
+            Check(forStatement,
+                @"for (int i = 0, j = 1; j < 1000; i++, j *= 2)
+                {
+                    break;
+                }");
+        }
+
+        [Test]
+        public void ApexForEachStatementIsSupported()
+        {
+            var forEachStatement = new ForEachStatementSyntax
+            {
+                Type = new TypeSyntax("Contact"),
+                Identifier = "c",
+                Expression = "contacts",
+                Statement = new BlockSyntax()
+            };
+
+            Check(forEachStatement,
+                @"foreach (Contact c in contacts)
+                {
+                }");
+        }
     }
 }
