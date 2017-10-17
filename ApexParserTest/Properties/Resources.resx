@@ -163,4 +163,10 @@
   <data name="PropertyAndField" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\PropertyAndField.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="SoqlDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\SoqlDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SoqlDemoCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\SoqlDemo.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

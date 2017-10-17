@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Composition.Hosting;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -9,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Formatting;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.CodeAnalysis.Host;
+using Microsoft.CodeAnalysis.Host.Mef;
 using NUnit.Framework;
 using Syntax = Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
@@ -17,12 +20,37 @@ namespace ApexSharpBaseTest.RoslynTests
     [TestFixture]
     public class CSharpFormattingTests
     {
-        [Test, Ignore("Dependency issues in Roslyn workspaces")]
+        private AdhocWorkspace CreateAdhocWorkspace()
+        {
+            // using the workaround described here:
+            // https://github.com/dotnet/roslyn/issues/15603
+            var parts = new List<Type>();
+            foreach (var a in MefHostServices.DefaultAssemblies)
+            {
+                try
+                {
+                    parts.AddRange(a.GetTypes());
+                }
+                catch (ReflectionTypeLoadException thatsWhyWeCantHaveNiceThings)
+                {
+                    parts.AddRange(thatsWhyWeCantHaveNiceThings.Types);
+                }
+            }
+            parts.RemoveAll(x => x == null);
+
+            var container = new ContainerConfiguration().WithParts(parts).CreateContainer();
+            var host = MefHostServices.Create(container);
+            return new AdhocWorkspace(host);
+        }
+
+        [Test]
         public void AdhocWorkspaceLoads()
         {
             // doesn't seem to work, see this issue:
             // https://github.com/dotnet/roslyn/issues/17705
-            var cw = new AdhocWorkspace();
+            //var cw = new AdhocWorkspace();
+
+            Assert.DoesNotThrow(() => CreateAdhocWorkspace());
         }
 
         [Test, Ignore("Dependency issues in Roslyn workspaces")]
@@ -62,7 +90,7 @@ namespace ApexSharpBaseTest.RoslynTests
 
             var cw = new AdhocWorkspace();
             cw.Options.WithChangedOption(CSharpFormattingOptions.IndentBraces, true);
-            var formattedCode = Formatter.Format(@class, null);
+            var formattedCode = Formatter.Format(@class, cw);
 
             Console.WriteLine(formattedCode.ToFullString());
         }

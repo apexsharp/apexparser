@@ -413,5 +413,57 @@ namespace ApexParserTest.Properties {
                 return ResourceManager.GetString("PropertyAndField", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class SoqlDemo {
+        ///    /**
+        ///     * A simple CRUD Example
+        ///     */
+        ///    public static void CrudExample()
+        ///    {
+        ///        Contact contactNew = new Contact(LastName = &apos;Jay&apos;, EMail = &apos;abc@abc.com&apos;);
+        ///        insert contactNew;
+        ///
+        ///        System.debug(contactNew.Id);
+        ///
+        ///        List&lt;Contact&gt; contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
+        ///        for (Contact c : contacts)
+        ///        {
+        ///            System.debug(c.Email); c.Email = &apos;new@new.com&apos;;
+        ///        }
+        ///        update  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SoqlDemo {
+            get {
+                return ResourceManager.GetString("SoqlDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    /**
+        ///    * A simple CRUD Example
+        ///    */
+        ///    public static class SoqlDemo
+        ///    {
+        ///        public static void CrudExample()
+        ///        {
+        ///            Contact contactNew = new Contact() { LastName = &quot;Jay&quot;, Email = &quot;abc@abc.com&quot; };
+        ///            SOQL.Insert(contactNew);
+        ///
+        ///            System.Debug(contactNew.Id);
+        ///
+        ///            List&lt;Contact&gt; contacts = SOQL.Query&lt;Contact&gt;(&quot;SELECT Id, Email, Name FRO [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SoqlDemoCS {
+            get {
+                return ResourceManager.GetString("SoqlDemoCS", resourceCulture);
+            }
+        }
     }
 }

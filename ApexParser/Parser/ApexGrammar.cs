@@ -99,8 +99,8 @@ namespace ApexParser.Parser
             Parse.String(ApexKeywords.Override)).Or(
             Parse.String(ApexKeywords.Virtual)).Or(
             Parse.String(ApexKeywords.TestMethod)).Or(
-            Parse.String(ApexKeywords.With).Token().Then(_ => Parse.String(ApexKeywords.Sharing)).Return("with_sharing")).Or(
-            Parse.String(ApexKeywords.Without).Token().Then(_ => Parse.String(ApexKeywords.Sharing)).Return("without_sharing")).Or(
+            Parse.String(ApexKeywords.With).Token().Then(_ => Parse.String(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
+            Parse.String(ApexKeywords.Without).Token().Then(_ => Parse.String(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
             Parse.String("todo?"))
                 .Text().Token().Named("Modifier");
 

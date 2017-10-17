@@ -664,7 +664,7 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual(3, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
-            Assert.AreEqual("with_sharing", cd.Modifiers[1]);
+            Assert.AreEqual("with sharing", cd.Modifiers[1]);
             Assert.AreEqual("webservice", cd.Modifiers[2]);
 
             // class declarations with bad methods
@@ -685,7 +685,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("testFixture", cd.Attributes[0]);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
-            Assert.AreEqual("with_sharing", cd.Modifiers[1]);
+            Assert.AreEqual("with sharing", cd.Modifiers[1]);
 
             cm = Apex.ClassMemberDeclaration.Parse("private Disposable() { return null; }");
             var md = cm as MethodDeclarationSyntax;

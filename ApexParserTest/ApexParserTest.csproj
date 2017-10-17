@@ -41,6 +41,9 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MiscUtil, Version=0.2.0.0, Culture=neutral, PublicKeyToken=d3c42c4bfacf7596, processorArchitecture=MSIL">
+      <HintPath>..\packages\JonSkeet.MiscUtil.0.2.0\lib\net35\MiscUtil.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -57,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGenerators\CSharpGeneratorTests.cs" />
+    <Compile Include="CodeGenerators\TestFixtureBase.cs" />
     <Compile Include="Parser\ApexResourceTests.cs" />
     <Compile Include="Parser\ApexGrammarTests.cs" />
     <Compile Include="Parser\MethodTestData.cs" />
@@ -66,6 +71,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Toolbox\IEnumerableExtensionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -81,10 +87,6 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApexTestClasses\DataAccessDemo.cls" />
-    <None Include="ApexTestClasses\PropertyAndField.cls" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -94,17 +96,21 @@
   <ItemGroup>
     <None Include="ApexTestClasses\ClassOne.cls" />
     <None Include="ApexTestClasses\ClassTwo.cls" />
-    <None Include="ApexTestClasses\Demo.cls" />
     <None Include="ApexTestClasses\ClassOne_Formatted.cls" />
     <None Include="ApexTestClasses\ClassTwo_Formatted.cls" />
     <None Include="ApexTestClasses\ClassWithComments.cls" />
     <None Include="ApexTestClasses\ClassWithComments_Formatted.cls" />
-    <None Include="ApexTestClasses\FormatDemo.cls" />
-    <None Include="ApexTestClasses\FormatDemo_Formatted.cls" />
     <None Include="ApexTestClasses\CustomerDto.cls" />
     <None Include="ApexTestClasses\CustomerDto_Formatted.cls" />
+    <None Include="ApexTestClasses\DataAccessDemo.cls" />
+    <None Include="ApexTestClasses\Demo.cls" />
     <None Include="ApexTestClasses\Demo2.cls" />
+    <None Include="ApexTestClasses\PropertyAndField.cls" />
     <None Include="ApexTestClasses\ForIfWhile.cls" />
+    <None Include="ApexTestClasses\FormatDemo.cls" />
+    <None Include="ApexTestClasses\FormatDemo_Formatted.cls" />
+    <None Include="ApexTestClasses\SoqlDemo.cs" />
+    <None Include="ApexTestClasses\SoqlDemo.cls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

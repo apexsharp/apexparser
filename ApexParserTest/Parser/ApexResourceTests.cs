@@ -357,7 +357,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("ForIfWhile", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
-            Assert.AreEqual("with_sharing", cd.Modifiers[1]);
+            Assert.AreEqual("with sharing", cd.Modifiers[1]);
             Assert.AreEqual(5, cd.Methods.Count);
             Assert.False(cd.Properties.Any());
 
@@ -444,7 +444,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("DataAccessDemo", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
-            Assert.AreEqual("with_sharing", cd.Modifiers[1]);
+            Assert.AreEqual("with sharing", cd.Modifiers[1]);
             Assert.AreEqual(1, cd.Constructors.Count);
             Assert.AreEqual(1, cd.Methods.Count);
             Assert.False(cd.Properties.Any());
