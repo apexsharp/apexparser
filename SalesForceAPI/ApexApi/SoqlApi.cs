@@ -22,6 +22,9 @@ namespace SalesForceAPI.ApexApi
 
             foreach (PropertyInfo p in pi)
             {
+                Console.WriteLine(p.PropertyType.Name);
+                Console.WriteLine(p.Name);
+
                 var varName = ":" + p.Name + " ";
 
                 if (p.PropertyType.Name == "Int32")

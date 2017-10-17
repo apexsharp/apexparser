@@ -141,8 +141,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApesSharp.cs" />
+    <Compile Include="Converter\Apex\ApexCodeGenerator.cs" />
     <Compile Include="Formatter\FormatApexCode.cs" />
-    <Compile Include="Converter\Apex\ApexGenerator.cs" />
     <Compile Include="Converter\BaseVisitor.cs" />
     <Compile Include="Converter\CSharp\CSharpGenerator.cs" />
     <Compile Include="Converter\CSharp\CSharpLineConverter.cs" />
