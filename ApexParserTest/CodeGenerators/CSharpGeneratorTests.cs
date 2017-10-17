@@ -20,13 +20,63 @@ namespace ApexParserTest.CodeGenerators
                 Identifier = "TestClass"
             };
 
-            CompareLineByLine(cd.ToCSharp(),
+            Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
 
+                    class TestClass
+                    {
+                    }
+                }");
+        }
+
+        [Test]
+        public void ClassDeclarationWithCommentsIsEmittedWithSingleLineComments()
+        {
+            var cd = new ClassDeclarationSyntax
+            {
+                CodeComments = new List<string> { " Test class" },
+                Identifier = "TestClass"
+            };
+
+            Check(cd,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    // Test class
+                    class TestClass
+                    {
+                    }
+                }");
+        }
+
+        [Test]
+        public void ClassDeclarationWithCommentsIsEmittedWithMultiLineComments()
+        {
+            var cd = new ClassDeclarationSyntax
+            {
+                CodeComments = new List<string> { @" Test class
+                    with several lines
+                    of comments " },
+                Identifier = "TestClass"
+            };
+
+            Check(cd,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    /* Test class
+                    with several lines
+                    of comments */
                     class TestClass
                     {
                     }

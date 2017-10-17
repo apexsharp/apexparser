@@ -49,7 +49,7 @@ namespace ApexParser.Visitors
                     }
                 }
 
-                AppendAttributesAndModifiers(node);
+                AppendCommentsAttributesAndModifiers(node);
                 AppendLine("class {0}", node.Identifier);
                 AppendIndentedLine("{{");
 
@@ -74,8 +74,26 @@ namespace ApexParser.Visitors
             }
         }
 
-        private void AppendAttributesAndModifiers(MemberDeclarationSyntax node)
+        private void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node)
         {
+            foreach (var comment in node.CodeComments.AsSmart())
+            {
+                var multiLine = comment.Value.Contains('\n');
+                if (multiLine)
+                {
+                    var lines = comment.Value.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+                    foreach (var line in lines.AsSmart())
+                    {
+                        var format = line.IsFirst ? "/*{0}" : line.IsLast ? "{0}*/" : "{0}";
+                        AppendIndentedLine(format, line.Value.Trim('\r', '\n'));
+                    }
+                }
+                else
+                {
+                    AppendIndentedLine("//{0}", comment.Value.TrimEnd());
+                }
+            }
+
             foreach (var attribute in node.Attributes.AsSmart())
             {
                 AppendIndentedLine("[{0}]", attribute.Value);
@@ -102,7 +120,7 @@ namespace ApexParser.Visitors
 
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
-            AppendAttributesAndModifiers(node);
+            AppendCommentsAttributesAndModifiers(node);
             Append("{0} {1}(", node.ReturnType.Identifier, node.Identifier);
 
             foreach (var p in node.Parameters.AsSmart())
