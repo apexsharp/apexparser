@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ApexParser.MetaClass;
 using ApexParser.Parser;
+using ApexParser.Toolbox;
 using NUnit.Framework;
 using Sprache;
 
@@ -16,14 +17,15 @@ namespace ApexParserTest.Parser
         private ApexGrammar Apex { get; } = new ApexGrammar();
 
         [Test]
-        public void IdentifierIsALetterFollowedByALetterOrDigit()
+        public void IdentifierIsALetterFollowedByALetterOrDigitOrUnderscore()
         {
             // every test case should include positive examples
             Assert.AreEqual("abc", Apex.Identifier.Parse(" abc "));
             Assert.AreEqual("Test123", Apex.Identifier.Parse("Test123"));
+            Assert.AreEqual("GMOSPREF_Rest_VehicleLifecycleTest", Apex.Identifier.Parse("GMOSPREF_Rest_VehicleLifecycleTest"));
 
             // and negative ones
-            Assert.Throws<ParseException>(() => Apex.Identifier.Parse("1"));
+            Assert.Throws<ParseException>(() => Apex.Identifier.ParseEx("1"));
         }
 
         [Test]

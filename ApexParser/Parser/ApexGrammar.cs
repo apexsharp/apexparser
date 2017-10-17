@@ -13,7 +13,7 @@ namespace ApexParser.Parser
         // examples: a, Apex, code123
         protected internal virtual Parser<string> Identifier =>
         (
-            from identifier in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit)
+            from identifier in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit.Or(Parse.Char('_')))
             where !ApexKeywords.All.Contains(identifier)
             select identifier
         )
