@@ -252,7 +252,8 @@ namespace ApexParserTest.Parser
 
             block = Apex.Block.Parse("{ break; return true; continue; }");
             Assert.AreEqual(3, block.Statements.Count);
-            Assert.AreEqual("break", block.Statements[0].Body);
+            var breakStmt = block.Statements[0] as BreakStatementSyntax;
+            Assert.NotNull(breakStmt);
             Assert.AreEqual("return true", block.Statements[1].Body);
             Assert.AreEqual("continue", block.Statements[2].Body);
 
@@ -948,6 +949,15 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void BreakStatementHasNoParameters()
+        {
+            var breakStmt = Apex.BreakStatement.Parse(" break ; ");
+            Assert.NotNull(breakStmt);
+
+            Assert.Throws<ParseException>(() => Apex.BreakStatement.Parse("break"));
+        }
+
+        [Test]
         public void StatementRuleParsesStatementsOfAnyKind()
         {
             var stmt = Apex.Statement.Parse("if (false) return 'yes'; else return 'no';");
@@ -1005,7 +1015,7 @@ namespace ApexParserTest.Parser
             stmt = Apex.Statement.Parse(@"
             do
             {
-                list.add(c.Email);
+                break;
             }
             while (list.isEmpty());");
 
@@ -1016,7 +1026,8 @@ namespace ApexParserTest.Parser
             blockStmt = doWhileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
-            Assert.AreEqual("list.add(c.Email)", blockStmt.Statements[0].Body);
+            var breakStmt = blockStmt.Statements[0] as BreakStatementSyntax;
+            Assert.NotNull(breakStmt);
 
             stmt = Apex.Statement.Parse(@"
             while (list.isEmpty())

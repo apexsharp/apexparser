@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="MetaClass\BaseSyntax.cs" />
     <Compile Include="MetaClass\BlockSyntax.cs" />
+    <Compile Include="MetaClass\BreakStatementSyntax.cs" />
     <Compile Include="MetaClass\ClassDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ConstructorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\DoStatementSyntax.cs" />

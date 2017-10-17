@@ -193,6 +193,7 @@ namespace ApexParser.Parser
                 .Or(WhileStatement)
                 .Or(ForEachStatement)
                 .Or(ForStatement)
+                .Or(BreakStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
@@ -253,6 +254,12 @@ namespace ApexParser.Parser
             let expr = string.Join(string.Empty, subExpressions)
             where !string.IsNullOrWhiteSpace(expr)
             select expr;
+
+        // example: break;
+        protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>
+            from @break in Parse.String(ApexKeywords.Break).Token()
+            from semicolon in Parse.Char(';').Token()
+            select new BreakStatementSyntax();
 
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>

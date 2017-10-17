@@ -15,6 +15,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitBlock(BlockSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitBreakStatement(BreakStatementSyntax node) => DefaultVisit(node);
+
         public virtual void VisitClassDeclaration(ClassDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitConstructorDeclaration(ConstructorDeclarationSyntax node) => DefaultVisit(node);

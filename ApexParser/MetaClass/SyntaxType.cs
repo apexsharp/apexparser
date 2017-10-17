@@ -4,6 +4,7 @@
     {
         NotFound,
         Block,
+        BreakStatement,
         Class,
         Constructor,
         DoStatement,
