@@ -59,16 +59,16 @@ namespace ApexSharpBase.Converter.Apex
                 }
                 case SyntaxKind.MethodDeclaration:
                 {
-                    var methodDeclaration = (MethodDeclarationSyntax) node;
+                    var syntax = (MethodDeclarationSyntax) node;
 
-                    sb.Append(GetAttributes(methodDeclaration.AttributeLists));
+                    sb.Append(GetAttributes(syntax.AttributeLists));
                     sb.AppendLine();
-                    sb.Append($"{GetModifiers(methodDeclaration.Modifiers)} {FieldConverter.GetApexTypes(methodDeclaration.ReturnType.ToString())} {methodDeclaration.Identifier.Text}{GetParametr(methodDeclaration.ParameterList)}");
+                    sb.Append($"{GetModifiers(syntax.Modifiers)} {FieldConverter.GetApexTypes(syntax.ReturnType.ToString())} {syntax.Identifier.Text}{GetParametr(syntax.ParameterList)}");
                     sb.AppendLine();
 
-                    sb.AppendLine(methodDeclaration.Body.OpenBraceToken.Text);
+                    sb.AppendLine(syntax.Body.OpenBraceToken.Text);
                     base.Visit(node);
-                    sb.AppendLine(methodDeclaration.Body.CloseBraceToken.Text);
+                    sb.AppendLine(syntax.Body.CloseBraceToken.Text);
                     break;
                 }
                 case SyntaxKind.LocalDeclarationStatement:
