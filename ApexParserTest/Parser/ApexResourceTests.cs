@@ -546,13 +546,489 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(8, block.Statements.Count);
         }
 
-        [Test]
+        [Test(Description = @"SalesForceApexSharp\src\classes\SoqlDemo.cls")]
         public void SoqlDemoIsParsed()
         {
             var soql = Apex.ClassDeclaration.Parse(SoqlDemo);
             Assert.AreEqual(1, soql.Methods.Count);
             Assert.AreEqual("void", soql.Methods[0].ReturnType.Identifier);
             Assert.AreEqual("CrudExample", soql.Methods[0].Identifier);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassAbstract.cls")]
+        public void ClassAbstractIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassAbstract);
+            Assert.AreEqual("ClassAbstract", cd.Identifier);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("abstract", cd.Modifiers[1]);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassEnum.cls"), Ignore("TODO")]
+        public void ClassEnumIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassEnum);
+            Assert.AreEqual("ClassEnum", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassException.cls")]
+        public void ClassExceptionIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassException);
+            Assert.AreEqual("ClassException", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("Exception", cd.BaseType.Identifier);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassGlobal.cls")]
+        public void ClassGlobalIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassGlobal);
+            Assert.AreEqual("ClassGlobal", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("global", cd.Modifiers[0]);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassInterface.cls")]
+        public void ClassInterfaceIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassInterface);
+            Assert.AreEqual("ClassInterface", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(1, cd.Interfaces.Count);
+            Assert.AreEqual("IClassInterface", cd.Interfaces[0].Identifier);
+
+            Assert.AreEqual(2, cd.Methods.Count);
+            Assert.AreEqual("Id", cd.Methods[0].ReturnType.Identifier);
+            Assert.AreEqual("GetId", cd.Methods[0].Identifier);
+            Assert.AreEqual(1, cd.Methods[0].Body.Statements.Count);
+            Assert.AreEqual("string", cd.Methods[1].ReturnType.Identifier);
+            Assert.AreEqual("GetName", cd.Methods[1].Identifier);
+            Assert.AreEqual(1, cd.Methods[0].Body.Statements.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassInternal.cls")]
+        public void ClassInternalIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassInternal);
+            Assert.AreEqual("ClassInternal", cd.Identifier);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("with sharing", cd.Modifiers[1]);
+            Assert.AreEqual(2, cd.InnerClasses.Count);
+            Assert.AreEqual("InternalClassOne", cd.InnerClasses[0].Identifier);
+            Assert.AreEqual("InternalClassTwo", cd.InnerClasses[1].Identifier);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassRest.cls")]
+        public void ClassRestIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassRest);
+            Assert.AreEqual("ClassRest", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("global", cd.Modifiers[0]);
+            Assert.AreEqual(5, cd.Methods.Count);
+            Assert.AreEqual(1, cd.Annotations.Count);
+            Assert.AreEqual("RestResource", cd.Annotations[0].Identifier);
+            Assert.AreEqual("urlMapping='/api/v1/RestDemo'", cd.Annotations[0].Parameters);
+
+            Assert.AreEqual(1, cd.Methods[0].Annotations.Count);
+            Assert.AreEqual("httpDelete", cd.Methods[0].Annotations[0].Identifier);
+            Assert.AreEqual("DoDelete", cd.Methods[0].Identifier);
+            Assert.AreEqual("void", cd.Methods[0].ReturnType.Identifier);
+
+            Assert.AreEqual(1, cd.Methods[1].Annotations.Count);
+            Assert.AreEqual("httpPost", cd.Methods[1].Annotations[0].Identifier);
+            Assert.AreEqual("Post", cd.Methods[1].Identifier);
+            Assert.AreEqual("void", cd.Methods[1].ReturnType.Identifier);
+
+            Assert.AreEqual(1, cd.Methods[2].Annotations.Count);
+            Assert.AreEqual("httpGet", cd.Methods[2].Annotations[0].Identifier);
+            Assert.AreEqual("Get", cd.Methods[2].Identifier);
+            Assert.AreEqual("string", cd.Methods[2].ReturnType.Identifier);
+
+            Assert.AreEqual(1, cd.Methods[3].Annotations.Count);
+            Assert.AreEqual("httpPatch", cd.Methods[3].Annotations[0].Identifier);
+            Assert.AreEqual("Patch", cd.Methods[3].Identifier);
+            Assert.AreEqual("void", cd.Methods[3].ReturnType.Identifier);
+
+            Assert.AreEqual(1, cd.Methods[4].Annotations.Count);
+            Assert.AreEqual("httpPut", cd.Methods[4].Annotations[0].Identifier);
+            Assert.AreEqual("Put", cd.Methods[4].Identifier);
+            Assert.AreEqual("void", cd.Methods[4].ReturnType.Identifier);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassUnitTest.cls")]
+        public void ClassUnitTestIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassUnitTest);
+            Assert.AreEqual("ClassUnitTest", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(7, cd.Methods.Count);
+            Assert.AreEqual(1, cd.Annotations.Count);
+            Assert.AreEqual("isTest", cd.Annotations[0].Identifier);
+
+            Assert.AreEqual(1, cd.Methods[0].Annotations.Count);
+            Assert.AreEqual("TestSetup", cd.Methods[0].Annotations[0].Identifier);
+            Assert.AreEqual("Setup", cd.Methods[0].Identifier);
+            Assert.AreEqual("void", cd.Methods[0].ReturnType.Identifier);
+
+            Assert.AreEqual(1, cd.Methods[1].Annotations.Count);
+            Assert.AreEqual("isTest", cd.Methods[1].Annotations[0].Identifier);
+            Assert.AreEqual("AssertTrue", cd.Methods[1].Identifier);
+            Assert.AreEqual("void", cd.Methods[1].ReturnType.Identifier);
+
+            Assert.AreEqual(1, cd.Methods[2].Annotations.Count);
+            Assert.AreEqual("isTest", cd.Methods[2].Annotations[0].Identifier);
+            Assert.AreEqual("AssertEquals", cd.Methods[2].Identifier);
+            Assert.AreEqual("void", cd.Methods[2].ReturnType.Identifier);
+
+            Assert.AreEqual(1, cd.Methods[3].Annotations.Count);
+            Assert.AreEqual("isTest", cd.Methods[3].Annotations[0].Identifier);
+            Assert.AreEqual("AssertNotEquals", cd.Methods[3].Identifier);
+            Assert.AreEqual("void", cd.Methods[3].ReturnType.Identifier);
+
+            Assert.False(cd.Methods[4].Annotations.Any());
+            Assert.AreEqual(3, cd.Methods[4].Modifiers.Count);
+            Assert.AreEqual("testmethod", cd.Methods[4].Modifiers[0]);
+            Assert.AreEqual("public", cd.Methods[4].Modifiers[1]);
+            Assert.AreEqual("static", cd.Methods[4].Modifiers[2]);
+            Assert.AreEqual("AssertNew", cd.Methods[4].Identifier);
+            Assert.AreEqual("void", cd.Methods[4].ReturnType.Identifier);
+
+            Assert.False(cd.Methods[5].Annotations.Any());
+            Assert.AreEqual(3, cd.Methods[5].Modifiers.Count);
+            Assert.AreEqual("static", cd.Methods[5].Modifiers[0]);
+            Assert.AreEqual("testmethod", cd.Methods[5].Modifiers[1]);
+            Assert.AreEqual("public", cd.Methods[5].Modifiers[2]);
+            Assert.AreEqual("AssertEqualsNew", cd.Methods[5].Identifier);
+            Assert.AreEqual("void", cd.Methods[5].ReturnType.Identifier);
+
+            Assert.False(cd.Methods[6].Annotations.Any());
+            Assert.AreEqual(3, cd.Methods[6].Modifiers.Count);
+            Assert.AreEqual("static", cd.Methods[6].Modifiers[0]);
+            Assert.AreEqual("public", cd.Methods[6].Modifiers[1]);
+            Assert.AreEqual("testmethod", cd.Methods[6].Modifiers[2]);
+            Assert.AreEqual("AssertNotEqualsNew", cd.Methods[6].Identifier);
+            Assert.AreEqual("void", cd.Methods[6].ReturnType.Identifier);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassUnitTestSeeAllData.cls")]
+        public void ClassUnitTestSeeAllDataIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassUnitTestSeeAllData);
+            Assert.AreEqual("ClassUnitTestSeeAllData", cd.Identifier);
+            Assert.AreEqual(1, cd.Annotations.Count);
+            Assert.AreEqual("isTest", cd.Annotations[0].Identifier);
+            Assert.AreEqual("SeeAllData=true", cd.Annotations[0].Parameters);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassVirtual.cls")]
+        public void ClassVirtualIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassVirtual);
+            Assert.AreEqual("ClassVirtual", cd.Identifier);
+            Assert.AreEqual(0, cd.Annotations.Count);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("virtual", cd.Modifiers[1]);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassWithOutSharing.cls")]
+        public void ClassWithOutSharingIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassWithOutSharing);
+            Assert.AreEqual("ClassWithOutSharing", cd.Identifier);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("without sharing", cd.Modifiers[1]);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassWithSharing.cls")]
+        public void ClassWithSharingIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ClassWithSharing);
+            Assert.AreEqual("ClassWithSharing", cd.Identifier);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("with sharing", cd.Modifiers[1]);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ExceptionDemo.cls"), Ignore("TODO: try-catch-finally")]
+        public void ExceptionDemoIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ExceptionDemo);
+            Assert.AreEqual("ExceptionDemo", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(2, cd.Methods.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ForIfWhile.cls")]
+        public void ForIfWhile2AreParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ForIfWhile2);
+            Assert.False(cd.Annotations.Any());
+            Assert.AreEqual("ForIfWhile", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(7, cd.Methods.Count);
+            Assert.False(cd.Properties.Any());
+
+            var md = cd.Methods[0];
+            Assert.AreEqual("MethodIfClean", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.AreEqual(1, md.Parameters.Count);
+            Assert.AreEqual("place", md.Parameters[0].Identifier);
+            Assert.AreEqual("Integer", md.Parameters[0].Type.Identifier);
+            var block = md.Body as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
+
+            md = cd.Methods[1];
+            Assert.AreEqual("MethodForTraditional", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.False(md.Parameters.Any());
+            block = md.Body as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+
+            var forStmt = block.Statements[0] as ForStatementSyntax;
+            Assert.NotNull(forStmt);
+            Assert.NotNull(forStmt.Declaration);
+            Assert.AreEqual("Integer", forStmt.Declaration.Type.Identifier);
+            Assert.AreEqual(1, forStmt.Declaration.Variables.Count);
+            Assert.AreEqual("i", forStmt.Declaration.Variables[0].Identifier);
+            Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression);
+            Assert.AreEqual("i < 10", forStmt.Condition);
+            Assert.NotNull(forStmt.Incrementors);
+            Assert.AreEqual(1, forStmt.Incrementors.Count);
+            Assert.AreEqual("i++", forStmt.Incrementors[0]);
+
+            block = forStmt.Statement as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("System.debug (i + 1)", block.Statements[0].Body);
+
+            md = cd.Methods[2];
+            Assert.AreEqual("MethodForIteration", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.False(md.Parameters.Any());
+            block = md.Body as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
+
+            var forEachStmt = block.Statements[1] as ForEachStatementSyntax;
+            Assert.NotNull(forEachStmt);
+            Assert.AreEqual("Integer", forEachStmt.Type.Identifier);
+            Assert.AreEqual("myInt", forEachStmt.Identifier);
+            Assert.AreEqual("myInts", forEachStmt.Expression);
+            block = forEachStmt.Statement as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("System.debug (myInt)", block.Statements[0].Body);
+
+            md = cd.Methods[3];
+            Assert.AreEqual("MethodDo", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.False(md.Parameters.Any());
+            block = md.Body as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
+
+            md = cd.Methods[4];
+            Assert.AreEqual("MethodWhile", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.False(md.Parameters.Any());
+            block = md.Body as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(2, block.Statements.Count);
+
+            md = cd.Methods[5];
+            Assert.AreEqual("ForLoopTest", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.False(md.Parameters.Any());
+            block = md.Body as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+
+            md = cd.Methods[6];
+            Assert.AreEqual("GetContact", md.Identifier);
+            Assert.AreEqual("string", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.AreEqual(1, md.Parameters.Count);
+            block = md.Body as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\GetSetDemo.cls"), Ignore("TODO: property accessor modifiers")]
+        public void GetSetDemoIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(GetSetDemo);
+            Assert.AreEqual("GetSetDemo", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(0, cd.Methods.Count);
+            Assert.AreEqual(11, cd.Properties.Count);
+            Assert.AreEqual(3, cd.Fields.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterface.cls"), Ignore("TODO: interfaces")]
+        public void IClassInterfaceIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(IClassInterface);
+            Assert.AreEqual("IClassInterface", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(1, cd.Methods.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterfaceExt.cls"), Ignore("TODO: interfaces")]
+        public void IClassInterfaceExtIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(IClassInterfaceExt);
+            Assert.AreEqual("IClassInterfaceExt", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(1, cd.Methods.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\JsonExample.cls")]
+        public void JsonExampleIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(JsonExample);
+            Assert.AreEqual("JsonExample", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(1, cd.Methods.Count);
+            Assert.AreEqual("JsonExampleMethod", cd.Methods[0].Identifier);
+            Assert.AreEqual(3, cd.Methods[0].Body.Statements.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ListAndArrayDemo.cls"), Ignore("TODO: array and list initializers")]
+        public void ListAndArrayDemoIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(ListAndArrayDemo);
+            Assert.AreEqual("ListAndArrayDemo", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(2, cd.Fields.Count);
+            Assert.AreEqual(1, cd.Methods.Count);
+            Assert.AreEqual("Method", cd.Methods[0].Identifier);
+            Assert.AreEqual(2, cd.Methods[0].Body.Statements.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\MethodAndConstructor.cls"), Ignore("TODO: abstract methods without the body")]
+        public void MethodAndConstructorIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(MethodAndConstructor);
+            Assert.AreEqual("MethodAndConstructor", cd.Identifier);
+            Assert.AreEqual(2, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual("abstract", cd.Modifiers[0]);
+            Assert.AreEqual(19, cd.Methods.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\PrimitiveTypes.cls")]
+        public void PrimitiveTypesIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(PrimitiveTypes);
+            Assert.AreEqual("PrimitiveTypes", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(11, cd.Fields.Count);
+            Assert.AreEqual(1, cd.Methods.Count);
+            Assert.AreEqual("DemoMethod", cd.Methods[0].Identifier);
+            Assert.AreEqual(2, cd.Methods[0].Body.Statements.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\PropertyAndField.cls")]
+        public void PropertyAndField2IsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(PropertyAndField2);
+            Assert.AreEqual("PropertyAndField", cd.Identifier);
+            Assert.AreEqual(0, cd.CodeComments.Count);
+            Assert.AreEqual(1, cd.Methods.Count);
+            Assert.AreEqual(3, cd.Properties.Count);
+            Assert.AreEqual(9, cd.Fields.Count);
+
+            var pd = cd.Properties[2];
+            Assert.AreEqual("DateTimeGetSetArray", pd.Identifier);
+            Assert.AreEqual("DateTime", pd.Type.Identifier);
+            Assert.False(pd.Type.TypeParameters.Any());
+            Assert.IsTrue(pd.Type.IsArray);
+            Assert.NotNull(pd.GetterStatement);
+            Assert.NotNull(pd.SetterStatement);
+
+            var fd = cd.Fields[3];
+            Assert.AreEqual("DateTimeList", fd.Identifier);
+            Assert.AreEqual("List", fd.Type.Identifier);
+            Assert.AreEqual(1, fd.Type.TypeParameters.Count);
+            Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
+            Assert.IsFalse(fd.Type.IsArray);
+            Assert.AreEqual("new List<DateTime>()", fd.Expression);
+
+            fd = cd.Fields[4];
+            Assert.False(fd.Annotations.Any());
+            Assert.AreEqual("DateTimeArray", fd.Identifier);
+            Assert.AreEqual("DateTime", fd.Type.Identifier);
+            Assert.False(fd.Type.TypeParameters.Any());
+            Assert.IsTrue(fd.Type.IsArray);
+            Assert.AreEqual(1, fd.Modifiers.Count);
+            Assert.AreEqual("public", fd.Modifiers[0]);
+            Assert.AreEqual("new DateTime[5]", fd.Expression);
+
+            fd = cd.Fields[8];
+            Assert.False(fd.Annotations.Any());
+            Assert.AreEqual("NameStaticFinal", fd.Identifier);
+            Assert.AreEqual("String", fd.Type.Identifier);
+            Assert.False(fd.Type.TypeParameters.Any());
+            Assert.False(fd.Type.IsArray);
+            Assert.AreEqual(3, fd.Modifiers.Count);
+            Assert.AreEqual("public", fd.Modifiers[0]);
+            Assert.AreEqual("static", fd.Modifiers[1]);
+            Assert.AreEqual("final", fd.Modifiers[2]);
+            Assert.AreEqual("'jay'", fd.Expression);
+
+            var md = cd.Methods[0];
+            Assert.AreEqual("MethodOne", md.Identifier);
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.False(md.Annotations.Any());
+            Assert.False(md.Parameters.Any());
+            Assert.AreEqual(1, md.Modifiers.Count);
+            Assert.AreEqual("public", md.Modifiers[0]);
+
+            var block = md.Body;
+            Assert.NotNull(block);
+            Assert.AreEqual(7, block.Statements.Count);
+        }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\RunAll.cls")]
+        public void RunAllIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(RunAll);
+            Assert.AreEqual("RunAll", cd.Identifier);
+            Assert.AreEqual(1, cd.Modifiers.Count);
+            Assert.AreEqual("public", cd.Modifiers[0]);
+            Assert.AreEqual(0, cd.Fields.Count);
+            Assert.AreEqual(1, cd.Constructors.Count);
+            Assert.AreEqual("RunAll", cd.Constructors[0].Identifier);
+            Assert.AreEqual(10, cd.Constructors[0].Body.Statements.Count);
         }
     }
 }

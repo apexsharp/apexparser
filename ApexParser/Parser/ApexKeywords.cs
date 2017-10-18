@@ -8,12 +8,16 @@ namespace ApexParser.Parser
 {
     public static class ApexKeywords
     {
-        public static HashSet<string> All { get; } =
+        public static HashSet<string> ReservedWords { get; } =
             new HashSet<string>(AllStringConstants, StringComparer.InvariantCultureIgnoreCase);
 
         private static IEnumerable<string> AllStringConstants =>
             typeof(ApexKeywords).GetFields().Select(f => f.GetValue(null)).OfType<string>();
 
+        // TODO:
+        // 1. update the list of reserved keywords from here:
+        // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_reserved_words.htm
+        // 2. add keywords that are not reserved
         public const string Abstract = "abstract";
         public const string Boolean = "boolean";
         public const string Break = "break";
@@ -23,7 +27,7 @@ namespace ApexParser.Parser
         public const string Class = "class";
         public const string Const = "const";
         public const string Continue = "continue";
-        ////public const string Database = "database"; // not a keyword?
+        ////public const string Database = "database"; // not reserved?
         public const string Default = "default";
         public const string Delete = "delete"; // apex soql
         public const string Do = "do";
@@ -36,7 +40,7 @@ namespace ApexParser.Parser
         public const string Float = "float";
         public const string For = "for";
         public const string If = "if";
-        public const string Get = "get";
+        ////public const string Get = "get"; // not reserved?
         public const string Global = "global"; // apex
         public const string Goto = "goto";
         public const string Implements = "implements";
@@ -54,7 +58,7 @@ namespace ApexParser.Parser
         public const string Protected = "protected";
         public const string Public = "public";
         public const string Return = "return";
-        public const string Set = "set";
+        ////public const string Set = "set"; // not reserved
         public const string Sharing = "sharing";
         public const string Short = "short";
         public const string Static = "static";

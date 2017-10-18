@@ -14,7 +14,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<string> Identifier =>
         (
             from identifier in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit.Or(Parse.Char('_')))
-            where !ApexKeywords.All.Contains(identifier)
+            where !ApexKeywords.ReservedWords.Contains(identifier)
             select identifier
         )
         .Token().Named("Identifier");
@@ -107,7 +107,7 @@ namespace ApexParser.Parser
             Parse.IgnoreCase(ApexKeywords.TestMethod)).Or(
             Parse.IgnoreCase(ApexKeywords.With).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
             Parse.IgnoreCase(ApexKeywords.Without).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
-            Parse.IgnoreCase("todo?"))
+            Parse.IgnoreCase("transient"))
                 .Text().Token().Select(t => t.ToLower()).Named("Modifier");
 
         // examples:
@@ -165,8 +165,8 @@ namespace ApexParser.Parser
 
         // examples: get; set; get { ... }
         protected internal virtual Parser<Tuple<string, StatementSyntax>> PropertyAccessor =>
-            from getOrSet in Parse.String(ApexKeywords.Get).Or(Parse.String(ApexKeywords.Set)).Token().Text()
-            from block in Parse.String(";").Token().Text().Return(new StatementSyntax()).Or(Block)
+            from getOrSet in Parse.IgnoreCase("get").Or(Parse.IgnoreCase("set")).Token().Text()
+            from block in Parse.Char(';').Token().Return(new StatementSyntax()).Or(Block)
             select Tuple.Create(getOrSet, block);
 
         // example: private int width;
@@ -263,16 +263,16 @@ namespace ApexParser.Parser
 
         // example: break;
         protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>
-            from @break in Parse.String(ApexKeywords.Break).Token()
+            from @break in Parse.IgnoreCase(ApexKeywords.Break).Token()
             from semicolon in Parse.Char(';').Token()
             select new BreakStatementSyntax();
 
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>
-            from ifKeyword in Parse.String(ApexKeywords.If).Token()
+            from ifKeyword in Parse.IgnoreCase(ApexKeywords.If).Token()
             from expression in GenericExpressionInBraces
             from thenBranch in Statement
-            from elseBranch in Parse.String(ApexKeywords.Else).Token().Then(_ => Statement).Optional()
+            from elseBranch in Parse.IgnoreCase(ApexKeywords.Else).Token().Then(_ => Statement).Optional()
             select new IfStatementSyntax
             {
                 Expression = expression,
@@ -282,7 +282,7 @@ namespace ApexParser.Parser
 
         // simple foreach statement without the expression support
         protected internal virtual Parser<ForEachStatementSyntax> ForEachStatement =>
-            from forKeyword in Parse.String(ApexKeywords.For).Token()
+            from forKeyword in Parse.IgnoreCase(ApexKeywords.For).Token()
             from openBrace in Parse.Char('(').Token()
             from typeReference in TypeReference
             from identifier in Identifier
@@ -300,7 +300,7 @@ namespace ApexParser.Parser
 
         // simple for statement without the expression support
         protected internal virtual Parser<ForStatementSyntax> ForStatement =>
-            from forKeyword in Parse.String(ApexKeywords.For).Token()
+            from forKeyword in Parse.IgnoreCase(ApexKeywords.For).Token()
             from openBrace in Parse.Char('(').Token()
             from declaration in VariableDeclaration.Or(Parse.Char(';').Token().Return(default(VariableDeclarationSyntax)))
             from condition in GenericExpression.Optional()
@@ -318,9 +318,9 @@ namespace ApexParser.Parser
 
         // simple do-while statement without the expression support
         protected internal virtual Parser<DoStatementSyntax> DoStatement =>
-            from doKeyword in Parse.String(ApexKeywords.Do).Token()
+            from doKeyword in Parse.IgnoreCase(ApexKeywords.Do).Token()
             from loopBody in Statement
-            from whileKeyword in Parse.String(ApexKeywords.While).Token()
+            from whileKeyword in Parse.IgnoreCase(ApexKeywords.While).Token()
             from expression in GenericExpressionInBraces
             from semicolon in Parse.Char(';').Token()
             select new DoStatementSyntax
@@ -331,7 +331,7 @@ namespace ApexParser.Parser
 
         // simple while statement without the expression support
         protected internal virtual Parser<WhileStatementSyntax> WhileStatement =>
-            from whileKeyword in Parse.String(ApexKeywords.While).Token()
+            from whileKeyword in Parse.IgnoreCase(ApexKeywords.While).Token()
             from expression in GenericExpressionInBraces
             from loopBody in Statement
             select new WhileStatementSyntax
@@ -370,10 +370,10 @@ namespace ApexParser.Parser
 
         // example: class Program { void main() {} }
         protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclarationBody =>
-            from @class in Parse.String(ApexKeywords.Class).Token()
+            from @class in Parse.IgnoreCase(ApexKeywords.Class).Token()
             from className in Identifier
-            from baseType in Parse.String(ApexKeywords.Extends).Token().Then(t => TypeReference).Optional()
-            from interfaces in Parse.String(ApexKeywords.Implements).Token().Then(t => TypeReference.DelimitedBy(Parse.Char(',').Token())).Optional()
+            from baseType in Parse.IgnoreCase(ApexKeywords.Extends).Token().Then(t => TypeReference).Optional()
+            from interfaces in Parse.IgnoreCase(ApexKeywords.Implements).Token().Then(t => TypeReference.DelimitedBy(Parse.Char(',').Token())).Optional()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
             from closeBrace in Parse.Char('}').Token()

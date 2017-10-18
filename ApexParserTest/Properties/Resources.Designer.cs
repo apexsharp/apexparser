@@ -61,6 +61,89 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public abstract class ClassAbstract
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassAbstract {
+            get {
+                return ResourceManager.GetString("ClassAbstract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public enum ClassEnum
+        ///{
+        ///    America,
+        ///    Canada,
+        ///    Russia
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassEnum {
+            get {
+                return ResourceManager.GetString("ClassEnum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassException extends Exception
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassException {
+            get {
+                return ResourceManager.GetString("ClassException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to global class ClassGlobal
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassGlobal {
+            get {
+                return ResourceManager.GetString("ClassGlobal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInterface implements IClassInterface
+        ///{
+        ///    public Id GetId() {
+        ///        return &apos;&apos;;
+        ///    }
+        ///    public string GetName()
+        ///    {
+        ///        return &apos;Jay&apos;;
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInterface {
+            get {
+                return ResourceManager.GetString("ClassInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class ClassInternal
+        ///{
+        ///    public class InternalClassOne
+        ///    {
+        ///    }
+        ///    public class InternalClassTwo
+        ///    {
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInternal {
+            get {
+                return ResourceManager.GetString("ClassInternal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassOne {
         ///    public void CallClassTwo() {
         ///        ClassTwo classTwo = new ClassTwo();
@@ -88,6 +171,38 @@ namespace ApexParserTest.Properties {
         internal static string ClassOne_Formatted {
             get {
                 return ResourceManager.GetString("ClassOne_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @RestResource(urlMapping=&apos;/api/v1/RestDemo&apos;)
+        ///global class ClassRest
+        ///{
+        ///    @httpDelete
+        ///    global static void DoDelete() {
+        ///    }
+        ///
+        ///    @httpPost
+        ///    global static void Post() {
+        ///    }
+        ///
+        ///    @httpGet
+        ///    global static string Get() {
+        ///        return &apos;Jay&apos;;
+        ///    }
+        ///
+        ///    @httpPatch
+        ///    global static void Patch() {
+        ///    }
+        ///
+        ///    @httpPut
+        ///    global static void Put() {
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassRest {
+            get {
+                return ResourceManager.GetString("ClassRest", resourceCulture);
             }
         }
         
@@ -124,6 +239,61 @@ namespace ApexParserTest.Properties {
         internal static string ClassTwo_Formatted {
             get {
                 return ResourceManager.GetString("ClassTwo_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public class ClassUnitTest
+        ///{
+        ///    @TestSetup
+        ///    public static void Setup()
+        ///    {
+        ///        System.Debug(&apos;One Time Setup Got Called&apos;);
+        ///    }
+        ///    @isTest
+        ///    public static void AssertTrue()
+        ///    {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///    @isTest
+        ///    public static void AssertEquals()
+        ///    {
+        ///        System.AssertEquals(5, 5, &apos;Assert Equal&apos;);
+        ///    }
+        ///    @isTest
+        ///    public static void AssertNotEquals()
+        ///    {
+        ///        System.AssertNotEquals(5, 0, &apos;Assert Not Equal&apos;);
+        ///    }
+        ///    [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassUnitTest {
+            get {
+                return ResourceManager.GetString("ClassUnitTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest(SeeAllData=true)
+        ///public class ClassUnitTestSeeAllData
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassUnitTestSeeAllData {
+            get {
+                return ResourceManager.GetString("ClassUnitTestSeeAllData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public virtual class ClassVirtual
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassVirtual {
+            get {
+                return ResourceManager.GetString("ClassVirtual", resourceCulture);
             }
         }
         
@@ -179,6 +349,28 @@ namespace ApexParserTest.Properties {
         internal static string ClassWithComments_Formatted {
             get {
                 return ResourceManager.GetString("ClassWithComments_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public without sharing class ClassWithOutSharing
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassWithOutSharing {
+            get {
+                return ResourceManager.GetString("ClassWithOutSharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class ClassWithSharing
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassWithSharing {
+            get {
+                return ResourceManager.GetString("ClassWithSharing", resourceCulture);
             }
         }
         
@@ -305,6 +497,37 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public class ExceptionDemo
+        ///{
+        ///    public static void CatchDemo()
+        ///    {
+        ///        try
+        ///        {
+        ///            ThrowDemo();
+        ///        }
+        ///        catch (MathException e)
+        ///        {
+        ///            System.debug(e.getMessage());
+        ///        }
+        ///        finally
+        ///        {
+        ///            System.debug(&apos;Finally&apos;);
+        ///        }
+        ///    }
+        ///
+        ///    public static void ThrowDemo()
+        ///    {
+        ///        throw new MathException(&apos;something bad happened!&apos;);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ExceptionDemo {
+            get {
+                return ResourceManager.GetString("ExceptionDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public with sharing class ForIfWhile
         ///{
         ///    public void MethodIfClean()
@@ -335,6 +558,40 @@ namespace ApexParserTest.Properties {
         internal static string ForIfWhile {
             get {
                 return ResourceManager.GetString("ForIfWhile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile
+        ///{
+        ///    public void MethodIfClean(Integer place)
+        ///    {
+        ///        String modelColor;
+        ///
+        ///        if (place == 1)
+        ///        {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        }
+        ///        else
+        ///        {
+        ///            modelColor = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional()
+        ///    {
+        ///        for (Integ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile2 {
+            get {
+                return ResourceManager.GetString("ForIfWhile2", resourceCulture);
             }
         }
         
@@ -393,6 +650,157 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public class GetSetDemo {
+        ///    public double MyReadWritePropPublic { get; set; }
+        ///    private Integer propPrvt;
+        ///    public Integer prop {
+        ///        get {
+        ///            return propPrvt;
+        ///        }
+        ///        set {
+        ///            propPrvt = value;
+        ///        }
+        ///    }
+        ///    public Integer MyReadOnlyProp {
+        ///        get;
+        ///    }
+        ///
+        ///    private static Integer myStaticPropPrvt;
+        ///    public static Integer MyStaticProp {
+        ///        get {
+        ///            return myStaticPropPrvt;
+        ///        }
+        ///    }
+        ///
+        ///    Integer MyReadOnlyPropPrvt  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GetSetDemo {
+            get {
+                return ResourceManager.GetString("GetSetDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public interface IClassInterface extends IClassInterfaceExt {
+        ///    string GetName();
+        ///}
+        ///.
+        /// </summary>
+        internal static string IClassInterface {
+            get {
+                return ResourceManager.GetString("IClassInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public interface IClassInterfaceExt {
+        ///    Id GetId();
+        ///}.
+        /// </summary>
+        internal static string IClassInterfaceExt {
+            get {
+                return ResourceManager.GetString("IClassInterfaceExt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class JsonExample
+        ///{
+        ///    public void JsonExampleMethod()
+        ///    {
+        ///        String name = &apos;Jay&apos;;
+        ///
+        ///        String jsonString = JSON.Serialize(name);
+        ///
+        ///        String newName = (String)JSON.Deserialize(jsonString, String.class);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string JsonExample {
+            get {
+                return ResourceManager.GetString("JsonExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ListAndArrayDemo {
+        ///    public List&lt;String&gt; StringList = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
+        ///    public Integer[] IntegerArray = new Integer[]{1, 2, 3};
+        ///
+        ///    public void Method() {
+        ///        List&lt;String&gt; StringListLocal = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
+        ///        Integer[] IntegerArrayLocal = new Integer[]{1, 2, 3};
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ListAndArrayDemo {
+            get {
+                return ResourceManager.GetString("ListAndArrayDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to global abstract class MethodAndConstructor
+        ///{
+        ///    global abstract void MethodThree();
+        ///
+        ///    MethodAndConstructor()
+        ///    {
+        ///    }
+        ///    public MethodAndConstructor(String demo)
+        ///    {
+        ///    }
+        ///    public virtual void VirtualMethod()
+        ///    {
+        ///    }
+        ///    @future
+        ///    public static void FutureMethod()
+        ///    {
+        ///    }
+        ///    @future(callOut=true)
+        ///    public static void FutureMethodWithCallOut()
+        ///    {
+        ///    }
+        ///    void StringVoid()
+        ///    {
+        ///    }
+        ///
+        ///    private void StringPrivateVoid()
+        ///    {
+        ///
+        ///    }
+        ///    public void [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MethodAndConstructor {
+            get {
+                return ResourceManager.GetString("MethodAndConstructor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class PrimitiveTypes
+        ///{
+        ///    public Blob MyBlob = Blob.ValueOf(&apos;Jay&apos;);
+        ///    public Boolean IsWinner = true;
+        ///    public Date MyDate = Date.Today();
+        ///    public DateTime MyDateTime = DateTime.Now();
+        ///    public Decimal MyDecimal = 12.4567;
+        ///    public Double d=3.133433;
+        ///    public Id MyId = &apos;006E0000004TquXIAS&apos;;
+        ///    public Integer MyInteger = 1;
+        ///    public Long MyLong = 23432424242L;
+        ///    public Time MyTime = Time.NewInstance(1, 2, 3, 4);
+        ///    public String MyString = &apos;Jay&apos;;
+        ///
+        ///    public void Demo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PrimitiveTypes {
+            get {
+                return ResourceManager.GetString("PrimitiveTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to // ClassDeclaration
         ///public with sharing class PropertyAndField
         ///{
@@ -411,6 +819,47 @@ namespace ApexParserTest.Properties {
         internal static string PropertyAndField {
             get {
                 return ResourceManager.GetString("PropertyAndField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class PropertyAndField
+        ///{
+        ///    transient Integer TransientInteger;
+        ///    public DateTime DateTimeGetSet { get; set; }
+        ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///    public DateTime[] DateTimeGetSetArray { get; set; }
+        ///    public DateTime DateTimeEmpty;
+        ///    public DateTime DateTimeInitialized = DateTime.now();
+        ///    public List&lt;DateTime&gt; DateTimeList = new List&lt;DateTime&gt;();
+        ///    public DateTime[] DateTimeArray = new DateTime[5];
+        ///    public String Name = &apos;jay&apos;;
+        ///    public final St [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PropertyAndField2 {
+            get {
+                return ResourceManager.GetString("PropertyAndField2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class RunAll
+        ///{
+        ///    public RunAll()
+        ///    {
+        ///        //ClassAbstract classAbstract = new ClassAbstract();
+        ///        //ClassEnum classEnum = ClassEnum.America;
+        ///        ClassException classException = new ClassException();
+        ///        ClassGlobal classGlobal = new ClassGlobal();
+        ///        ClassInterface classInterface = new ClassInterface();
+        ///
+        ///        ClassInternal classInternal = new ClassInternal();
+        ///        ClassInternal.InternalClassOne internalClassOne = new ClassInternal.InternalClassOne();
+        ///        [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RunAll {
+            get {
+                return ResourceManager.GetString("RunAll", resourceCulture);
             }
         }
         

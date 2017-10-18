@@ -114,6 +114,29 @@
     <None Include="ApexTestClasses\FormatDemo_Formatted.cls" />
     <None Include="ApexTestClasses\SoqlDemo.cs" />
     <None Include="ApexTestClasses\SoqlDemo.cls" />
+    <None Include="ApexTestClasses\ClassAbstract.cls" />
+    <None Include="ApexTestClasses\ClassEnum.cls" />
+    <None Include="ApexTestClasses\ClassException.cls" />
+    <None Include="ApexTestClasses\ClassGlobal.cls" />
+    <None Include="ApexTestClasses\ClassInterface.cls" />
+    <None Include="ApexTestClasses\ClassInternal.cls" />
+    <None Include="ApexTestClasses\ClassRest.cls" />
+    <None Include="ApexTestClasses\ClassUnitTest.cls" />
+    <None Include="ApexTestClasses\ClassUnitTestSeeAllData.cls" />
+    <None Include="ApexTestClasses\ClassVirtual.cls" />
+    <None Include="ApexTestClasses\ClassWithOutSharing.cls" />
+    <None Include="ApexTestClasses\ClassWithSharing.cls" />
+    <None Include="ApexTestClasses\ExceptionDemo.cls" />
+    <None Include="ApexTestClasses\ForIfWhile2.cls" />
+    <None Include="ApexTestClasses\GetSetDemo.cls" />
+    <None Include="ApexTestClasses\IClassInterface.cls" />
+    <None Include="ApexTestClasses\IClassInterfaceExt.cls" />
+    <None Include="ApexTestClasses\JsonExample.cls" />
+    <None Include="ApexTestClasses\ListAndArrayDemo.cls" />
+    <None Include="ApexTestClasses\MethodAndConstructor.cls" />
+    <None Include="ApexTestClasses\PrimitiveTypes.cls" />
+    <None Include="ApexTestClasses\PropertyAndField2.cls" />
+    <None Include="ApexTestClasses\RunAll.cls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
