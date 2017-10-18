@@ -35,16 +35,17 @@ namespace ApexParser.Parser
 
         // examples: int, void
         protected internal virtual Parser<TypeSyntax> PrimitiveType =>
-            Parse.String(ApexKeywords.Boolean).Or(
-            Parse.String(ApexKeywords.Byte)).Or(
-            Parse.String(ApexKeywords.Char)).Or(
-            Parse.String(ApexKeywords.Double)).Or(
-            Parse.String(ApexKeywords.Float)).Or(
-            Parse.String(ApexKeywords.Int)).Or(
-            Parse.String(ApexKeywords.Long)).Or(
-            Parse.String(ApexKeywords.Short)).Or(
-            Parse.String(ApexKeywords.Void))
-                .Token().Text().Select(n => new TypeSyntax(n))
+            Parse.IgnoreCase(ApexKeywords.Boolean).Or(
+            Parse.IgnoreCase(ApexKeywords.Byte)).Or(
+            Parse.IgnoreCase(ApexKeywords.Char)).Or(
+            Parse.IgnoreCase(ApexKeywords.Double)).Or(
+            Parse.IgnoreCase(ApexKeywords.Float)).Or(
+            Parse.IgnoreCase(ApexKeywords.Int)).Or(
+            Parse.IgnoreCase(ApexKeywords.Long)).Or(
+            Parse.IgnoreCase(ApexKeywords.Short)).Or(
+            Parse.IgnoreCase(ApexKeywords.Void))
+                .Text().Then(n => Parse.Not(Parse.Letter).Return(n.ToLower()))
+                .Token().Select(n => new TypeSyntax(n))
                 .Named("PrimitiveType");
 
         // examples: int, String, System.Collections.Hashtable
@@ -88,21 +89,21 @@ namespace ApexParser.Parser
 
         // examples: public, private, with sharing
         protected internal virtual Parser<string> Modifier =>
-            Parse.String(ApexKeywords.Public).Or(
-            Parse.String(ApexKeywords.Protected)).Or(
-            Parse.String(ApexKeywords.Private)).Or(
-            Parse.String(ApexKeywords.Static)).Or(
-            Parse.String(ApexKeywords.Abstract)).Or(
-            Parse.String(ApexKeywords.Final)).Or(
-            Parse.String(ApexKeywords.Global)).Or(
-            Parse.String(ApexKeywords.WebService)).Or(
-            Parse.String(ApexKeywords.Override)).Or(
-            Parse.String(ApexKeywords.Virtual)).Or(
-            Parse.String(ApexKeywords.TestMethod)).Or(
-            Parse.String(ApexKeywords.With).Token().Then(_ => Parse.String(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
-            Parse.String(ApexKeywords.Without).Token().Then(_ => Parse.String(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
-            Parse.String("todo?"))
-                .Text().Token().Named("Modifier");
+            Parse.IgnoreCase(ApexKeywords.Public).Or(
+            Parse.IgnoreCase(ApexKeywords.Protected)).Or(
+            Parse.IgnoreCase(ApexKeywords.Private)).Or(
+            Parse.IgnoreCase(ApexKeywords.Static)).Or(
+            Parse.IgnoreCase(ApexKeywords.Abstract)).Or(
+            Parse.IgnoreCase(ApexKeywords.Final)).Or(
+            Parse.IgnoreCase(ApexKeywords.Global)).Or(
+            Parse.IgnoreCase(ApexKeywords.WebService)).Or(
+            Parse.IgnoreCase(ApexKeywords.Override)).Or(
+            Parse.IgnoreCase(ApexKeywords.Virtual)).Or(
+            Parse.IgnoreCase(ApexKeywords.TestMethod)).Or(
+            Parse.IgnoreCase(ApexKeywords.With).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
+            Parse.IgnoreCase(ApexKeywords.Without).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
+            Parse.IgnoreCase("todo?"))
+                .Text().Token().Select(t => t.ToLower()).Named("Modifier");
 
         // examples:
         // @isTest void Test() {}

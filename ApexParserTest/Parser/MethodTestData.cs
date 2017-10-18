@@ -59,7 +59,7 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual(2, method.Modifiers.Count);
             Assert.AreEqual("public", method.Modifiers[0]);
-            Assert.AreEqual("testMethod", method.Modifiers[1]);
+            Assert.AreEqual("testmethod", method.Modifiers[1]);
             Assert.AreEqual("void", method.ReturnType.Identifier);
             Assert.AreEqual("MethodWithSomeDummyBody", method.Identifier);
 

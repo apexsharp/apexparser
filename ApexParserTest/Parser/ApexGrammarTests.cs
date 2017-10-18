@@ -71,11 +71,24 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void PrimitiveTypesAreCaseInsensitive()
+        {
+            Assert.AreEqual(ApexKeywords.Void, Apex.PrimitiveType.Parse(" Void ").Identifier);
+            Assert.AreEqual(ApexKeywords.Int, Apex.PrimitiveType.Parse(" INT ").Identifier);
+            Assert.AreEqual(ApexKeywords.Boolean, Apex.PrimitiveType.Parse(" BooLeAn ").Identifier);
+
+            // these keywords aren't types
+            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("class"));
+            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("sharing"));
+        }
+
+        [Test]
         public void NonGenericTypeIsAPrimitiveTypeOrAnIdentifier()
         {
             Assert.AreEqual(ApexKeywords.Void, Apex.NonGenericType.Parse(" void ").Identifier);
             Assert.AreEqual("String", Apex.NonGenericType.Parse(" String ").Identifier);
-            Assert.AreEqual("String", Apex.NonGenericType.Parse(" String ").Identifier);
+            Assert.AreEqual("boolean", Apex.NonGenericType.Parse(" Boolean ").Identifier);
+            Assert.AreEqual("Integer", Apex.NonGenericType.Parse(" Integer ").Identifier);
 
             // not types or non-generic types
             Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("class"));
@@ -83,13 +96,13 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void TypeParametersIsACommaSeparatedListOfTypeReferencesEnclosedInAngleBraces()
+        public void TypeParametersIsACommaSeparatedListOfTypeReferencesEnclosedInAngularBraces()
         {
             var tp = Apex.TypeParameters.Parse("<string>").ToList();
             Assert.AreEqual(1, tp.Count);
             Assert.AreEqual("string", tp[0].Identifier);
 
-            tp = Apex.TypeParameters.Parse(" < System.Collections.Hashtable, string, int, void, System.Char > ").ToList();
+            tp = Apex.TypeParameters.Parse(" < System.Collections.Hashtable, string, int, void, System.Character > ").ToList();
             Assert.AreEqual(5, tp.Count);
 
             var type = tp[0];
@@ -105,7 +118,7 @@ namespace ApexParserTest.Parser
             type = tp[4];
             Assert.AreEqual(1, type.Namespaces.Count);
             Assert.AreEqual("System", type.Namespaces.Single());
-            Assert.AreEqual("Char", type.Identifier);
+            Assert.AreEqual("Character", type.Identifier);
 
             // not types or non-generic types
             Assert.Throws<ParseException>(() => Apex.TypeParameters.Parse("string"));
@@ -226,7 +239,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, pd.Type.Namespaces.Count);
             Assert.AreEqual("System", pd.Type.Namespaces[0]);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
-            Assert.AreEqual("Boolean", pd.Type.TypeParameters[0].Identifier);
+            Assert.AreEqual("boolean", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("c123", pd.Identifier);
 
             // bad input examples
@@ -236,10 +249,24 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void MemberVisibilityCanBePublicOrPrivate()
+        public void ModifiersCanBePublicPrivateEtc()
         {
             Assert.AreEqual("public", Apex.Modifier.Parse(" \n public "));
             Assert.AreEqual("private", Apex.Modifier.Parse(" private \t"));
+            Assert.AreEqual("with sharing", Apex.Modifier.Parse(@" with
+                sharing"));
+
+            // bad input
+            Assert.Throws<ParseException>(() => Apex.Modifier.Parse(" whatever "));
+        }
+
+        [Test]
+        public void ModifiersAreCaseInsensitive()
+        {
+            Assert.AreEqual("public", Apex.Modifier.Parse(" \n Public "));
+            Assert.AreEqual("private", Apex.Modifier.Parse(" PRIVATE \t"));
+            Assert.AreEqual("with sharing", Apex.Modifier.Parse(@" With
+                SHARING"));
 
             // bad input
             Assert.Throws<ParseException>(() => Apex.Modifier.Parse(" whatever "));
@@ -307,7 +334,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("name", pd.Identifier);
 
             pd = mp[1];
-            Assert.AreEqual("Boolean", pd.Type.Identifier);
+            Assert.AreEqual("boolean", pd.Type.Identifier);
             Assert.AreEqual("newLine", pd.Identifier);
 
             // method with visibility
@@ -378,7 +405,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("name", pd.Identifier);
 
             pd = mp[1];
-            Assert.AreEqual("Boolean", pd.Type.Identifier);
+            Assert.AreEqual("boolean", pd.Type.Identifier);
             Assert.AreEqual("newLine", pd.Identifier);
 
             // a constructor with annotation
@@ -765,7 +792,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(pd);
 
             Assert.AreEqual("flag", pd.Identifier);
-            Assert.AreEqual("Boolean", pd.Type.Identifier);
+            Assert.AreEqual("boolean", pd.Type.Identifier);
             Assert.NotNull(pd.GetterStatement);
             Assert.True(pd.GetterStatement.IsEmpty);
 

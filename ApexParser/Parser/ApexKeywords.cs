@@ -9,7 +9,7 @@ namespace ApexParser.Parser
     public static class ApexKeywords
     {
         public static HashSet<string> All { get; } =
-            new HashSet<string>(AllStringConstants);
+            new HashSet<string>(AllStringConstants, StringComparer.InvariantCultureIgnoreCase);
 
         private static IEnumerable<string> AllStringConstants =>
             typeof(ApexKeywords).GetFields().Select(f => f.GetValue(null)).OfType<string>();
