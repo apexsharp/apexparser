@@ -615,12 +615,69 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(2, cd.Attributes.Count);
             Assert.AreEqual("one", cd.Attributes[0]);
             Assert.AreEqual("two", cd.Attributes[1]);
+            Assert.IsNull(cd.BaseType);
             Assert.False(cd.Methods.Any());
             Assert.False(cd.Modifiers.Any());
             Assert.AreEqual("Three", cd.Identifier);
 
             // bad class declarations
             Assert.Throws<ParseException>(() => Apex.ClassDeclaration.Parse("@class Test {"));
+        }
+
+        [Test]
+        public void ClassCanExtendOtherClass()
+        {
+            var cd = Apex.ClassDeclaration.Parse("class Derived extends Base {}");
+            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Modifiers.Any());
+            Assert.False(cd.Interfaces.Any());
+            Assert.NotNull(cd.BaseType);
+            Assert.AreEqual("Derived", cd.Identifier);
+            Assert.AreEqual("Base", cd.BaseType.Identifier);
+
+            // bad inheritance list
+            Assert.Throws<ParseException>(() => Apex.ClassDeclaration.Parse("class Derived extends Base, OtherBase {}"));
+        }
+
+        [Test]
+        public void ClassCanImplementInterfaces()
+        {
+            var cd = Apex.ClassDeclaration.Parse("class Disposable implements IDisposable {}");
+            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Modifiers.Any());
+            Assert.Null(cd.BaseType);
+            Assert.AreEqual("Disposable", cd.Identifier);
+            Assert.AreEqual(1, cd.Interfaces.Count);
+            Assert.AreEqual("IDisposable", cd.Interfaces[0].Identifier);
+
+            cd = Apex.ClassDeclaration.Parse("class MyClass implements IEntity, IMyInterface {}");
+            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Modifiers.Any());
+            Assert.Null(cd.BaseType);
+            Assert.AreEqual("MyClass", cd.Identifier);
+            Assert.AreEqual(2, cd.Interfaces.Count);
+            Assert.AreEqual("IEntity", cd.Interfaces[0].Identifier);
+            Assert.AreEqual("IMyInterface", cd.Interfaces[1].Identifier);
+
+            // incomplete class declaration
+            Assert.Throws<ParseException>(() => Apex.ClassDeclaration.Parse("class Derived implements {}"));
+        }
+
+        [Test]
+        public void ClassCanExtendBaseClassAndImplementMultipleInterfaces()
+        {
+            var cd = Apex.ClassDeclaration.Parse("class Derived extends Base implements IOne, ITwo {}");
+            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Modifiers.Any());
+            Assert.NotNull(cd.BaseType);
+            Assert.AreEqual("Derived", cd.Identifier);
+            Assert.AreEqual("Base", cd.BaseType.Identifier);
+            Assert.AreEqual(2, cd.Interfaces.Count);
+            Assert.AreEqual("IOne", cd.Interfaces[0].Identifier);
+            Assert.AreEqual("ITwo", cd.Interfaces[1].Identifier);
+
+            // bad inheritance list
+            Assert.Throws<ParseException>(() => Apex.ClassDeclaration.Parse("class Derived extends {}"));
         }
 
         [Test]

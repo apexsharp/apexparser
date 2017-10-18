@@ -353,6 +353,8 @@ namespace ApexParser.Parser
             select new ClassDeclarationSyntax(heading)
             {
                 Identifier = classBody.Identifier,
+                BaseType = classBody.BaseType,
+                Interfaces = classBody.Interfaces,
                 Constructors = classBody.Constructors,
                 Methods = classBody.Methods,
                 Fields = classBody.Fields,
@@ -364,12 +366,16 @@ namespace ApexParser.Parser
         protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclarationBody =>
             from @class in Parse.String(ApexKeywords.Class).Token()
             from className in Identifier
+            from baseType in Parse.String(ApexKeywords.Extends).Token().Then(t => TypeReference).Optional()
+            from interfaces in Parse.String(ApexKeywords.Implements).Token().Then(t => TypeReference.DelimitedBy(Parse.Char(',').Token())).Optional()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
             from closeBrace in Parse.Char('}').Token()
             select new ClassDeclarationSyntax()
             {
                 Identifier = className,
+                BaseType = baseType.GetOrDefault(),
+                Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
                 Constructors = GetConstructors(members),
                 Methods = GetMethods(members),
                 Fields = GetFields(members),
