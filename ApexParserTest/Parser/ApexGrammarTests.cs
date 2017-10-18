@@ -55,7 +55,21 @@ namespace ApexParserTest.Parser
         [Test]
         public void AnnotationBeginsWithAtSign()
         {
-            Assert.AreEqual("isTest", Apex.Annotation.Parse(" @isTest "));
+            var ann = Apex.Annotation.Parse(" @isTest ");
+            Assert.AreEqual("isTest", ann.Identifier);
+            Assert.IsNull(ann.Parameters);
+
+            Assert.Throws<ParseException>(() => Apex.Annotation.Parse(" isTest "));
+        }
+
+        [Test]
+        public void AnnotationsCanHaveParameters()
+        {
+            var ann = Apex.Annotation.Parse(" @isTest(SeeAllData = true) ");
+            Assert.AreEqual("isTest", ann.Identifier);
+            Assert.AreEqual("SeeAllData = true", ann.Parameters);
+
+            Assert.Throws<ParseException>(() => Apex.Annotation.Parse(" @class "));
         }
 
         [Test]
@@ -308,7 +322,7 @@ namespace ApexParserTest.Parser
         {
             // parameterless method
             var md = Apex.MethodDeclaration.Parse("void Test() {}");
-            Assert.False(md.Attributes.Any());
+            Assert.False(md.Annotations.Any());
             Assert.False(md.Modifiers.Any());
             Assert.False(md.Parameters.Any());
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -320,7 +334,7 @@ namespace ApexParserTest.Parser
             {
             } ");
 
-            Assert.False(md.Attributes.Any());
+            Assert.False(md.Annotations.Any());
             Assert.False(md.Modifiers.Any());
             Assert.AreEqual(2, md.Parameters.Count);
             Assert.AreEqual("string", md.ReturnType.Identifier);
@@ -343,7 +357,7 @@ namespace ApexParserTest.Parser
             {
             } ");
 
-            Assert.False(md.Attributes.Any());
+            Assert.False(md.Annotations.Any());
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("public", md.Modifiers[0]);
             Assert.AreEqual("List", md.ReturnType.Identifier);
@@ -361,8 +375,8 @@ namespace ApexParserTest.Parser
 
             // a method with annotation
             md = Apex.MethodDeclaration.Parse("@isTest void Test() {}");
-            Assert.AreEqual(1, md.Attributes.Count);
-            Assert.AreEqual("isTest", md.Attributes[0]);
+            Assert.AreEqual(1, md.Annotations.Count);
+            Assert.AreEqual("isTest", md.Annotations[0].Identifier);
             Assert.False(md.Modifiers.Any());
             Assert.False(md.Parameters.Any());
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -378,7 +392,7 @@ namespace ApexParserTest.Parser
         {
             // parameterless constructor
             var md = Apex.MethodDeclaration.Parse("public Disposable() {}");
-            Assert.False(md.Attributes.Any());
+            Assert.False(md.Annotations.Any());
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("public", md.Modifiers[0]);
             Assert.False(md.Parameters.Any());
@@ -391,7 +405,7 @@ namespace ApexParserTest.Parser
             {
             } ");
 
-            Assert.False(md.Attributes.Any());
+            Assert.False(md.Annotations.Any());
             Assert.False(md.Modifiers.Any());
             Assert.AreEqual(2, md.Parameters.Count);
             Assert.AreEqual("MyService", md.ReturnType.Identifier);
@@ -410,8 +424,8 @@ namespace ApexParserTest.Parser
 
             // a constructor with annotation
             md = Apex.MethodDeclaration.Parse("@isTest SampleClass() {}");
-            Assert.AreEqual(1, md.Attributes.Count);
-            Assert.AreEqual("isTest", md.Attributes[0]);
+            Assert.AreEqual(1, md.Annotations.Count);
+            Assert.AreEqual("isTest", md.Annotations[0].Identifier);
             Assert.False(md.Modifiers.Any());
             Assert.False(md.Parameters.Any());
             Assert.AreEqual("SampleClass", md.ReturnType.Identifier);
@@ -504,8 +518,8 @@ namespace ApexParserTest.Parser
                 int length { get; }");
             Assert.AreEqual(1, prop.CodeComments.Count);
             Assert.AreEqual("length", prop.CodeComments[0].Trim());
-            Assert.AreEqual(1, prop.Attributes.Count);
-            Assert.AreEqual("dataMember", prop.Attributes[0]);
+            Assert.AreEqual(1, prop.Annotations.Count);
+            Assert.AreEqual("dataMember", prop.Annotations[0].Identifier);
             Assert.AreEqual("int", prop.Type.Identifier);
             Assert.AreEqual("length", prop.Identifier);
             Assert.AreEqual(null, prop.SetterStatement);
@@ -518,8 +532,8 @@ namespace ApexParserTest.Parser
             var field = Apex.FieldDeclaration.Parse(" /* Counter */ @dataMember public static int counter;");
             Assert.AreEqual(1, field.CodeComments.Count);
             Assert.AreEqual("Counter", field.CodeComments[0].Trim());
-            Assert.AreEqual(1, field.Attributes.Count);
-            Assert.AreEqual("dataMember", field.Attributes[0]);
+            Assert.AreEqual(1, field.Annotations.Count);
+            Assert.AreEqual("dataMember", field.Annotations[0].Identifier);
             Assert.AreEqual(2, field.Modifiers.Count);
             Assert.AreEqual("public", field.Modifiers[0]);
             Assert.AreEqual("static", field.Modifiers[1]);
@@ -550,7 +564,7 @@ namespace ApexParserTest.Parser
             var cm = Apex.MemberDeclarationHeading.Parse(" /* test */ ");
             Assert.AreEqual(1, cm.CodeComments.Count);
             Assert.AreEqual(" test ", cm.CodeComments[0]);
-            Assert.False(cm.Attributes.Any());
+            Assert.False(cm.Annotations.Any());
             Assert.False(cm.Modifiers.Any());
 
             cm = Apex.MemberDeclarationHeading.Parse(" public static ");
@@ -558,17 +572,17 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", cm.Modifiers[0]);
             Assert.AreEqual("static", cm.Modifiers[1]);
             Assert.False(cm.CodeComments.Any());
-            Assert.False(cm.Attributes.Any());
+            Assert.False(cm.Annotations.Any());
 
             cm = Apex.MemberDeclarationHeading.Parse(" @isTest ");
-            Assert.AreEqual(1, cm.Attributes.Count);
-            Assert.AreEqual("isTest", cm.Attributes[0]);
+            Assert.AreEqual(1, cm.Annotations.Count);
+            Assert.AreEqual("isTest", cm.Annotations[0].Identifier);
             Assert.False(cm.CodeComments.Any());
             Assert.False(cm.Modifiers.Any());
 
             cm = Apex.MemberDeclarationHeading.Parse(" /* my class */ @isTest override ");
-            Assert.AreEqual(1, cm.Attributes.Count);
-            Assert.AreEqual("isTest", cm.Attributes[0]);
+            Assert.AreEqual(1, cm.Annotations.Count);
+            Assert.AreEqual("isTest", cm.Annotations[0].Identifier);
             Assert.AreEqual(1, cm.CodeComments.Count);
             Assert.AreEqual(" my class ", cm.CodeComments[0]);
             Assert.AreEqual(1, cm.Modifiers.Count);
@@ -611,7 +625,7 @@ namespace ApexParserTest.Parser
         public void ClassDeclarationBodyCanBeEmpty()
         {
             var cd = Apex.ClassDeclarationBody.Parse(" class Test {}");
-            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Annotations.Any());
             Assert.False(cd.Methods.Any());
             Assert.False(cd.Modifiers.Any());
             Assert.AreEqual("Test", cd.Identifier);
@@ -625,7 +639,7 @@ namespace ApexParserTest.Parser
         public void ClassDeclarationCanBeEmpty()
         {
             var cd = Apex.ClassDeclaration.Parse(" class Test {}");
-            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Annotations.Any());
             Assert.False(cd.Methods.Any());
             Assert.False(cd.Modifiers.Any());
             Assert.AreEqual("Test", cd.Identifier);
@@ -639,9 +653,9 @@ namespace ApexParserTest.Parser
         public void ClassDeclarationCanHaveAnnotations()
         {
             var cd = Apex.ClassDeclaration.Parse("@one @two class Three {}");
-            Assert.AreEqual(2, cd.Attributes.Count);
-            Assert.AreEqual("one", cd.Attributes[0]);
-            Assert.AreEqual("two", cd.Attributes[1]);
+            Assert.AreEqual(2, cd.Annotations.Count);
+            Assert.AreEqual("one", cd.Annotations[0].Identifier);
+            Assert.AreEqual("two", cd.Annotations[1].Identifier);
             Assert.IsNull(cd.BaseType);
             Assert.False(cd.Methods.Any());
             Assert.False(cd.Modifiers.Any());
@@ -655,7 +669,7 @@ namespace ApexParserTest.Parser
         public void ClassCanExtendOtherClass()
         {
             var cd = Apex.ClassDeclaration.Parse("class Derived extends Base {}");
-            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Annotations.Any());
             Assert.False(cd.Modifiers.Any());
             Assert.False(cd.Interfaces.Any());
             Assert.NotNull(cd.BaseType);
@@ -670,7 +684,7 @@ namespace ApexParserTest.Parser
         public void ClassCanImplementInterfaces()
         {
             var cd = Apex.ClassDeclaration.Parse("class Disposable implements IDisposable {}");
-            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Annotations.Any());
             Assert.False(cd.Modifiers.Any());
             Assert.Null(cd.BaseType);
             Assert.AreEqual("Disposable", cd.Identifier);
@@ -678,7 +692,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("IDisposable", cd.Interfaces[0].Identifier);
 
             cd = Apex.ClassDeclaration.Parse("class MyClass implements IEntity, IMyInterface {}");
-            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Annotations.Any());
             Assert.False(cd.Modifiers.Any());
             Assert.Null(cd.BaseType);
             Assert.AreEqual("MyClass", cd.Identifier);
@@ -694,7 +708,7 @@ namespace ApexParserTest.Parser
         public void ClassCanExtendBaseClassAndImplementMultipleInterfaces()
         {
             var cd = Apex.ClassDeclaration.Parse("class Derived extends Base implements IOne, ITwo {}");
-            Assert.False(cd.Attributes.Any());
+            Assert.False(cd.Annotations.Any());
             Assert.False(cd.Modifiers.Any());
             Assert.NotNull(cd.BaseType);
             Assert.AreEqual("Derived", cd.Identifier);
@@ -767,8 +781,8 @@ namespace ApexParserTest.Parser
             Assert.False(cd.Methods.Any());
             Assert.AreEqual("Program", cd.Identifier);
 
-            Assert.AreEqual(1, cd.Attributes.Count);
-            Assert.AreEqual("testFixture", cd.Attributes[0]);
+            Assert.AreEqual(1, cd.Annotations.Count);
+            Assert.AreEqual("testFixture", cd.Annotations[0].Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
             Assert.AreEqual("with sharing", cd.Modifiers[1]);
@@ -800,8 +814,8 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("throw", block.Statements[0].Body);
-            Assert.AreEqual(1, pd.Attributes.Count);
-            Assert.AreEqual("required", pd.Attributes[0]);
+            Assert.AreEqual(1, pd.Annotations.Count);
+            Assert.AreEqual("required", pd.Annotations[0].Identifier);
 
             cm = Apex.ClassMemberDeclaration.Parse("className Test { get; set; }");
             pd = cm as PropertyDeclarationSyntax;

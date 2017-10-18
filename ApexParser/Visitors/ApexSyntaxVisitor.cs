@@ -13,6 +13,8 @@ namespace ApexParser.Visitors
         {
         }
 
+        public virtual void VisitAnnotation(AnnotationSyntax node) => DefaultVisit(node);
+
         public virtual void VisitBlock(BlockSyntax node) => DefaultVisit(node);
 
         public virtual void VisitBreakStatement(BreakStatementSyntax node) => DefaultVisit(node);

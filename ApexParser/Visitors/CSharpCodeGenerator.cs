@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ApexParser.MetaClass;
 using ApexParser.Toolbox;
@@ -85,7 +86,8 @@ namespace ApexParser.Visitors
                     foreach (var line in lines.AsSmart())
                     {
                         var format = line.IsFirst ? "/*{0}" : line.IsLast ? "{0}*/" : "{0}";
-                        AppendIndentedLine(format, line.Value.Trim('\r', '\n'));
+                        var value = Regex.Replace(line.Value, @"^\s+|\s+$", " ");
+                        AppendIndentedLine(format, value);
                     }
                 }
                 else
@@ -94,9 +96,9 @@ namespace ApexParser.Visitors
                 }
             }
 
-            foreach (var attribute in node.Attributes.AsSmart())
+            foreach (var attribute in node.Annotations.AsSmart())
             {
-                AppendIndentedLine("[{0}]", attribute.Value);
+                AppendIndentedLine("[{0}{1}]", attribute.Value.Identifier, attribute.Value.Parameters);
             }
 
             var indented = false;
@@ -339,19 +341,29 @@ namespace ApexParser.Visitors
             }
         }
 
+        private bool EmptyLineIsRequired { get; set; }
+
         public override void VisitBlock(BlockSyntax node)
         {
             AppendIndentedLine("{{");
+            EmptyLineIsRequired = false;
 
             using (Indented())
             {
                 foreach (var st in node.Statements.AsSmart())
                 {
+                    if (EmptyLineIsRequired)
+                    {
+                        AppendLine();
+                        EmptyLineIsRequired = false;
+                    }
+
                     st.Value.Accept(this);
                 }
             }
 
             AppendIndentedLine("}}");
+            EmptyLineIsRequired = true;
         }
     }
 }

@@ -22,19 +22,20 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("BaseDAO", cd.BaseType.Identifier);
         }
 
-        [Test, Ignore("TODO: annotations with properties")]
+        [Test]
         public void AccountDaoTest()
         {
             var cd = Apex.ClassDeclaration.Parse("@IsTest(seeAllData = false) private class AccountDAOTest { }");
             Assert.AreEqual("AccountDAOTest", cd.Identifier);
-            Assert.AreEqual(1, cd.Attributes.Count);
-            Assert.AreEqual("IsTest", cd.Attributes[0]);
+            Assert.AreEqual(1, cd.Annotations.Count);
+            Assert.AreEqual("IsTest", cd.Annotations[0].Identifier);
+            Assert.AreEqual("seeAllData = false", cd.Annotations[0].Parameters);
         }
 
-        [Test, Ignore("TODO")]
+        [Test]
         public void AccountTeamBatchClass()
         {
-            // broken?
+            var nt = Apex.NonGenericType.Parse("Database");
             var pt = Apex.TypeReference.Parse("Database.batchable<sObject>");
 
             var cd = Apex.ClassDeclaration.Parse("global class AccountTeamBatchClass implements Database.batchable<sObject> { }");
@@ -128,7 +129,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("testMethodForAgreementControllerX", cd.Methods[0].Identifier);
         }
 
-        [Test, Ignore("TODO?")]
+        [Test]
         public void PrivateIntegerBatchSize()
         {
             var cd = Apex.ClassDeclaration.Parse(@"class Dummy

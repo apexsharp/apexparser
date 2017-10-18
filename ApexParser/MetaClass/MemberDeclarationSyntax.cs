@@ -17,7 +17,7 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => throw new InvalidOperationException();
 
-        public List<string> Attributes { get; set; } = new List<string>();
+        public List<AnnotationSyntax> Annotations { get; set; } = new List<AnnotationSyntax>();
 
         public List<string> Modifiers { get; set; } = new List<string>();
 
@@ -26,7 +26,7 @@ namespace ApexParser.MetaClass
             if (other != null)
             {
                 CodeComments = other.CodeComments;
-                Attributes = other.Attributes;
+                Annotations = other.Annotations;
                 Modifiers = other.Modifiers;
             }
 

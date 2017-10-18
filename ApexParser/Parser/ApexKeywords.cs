@@ -23,7 +23,7 @@ namespace ApexParser.Parser
         public const string Class = "class";
         public const string Const = "const";
         public const string Continue = "continue";
-        public const string Database = "database";
+        ////public const string Database = "database"; // not a keyword?
         public const string Default = "default";
         public const string Delete = "delete"; // apex soql
         public const string Do = "do";

@@ -111,7 +111,13 @@ namespace ApexParserTest.CodeGenerators
         {
             var method = new MethodDeclarationSyntax
             {
-                Attributes = new List<string> { "TestAttribute" },
+                Annotations = new List<AnnotationSyntax>
+                {
+                    new AnnotationSyntax
+                    {
+                        Identifier = "TestAttribute"
+                    },
+                },
                 Modifiers = new List<string> { "public", "static" },
                 ReturnType = new TypeSyntax("void"),
                 Identifier = "Sample",

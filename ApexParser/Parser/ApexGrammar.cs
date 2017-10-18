@@ -28,10 +28,15 @@ namespace ApexParser.Parser
         protected internal virtual CommentParser CommentParser { get; } = new CommentParser();
 
         // example: @isTest
-        protected internal virtual Parser<string> Annotation =>
+        protected internal virtual Parser<AnnotationSyntax> Annotation =>
             from at in Parse.Char('@').Token()
             from identifier in Identifier
-            select identifier;
+            from parameters in GenericExpressionInBraces.Optional()
+            select new AnnotationSyntax
+            {
+                Identifier = identifier,
+                Parameters = parameters.GetOrDefault(),
+            };
 
         // examples: int, void
         protected internal virtual Parser<TypeSyntax> PrimitiveType =>
@@ -44,7 +49,7 @@ namespace ApexParser.Parser
             Parse.IgnoreCase(ApexKeywords.Long)).Or(
             Parse.IgnoreCase(ApexKeywords.Short)).Or(
             Parse.IgnoreCase(ApexKeywords.Void))
-                .Text().Then(n => Parse.Not(Parse.Letter).Return(n.ToLower()))
+                .Text().Then(n => Parse.Not(Parse.LetterOrDigit).Return(n.ToLower()))
                 .Token().Select(n => new TypeSyntax(n))
                 .Named("PrimitiveType");
 
@@ -343,7 +348,7 @@ namespace ApexParser.Parser
             select new MemberDeclarationSyntax
             {
                 CodeComments = comments.ToList(),
-                Attributes = annotations.ToList(),
+                Annotations = annotations.ToList(),
                 Modifiers = modifiers.ToList(),
             };
 
