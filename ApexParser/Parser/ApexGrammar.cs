@@ -134,9 +134,10 @@ namespace ApexParser.Parser
         // examples:
         // void Test() {}
         // string Hello(string name) {}
+        // int Dispose();
         protected internal virtual Parser<MethodDeclarationSyntax> MethodParametersAndBody =>
             from parameters in MethodParameters
-            from methodBody in Block.Token()
+            from methodBody in Block.Token().Or(Parse.Char(';').Token().Return(default(BlockSyntax)))
             select new MethodDeclarationSyntax
             {
                 Parameters = parameters,
@@ -359,6 +360,7 @@ namespace ApexParser.Parser
             select new ClassDeclarationSyntax(heading)
             {
                 Identifier = classBody.Identifier,
+                IsInterface = classBody.IsInterface,
                 BaseType = classBody.BaseType,
                 Interfaces = classBody.Interfaces,
                 Constructors = classBody.Constructors,
@@ -370,7 +372,7 @@ namespace ApexParser.Parser
 
         // example: class Program { void main() {} }
         protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclarationBody =>
-            from @class in Parse.IgnoreCase(ApexKeywords.Class).Token()
+            from @class in Parse.IgnoreCase(ApexKeywords.Class).Text().Token().Or(Parse.IgnoreCase(ApexKeywords.Interface).Text().Token())
             from className in Identifier
             from baseType in Parse.IgnoreCase(ApexKeywords.Extends).Token().Then(t => TypeReference).Optional()
             from interfaces in Parse.IgnoreCase(ApexKeywords.Implements).Token().Then(t => TypeReference.DelimitedBy(Parse.Char(',').Token())).Optional()
@@ -380,6 +382,7 @@ namespace ApexParser.Parser
             select new ClassDeclarationSyntax()
             {
                 Identifier = className,
+                IsInterface = @class == ApexKeywords.Interface,
                 BaseType = baseType.GetOrDefault(),
                 Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
                 Constructors = GetConstructors(members),

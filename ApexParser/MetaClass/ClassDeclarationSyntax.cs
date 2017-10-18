@@ -21,6 +21,8 @@ namespace ApexParser.MetaClass
 
         public TypeSyntax BaseType { get; set; }
 
+        public bool IsInterface { get; set; }
+
         public List<TypeSyntax> Interfaces { get; set; } = new List<TypeSyntax>();
 
         public List<ConstructorDeclarationSyntax> Constructors { get; set; } = new List<ConstructorDeclarationSyntax>();

@@ -888,21 +888,24 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(3, cd.Fields.Count);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterface.cls"), Ignore("TODO: interfaces")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterface.cls")]
         public void IClassInterfaceIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(IClassInterface);
             Assert.AreEqual("IClassInterface", cd.Identifier);
+            Assert.IsTrue(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
             Assert.AreEqual(1, cd.Methods.Count);
+            Assert.IsTrue(cd.Methods[0].IsAbstract);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterfaceExt.cls"), Ignore("TODO: interfaces")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterfaceExt.cls")]
         public void IClassInterfaceExtIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(IClassInterfaceExt);
             Assert.AreEqual("IClassInterfaceExt", cd.Identifier);
+            Assert.IsTrue(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
             Assert.AreEqual(1, cd.Methods.Count);
@@ -913,6 +916,7 @@ namespace ApexParserTest.Parser
         {
             var cd = Apex.ClassDeclaration.Parse(JsonExample);
             Assert.AreEqual("JsonExample", cd.Identifier);
+            Assert.IsFalse(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
             Assert.AreEqual(1, cd.Methods.Count);
@@ -933,15 +937,16 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(2, cd.Methods[0].Body.Statements.Count);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\MethodAndConstructor.cls"), Ignore("TODO: abstract methods without the body")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\MethodAndConstructor.cls")]
         public void MethodAndConstructorIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(MethodAndConstructor);
             Assert.AreEqual("MethodAndConstructor", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
-            Assert.AreEqual("public", cd.Modifiers[0]);
-            Assert.AreEqual("abstract", cd.Modifiers[0]);
-            Assert.AreEqual(19, cd.Methods.Count);
+            Assert.AreEqual("global", cd.Modifiers[0]);
+            Assert.AreEqual("abstract", cd.Modifiers[1]);
+            Assert.AreEqual(2, cd.Constructors.Count);
+            Assert.AreEqual(17, cd.Methods.Count);
         }
 
         [Test(Description = @"SalesForceApexSharp\src\classes\PrimitiveTypes.cls")]

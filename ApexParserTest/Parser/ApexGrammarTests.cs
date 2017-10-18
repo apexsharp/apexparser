@@ -322,6 +322,7 @@ namespace ApexParserTest.Parser
         {
             // parameterless method
             var md = Apex.MethodDeclaration.Parse("void Test() {}");
+            Assert.False(md.IsAbstract);
             Assert.False(md.Annotations.Any());
             Assert.False(md.Modifiers.Any());
             Assert.False(md.Parameters.Any());
@@ -334,6 +335,7 @@ namespace ApexParserTest.Parser
             {
             } ");
 
+            Assert.False(md.IsAbstract);
             Assert.False(md.Annotations.Any());
             Assert.False(md.Modifiers.Any());
             Assert.AreEqual(2, md.Parameters.Count);
@@ -357,6 +359,7 @@ namespace ApexParserTest.Parser
             {
             } ");
 
+            Assert.False(md.IsAbstract);
             Assert.False(md.Annotations.Any());
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("public", md.Modifiers[0]);
@@ -375,6 +378,17 @@ namespace ApexParserTest.Parser
 
             // a method with annotation
             md = Apex.MethodDeclaration.Parse("@isTest void Test() {}");
+            Assert.False(md.IsAbstract);
+            Assert.AreEqual(1, md.Annotations.Count);
+            Assert.AreEqual("isTest", md.Annotations[0].Identifier);
+            Assert.False(md.Modifiers.Any());
+            Assert.False(md.Parameters.Any());
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.AreEqual("Test", md.Identifier);
+
+            // a method without the body
+            md = Apex.MethodDeclaration.Parse("@isTest void Test();");
+            Assert.True(md.IsAbstract);
             Assert.AreEqual(1, md.Annotations.Count);
             Assert.AreEqual("isTest", md.Annotations[0].Identifier);
             Assert.False(md.Modifiers.Any());
@@ -625,6 +639,22 @@ namespace ApexParserTest.Parser
         public void ClassDeclarationBodyCanBeEmpty()
         {
             var cd = Apex.ClassDeclarationBody.Parse(" class Test {}");
+            Assert.False(cd.IsInterface);
+            Assert.False(cd.Annotations.Any());
+            Assert.False(cd.Methods.Any());
+            Assert.False(cd.Modifiers.Any());
+            Assert.AreEqual("Test", cd.Identifier);
+
+            // incomplete class declarations
+            Assert.Throws<ParseException>(() => Apex.ClassDeclarationBody.Parse(" class Test {"));
+            Assert.Throws<ParseException>(() => Apex.ClassDeclarationBody.Parse(" class {}"));
+        }
+
+        [Test]
+        public void InterfaceDeclarationBodyCanBeEmpty()
+        {
+            var cd = Apex.ClassDeclarationBody.Parse(" interface Test {}");
+            Assert.True(cd.IsInterface);
             Assert.False(cd.Annotations.Any());
             Assert.False(cd.Methods.Any());
             Assert.False(cd.Modifiers.Any());

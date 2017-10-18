@@ -23,6 +23,8 @@ namespace ApexParser.MetaClass
 
         public BlockSyntax Body { get; set; }
 
+        public bool IsAbstract => Body == null;
+
         public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
             ReturnType = typeAndName.Type;
