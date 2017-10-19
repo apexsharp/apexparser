@@ -25,7 +25,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("GMOSPREF_Rest_VehicleLifecycleTest", Apex.Identifier.Parse("GMOSPREF_Rest_VehicleLifecycleTest"));
 
             // and negative ones
-            Assert.Throws<ParseException>(() => Apex.Identifier.ParseEx("1"));
+            Assert.Throws<ParseException>(() => Apex.Identifier.Parse("1"));
         }
 
         [Test]

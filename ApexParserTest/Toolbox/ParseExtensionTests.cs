@@ -29,8 +29,9 @@ namespace ApexParserTest.Toolbox
             catch (ParseException ex)
             {
                 // check that the error message contains the complete invalid code line
-                Assert.NotNull(ex);
-                Assert.True(ex.Message.Contains(errorLine));
+                var exc = ex as ParseExceptionCustom;
+                Assert.NotNull(exc);
+                Assert.True(exc.Apexcode.Contains(errorLine));
             }
         }
     }
