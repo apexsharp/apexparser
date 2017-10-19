@@ -22,13 +22,7 @@ namespace ApexParser.Toolbox
             // append the whole current line text
             var lines = (input ?? string.Empty).Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
             var lineNumber = result.Remainder.Line - 1;
-            if (lineNumber > 0 && lineNumber < lines.Length)
-            {
-                var cr = Environment.NewLine;
-                message = $"{message}{cr}--- The current line: ---{cr}{lines[lineNumber]}";
-            }
-
-            throw new ParseException(message);
+            throw new ParseExceptionCustom(message, lineNumber, lines);
         }
     }
 }

@@ -82,6 +82,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toolbox\Disposable.cs" />
     <Compile Include="Toolbox\IEnumerableExtensions.cs" />
+    <Compile Include="Toolbox\ParseExceptionCustom .cs" />
     <Compile Include="Toolbox\ParserExtensions.cs" />
     <Compile Include="Visitors\ApexCodeGenerator.cs" />
     <Compile Include="Visitors\ApexSyntaxVisitor.cs" />
