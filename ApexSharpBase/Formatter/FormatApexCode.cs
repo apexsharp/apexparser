@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -176,6 +177,8 @@ namespace ApexSharpBase.Formatter
 
             foreach (var apexCode in apexCodeList)
             {
+                // if(padding == 0)Console.WriteLine(padding + " " + apexCode);
+
                 if (apexCode.Trim() == "}")
                 {
                     padding = padding - IndentSize;

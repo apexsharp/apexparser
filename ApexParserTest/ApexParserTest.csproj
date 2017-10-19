@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApexParserMasterTest.cs" />
     <Compile Include="CodeGenerators\CSharpGeneratorTests.cs" />
     <Compile Include="CodeGenerators\CSharpResourceTests.cs" />
     <Compile Include="CodeGenerators\TestFixtureBase.cs" />
