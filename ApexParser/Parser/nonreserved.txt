@@ -1,0 +1,12 @@
+﻿https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_reserved_words.htm
+
+after
+before
+count
+excludes
+first
+includes
+last
+order
+sharing
+with
