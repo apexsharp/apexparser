@@ -10,10 +10,7 @@ namespace ApexParser.MetaClass
 {
     public class BlockSyntax : StatementSyntax, IEnumerable, IEnumerable<StatementSyntax>
     {
-        public BlockSyntax()
-        {
-            Kind = SyntaxType.Block;
-        }
+        public override SyntaxType Kind => SyntaxType.Block;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitBlock(this);
 

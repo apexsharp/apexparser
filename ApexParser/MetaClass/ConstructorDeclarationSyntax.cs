@@ -12,8 +12,6 @@ namespace ApexParser.MetaClass
         public ConstructorDeclarationSyntax(MethodDeclarationSyntax method = null)
             : base(method)
         {
-            Kind = SyntaxType.Constructor;
-
             if (method != null)
             {
                 Body = method.Body;
@@ -26,6 +24,8 @@ namespace ApexParser.MetaClass
         public static bool IsConstructor(MethodDeclarationSyntax method) =>
             method is ConstructorDeclarationSyntax ||
             method.ReturnType.Identifier == method.Identifier;
+
+        public override SyntaxType Kind => SyntaxType.Constructor;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitConstructorDeclaration(this);
 

@@ -9,10 +9,7 @@ namespace ApexParser.MetaClass
 {
     public class DoStatementSyntax : StatementSyntax
     {
-        public DoStatementSyntax()
-        {
-            Kind = SyntaxType.DoStatement;
-        }
+        public override SyntaxType Kind => SyntaxType.DoStatement;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitDoStatement(this);
 

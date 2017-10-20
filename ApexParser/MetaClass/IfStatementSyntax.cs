@@ -9,10 +9,7 @@ namespace ApexParser.MetaClass
 {
     public class IfStatementSyntax : StatementSyntax
     {
-        public IfStatementSyntax()
-        {
-            Kind = SyntaxType.IfStatement;
-        }
+        public override SyntaxType Kind => SyntaxType.IfStatement;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitIfStatement(this);
 

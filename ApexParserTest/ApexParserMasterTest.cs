@@ -52,25 +52,21 @@ namespace ApexParserTest
 
             List<GitHubFile> newFilteredList = response.Data.Where(x => x.name.Contains(".cls-meta.xml") == false).ToList();
 
-            foreach (var gitHubFile in newFilteredList)
+            // process all Apex files, not just one
+            Assert.Multiple(() =>
             {
-                client = new RestClient(gitHubFile.download_url);
-                request = new RestRequest(Method.GET);
-                var apexCode = client.Execute(request).Content;
+                foreach (var gitHubFile in newFilteredList)
+                {
+                    client = new RestClient(gitHubFile.download_url);
+                    request = new RestRequest(Method.GET);
+                    var apexCode = client.Execute(request).Content;
 
-                try
-                {
-                    ApexGrammar apex = new ApexGrammar();
-                    var cd = apex.ClassDeclaration.ParseEx(apexCode);
+                    // report failing file names along with the parse exception
+                    Assert.DoesNotThrow(() =>
+                        new ApexGrammar().ClassDeclaration.ParseEx(apexCode),
+                        "Parsing failure on file: {0}", gitHubFile.name);
                 }
-                catch (ParseExceptionCustom ex)
-                {
-                    Console.WriteLine(gitHubFile.name);
-                    Assert.NotNull(ex);
-                    Assert.False(ex.Message.Contains("Parsing failure:"), ex.Message);
-                    Console.WriteLine(ex.Message);
-                }
-            }
+            });
         }
     }
 }

@@ -9,10 +9,7 @@ namespace ApexParser.MetaClass
 {
     public class BreakStatementSyntax : StatementSyntax
     {
-        public BreakStatementSyntax()
-        {
-            Kind = SyntaxType.BreakStatement;
-        }
+        public override SyntaxType Kind => SyntaxType.BreakStatement;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitBreakStatement(this);
     }

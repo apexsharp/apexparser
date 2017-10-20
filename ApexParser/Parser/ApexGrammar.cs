@@ -49,7 +49,7 @@ namespace ApexParser.Parser
             Parse.IgnoreCase(ApexKeywords.Long)).Or(
             Parse.IgnoreCase(ApexKeywords.Short)).Or(
             Parse.IgnoreCase(ApexKeywords.Void))
-                .Text().Then(n => Parse.Not(Parse.LetterOrDigit).Return(n.ToLower()))
+                .Text().Then(n => Parse.Not(Parse.LetterOrDigit.Or(Parse.Char('_'))).Return(n.ToLower()))
                 .Token().Select(n => new TypeSyntax(n))
                 .Named("PrimitiveType");
 

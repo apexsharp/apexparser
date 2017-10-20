@@ -9,10 +9,7 @@ namespace ApexParser.MetaClass
 {
     public class VariableDeclaratorSyntax : BaseSyntax
     {
-        public VariableDeclaratorSyntax()
-        {
-            Kind = SyntaxType.VariableDeclarator;
-        }
+        public override SyntaxType Kind => SyntaxType.VariableDeclarator;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitVariableDeclarator(this);
 

@@ -10,8 +10,9 @@ namespace ApexParser.MetaClass
         public MethodDeclarationSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
-            Kind = SyntaxType.Method;
         }
+
+        public override SyntaxType Kind => SyntaxType.Method;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitMethodDeclaration(this);
 

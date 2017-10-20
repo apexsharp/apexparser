@@ -13,7 +13,6 @@ namespace ApexParser.MetaClass
         public PropertyDeclarationSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
-            Kind = SyntaxType.Property;
         }
 
         public PropertyDeclarationSyntax(IEnumerable<AccessorDeclarationSyntax> accessors, MemberDeclarationSyntax heading = null)
@@ -21,6 +20,8 @@ namespace ApexParser.MetaClass
         {
             Accessors = accessors.ToList();
         }
+
+        public override SyntaxType Kind => SyntaxType.Property;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitPropertyDeclaration(this);
 

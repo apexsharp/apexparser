@@ -9,10 +9,7 @@ namespace ApexParser.MetaClass
 {
     public class ForStatementSyntax : StatementSyntax
     {
-        public ForStatementSyntax()
-        {
-            Kind = SyntaxType.ForStatement;
-        }
+        public override SyntaxType Kind => SyntaxType.ForStatement;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitForStatement(this);
 

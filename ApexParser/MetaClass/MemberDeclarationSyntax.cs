@@ -15,6 +15,8 @@ namespace ApexParser.MetaClass
             WithProperties(other);
         }
 
+        public override SyntaxType Kind => SyntaxType.ClassMember;
+
         public override void Accept(ApexSyntaxVisitor visitor) => throw new InvalidOperationException();
 
         public List<AnnotationSyntax> Annotations { get; set; } = new List<AnnotationSyntax>();

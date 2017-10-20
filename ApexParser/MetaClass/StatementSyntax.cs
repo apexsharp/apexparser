@@ -11,9 +11,10 @@ namespace ApexParser.MetaClass
     {
         public StatementSyntax(string body = null)
         {
-            Kind = SyntaxType.Statement;
             Body = body;
         }
+
+        public override SyntaxType Kind => SyntaxType.Statement;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitStatement(this);
 

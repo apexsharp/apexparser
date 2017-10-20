@@ -71,7 +71,7 @@ namespace ApexParser.Parser
         public const string This = "this";
         public const string Throw = "throw";
         public const string Throws = "throws";
-        public static string Transient => "transient";
+        public static string Transient => "transient"; // not reserved
         public const string Try = "try";
         public const string Synchronized = "synchronized";
         public const string Virtual = "virtual";

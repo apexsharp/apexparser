@@ -11,6 +11,6 @@ namespace ApexParser.MetaClass
 
         public List<string> CodeComments { get; set; } = new List<string>();
 
-        public SyntaxType Kind { get; set; }
+        public abstract SyntaxType Kind { get; }
     }
 }

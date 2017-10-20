@@ -12,8 +12,9 @@ namespace ApexParser.MetaClass
         public AccessorDeclarationSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
-            Kind = SyntaxType.Accessor;
         }
+
+        public override SyntaxType Kind => SyntaxType.Accessor;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitAccessor(this);
 

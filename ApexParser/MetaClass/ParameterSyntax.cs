@@ -13,8 +13,9 @@ namespace ApexParser.MetaClass
         {
             Type = type;
             Identifier = identifier;
-            Kind = SyntaxType.Parameter;
         }
+
+        public override SyntaxType Kind => SyntaxType.Parameter;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitParameter(this);
 

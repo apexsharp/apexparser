@@ -9,10 +9,7 @@ namespace ApexParser.MetaClass
 {
     public class WhileStatementSyntax : StatementSyntax
     {
-        public WhileStatementSyntax()
-        {
-            Kind = SyntaxType.WhileStatement;
-        }
+        public override SyntaxType Kind => SyntaxType.WhileStatement;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitWhileStatement(this);
 

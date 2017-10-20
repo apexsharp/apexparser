@@ -12,8 +12,9 @@ namespace ApexParser.MetaClass
         public ClassDeclarationSyntax(MemberDeclarationSyntax heading = null)
             : base(heading)
         {
-            Kind = SyntaxType.Class;
         }
+
+        public override SyntaxType Kind => SyntaxType.Class;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitClassDeclaration(this);
 
