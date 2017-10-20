@@ -17,8 +17,6 @@ namespace ApexParserTest.Parser
     [TestFixture]
     public class ApexResourceTests
     {
-        private ApexGrammar Apex { get; } = new ApexGrammar();
-
         // utility method used to compare method bodies ignoring the formatting
         private void CompareIgnoreFormatting(string expected, string actual)
         {
@@ -55,7 +53,7 @@ namespace ApexParserTest.Parser
             // use local functions to share the validation code
             void ParseAndValidate(string text)
             {
-                var cd = Apex.ClassDeclaration.Parse(text);
+                var cd = Apex.ParseClass(text);
                 Assert.AreEqual("ClassOne", cd.Identifier);
                 Assert.AreEqual(1, cd.Methods.Count);
 
@@ -89,7 +87,7 @@ namespace ApexParserTest.Parser
 
             void ParseAndValidate(string text)
             {
-                var cd = Apex.ClassDeclaration.Parse(text);
+                var cd = Apex.ParseClass(text);
                 Assert.AreEqual("ClassTwo", cd.Identifier);
                 Assert.False(cd.Methods.Any());
                 Assert.AreEqual(2, cd.Constructors.Count);
@@ -129,7 +127,7 @@ namespace ApexParserTest.Parser
 
             void ParseAndValidate(string text)
             {
-                var cd = Apex.ClassDeclaration.Parse(text);
+                var cd = Apex.ParseClass(text);
                 Assert.AreEqual("ClassTwo", cd.Identifier);
                 Assert.AreEqual(2, cd.Constructors.Count);
                 Assert.AreEqual(1, cd.Methods.Count);
@@ -196,7 +194,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void Demo2IsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(Demo2);
+            var cd = Apex.ParseClass(Demo2);
             Assert.AreEqual("Demo2", cd.Identifier);
             Assert.AreEqual(1, cd.Methods.Count);
 
@@ -255,7 +253,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\Demo.cls")]
         public void DemoIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(Demo);
+            var cd = Apex.ParseClass(Demo);
             Assert.AreEqual("Demo", cd.Identifier);
             Assert.AreEqual(1, cd.Methods.Count);
 
@@ -302,7 +300,7 @@ namespace ApexParserTest.Parser
 
             void ParseAndValidate(string text)
             {
-                var cd = Apex.ClassDeclaration.Parse(text);
+                var cd = Apex.ParseClass(text);
                 Assert.False(cd.Annotations.Any());
                 Assert.AreEqual("CustomerDto", cd.Identifier);
                 Assert.AreEqual(1, cd.Modifiers.Count);
@@ -352,7 +350,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ForIfWhile.cls")]
         public void ForIfWhileLoopsAreParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ForIfWhile);
+            var cd = Apex.ParseClass(ForIfWhile);
             Assert.False(cd.Annotations.Any());
             Assert.AreEqual("ForIfWhile", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
@@ -439,7 +437,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\DataAccessDemo.cls")]
         public void DataAccessDemoIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(DataAccessDemo);
+            var cd = Apex.ParseClass(DataAccessDemo);
             Assert.False(cd.Annotations.Any());
             Assert.AreEqual("DataAccessDemo", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
@@ -487,7 +485,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\PropertyAndField.cls")]
         public void PropertyAndFieldIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(PropertyAndField);
+            var cd = Apex.ParseClass(PropertyAndField);
             Assert.AreEqual("PropertyAndField", cd.Identifier);
             Assert.AreEqual(1, cd.CodeComments.Count);
             Assert.AreEqual("ClassDeclaration", cd.CodeComments[0].Trim());
@@ -549,7 +547,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\SoqlDemo.cls")]
         public void SoqlDemoIsParsed()
         {
-            var soql = Apex.ClassDeclaration.Parse(SoqlDemo);
+            var soql = Apex.ParseClass(SoqlDemo);
             Assert.AreEqual(1, soql.Methods.Count);
             Assert.AreEqual("void", soql.Methods[0].ReturnType.Identifier);
             Assert.AreEqual("CrudExample", soql.Methods[0].Identifier);
@@ -558,26 +556,31 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassAbstract.cls")]
         public void ClassAbstractIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassAbstract);
+            var cd = Apex.ParseClass(ClassAbstract);
             Assert.AreEqual("ClassAbstract", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
             Assert.AreEqual("abstract", cd.Modifiers[1]);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\ClassEnum.cls"), Ignore("TODO: implement enums")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassEnum.cls")]
         public void ClassEnumIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassEnum);
-            Assert.AreEqual("ClassEnum", cd.Identifier);
-            Assert.AreEqual(1, cd.Modifiers.Count);
-            Assert.AreEqual("public", cd.Modifiers[0]);
+            var ed = Apex.ParseFile(ClassEnum) as EnumDeclarationSyntax;
+            Assert.AreEqual("ClassEnum", ed.Identifier);
+            Assert.AreEqual(1, ed.Modifiers.Count);
+            Assert.AreEqual("public", ed.Modifiers[0]);
+
+            Assert.AreEqual(3, ed.Members.Count);
+            Assert.AreEqual("America", ed.Members[0].Identifier);
+            Assert.AreEqual("Canada", ed.Members[1].Identifier);
+            Assert.AreEqual("Russia", ed.Members[2].Identifier);
         }
 
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassException.cls")]
         public void ClassExceptionIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassException);
+            var cd = Apex.ParseClass(ClassException);
             Assert.AreEqual("ClassException", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -587,7 +590,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassGlobal.cls")]
         public void ClassGlobalIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassGlobal);
+            var cd = Apex.ParseClass(ClassGlobal);
             Assert.AreEqual("ClassGlobal", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("global", cd.Modifiers[0]);
@@ -596,7 +599,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassInterface.cls")]
         public void ClassInterfaceIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassInterface);
+            var cd = Apex.ParseClass(ClassInterface);
             Assert.AreEqual("ClassInterface", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -615,7 +618,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassInternal.cls")]
         public void ClassInternalIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassInternal);
+            var cd = Apex.ParseClass(ClassInternal);
             Assert.AreEqual("ClassInternal", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -628,7 +631,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassRest.cls")]
         public void ClassRestIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassRest);
+            var cd = Apex.ParseClass(ClassRest);
             Assert.AreEqual("ClassRest", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("global", cd.Modifiers[0]);
@@ -666,7 +669,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassUnitTest.cls")]
         public void ClassUnitTestIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassUnitTest);
+            var cd = Apex.ParseClass(ClassUnitTest);
             Assert.AreEqual("ClassUnitTest", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -722,7 +725,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassUnitTestSeeAllData.cls")]
         public void ClassUnitTestSeeAllDataIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassUnitTestSeeAllData);
+            var cd = Apex.ParseClass(ClassUnitTestSeeAllData);
             Assert.AreEqual("ClassUnitTestSeeAllData", cd.Identifier);
             Assert.AreEqual(1, cd.Annotations.Count);
             Assert.AreEqual("isTest", cd.Annotations[0].Identifier);
@@ -734,7 +737,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassVirtual.cls")]
         public void ClassVirtualIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassVirtual);
+            var cd = Apex.ParseClass(ClassVirtual);
             Assert.AreEqual("ClassVirtual", cd.Identifier);
             Assert.AreEqual(0, cd.Annotations.Count);
             Assert.AreEqual(2, cd.Modifiers.Count);
@@ -745,7 +748,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassWithOutSharing.cls")]
         public void ClassWithOutSharingIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassWithOutSharing);
+            var cd = Apex.ParseClass(ClassWithOutSharing);
             Assert.AreEqual("ClassWithOutSharing", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -755,7 +758,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassWithSharing.cls")]
         public void ClassWithSharingIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ClassWithSharing);
+            var cd = Apex.ParseClass(ClassWithSharing);
             Assert.AreEqual("ClassWithSharing", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -765,7 +768,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ExceptionDemo.cls"), Ignore("TODO: try-catch-finally")]
         public void ExceptionDemoIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ExceptionDemo);
+            var cd = Apex.ParseClass(ExceptionDemo);
             Assert.AreEqual("ExceptionDemo", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -775,7 +778,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ForIfWhile.cls")]
         public void ForIfWhile2AreParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ForIfWhile2);
+            var cd = Apex.ParseClass(ForIfWhile2);
             Assert.False(cd.Annotations.Any());
             Assert.AreEqual("ForIfWhile", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
@@ -879,7 +882,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\GetSetDemo.cls")]
         public void GetSetDemoIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(GetSetDemo);
+            var cd = Apex.ParseClass(GetSetDemo);
             Assert.AreEqual("GetSetDemo", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -891,7 +894,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterface.cls")]
         public void IClassInterfaceIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(IClassInterface);
+            var cd = Apex.ParseClass(IClassInterface);
             Assert.AreEqual("IClassInterface", cd.Identifier);
             Assert.IsTrue(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);
@@ -903,7 +906,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterfaceExt.cls")]
         public void IClassInterfaceExtIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(IClassInterfaceExt);
+            var cd = Apex.ParseClass(IClassInterfaceExt);
             Assert.AreEqual("IClassInterfaceExt", cd.Identifier);
             Assert.IsTrue(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);
@@ -914,7 +917,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\JsonExample.cls")]
         public void JsonExampleIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(JsonExample);
+            var cd = Apex.ParseClass(JsonExample);
             Assert.AreEqual("JsonExample", cd.Identifier);
             Assert.IsFalse(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);
@@ -927,7 +930,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\ListAndArrayDemo.cls"), Ignore("TODO: array and list initializers")]
         public void ListAndArrayDemoIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(ListAndArrayDemo);
+            var cd = Apex.ParseClass(ListAndArrayDemo);
             Assert.AreEqual("ListAndArrayDemo", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -940,7 +943,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\MethodAndConstructor.cls")]
         public void MethodAndConstructorIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(MethodAndConstructor);
+            var cd = Apex.ParseClass(MethodAndConstructor);
             Assert.AreEqual("MethodAndConstructor", cd.Identifier);
             Assert.AreEqual(2, cd.Modifiers.Count);
             Assert.AreEqual("global", cd.Modifiers[0]);
@@ -952,7 +955,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\PrimitiveTypes.cls")]
         public void PrimitiveTypesIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(PrimitiveTypes);
+            var cd = Apex.ParseClass(PrimitiveTypes);
             Assert.AreEqual("PrimitiveTypes", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -965,7 +968,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\PropertyAndField.cls")]
         public void PropertyAndField2IsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(PropertyAndField2);
+            var cd = Apex.ParseClass(PropertyAndField2);
             Assert.AreEqual("PropertyAndField", cd.Identifier);
             Assert.AreEqual(0, cd.CodeComments.Count);
             Assert.AreEqual(1, cd.Methods.Count);
@@ -1026,7 +1029,7 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\RunAll.cls")]
         public void RunAllIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(RunAll);
+            var cd = Apex.ParseClass(RunAll);
             Assert.AreEqual("RunAll", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);

@@ -453,5 +453,10 @@ namespace ApexParser.Parser
                 .Or(ClassDeclarationBody)
                 .Or(MethodPropertyOrFieldDeclaration)
             select member.WithProperties(heading);
+
+        // top-level declaration: a class or an enum
+        protected internal virtual Parser<MemberDeclarationSyntax> CompilationUnit =>
+            from unit in ClassDeclaration.Select(c => c as MemberDeclarationSyntax).Or(EnumDeclaration)
+            select unit;
     }
 }

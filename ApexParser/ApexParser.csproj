@@ -80,6 +80,7 @@
     <Compile Include="MetaClass\VariableDeclarationSyntax.cs" />
     <Compile Include="MetaClass\VariableDeclaratorSyntax.cs" />
     <Compile Include="MetaClass\WhileStatementSyntax.cs" />
+    <Compile Include="Parser\Apex.cs" />
     <Compile Include="Parser\ApexGrammar.cs" />
     <Compile Include="Parser\ApexKeywords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

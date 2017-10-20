@@ -801,6 +801,26 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void ClassDeclarationBodyCanDeclareEnums()
+        {
+            var cd = Apex.ClassDeclarationBody.Parse(" class Dummy { enum Boo { Tru, Fal, Unk } }");
+            Assert.False(cd.Methods.Any());
+            Assert.AreEqual(1, cd.Enums.Count);
+            Assert.AreEqual("Dummy", cd.Identifier);
+
+            var ed = cd.Enums.Single();
+            Assert.AreEqual("Boo", ed.Identifier);
+            Assert.AreEqual(3, ed.Members.Count);
+            Assert.AreEqual("Tru", ed.Members[0].Identifier);
+            Assert.AreEqual("Fal", ed.Members[1].Identifier);
+            Assert.AreEqual("Unk", ed.Members[2].Identifier);
+
+            // class declarations with bad methods
+            Assert.Throws<ParseException>(() => Apex.ClassDeclarationBody.Parse(" class Test { enum Boo }"));
+            Assert.Throws<ParseException>(() => Apex.ClassDeclarationBody.Parse(" class Apex { enum Boo{} }"));
+        }
+
+        [Test]
         public void ClassDeclarationCanDeclareMethods()
         {
             var cd = Apex.ClassDeclaration.Parse(" class Program { void main() {} }");
