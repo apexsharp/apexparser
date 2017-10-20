@@ -55,29 +55,22 @@ namespace ApexParserTest
                 request = new RestRequest(Method.GET);
                 var apexCode = client.Execute(request).Content;
 
-                var ex = ApexFileTest(apexCode);
-
-                if (ex != null)
+              
+                try
                 {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine();
-                    Console.WriteLine(apexCode);
+                    ApexGrammar apex = new ApexGrammar();
+                    var cd = apex.ClassDeclaration.ParseEx(apexCode);
                 }
+                catch (ParseExceptionCustom ex)
+                {
+                    Assert.NotNull(ex);
+                    Assert.False(ex.Message.Contains("Parsing failure:"), ex.Message);
+                    Console.WriteLine(ex.Message);
+                }
+
+                
             }
         }
 
-        public ParseExceptionCustom ApexFileTest(string apexCode)
-        {
-            try
-            {
-                ApexGrammar apex = new ApexGrammar();
-                var cd = apex.ClassDeclaration.ParseEx(apexCode);
-            }
-            catch (ParseExceptionCustom e)
-            {
-                return e;
-            }
-            return null;
-        }
     }
 }
