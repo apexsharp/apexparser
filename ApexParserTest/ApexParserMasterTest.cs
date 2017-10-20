@@ -50,7 +50,7 @@ namespace ApexParserTest
             var request = new RestRequest(resource, Method.GET);
             var response = client.Execute<List<GitHubFile>>(request);
 
-            List<GitHubFile> newFilteredList = response.Data.Where(x => x.name.EndsWith(".cls")).ToList();
+            List<GitHubFile> newFilteredList = response.Data.Where(x => x?.name?.EndsWith(".cls") ?? false).ToList();
 
             // process all Apex files, don't stop after the first error
             Assert.Multiple(() =>
