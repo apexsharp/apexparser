@@ -6,45 +6,78 @@ using System.Text;
 using System.Threading.Tasks;
 using ApexParser.Parser;
 using ApexParser.Toolbox;
+using NUnit.Framework;
+using NUnit.Framework.Internal;
+using RestSharp;
 
 namespace ApexParserTest
 {
+    public class GitHubFile
+    {
+        public string name { get; set; }
+        public string path { get; set; }
+        public string sha { get; set; }
+        public int size { get; set; }
+        public string url { get; set; }
+        public string html_url { get; set; }
+        public string git_url { get; set; }
+        public string download_url { get; set; }
+        public string type { get; set; }
+        public Links _links { get; set; }
+    }
+
+    public class Links
+    {
+        public string self { get; set; }
+        public string git { get; set; }
+        public string html { get; set; }
+    }
+
+    [TestFixture]
     public class ApexParserMasterTest
     {
-        public static void TestApexFiles(string apexFileDirLocation)
+        [Test]
+        public void TestRemoteApexFile()
         {
-            DirectoryInfo dInfo = new DirectoryInfo(apexFileDirLocation);
-            List<FileInfo> apexFileList = dInfo.GetFiles("*.cls").ToList();
+            var endPoint = "https://api.github.com/";
+            var resource = "repos/jayonsoftware/SalesForceApexSharp/contents/src/classes";
 
-            ApexGrammar Apex = new ApexGrammar();
-            StringBuilder errorMessage = new StringBuilder();
+            var client = new RestClient(endPoint);
+            var request = new RestRequest(resource, Method.GET);
+            var response = client.Execute<List<GitHubFile>>(request);
 
-            int errorNumber = 0;
-            foreach (var apexFileName in apexFileList)
+
+            List<GitHubFile> newFilteredList = response.Data.Where(x => x.name.Contains(".cls-meta.xml") == false).ToList();
+
+            foreach (var gitHubFile in newFilteredList)
             {
-                StringBuilder errorMessageLocal = new StringBuilder();
+                client = new RestClient(gitHubFile.download_url);
+                request = new RestRequest(Method.GET);
+                var apexCode = client.Execute(request).Content;
 
-                var apexCode = File.ReadAllText(apexFileName.FullName);
+                var ex = ApexFileTest(apexCode);
 
-                try
+                if (ex != null)
                 {
-                    var cd = Apex.ClassDeclaration.ParseEx(apexCode);
-                }
-                catch (ParseExceptionCustom e)
-                {
-                    errorNumber++;
-                    errorMessageLocal.AppendLine(errorNumber.ToString());
-                    errorMessageLocal.AppendLine(apexFileName.FullName);
-                    errorMessageLocal.AppendLine(e.Message);
-                    errorMessageLocal.AppendLine("-------------------------------------------------------------------");
-                    errorMessageLocal.AppendLine($"[{e.LineNumber}>>> " + e.Apexcode[e.LineNumber]);
-                    errorMessageLocal.AppendLine("-------------------------------------------------------------------");
-                    errorMessageLocal.AppendLine();
-
-                    errorMessage.AppendLine(errorMessageLocal.ToString());
-                    Console.WriteLine(errorMessageLocal);
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine();
+                    Console.WriteLine(apexCode);
                 }
             }
+        }
+
+        public ParseExceptionCustom ApexFileTest(string apexCode)
+        {
+            try
+            {
+                ApexGrammar apex = new ApexGrammar();
+                var cd = apex.ClassDeclaration.ParseEx(apexCode);
+            }
+            catch (ParseExceptionCustom e)
+            {
+                return e;
+            }
+            return null;
         }
     }
 }
