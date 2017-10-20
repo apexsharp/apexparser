@@ -107,7 +107,7 @@ namespace ApexParser.Parser
             Parse.IgnoreCase(ApexKeywords.TestMethod)).Or(
             Parse.IgnoreCase(ApexKeywords.With).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
             Parse.IgnoreCase(ApexKeywords.Without).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
-            Parse.IgnoreCase("transient"))
+            Parse.IgnoreCase(ApexKeywords.Transient))
                 .Text().Token().Select(t => t.ToLower()).Named("Modifier");
 
         // examples:
@@ -166,11 +166,11 @@ namespace ApexParser.Parser
         // examples: get; private set; get { return 0; }
         protected internal virtual Parser<AccessorDeclarationSyntax> PropertyAccessor =>
             from heading in MemberDeclarationHeading
-            from getOrSet in Parse.IgnoreCase("get").Or(Parse.IgnoreCase("set")).Token().Text()
+            from keyword in Parse.IgnoreCase(ApexKeywords.Get).Or(Parse.IgnoreCase(ApexKeywords.Set)).Token().Text()
             from body in Parse.Char(';').Token().Return(default(BlockSyntax)).Or(Block)
             select new AccessorDeclarationSyntax(heading)
             {
-                IsGetter = getOrSet == "get",
+                IsGetter = keyword == ApexKeywords.Get,
                 Body = body,
             };
 
