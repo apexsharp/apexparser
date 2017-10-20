@@ -40,7 +40,7 @@ namespace ApexParserTest
     [TestFixture]
     public class ApexParserMasterTest
     {
-        [Test, Ignore("Temporarily ignored to enable the Appveyor builds")]
+        [Test]
         public void TestRemoteApexFile()
         {
             var endPoint = "https://api.github.com/";
@@ -50,9 +50,9 @@ namespace ApexParserTest
             var request = new RestRequest(resource, Method.GET);
             var response = client.Execute<List<GitHubFile>>(request);
 
-            List<GitHubFile> newFilteredList = response.Data.Where(x => x.name.Contains(".cls-meta.xml") == false).ToList();
+            List<GitHubFile> newFilteredList = response.Data.Where(x => x.name.EndsWith(".cls")).ToList();
 
-            // process all Apex files, not just one
+            // process all Apex files, don't stop after the first error
             Assert.Multiple(() =>
             {
                 foreach (var gitHubFile in newFilteredList)

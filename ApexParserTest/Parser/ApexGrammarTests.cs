@@ -1135,6 +1135,22 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void VariableDeclarationCanHaveExpressionsWithCommasInIt()
+        {
+            var variable = Apex.VariableDeclaration.Parse("int a = test(1,2,3);");
+            Assert.AreEqual("int", variable.Type.Identifier);
+            Assert.AreEqual(1, variable.Variables.Count);
+            Assert.AreEqual("a", variable.Variables[0].Identifier);
+            Assert.AreEqual("test(1,2,3)", variable.Variables[0].Expression);
+
+            variable = Apex.VariableDeclaration.Parse("int x = new[] {1,2,3};");
+            Assert.AreEqual("int", variable.Type.Identifier);
+            Assert.AreEqual(1, variable.Variables.Count);
+            Assert.AreEqual("x", variable.Variables[0].Identifier);
+            Assert.AreEqual("new[] {1,2,3}", variable.Variables[0].Expression);
+        }
+
+        [Test]
         public void VariableDeclaratorIsAnIdentifierFollowedByOptionalExpression()
         {
             var variable = Apex.VariableDeclarator.Parse(" name = 'Bozo'");

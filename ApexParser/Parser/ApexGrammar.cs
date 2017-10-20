@@ -304,20 +304,37 @@ namespace ApexParser.Parser
                 Body = contents.Trim(),
             };
 
-        // dummy generic parser for any expressions with matching braces
-        protected internal virtual Parser<string> GenericExpressionInBraces =>
-            from openBrace in Parse.Char('(').Token()
-            from expression in GenericExpression.Optional()
-            from closeBrace in Parse.Char(')').Token()
-            select expression.GetOrDefault();
-
         // dummy generic parser for expressions with matching braces
         protected internal virtual Parser<string> GenericExpression =>
-            from subExpressions in Parse.CharExcept("();,").Many().Text().Token()
-                .Or(GenericExpressionInBraces.Select(x => $"({x})")).Many()
+            from subExpressions in Parse.CharExcept("(){};,").Many().Text().Token()
+                .Or(GenericExpressionInBraces.Select(x => $"({x})"))
+                .Or(GenericExpressionInCurlyBraces.Select(x => $"{{{x}}}")).Many()
             let expr = string.Join(string.Empty, subExpressions)
             where !string.IsNullOrWhiteSpace(expr)
             select expr;
+
+        // dummy generic parser for expressions with matching braces allowing commas
+        protected internal virtual Parser<string> GenericExpressionWithCommas =>
+            from subExpressions in Parse.CharExcept("(){};").Many().Text().Token()
+                .Or(GenericExpressionInBraces.Select(x => $"({x})"))
+                .Or(GenericExpressionInCurlyBraces.Select(x => $"{{{x}}}")).Many()
+            let expr = string.Join(string.Empty, subExpressions)
+            where !string.IsNullOrWhiteSpace(expr)
+            select expr;
+
+        // dummy generic parser for any expressions with matching braces
+        protected internal virtual Parser<string> GenericExpressionInBraces =>
+            from openBrace in Parse.Char('(').Token()
+            from expression in GenericExpressionWithCommas.Optional()
+            from closeBrace in Parse.Char(')').Token()
+            select expression.GetOrDefault();
+
+        // dummy generic parser for any expressions with matching braces
+        protected internal virtual Parser<string> GenericExpressionInCurlyBraces =>
+            from openBrace in Parse.Char('{').Token()
+            from expression in GenericExpressionWithCommas.Optional()
+            from closeBrace in Parse.Char('}').Token()
+            select expression.GetOrDefault();
 
         // example: break;
         protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>

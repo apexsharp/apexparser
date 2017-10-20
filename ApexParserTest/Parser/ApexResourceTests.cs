@@ -948,7 +948,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(3, cd.Methods[0].Body.Statements.Count);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\ListAndArrayDemo.cls"), Ignore("TODO: array and list initializers")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\ListAndArrayDemo.cls")] //, Ignore("TODO: array and list initializers")]
         public void ListAndArrayDemoIsParsed()
         {
             var cd = Apex.ParseClass(ListAndArrayDemo);
