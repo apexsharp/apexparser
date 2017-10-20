@@ -357,45 +357,6 @@ namespace ApexParser.Parser
                 Modifiers = modifiers.ToList(),
             };
 
-        // example: @TestFixture public static class Program { static void main() {} }
-        public virtual Parser<ClassDeclarationSyntax> ClassDeclaration =>
-            from heading in MemberDeclarationHeading
-            from classBody in ClassDeclarationBody
-            select new ClassDeclarationSyntax(heading)
-            {
-                Identifier = classBody.Identifier,
-                IsInterface = classBody.IsInterface,
-                BaseType = classBody.BaseType,
-                Interfaces = classBody.Interfaces,
-                Constructors = classBody.Constructors,
-                Methods = classBody.Methods,
-                Fields = classBody.Fields,
-                Properties = classBody.Properties,
-                InnerClasses = classBody.InnerClasses,
-            };
-
-        // example: class Program { void main() {} }
-        protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclarationBody =>
-            from @class in Parse.IgnoreCase(ApexKeywords.Class).Text().Token().Or(Parse.IgnoreCase(ApexKeywords.Interface).Text().Token())
-            from className in Identifier
-            from baseType in Parse.IgnoreCase(ApexKeywords.Extends).Token().Then(t => TypeReference).Optional()
-            from interfaces in Parse.IgnoreCase(ApexKeywords.Implements).Token().Then(t => TypeReference.DelimitedBy(Parse.Char(',').Token())).Optional()
-            from openBrace in Parse.Char('{').Token()
-            from members in ClassMemberDeclaration.Many()
-            from closeBrace in Parse.Char('}').Token()
-            select new ClassDeclarationSyntax()
-            {
-                Identifier = className,
-                IsInterface = @class == ApexKeywords.Interface,
-                BaseType = baseType.GetOrDefault(),
-                Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
-                Constructors = GetConstructors(members),
-                Methods = GetMethods(members),
-                Fields = GetFields(members),
-                Properties = GetProperties(members),
-                InnerClasses = GetClasses(members),
-            };
-
         // example: SomeValue
         protected internal virtual Parser<EnumMemberDeclarationSyntax> EnumMember =>
             from heading in MemberDeclarationHeading
@@ -429,23 +390,53 @@ namespace ApexParser.Parser
                 Members = members.ToList(),
             };
 
-        private List<ClassDeclarationSyntax> GetClasses(IEnumerable<MemberDeclarationSyntax> members) =>
-            members.OfType<ClassDeclarationSyntax>().ToList();
+        // example: @TestFixture public static class Program { static void main() {} }
+        public virtual Parser<ClassDeclarationSyntax> ClassDeclaration =>
+            from heading in MemberDeclarationHeading
+            from classBody in ClassDeclarationBody
+            select new ClassDeclarationSyntax(heading)
+            {
+                Identifier = classBody.Identifier,
+                IsInterface = classBody.IsInterface,
+                BaseType = classBody.BaseType,
+                Interfaces = classBody.Interfaces,
+                Members = classBody.Members,
+            };
 
-        private List<FieldDeclarationSyntax> GetFields(IEnumerable<MemberDeclarationSyntax> members) =>
-            members.OfType<FieldDeclarationSyntax>().ToList();
+        // example: class Program { void main() {} }
+        protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclarationBody =>
+            from @class in Parse.IgnoreCase(ApexKeywords.Class).Text().Token().Or(Parse.IgnoreCase(ApexKeywords.Interface).Text().Token())
+            from className in Identifier
+            from baseType in Parse.IgnoreCase(ApexKeywords.Extends).Token().Then(t => TypeReference).Optional()
+            from interfaces in Parse.IgnoreCase(ApexKeywords.Implements).Token().Then(t => TypeReference.DelimitedBy(Parse.Char(',').Token())).Optional()
+            from openBrace in Parse.Char('{').Token()
+            from members in ClassMemberDeclaration.Many()
+            from closeBrace in Parse.Char('}').Token()
+            select new ClassDeclarationSyntax()
+            {
+                Identifier = className,
+                IsInterface = @class == ApexKeywords.Interface,
+                BaseType = baseType.GetOrDefault(),
+                Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
+                Members = ConvertConstructors(members).ToList(),
+            };
 
-        private List<PropertyDeclarationSyntax> GetProperties(IEnumerable<MemberDeclarationSyntax> members) =>
-            members.OfType<PropertyDeclarationSyntax>().ToList();
+        private IEnumerable<MemberDeclarationSyntax> ConvertConstructors(IEnumerable<MemberDeclarationSyntax> members)
+        {
+            bool IsConstructor(MethodDeclarationSyntax md) =>
+                ConstructorDeclarationSyntax.IsConstructor(md);
 
-        private Func<MethodDeclarationSyntax, bool> IsConstructor { get; } =
-            ConstructorDeclarationSyntax.IsConstructor;
+            foreach (var member in members)
+            {
+                if (member is MethodDeclarationSyntax m && IsConstructor(m))
+                {
+                    yield return new ConstructorDeclarationSyntax(m);
+                    continue;
+                }
 
-        private List<ConstructorDeclarationSyntax> GetConstructors(IEnumerable<MemberDeclarationSyntax> members) =>
-            members.OfType<MethodDeclarationSyntax>().Where(m => IsConstructor(m)).Select(m => new ConstructorDeclarationSyntax(m)).ToList();
-
-        private List<MethodDeclarationSyntax> GetMethods(IEnumerable<MemberDeclarationSyntax> members) =>
-            members.OfType<MethodDeclarationSyntax>().Where(m => !IsConstructor(m)).ToList();
+                yield return member;
+            }
+        }
 
         // method or property declaration starting with the type and name
         protected internal virtual Parser<MemberDeclarationSyntax> MethodPropertyOrFieldDeclaration =>
@@ -458,7 +449,9 @@ namespace ApexParser.Parser
         // class members: methods, classes, properties
         protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberDeclaration =>
             from heading in MemberDeclarationHeading
-            from member in ClassDeclarationBody.Select(c => c as MemberDeclarationSyntax).Or(MethodPropertyOrFieldDeclaration)
+            from member in EnumDeclarationBody.Select(c => c as MemberDeclarationSyntax)
+                .Or(ClassDeclarationBody)
+                .Or(MethodPropertyOrFieldDeclaration)
             select member.WithProperties(heading);
     }
 }

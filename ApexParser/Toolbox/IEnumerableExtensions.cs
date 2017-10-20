@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MiscUtil.Collections;
 using MiscUtil.Collections.Extensions;
+using IEnumerable = System.Collections.IEnumerable;
 
 namespace ApexParser.Toolbox
 {
@@ -23,6 +24,11 @@ namespace ApexParser.Toolbox
         public static SmartEnumerable<T> AsSmart<T>(this IEnumerable<T> enumerable)
         {
             return enumerable.EmptyIfNull().AsSmartEnumerable();
+        }
+
+        public static IEnumerable<T> OfExactType<T>(this IEnumerable enumerable)
+        {
+            return enumerable.OfType<T>().Where(t => t.GetType() == typeof(T));
         }
     }
 }

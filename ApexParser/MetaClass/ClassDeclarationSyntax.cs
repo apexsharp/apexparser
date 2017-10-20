@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Toolbox;
 using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
@@ -26,14 +27,19 @@ namespace ApexParser.MetaClass
 
         public List<TypeSyntax> Interfaces { get; set; } = new List<TypeSyntax>();
 
-        public List<ConstructorDeclarationSyntax> Constructors { get; set; } = new List<ConstructorDeclarationSyntax>();
+        public List<MemberDeclarationSyntax> Members { get; set; } = new List<MemberDeclarationSyntax>();
 
-        public List<MethodDeclarationSyntax> Methods { get; set; } = new List<MethodDeclarationSyntax>();
+        // the following members are kept for the unit testing purposes only
+        public List<ConstructorDeclarationSyntax> Constructors => Members.OfType<ConstructorDeclarationSyntax>().ToList();
 
-        public List<FieldDeclarationSyntax> Fields { get; set; } = new List<FieldDeclarationSyntax>();
+        public List<MethodDeclarationSyntax> Methods => Members.OfExactType<MethodDeclarationSyntax>().ToList();
 
-        public List<PropertyDeclarationSyntax> Properties { get; set; } = new List<PropertyDeclarationSyntax>();
+        public List<FieldDeclarationSyntax> Fields => Members.OfType<FieldDeclarationSyntax>().ToList();
 
-        public List<ClassDeclarationSyntax> InnerClasses { get; set; } = new List<ClassDeclarationSyntax>();
+        public List<PropertyDeclarationSyntax> Properties => Members.OfType<PropertyDeclarationSyntax>().ToList();
+
+        public List<EnumDeclarationSyntax> Enums => Members.OfType<EnumDeclarationSyntax>().ToList();
+
+        public List<ClassDeclarationSyntax> InnerClasses => Members.OfType<ClassDeclarationSyntax>().ToList();
     }
 }
