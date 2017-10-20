@@ -210,6 +210,7 @@ namespace ApexParser.Parser
                 .Or(ForEachStatement)
                 .Or(ForStatement)
                 .Or(BreakStatement)
+                .Or(TryCatchFinallyStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
             select statement.WithComments(comments);
@@ -235,6 +236,53 @@ namespace ApexParser.Parser
             {
                 Type = type,
                 Variables = declarators.ToList(),
+            };
+
+        // examples: (MyExpr), (MyExpr ex)
+        protected internal virtual Parser<CatchClauseSyntax> CatchExpressionTypeName =>
+            from openBrace in Parse.Char('(').Token()
+            from exceptionType in TypeReference
+            from identifier in Identifier.Optional()
+            from closeBrace in Parse.Char(')').Token()
+            select new CatchClauseSyntax
+            {
+                Type = exceptionType,
+                Identifier = identifier.GetOrDefault(),
+            };
+
+        // examples: catch { ... }, catch (MyEx) { ...}, catch (MyEx ex) { ... }
+        protected internal virtual Parser<CatchClauseSyntax> CatchClause =>
+            from @catch in Parse.IgnoreCase(ApexKeywords.Catch).Token()
+            from expr in CatchExpressionTypeName.Optional()
+            from block in Block
+            select new CatchClauseSyntax
+            {
+                Type = expr.GetOrDefault()?.Type,
+                Identifier = expr.GetOrDefault()?.Identifier,
+                Block = block,
+            };
+
+        // examples: finally { ... }
+        protected internal virtual Parser<FinallyClauseSyntax> FinallyClause =>
+            from @finally in Parse.IgnoreCase(ApexKeywords.Finally).Token()
+            from block in Block
+            select new FinallyClauseSyntax
+            {
+                Block = block,
+            };
+
+        // example: try { ... } catch (Ex) { ... } finally { }
+        protected internal virtual Parser<TryStatementSyntax> TryCatchFinallyStatement =>
+            from @try in Parse.IgnoreCase(ApexKeywords.Try).Token()
+            from block in Block
+            from catchClauses in CatchClause.XMany()
+            from @finally in FinallyClause.Optional()
+            where @finally.IsDefined || catchClauses.Any()
+            select new TryStatementSyntax
+            {
+                Block = block,
+                Catches = catchClauses.ToList(),
+                Finally = @finally.GetOrDefault(),
             };
 
         // example: now = DateTime.Now()

@@ -62,8 +62,7 @@ namespace ApexParserTest
                     var apexCode = client.Execute(request).Content;
 
                     // report failing file names along with the parse exception
-                    Assert.DoesNotThrow(() =>
-                        new ApexGrammar().ClassDeclaration.ParseEx(apexCode),
+                    Assert.DoesNotThrow(() => Apex.ParseFile(apexCode),
                         "Parsing failure on file: {0}", gitHubFile.name);
                 }
             });

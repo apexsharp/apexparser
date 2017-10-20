@@ -21,6 +21,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitBreakStatement(BreakStatementSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitCatch(CatchClauseSyntax node) => DefaultVisit(node);
+
         public virtual void VisitClassDeclaration(ClassDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitConstructorDeclaration(ConstructorDeclarationSyntax node) => DefaultVisit(node);
@@ -32,6 +34,8 @@ namespace ApexParser.Visitors
         public virtual void VisitEnumMember(EnumMemberDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitFieldDeclaration(FieldDeclarationSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitFinally(FinallyClauseSyntax node) => DefaultVisit(node);
 
         public virtual void VisitForStatement(ForStatementSyntax node) => DefaultVisit(node);
 
@@ -47,6 +51,8 @@ namespace ApexParser.Visitors
 
         // Temporary method
         public virtual void VisitStatement(StatementSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitTryStatement(TryStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitType(TypeSyntax node) => DefaultVisit(node);
 

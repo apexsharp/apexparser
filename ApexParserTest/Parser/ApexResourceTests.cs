@@ -765,7 +765,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("with sharing", cd.Modifiers[1]);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\ExceptionDemo.cls"), Ignore("TODO: try-catch-finally")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\ExceptionDemo.cls")]
         public void ExceptionDemoIsParsed()
         {
             var cd = Apex.ParseClass(ExceptionDemo);
@@ -773,6 +773,27 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
             Assert.AreEqual(2, cd.Methods.Count);
+
+            var md = cd.Methods[0];
+            Assert.NotNull(md.Body);
+            Assert.AreEqual(1, md.Body.Statements.Count);
+
+            var ts = md.Body.Statements[0] as TryStatementSyntax;
+            Assert.NotNull(ts);
+            Assert.NotNull(ts.Block);
+            Assert.AreEqual(1, ts.Block.Statements.Count);
+            Assert.AreEqual(1, ts.Catches.Count);
+
+            var cc = ts.Catches[0];
+            Assert.AreEqual("MathException", cc.Type.Identifier);
+            Assert.AreEqual("e", cc.Identifier);
+            Assert.NotNull(cc.Block);
+            Assert.AreEqual(1, cc.Block.Statements.Count);
+
+            var fc = ts.Finally;
+            Assert.NotNull(fc);
+            Assert.NotNull(fc.Block);
+            Assert.AreEqual(1, fc.Block.Statements.Count);
         }
 
         [Test(Description = @"SalesForceApexSharp\src\classes\ForIfWhile.cls")]

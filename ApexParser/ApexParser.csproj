@@ -61,12 +61,14 @@
     <Compile Include="MetaClass\BaseSyntax.cs" />
     <Compile Include="MetaClass\BlockSyntax.cs" />
     <Compile Include="MetaClass\BreakStatementSyntax.cs" />
+    <Compile Include="MetaClass\CatchClauseSyntax.cs" />
     <Compile Include="MetaClass\ClassDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ConstructorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\DoStatementSyntax.cs" />
     <Compile Include="MetaClass\EnumDeclarationSyntax.cs" />
     <Compile Include="MetaClass\EnumMemberDeclarationSyntax.cs" />
     <Compile Include="MetaClass\FieldDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\FinallyClauseSyntax.cs" />
     <Compile Include="MetaClass\ForEachStatementSyntax.cs" />
     <Compile Include="MetaClass\ForStatementSyntax.cs" />
     <Compile Include="MetaClass\IfStatementSyntax.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="MetaClass\PropertyDeclarationSyntax.cs" />
     <Compile Include="MetaClass\StatementSyntax.cs" />
     <Compile Include="MetaClass\SyntaxType.cs" />
+    <Compile Include="MetaClass\TryStatementSyntax.cs" />
     <Compile Include="MetaClass\TypeSyntax.cs" />
     <Compile Include="MetaClass\VariableDeclarationSyntax.cs" />
     <Compile Include="MetaClass\VariableDeclaratorSyntax.cs" />

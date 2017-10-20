@@ -1298,6 +1298,113 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void CatchExpressionClauseIsATypeAndNameInBraces()
+        {
+            var cexpr = Apex.CatchExpressionTypeName.Parse(" ( exception )");
+            Assert.AreEqual("exception", cexpr.Type.Identifier);
+            Assert.IsNull(cexpr.Identifier);
+
+            cexpr = Apex.CatchExpressionTypeName.Parse("(NullReferenceException ex   )");
+            Assert.AreEqual("NullReferenceException", cexpr.Type.Identifier);
+            Assert.AreEqual("ex", cexpr.Identifier);
+
+            Assert.Throws<ParseException>(() => Apex.CatchExpressionTypeName.Parse("()"));
+        }
+
+        [Test]
+        public void CatchExpressionClauseCanHaveTypeNameOrNothing()
+        {
+            var cexpr = Apex.CatchClause.Parse("catch ( exception ) { return; }");
+            Assert.AreEqual("exception", cexpr.Type.Identifier);
+            Assert.IsNull(cexpr.Identifier);
+            Assert.NotNull(cexpr.Block);
+            Assert.AreEqual(1, cexpr.Block.Statements.Count);
+
+            cexpr = Apex.CatchClause.Parse("catch (NullReferenceException ex   ) { break; }");
+            Assert.AreEqual("NullReferenceException", cexpr.Type.Identifier);
+            Assert.AreEqual("ex", cexpr.Identifier);
+            Assert.NotNull(cexpr.Block);
+            Assert.AreEqual(1, cexpr.Block.Statements.Count);
+
+            cexpr = Apex.CatchClause.Parse("catch { throw; }");
+            Assert.IsNull(cexpr.Type);
+            Assert.IsNull(cexpr.Identifier);
+            Assert.NotNull(cexpr.Block);
+            Assert.AreEqual(1, cexpr.Block.Statements.Count);
+
+            Assert.Throws<ParseException>(() => Apex.CatchClause.Parse("catch () {}"));
+        }
+
+        [Test]
+        public void FinallyClauseIsParsed()
+        {
+            var fc = Apex.FinallyClause.Parse("   finally { /* nothing here */ return; } ");
+            Assert.NotNull(fc.Block);
+            Assert.AreEqual(1, fc.Block.Statements.Count);
+
+            Assert.Throws<ParseException>(() => Apex.FinallyClause.Parse("finally () {}"));
+        }
+
+        [Test]
+        public void TryCatchStatementCanHaveTypeNameOrNothing()
+        {
+            var ts = Apex.TryCatchFinallyStatement.Parse(" try { break; } catch ( exception ) { return; }");
+            Assert.NotNull(ts.Block);
+            Assert.AreEqual(1, ts.Block.Statements.Count);
+            Assert.AreEqual(1, ts.Catches.Count);
+            var cexpr = ts.Catches[0];
+            Assert.AreEqual("exception", cexpr.Type.Identifier);
+            Assert.IsNull(cexpr.Identifier);
+            Assert.NotNull(cexpr.Block);
+            Assert.AreEqual(1, cexpr.Block.Statements.Count);
+
+            ts = Apex.TryCatchFinallyStatement.Parse("try { /* nothing */ } catch (NullReferenceException ex) { break; } catch { throw; }");
+            Assert.NotNull(ts.Block);
+            Assert.AreEqual(0, ts.Block.Statements.Count);
+            Assert.AreEqual(2, ts.Catches.Count);
+
+            cexpr = ts.Catches[0];
+            Assert.AreEqual("NullReferenceException", cexpr.Type.Identifier);
+            Assert.AreEqual("ex", cexpr.Identifier);
+            Assert.NotNull(cexpr.Block);
+            Assert.AreEqual(1, cexpr.Block.Statements.Count);
+
+            cexpr = ts.Catches[1];
+            Assert.IsNull(cexpr.Type);
+            Assert.IsNull(cexpr.Identifier);
+            Assert.NotNull(cexpr.Block);
+            Assert.AreEqual(1, cexpr.Block.Statements.Count);
+
+            ts = Apex.TryCatchFinallyStatement.Parse(" try { break; } catch { return; } finally { throw; }");
+            Assert.NotNull(ts.Block);
+            Assert.AreEqual(1, ts.Block.Statements.Count);
+            Assert.AreEqual(1, ts.Catches.Count);
+            cexpr = ts.Catches[0];
+            Assert.IsNull(cexpr.Type);
+            Assert.IsNull(cexpr.Identifier);
+            Assert.NotNull(cexpr.Block);
+            Assert.AreEqual(1, cexpr.Block.Statements.Count);
+            Assert.NotNull(ts.Finally);
+            Assert.NotNull(ts.Finally.Block);
+            Assert.AreEqual(1, ts.Finally.Block.Statements.Count);
+
+            Assert.Throws<ParseException>(() => Apex.TryCatchFinallyStatement.Parse("try {}"));
+        }
+
+        [Test]
+        public void TryFinallyStatementCanBeWithoutAnyCatches()
+        {
+            var ts = Apex.TryCatchFinallyStatement.Parse("try {} finally {}");
+            Assert.NotNull(ts.Block);
+            Assert.False(ts.Block.Statements.Any());
+            Assert.NotNull(ts.Finally);
+            Assert.NotNull(ts.Finally.Block);
+            Assert.False(ts.Finally.Block.Statements.Any());
+
+            Assert.Throws<ParseException>(() => Apex.TryCatchFinallyStatement.Parse("try {} finally"));
+        }
+
+        [Test]
         public void BlockStatementCanBeCommented()
         {
             var stmt = Apex.Block.Parse(@"
