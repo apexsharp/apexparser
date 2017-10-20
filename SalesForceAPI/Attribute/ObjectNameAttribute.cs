@@ -12,15 +12,4 @@ namespace SalesForceAPI.Attribute
 
         public string SalesForceObjectName { get; set; }
     }
-
-    [AttributeUsage(AttributeTargets.Property)]
-    public class FieldType : System.Attribute
-    {
-        public FieldType(string fieldLengthAttribute)
-        {
-            FieldLengthAttribute = fieldLengthAttribute;
-        }
-
-        public string FieldLengthAttribute { get; set; }
-    }
 }

@@ -47,6 +47,7 @@
     <Compile Include="ApexApi\SObject.cs" />
     <Compile Include="ApexApi\SoqlApi.cs" />
     <Compile Include="AssertErase.cs" />
+    <Compile Include="Attribute\FieldType.cs" />
     <Compile Include="CompositeApi.cs" />
     <Compile Include="HttpManager.cs" />
     <Compile Include="JsonFactory.cs" />
