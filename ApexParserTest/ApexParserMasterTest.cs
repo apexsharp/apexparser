@@ -1,14 +1,10 @@
-﻿using System;
+﻿using NUnit.Framework;
+using NUnit.Framework.Internal;
+using RestSharp;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ApexParser.Parser;
-using ApexParser.Toolbox;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
-using RestSharp;
 
 namespace ApexParserTest
 {
@@ -52,7 +48,7 @@ namespace ApexParserTest
 
             List<GitHubFile> newFilteredList = response.Data.Where(x => x?.name?.EndsWith(".cls") ?? false).ToList();
 
-            // process all Apex files, don't stop after the first error
+            // Process all Apex files, don't stop after the first error
             Assert.Multiple(() =>
             {
                 foreach (var gitHubFile in newFilteredList)
@@ -61,9 +57,29 @@ namespace ApexParserTest
                     request = new RestRequest(Method.GET);
                     var apexCode = client.Execute(request).Content;
 
-                    // report failing file names along with the parse exception
-                    Assert.DoesNotThrow(() => Apex.ParseFile(apexCode),
-                        "Parsing failure on file: {0}", gitHubFile.name);
+                    // Report failing file names along with the parse exception
+                    Assert.DoesNotThrow(() => Apex.ParseFile(apexCode), "Parsing failure on file: {0}", gitHubFile.name);
+                }
+            });
+        }
+
+        [Test]
+        [Ignore("Only Use It To Test Local Files")]
+        public void TestLocalApexFile()
+        {
+            DirectoryInfo dInfo = new DirectoryInfo(@"C:\DevSharp\SalesForceApexSharp\src\classes\");
+
+            List<FileInfo> apexFileList = dInfo.GetFiles("*.cls").ToList();
+
+            // Process all Apex files, don't stop after the first error
+            Assert.Multiple(() =>
+            {
+                foreach (var apexFile in apexFileList)
+                {
+
+                    var apexCode = File.ReadAllText(apexFile.FullName);
+                    // Report failing file names along with the parse exception
+                    Assert.DoesNotThrow(() => Apex.ParseFile(apexCode), "Parsing failure on file: {0}", apexFile.Name);
                 }
             });
         }
