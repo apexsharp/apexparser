@@ -500,8 +500,8 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("DateTime", pd.Type.Identifier);
             Assert.False(pd.Type.TypeParameters.Any());
             Assert.IsTrue(pd.Type.IsArray);
-            Assert.NotNull(pd.GetterStatement);
-            Assert.NotNull(pd.SetterStatement);
+            Assert.NotNull(pd.Getter);
+            Assert.NotNull(pd.Setter);
 
             var fd = cd.Fields[2];
             Assert.AreEqual("DateTimeList", fd.Identifier);
@@ -565,7 +565,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("abstract", cd.Modifiers[1]);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\ClassEnum.cls"), Ignore("TODO")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassEnum.cls"), Ignore("TODO: implement enums")]
         public void ClassEnumIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(ClassEnum);
@@ -876,7 +876,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, block.Statements.Count);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\GetSetDemo.cls"), Ignore("TODO: property accessor modifiers")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\GetSetDemo.cls")]
         public void GetSetDemoIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(GetSetDemo);
@@ -977,8 +977,8 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("DateTime", pd.Type.Identifier);
             Assert.False(pd.Type.TypeParameters.Any());
             Assert.IsTrue(pd.Type.IsArray);
-            Assert.NotNull(pd.GetterStatement);
-            Assert.NotNull(pd.SetterStatement);
+            Assert.NotNull(pd.Getter);
+            Assert.NotNull(pd.Setter);
 
             var fd = cd.Fields[3];
             Assert.AreEqual("DateTimeList", fd.Identifier);

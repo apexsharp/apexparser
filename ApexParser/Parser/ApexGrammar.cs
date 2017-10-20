@@ -153,8 +153,7 @@ namespace ApexParser.Parser
             {
                 Type = typeAndName.Type,
                 Identifier = typeAndName.Identifier,
-                GetterStatement = accessors.GetterStatement,
-                SetterStatement = accessors.SetterStatement,
+                Accessors = accessors.Accessors,
             };
 
         // example: { get; set; }
@@ -164,11 +163,16 @@ namespace ApexParser.Parser
             from closeBrace in Parse.Char('}').Token()
             select new PropertyDeclarationSyntax(accessors);
 
-        // examples: get; set; get { ... }
-        protected internal virtual Parser<Tuple<string, StatementSyntax>> PropertyAccessor =>
+        // examples: get; private set; get { return 0; }
+        protected internal virtual Parser<AccessorDeclarationSyntax> PropertyAccessor =>
+            from heading in MemberDeclarationHeading
             from getOrSet in Parse.IgnoreCase("get").Or(Parse.IgnoreCase("set")).Token().Text()
-            from block in Parse.Char(';').Token().Return(new StatementSyntax()).Or(Block)
-            select Tuple.Create(getOrSet, block);
+            from body in Parse.Char(';').Token().Return(default(BlockSyntax)).Or(Block)
+            select new AccessorDeclarationSyntax(heading)
+            {
+                IsGetter = getOrSet == "get",
+                Body = body,
+            };
 
         // example: private int width;
         protected internal virtual Parser<FieldDeclarationSyntax> FieldDeclaration =>

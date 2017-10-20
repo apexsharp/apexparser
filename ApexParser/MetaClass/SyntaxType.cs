@@ -3,6 +3,7 @@
     public enum SyntaxType
     {
         NotFound,
+        Accessor,
         Block,
         BreakStatement,
         Class,

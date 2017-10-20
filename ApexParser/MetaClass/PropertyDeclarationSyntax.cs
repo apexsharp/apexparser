@@ -16,22 +16,10 @@ namespace ApexParser.MetaClass
             Kind = SyntaxType.Property;
         }
 
-        public PropertyDeclarationSyntax(IEnumerable<Tuple<string, StatementSyntax>> gettersOrSetters, MemberDeclarationSyntax heading = null)
+        public PropertyDeclarationSyntax(IEnumerable<AccessorDeclarationSyntax> accessors, MemberDeclarationSyntax heading = null)
             : this(heading)
         {
-            foreach (var item in gettersOrSetters)
-            {
-                switch (item.Item1)
-                {
-                    case "get":
-                        GetterStatement = item.Item2;
-                        continue;
-
-                    case "set":
-                        SetterStatement = item.Item2;
-                        continue;
-                }
-            }
+            Accessors = accessors.ToList();
         }
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitPropertyDeclaration(this);
@@ -40,9 +28,11 @@ namespace ApexParser.MetaClass
 
         public string Identifier { get; set; }
 
-        public StatementSyntax GetterStatement { get; set; }
+        public List<AccessorDeclarationSyntax> Accessors { get; set; } = new List<AccessorDeclarationSyntax>();
 
-        public StatementSyntax SetterStatement { get; set; }
+        public AccessorDeclarationSyntax Getter => Accessors.FirstOrDefault(a => a.IsGetter);
+
+        public AccessorDeclarationSyntax Setter => Accessors.FirstOrDefault(a => a.IsSetter);
 
         public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {

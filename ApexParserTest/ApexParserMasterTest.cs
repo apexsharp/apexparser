@@ -12,6 +12,8 @@ using RestSharp;
 
 namespace ApexParserTest
 {
+#pragma warning disable IDE1006 // Naming Styles
+
     public class GitHubFile
     {
         public string name { get; set; }
@@ -33,6 +35,8 @@ namespace ApexParserTest
         public string html { get; set; }
     }
 
+#pragma warning restore IDE1006 // Naming Styles
+
     [TestFixture]
     public class ApexParserMasterTest
     {
@@ -45,7 +49,6 @@ namespace ApexParserTest
             var client = new RestClient(endPoint);
             var request = new RestRequest(resource, Method.GET);
             var response = client.Execute<List<GitHubFile>>(request);
-
 
             List<GitHubFile> newFilteredList = response.Data.Where(x => x.name.Contains(".cls-meta.xml") == false).ToList();
 
@@ -62,6 +65,7 @@ namespace ApexParserTest
                 }
                 catch (ParseExceptionCustom ex)
                 {
+                    Console.WriteLine(gitHubFile.name);
                     Assert.NotNull(ex);
                     Assert.False(ex.Message.Contains("Parsing failure:"), ex.Message);
                     Console.WriteLine(ex.Message);

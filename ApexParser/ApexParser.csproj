@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MetaClass\AccessorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\AnnotationSyntax.cs" />
     <Compile Include="MetaClass\BaseSyntax.cs" />
     <Compile Include="MetaClass\BlockSyntax.cs" />

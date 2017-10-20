@@ -467,32 +467,44 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void GetterOrSetterCanBeEmpty()
+        public void PropertyAccessorCanBeEmpty()
         {
             var get = Apex.PropertyAccessor.Parse(" get ; ");
-            Assert.AreEqual("get", get.Item1);
-            Assert.True(get.Item2.IsEmpty);
+            Assert.False(get.CodeComments.Any());
+            Assert.False(get.Annotations.Any());
+            Assert.False(get.Modifiers.Any());
+            Assert.True(get.IsGetter);
+            Assert.Null(get.Body);
 
             var set = Apex.PropertyAccessor.Parse(" set ; ");
-            Assert.AreEqual("set", set.Item1);
-            Assert.True(set.Item2.IsEmpty);
+            Assert.False(set.CodeComments.Any());
+            Assert.False(set.Annotations.Any());
+            Assert.False(set.Modifiers.Any());
+            Assert.True(set.IsSetter);
+            Assert.Null(set.Body);
         }
 
         [Test]
-        public void GetterOrSetterCanHaveBlocks()
+        public void PropertyAccessorCanHaveBlocks()
         {
             var get = Apex.PropertyAccessor.Parse(" get { return myProperty; } ");
-            Assert.AreEqual("get", get.Item1);
+            Assert.False(get.CodeComments.Any());
+            Assert.False(get.Annotations.Any());
+            Assert.False(get.Modifiers.Any());
+            Assert.True(get.IsGetter);
 
-            var block = get.Item2 as BlockSyntax;
+            var block = get.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("return myProperty", block.Statements[0].Body);
 
             var set = Apex.PropertyAccessor.Parse(" set { myProperty = value; if (true) { value++; } } ");
-            Assert.AreEqual("set", set.Item1);
+            Assert.False(set.CodeComments.Any());
+            Assert.False(set.Annotations.Any());
+            Assert.False(set.Modifiers.Any());
+            Assert.IsTrue(set.IsSetter);
 
-            block = set.Item2 as BlockSyntax;
+            block = set.Body;
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
             Assert.AreEqual("myProperty = value", block.Statements[0].Body);
@@ -509,20 +521,38 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void PropertyAccessorCanHaveAccessModifiers()
+        {
+            var get = Apex.PropertyAccessor.Parse(" public get { return 0; }");
+            Assert.False(get.CodeComments.Any());
+            Assert.False(get.Annotations.Any());
+            Assert.AreEqual(1, get.Modifiers.Count);
+            Assert.AreEqual("public", get.Modifiers[0]);
+            Assert.True(get.IsGetter);
+
+            var block = get.Body;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("return 0", block.Statements[0].Body);
+        }
+
+        [Test]
         public void PropertyHasTypeNameGettersAndOrSetters()
         {
             var prop = Apex.PropertyDeclaration.Parse(" int x { get; }");
             Assert.AreEqual("int", prop.Type.Identifier);
             Assert.AreEqual("x", prop.Identifier);
-            Assert.AreEqual(null, prop.SetterStatement);
-            Assert.True(prop.GetterStatement.IsEmpty);
+            Assert.Null(prop.Setter);
+            Assert.NotNull(prop.Getter);
+            Assert.True(prop.Getter.IsEmpty);
 
             prop = Apex.PropertyDeclaration.Parse(" String Version { set { version = value; } }");
             Assert.AreEqual("String", prop.Type.Identifier);
             Assert.AreEqual("Version", prop.Identifier);
-            Assert.AreEqual(null, prop.GetterStatement);
+            Assert.Null(prop.Getter);
+            Assert.NotNull(prop.Setter);
 
-            var block = prop.SetterStatement as BlockSyntax;
+            var block = prop.Setter.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("version = value", block.Statements[0].Body);
@@ -536,8 +566,9 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("dataMember", prop.Annotations[0].Identifier);
             Assert.AreEqual("int", prop.Type.Identifier);
             Assert.AreEqual("length", prop.Identifier);
-            Assert.AreEqual(null, prop.SetterStatement);
-            Assert.True(prop.GetterStatement.IsEmpty);
+            Assert.Null(prop.Setter);
+            Assert.NotNull(prop.Getter);
+            Assert.True(prop.Getter.IsEmpty);
         }
 
         [Test]
@@ -624,8 +655,9 @@ namespace ApexParserTest.Parser
             Assert.NotNull(pd);
             Assert.AreEqual("string", pd.Type.Identifier);
             Assert.AreEqual("Test", pd.Identifier);
-            Assert.NotNull(pd.GetterStatement);
-            Assert.Null(pd.SetterStatement);
+            Assert.NotNull(pd.Getter);
+            Assert.True(pd.Getter.IsEmpty);
+            Assert.Null(pd.Setter);
 
             pm = Apex.MethodPropertyOrFieldDeclaration.Parse("DateTime now = DateTime.Now();");
             var fd = pm as FieldDeclarationSyntax;
@@ -837,10 +869,11 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual("flag", pd.Identifier);
             Assert.AreEqual("boolean", pd.Type.Identifier);
-            Assert.NotNull(pd.GetterStatement);
-            Assert.True(pd.GetterStatement.IsEmpty);
+            Assert.NotNull(pd.Getter);
+            Assert.True(pd.Getter.IsEmpty);
 
-            block = pd.SetterStatement as BlockSyntax;
+            Assert.NotNull(pd.Setter);
+            block = pd.Setter.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("throw", block.Statements[0].Body);
@@ -850,8 +883,10 @@ namespace ApexParserTest.Parser
             cm = Apex.ClassMemberDeclaration.Parse("className Test { get; set; }");
             pd = cm as PropertyDeclarationSyntax;
             Assert.NotNull(pd);
-            Assert.NotNull(pd.GetterStatement);
-            Assert.NotNull(pd.SetterStatement);
+            Assert.NotNull(pd.Getter);
+            Assert.NotNull(pd.Setter);
+            Assert.True(pd.Getter.IsEmpty);
+            Assert.True(pd.Setter.IsEmpty);
         }
 
         [Test]
