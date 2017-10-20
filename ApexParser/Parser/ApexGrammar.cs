@@ -396,6 +396,39 @@ namespace ApexParser.Parser
                 InnerClasses = GetClasses(members),
             };
 
+        // example: SomeValue
+        protected internal virtual Parser<EnumMemberDeclarationSyntax> EnumMember =>
+            from heading in MemberDeclarationHeading
+            from identifier in Identifier
+            select new EnumMemberDeclarationSyntax(heading)
+            {
+                Identifier = identifier,
+            };
+
+        // example: public enum Weekday { Monday, Thursday }
+        protected internal virtual Parser<EnumDeclarationSyntax> EnumDeclaration =>
+            from heading in MemberDeclarationHeading
+            from @enum in EnumDeclarationBody
+            select new EnumDeclarationSyntax(heading)
+            {
+                Identifier = @enum.Identifier,
+                Members = @enum.Members,
+            };
+
+        // example: enum Weekday { Monday, Thursday }
+        protected internal virtual Parser<EnumDeclarationSyntax> EnumDeclarationBody =>
+            from @enum in Parse.IgnoreCase(ApexKeywords.Enum).Token()
+            from identifier in Identifier
+            from openBrace in Parse.Char('{').Token()
+            from members in EnumMember.XDelimitedBy(Parse.Char(',').Token())
+            from comment in CommentParser.AnyComment.Optional()
+            from closeBrace in Parse.Char('}').Token()
+            select new EnumDeclarationSyntax
+            {
+                Identifier = identifier,
+                Members = members.ToList(),
+            };
+
         private List<ClassDeclarationSyntax> GetClasses(IEnumerable<MemberDeclarationSyntax> members) =>
             members.OfType<ClassDeclarationSyntax>().ToList();
 

@@ -890,6 +890,47 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void EnumMemberDeclarationIsAnIdenfierWithPossibleComments()
+        {
+            var em = Apex.EnumMember.Parse(" /* default */ @test SomeValue ");
+            Assert.AreEqual(1, em.CodeComments.Count);
+            Assert.AreEqual("default", em.CodeComments[0].Trim());
+            Assert.AreEqual(1, em.Annotations.Count);
+            Assert.AreEqual("test", em.Annotations[0].Identifier);
+            Assert.AreEqual("SomeValue", em.Identifier);
+
+            Assert.Throws<ParseException>(() => Apex.EnumMember.Parse(" enum "));
+        }
+
+        [Test]
+        public void EnumDeclarationIsANamedListOfCommaDelimitedIdentifiers()
+        {
+            var en = Apex.EnumDeclaration.Parse(" enum Boo { Tru, Fa } ");
+            Assert.AreEqual("Boo", en.Identifier);
+            Assert.AreEqual(0, en.Modifiers.Count);
+            Assert.AreEqual(0, en.CodeComments.Count);
+            Assert.AreEqual(0, en.Annotations.Count);
+            Assert.AreEqual(2, en.Members.Count);
+            Assert.AreEqual("Tru", en.Members[0].Identifier);
+            Assert.AreEqual("Fa", en.Members[1].Identifier);
+
+            en = Apex.EnumDeclaration.Parse(" /* Months */ @test public enum Month { /* January */ Jan, Mar, Dec } ");
+            Assert.AreEqual("Month", en.Identifier);
+            Assert.AreEqual(1, en.Modifiers.Count);
+            Assert.AreEqual("public", en.Modifiers[0]);
+            Assert.AreEqual(1, en.CodeComments.Count);
+            Assert.AreEqual("Months", en.CodeComments[0].Trim());
+            Assert.AreEqual(1, en.Annotations.Count);
+            Assert.AreEqual("test", en.Annotations[0].Identifier);
+            Assert.AreEqual(3, en.Members.Count);
+            Assert.AreEqual("Jan", en.Members[0].Identifier);
+            Assert.AreEqual(1, en.Members[0].CodeComments.Count);
+            Assert.AreEqual("January", en.Members[0].CodeComments[0].Trim());
+            Assert.AreEqual("Mar", en.Members[1].Identifier);
+            Assert.AreEqual("Dec", en.Members[2].Identifier);
+        }
+
+        [Test]
         public void UnknownGenericStatementIsAnythingExceptBlockEndingWithATerminator()
         {
             var stmt = Apex.UnknownGenericStatement.Parse("return 'Hello World';");

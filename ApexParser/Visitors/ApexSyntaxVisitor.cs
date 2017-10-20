@@ -27,6 +27,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitDoStatement(DoStatementSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitEnum(EnumDeclarationSyntax node) => DefaultVisit(node);
+
         public virtual void VisitEnumMember(EnumMemberDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitFieldDeclaration(FieldDeclarationSyntax node) => DefaultVisit(node);

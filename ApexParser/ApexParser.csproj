@@ -64,6 +64,7 @@
     <Compile Include="MetaClass\ClassDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ConstructorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\DoStatementSyntax.cs" />
+    <Compile Include="MetaClass\EnumDeclarationSyntax.cs" />
     <Compile Include="MetaClass\EnumMemberDeclarationSyntax.cs" />
     <Compile Include="MetaClass\FieldDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ForEachStatementSyntax.cs" />

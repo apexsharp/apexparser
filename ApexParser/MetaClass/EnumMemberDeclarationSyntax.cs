@@ -17,5 +17,7 @@ namespace ApexParser.MetaClass
         public override SyntaxType Kind => SyntaxType.EnumMember;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitEnumMember(this);
+
+        public string Identifier { get; set; }
     }
 }
