@@ -141,6 +141,7 @@
     <None Include="ApexTestClasses\PrimitiveTypes.cls" />
     <None Include="ApexTestClasses\PropertyAndField2.cls" />
     <None Include="ApexTestClasses\RunAll.cls" />
+    <None Include="ApexTestClasses\Comments.cls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

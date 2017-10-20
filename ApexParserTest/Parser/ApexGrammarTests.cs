@@ -677,6 +677,13 @@ namespace ApexParserTest.Parser
             Assert.False(cd.Modifiers.Any());
             Assert.AreEqual("Test", cd.Identifier);
 
+            cd = Apex.ClassDeclarationBody.Parse(" class Test /* another one */ {}");
+            Assert.False(cd.IsInterface);
+            Assert.False(cd.Annotations.Any());
+            Assert.False(cd.Methods.Any());
+            Assert.False(cd.Modifiers.Any());
+            Assert.AreEqual("Test", cd.Identifier);
+
             // incomplete class declarations
             Assert.Throws<ParseException>(() => Apex.ClassDeclarationBody.Parse(" class Test {"));
             Assert.Throws<ParseException>(() => Apex.ClassDeclarationBody.Parse(" class {}"));
@@ -919,6 +926,10 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("test", em.Annotations[0].Identifier);
             Assert.AreEqual("SomeValue", em.Identifier);
 
+            em = Apex.EnumMember.End().Parse(" SomeValue /* some value */");
+            Assert.AreEqual(0, em.Annotations.Count);
+            Assert.AreEqual("SomeValue", em.Identifier);
+
             Assert.Throws<ParseException>(() => Apex.EnumMember.Parse(" enum "));
         }
 
@@ -948,6 +959,15 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("January", en.Members[0].CodeComments[0].Trim());
             Assert.AreEqual("Mar", en.Members[1].Identifier);
             Assert.AreEqual("Dec", en.Members[2].Identifier);
+
+            en = Apex.EnumDeclaration.Parse(" enum Boo /* Boolean */ { Tru, Fa } ");
+            Assert.AreEqual("Boo", en.Identifier);
+            Assert.AreEqual(0, en.Modifiers.Count);
+            Assert.AreEqual(0, en.CodeComments.Count);
+            Assert.AreEqual(0, en.Annotations.Count);
+            Assert.AreEqual(2, en.Members.Count);
+            Assert.AreEqual("Tru", en.Members[0].Identifier);
+            Assert.AreEqual("Fa", en.Members[1].Identifier);
         }
 
         [Test]
@@ -1432,6 +1452,25 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(2, stmt.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
             Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
+        }
+
+        [Test]
+        public void BlockStatementCanHaveLeadingComments()
+        {
+            var stmt = Apex.Block.Parse(@"/* This is the first comment.
+            It has two lines. */
+            // This is the second comment.
+            /* And the third one. */
+            {
+                final string methodSig = 'Something'; // method contents might not be valid
+                return new List<string>(); /* comments */
+            }");
+
+            Assert.AreEqual(3, stmt.CodeComments.Count);
+            Assert.AreEqual(2, stmt.Statements.Count);
+            Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
+            Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
+            Assert.AreEqual(1, stmt.TrailingComments.Count);
         }
     }
 }

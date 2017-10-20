@@ -217,14 +217,16 @@ namespace ApexParser.Parser
 
         // examples: {}, { /* empty block */ }, { int a = 0; return; }
         protected internal virtual Parser<BlockSyntax> Block =>
+            from comments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from statements in Statement.Many()
             from trailingComment in CommentParser.AnyComment.Token().Many()
             from closeBrace in Parse.Char('}').Token()
             select new BlockSyntax
             {
+                CodeComments = comments.ToList(),
                 Statements = statements.ToList(),
-                CodeComments = trailingComment.ToList(),
+                TrailingComments = trailingComment.ToList(),
             };
 
         // example: int x, y, z = 3;
@@ -431,6 +433,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<EnumMemberDeclarationSyntax> EnumMember =>
             from heading in MemberDeclarationHeading
             from identifier in Identifier
+            from skippedComments in CommentParser.AnyComment.Token().Many()
             select new EnumMemberDeclarationSyntax(heading)
             {
                 Identifier = identifier,
@@ -450,6 +453,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<EnumDeclarationSyntax> EnumDeclarationBody =>
             from @enum in Parse.IgnoreCase(ApexKeywords.Enum).Token()
             from identifier in Identifier
+            from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in EnumMember.XDelimitedBy(Parse.Char(',').Token())
             from comment in CommentParser.AnyComment.Optional()
@@ -479,6 +483,7 @@ namespace ApexParser.Parser
             from className in Identifier
             from baseType in Parse.IgnoreCase(ApexKeywords.Extends).Token().Then(t => TypeReference).Optional()
             from interfaces in Parse.IgnoreCase(ApexKeywords.Implements).Token().Then(t => TypeReference.DelimitedBy(Parse.Char(',').Token())).Optional()
+            from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
             from closeBrace in Parse.Char('}').Token()

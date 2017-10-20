@@ -162,9 +162,9 @@ namespace ApexParserTest.Parser
                 block = cc.Body;
                 Assert.NotNull(block);
                 Assert.False(block.Statements.Any());
-                Assert.AreEqual(2, block.CodeComments.Count);
-                Assert.AreEqual("another constructor", block.CodeComments[0].Trim());
-                Assert.AreEqual("with a lot of misplaced comments", block.CodeComments[1].Trim());
+                Assert.AreEqual(2, block.TrailingComments.Count);
+                Assert.AreEqual("another constructor", block.TrailingComments[0].Trim());
+                Assert.AreEqual("with a lot of misplaced comments", block.TrailingComments[1].Trim());
 
                 var mp = cc.Parameters[0];
                 Assert.AreEqual("String", mp.Type.Identifier);
@@ -1058,6 +1058,14 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, cd.Constructors.Count);
             Assert.AreEqual("RunAll", cd.Constructors[0].Identifier);
             Assert.AreEqual(10, cd.Constructors[0].Body.Statements.Count);
+        }
+
+        [Test]
+        public void CommentsFileIsParsed()
+        {
+            var cd = Apex.ParseClass(Comments);
+            Assert.AreEqual("Comments", cd.Identifier);
+            Assert.AreEqual(1, cd.CodeComments.Count);
         }
     }
 }
