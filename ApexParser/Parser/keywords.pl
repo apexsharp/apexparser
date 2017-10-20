@@ -1,4 +1,6 @@
-﻿# Sample usage: perl -w keywords.pl reserved.txt > tmp.cs
+﻿# Sample usage:
+# perl -w keywords.pl keywords_reserved.txt > tmp1.cs
+# perl -w keywords.pl keywords_nonreserved.txt > tmp2.cs
 
 while (<>)
 {

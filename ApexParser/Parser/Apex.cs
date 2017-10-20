@@ -12,19 +12,13 @@ namespace ApexParser.Parser
     {
         private static ApexGrammar ApexGrammar { get; } = new ApexGrammar();
 
-        public static MemberDeclarationSyntax ParseFile(string text)
-        {
-            return ApexGrammar.CompilationUnit.ParseEx(text);
-        }
+        public static MemberDeclarationSyntax ParseFile(string text) =>
+            ApexGrammar.CompilationUnit.ParseEx(text);
 
-        public static ClassDeclarationSyntax ParseClass(string text)
-        {
-            return ApexGrammar.ClassDeclaration.ParseEx(text);
-        }
+        public static ClassDeclarationSyntax ParseClass(string text) =>
+            ApexGrammar.ClassDeclaration.ParseEx(text);
 
-        public static EnumDeclarationSyntax ParseEnum(string text)
-        {
-            return ApexGrammar.EnumDeclaration.ParseEx(text);
-        }
+        public static EnumDeclarationSyntax ParseEnum(string text) =>
+            ApexGrammar.EnumDeclaration.ParseEx(text);
     }
 }

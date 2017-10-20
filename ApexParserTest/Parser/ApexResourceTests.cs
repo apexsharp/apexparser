@@ -503,7 +503,7 @@ namespace ApexParserTest.Parser
 
             var fd = cd.Fields[2];
             Assert.AreEqual("DateTimeList", fd.Identifier);
-            Assert.AreEqual("List", fd.Type.Identifier);
+            Assert.AreEqual("list", fd.Type.Identifier);
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
@@ -584,7 +584,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("ClassException", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
-            Assert.AreEqual("Exception", cd.BaseType.Identifier);
+            Assert.AreEqual("exception", cd.BaseType.Identifier);
         }
 
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassGlobal.cls")]
@@ -985,7 +985,7 @@ namespace ApexParserTest.Parser
 
             var fd = cd.Fields[3];
             Assert.AreEqual("DateTimeList", fd.Identifier);
-            Assert.AreEqual("List", fd.Type.Identifier);
+            Assert.AreEqual("list", fd.Type.Identifier);
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);

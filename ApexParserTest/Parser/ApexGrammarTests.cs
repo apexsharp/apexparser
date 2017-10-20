@@ -31,14 +31,14 @@ namespace ApexParserTest.Parser
         [Test]
         public void QualifiedIdentifierIsAnStreamOfIdentifiersDelimitedByDots()
         {
-            var qi = Apex.QualifiedIdentifier.Parse(" System.debug ").ToList();
+            var qi = Apex.QualifiedIdentifier.Parse(" Sys.debug ").ToList();
             Assert.AreEqual(2, qi.Count);
-            Assert.AreEqual("System", qi[0]);
+            Assert.AreEqual("Sys", qi[0]);
             Assert.AreEqual("debug", qi[1]);
 
-            qi = Apex.QualifiedIdentifier.Parse(@" System . Collections  . Generic ").ToList();
+            qi = Apex.QualifiedIdentifier.Parse(@" Sys . Collections  . Generic ").ToList();
             Assert.AreEqual(3, qi.Count);
-            Assert.AreEqual("System", qi[0]);
+            Assert.AreEqual("Sys", qi[0]);
             Assert.AreEqual("Collections", qi[1]);
             Assert.AreEqual("Generic", qi[2]);
         }
@@ -106,7 +106,7 @@ namespace ApexParserTest.Parser
 
             // not types or non-generic types
             Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("class"));
-            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("Map<string, string>"));
+            Assert.Throws<ParseException>(() => Apex.PrimitiveType.End().Parse("Map<string, string>"));
         }
 
         [Test]
@@ -116,12 +116,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, tp.Count);
             Assert.AreEqual("string", tp[0].Identifier);
 
-            tp = Apex.TypeParameters.Parse(" < System.Collections.Hashtable, string, int, void, System.Character > ").ToList();
+            tp = Apex.TypeParameters.Parse(" < Sys.Collections.Hashtable, string, int, void, Sys.Character > ").ToList();
             Assert.AreEqual(5, tp.Count);
 
             var type = tp[0];
             Assert.AreEqual(2, type.Namespaces.Count);
-            Assert.AreEqual("System", type.Namespaces[0]);
+            Assert.AreEqual("Sys", type.Namespaces[0]);
             Assert.AreEqual("Collections", type.Namespaces[1]);
             Assert.AreEqual("Hashtable", type.Identifier);
 
@@ -131,7 +131,7 @@ namespace ApexParserTest.Parser
 
             type = tp[4];
             Assert.AreEqual(1, type.Namespaces.Count);
-            Assert.AreEqual("System", type.Namespaces.Single());
+            Assert.AreEqual("Sys", type.Namespaces.Single());
             Assert.AreEqual("Character", type.Identifier);
 
             // not types or non-generic types
@@ -149,7 +149,7 @@ namespace ApexParserTest.Parser
             Assert.False(tr.IsArray);
 
             tr = Apex.TypeReference.Parse("List<string>");
-            Assert.AreEqual("List", tr.Identifier);
+            Assert.AreEqual("list", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
             Assert.False(tr.IsArray);
 
@@ -158,10 +158,10 @@ namespace ApexParserTest.Parser
             Assert.False(tr.TypeParameters[0].Namespaces.Any());
             Assert.False(tr.IsArray);
 
-            tr = Apex.TypeReference.Parse(" System.Collections.Map < System.string, List<Guid> >");
-            Assert.AreEqual("Map", tr.Identifier);
+            tr = Apex.TypeReference.Parse(" Sys.Collections.MyMap < Sys.string, List<Guid> >");
+            Assert.AreEqual("MyMap", tr.Identifier);
             Assert.AreEqual(2, tr.Namespaces.Count);
-            Assert.AreEqual("System", tr.Namespaces[0]);
+            Assert.AreEqual("Sys", tr.Namespaces[0]);
             Assert.AreEqual("Collections", tr.Namespaces[1]);
             Assert.False(tr.IsArray);
 
@@ -178,7 +178,7 @@ namespace ApexParserTest.Parser
             Assert.True(tr.IsArray);
 
             tr = Apex.TypeReference.Parse(" List <string>[]");
-            Assert.AreEqual("List", tr.Identifier);
+            Assert.AreEqual("list", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
             Assert.True(tr.IsArray);
         }
@@ -195,7 +195,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("b", pd.Identifier);
 
             pd = Apex.ParameterDeclaration.Parse(" List<string> stringList");
-            Assert.AreEqual("List", pd.Type.Identifier);
+            Assert.AreEqual("list", pd.Type.Identifier);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
             Assert.AreEqual("string", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("stringList", pd.Identifier);
@@ -236,7 +236,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void MethodParametersIsCommaSeparatedParameterDeclarationsWithinBraces()
         {
-            var mp = Apex.MethodParameters.Parse(" (Integer a, char b,  System.List<Boolean> c123 ) ");
+            var mp = Apex.MethodParameters.Parse(" (Integer a, char b,  Sys.MyList<Boolean> c123 ) ");
             Assert.NotNull(mp);
             Assert.AreEqual(3, mp.Count);
 
@@ -249,9 +249,9 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("b", pd.Identifier);
 
             pd = mp[2];
-            Assert.AreEqual("List", pd.Type.Identifier);
+            Assert.AreEqual("MyList", pd.Type.Identifier);
             Assert.AreEqual(1, pd.Type.Namespaces.Count);
-            Assert.AreEqual("System", pd.Type.Namespaces[0]);
+            Assert.AreEqual("Sys", pd.Type.Namespaces[0]);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
             Assert.AreEqual("boolean", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("c123", pd.Identifier);
@@ -363,7 +363,7 @@ namespace ApexParserTest.Parser
             Assert.False(md.Annotations.Any());
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("public", md.Modifiers[0]);
-            Assert.AreEqual("List", md.ReturnType.Identifier);
+            Assert.AreEqual("list", md.ReturnType.Identifier);
             Assert.AreEqual(1, md.ReturnType.TypeParameters.Count);
             Assert.AreEqual("int", md.ReturnType.TypeParameters[0].Identifier);
             Assert.AreEqual("Add", md.Identifier);
@@ -1116,7 +1116,7 @@ namespace ApexParserTest.Parser
             Assert.IsNull(variable.Variables[1].Expression);
 
             variable = Apex.VariableDeclaration.Parse(" Map<string, DateTime>[] dates = GetDates(), temp, other; ");
-            Assert.AreEqual("Map", variable.Type.Identifier);
+            Assert.AreEqual("map", variable.Type.Identifier);
             Assert.IsTrue(variable.Type.IsArray);
             Assert.AreEqual(2, variable.Type.TypeParameters.Count);
             Assert.AreEqual("string", variable.Type.TypeParameters[0].Identifier);
