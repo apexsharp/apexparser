@@ -16,7 +16,7 @@ namespace SalesForceAPI
         /**
          * Get the SF Session and Save. If the saved session is more then 2 hours old then get a new session
          */
-        public ConnectionDetail Connect(string url, string userId, string password)
+        public static ConnectionDetail Connect(string url, string userId, string password)
         {
             Dictionary<string, ConnectionDetail> conectionDetails = new Dictionary<string, ConnectionDetail>();
 
@@ -72,7 +72,7 @@ namespace SalesForceAPI
             }
         }
 
-        private ConnectionDetail GetNewConnection(string url, string userId, string password)
+        private static ConnectionDetail GetNewConnection(string url, string userId, string password)
         {
             var xml =
                 @"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:urn=""urn:enterprise.soap.sforce.com"">
@@ -121,7 +121,7 @@ namespace SalesForceAPI
             }
         }
 
-        private async Task<string> PostLoginTask(string url, string json)
+        private static async Task<string> PostLoginTask(string url, string json)
         {
             HttpRequestMessage request = new HttpRequestMessage
             {
