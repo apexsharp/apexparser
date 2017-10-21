@@ -6,8 +6,6 @@ using ApexParser.Parser;
 
 namespace ApexParserTest
 {
-
-
     [TestFixture]
     public class ApexParserMasterTest
     {
