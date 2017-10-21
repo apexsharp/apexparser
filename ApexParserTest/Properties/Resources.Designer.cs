@@ -935,6 +935,26 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public class PropertyAndField
+        ///{
+        ///    transient Integer TransientInteger;
+        ///    public DateTime DateTimeGetSet { get; set; }
+        ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///    public DateTime[] DateTimeGetSetArray { get; set; }
+        ///    public DateTime DateTimeEmpty;
+        ///    public DateTime DateTimeInitialized = DateTime.now();
+        ///    public List&lt;DateTime&gt; DateTimeList = new List&lt;DateTime&gt;();
+        ///    public DateTime[] DateTimeArray = new DateTime[5];
+        ///    public String Name = &apos;jay&apos;;
+        ///    public final St [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PropertyAndField3 {
+            get {
+                return ResourceManager.GetString("PropertyAndField3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class RunAll
         ///{
         ///    public RunAll()

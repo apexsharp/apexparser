@@ -241,6 +241,9 @@
   <data name="PropertyAndField2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\PropertyAndField2.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="PropertyAndField3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\PropertyAndField3.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
   <data name="RunAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\RunAll.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>

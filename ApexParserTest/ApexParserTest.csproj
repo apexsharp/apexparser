@@ -142,6 +142,7 @@
     <None Include="ApexTestClasses\PrimitiveTypes.cls" />
     <None Include="ApexTestClasses\PropertyAndField.cls" />
     <None Include="ApexTestClasses\PropertyAndField2.cls" />
+    <None Include="ApexTestClasses\PropertyAndField3.cls" />
     <None Include="ApexTestClasses\RunAll.cls" />
     <None Include="ApexTestClasses\SoqlDemo.cs" />
     <None Include="ApexTestClasses\SoqlDemo.cls" />

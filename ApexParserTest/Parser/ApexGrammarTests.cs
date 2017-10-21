@@ -74,27 +74,27 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void PrimitiveTypeIsOneOfSpecificKeywords()
+        public void SystemTypeIsOneOfSpecificKeywords()
         {
-            Assert.AreEqual(ApexKeywords.Void, Apex.PrimitiveType.Parse(" void ").Identifier);
-            Assert.AreEqual(ApexKeywords.Int, Apex.PrimitiveType.Parse(" int ").Identifier);
-            Assert.AreEqual(ApexKeywords.Boolean, Apex.PrimitiveType.Parse(" boolean ").Identifier);
+            Assert.AreEqual(ApexKeywords.Void, Apex.SystemType.Parse(" void ").Identifier);
+            Assert.AreEqual(ApexKeywords.Int, Apex.SystemType.Parse(" int ").Identifier);
+            Assert.AreEqual(ApexKeywords.Boolean, Apex.SystemType.Parse(" boolean ").Identifier);
 
             // these keywords aren't types
-            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("class"));
-            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("sharing"));
+            Assert.Throws<ParseException>(() => Apex.SystemType.Parse("class"));
+            Assert.Throws<ParseException>(() => Apex.SystemType.Parse("sharing"));
         }
 
         [Test]
-        public void PrimitiveTypesAreCaseInsensitive()
+        public void SystemTypesAreCaseInsensitive()
         {
-            Assert.AreEqual(ApexKeywords.Void, Apex.PrimitiveType.Parse(" Void ").Identifier);
-            Assert.AreEqual(ApexKeywords.Int, Apex.PrimitiveType.Parse(" INT ").Identifier);
-            Assert.AreEqual(ApexKeywords.Boolean, Apex.PrimitiveType.Parse(" BooLeAn ").Identifier);
+            Assert.AreEqual(ApexKeywords.Void, Apex.SystemType.Parse(" Void ").Identifier);
+            Assert.AreEqual(ApexKeywords.Int, Apex.SystemType.Parse(" INT ").Identifier);
+            Assert.AreEqual(ApexKeywords.Boolean, Apex.SystemType.Parse(" BooLeAn ").Identifier);
 
             // these keywords aren't types
-            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("class"));
-            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("sharing"));
+            Assert.Throws<ParseException>(() => Apex.SystemType.Parse("class"));
+            Assert.Throws<ParseException>(() => Apex.SystemType.Parse("sharing"));
         }
 
         [Test]
@@ -106,8 +106,8 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Integer", Apex.NonGenericType.Parse(" Integer ").Identifier);
 
             // not types or non-generic types
-            Assert.Throws<ParseException>(() => Apex.PrimitiveType.Parse("class"));
-            Assert.Throws<ParseException>(() => Apex.PrimitiveType.End().Parse("Map<string, string>"));
+            Assert.Throws<ParseException>(() => Apex.SystemType.Parse("class"));
+            Assert.Throws<ParseException>(() => Apex.SystemType.End().Parse("Map<string, string>"));
         }
 
         [Test]
@@ -599,6 +599,13 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("string", field.Type.Identifier);
             Assert.AreEqual("name", field.Identifier);
             Assert.AreEqual("'Bozo'", field.Expression);
+
+            field = Apex.FieldDeclaration.Parse("public Set<String> stringSet = new Set<String>{};");
+            Assert.AreEqual(1, field.Modifiers.Count);
+            Assert.AreEqual("public", field.Modifiers[0]);
+            Assert.AreEqual("set", field.Type.Identifier);
+            Assert.AreEqual("stringSet", field.Identifier);
+            Assert.AreEqual("new Set<String>{}", field.Expression);
 
             // incomplete field declaration
             Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x ="));

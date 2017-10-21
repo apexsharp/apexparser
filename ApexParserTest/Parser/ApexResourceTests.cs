@@ -1117,5 +1117,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("[SELECT Id, Name FROM Contact]", forEach.Expression);
             Assert.NotNull(forEach.Statement as BlockSyntax);
         }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\PropertyAndField.cls"), Ignore("TODO: property initializer")]
+        public void PropertyAndField3IsParsed()
+        {
+            var cd = Apex.ParseClass(PropertyAndField3);
+            Assert.AreEqual("PropertyAndField", cd.Identifier);
+        }
     }
 }

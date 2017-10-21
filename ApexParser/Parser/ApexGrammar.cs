@@ -39,7 +39,7 @@ namespace ApexParser.Parser
             };
 
         // examples: int, void
-        protected internal virtual Parser<TypeSyntax> PrimitiveType =>
+        protected internal virtual Parser<TypeSyntax> SystemType =>
             Parse.IgnoreCase(ApexKeywords.Blob).Or(
             Parse.IgnoreCase(ApexKeywords.Boolean)).Or(
             Parse.IgnoreCase(ApexKeywords.Byte)).Or(
@@ -50,17 +50,18 @@ namespace ApexParser.Parser
             Parse.IgnoreCase(ApexKeywords.Float)).Or(
             Parse.IgnoreCase(ApexKeywords.Int)).Or(
             Parse.IgnoreCase(ApexKeywords.Long)).Or(
+            Parse.IgnoreCase(ApexKeywords.Set)).Or(
             Parse.IgnoreCase(ApexKeywords.Short)).Or(
             Parse.IgnoreCase(ApexKeywords.List)).Or(
             Parse.IgnoreCase(ApexKeywords.Map)).Or(
             Parse.IgnoreCase(ApexKeywords.Void))
                 .Text().Then(n => Parse.Not(Parse.LetterOrDigit.Or(Parse.Char('_'))).Return(n.ToLower()))
                 .Token().Select(n => new TypeSyntax(n))
-                .Named("PrimitiveType");
+                .Named("SystemType");
 
         // examples: int, String, System.Collections.Hashtable
         protected internal virtual Parser<TypeSyntax> NonGenericType =>
-            PrimitiveType.Or(QualifiedIdentifier.Select(qi => new TypeSyntax(qi)));
+            SystemType.Or(QualifiedIdentifier.Select(qi => new TypeSyntax(qi)));
 
         // examples: string, int, char
         protected internal virtual Parser<IEnumerable<TypeSyntax>> TypeParameters =>

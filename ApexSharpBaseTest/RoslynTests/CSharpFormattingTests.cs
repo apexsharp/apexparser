@@ -53,7 +53,8 @@ namespace ApexSharpBaseTest.RoslynTests
             Assert.DoesNotThrow(() => CreateAdhocWorkspace());
         }
 
-        [Test, Ignore("Dependency issues in Roslyn workspaces")]
+        // No plans to use Roslyn-based formatter
+        ////[Test, Ignore("Dependency issues in Roslyn workspaces")]
         public void CSharpFormatterCanFormatAstWithoutTrivia()
         {
             var consoleWriteLine = Syntax.MemberAccessExpression(
