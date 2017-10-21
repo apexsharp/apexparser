@@ -1,9 +1,7 @@
 ﻿namespace ApexSharpBase
 {
     using Formatter;
-    using MetaClass;
-    using Parser.CSharp;
-
+ 
     public class ApesSharp
     {
 
@@ -26,30 +24,30 @@
             return "";
         }
 
-        // Parse C# Code and get an AST
-        public ClassContainer ParseCSharpCode(string cSharpCode)
-        {
-            CSharpParser parser = new CSharpParser();
-            return parser.ParseCSharpFromText(cSharpCode);
-        }
+        //// Parse C# Code and get an AST
+        //public ClassContainer ParseCSharpCode(string cSharpCode)
+        //{
+        //    CSharpParser parser = new CSharpParser();
+        //    return parser.ParseCSharpFromText(cSharpCode);
+        //}
 
-        // Parse APEX Code and get an AST
-        public ClassContainer ParseApexCode(string apexCode)
-        {
-            return new ClassContainer();
-        }
+        //// Parse APEX Code and get an AST
+        //public ClassContainer ParseApexCode(string apexCode)
+        //{
+        //    return new ClassContainer();
+        //}
 
-        // Get APEX Code from a given ClassContainer
-        public string GetApexCode(ClassContainer classContainer)
-        {
-            return "";
-        }
+        //// Get APEX Code from a given ClassContainer
+        //public string GetApexCode(ClassContainer classContainer)
+        //{
+        //    return "";
+        //}
 
-        // Get C# Code From a given ClassContainer
-        public string GetCSharpCode(ClassContainer classContainer)
-        {
-            return "";
-        }
+        //// Get C# Code From a given ClassContainer
+        //public string GetCSharpCode(ClassContainer classContainer)
+        //{
+        //    return "";
+        //}
 
     }
 }

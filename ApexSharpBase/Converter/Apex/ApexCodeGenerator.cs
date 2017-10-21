@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
+using System.Xml.Linq;
 using ApexSharpBase.Ext;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -38,7 +40,7 @@ namespace ApexSharpBase.Converter.Apex
             parameterString.Append(parameterListSyntax.OpenParenToken);
             foreach (var parameter in parameterListSyntax.Parameters)
             {
-                parameterString.Append(FieldConverter.GetApexTypes(parameter.Type.ToString()));
+                parameterString.Append(ExpressionConverter.TypeConverter(parameter.Type.ToString()));
                 parameterString.AppendSpace();
                 parameterString.Append(parameter.Identifier);
             }
@@ -63,7 +65,7 @@ namespace ApexSharpBase.Converter.Apex
 
                     sb.Append(GetAttributes(syntax.AttributeLists));
                     sb.AppendLine();
-                    sb.Append($"{GetModifiers(syntax.Modifiers)} {FieldConverter.GetApexTypes(syntax.ReturnType.ToString())} {syntax.Identifier.Text}{GetParametr(syntax.ParameterList)}");
+                    sb.Append($"{GetModifiers(syntax.Modifiers)} {ExpressionConverter.TypeConverter(syntax.ReturnType.ToString())} {syntax.Identifier.Text}{GetParametr(syntax.ParameterList)}");
                     sb.AppendLine();
 
                     sb.AppendLine(syntax.Body.OpenBraceToken.Text);
@@ -73,8 +75,17 @@ namespace ApexSharpBase.Converter.Apex
                 }
                 case SyntaxKind.LocalDeclarationStatement:
                 {
-                    sb.AppendLine("LocalDeclarationStatemen");
-                    base.Visit(node);
+                    
+                    var syntax = (LocalDeclarationStatementSyntax)node;
+                    sb.AppendLine(ExpressionConverter.GetApexLine(syntax.GetText()));
+                        base.Visit(node);
+                    break;
+                }
+                case SyntaxKind.ExpressionStatement:
+                {                 
+                    var syntax = (ExpressionStatementSyntax) node;
+                    sb.AppendLine(ExpressionConverter.GetApexLine(syntax.GetText()));
+                        base.Visit(node);
                     break;
                 }
                 case SyntaxKind.IfStatement:
@@ -86,7 +97,7 @@ namespace ApexSharpBase.Converter.Apex
                 }
                 default:
                 {
-                    //  Console.WriteLine(node.Kind());
+                    //Console.WriteLine(node.Kind());
 
                     base.Visit(node);
                     break;

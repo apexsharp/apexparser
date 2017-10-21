@@ -142,11 +142,8 @@
   <ItemGroup>
     <Compile Include="ApesSharp.cs" />
     <Compile Include="Converter\Apex\ApexCodeGenerator.cs" />
+    <Compile Include="Converter\Apex\ExpressionConverter.cs" />
     <Compile Include="Formatter\FormatApexCode.cs" />
-    <Compile Include="Converter\BaseVisitor.cs" />
-    <Compile Include="Converter\CSharp\CSharpGenerator.cs" />
-    <Compile Include="Converter\CSharp\CSharpLineConverter.cs" />
-    <Compile Include="Converter\FieldConverter.cs" />
     <Compile Include="Ext\StringBuilderExt.cs" />
     <Compile Include="Lexer\ApexLexer.cs" />
     <Compile Include="Lexer\ApexTokenRegEx.cs" />
@@ -156,32 +153,7 @@
     <Compile Include="Lexer\Token.cs" />
     <Compile Include="Lexer\TokenDefinition.cs" />
     <Compile Include="Lexer\TokenType.cs" />
-    <Compile Include="MetaClass\CatchClause.cs" />
-    <Compile Include="MetaClass\DoStatement.cs" />
-    <Compile Include="MetaClass\ElseStatement.cs" />
-    <Compile Include="MetaClass\FinallyClause.cs" />
-    <Compile Include="MetaClass\ForEachStatement.cs" />
-    <Compile Include="MetaClass\ForStatement.cs" />
-    <Compile Include="MetaClass\IfStatement.cs" />
-    <Compile Include="MetaClass\ReturnStatement.cs" />
-    <Compile Include="MetaClass\ThrownStatement.cs" />
-    <Compile Include="MetaClass\TryStatement.cs" />
-    <Compile Include="MetaClass\WhileStatement.cs" />
-    <Compile Include="MetaClass\ExpressionStatement.cs" />
-    <Compile Include="MetaClass\FieldDeclaration.cs" />
-    <Compile Include="MetaClass\BaseSyntax.cs" />
-    <Compile Include="MetaClass\ClassSyntax.cs" />
-    <Compile Include="MetaClass\Constructor.cs" />
-    <Compile Include="MetaClass\LocalDeclaration.cs" />
-    <Compile Include="MetaClass\MethodSyntax.cs" />
-    <Compile Include="MetaClass\ClassContainer.cs" />
-    <Compile Include="MetaClass\Parameter.cs" />
-    <Compile Include="MetaClass\Property.cs" />
-    <Compile Include="MetaClass\SoqlExpression.cs" />
-    <Compile Include="MetaClass\SyntaxType.cs" />
-    <Compile Include="Parser\CSharp\CSharpParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MetaClass\AccessorDeclaration.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -198,7 +170,7 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.3.0-beta1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Parser\Apex\" />
+    <Folder Include="Converter\CSharp\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

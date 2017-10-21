@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using ApexSharpBase;
-using ApexSharpBase.Converter.CSharp;
 using NUnit.Framework;
 
 namespace ApexSharpBaseTest
