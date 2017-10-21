@@ -542,9 +542,9 @@ namespace ApexParser.Parser
         // class members: methods, classes, properties
         protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberDeclaration =>
             from heading in MemberDeclarationHeading
-            from member in EnumDeclarationBody.Select(c => c as MemberDeclarationSyntax)
+            from member in ClassInitializerBody.Select(c => c as MemberDeclarationSyntax)
+                .Or(EnumDeclarationBody)
                 .Or(ClassDeclarationBody)
-                .Or(ClassInitializerBody)
                 .Or(MethodPropertyOrFieldDeclaration)
             select member.WithProperties(heading);
 
