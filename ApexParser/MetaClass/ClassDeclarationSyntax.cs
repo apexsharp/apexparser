@@ -41,5 +41,7 @@ namespace ApexParser.MetaClass
         public List<EnumDeclarationSyntax> Enums => Members.OfType<EnumDeclarationSyntax>().ToList();
 
         public List<ClassDeclarationSyntax> InnerClasses => Members.OfType<ClassDeclarationSyntax>().ToList();
+
+        public List<ClassInitializerSyntax> Initializers => Members.OfType<ClassInitializerSyntax>().ToList();
     }
 }

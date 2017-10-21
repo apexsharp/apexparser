@@ -882,6 +882,76 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void ClassInitializerIsABlockWithOptionalStaticModifier()
+        {
+            var ci = Apex.ClassInitializer.Parse(" /* initial value */ { i = 0; } ");
+            Assert.NotNull(ci.Body);
+            Assert.AreEqual(0, ci.Modifiers.Count);
+            Assert.AreEqual(1, ci.LeadingComments.Count);
+            Assert.AreEqual("initial value", ci.LeadingComments[0].Trim());
+            Assert.AreEqual(1, ci.Body.Statements.Count);
+            Assert.AreEqual("i = 0", ci.Body.Statements[0].Body);
+
+            ci = Apex.ClassInitializer.Parse(" static { counter = 0; } ");
+            Assert.NotNull(ci.Body);
+            Assert.AreEqual(0, ci.LeadingComments.Count);
+            Assert.AreEqual(1, ci.Modifiers.Count);
+            Assert.AreEqual("static", ci.Modifiers[0]);
+            Assert.AreEqual(1, ci.Body.Statements.Count);
+            Assert.AreEqual("counter = 0", ci.Body.Statements[0].Body);
+
+            // bad class initializers
+            Assert.Throws<ParseException>(() => Apex.ClassInitializer.Parse("}"));
+            Assert.Throws<ParseException>(() => Apex.ClassInitializer.End().Parse("{}}"));
+        }
+
+        [Test]
+        public void ClassDeclarationCanHaveInstanceInitializationCode()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"class InitializedClass
+            {
+                // instance initializer
+                {
+                    System.debug('instance initialization code #1');
+                }
+                static {
+                    System.debug('static initialization code #0');
+                }
+                // another instance initializer
+                {
+                    System.debug('instance initialization code #2');
+                }
+            }");
+
+            Assert.False(cd.Methods.Any());
+            Assert.AreEqual(3, cd.Initializers.Count);
+
+            var init = cd.Initializers[0];
+            Assert.AreEqual(0, init.Modifiers.Count);
+            Assert.AreEqual(1, init.LeadingComments.Count);
+            Assert.AreEqual("instance initializer", init.LeadingComments[0].Trim());
+            Assert.NotNull(init.Body);
+            Assert.AreEqual(1, init.Body.Statements.Count);
+            Assert.AreEqual("System.debug('instance initialization code #1')", init.Body.Statements[0].Body);
+
+            init = cd.Initializers[1];
+            Assert.AreEqual(0, init.LeadingComments.Count);
+            Assert.AreEqual(1, init.Modifiers.Count);
+            Assert.AreEqual("static", init.Modifiers[0]);
+            Assert.NotNull(init.Body);
+            Assert.AreEqual(1, init.Body.Statements.Count);
+            Assert.AreEqual("System.debug('static initialization code #0')", init.Body.Statements[0].Body);
+
+            init = cd.Initializers[2];
+            Assert.AreEqual(1, init.LeadingComments.Count);
+            Assert.AreEqual("another instance initializer", init.LeadingComments[0].Trim());
+            Assert.AreEqual(0, init.Modifiers.Count);
+            Assert.NotNull(init.Body);
+            Assert.AreEqual(1, init.Body.Statements.Count);
+            Assert.AreEqual("System.debug('instance initialization code #2')", init.Body.Statements[0].Body);
+        }
+
+        [Test]
         public void ClassMemberDeclarationCanBeMethodPropertyOrClass()
         {
             var cm = Apex.ClassMemberDeclaration.Parse("@testFixture public with   sharing class Program { }");

@@ -9,6 +9,7 @@
         BreakStatement,
         Catch,
         Class,
+        ClassInitializer,
         ClassMember,
         Constructor,
         DoStatement,

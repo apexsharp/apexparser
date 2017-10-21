@@ -30,7 +30,7 @@ namespace ApexParser.MetaClass
             return syntax;
         }
 
-        public static T WithProperties<T>(this T syntax, T other = null)
+        public static T WithProperties<T>(this T syntax, MemberDeclarationSyntax other = null)
             where T : MemberDeclarationSyntax
         {
             if (other != null)

@@ -517,6 +517,20 @@ namespace ApexParser.Parser
             }
         }
 
+        // examples: { instanceProperty = 0; }, static { staticProperty = 0; }
+        protected internal virtual Parser<ClassInitializerSyntax> ClassInitializer =>
+            from heading in MemberDeclarationHeading
+            from initializer in ClassInitializerBody
+            select initializer.WithProperties(heading);
+
+        // examples: { a = 0; }
+        protected internal virtual Parser<ClassInitializerSyntax> ClassInitializerBody =>
+            from body in Block
+            select new ClassInitializerSyntax
+            {
+                Body = body,
+            };
+
         // method or property declaration starting with the type and name
         protected internal virtual Parser<MemberDeclarationSyntax> MethodPropertyOrFieldDeclaration =>
             from typeAndName in TypeAndName
@@ -530,6 +544,7 @@ namespace ApexParser.Parser
             from heading in MemberDeclarationHeading
             from member in EnumDeclarationBody.Select(c => c as MemberDeclarationSyntax)
                 .Or(ClassDeclarationBody)
+                .Or(ClassInitializerBody)
                 .Or(MethodPropertyOrFieldDeclaration)
             select member.WithProperties(heading);
 

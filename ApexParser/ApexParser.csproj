@@ -63,6 +63,7 @@
     <Compile Include="MetaClass\BreakStatementSyntax.cs" />
     <Compile Include="MetaClass\CatchClauseSyntax.cs" />
     <Compile Include="MetaClass\ClassDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\ClassInitializerSyntax.cs" />
     <Compile Include="MetaClass\ConstructorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\DoStatementSyntax.cs" />
     <Compile Include="MetaClass\EnumDeclarationSyntax.cs" />

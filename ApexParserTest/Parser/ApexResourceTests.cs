@@ -1118,11 +1118,15 @@ namespace ApexParserTest.Parser
             Assert.NotNull(forEach.Statement as BlockSyntax);
         }
 
-        [Test(Description = @"SalesForceApexSharp\src\classes\PropertyAndField.cls"), Ignore("TODO: property initializer")]
+        [Test(Description = @"SalesForceApexSharp\src\classes\PropertyAndField.cls")]
         public void PropertyAndField3IsParsed()
         {
             var cd = Apex.ParseClass(PropertyAndField3);
             Assert.AreEqual("PropertyAndField", cd.Identifier);
+
+            Assert.AreEqual(1, cd.Initializers.Count);
+            Assert.AreEqual(1, cd.Initializers[0].Body.Statements.Count);
+            Assert.AreEqual("shouldRedirect =false", cd.Initializers[0].Body.Statements[0].Body);
         }
     }
 }
