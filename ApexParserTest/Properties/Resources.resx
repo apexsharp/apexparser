@@ -175,6 +175,9 @@
   <data name="ClassWithSharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\ClassWithSharing.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="CommentFail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\CommentFail.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="Comments" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\Comments.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

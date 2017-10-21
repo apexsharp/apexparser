@@ -78,6 +78,7 @@
     <Compile Include="MetaClass\PropertyDeclarationSyntax.cs" />
     <Compile Include="MetaClass\RunAsStatementSyntax.cs" />
     <Compile Include="MetaClass\StatementSyntax.cs" />
+    <Compile Include="MetaClass\SyntaxExtensions.cs" />
     <Compile Include="MetaClass\SyntaxType.cs" />
     <Compile Include="MetaClass\TryStatementSyntax.cs" />
     <Compile Include="MetaClass\TypeSyntax.cs" />
@@ -101,6 +102,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Parser\keywords.pl" />
+    <None Include="Parser\keywords_nonreserved.txt" />
+    <None Include="Parser\keywords_reserved.txt" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta004\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />

@@ -471,14 +471,14 @@ namespace ApexParserTest.Parser
         public void PropertyAccessorCanBeEmpty()
         {
             var get = Apex.PropertyAccessor.Parse(" get ; ");
-            Assert.False(get.CodeComments.Any());
+            Assert.False(get.LeadingComments.Any());
             Assert.False(get.Annotations.Any());
             Assert.False(get.Modifiers.Any());
             Assert.True(get.IsGetter);
             Assert.Null(get.Body);
 
             var set = Apex.PropertyAccessor.Parse(" set ; ");
-            Assert.False(set.CodeComments.Any());
+            Assert.False(set.LeadingComments.Any());
             Assert.False(set.Annotations.Any());
             Assert.False(set.Modifiers.Any());
             Assert.True(set.IsSetter);
@@ -489,7 +489,7 @@ namespace ApexParserTest.Parser
         public void PropertyAccessorCanHaveBlocks()
         {
             var get = Apex.PropertyAccessor.Parse(" get { return myProperty; } ");
-            Assert.False(get.CodeComments.Any());
+            Assert.False(get.LeadingComments.Any());
             Assert.False(get.Annotations.Any());
             Assert.False(get.Modifiers.Any());
             Assert.True(get.IsGetter);
@@ -500,7 +500,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("return myProperty", block.Statements[0].Body);
 
             var set = Apex.PropertyAccessor.Parse(" set { myProperty = value; if (true) { value++; } } ");
-            Assert.False(set.CodeComments.Any());
+            Assert.False(set.LeadingComments.Any());
             Assert.False(set.Annotations.Any());
             Assert.False(set.Modifiers.Any());
             Assert.IsTrue(set.IsSetter);
@@ -525,7 +525,7 @@ namespace ApexParserTest.Parser
         public void PropertyAccessorCanHaveAccessModifiers()
         {
             var get = Apex.PropertyAccessor.Parse(" public get { return 0; }");
-            Assert.False(get.CodeComments.Any());
+            Assert.False(get.LeadingComments.Any());
             Assert.False(get.Annotations.Any());
             Assert.AreEqual(1, get.Modifiers.Count);
             Assert.AreEqual("public", get.Modifiers[0]);
@@ -561,8 +561,8 @@ namespace ApexParserTest.Parser
             prop = Apex.PropertyDeclaration.Parse(@"// length
                 @dataMember
                 int length { get; }");
-            Assert.AreEqual(1, prop.CodeComments.Count);
-            Assert.AreEqual("length", prop.CodeComments[0].Trim());
+            Assert.AreEqual(1, prop.LeadingComments.Count);
+            Assert.AreEqual("length", prop.LeadingComments[0].Trim());
             Assert.AreEqual(1, prop.Annotations.Count);
             Assert.AreEqual("dataMember", prop.Annotations[0].Identifier);
             Assert.AreEqual("int", prop.Type.Identifier);
@@ -576,8 +576,8 @@ namespace ApexParserTest.Parser
         public void FieldHasTypeAndNameWithoutPropertyAccessors()
         {
             var field = Apex.FieldDeclaration.Parse(" /* Counter */ @dataMember public static int counter;");
-            Assert.AreEqual(1, field.CodeComments.Count);
-            Assert.AreEqual("Counter", field.CodeComments[0].Trim());
+            Assert.AreEqual(1, field.LeadingComments.Count);
+            Assert.AreEqual("Counter", field.LeadingComments[0].Trim());
             Assert.AreEqual(1, field.Annotations.Count);
             Assert.AreEqual("dataMember", field.Annotations[0].Identifier);
             Assert.AreEqual(2, field.Modifiers.Count);
@@ -608,8 +608,8 @@ namespace ApexParserTest.Parser
         public void ClassMemberHeadingConstistsOfCommentsAttributesAndModifiers()
         {
             var cm = Apex.MemberDeclarationHeading.Parse(" /* test */ ");
-            Assert.AreEqual(1, cm.CodeComments.Count);
-            Assert.AreEqual(" test ", cm.CodeComments[0]);
+            Assert.AreEqual(1, cm.LeadingComments.Count);
+            Assert.AreEqual(" test ", cm.LeadingComments[0]);
             Assert.False(cm.Annotations.Any());
             Assert.False(cm.Modifiers.Any());
 
@@ -617,20 +617,20 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(2, cm.Modifiers.Count);
             Assert.AreEqual("public", cm.Modifiers[0]);
             Assert.AreEqual("static", cm.Modifiers[1]);
-            Assert.False(cm.CodeComments.Any());
+            Assert.False(cm.LeadingComments.Any());
             Assert.False(cm.Annotations.Any());
 
             cm = Apex.MemberDeclarationHeading.Parse(" @isTest ");
             Assert.AreEqual(1, cm.Annotations.Count);
             Assert.AreEqual("isTest", cm.Annotations[0].Identifier);
-            Assert.False(cm.CodeComments.Any());
+            Assert.False(cm.LeadingComments.Any());
             Assert.False(cm.Modifiers.Any());
 
             cm = Apex.MemberDeclarationHeading.Parse(" /* my class */ @isTest override ");
             Assert.AreEqual(1, cm.Annotations.Count);
             Assert.AreEqual("isTest", cm.Annotations[0].Identifier);
-            Assert.AreEqual(1, cm.CodeComments.Count);
-            Assert.AreEqual(" my class ", cm.CodeComments[0]);
+            Assert.AreEqual(1, cm.LeadingComments.Count);
+            Assert.AreEqual(" my class ", cm.LeadingComments[0]);
             Assert.AreEqual(1, cm.Modifiers.Count);
             Assert.AreEqual("override", cm.Modifiers[0]);
         }
@@ -717,6 +717,18 @@ namespace ApexParserTest.Parser
             // incomplete class declarations
             Assert.Throws<ParseException>(() => Apex.ClassDeclaration.Parse(" class Test {"));
             Assert.Throws<ParseException>(() => Apex.ClassDeclaration.Parse("class {}"));
+        }
+
+        [Test]
+        public void ClassDeclarationCanBeEmptyWithComments()
+        {
+            var cd = Apex.ClassDeclaration.Parse(" class Test /* Comment1 */ { /* Comment2 */ }");
+            Assert.False(cd.Annotations.Any());
+            Assert.False(cd.Methods.Any());
+            Assert.False(cd.Modifiers.Any());
+            Assert.AreEqual(1, cd.TrailingComments.Count);
+            Assert.AreEqual("Comment2", cd.TrailingComments[0].Trim());
+            Assert.AreEqual("Test", cd.Identifier);
         }
 
         [Test]
@@ -921,8 +933,8 @@ namespace ApexParserTest.Parser
         public void EnumMemberDeclarationIsAnIdenfierWithPossibleComments()
         {
             var em = Apex.EnumMember.Parse(" /* default */ @test SomeValue ");
-            Assert.AreEqual(1, em.CodeComments.Count);
-            Assert.AreEqual("default", em.CodeComments[0].Trim());
+            Assert.AreEqual(1, em.LeadingComments.Count);
+            Assert.AreEqual("default", em.LeadingComments[0].Trim());
             Assert.AreEqual(1, em.Annotations.Count);
             Assert.AreEqual("test", em.Annotations[0].Identifier);
             Assert.AreEqual("SomeValue", em.Identifier);
@@ -940,7 +952,7 @@ namespace ApexParserTest.Parser
             var en = Apex.EnumDeclaration.Parse(" enum Boo { Tru, Fa } ");
             Assert.AreEqual("Boo", en.Identifier);
             Assert.AreEqual(0, en.Modifiers.Count);
-            Assert.AreEqual(0, en.CodeComments.Count);
+            Assert.AreEqual(0, en.LeadingComments.Count);
             Assert.AreEqual(0, en.Annotations.Count);
             Assert.AreEqual(2, en.Members.Count);
             Assert.AreEqual("Tru", en.Members[0].Identifier);
@@ -950,21 +962,21 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Month", en.Identifier);
             Assert.AreEqual(1, en.Modifiers.Count);
             Assert.AreEqual("public", en.Modifiers[0]);
-            Assert.AreEqual(1, en.CodeComments.Count);
-            Assert.AreEqual("Months", en.CodeComments[0].Trim());
+            Assert.AreEqual(1, en.LeadingComments.Count);
+            Assert.AreEqual("Months", en.LeadingComments[0].Trim());
             Assert.AreEqual(1, en.Annotations.Count);
             Assert.AreEqual("test", en.Annotations[0].Identifier);
             Assert.AreEqual(3, en.Members.Count);
             Assert.AreEqual("Jan", en.Members[0].Identifier);
-            Assert.AreEqual(1, en.Members[0].CodeComments.Count);
-            Assert.AreEqual("January", en.Members[0].CodeComments[0].Trim());
+            Assert.AreEqual(1, en.Members[0].LeadingComments.Count);
+            Assert.AreEqual("January", en.Members[0].LeadingComments[0].Trim());
             Assert.AreEqual("Mar", en.Members[1].Identifier);
             Assert.AreEqual("Dec", en.Members[2].Identifier);
 
             en = Apex.EnumDeclaration.Parse(" enum Boo /* Boolean */ { Tru, Fa } ");
             Assert.AreEqual("Boo", en.Identifier);
             Assert.AreEqual(0, en.Modifiers.Count);
-            Assert.AreEqual(0, en.CodeComments.Count);
+            Assert.AreEqual(0, en.LeadingComments.Count);
             Assert.AreEqual(0, en.Annotations.Count);
             Assert.AreEqual(2, en.Members.Count);
             Assert.AreEqual("Tru", en.Members[0].Identifier);
@@ -1500,7 +1512,7 @@ namespace ApexParserTest.Parser
                 return new List<string>(); /* comments */
             }");
 
-            Assert.AreEqual(3, stmt.CodeComments.Count);
+            Assert.AreEqual(3, stmt.LeadingComments.Count);
             Assert.AreEqual(2, stmt.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
             Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);

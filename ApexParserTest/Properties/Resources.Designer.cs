@@ -395,6 +395,23 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public with sharing class CommentFail
+        ///{
+        ////*
+        ///* ************************************************************************************************
+        ///* This is a general method for retrieving an sObject by it&apos;s id. selectFields is a list of fields
+        ///* to return on the sObject.
+        ///* ************************************************************************************************
+        ///*/
+        ///}.
+        /// </summary>
+        internal static string CommentFail {
+            get {
+                return ResourceManager.GetString("CommentFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /**
         /// * This comment belongs to the Class Syntax
         /// */

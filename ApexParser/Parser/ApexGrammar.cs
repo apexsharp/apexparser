@@ -214,7 +214,7 @@ namespace ApexParser.Parser
                 .Or(TryCatchFinallyStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
-            select statement.WithComments(comments);
+            select statement.WithLeadingComments(comments);
 
         // examples: {}, { /* empty block */ }, { int a = 0; return; }
         protected internal virtual Parser<BlockSyntax> Block =>
@@ -225,7 +225,7 @@ namespace ApexParser.Parser
             from closeBrace in Parse.Char('}').Token()
             select new BlockSyntax
             {
-                CodeComments = comments.ToList(),
+                LeadingComments = comments.ToList(),
                 Statements = statements.ToList(),
                 TrailingComments = trailingComment.ToList(),
             };
@@ -438,7 +438,7 @@ namespace ApexParser.Parser
             from modifiers in Modifier.Many()
             select new MemberDeclarationSyntax
             {
-                CodeComments = comments.ToList(),
+                LeadingComments = comments.ToList(),
                 Annotations = annotations.ToList(),
                 Modifiers = modifiers.ToList(),
             };
@@ -489,6 +489,7 @@ namespace ApexParser.Parser
                 BaseType = classBody.BaseType,
                 Interfaces = classBody.Interfaces,
                 Members = classBody.Members,
+                TrailingComments = classBody.TrailingComments,
             };
 
         // example: class Program { void main() {} }
@@ -500,6 +501,7 @@ namespace ApexParser.Parser
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
+            from trailingComments in CommentParser.AnyComment.Many()
             from closeBrace in Parse.Char('}').Token()
             select new ClassDeclarationSyntax()
             {
@@ -508,16 +510,14 @@ namespace ApexParser.Parser
                 BaseType = baseType.GetOrDefault(),
                 Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
                 Members = ConvertConstructors(members).ToList(),
+                TrailingComments = trailingComments.ToList(),
             };
 
         private IEnumerable<MemberDeclarationSyntax> ConvertConstructors(IEnumerable<MemberDeclarationSyntax> members)
         {
-            bool IsConstructor(MethodDeclarationSyntax md) =>
-                ConstructorDeclarationSyntax.IsConstructor(md);
-
             foreach (var member in members)
             {
-                if (member is MethodDeclarationSyntax m && IsConstructor(m))
+                if (member is MethodDeclarationSyntax m && m.IsConstructor())
                 {
                     yield return new ConstructorDeclarationSyntax(m);
                     continue;
