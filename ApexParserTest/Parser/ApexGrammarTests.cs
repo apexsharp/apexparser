@@ -1002,15 +1002,15 @@ namespace ApexParserTest.Parser
         [Test]
         public void GenericExpressionInBracesCanBeAnythingProvidedThatBracesAreMatched()
         {
-            var expr = Apex.GenericExpressionInBraces.Parse("(something.IsEmpty)");
+            var expr = Apex.GenericExpressionInBraces().Parse("(something.IsEmpty)");
             Assert.AreEqual("something.IsEmpty", expr);
 
-            expr = Apex.GenericExpressionInBraces.Parse(" ( something.IsEmpty( ) ) ");
+            expr = Apex.GenericExpressionInBraces().Parse(" ( something.IsEmpty( ) ) ");
             Assert.AreEqual("something.IsEmpty()", expr);
 
-            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("(something.IsEmpty(()"));
-            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("("));
-            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse(")"));
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces().Parse("(something.IsEmpty(()"));
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces().Parse("("));
+            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces().Parse(")"));
         }
 
         [Test]
@@ -1031,9 +1031,9 @@ namespace ApexParserTest.Parser
             expr = Apex.GenericExpression.Parse("[select a, b from users]");
             Assert.AreEqual("[select a, b from users]", expr);
 
-            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("(something.IsEmpty(()"));
-            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("("));
-            Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse(")"));
+            Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("(something.IsEmpty(()"));
+            Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("("));
+            Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse(")"));
         }
 
         [Test]

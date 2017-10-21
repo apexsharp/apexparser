@@ -31,7 +31,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<AnnotationSyntax> Annotation =>
             from at in Parse.Char('@').Token()
             from name in Parse.IgnoreCase(ApexKeywords.Future).Token().Text().Or(Identifier)
-            from parameters in GenericExpressionInBraces.Optional()
+            from parameters in GenericExpressionInBraces().Optional()
             select new AnnotationSyntax
             {
                 Identifier = name,
@@ -304,7 +304,7 @@ namespace ApexParser.Parser
             from system in Parse.IgnoreCase(ApexKeywords.System).Token()
             from dot in Parse.Char('.').Token()
             from runAs in Parse.IgnoreCase(ApexKeywords.RunAs).Token()
-            from expression in GenericExpressionInBraces
+            from expression in GenericExpressionInBraces()
             from statement in Statement
             select new RunAsStatementSyntax
             {
@@ -323,43 +323,23 @@ namespace ApexParser.Parser
 
         // dummy generic parser for expressions with matching braces
         protected internal virtual Parser<string> GenericExpression =>
-            from subExpressions in Parse.CharExcept("(){}[];,").Many().Text().Token()
-                .Or(GenericExpressionInBraces.Select(x => $"({x})"))
-                .Or(GenericExpressionInCurlyBraces.Select(x => $"{{{x}}}"))
-                .Or(GenericExpressionInSquareBraces.Select(x => $"[{x}]")).Many()
+            GenericExpressionCore(forbidden: ",;");
+
+        // creates dummy generic parser for expressions with matching braces allowing commas and semicolons by default
+        protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null) =>
+            from subExpressions in Parse.CharExcept("(){}[]" + forbidden).Many().Text().Token()
+                .Or(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
+                .Or(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
+                .Or(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]")).Many()
             let expr = string.Join(string.Empty, subExpressions)
             where !string.IsNullOrWhiteSpace(expr)
             select expr;
 
-        // dummy generic parser for expressions with matching braces allowing commas
-        protected internal virtual Parser<string> GenericExpressionWithCommas =>
-            from subExpressions in Parse.CharExcept("(){}[];").Many().Text().Token()
-                .Or(GenericExpressionInBraces.Select(x => $"({x})"))
-                .Or(GenericExpressionInCurlyBraces.Select(x => $"{{{x}}}"))
-                .Or(GenericExpressionInSquareBraces.Select(x => $"[{x}]")).Many()
-            let expr = string.Join(string.Empty, subExpressions)
-            where !string.IsNullOrWhiteSpace(expr)
-            select expr;
-
-        // dummy generic parser for any expressions with matching braces
-        protected internal virtual Parser<string> GenericExpressionInBraces =>
-            from openBrace in Parse.Char('(').Token()
-            from expression in GenericExpressionWithCommas.Optional()
-            from closeBrace in Parse.Char(')').Token()
-            select expression.GetOrDefault();
-
-        // dummy generic parser for any expressions with matching braces
-        protected internal virtual Parser<string> GenericExpressionInCurlyBraces =>
-            from openBrace in Parse.Char('{').Token()
-            from expression in GenericExpressionWithCommas.Optional()
-            from closeBrace in Parse.Char('}').Token()
-            select expression.GetOrDefault();
-
-        // dummy generic parser for any expressions with matching braces
-        protected internal virtual Parser<string> GenericExpressionInSquareBraces =>
-            from openBrace in Parse.Char('[').Token()
-            from expression in GenericExpressionWithCommas.Optional()
-            from closeBrace in Parse.Char(']').Token()
+        // creates dummy generic parser for any expressions with matching braces
+        protected internal virtual Parser<string> GenericExpressionInBraces(char open = '(', char close = ')') =>
+            from openBrace in Parse.Char(open).Token()
+            from expression in GenericExpressionCore().Optional()
+            from closeBrace in Parse.Char(close).Token()
             select expression.GetOrDefault();
 
         // example: break;
@@ -371,7 +351,7 @@ namespace ApexParser.Parser
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>
             from ifKeyword in Parse.IgnoreCase(ApexKeywords.If).Token()
-            from expression in GenericExpressionInBraces
+            from expression in GenericExpressionInBraces()
             from thenBranch in Statement
             from elseBranch in Parse.IgnoreCase(ApexKeywords.Else).Token().Then(_ => Statement).Optional()
             select new IfStatementSyntax
@@ -422,7 +402,7 @@ namespace ApexParser.Parser
             from doKeyword in Parse.IgnoreCase(ApexKeywords.Do).Token()
             from loopBody in Statement
             from whileKeyword in Parse.IgnoreCase(ApexKeywords.While).Token()
-            from expression in GenericExpressionInBraces
+            from expression in GenericExpressionInBraces()
             from semicolon in Parse.Char(';').Token()
             select new DoStatementSyntax
             {
@@ -433,7 +413,7 @@ namespace ApexParser.Parser
         // simple while statement without the expression support
         protected internal virtual Parser<WhileStatementSyntax> WhileStatement =>
             from whileKeyword in Parse.IgnoreCase(ApexKeywords.While).Token()
-            from expression in GenericExpressionInBraces
+            from expression in GenericExpressionInBraces()
             from loopBody in Statement
             select new WhileStatementSyntax
             {
