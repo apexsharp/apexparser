@@ -22,6 +22,7 @@
         Method,
         Parameter,
         Property,
+        RunAsStatement,
         Statement,
         TryStatement,
         Type,

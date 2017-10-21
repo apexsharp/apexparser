@@ -76,6 +76,7 @@
     <Compile Include="MetaClass\MethodDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ParameterSyntax.cs" />
     <Compile Include="MetaClass\PropertyDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\RunAsStatementSyntax.cs" />
     <Compile Include="MetaClass\StatementSyntax.cs" />
     <Compile Include="MetaClass\SyntaxType.cs" />
     <Compile Include="MetaClass\TryStatementSyntax.cs" />

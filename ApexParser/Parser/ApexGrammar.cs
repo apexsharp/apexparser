@@ -206,10 +206,11 @@ namespace ApexParser.Parser
             from statement in Block.Select(s => s as StatementSyntax)
                 .Or(IfStatement)
                 .Or(DoStatement)
-                .Or(WhileStatement)
                 .Or(ForEachStatement)
                 .Or(ForStatement)
+                .Or(WhileStatement)
                 .Or(BreakStatement)
+                .Or(RunAsStatement)
                 .Or(TryCatchFinallyStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
@@ -295,6 +296,19 @@ namespace ApexParser.Parser
             {
                 Identifier = identifier,
                 Expression = expression.GetOrDefault(),
+            };
+
+        // example: System.runAs(user) { System.debug('Hi there!'); }
+        protected internal virtual Parser<RunAsStatementSyntax> RunAsStatement =>
+            from system in Parse.IgnoreCase(ApexKeywords.System).Token()
+            from dot in Parse.Char('.').Token()
+            from runAs in Parse.IgnoreCase(ApexKeywords.RunAs).Token()
+            from expression in GenericExpressionInBraces
+            from statement in Statement
+            select new RunAsStatementSyntax
+            {
+                Expression = expression,
+                Statement = statement,
             };
 
         // dummy generic parser for any unknown statement ending with a semicolon

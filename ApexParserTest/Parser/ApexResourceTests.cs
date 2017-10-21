@@ -1067,5 +1067,28 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Comments", cd.Identifier);
             Assert.AreEqual(1, cd.CodeComments.Count);
         }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ClassUnitTestRunAs.cls")]
+        public void ClassUnitTestRunAsIsParsed()
+        {
+            var cd = Apex.ParseClass(ClassUnitTestRunAs);
+            Assert.AreEqual("ClassUnitTestRunAs", cd.Identifier);
+            Assert.AreEqual(1, cd.Methods.Count);
+
+            var md = cd.Methods[0];
+            Assert.AreEqual("void", md.ReturnType.Identifier);
+            Assert.AreEqual("RunAsExample", md.Identifier);
+            Assert.AreEqual(2, md.Modifiers.Count);
+            Assert.AreEqual("static", md.Modifiers[0]);
+            Assert.AreEqual("testmethod", md.Modifiers[1]);
+
+            var block = md.Body;
+            Assert.AreEqual(2, block.Statements.Count);
+
+            var runAs = block.Statements[1] as RunAsStatementSyntax;
+            Assert.NotNull(runAs);
+            Assert.AreEqual("newUser", runAs.Expression);
+            Assert.NotNull(runAs.Statement as BlockSyntax);
+        }
     }
 }

@@ -20,9 +20,10 @@ namespace ApexParserTest.Parser
         public void IdentifierIsALetterFollowedByALetterOrDigitOrUnderscore()
         {
             // every test case should include positive examples
+            Assert.AreEqual("c", Apex.Identifier.Parse("c"));
             Assert.AreEqual("abc", Apex.Identifier.Parse(" abc "));
             Assert.AreEqual("Test123", Apex.Identifier.Parse("Test123"));
-            Assert.AreEqual("GMOSPREF_Rest_VehicleLifecycleTest", Apex.Identifier.Parse("GMOSPREF_Rest_VehicleLifecycleTest"));
+            Assert.AreEqual("Hello_cruel_world", Apex.Identifier.Parse("Hello_cruel_world"));
 
             // and negative ones
             Assert.Throws<ParseException>(() => Apex.Identifier.Parse("1"));
@@ -1220,6 +1221,27 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void RunAsMethodHasSpecialSyntaxHenceIsHandledAsAStatement()
+        {
+            var runAs = Apex.RunAsStatement.Parse(@"
+            System.RunAs(new Version(1, 0)) {
+                System.debug('wow!');
+            }");
+            Assert.AreEqual("new Version(1, 0)", runAs.Expression);
+            var block = runAs.Statement as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("System.debug('wow!')", block.Statements[0].Body);
+
+            runAs = Apex.RunAsStatement.Parse(@"
+            System.RunAs(new Version(1, 0))
+                System.debug('wow!');");
+            Assert.AreEqual("new Version(1, 0)", runAs.Expression);
+            Assert.NotNull(runAs.Statement);
+            Assert.AreEqual("System.debug('wow!')", runAs.Statement.Body);
+        }
+
+        [Test]
         public void StatementRuleParsesStatementsOfAnyKind()
         {
             var stmt = Apex.Statement.Parse("if (false) return 'yes'; else return 'no';");
@@ -1309,6 +1331,18 @@ namespace ApexParserTest.Parser
             stmt = Apex.Statement.Parse(@" int x = 10;");
             var varDecl = stmt as VariableDeclarationSyntax;
             Assert.NotNull(varDecl);
+
+            stmt = Apex.Statement.Parse(@"
+            System.RunAs(new Version(1, 0)) {
+                System.debug('wow!');
+            }");
+            var runAs = stmt as RunAsStatementSyntax;
+            Assert.NotNull(runAs);
+            Assert.AreEqual("new Version(1, 0)", runAs.Expression);
+            var block = runAs.Statement as BlockSyntax;
+            Assert.NotNull(block);
+            Assert.AreEqual(1, block.Statements.Count);
+            Assert.AreEqual("System.debug('wow!')", block.Statements[0].Body);
         }
 
         [Test]

@@ -49,6 +49,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitPropertyDeclaration(PropertyDeclarationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitRunAsStatement(RunAsStatementSyntax node) => DefaultVisit(node);
+
         // Temporary method
         public virtual void VisitStatement(StatementSyntax node) => DefaultVisit(node);
 

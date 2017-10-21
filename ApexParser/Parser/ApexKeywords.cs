@@ -173,6 +173,7 @@ namespace ApexParser.Parser
         public static string Get => "get"; // "set" is reserved but "get" isn't
         ////public const string Native = "native"; // the status is unclear
         ////public const string Throws = "throws"; // the status is unclear
+        public static string RunAs => "runas"; // System.runAs has special syntax
         public static string Transient => "transient"; // variable modifier
         public static string Void => "void";
         ////public const string Volatile = "volatile"; // the status is unclear

@@ -275,6 +275,26 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public class ClassUnitTestRunAs
+        ///{
+        ///    static testMethod void RunAsExample()
+        ///    {
+        ///        User newUser = new User();
+        ///        System.RunAs(newUser)
+        ///        {
+        ///
+        ///        }
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassUnitTestRunAs {
+            get {
+                return ResourceManager.GetString("ClassUnitTestRunAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @isTest(SeeAllData=true)
         ///public class ClassUnitTestSeeAllData
         ///{
