@@ -101,37 +101,38 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApexTestClasses\ClassOne.cls" />
-    <None Include="ApexTestClasses\ClassTwo.cls" />
-    <None Include="ApexTestClasses\ClassOne_Formatted.cls" />
-    <None Include="ApexTestClasses\ClassTwo_Formatted.cls" />
-    <None Include="ApexTestClasses\ClassWithComments.cls" />
-    <None Include="ApexTestClasses\ClassWithComments_Formatted.cls" />
-    <None Include="ApexTestClasses\CustomerDto.cls" />
-    <None Include="ApexTestClasses\CustomerDto_Formatted.cls" />
-    <None Include="ApexTestClasses\DataAccessDemo.cls" />
-    <None Include="ApexTestClasses\Demo.cls" />
-    <None Include="ApexTestClasses\Demo2.cls" />
-    <None Include="ApexTestClasses\PropertyAndField.cls" />
-    <None Include="ApexTestClasses\ForIfWhile.cls" />
-    <None Include="ApexTestClasses\FormatDemo.cls" />
-    <None Include="ApexTestClasses\FormatDemo_Formatted.cls" />
-    <None Include="ApexTestClasses\SoqlDemo.cs" />
-    <None Include="ApexTestClasses\SoqlDemo.cls" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />
     <None Include="ApexTestClasses\ClassException.cls" />
     <None Include="ApexTestClasses\ClassGlobal.cls" />
     <None Include="ApexTestClasses\ClassInterface.cls" />
     <None Include="ApexTestClasses\ClassInternal.cls" />
+    <None Include="ApexTestClasses\ClassOne.cls" />
+    <None Include="ApexTestClasses\ClassTwo.cls" />
+    <None Include="ApexTestClasses\ClassOne_Formatted.cls" />
+    <None Include="ApexTestClasses\ClassTwo_Formatted.cls" />
     <None Include="ApexTestClasses\ClassRest.cls" />
     <None Include="ApexTestClasses\ClassUnitTest.cls" />
+    <None Include="ApexTestClasses\ClassUnitTestRunAs.cls" />
     <None Include="ApexTestClasses\ClassUnitTestSeeAllData.cls" />
     <None Include="ApexTestClasses\ClassVirtual.cls" />
+    <None Include="ApexTestClasses\ClassWithComments.cls" />
+    <None Include="ApexTestClasses\ClassWithComments_Formatted.cls" />
     <None Include="ApexTestClasses\ClassWithOutSharing.cls" />
     <None Include="ApexTestClasses\ClassWithSharing.cls" />
+    <None Include="ApexTestClasses\Comments.cls" />
+    <None Include="ApexTestClasses\CommentFail.cls" />
+    <None Include="ApexTestClasses\CustomerDto.cls" />
+    <None Include="ApexTestClasses\CustomerDto_Formatted.cls" />
+    <None Include="ApexTestClasses\DataAccessDemo.cls" />
+    <None Include="ApexTestClasses\Demo.cls" />
+    <None Include="ApexTestClasses\Demo2.cls" />
     <None Include="ApexTestClasses\ExceptionDemo.cls" />
+    <None Include="ApexTestClasses\ForIfWhile.cls" />
     <None Include="ApexTestClasses\ForIfWhile2.cls" />
+    <None Include="ApexTestClasses\ForIfWhile3.cls" />
+    <None Include="ApexTestClasses\FormatDemo.cls" />
+    <None Include="ApexTestClasses\FormatDemo_Formatted.cls" />
     <None Include="ApexTestClasses\GetSetDemo.cls" />
     <None Include="ApexTestClasses\IClassInterface.cls" />
     <None Include="ApexTestClasses\IClassInterfaceExt.cls" />
@@ -139,11 +140,11 @@
     <None Include="ApexTestClasses\ListAndArrayDemo.cls" />
     <None Include="ApexTestClasses\MethodAndConstructor.cls" />
     <None Include="ApexTestClasses\PrimitiveTypes.cls" />
+    <None Include="ApexTestClasses\PropertyAndField.cls" />
     <None Include="ApexTestClasses\PropertyAndField2.cls" />
     <None Include="ApexTestClasses\RunAll.cls" />
-    <None Include="ApexTestClasses\Comments.cls" />
-    <None Include="ApexTestClasses\ClassUnitTestRunAs.cls" />
-    <None Include="ApexTestClasses\CommentFail.cls" />
+    <None Include="ApexTestClasses\SoqlDemo.cs" />
+    <None Include="ApexTestClasses\SoqlDemo.cls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

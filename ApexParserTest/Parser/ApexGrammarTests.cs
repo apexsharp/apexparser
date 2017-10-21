@@ -1018,6 +1018,12 @@ namespace ApexParserTest.Parser
             expr = Apex.GenericExpression.Parse(" ( something.IsEmpty( ) ) ");
             Assert.AreEqual("(something.IsEmpty())", expr);
 
+            expr = Apex.GenericExpression.Parse("(a, b, c(d, e))");
+            Assert.AreEqual("(a, b, c(d, e))", expr);
+
+            expr = Apex.GenericExpression.Parse("[select a, b from users]");
+            Assert.AreEqual("[select a, b from users]", expr);
+
             Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("(something.IsEmpty(()"));
             Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse("("));
             Assert.Throws<ParseException>(() => Apex.GenericExpressionInBraces.Parse(")"));
@@ -1180,7 +1186,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("int", variable.Type.Identifier);
             Assert.AreEqual(1, variable.Variables.Count);
             Assert.AreEqual("x", variable.Variables[0].Identifier);
-            Assert.AreEqual("new[] {1,2,3}", variable.Variables[0].Expression);
+            Assert.AreEqual("new[]{1,2,3}", variable.Variables[0].Expression);
         }
 
         [Test]

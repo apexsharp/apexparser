@@ -654,6 +654,40 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile
+        ///{
+        ///    public void MethodIfClean(Integer place)
+        ///    {
+        ///        String modelColor;
+        ///
+        ///        if (place == 1)
+        ///        {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        }
+        ///        else
+        ///        {
+        ///            modelColor = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional()
+        ///    {
+        ///        for (Integ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile3 {
+            get {
+                return ResourceManager.GetString("ForIfWhile3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /*
         ///* This  is a comment line one
         ///* This is a comment // line two

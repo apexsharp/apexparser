@@ -14,5 +14,7 @@ namespace ApexParser.MetaClass
         public List<string> LeadingComments { get; set; } = new List<string>();
 
         public List<string> TrailingComments { get; set; } = new List<string>();
+
+        public override string ToString() => $"{GetType().Name}: {this.ToCSharp()}";
     }
 }

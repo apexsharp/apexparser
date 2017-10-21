@@ -1099,5 +1099,23 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(0, cd.LeadingComments.Count);
             Assert.AreEqual(1, cd.TrailingComments.Count);
         }
+
+        [Test(Description = @"SalesForceApexSharp\src\classes\ForIfWhile.cls")]
+        public void ForIfWhile3IsParsed()
+        {
+            var cd = Apex.ParseClass(ForIfWhile3);
+            Assert.AreEqual("ForIfWhile", cd.Identifier);
+            Assert.AreEqual(8, cd.Methods.Count);
+
+            var md = cd.Methods[7];
+            Assert.AreEqual("ForSoql", md.Identifier);
+            Assert.AreEqual(1, md.Body.Statements.Count);
+
+            var forEach = md.Body.Statements[0] as ForEachStatementSyntax;
+            Assert.AreEqual("Contact", forEach.Type.Identifier);
+            Assert.AreEqual("contactList", forEach.Identifier);
+            Assert.AreEqual("[SELECT Id, Name FROM Contact]", forEach.Expression);
+            Assert.NotNull(forEach.Statement as BlockSyntax);
+        }
     }
 }
