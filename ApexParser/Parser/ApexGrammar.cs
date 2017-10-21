@@ -43,6 +43,7 @@ namespace ApexParser.Parser
             Parse.IgnoreCase(ApexKeywords.Blob).Or(
             Parse.IgnoreCase(ApexKeywords.Boolean)).Or(
             Parse.IgnoreCase(ApexKeywords.Byte)).Or(
+            Parse.IgnoreCase(ApexKeywords.Case)).Or(
             Parse.IgnoreCase(ApexKeywords.Char)).Or(
             Parse.IgnoreCase(ApexKeywords.Decimal)).Or(
             Parse.IgnoreCase(ApexKeywords.Double)).Or(
