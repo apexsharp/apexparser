@@ -42,8 +42,8 @@ namespace ApexParserTest.Parser
             var block = method.Body as BlockSyntax;
             Assert.NotNull(block);
             Assert.False(block.Statements.Any());
-            Assert.AreEqual(1, block.CodeComments.Count);
-            Assert.AreEqual(" Comment ", block.CodeComments[0]);
+            Assert.AreEqual(1, block.TrailingComments.Count);
+            Assert.AreEqual(" Comment ", block.TrailingComments[0]);
         }
 
         [Test]

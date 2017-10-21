@@ -375,6 +375,27 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * This comment belongs to the Class Syntax
+        /// */
+        ///public with sharing class Comments 
+        ///// This comment belongs to the open bracket syntax
+        ///{
+        ///
+        ///    // This comment belongs to the Method Syntax
+        ///    public static void DemoMethod() {
+        ///        Integer demoValue = 5; // Side Line Comment
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string Comments {
+            get {
+                return ResourceManager.GetString("Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class CustomerDto
         ///{
         ///    public String make {get;set;}
