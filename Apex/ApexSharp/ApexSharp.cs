@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Apex.ApexSharp.SharpToApex;
 using Newtonsoft.Json;
 using SalesForceAPI;
-using SalesForceAPI.Model;
 
 namespace Apex.ApexSharp
 {
