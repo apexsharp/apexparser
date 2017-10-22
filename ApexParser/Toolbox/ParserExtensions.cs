@@ -26,54 +26,55 @@ namespace ApexParser.Toolbox
             throw new ParseExceptionCustom(message, lineNumber, lines);
         }
 
-        internal static Parser<T> TokenEx<T>(this Parser<T> parser)
+        public static Parser<T> Token<T>(this Parser<T> parser, ICommentParserProvider provider)
         {
             if (parser == null)
             {
                 throw new ArgumentNullException(nameof(parser));
             }
 
-            // if the grammar class provides comments, use them
-            if (parser.Target is ICommentParserProvider provider)
+            // the grammar has no support for comments, use the original Token combinator
+            if (provider == null)
             {
-                // add leading and trailing comments to the parser
-                var parserEx =
-                    from leadingComments in provider.Comment.Token().Many()
-                    from parseResult in parser
-                    from trailingComments in provider.Comment.Token().Many()
-                    select new
-                    {
-                        leadingComments,
-                        parseResult,
-                        trailingComments,
-                    };
-
-                // if the parser returns BaseSyntax, populate the comments
-                return i =>
-                {
-                    var r = parserEx(i);
-                    if (r.WasSuccessful)
-                    {
-                        var syntax = r.Value.parseResult as BaseSyntax;
-                        if (syntax != null)
-                        {
-                            var leading = r.Value.leadingComments.ToList();
-                            var trailing = r.Value.trailingComments.ToList();
-                            syntax = syntax.WithLeadingComments(leading)
-                                .WithTrailingComments(trailing);
-
-                            return Result.Success((T)(object)syntax, r.Remainder);
-                        }
-
-                        return Result.Success(r.Value.parseResult, r.Remainder);
-                    }
-
-                    return Result.Failure<T>(r.Remainder, r.Message, r.Expectations);
-                };
+                return parser.Token();
             }
 
-            // the grammar has no support for comments, use the original Token combinator
-            return parser.Token();
+            // add leading and trailing comments to the parser
+            var parserEx =
+                from leading in Parse.WhiteSpace.Many()
+                from leadingComments in provider.Comment.Token().Many()
+                from parseResult in parser
+                from trailingComments in provider.Comment.Token().Many()
+                from trailing in Parse.WhiteSpace.Many()
+                select new
+                {
+                    leadingComments,
+                    parseResult,
+                    trailingComments,
+                };
+
+            // if the parser returns BaseSyntax, populate the comments
+            return i =>
+            {
+                var r = parserEx(i);
+                if (r.WasSuccessful)
+                {
+                    var syntax = r.Value.parseResult as BaseSyntax;
+                    if (syntax != null)
+                    {
+                        var leading = r.Value.leadingComments.ToList();
+                        var trailing = r.Value.trailingComments.ToList();
+                        syntax = syntax.WithLeadingComments(leading)
+                            .WithTrailingComments(trailing);
+
+                        return Result.Success((T)(object)syntax, r.Remainder);
+                    }
+
+                    return Result.Success(r.Value.parseResult, r.Remainder);
+                }
+
+                return Result.Failure<T>(r.Remainder, r.Message, r.Expectations);
+            };
         }
     }
 }
