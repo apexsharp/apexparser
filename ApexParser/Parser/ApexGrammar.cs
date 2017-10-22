@@ -35,11 +35,11 @@ namespace ApexParser.Parser
         protected internal virtual Parser<AnnotationSyntax> Annotation =>
             from at in Parse.Char('@').Token()
             from name in Parse.IgnoreCase(ApexKeywords.Future).Token().Text().Or(Identifier)
-            from parameters in GenericExpressionInBraces().Optional()
+            from parameters in GenericExpressionInBraces().Optional().Token(this)
             select new AnnotationSyntax
             {
                 Identifier = name,
-                Parameters = parameters.GetOrDefault(),
+                Parameters = parameters.Value.GetOrDefault(),
             };
 
         // examples: int, void

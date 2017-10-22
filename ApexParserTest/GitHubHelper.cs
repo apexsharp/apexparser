@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using RestSharp;
 
 namespace ApexParserTest
@@ -23,6 +24,11 @@ namespace ApexParserTest
             var client = new RestClient("https://api.github.com/");
             var request = new RestRequest(gitResource, Method.GET);
             var response = client.Execute<List<GitHubFile>>(request);
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                Assert.Warn($"Cannot download the code from url: {gitResource}. Error code: {response.StatusCode}");
+            }
 
             List<GitHubFile> newFilteredList = response.Data.Where(x => x?.Name?.EndsWith(extension) ?? false).ToList();
 

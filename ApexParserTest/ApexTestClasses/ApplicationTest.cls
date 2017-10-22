@@ -20,4 +20,10 @@ private class ApplicationTest
 				e.getMessage()), 'Exception message did not match the expected pattern: ' + e.getMessage());
 		}	
 	}
+
+	@isTest //Tests all forms of the getDescribe static
+	static void getAccountDescribes(){
+		System.assertEquals('Account', d.getDescribe().getName());
+		System.assert( (d === d2 && d2 === d3) ,'All three getDescribe calls should return the same cached instance.');
+	}
 }
