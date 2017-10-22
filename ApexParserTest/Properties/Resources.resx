@@ -154,6 +154,9 @@
   <data name="ClassUnitTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\ClassUnitTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="ClassUnitTestRunAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassUnitTestRunAs.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="ClassUnitTestSeeAllData" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\ClassUnitTestSeeAllData.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
@@ -171,6 +174,9 @@
   </data>
   <data name="ClassWithSharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\ClassWithSharing.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="CommentFail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\CommentFail.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Comments" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\Comments.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -198,6 +204,9 @@
   </data>
   <data name="ForIfWhile2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\ForIfWhile2.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ForIfWhile3.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
   <data name="FormatDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\FormatDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
@@ -231,6 +240,9 @@
   </data>
   <data name="PropertyAndField2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\PropertyAndField2.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PropertyAndField3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\PropertyAndField3.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
   <data name="RunAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\RunAll.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>

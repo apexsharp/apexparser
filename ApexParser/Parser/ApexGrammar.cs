@@ -31,7 +31,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<AnnotationSyntax> Annotation =>
             from at in Parse.Char('@').Token()
             from name in Parse.IgnoreCase(ApexKeywords.Future).Token().Text().Or(Identifier)
-            from parameters in GenericExpressionInBraces.Optional()
+            from parameters in GenericExpressionInBraces().Optional()
             select new AnnotationSyntax
             {
                 Identifier = name,
@@ -39,7 +39,7 @@ namespace ApexParser.Parser
             };
 
         // examples: int, void
-        protected internal virtual Parser<TypeSyntax> PrimitiveType =>
+        protected internal virtual Parser<TypeSyntax> SystemType =>
             Parse.IgnoreCase(ApexKeywords.Blob).Or(
             Parse.IgnoreCase(ApexKeywords.Boolean)).Or(
             Parse.IgnoreCase(ApexKeywords.Byte)).Or(
@@ -50,17 +50,18 @@ namespace ApexParser.Parser
             Parse.IgnoreCase(ApexKeywords.Float)).Or(
             Parse.IgnoreCase(ApexKeywords.Int)).Or(
             Parse.IgnoreCase(ApexKeywords.Long)).Or(
+            Parse.IgnoreCase(ApexKeywords.Set)).Or(
             Parse.IgnoreCase(ApexKeywords.Short)).Or(
             Parse.IgnoreCase(ApexKeywords.List)).Or(
             Parse.IgnoreCase(ApexKeywords.Map)).Or(
             Parse.IgnoreCase(ApexKeywords.Void))
                 .Text().Then(n => Parse.Not(Parse.LetterOrDigit.Or(Parse.Char('_'))).Return(n.ToLower()))
                 .Token().Select(n => new TypeSyntax(n))
-                .Named("PrimitiveType");
+                .Named("SystemType");
 
         // examples: int, String, System.Collections.Hashtable
         protected internal virtual Parser<TypeSyntax> NonGenericType =>
-            PrimitiveType.Or(QualifiedIdentifier.Select(qi => new TypeSyntax(qi)));
+            SystemType.Or(QualifiedIdentifier.Select(qi => new TypeSyntax(qi)));
 
         // examples: string, int, char
         protected internal virtual Parser<IEnumerable<TypeSyntax>> TypeParameters =>
@@ -206,14 +207,15 @@ namespace ApexParser.Parser
             from statement in Block.Select(s => s as StatementSyntax)
                 .Or(IfStatement)
                 .Or(DoStatement)
-                .Or(WhileStatement)
                 .Or(ForEachStatement)
                 .Or(ForStatement)
+                .Or(WhileStatement)
                 .Or(BreakStatement)
+                .Or(RunAsStatement)
                 .Or(TryCatchFinallyStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
-            select statement.WithComments(comments);
+            select statement.WithLeadingComments(comments);
 
         // examples: {}, { /* empty block */ }, { int a = 0; return; }
         protected internal virtual Parser<BlockSyntax> Block =>
@@ -224,7 +226,7 @@ namespace ApexParser.Parser
             from closeBrace in Parse.Char('}').Token()
             select new BlockSyntax
             {
-                CodeComments = comments.ToList(),
+                LeadingComments = comments.ToList(),
                 Statements = statements.ToList(),
                 TrailingComments = trailingComment.ToList(),
             };
@@ -297,6 +299,19 @@ namespace ApexParser.Parser
                 Expression = expression.GetOrDefault(),
             };
 
+        // example: System.runAs(user) { System.debug('Hi there!'); }
+        protected internal virtual Parser<RunAsStatementSyntax> RunAsStatement =>
+            from system in Parse.IgnoreCase(ApexKeywords.System).Token()
+            from dot in Parse.Char('.').Token()
+            from runAs in Parse.IgnoreCase(ApexKeywords.RunAs).Token()
+            from expression in GenericExpressionInBraces()
+            from statement in Statement
+            select new RunAsStatementSyntax
+            {
+                Expression = expression,
+                Statement = statement,
+            };
+
         // dummy generic parser for any unknown statement ending with a semicolon
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
             from contents in Parse.CharExcept("{};").Many().Text().Token()
@@ -308,34 +323,23 @@ namespace ApexParser.Parser
 
         // dummy generic parser for expressions with matching braces
         protected internal virtual Parser<string> GenericExpression =>
-            from subExpressions in Parse.CharExcept("(){};,").Many().Text().Token()
-                .Or(GenericExpressionInBraces.Select(x => $"({x})"))
-                .Or(GenericExpressionInCurlyBraces.Select(x => $"{{{x}}}")).Many()
+            GenericExpressionCore(forbidden: ",;");
+
+        // creates dummy generic parser for expressions with matching braces allowing commas and semicolons by default
+        protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null) =>
+            from subExpressions in Parse.CharExcept("(){}[]" + forbidden).Many().Text().Token()
+                .Or(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
+                .Or(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
+                .Or(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]")).Many()
             let expr = string.Join(string.Empty, subExpressions)
             where !string.IsNullOrWhiteSpace(expr)
             select expr;
 
-        // dummy generic parser for expressions with matching braces allowing commas
-        protected internal virtual Parser<string> GenericExpressionWithCommas =>
-            from subExpressions in Parse.CharExcept("(){};").Many().Text().Token()
-                .Or(GenericExpressionInBraces.Select(x => $"({x})"))
-                .Or(GenericExpressionInCurlyBraces.Select(x => $"{{{x}}}")).Many()
-            let expr = string.Join(string.Empty, subExpressions)
-            where !string.IsNullOrWhiteSpace(expr)
-            select expr;
-
-        // dummy generic parser for any expressions with matching braces
-        protected internal virtual Parser<string> GenericExpressionInBraces =>
-            from openBrace in Parse.Char('(').Token()
-            from expression in GenericExpressionWithCommas.Optional()
-            from closeBrace in Parse.Char(')').Token()
-            select expression.GetOrDefault();
-
-        // dummy generic parser for any expressions with matching braces
-        protected internal virtual Parser<string> GenericExpressionInCurlyBraces =>
-            from openBrace in Parse.Char('{').Token()
-            from expression in GenericExpressionWithCommas.Optional()
-            from closeBrace in Parse.Char('}').Token()
+        // creates dummy generic parser for any expressions with matching braces
+        protected internal virtual Parser<string> GenericExpressionInBraces(char open = '(', char close = ')') =>
+            from openBrace in Parse.Char(open).Token()
+            from expression in GenericExpressionCore().Optional()
+            from closeBrace in Parse.Char(close).Token()
             select expression.GetOrDefault();
 
         // example: break;
@@ -347,7 +351,7 @@ namespace ApexParser.Parser
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>
             from ifKeyword in Parse.IgnoreCase(ApexKeywords.If).Token()
-            from expression in GenericExpressionInBraces
+            from expression in GenericExpressionInBraces()
             from thenBranch in Statement
             from elseBranch in Parse.IgnoreCase(ApexKeywords.Else).Token().Then(_ => Statement).Optional()
             select new IfStatementSyntax
@@ -398,7 +402,7 @@ namespace ApexParser.Parser
             from doKeyword in Parse.IgnoreCase(ApexKeywords.Do).Token()
             from loopBody in Statement
             from whileKeyword in Parse.IgnoreCase(ApexKeywords.While).Token()
-            from expression in GenericExpressionInBraces
+            from expression in GenericExpressionInBraces()
             from semicolon in Parse.Char(';').Token()
             select new DoStatementSyntax
             {
@@ -409,7 +413,7 @@ namespace ApexParser.Parser
         // simple while statement without the expression support
         protected internal virtual Parser<WhileStatementSyntax> WhileStatement =>
             from whileKeyword in Parse.IgnoreCase(ApexKeywords.While).Token()
-            from expression in GenericExpressionInBraces
+            from expression in GenericExpressionInBraces()
             from loopBody in Statement
             select new WhileStatementSyntax
             {
@@ -424,7 +428,7 @@ namespace ApexParser.Parser
             from modifiers in Modifier.Many()
             select new MemberDeclarationSyntax
             {
-                CodeComments = comments.ToList(),
+                LeadingComments = comments.ToList(),
                 Annotations = annotations.ToList(),
                 Modifiers = modifiers.ToList(),
             };
@@ -475,6 +479,7 @@ namespace ApexParser.Parser
                 BaseType = classBody.BaseType,
                 Interfaces = classBody.Interfaces,
                 Members = classBody.Members,
+                TrailingComments = classBody.TrailingComments,
             };
 
         // example: class Program { void main() {} }
@@ -486,6 +491,7 @@ namespace ApexParser.Parser
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
+            from trailingComments in CommentParser.AnyComment.Many()
             from closeBrace in Parse.Char('}').Token()
             select new ClassDeclarationSyntax()
             {
@@ -494,16 +500,14 @@ namespace ApexParser.Parser
                 BaseType = baseType.GetOrDefault(),
                 Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
                 Members = ConvertConstructors(members).ToList(),
+                TrailingComments = trailingComments.ToList(),
             };
 
         private IEnumerable<MemberDeclarationSyntax> ConvertConstructors(IEnumerable<MemberDeclarationSyntax> members)
         {
-            bool IsConstructor(MethodDeclarationSyntax md) =>
-                ConstructorDeclarationSyntax.IsConstructor(md);
-
             foreach (var member in members)
             {
-                if (member is MethodDeclarationSyntax m && IsConstructor(m))
+                if (member is MethodDeclarationSyntax m && m.IsConstructor())
                 {
                     yield return new ConstructorDeclarationSyntax(m);
                     continue;
@@ -512,6 +516,20 @@ namespace ApexParser.Parser
                 yield return member;
             }
         }
+
+        // examples: { instanceProperty = 0; }, static { staticProperty = 0; }
+        protected internal virtual Parser<ClassInitializerSyntax> ClassInitializer =>
+            from heading in MemberDeclarationHeading
+            from initializer in ClassInitializerBody
+            select initializer.WithProperties(heading);
+
+        // examples: { a = 0; }
+        protected internal virtual Parser<ClassInitializerSyntax> ClassInitializerBody =>
+            from body in Block
+            select new ClassInitializerSyntax
+            {
+                Body = body,
+            };
 
         // method or property declaration starting with the type and name
         protected internal virtual Parser<MemberDeclarationSyntax> MethodPropertyOrFieldDeclaration =>
@@ -524,7 +542,8 @@ namespace ApexParser.Parser
         // class members: methods, classes, properties
         protected internal virtual Parser<MemberDeclarationSyntax> ClassMemberDeclaration =>
             from heading in MemberDeclarationHeading
-            from member in EnumDeclarationBody.Select(c => c as MemberDeclarationSyntax)
+            from member in ClassInitializerBody.Select(c => c as MemberDeclarationSyntax)
+                .Or(EnumDeclarationBody)
                 .Or(ClassDeclarationBody)
                 .Or(MethodPropertyOrFieldDeclaration)
             select member.WithProperties(heading);

@@ -77,7 +77,7 @@ namespace ApexParser.Visitors
 
         private void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node)
         {
-            foreach (var comment in node.CodeComments.AsSmart())
+            foreach (var comment in node.LeadingComments.AsSmart())
             {
                 var multiLine = comment.Value.Contains('\n');
                 if (multiLine)

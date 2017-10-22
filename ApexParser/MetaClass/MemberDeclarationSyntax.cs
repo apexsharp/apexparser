@@ -12,7 +12,7 @@ namespace ApexParser.MetaClass
     {
         public MemberDeclarationSyntax(MemberDeclarationSyntax other = null)
         {
-            WithProperties(other);
+            this.WithProperties(other);
         }
 
         public override SyntaxType Kind => SyntaxType.ClassMember;
@@ -22,18 +22,6 @@ namespace ApexParser.MetaClass
         public List<AnnotationSyntax> Annotations { get; set; } = new List<AnnotationSyntax>();
 
         public List<string> Modifiers { get; set; } = new List<string>();
-
-        public MemberDeclarationSyntax WithProperties(MemberDeclarationSyntax other = null)
-        {
-            if (other != null)
-            {
-                CodeComments = other.CodeComments;
-                Annotations = other.Annotations;
-                Modifiers = other.Modifiers;
-            }
-
-            return this;
-        }
 
         public virtual MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {

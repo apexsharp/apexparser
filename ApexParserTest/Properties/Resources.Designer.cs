@@ -275,6 +275,26 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public class ClassUnitTestRunAs
+        ///{
+        ///    static testMethod void RunAsExample()
+        ///    {
+        ///        User newUser = new User();
+        ///        System.RunAs(newUser)
+        ///        {
+        ///
+        ///        }
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassUnitTestRunAs {
+            get {
+                return ResourceManager.GetString("ClassUnitTestRunAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @isTest(SeeAllData=true)
         ///public class ClassUnitTestSeeAllData
         ///{
@@ -371,6 +391,23 @@ namespace ApexParserTest.Properties {
         internal static string ClassWithSharing {
             get {
                 return ResourceManager.GetString("ClassWithSharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class CommentFail
+        ///{
+        ////*
+        ///* ************************************************************************************************
+        ///* This is a general method for retrieving an sObject by it&apos;s id. selectFields is a list of fields
+        ///* to return on the sObject.
+        ///* ************************************************************************************************
+        ///*/
+        ///}.
+        /// </summary>
+        internal static string CommentFail {
+            get {
+                return ResourceManager.GetString("CommentFail", resourceCulture);
             }
         }
         
@@ -613,6 +650,40 @@ namespace ApexParserTest.Properties {
         internal static string ForIfWhile2 {
             get {
                 return ResourceManager.GetString("ForIfWhile2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile
+        ///{
+        ///    public void MethodIfClean(Integer place)
+        ///    {
+        ///        String modelColor;
+        ///
+        ///        if (place == 1)
+        ///        {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        }
+        ///        else
+        ///        {
+        ///            modelColor = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional()
+        ///    {
+        ///        for (Integ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile3 {
+            get {
+                return ResourceManager.GetString("ForIfWhile3", resourceCulture);
             }
         }
         
@@ -860,6 +931,26 @@ namespace ApexParserTest.Properties {
         internal static string PropertyAndField2 {
             get {
                 return ResourceManager.GetString("PropertyAndField2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class PropertyAndField
+        ///{
+        ///    transient Integer TransientInteger;
+        ///    public DateTime DateTimeGetSet { get; set; }
+        ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///    public DateTime[] DateTimeGetSetArray { get; set; }
+        ///    public DateTime DateTimeEmpty;
+        ///    public DateTime DateTimeInitialized = DateTime.now();
+        ///    public List&lt;DateTime&gt; DateTimeList = new List&lt;DateTime&gt;();
+        ///    public DateTime[] DateTimeArray = new DateTime[5];
+        ///    public String Name = &apos;jay&apos;;
+        ///    public final St [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PropertyAndField3 {
+            get {
+                return ResourceManager.GetString("PropertyAndField3", resourceCulture);
             }
         }
         

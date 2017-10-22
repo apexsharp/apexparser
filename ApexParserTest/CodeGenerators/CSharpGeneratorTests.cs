@@ -38,7 +38,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var cd = new ClassDeclarationSyntax
             {
-                CodeComments = new List<string> { " Test class" },
+                LeadingComments = new List<string> { " Test class" },
                 Identifier = "TestClass"
             };
 
@@ -61,7 +61,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var cd = new ClassDeclarationSyntax
             {
-                CodeComments = new List<string> { @" Test class
+                LeadingComments = new List<string> { @" Test class
                     with several lines
                     of comments " },
                 Identifier = "TestClass"

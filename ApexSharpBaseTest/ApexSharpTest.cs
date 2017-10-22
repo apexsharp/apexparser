@@ -9,18 +9,16 @@ namespace ApexSharpBaseTest
     [TestFixture]
     public class ApexSharpTest
     {
-        [Test, Ignore("Appveyor fails on this test")]
+        //[Test, Ignore("Appveyor fails on this test")]
         public void ParseCSharpCodeTest()
         {
             ApesSharp apexSharp = new ApesSharp();
-     //       var cSharpFile = File.ReadAllText(@"C:\DevSharp\apexsharp\ApexSharpDemo\ApexCode\ForIfWhile.cs");
-     //       var classContainer = apexSharp.ParseCSharpCode(cSharpFile);
+            //var cSharpFile = File.ReadAllText(@"C:\DevSharp\apexsharp\ApexSharpDemo\ApexCode\ForIfWhile.cs");
+            //var classContainer = apexSharp.ParseCSharpCode(cSharpFile);
 
-     //       CSharpGenerator cSharpGenerator = new CSharpGenerator();
-     //       var cSharpCode = cSharpGenerator.Generate(classContainer);
-     //       ValidateLineByLine(cSharpCode, cSharpFile);
-
-
+            //CSharpGenerator cSharpGenerator = new CSharpGenerator();
+            //var cSharpCode = cSharpGenerator.Generate(classContainer);
+            //ValidateLineByLine(cSharpCode, cSharpFile);
         }
 
         public void ValidateLineByLine(string convertedCode, string orginalCode)

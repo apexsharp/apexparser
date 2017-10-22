@@ -15,7 +15,7 @@ namespace ApexParserTest.Parser
         private ApexGrammar Apex { get; } = new ApexGrammar();
 
         [Test]
-        public void AccountDaoExtendsBaseDao()
+        public void AccountDaoExtendsBaseDaoIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse("public with sharing class AccountDAO extends BaseDAO { }");
             Assert.AreEqual("AccountDAO", cd.Identifier);
@@ -23,7 +23,7 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void AccountDaoTest()
+        public void AccountDaoTestIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse("@IsTest(seeAllData = false) private class AccountDAOTest { }");
             Assert.AreEqual("AccountDAOTest", cd.Identifier);
@@ -33,7 +33,7 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void AccountTeamBatchClass()
+        public void AccountTeamBatchClassIsParsed()
         {
             var nt = Apex.NonGenericType.Parse("Database");
             var pt = Apex.TypeReference.Parse("Database.batchable<sObject>");
@@ -47,7 +47,7 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void TestMethodMyUnitTest()
+        public void TestMethodMyUnitTestIsParsed()
         {
             var md = Apex.MethodDeclaration.Parse("static testMethod void myUnitTest() { }");
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -55,7 +55,7 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void AccountTeamScheduleBatch()
+        public void AccountTeamScheduleBatchIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse("global class AccountTeamschduleBatch implements Schedulable { }");
             Assert.AreEqual("AccountTeamschduleBatch", cd.Identifier);
@@ -65,9 +65,10 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void StaticVariableToCheckWhetherItsRecurringOrNot()
+        public void StaticVariableToCheckWhetherItsRecurringOrNotIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(@"class RecurrencyHelper
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class RecurrencyHelper
             {
                 //Static Variable to check whether its recurring or not.
                 static bool recurring = false;
@@ -77,9 +78,10 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void PublicStringStrVin()
+        public void PublicStringStrVinIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(@"class DummyController
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class DummyController
             {
                 Public String strVIN { get;set; }
             }");
@@ -90,7 +92,7 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void PostPaymentResponseExtendsGmosasApi2ResponseObjectsResponse()
+        public void PostPaymentResponseExtendsGmosasApi2ResponseObjectsResponseIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse("global class PostPaymentResponse extends GMOSAS_API2_ResponseObjects.Response {}");
             Assert.AreEqual("PostPaymentResponse", cd.Identifier);
@@ -100,9 +102,10 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void CreateAgreementAndAttachment()
+        public void CreateAgreementAndAttachmentIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(@"class Dummy
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class Dummy
             {
                 void Dummy()
                 {
@@ -116,9 +119,10 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void TestMethodForAgreementControllerX()
+        public void TestMethodForAgreementControllerXIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(@"class AgreementControllerX_Test
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class AgreementControllerX_Test
             {
                 static testMethod void testMethodForAgreementControllerX()
                 {
@@ -130,15 +134,49 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void PrivateIntegerBatchSize()
+        public void PrivateIntegerBatchSizeIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse(@"class Dummy
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class Dummy
             {
                 private bool flag = false;
                 private integer batchSize = 0;
             }");
 
             Assert.AreEqual(2, cd.Fields.Count);
+        }
+
+        [Test]
+        public void AppShopPublishingQueueDaoIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"
+            public with sharing class AppShopPublishingQueueDAO
+            {
+                public List<AppShop_Publishing_Queue__c> getRecordsByVersionIdsStatusType(Set<Id> mmyvIds, String jobStatus, String jobType)
+                {
+                }
+            }");
+
+            Assert.AreEqual("AppShopPublishingQueueDAO", cd.Identifier);
+            Assert.AreEqual(1, cd.Methods.Count);
+            Assert.AreEqual("getRecordsByVersionIdsStatusType", cd.Methods[0].Identifier);
+            Assert.AreEqual(3, cd.Methods[0].Parameters.Count);
+            Assert.AreEqual("mmyvIds", cd.Methods[0].Parameters[0].Identifier);
+            Assert.AreEqual("jobStatus", cd.Methods[0].Parameters[1].Identifier);
+            Assert.AreEqual("jobType", cd.Methods[0].Parameters[2].Identifier);
+        }
+
+        [Test]
+        public void BillingAdjustmentControllerIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"
+            public without sharing class BillingAdjustmentController
+            {
+                public Zuora__CustomerAccount__c billingAccount { get; set; }
+                private String billAcctId { get; set; }
+                public Case c { get; set; }
+                private String contactId { get; set; }
+            }");
         }
     }
 }

@@ -25,6 +25,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitClassDeclaration(ClassDeclarationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitClassInitializer(ClassInitializerSyntax node) => DefaultVisit(node);
+
         public virtual void VisitConstructorDeclaration(ConstructorDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitDoStatement(DoStatementSyntax node) => DefaultVisit(node);
@@ -48,6 +50,8 @@ namespace ApexParser.Visitors
         public virtual void VisitParameter(ParameterSyntax node) => DefaultVisit(node);
 
         public virtual void VisitPropertyDeclaration(PropertyDeclarationSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitRunAsStatement(RunAsStatementSyntax node) => DefaultVisit(node);
 
         // Temporary method
         public virtual void VisitStatement(StatementSyntax node) => DefaultVisit(node);
