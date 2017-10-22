@@ -178,5 +178,55 @@ namespace ApexParserTest.Parser
                 private String contactId { get; set; }
             }");
         }
+
+        [Test]
+        public void MainSetToAddressesNewStringIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class Test
+            {
+                void Test()
+                {
+                    mail.setToAddresses(new String[]
+                    {
+                        email
+                    });
+                }
+            }");
+        }
+
+        [Test]
+        public void UpdatePaymentMethodBillingAccountIdIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class Test
+            {
+                void Test()
+                {
+                    if (status == 'Processed') updatePaymentMethod(billingAccount.Id);
+                    //need to write this method and use it after adjustment process
+                    else
+                    {
+                        sendCaseToAdjustmentOperations(adjustmentCase,'Zuora error : Could not perform non reference refund. Status of refund :' + status,System.Label.inReview,true,purchaseResults.subNumber);
+                        return;
+                    }
+                }
+            }");
+        }
+
+        [Test]
+        public void StaticTestMethodIsParsed()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class Test
+            {
+                static testMethod void StaticTestMethod()
+                {
+                    //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                }
+            }");
+        }
     }
 }

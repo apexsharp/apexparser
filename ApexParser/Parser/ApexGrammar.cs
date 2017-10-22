@@ -318,7 +318,7 @@ namespace ApexParser.Parser
 
         // dummy generic parser for any unknown statement ending with a semicolon
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
-            from contents in Parse.CharExcept("{};").Many().Text().Token()
+            from contents in GenericExpressionCore(forbidden: ";").Token()
             from semicolon in Parse.Char(';').Token()
             select new StatementSyntax
             {
@@ -357,7 +357,7 @@ namespace ApexParser.Parser
             from ifKeyword in Parse.IgnoreCase(ApexKeywords.If).Token()
             from expression in GenericExpressionInBraces()
             from thenBranch in Statement
-            from elseBranch in Parse.IgnoreCase(ApexKeywords.Else).Token().Then(_ => Statement).Optional()
+            from elseBranch in Parse.IgnoreCase(ApexKeywords.Else).Token(this).Then(_ => Statement).Optional()
             select new IfStatementSyntax
             {
                 Expression = expression,

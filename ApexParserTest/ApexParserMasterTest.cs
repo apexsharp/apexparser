@@ -6,18 +6,31 @@ namespace ApexParserTest
     [TestFixture]
     public class ApexParserMasterTest
     {
-        [Test][Ignore("This Fails")]
-        public void TestRemoteApexFile()
-        {
-            TestRemoteApexFile("repos/jayonsoftware/SalesForceApexSharp/contents/src/classes");
-            TestRemoteApexFile("repos/financialforcedev/fflib-apex-common/contents/fflib/src/classes");
-            TestRemoteApexFile("repos/financialforcedev/fflib-apex-mocks/contents/master/src/classes");
-            TestRemoteApexFile("repos/financialforcedev/ffhttp-core/contents/master/src/classes");
-            TestRemoteApexFile("repos/financialforcedev/fflib-apex-common-samplecode/contents/master/fflib-sample-code/src/classes");
-            TestRemoteApexFile("repos/SalesforceFoundation/Cumulus/contents/master/src/classes");
-        }
-        
-        public void TestRemoteApexFile(string repoURL)
+        [Test]
+        public void TestSalesForceApexSharp() =>
+            ParseAll("repos/jayonsoftware/SalesForceApexSharp/contents/src/classes");
+
+        [Test, Ignore("TODO")]
+        public void TestFFlibApexCommon() =>
+            ParseAll("repos/financialforcedev/fflib-apex-common/contents/fflib/src/classes");
+
+        [Test]
+        public void TestFFlibApexMocks() =>
+            ParseAll("repos/financialforcedev/fflib-apex-mocks/contents/master/src/classes");
+
+        [Test]
+        public void TestFFhttpCore() =>
+            ParseAll("repos/financialforcedev/ffhttp-core/contents/master/src/classes");
+
+        [Test]
+        public void TestFFlibApexCommonSampleCode() =>
+            ParseAll("repos/financialforcedev/fflib-apex-common-samplecode/contents/master/fflib-sample-code/src/classes");
+
+        [Test]
+        public void TestCumulus() =>
+            ParseAll("repos/SalesforceFoundation/Cumulus/contents/master/src/classes");
+
+        public void ParseAll(string repoURL)
         {
             var apexFiles = GitHubHelper.GetCodeFromGitFolder(repoURL, ".cls");
 

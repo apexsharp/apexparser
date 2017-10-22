@@ -61,6 +61,29 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to @IsTest
+        ///private class fflib_ApplicationTest 
+        ///{
+        ///	@IsTest
+        ///	private static void callingDomainFactoryShouldGiveRegisteredImplsAndMocks()
+        ///	{
+        ///		domainObjectAcct = 
+        ///			Domain.newInstance(
+        ///				new List&lt;SObject&gt; 
+        ///					{ new Account( 
+        ///						Id = testAccountId,
+        ///						Name = &apos;Test Account&apos;) }
+        ///				, Account.SObjectType);
+        ///	}
+        ///}.
+        /// </summary>
+        internal static string ApplicationTest {
+            get {
+                return ResourceManager.GetString("ApplicationTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public abstract class ClassAbstract
         ///{
         ///}.

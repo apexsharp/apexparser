@@ -1128,5 +1128,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, cd.Initializers[0].Body.Statements.Count);
             Assert.AreEqual("shouldRedirect =false", cd.Initializers[0].Body.Statements[0].Body);
         }
+
+        [Test(Description = @"Portions of https://raw.githubusercontent.com/financialforcedev/fflib-apex-common/master/fflib/src/classes/fflib_ApplicationTest.cls")]
+        public void ApplicationTestIsParsed()
+        {
+            var cd = Apex.ParseClass(ApplicationTest);
+            Assert.AreEqual("ApplicationTest", cd.Identifier);
+        }
     }
 }

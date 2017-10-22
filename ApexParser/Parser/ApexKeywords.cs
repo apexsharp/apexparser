@@ -128,7 +128,7 @@ namespace ApexParser.Parser
         public const string Super = "super";
         ////public const string Switch = "switch"; // reserved for future use
         ////public const string Synchronized = "synchronized"; // reserved for future use
-        public const string System = "system";
+        ////public const string System = "system"; // hack, see below
         public const string TestMethod = "testmethod";
         ////public const string Then = "then"; // reserved for future use
         public const string This = "this";
@@ -164,6 +164,7 @@ namespace ApexParser.Parser
         public static string Last => "last";
         public static string Order => "order";
         public static string Sharing => "sharing";
+        public static string System => "system"; // used in qualified identifier: System.debug
         public static string With => "with";
 
         // 3. Not listed in the official documentation but apparently used

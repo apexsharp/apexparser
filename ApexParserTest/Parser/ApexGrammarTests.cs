@@ -182,6 +182,9 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("list", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
             Assert.True(tr.IsArray);
+
+            tr = Apex.TypeReference.Parse(" System.TypeException ");
+            Assert.AreEqual("TypeException", tr.Identifier);
         }
 
         [Test]
@@ -1127,6 +1130,17 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("return 'no'", ifstmt.ElseStatement.Body);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else}"));
+        }
+
+        [Test]
+        public void IfStatementCanCompileWithACommentBeforeTheElseBranch()
+        {
+            var ifstmt = Apex.IfStatement.Parse("if (false) return 'yes'; /* oops */ else return 'no';");
+            Assert.AreEqual("false", ifstmt.Expression);
+            Assert.AreEqual("return 'yes'", ifstmt.ThenStatement.Body);
+            Assert.AreEqual("return 'no'", ifstmt.ElseStatement.Body);
+
+            Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else"));
         }
 
         [Test]
