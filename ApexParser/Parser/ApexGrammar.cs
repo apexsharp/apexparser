@@ -332,9 +332,9 @@ namespace ApexParser.Parser
         // creates dummy generic parser for expressions with matching braces allowing commas and semicolons by default
         protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null) =>
             from subExpressions in Parse.CharExcept("(){}[]" + forbidden).Many().Text().Token()
-                .Or(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
-                .Or(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
-                .Or(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]")).Many()
+                .XOr(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
+                .XOr(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
+                .XOr(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]")).Many()
             let expr = string.Join(string.Empty, subExpressions)
             where !string.IsNullOrWhiteSpace(expr)
             select expr;
