@@ -26,7 +26,31 @@ namespace ApexParser.Toolbox
             throw new ParseExceptionCustom(message, lineNumber, lines);
         }
 
-        public static Parser<T> Token<T>(this Parser<T> parser, ICommentParserProvider provider)
+        private class Commented<T> : ICommented<T>
+        {
+            public Commented(T value)
+            {
+                LeadingComments = TrailingComments = EmptyList;
+                Value = value;
+            }
+
+            public Commented(IEnumerable<string> leading, T value, IEnumerable<string> trailing)
+            {
+                LeadingComments = leading ?? EmptyList;
+                Value = value;
+                TrailingComments = trailing ?? EmptyList;
+            }
+
+            private static readonly string[] EmptyList = new string[0];
+
+            public IEnumerable<string> LeadingComments { get; }
+
+            public T Value { get; }
+
+            public IEnumerable<string> TrailingComments { get; }
+        }
+
+        public static Parser<ICommented<T>> Token<T>(this Parser<T> parser, ICommentParserProvider provider)
         {
             if (parser == null)
             {
@@ -36,45 +60,18 @@ namespace ApexParser.Toolbox
             // the grammar has no support for comments, use the original Token combinator
             if (provider == null)
             {
-                return parser.Token();
+                return
+                    from p in parser.Token()
+                    select new Commented<T>(p);
             }
 
             // add leading and trailing comments to the parser
-            var parserEx =
-                from leading in Parse.WhiteSpace.Many()
+            return
+                from whiteSpace in Parse.WhiteSpace.Many()
                 from leadingComments in provider.Comment.Token().Many()
-                from parseResult in parser
+                from value in parser
                 from trailingComments in provider.Comment.Token().Many()
-                from trailing in Parse.WhiteSpace.Many()
-                select new
-                {
-                    leadingComments,
-                    parseResult,
-                    trailingComments,
-                };
-
-            // if the parser returns BaseSyntax, populate the comments
-            return i =>
-            {
-                var r = parserEx(i);
-                if (r.WasSuccessful)
-                {
-                    var syntax = r.Value.parseResult as BaseSyntax;
-                    if (syntax != null)
-                    {
-                        var leading = r.Value.leadingComments.ToList();
-                        var trailing = r.Value.trailingComments.ToList();
-                        syntax = syntax.WithLeadingComments(leading)
-                            .WithTrailingComments(trailing);
-
-                        return Result.Success((T)(object)syntax, r.Remainder);
-                    }
-
-                    return Result.Success(r.Value.parseResult, r.Remainder);
-                }
-
-                return Result.Failure<T>(r.Remainder, r.Message, r.Expectations);
-            };
+                select new Commented<T>(leadingComments, value, trailingComments);
         }
     }
 }

@@ -91,6 +91,7 @@
     <Compile Include="Parser\ApexKeywords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toolbox\Disposable.cs" />
+    <Compile Include="Toolbox\ICommentedOfT.cs" />
     <Compile Include="Toolbox\IEnumerableExtensions.cs" />
     <Compile Include="Toolbox\ICommentParserProvider.cs" />
     <Compile Include="Toolbox\ParseExceptionCustom.cs" />
