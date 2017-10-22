@@ -11,7 +11,7 @@ namespace ApexParserTest
     [TestFixture]
     public class ApexParserMasterTest
     {
-        [Test] //, Ignore("Ignored to enable the Appveyor build")]
+        [Test]
         public void TestRemoteApexFile()
         {
             var apexFiles = GitHubHelper.GetCodeFromGitFolder("repos/jayonsoftware/SalesForceApexSharp/contents/src/classes", ".cls");
