@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Apex.ApexSharp.SharpToApex;
 using Newtonsoft.Json;
 using SalesForceAPI;
-using SalesForceAPI.Model;
 
 namespace Apex.ApexSharp
 {
@@ -27,7 +25,7 @@ namespace Apex.ApexSharp
 
     public class ApexSharp
     {
-        readonly List<string> _errorMessageList = new List<string>();
+        public ApexSharpConfig ApexSharpConfigSettings { get; set; }
         private string ConfigFileName { get; set; }
 
         public ApexSharp()
@@ -36,89 +34,21 @@ namespace Apex.ApexSharp
             ConfigFileName = String.Empty;
         }
 
-        public ApexSharpConfig ApexSharpConfigSettings { get; set; }
-
-
-        public bool Init()
+        public void Connect()
         {
             string projectDirectoryName = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+           //    List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
 
-            if (ConfigFileName != String.Empty)
-            {
-                FileInfo setupFile = new FileInfo(projectDirectoryName + @"\" + ConfigFileName);
-                if (setupFile.Exists)
-                {
-                    string json = File.ReadAllText(projectDirectoryName + @"\" + ConfigFileName);
-
-
-
-                    ApexSharpConfigSettings = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
-
-                    Log.LogMsg("Setup Info", ApexSharpConfigSettings);
-
-
-                }
-                else
-                {
-                    Log.LogMsg("Setup File Not Found", "Setup File Not Found");
-                    ConfigFileName = String.Empty;
-                    return InitOk();
-                }
-            }
-
-            var connectionUtil = new ConnectionUtil();
-            connectionUtil.DebugOn();
-
-            ConnectionDetail connectionDetail = connectionUtil.SalesForceUrl(ApexSharpConfigSettings.SalesForceUrl)
-                .WithUserId(ApexSharpConfigSettings.SalesForceUserId)
-                .AndPassword(ApexSharpConfigSettings.SalesForcePassword)
-                .AndToken(ApexSharpConfigSettings.SalesForcePasswordToken)
-                .ConnectToSalesForce();
-
-            if (connectionDetail.Message == "Error")
-            {
-                _errorMessageList.Add("Cant Connect");
-            }
-
-            if (ApexSharpConfigSettings.ApexFileLocation == "")
-            {
-                _errorMessageList.Add("Apex Dir Location Missing");
-            }
-
-            //var process = global::System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            //if (process.Contains(".vshost") == false)
-            //{
-            //    _errorMessageList.Add("The code must be run using Visual Studio");
-            //}
-
-
-            List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
-            if (cShaprFileList.Any())
-            {
-                ConnectionUtil.SetProjectLocation(cShaprFileList[0]);
-            }
-
-            return InitOk();
+            var connectDetail = LogIn.Connect(ApexSharpConfigSettings.SalesForceUrl, ApexSharpConfigSettings.SalesForceUserId, ApexSharpConfigSettings.SalesForcePassword + ApexSharpConfigSettings.SalesForcePasswordToken);
+            Log.LogMsg("Connection Detail", connectDetail);
         }
 
-        public bool InitOk()
-        {
-            if (_errorMessageList.Count > 0)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public List<string> GetErrorMessage()
-        {
-            return _errorMessageList;
-        }
+       
 
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {
 
-            salesForceUrl = "https://login.salesforce.com/services/Soap/c/40.0/";
+            salesForceUrl = salesForceUrl + "services/Soap/c/40.0/";
             ApexSharpConfigSettings.SalesForceUrl = salesForceUrl;
             return this;
         }

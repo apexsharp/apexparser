@@ -12,8 +12,6 @@ namespace SalesForceAPI
 {
     public class ConnectionUtil
     {
-
-
         private static Project project = null;
 
         private int _limitNumber;
@@ -26,6 +24,9 @@ namespace SalesForceAPI
         private string _sqlConnectionString;
 
         public bool debug = true;
+
+        // SF Conneciton 
+
 
 
         // SF Connection Details
@@ -54,87 +55,8 @@ namespace SalesForceAPI
             }
         }
 
-        public ConnectionUtil SetSqlConnectionString(string sqlConnectionString)
-        {
-            _sqlConnectionString = sqlConnectionString;
-            return this;
-        }
-
-        public string GetSqlConnectionString()
-        {
-            return _sqlConnectionString;
-        }
 
 
-        // Debug On / Off
-
-        public ConnectionUtil DebugOn()
-        {
-            debug = true;
-            return this;
-        }
-
-        public ConnectionUtil DebugOff()
-        {
-            debug = false;
-            return this;
-        }
-
-        // SF Conneciton 
-
-        public ConnectionDetail ConnectToSalesForce()
-        {
-            var salesForceConnect = new LogIn();
-            ConnectionDetail = salesForceConnect.Connect(_salesForceUrl, _salesForceUserId, _salesForcePassword + _salesForcePasswordToken);
-
-            Log.LogMsg("Connection Detail", ConnectionDetail);
-
-            return ConnectionDetail;
-        }
-
-        public ConnectionUtil SalesForceUrl(string salesForceUrl)
-        {
-            _salesForceUrl = salesForceUrl;
-            return this;
-        }
-
-        public ConnectionUtil WithUserId(string salesForceUserId)
-        {
-            _salesForceUserId = salesForceUserId;
-            return this;
-        }
-
-        public ConnectionUtil AndPassword(string salesForcePassword)
-        {
-            _salesForcePassword = salesForcePassword;
-            return this;
-        }
-
-        public ConnectionUtil AndToken(string salesForcePasswordToken)
-        {
-            _salesForcePasswordToken = salesForcePasswordToken;
-            return this;
-        }
-
-        public ConnectionUtil DoNotStoreCredentials()
-        {
-            return this;
-        }
-
-        // Set Visual Studio Project
-        public static void SetProjectLocation(string location)
-        {
-            try
-            {
-                //     project = new Project(location);
-
-                //Console.WriteLine("Project Location " + project.DirectoryPath);
-            }
-            catch (Microsoft.Build.Exceptions.InvalidProjectFileException e)
-            {
-                Console.WriteLine(e);
-            }
-        }
 
         private void AddDirectory(string dirName)
         {

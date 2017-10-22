@@ -19,13 +19,13 @@ namespace ApexSharpDemo
                .AndToken("SalesForce Token")
                .SetApexFileLocation("Location Where you want your APEX Files to be saved")
                .SetLogLevel(LogLevle.Info)
-               .SaveApexSharpConfig();
+               .SaveApexSharpConfig()
+               .Connect();
 
 
 
             // Always Initialize your settings before using it.
-            if (apexSharp.Init())
-            {
+           
                 // Create a local C# for Contact object in SF
                 //  apexSharp.CreateOfflineClasses("Contact");
 
@@ -35,13 +35,7 @@ namespace ApexSharpDemo
 
                 //Convert the Demo.cs File to APEX
                 apexSharp.ConvertToApexAndAddToProject("Demo", overWrite: true);
-            }
-            else
-            {
-                // Printout any errors
-                Console.WriteLine(String.Join("\n", apexSharp.GetErrorMessage()));
-            }
-
+           
 
             Console.WriteLine("Done");
             Console.ReadLine();

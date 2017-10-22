@@ -30,7 +30,7 @@ namespace ApexTest.ApexSharp
                .SetLogLevel(LogLevle.Info)
                .SaveApexSharpConfig();
 
-            apexSharp.Init();
+            apexSharp.Connect();
 
 
 

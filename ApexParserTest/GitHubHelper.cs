@@ -32,7 +32,7 @@ namespace ApexParserTest
                 request = new RestRequest(Method.GET);
                 var code = client.Execute(request).Content;
 
-                codeFromGit.Add(gitHubFile.Name, code);
+                codeFromGit.Add(gitHubFile.download_url, code);
             }
 
             return codeFromGit;
