@@ -1104,6 +1104,9 @@ namespace ApexParserTest.Parser
             expr = Apex.GenericExpression.Parse("[select a, b from users]");
             Assert.AreEqual("[select a, b from users]", expr);
 
+            ////expr = Apex.GenericExpression.Parse("';'");
+            ////Assert.AreEqual("';'", expr);
+
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("(something.IsEmpty(()"));
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("("));
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse(")"));
