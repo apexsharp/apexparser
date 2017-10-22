@@ -12,7 +12,7 @@ using static ApexParserTest.Properties.Resources;
 namespace ApexParserTest.Toolbox
 {
     [TestFixture]
-    public class ParseExtensionTests
+    public class ParseExtensionTests : ICommentParserProvider
     {
         [Test]
         public void ParseExProducesMoreDetailedExceptionMessage()
@@ -33,6 +33,41 @@ namespace ApexParserTest.Toolbox
                 Assert.NotNull(exc);
                 Assert.True(exc.Apexcode.Contains(errorLine));
             }
+        }
+
+        private readonly Parser<string> Identifier1 =
+            Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).TokenEx();
+
+        [Test]
+        public void ForStaticParserTokenExModifierWorksLikeOrdinaryToken()
+        {
+            var result = Identifier1.Parse("    \t hello123   \t\r\n  ");
+            Assert.AreEqual("hello123", result);
+        }
+
+        private CommentParser CommentParser { get; } = new CommentParser();
+
+        public Parser<string> Comment => CommentParser.AnyComment;
+
+        private Parser<string> Identifier2 =>
+            Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).TokenEx();
+
+        // [Test] // Doesn't work: Parser.Target is not the current class
+        public void ForParserOwnedByICommentParserProviderTokenExStripsOutComments()
+        {
+            // whitespace only
+            var result = Identifier2.Parse("    \t hello123   \t\r\n  ");
+            Assert.AreEqual("hello123", result);
+
+            // trailing comments
+            result = Identifier2.End().Parse("    \t hello123   // what's that? ");
+            Assert.AreEqual("hello123", result);
+
+            // leading and trailing comments
+            result = Identifier2.Parse(@" // leading comments!
+            hello_world
+            // trailing comments! ");
+            Assert.AreEqual("hello_world", result);
         }
     }
 }
