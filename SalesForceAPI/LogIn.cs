@@ -20,26 +20,26 @@ namespace SalesForceAPI
         {
             Dictionary<string, ConnectionDetail> conectionDetails = new Dictionary<string, ConnectionDetail>();
 
-            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            //string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 
-            FileInfo configFileInfo = new FileInfo(path + @"\confi1g.json");
+            //FileInfo configFileInfo = new FileInfo(path + @"\confi1g.json");
 
-            if (configFileInfo.Exists)
-            {
-                var connectionDetailJson = File.ReadAllText(configFileInfo.FullName);
-                conectionDetails = JsonConvert.DeserializeObject<Dictionary<string, ConnectionDetail>>(connectionDetailJson);
+            //if (configFileInfo.Exists)
+            //{
+            //    var connectionDetailJson = File.ReadAllText(configFileInfo.FullName);
+            //    conectionDetails = JsonConvert.DeserializeObject<Dictionary<string, ConnectionDetail>>(connectionDetailJson);
 
-                ConnectionDetail connection;
-                if (conectionDetails.TryGetValue(userId, out connection))
-                {
-                    if (connection.SessionCreationDateTime.AddHours(2) > DateTime.Now)
-                    {
-                        Console.WriteLine("Session Found For " + userId);
-                        connection.Message = "OK";
-                        return connection;
-                    }
-                }
-            }
+            //    ConnectionDetail connection;
+            //    if (conectionDetails.TryGetValue(userId, out connection))
+            //    {
+            //        if (connection.SessionCreationDateTime.AddHours(2) > DateTime.Now)
+            //        {
+            //            Console.WriteLine("Session Found For " + userId);
+            //            connection.Message = "OK";
+            //            return connection;
+            //        }
+            //    }
+            //}
 
             //Console.WriteLine("Session Expired or not found, Obtaining a new session for " + userId);
 
@@ -47,29 +47,26 @@ namespace SalesForceAPI
 
             if (newConectionDetails != null)
             {
-                if (configFileInfo.Exists)
-                {
-                    var connectionDetailJson = File.ReadAllText(configFileInfo.FullName);
-                    conectionDetails =
-                        JsonConvert.DeserializeObject<Dictionary<string, ConnectionDetail>>(connectionDetailJson);
-                }
+                //if (configFileInfo.Exists)
+                //{
+                //    var connectionDetailJson = File.ReadAllText(configFileInfo.FullName);
+                //    conectionDetails =
+                //        JsonConvert.DeserializeObject<Dictionary<string, ConnectionDetail>>(connectionDetailJson);
+                //}
 
                 newConectionDetails.UserId = userId;
                 conectionDetails[userId] = newConectionDetails;
 
                 var newConnectionDetailJson = JsonConvert.SerializeObject(conectionDetails, Formatting.Indented);
-                File.WriteAllText(path + @"\config.json", newConnectionDetailJson);
+              //  File.WriteAllText(path + @"\config.json", newConnectionDetailJson);
 
-                newConectionDetails.Message = "OK";
+        
 
-                return newConectionDetails;
+               
+
             }
-            else
-            {
-                newConectionDetails = new ConnectionDetail();
-                newConectionDetails.Message = "Error";
-                return newConectionDetails;
-            }
+
+            return newConectionDetails;
         }
 
         private static ConnectionDetail GetNewConnection(string url, string userId, string password)
