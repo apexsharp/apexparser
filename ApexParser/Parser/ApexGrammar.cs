@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApexParser.MetaClass;
+using ApexParser.Toolbox;
 using Sprache;
 
 namespace ApexParser.Parser
 {
-    public class ApexGrammar
+    public class ApexGrammar : ICommentParserProvider
     {
         // examples: a, Apex, code123
         protected internal virtual Parser<string> Identifier =>
@@ -26,6 +27,9 @@ namespace ApexParser.Parser
 
         // examples: /* default settings are OK */ //
         protected internal virtual CommentParser CommentParser { get; } = new CommentParser();
+
+        // used by the Token(this) modifier
+        Parser<string> ICommentParserProvider.Comment => CommentParser.AnyComment;
 
         // example: @isTest
         protected internal virtual Parser<AnnotationSyntax> Annotation =>
