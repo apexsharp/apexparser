@@ -12,7 +12,6 @@ namespace ApexParserTest
         public string download_url { get; set; }
     }
 
-
 #pragma warning restore IDE1006 // Naming Styles
 
     public class GitHubHelper
@@ -24,7 +23,7 @@ namespace ApexParserTest
             var client = new RestClient("https://api.github.com/");
             var request = new RestRequest(gitResource, Method.GET);
             var response = client.Execute<List<GitHubFile>>(request);
-        
+
             List<GitHubFile> newFilteredList = response.Data.Where(x => x?.Name?.EndsWith(extension) ?? false).ToList();
 
             foreach (var gitHubFile in newFilteredList)
