@@ -198,7 +198,7 @@ namespace ApexParser.Parser
 
         // example: = DateTime.Now();
         protected internal virtual Parser<FieldDeclarationSyntax> FieldInitializer =>
-            from expression in Parse.Char('=').Token().Then(c => Parse.CharExcept(';').Many().Text().Token()).Optional()
+            from expression in Parse.Char('=').Token().Then(c => GenericExpression).Optional()
             from semicolon in Parse.Char(';').Token()
             select new FieldDeclarationSyntax
             {
@@ -342,16 +342,24 @@ namespace ApexParser.Parser
         // creates dummy generic parser for expressions with matching braces allowing commas and semicolons by default
         protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null) =>
             from subExpressions in
-                Parse.CharExcept("'/(){}[]" + forbidden).Many().Text().Token()
-                .XOr(Parse.Char('/').Then(_ => Parse.Not(Parse.Chars('/', '*'))).Once().Return("/"))
-                .XOr(CommentParser.AnyComment.Return(string.Empty))
-                .XOr(StringLiteral)
-                .XOr(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
-                .XOr(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
-                .XOr(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]")).Many()
+                GenericNewExpression
+                .Or(Parse.CharExcept("'/(){}[]" + forbidden).Many().Text().Token())
+                .Or(Parse.Char('/').Then(_ => Parse.Not(Parse.Chars('/', '*'))).Once().Return("/"))
+                .Or(CommentParser.AnyComment.Return(string.Empty))
+                .Or(StringLiteral)
+                .Or(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
+                .Or(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
+                .Or(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]"))
+                .Many()
             let expr = string.Join(string.Empty, subExpressions)
             where !string.IsNullOrWhiteSpace(expr)
             select expr;
+
+        // examples: new Map<string, string>
+        protected internal virtual Parser<string> GenericNewExpression =>
+            from @new in Parse.IgnoreCase(ApexKeywords.New).Then(_ => Parse.Not(Parse.LetterOrDigit)).Token()
+            from type in TypeReference
+            select $"new {type.AsString()}";
 
         // creates dummy generic parser for any expressions with matching braces
         protected internal virtual Parser<string> GenericExpressionInBraces(char open = '(', char close = ')') =>

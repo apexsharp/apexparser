@@ -507,7 +507,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new List<DateTime>()", fd.Expression);
+            Assert.AreEqual("new list<DateTime>()", fd.Expression);
 
             fd = cd.Fields[3];
             Assert.False(fd.Annotations.Any());
@@ -1010,7 +1010,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new List<DateTime>()", fd.Expression);
+            Assert.AreEqual("new list<DateTime>()", fd.Expression);
 
             fd = cd.Fields[4];
             Assert.False(fd.Annotations.Any());

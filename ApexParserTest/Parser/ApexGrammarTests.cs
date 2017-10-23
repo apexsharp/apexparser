@@ -608,7 +608,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", field.Modifiers[0]);
             Assert.AreEqual("set", field.Type.Identifier);
             Assert.AreEqual("stringSet", field.Identifier);
-            Assert.AreEqual("new Set<String>{}", field.Expression);
+            Assert.AreEqual("new set<String>{}", field.Expression);
 
             // incomplete field declaration
             Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x ="));
@@ -1119,12 +1119,31 @@ namespace ApexParserTest.Parser
             expr = Apex.GenericExpression.Parse("[select a, b from users]");
             Assert.AreEqual("[select a, b from users]", expr);
 
-            ////expr = Apex.GenericExpression.Parse("';'");
-            ////Assert.AreEqual("';'", expr);
+            expr = Apex.GenericExpression.Parse("';'");
+            Assert.AreEqual("';'", expr);
+
+            expr = Apex.GenericExpression.Parse(" new Map<string, string> ");
+            Assert.AreEqual("new map<string, string>", expr);
 
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("(something.IsEmpty(()"));
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("("));
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse(")"));
+        }
+
+        [Test]
+        public void GenericNewExpressionIsANewKeywordFollowedByATypeReference()
+        {
+            var nx = Apex.GenericNewExpression.Parse(" new string ");
+            Assert.AreEqual("new string", nx);
+
+            nx = Apex.GenericNewExpression.Parse(" new Map<string, string> ");
+            Assert.AreEqual("new map<string, string>", nx);
+
+            nx = Apex.GenericNewExpression.Parse(" new Map< List < string, boolean >, string> ");
+            Assert.AreEqual("new map<list<string, boolean>, string>", nx);
+
+            Assert.Throws<ParseException>(() => Apex.GenericNewExpression.Parse(" new "));
+            Assert.Throws<ParseException>(() => Apex.GenericNewExpression.End().Parse(" new map <>"));
         }
 
         [Test]

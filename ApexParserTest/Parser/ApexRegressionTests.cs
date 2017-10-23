@@ -287,5 +287,17 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void FieldInitializedWithCommasInItIsParsed()
+        {
+            var text = @"
+            public class Text
+            {
+                private Map<String, Object> availableFields = new Map<String, Object>();
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }

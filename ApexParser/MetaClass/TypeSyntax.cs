@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Toolbox;
 using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
@@ -46,5 +47,10 @@ namespace ApexParser.MetaClass
         // Note: arrays of arrays are not allowed
         // https://developer.salesforce.com/page/Apex_Code:_The_Basics#Arrays
         public bool IsArray { get; set; }
+
+        public string AsString() =>
+            string.Join(".", Namespaces.Concat(Enumerable.Repeat(Identifier, 1))) +
+                (TypeParameters.IsNullOrEmpty() ? string.Empty :
+                    "<" + string.Join(", ", TypeParameters.Select(t => t.AsString())) + ">");
     }
 }

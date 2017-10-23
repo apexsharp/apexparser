@@ -26,7 +26,7 @@ namespace ApexParserTest
             // ParseAll("repos/financialforcedev/fflib-apex-mocks/contents/master/src/classes");
             ParseZip("fflib-apex-mocks-master.zip");
 
-        [Test(Description = "https://github.com/financialforcedev/ffhttp-core"), Ignore("Fails")]
+        [Test(Description = "https://github.com/financialforcedev/ffhttp-core")]
         public void TestFFhttpCore() =>
             // ParseAll("repos/financialforcedev/ffhttp-core/contents/master/src/classes");
             ParseZip("ffhttp-core-master.zip");
