@@ -228,5 +228,23 @@ namespace ApexParserTest.Parser
                 }
             }");
         }
+
+        [Test]
+        public void ExceptionIsAValidNameForAMethod()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"
+            class Test
+            {
+                static void exception() { }
+            }");
+        }
+
+        [Test]
+        public void StringLiteralParsesJsonStringParts()
+        {
+            var str = @"'{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25 - 34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }'";
+            var result = Apex.StringLiteral.Parse(str);
+            Assert.AreEqual(result, str);
+        }
     }
 }

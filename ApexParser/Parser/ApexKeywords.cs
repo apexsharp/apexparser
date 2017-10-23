@@ -55,7 +55,7 @@ namespace ApexParser.Parser
         public const string Else = "else";
         ////public const string End = "end"; // reserved for future use
         public const string Enum = "enum";
-        public const string Exception = "exception";
+        ////public const string Exception = "exception"; // hack, see below
         ////public const string Exit = "exit"; // reserved for future use
         ////public const string Export = "export"; // reserved for future use
         public const string Extends = "extends";
@@ -159,6 +159,7 @@ namespace ApexParser.Parser
         public static string Before => "before";
         public static string Count => "count";
         public static string Excludes => "excludes";
+        public static string Exception => "exception"; // can be used as a method name
         public static string First => "first";
         public static string Includes => "includes";
         public static string Last => "last";

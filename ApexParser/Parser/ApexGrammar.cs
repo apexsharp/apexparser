@@ -325,6 +325,14 @@ namespace ApexParser.Parser
                 Body = contents.Trim(),
             };
 
+        // examples: 'hello', '\'world\'\n'
+        protected internal virtual Parser<string> StringLiteral =>
+            from openQuote in Parse.Char('\'').Token()
+            from fragments in Parse.Char('\\').Then(_ => Parse.AnyChar.Select(c => $"\\{c}"))
+                .Or(Parse.CharExcept("\\'").Many().Text()).Many()
+            from closeQuote in Parse.Char('\'').Token()
+            select $"'{string.Join(string.Empty, fragments)}'";
+
         // dummy generic parser for expressions with matching braces
         protected internal virtual Parser<string> GenericExpression =>
             GenericExpressionCore(forbidden: ",;");

@@ -1073,6 +1073,18 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void StringLiteralIsAnExpressionInSingleQuotes()
+        {
+            var str = Apex.StringLiteral.Parse("  'Hello'  ");
+            Assert.AreEqual("'Hello'", str);
+
+            str = Apex.StringLiteral.Parse(@"   'wo\rld\'!'  ");
+            Assert.AreEqual(@"'wo\rld\'!'", str);
+
+            Assert.Throws<ParseException>(() => Apex.StringLiteral.Parse("'"));
+        }
+
+        [Test]
         public void GenericExpressionInBracesCanBeAnythingProvidedThatBracesAreMatched()
         {
             var expr = Apex.GenericExpressionInBraces().Parse("(something.IsEmpty)");
