@@ -327,10 +327,12 @@ namespace ApexParser.Parser
 
         // examples: 'hello', '\'world\'\n'
         protected internal virtual Parser<string> StringLiteral =>
-            from openQuote in Parse.Char('\'').Token()
+            from leading in Parse.WhiteSpace.Many()
+            from openQuote in Parse.Char('\'')
             from fragments in Parse.Char('\\').Then(_ => Parse.AnyChar.Select(c => $"\\{c}"))
                 .Or(Parse.CharExcept("\\'").Many().Text()).Many()
-            from closeQuote in Parse.Char('\'').Token()
+            from closeQuote in Parse.Char('\'')
+            from trailing in Parse.WhiteSpace.Many()
             select $"'{string.Join(string.Empty, fragments)}'";
 
         // dummy generic parser for expressions with matching braces
@@ -339,7 +341,11 @@ namespace ApexParser.Parser
 
         // creates dummy generic parser for expressions with matching braces allowing commas and semicolons by default
         protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null) =>
-            from subExpressions in Parse.CharExcept("(){}[]" + forbidden).Many().Text().Token()
+            from subExpressions in
+                Parse.CharExcept("'/(){}[]" + forbidden).Many().Text().Token()
+                .XOr(Parse.Char('/').Then(_ => Parse.Not(Parse.Chars('/', '*'))).Once().Return("/"))
+                .XOr(CommentParser.AnyComment.Return(string.Empty))
+                .XOr(StringLiteral)
                 .XOr(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
                 .XOr(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
                 .XOr(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]")).Many()

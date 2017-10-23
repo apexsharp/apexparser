@@ -246,5 +246,46 @@ namespace ApexParserTest.Parser
             var result = Apex.StringLiteral.Parse(str);
             Assert.AreEqual(result, str);
         }
+
+        [Test]
+        public void ExpressionCanContainComments()
+        {
+            var text = "  'ho /* not a comment */' // it's a quote, a comma, and a semicolon; all within an expression";
+            var expr = Apex.GenericExpression.End().Parse(text);
+            Assert.AreEqual("'ho /* not a comment */'", expr);
+        }
+
+        [Test]
+        public void SingleQuotesWithinCommentsAreIgnored()
+        {
+            var text = @"
+            @isTest
+            private class SObjectDataLoaderTest {
+
+                @IsTest(seeAllData=true) // http://stackoverflow.com/questions/9164986/how-do-i-avoid-standard-price-not-defined-when-unit-testing-an-opportunitylineit
+                public static void testManuallyConfigured()
+                {
+                    // Save point to rollback test data
+                    System.Savepoint savePoint = Database.setSavepoint();
+
+                    // Serialise test data into JSON record set bundle via manual configuration
+                    String serializedData = SObjectDataLoader.serialize(createOpportunities(),
+                        new SObjectDataLoader.SerializeConfig().
+                            followChild(OpportunityLineItem.OpportunityId).     // Serialize any related OpportunityLineItem's (children)
+                                follow(OpportunityLineItem.PricebookEntryId).   // Serialize any related PricebookEntry's
+                                    follow(PricebookEntry.Product2Id).          // Serialize any related Products's
+                                    omit(OpportunityLineItem.UnitPrice));       // Do not serialize the UnitPrice, as TotalPrice is enough and both cannot exist together
+
+                    // Rollback test data
+                    Database.rollback(savePoint);
+
+                    // Recreate test data via deserialize
+                    Set<ID> resultIds = SObjectDataLoader.deserialize(serializedData, new ApplyStandardPricebook());
+                    assertResults(resultIds);
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }

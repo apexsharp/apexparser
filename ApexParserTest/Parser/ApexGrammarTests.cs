@@ -1081,6 +1081,9 @@ namespace ApexParserTest.Parser
             str = Apex.StringLiteral.Parse(@"   'wo\rld\'!'  ");
             Assert.AreEqual(@"'wo\rld\'!'", str);
 
+            str = Apex.StringLiteral.Parse(@"   '  wo\rld\'!  '  ");
+            Assert.AreEqual(@"'  wo\rld\'!  '", str);
+
             Assert.Throws<ParseException>(() => Apex.StringLiteral.Parse("'"));
         }
 
