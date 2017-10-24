@@ -37,6 +37,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitFieldDeclaration(FieldDeclarationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitFieldDeclarator(FieldDeclaratorSyntax node) => DefaultVisit(node);
+
         public virtual void VisitFinally(FinallyClauseSyntax node) => DefaultVisit(node);
 
         public virtual void VisitForStatement(ForStatementSyntax node) => DefaultVisit(node);

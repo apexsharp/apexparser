@@ -32,14 +32,19 @@ namespace ApexParserTest.Parser
         [Test]
         public void QualifiedIdentifierIsAnStreamOfIdentifiersDelimitedByDots()
         {
-            var qi = Apex.QualifiedIdentifier.Parse(" Sys.debug ").ToList();
+            var qi = Apex.QualifiedIdentifier.Parse(" System.debug ").ToList();
             Assert.AreEqual(2, qi.Count);
-            Assert.AreEqual("Sys", qi[0]);
+            Assert.AreEqual("System", qi[0]);
             Assert.AreEqual("debug", qi[1]);
 
-            qi = Apex.QualifiedIdentifier.Parse(@" Sys . Collections  . Generic ").ToList();
+            qi = Apex.QualifiedIdentifier.Parse(" System.Exception ").ToList();
+            Assert.AreEqual(2, qi.Count);
+            Assert.AreEqual("System", qi[0]);
+            Assert.AreEqual("Exception", qi[1]);
+
+            qi = Apex.QualifiedIdentifier.Parse(@" System . Collections  . Generic ").ToList();
             Assert.AreEqual(3, qi.Count);
-            Assert.AreEqual("Sys", qi[0]);
+            Assert.AreEqual("System", qi[0]);
             Assert.AreEqual("Collections", qi[1]);
             Assert.AreEqual("Generic", qi[2]);
         }
@@ -587,7 +592,8 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", field.Modifiers[0]);
             Assert.AreEqual("static", field.Modifiers[1]);
             Assert.AreEqual("int", field.Type.Identifier);
-            Assert.AreEqual("counter", field.Identifier);
+            Assert.AreEqual(1, field.Fields.Count);
+            Assert.AreEqual("counter", field.Fields[0].Identifier);
 
             // not a field declaration
             Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x { get; }"));
@@ -600,15 +606,17 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, field.Modifiers.Count);
             Assert.AreEqual("public", field.Modifiers[0]);
             Assert.AreEqual("string", field.Type.Identifier);
-            Assert.AreEqual("name", field.Identifier);
-            Assert.AreEqual("'Bozo'", field.Expression);
+            Assert.AreEqual(1, field.Fields.Count);
+            Assert.AreEqual("name", field.Fields[0].Identifier);
+            Assert.AreEqual("'Bozo'", field.Fields[0].Expression);
 
             field = Apex.FieldDeclaration.Parse("public Set<String> stringSet = new Set<String>{};");
             Assert.AreEqual(1, field.Modifiers.Count);
             Assert.AreEqual("public", field.Modifiers[0]);
             Assert.AreEqual("set", field.Type.Identifier);
-            Assert.AreEqual("stringSet", field.Identifier);
-            Assert.AreEqual("new set<String>{}", field.Expression);
+            Assert.AreEqual(1, field.Fields.Count);
+            Assert.AreEqual("stringSet", field.Fields[0].Identifier);
+            Assert.AreEqual("new set<String>{}", field.Fields[0].Expression);
 
             // incomplete field declaration
             Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x ="));
@@ -621,8 +629,37 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, field.Modifiers.Count);
             Assert.AreEqual("public", field.Modifiers[0]);
             Assert.AreEqual("map", field.Type.Identifier);
-            Assert.AreEqual("stringMap", field.Identifier);
-            Assert.AreEqual("new map<String, String>(){1, 2, 3}", field.Expression);
+            Assert.AreEqual(1, field.Fields.Count);
+            Assert.AreEqual("stringMap", field.Fields[0].Identifier);
+            Assert.AreEqual("new map<String, String>(){1, 2, 3}", field.Fields[0].Expression);
+        }
+
+        [Test]
+        public void FieldDeclarationCanHaveMultipleDeclarators()
+        {
+            var field = Apex.FieldDeclaration.Parse(" string name, lastName; ");
+            Assert.AreEqual("string", field.Type.Identifier);
+            Assert.AreEqual(2, field.Fields.Count);
+            Assert.AreEqual("name", field.Fields[0].Identifier);
+            Assert.IsNull(field.Fields[0].Expression);
+            Assert.AreEqual("lastName", field.Fields[1].Identifier);
+            Assert.IsNull(field.Fields[1].Expression);
+
+            field = Apex.FieldDeclaration.Parse(@" string name = 'a\'b', lastName = 'b'; ");
+            Assert.AreEqual("string", field.Type.Identifier);
+            Assert.AreEqual(2, field.Fields.Count);
+            Assert.AreEqual("name", field.Fields[0].Identifier);
+            Assert.AreEqual(@"'a\'b'", field.Fields[0].Expression);
+            Assert.AreEqual("lastName", field.Fields[1].Identifier);
+            Assert.AreEqual("'b'", field.Fields[1].Expression);
+
+            field = Apex.FieldDeclaration.Parse(" Map<string, string> map1 = new Map<string, string>(), map2 = null; ");
+            Assert.AreEqual("map", field.Type.Identifier);
+            Assert.AreEqual(2, field.Fields.Count);
+            Assert.AreEqual("map1", field.Fields[0].Identifier);
+            Assert.AreEqual(@"new map<string, string>()", field.Fields[0].Expression);
+            Assert.AreEqual("map2", field.Fields[1].Identifier);
+            Assert.AreEqual("null", field.Fields[1].Expression);
         }
 
         [Test]
@@ -657,9 +694,9 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void MethodOrPropertyOrFieldDeclarationCanReturnEitherMethodOrPropertyOrField()
+        public void MethodOrPropertyDeclarationCanReturnEitherMethodOrProperty()
         {
-            var pm = Apex.MethodPropertyOrFieldDeclaration.Parse("void Test(int x) {}");
+            var pm = Apex.MethodOrPropertyDeclaration.Parse("void Test(int x) {}");
             var md = pm as MethodDeclarationSyntax;
             Assert.NotNull(md);
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -672,7 +709,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.False(block.Statements.Any());
 
-            pm = Apex.MethodPropertyOrFieldDeclaration.Parse("string Test { get; }");
+            pm = Apex.MethodOrPropertyDeclaration.Parse("string Test { get; }");
             var pd = pm as PropertyDeclarationSyntax;
             Assert.NotNull(pd);
             Assert.AreEqual("string", pd.Type.Identifier);
@@ -681,12 +718,17 @@ namespace ApexParserTest.Parser
             Assert.True(pd.Getter.IsEmpty);
             Assert.Null(pd.Setter);
 
-            pm = Apex.MethodPropertyOrFieldDeclaration.Parse("DateTime now = DateTime.Now();");
-            var fd = pm as FieldDeclarationSyntax;
-            Assert.NotNull(fd);
-            Assert.AreEqual("DateTime", fd.Type.Identifier);
-            Assert.AreEqual("now", fd.Identifier);
-            Assert.AreEqual("DateTime.Now()", fd.Expression);
+            // not supported anymore
+            Assert.Throws<ParseException>(() =>
+            {
+                pm = Apex.MethodOrPropertyDeclaration.Parse("DateTime now = DateTime.Now();");
+                var fd = pm as FieldDeclarationSyntax;
+                Assert.NotNull(fd);
+                Assert.AreEqual("DateTime", fd.Type.Identifier);
+                Assert.AreEqual(1, fd.Fields.Count);
+                Assert.AreEqual("now", fd.Fields[0].Identifier);
+                Assert.AreEqual("DateTime.Now()", fd.Fields[0].Expression);
+            });
         }
 
         [Test]

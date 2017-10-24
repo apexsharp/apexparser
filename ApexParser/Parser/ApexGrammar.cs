@@ -184,24 +184,25 @@ namespace ApexParser.Parser
                 Body = body,
             };
 
-        // example: private int width;
+        // example: private static int x, y, z = 3;
         protected internal virtual Parser<FieldDeclarationSyntax> FieldDeclaration =>
             from heading in MemberDeclarationHeading
-            from typeAndName in TypeAndName
-            from initializer in FieldInitializer
+            from type in TypeReference
+            from declarators in FieldDeclarator.DelimitedBy(Parse.Char(',').Token())
+            from semicolon in Parse.Char(';').Token()
             select new FieldDeclarationSyntax(heading)
             {
-                Type = typeAndName.Type,
-                Identifier = typeAndName.Identifier,
-                Expression = initializer.Expression,
+                Type = type,
+                Fields = declarators.ToList(),
             };
 
-        // example: = DateTime.Now();
-        protected internal virtual Parser<FieldDeclarationSyntax> FieldInitializer =>
+        // example: now = DateTime.Now()
+        protected internal virtual Parser<FieldDeclaratorSyntax> FieldDeclarator =>
+            from identifier in Identifier
             from expression in Parse.Char('=').Token().Then(c => GenericExpression).Optional()
-            from semicolon in Parse.Char(';').Token()
-            select new FieldDeclarationSyntax
+            select new FieldDeclaratorSyntax
             {
+                Identifier = identifier,
                 Expression = expression.GetOrDefault(),
             };
 
@@ -244,6 +245,16 @@ namespace ApexParser.Parser
             {
                 Type = type,
                 Variables = declarators.ToList(),
+            };
+
+        // example: now = DateTime.Now()
+        protected internal virtual Parser<VariableDeclaratorSyntax> VariableDeclarator =>
+            from identifier in Identifier
+            from expression in Parse.Char('=').Token().Then(c => GenericExpression).Optional()
+            select new VariableDeclaratorSyntax
+            {
+                Identifier = identifier,
+                Expression = expression.GetOrDefault(),
             };
 
         // examples: (MyExpr), (MyExpr ex)
@@ -291,16 +302,6 @@ namespace ApexParser.Parser
                 Block = block,
                 Catches = catchClauses.ToList(),
                 Finally = @finally.GetOrDefault(),
-            };
-
-        // example: now = DateTime.Now()
-        protected internal virtual Parser<VariableDeclaratorSyntax> VariableDeclarator =>
-            from identifier in Identifier
-            from expression in Parse.Char('=').Token().Then(c => GenericExpression).Optional()
-            select new VariableDeclaratorSyntax
-            {
-                Identifier = identifier,
-                Expression = expression.GetOrDefault(),
             };
 
         // example: System.runAs(user) { System.debug('Hi there!'); }
@@ -558,11 +559,10 @@ namespace ApexParser.Parser
             };
 
         // method or property declaration starting with the type and name
-        protected internal virtual Parser<MemberDeclarationSyntax> MethodPropertyOrFieldDeclaration =>
+        protected internal virtual Parser<MemberDeclarationSyntax> MethodOrPropertyDeclaration =>
             from typeAndName in TypeAndName
             from member in MethodParametersAndBody.Select(c => c as MemberDeclarationSyntax)
                 .XOr(PropertyAccessors)
-                .XOr(FieldInitializer)
             select member.WithTypeAndName(typeAndName);
 
         // class members: methods, classes, properties
@@ -571,7 +571,8 @@ namespace ApexParser.Parser
             from member in ClassInitializerBody.Select(c => c as MemberDeclarationSyntax)
                 .Or(EnumDeclarationBody)
                 .Or(ClassDeclarationBody)
-                .Or(MethodPropertyOrFieldDeclaration)
+                .Or(MethodOrPropertyDeclaration)
+                .Or(FieldDeclaration)
             select member.WithProperties(heading);
 
         // top-level declaration: a class or an enum followed by the end of file

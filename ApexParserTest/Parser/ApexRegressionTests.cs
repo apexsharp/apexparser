@@ -299,5 +299,46 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void MultipleFieldsCanBeDeclaredAtOnce()
+        {
+            var text = @"
+            private class Test
+            {
+                // multiple variables
+                private static Account DispAcc, PoiAcc,Poi2Acc;
+
+                public string commas = 'a,b,c', semicolons = 'c;d;e;'; // comments
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void SemicolonsAndCurlyBracesInVariableInitializationExpressions()
+        {
+            var text = @"
+            private class Test
+            {
+                void Test()
+                {
+                    string ch = 'China;Macau;Hong Kong;';
+
+                    // We can hold off, I will say lets fix
+
+                    vt.Device_SEGMENT_TXT__c= 'value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
+                        System.debug('vehicleTrailer GetTrailers errorCode [ '+validateGetTrailersErrorCode+' ]');
+                        System.debug('trailerData ['+trailerData.toString());
+                        system.debug(Logginglevel.DEBUG,'67* (lstAcc[0] 1'+ (lstAcc[0].New_POIs_Status__c));
+                        system.debug(Logginglevel.DEBUG,'69* (lstAcc[0]2 '+ (lstAcc[0].New_POIs_Status__c));
+                        vt.Vehicle_SEGMENT_TXT__c= '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
+                        vt.Vehicle_SEGMENT_TXT__c= '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
+                        vt.Vehicle_SEGMENT_TXT__c= ' : ""Wine Lover"" } ] }';
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }

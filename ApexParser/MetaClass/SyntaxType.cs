@@ -16,6 +16,7 @@
         EnumMember,
         Enum,
         Field,
+        FieldDeclarator,
         Finally,
         ForStatement,
         ForEachStatement,

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Toolbox;
 using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
@@ -21,14 +22,18 @@ namespace ApexParser.MetaClass
         public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
             Type = typeAndName.Type;
-            Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
+
+            var identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
+            if (!Fields.IsNullOrEmpty())
+            {
+                Fields[0].Identifier = identifier;
+            }
+
             return this;
         }
 
         public TypeSyntax Type { get; set; }
 
-        public string Identifier { get; set; }
-
-        public string Expression { get; set; }
+        public List<FieldDeclaratorSyntax> Fields { get; set; }
     }
 }

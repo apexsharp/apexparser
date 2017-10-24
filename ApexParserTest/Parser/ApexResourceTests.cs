@@ -454,7 +454,8 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, fd.Modifiers.Count);
             Assert.AreEqual("private", fd.Modifiers[0]);
             Assert.AreEqual("DataAccessLayerI", fd.Type.Identifier);
-            Assert.AreEqual("dl", fd.Identifier);
+            Assert.AreEqual(1, fd.Fields.Count);
+            Assert.AreEqual("dl", fd.Fields[0].Identifier);
 
             var cc = cd.Constructors[0];
             Assert.AreEqual("DataAccessDemo", cc.Identifier);
@@ -502,26 +503,26 @@ namespace ApexParserTest.Parser
             Assert.NotNull(pd.Setter);
 
             var fd = cd.Fields[2];
-            Assert.AreEqual("DateTimeList", fd.Identifier);
+            Assert.AreEqual("DateTimeList", fd.Fields[0].Identifier);
             Assert.AreEqual("list", fd.Type.Identifier);
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new list<DateTime>()", fd.Expression);
+            Assert.AreEqual("new list<DateTime>()", fd.Fields[0].Expression);
 
             fd = cd.Fields[3];
             Assert.False(fd.Annotations.Any());
-            Assert.AreEqual("DateTimeArrary", fd.Identifier);
+            Assert.AreEqual("DateTimeArrary", fd.Fields[0].Identifier);
             Assert.AreEqual("DateTime", fd.Type.Identifier);
             Assert.False(fd.Type.TypeParameters.Any());
             Assert.IsTrue(fd.Type.IsArray);
             Assert.AreEqual(1, fd.Modifiers.Count);
             Assert.AreEqual("public", fd.Modifiers[0]);
-            Assert.AreEqual("new DateTime[5]", fd.Expression);
+            Assert.AreEqual("new DateTime[5]", fd.Fields[0].Expression);
 
             fd = cd.Fields[7];
             Assert.False(fd.Annotations.Any());
-            Assert.AreEqual("NameStaticFinal", fd.Identifier);
+            Assert.AreEqual("NameStaticFinal", fd.Fields[0].Identifier);
             Assert.AreEqual("String", fd.Type.Identifier);
             Assert.False(fd.Type.TypeParameters.Any());
             Assert.False(fd.Type.IsArray);
@@ -529,7 +530,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", fd.Modifiers[0]);
             Assert.AreEqual("static", fd.Modifiers[1]);
             Assert.AreEqual("final", fd.Modifiers[2]);
-            Assert.AreEqual("'jay'", fd.Expression);
+            Assert.AreEqual("'jay'", fd.Fields[0].Expression);
 
             var md = cd.Methods[0];
             Assert.AreEqual("MethodOne", md.Identifier);
@@ -1005,26 +1006,26 @@ namespace ApexParserTest.Parser
             Assert.NotNull(pd.Setter);
 
             var fd = cd.Fields[3];
-            Assert.AreEqual("DateTimeList", fd.Identifier);
+            Assert.AreEqual("DateTimeList", fd.Fields[0].Identifier);
             Assert.AreEqual("list", fd.Type.Identifier);
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new list<DateTime>()", fd.Expression);
+            Assert.AreEqual("new list<DateTime>()", fd.Fields[0].Expression);
 
             fd = cd.Fields[4];
             Assert.False(fd.Annotations.Any());
-            Assert.AreEqual("DateTimeArray", fd.Identifier);
+            Assert.AreEqual("DateTimeArray", fd.Fields[0].Identifier);
             Assert.AreEqual("DateTime", fd.Type.Identifier);
             Assert.False(fd.Type.TypeParameters.Any());
             Assert.IsTrue(fd.Type.IsArray);
             Assert.AreEqual(1, fd.Modifiers.Count);
             Assert.AreEqual("public", fd.Modifiers[0]);
-            Assert.AreEqual("new DateTime[5]", fd.Expression);
+            Assert.AreEqual("new DateTime[5]", fd.Fields[0].Expression);
 
             fd = cd.Fields[8];
             Assert.False(fd.Annotations.Any());
-            Assert.AreEqual("NameStaticFinal", fd.Identifier);
+            Assert.AreEqual("NameStaticFinal", fd.Fields[0].Identifier);
             Assert.AreEqual("String", fd.Type.Identifier);
             Assert.False(fd.Type.TypeParameters.Any());
             Assert.False(fd.Type.IsArray);
@@ -1032,7 +1033,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", fd.Modifiers[0]);
             Assert.AreEqual("static", fd.Modifiers[1]);
             Assert.AreEqual("final", fd.Modifiers[2]);
-            Assert.AreEqual("'jay'", fd.Expression);
+            Assert.AreEqual("'jay'", fd.Fields[0].Expression);
 
             var md = cd.Methods[0];
             Assert.AreEqual("MethodOne", md.Identifier);
