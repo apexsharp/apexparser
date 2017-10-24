@@ -28,17 +28,28 @@ namespace ApexParser.Toolbox
 
         private class SourceSpan<T> : ISourceSpan<T>
         {
+            public T Value { get; set; }
+
             public Position Start { get; set; }
 
             public Position End { get; set; }
 
             public int Length { get; set; }
-
-            public T Value { get; set; }
         }
 
+        /// <summary>
+        /// Constructs a parser that returns the <see cref="ISourceSpan{T}"/> of the parsed value.
+        /// </summary>
+        /// <typeparam name="T">The result type of the given parser</typeparam>
+        /// <param name="parser">The parser to wrap</param>
+        /// <returns>A parser for the source span of the given parser.</returns>
         public static Parser<ISourceSpan<T>> Span<T>(this Parser<T> parser)
         {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
             return i =>
             {
                 var r = parser(i);
@@ -56,6 +67,32 @@ namespace ApexParser.Toolbox
                 }
 
                 return Result.Failure<ISourceSpan<T>>(r.Remainder, r.Message, r.Expectations);
+            };
+        }
+
+        /// <summary>
+        /// Constructs a parser that will succeed if the given parser succeeds,
+        /// but won't consume any input. It's like a positive look-ahead in regex.
+        /// </summary>
+        /// <typeparam name="T">The result type of the given parser</typeparam>
+        /// <param name="parser">The parser to wrap</param>
+        /// <returns>A non-consuming version of the given parser.</returns>
+        public static Parser<T> Preview<T>(this Parser<T> parser)
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            return i =>
+            {
+                var result = parser(i);
+                if (result.WasSuccessful)
+                {
+                    return Result.Success(result.Value, i);
+                }
+
+                return result;
             };
         }
 

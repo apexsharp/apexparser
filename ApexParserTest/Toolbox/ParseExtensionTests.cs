@@ -185,5 +185,17 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual(12, id.Length);
             Assert.AreEqual("MyIdentifier", id.Value);
         }
+
+        private Parser<string> PreviewParserDemo =>
+            from test in Parse.String("test").Token().Preview()
+            from testMethod in Parse.String("testMethod").Token().Text()
+            select testMethod;
+
+        [Test]
+        public void PreviewVersionOfAParserDoesntConsumeAnyInput()
+        {
+            var testMethod = PreviewParserDemo.Parse("   testMethod  ");
+            Assert.AreEqual("testMethod", testMethod);
+        }
     }
 }
