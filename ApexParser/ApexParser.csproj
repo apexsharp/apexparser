@@ -95,6 +95,7 @@
     <Compile Include="Toolbox\ICommentedOfT.cs" />
     <Compile Include="Toolbox\IEnumerableExtensions.cs" />
     <Compile Include="Toolbox\ICommentParserProvider.cs" />
+    <Compile Include="Toolbox\ISourceSpanOfT.cs" />
     <Compile Include="Toolbox\ParseExceptionCustom.cs" />
     <Compile Include="Toolbox\ParserExtensions.cs" />
     <Compile Include="Visitors\ApexCodeGenerator.cs" />

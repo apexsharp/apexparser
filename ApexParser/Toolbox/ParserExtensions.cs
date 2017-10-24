@@ -26,6 +26,39 @@ namespace ApexParser.Toolbox
             throw new ParseExceptionCustom(message, lineNumber, lines);
         }
 
+        private class SourceSpan<T> : ISourceSpan<T>
+        {
+            public Position Start { get; set; }
+
+            public Position End { get; set; }
+
+            public int Length { get; set; }
+
+            public T Value { get; set; }
+        }
+
+        public static Parser<ISourceSpan<T>> Span<T>(this Parser<T> parser)
+        {
+            return i =>
+            {
+                var r = parser(i);
+                if (r.WasSuccessful)
+                {
+                    var span = new SourceSpan<T>
+                    {
+                        Value = r.Value,
+                        Start = Position.FromInput(i),
+                        End = Position.FromInput(r.Remainder),
+                        Length = r.Remainder.Position - i.Position,
+                    };
+
+                    return Result.Success(span, r.Remainder);
+                }
+
+                return Result.Failure<ISourceSpan<T>>(r.Remainder, r.Message, r.Expectations);
+            };
+        }
+
         private class Commented<T> : ICommented<T>
         {
             public Commented(T value)

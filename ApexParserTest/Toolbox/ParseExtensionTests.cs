@@ -157,5 +157,33 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual(1, @break.TrailingComments.Count);
             Assert.AreEqual("a comment after the semicolon", @break.TrailingComments[0].Trim());
         }
+
+        private Parser<ISourceSpan<string>> IdentifierSpan =>
+            from id in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).Span().Token(this)
+            select id.Value;
+
+        [Test]
+        public void SourceSpanOfIdentifierReturnsProperValues()
+        {
+            var id = IdentifierSpan.Parse("  HelloThere  ");
+            Assert.AreEqual(1, id.Start.Line);
+            Assert.AreEqual(3, id.Start.Column);
+            Assert.AreEqual(2, id.Start.Pos);
+            Assert.AreEqual(1, id.End.Line);
+            Assert.AreEqual(13, id.End.Column);
+            Assert.AreEqual(12, id.End.Pos);
+            Assert.AreEqual(10, id.Length);
+            Assert.AreEqual("HelloThere", id.Value);
+
+            id = IdentifierSpan.Parse(@" // comment
+            /* another comment */
+            MyIdentifier // test");
+            Assert.AreEqual(3, id.Start.Line);
+            Assert.AreEqual(13, id.Start.Column);
+            Assert.AreEqual(3, id.End.Line);
+            Assert.AreEqual(25, id.End.Column);
+            Assert.AreEqual(12, id.Length);
+            Assert.AreEqual("MyIdentifier", id.Value);
+        }
     }
 }
