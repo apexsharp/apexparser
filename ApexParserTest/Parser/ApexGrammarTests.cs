@@ -615,6 +615,17 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void FieldDeclarationCanHaveInitializedWithCommasInItsExpression()
+        {
+            var field = Apex.FieldDeclaration.Parse("public Map<String, String> stringMap = new Map<String, String>() { 1, 2, 3 };");
+            Assert.AreEqual(1, field.Modifiers.Count);
+            Assert.AreEqual("public", field.Modifiers[0]);
+            Assert.AreEqual("map", field.Type.Identifier);
+            Assert.AreEqual("stringMap", field.Identifier);
+            Assert.AreEqual("new map<String, String>(){1, 2, 3}", field.Expression);
+        }
+
+        [Test]
         public void ClassMemberHeadingConstistsOfCommentsAttributesAndModifiers()
         {
             var cm = Apex.MemberDeclarationHeading.Parse(" /* test */ ");

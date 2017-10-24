@@ -366,7 +366,7 @@ namespace ApexParser.Parser
             from openBrace in Parse.Char(open).Token()
             from expression in GenericExpressionCore().Optional()
             from closeBrace in Parse.Char(close).Token()
-            select expression.GetOrDefault();
+            select expression.GetOrElse(string.Empty).Trim();
 
         // example: break;
         protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>
