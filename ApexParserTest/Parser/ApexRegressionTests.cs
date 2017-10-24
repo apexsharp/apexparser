@@ -328,13 +328,13 @@ namespace ApexParserTest.Parser
                     // We can hold off, I will say lets fix
 
                     vt.Device_SEGMENT_TXT__c= 'value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        System.debug('vehicleTrailer GetTrailers errorCode [ '+validateGetTrailersErrorCode+' ]');
-                        System.debug('trailerData ['+trailerData.toString());
-                        system.debug(Logginglevel.DEBUG,'67* (lstAcc[0] 1'+ (lstAcc[0].New_POIs_Status__c));
-                        system.debug(Logginglevel.DEBUG,'69* (lstAcc[0]2 '+ (lstAcc[0].New_POIs_Status__c));
-                        vt.Vehicle_SEGMENT_TXT__c= '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        vt.Vehicle_SEGMENT_TXT__c= '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        vt.Vehicle_SEGMENT_TXT__c= ' : ""Wine Lover"" } ] }';
+                    System.debug('vehicleTrailer GetTrailers errorCode [ '+validateGetTrailersErrorCode+' ]');
+                    System.debug('trailerData ['+trailerData.toString());
+                    system.debug(Logginglevel.DEBUG,'67* (lstAcc[0] 1'+ (lstAcc[0].New_POIs_Status__c));
+                    system.debug(Logginglevel.DEBUG,'69* (lstAcc[0]2 '+ (lstAcc[0].New_POIs_Status__c));
+                    vt.Vehicle_SEGMENT_TXT__c= '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
+                    vt.Vehicle_SEGMENT_TXT__c= '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
+                    vt.Vehicle_SEGMENT_TXT__c= ' : ""Wine Lover"" } ] }';
                 }
             }";
 
