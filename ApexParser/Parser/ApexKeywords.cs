@@ -120,7 +120,7 @@ namespace ApexParser.Parser
         public const string Savepoint = "savepoint";
         ////public const string Search = "search"; // reserved for future use
         public const string Select = "select";
-        public const string Set = "set"; // "set" is reserved but "get" isn't
+        ////public const string Set = "set"; // hack, see below
         public const string Short = "short"; // reserved for future use
         public const string Sort = "sort";
         ////public const string Stat = "stat"; // reserved for future use
@@ -135,7 +135,7 @@ namespace ApexParser.Parser
         ////public const string ThisMonth = "this_month"; // reserved for future use
         public const string ThisWeek = "this_week";
         public const string Throw = "throw";
-        public const string Today = "today";
+        ////public const string Today = "today"; // hack, see below
         public const string Tolabel = "tolabel";
         public const string Tomorrow = "tomorrow";
         ////public const string Transaction = "transaction"; // reserved for future use
@@ -172,10 +172,12 @@ namespace ApexParser.Parser
         public static string Boolean => "boolean";
         ////public static string Database => "database"; // the status is unclear
         public static string Double => "double";
-        public static string Get => "get"; // "set" is reserved but "get" isn't
+        public static string Get => "get"; // "get" seems to be a valid method name
         ////public const string Native = "native"; // the status is unclear
         ////public const string Throws = "throws"; // the status is unclear
         public static string RunAs => "runas"; // System.runAs has special syntax
+        public static string Set => "set"; // "set" seems to be a valid method name
+        public static string Today => "today"; // System.today() method
         public static string Transient => "transient"; // variable modifier
         public static string Void => "void";
         ////public const string Volatile = "volatile"; // the status is unclear

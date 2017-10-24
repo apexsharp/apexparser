@@ -340,5 +340,17 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void SystemTodayExpressionIsAllowed()
+        {
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(@"class Text { DateTime t = System.today(); }"));
+        }
+
+        [Test]
+        public void SetKeywordCanBeUsedAsName()
+        {
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(@"class Set { }"));
+        }
     }
 }
