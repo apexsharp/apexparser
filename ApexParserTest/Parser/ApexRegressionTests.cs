@@ -92,12 +92,12 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
-        public void PostPaymentResponseExtendsGmosasApi2ResponseObjectsResponseIsParsed()
+        public void PostPaymentResponseExtendsExampleCompanyApi2ResponseObjectsResponseIsParsed()
         {
-            var cd = Apex.ClassDeclaration.Parse("global class PostPaymentResponse extends GMOSAS_API2_ResponseObjects.Response {}");
+            var cd = Apex.ClassDeclaration.Parse("global class PostPaymentResponse extends ExampleCompany_API2_ResponseObjects.Response {}");
             Assert.AreEqual("PostPaymentResponse", cd.Identifier);
             Assert.AreEqual(1, cd.BaseType.Namespaces.Count);
-            Assert.AreEqual("GMOSAS_API2_ResponseObjects", cd.BaseType.Namespaces[0]);
+            Assert.AreEqual("ExampleCompany_API2_ResponseObjects", cd.BaseType.Namespaces[0]);
             Assert.AreEqual("Response", cd.BaseType.Identifier);
         }
 
@@ -351,6 +351,105 @@ namespace ApexParserTest.Parser
         public void SetKeywordCanBeUsedAsName()
         {
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(@"class Set { }"));
+        }
+
+        [Test]
+        public void ExampleCompanyApiUtilsLoggerTestCommentedClassIsParsed()
+        {
+            var text = @"
+            @isTest(SeeAllData=false)
+            private class ExampleCompany_API_Utils_LoggerTest {
+                /**
+                 * ************************************************************************************************
+                 * Method to test FilterSecureData
+                 * ************************************************************************************************
+                 */
+                /*static testMethod void testConstructorWithOneParam() {
+                    Test.startTest();
+                    General_Settings__c enableLogging = new General_Settings__c();
+                    enableLogging.Name = ExampleCompany_API_Utils_Logger.API_LOG_ENABLED_KEY;
+                    enableLogging.Value__c = 'true';
+                    insert enableLogging;
+                    ExampleCompany_API_Utils_Logger tstObj = new ExampleCompany_API_Utils_Logger('A');
+                    System.assertNotEquals(null, tstObj);
+                    Test.stopTest();
+                }  */
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void ExampleCompanyApiDomainObjectsTaxCommentedClassIsParsed()
+        {
+            var text = @"
+            global with sharing class ExampleCompany_API_DomainObjects {
+
+                global class Tax {
+                    //global String name {get;set;} // Not in scope for 4/20/2015 Release
+                    //global String description {get;set;} // Not in scope for 4/20/2015 Release
+                    global Decimal value {get;set;}
+                    global String currencyCode {get;set;}
+                    //global List<JurisdictionCode> jurisdictionCodes {get;set;}  // Not in scope for Info3
+                    //global String id {get;set;} // Not in scope for Info3
+                    //global Boolean isAccessBased {get;set;} // // Not in scope for Info3
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void ExampleCompanyApiZuoraSyncTablesUtilCommentedClassIsParsed()
+        {
+            var text = @"
+            global with sharing class ExampleCompany_API_ZuoraSyncTablesUtil {
+
+            /*
+                //BRM-02 Temp Wrapper
+                public Static ExampleCompany_API_QuoteManagementFacade.QuoteLineItem getProductRatePlan(
+                                        ExampleCompany_API_DomainObjects.LineItem lineItem,
+                                        String profileCountry,
+                                        Vehicle__c vehicle)
+                {
+                    return getProductRatePlan(lineItem, profileCountry, vehicle, null);
+                }
+                */
+                /**
+                 * ************************************************************************************************
+                 * Get the Product Rate Plan for the given context
+                 * Returns null if Rate Plan not found
+                 * ************************************************************************************************
+                 */
+              }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void ExampleCompanyAuthenticationProviderTestIsParsed()
+        {
+            var text = @"
+            public class ExampleCompany_AuthenticationProviderTest {
+                public Case InsertTestRecord() {}
+
+                public void RequestCertCaseString(Case demoCase) {
+                    ExampleCompany_AuthenticationProvider provider = new ExampleCompany_pAPI_Appsigner();
+                    Integer statusCode = provider.RequestCert(demoCase, 'Test').StatusCode;
+
+                    System.debug(statusCode);
+                }
+
+                static testMethod void RequestCertUsingAppVersionIdIdString() {
+                    ExampleCompany_AuthenticationProvider provider = new ExampleCompany_pAPI_Appsigner();
+                    Integer statusCode = provider.RequestCertUsingAppVersionId('a1234567890','Test').StatusCode;
+                    System.assertEquals(202, statusCode);
+                    System.debug(statusCode);
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
     }
 }

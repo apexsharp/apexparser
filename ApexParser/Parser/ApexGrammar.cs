@@ -518,7 +518,7 @@ namespace ApexParser.Parser
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
-            from trailingComments in CommentParser.AnyComment.Many()
+            from trailingComments in CommentParser.AnyComment.Token().Many()
             from closeBrace in Parse.Char('}').Token()
             select new ClassDeclarationSyntax()
             {
