@@ -181,11 +181,12 @@ namespace ApexParser.Parser
         protected internal virtual Parser<AccessorDeclarationSyntax> PropertyAccessor =>
             from heading in MemberDeclarationHeading
             from keyword in Parse.IgnoreCase(ApexKeywords.Get).Or(Parse.IgnoreCase(ApexKeywords.Set)).Token().Text()
-            from body in Parse.Char(';').Token().Return(default(BlockSyntax)).Or(Block)
+            from body in Parse.Char(';').Return(default(BlockSyntax)).Or(Block).Commented(this)
             select new AccessorDeclarationSyntax(heading)
             {
                 IsGetter = keyword == ApexKeywords.Get,
-                Body = body,
+                Body = body.Value,
+                TrailingComments = body.TrailingComments.ToList(),
             };
 
         // example: private static int x, y, z = 3;

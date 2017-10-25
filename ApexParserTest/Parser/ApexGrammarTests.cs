@@ -555,6 +555,17 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void PropertyAccessorCanHaveComments()
+        {
+            var get = Apex.PropertyAccessor.End().Parse(" get; // getter");
+            Assert.False(get.LeadingComments.Any());
+            Assert.False(get.Annotations.Any());
+            Assert.AreEqual(0, get.Modifiers.Count);
+            Assert.True(get.IsGetter);
+            Assert.Null(get.Body);
+        }
+
+        [Test]
         public void PropertyHasTypeNameGettersAndOrSetters()
         {
             var prop = Apex.PropertyDeclaration.Parse(" int x { get; }");

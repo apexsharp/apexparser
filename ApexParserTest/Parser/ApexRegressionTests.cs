@@ -480,5 +480,39 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void NavPackageControllerIsParsed()
+        {
+            var text = @"
+            public with sharing class NavPackageController1 {
+
+                private List<PackageDetails>  sort(List<PackageDetails> pkgList)
+                {
+                }
+             }
+            ";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void OfferCategoryIsParsed()
+        {
+            var text = @"
+            public  with sharing class OfferCategory
+            {
+                public boolean isChangeCommitted
+                {
+                    get // declaration of get
+                    {
+                        return true;
+                    }
+                    private set; //declaration of set
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }
