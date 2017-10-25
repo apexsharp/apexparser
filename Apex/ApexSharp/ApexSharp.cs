@@ -7,7 +7,7 @@ using SalesForceAPI;
 
 namespace Apex.ApexSharp
 {
-    public enum LogLevle
+    public enum LogLevel
     {
         Info
     }
@@ -21,29 +21,24 @@ namespace Apex.ApexSharp
         public string SalesForcePassword { get; set; }
         public string SalesForcePasswordToken { get; set; }
         public int SalesForceApiVersion { get; set; }
+        public string VisualStudioProjectFile { get; set; }
+        public LogLevel LogLevel { get; set; }
     }
 
     public class ApexSharp
     {
-        public ApexSharpConfig ApexSharpConfigSettings { get; set; }
+        public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
         private string ConfigFileName { get; set; }
 
         public ApexSharp()
         {
-            ApexSharpConfigSettings = new ApexSharpConfig();
             ConfigFileName = String.Empty;
         }
 
         public void Connect()
         {
-            string projectDirectoryName = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-           //    List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
-
-            var connectDetail = LogIn.Connect(ApexSharpConfigSettings.SalesForceUrl, ApexSharpConfigSettings.SalesForceUserId, ApexSharpConfigSettings.SalesForcePassword + ApexSharpConfigSettings.SalesForcePasswordToken);
-            Log.LogMsg("Connection Detail", connectDetail);
+            ConnectionUtil.Connect(ApexSharpConfigSettings.SalesForceUrl, ApexSharpConfigSettings.SalesForceUserId, ApexSharpConfigSettings.SalesForcePassword, ApexSharpConfigSettings.SalesForcePasswordToken, ApexSharpConfigSettings.VisualStudioProjectFile);
         }
-
-       
 
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {
@@ -95,18 +90,31 @@ namespace Apex.ApexSharp
             return this;
         }
 
-        public ApexSharp SetLogLevel(LogLevle logLevel)
+        public ApexSharp SetVisualStudioProjectLocation(string dir)
         {
+            ApexSharpConfigSettings.VisualStudioProjectFile = dir;
+            return this;
+        }
+
+        public ApexSharp SetLogLevel(LogLevel logLevel)
+        {
+            ApexSharpConfigSettings.LogLevel = logLevel;
+            return this;
+        }
+
+        public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
+        {
+            string json = JsonConvert.SerializeObject(ApexSharpConfigSettings);
+            File.WriteAllText(dirLocationAndFileName, json);
             return this;
         }
 
 
-        public ApexSharp SaveApexSharpConfig()
+        public void CreateOfflineClasses(string sObjectName)
         {
-            string json = JsonConvert.SerializeObject(ApexSharpConfigSettings);
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            File.WriteAllText(path + @"\" + "ApexSharpProjectSetup.json", json);
-            return this;
+            ModelGen modelGen = new ModelGen();
+            modelGen.CreateOfflineSymbolTable(sObjectName, path);
         }
 
 
@@ -143,10 +151,5 @@ namespace Apex.ApexSharp
 
 
 
-        public void CreateOfflineClasses(string sObjectName)
-        {
-            ModelGen modelGen = new ModelGen();
-            modelGen.CreateOfflineSymbolTable(sObjectName);
-        }
     }
 }

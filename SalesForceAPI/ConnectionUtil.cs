@@ -28,13 +28,28 @@ namespace SalesForceAPI
         // SF Conneciton 
 
 
-
+             
         // SF Connection Details
-        public static ConnectionDetail ConnectionDetail;
+        private static ConnectionDetail ConnectionDetail;
         public static ConnectionDetail GetConnectionDetail()
         {
             return ConnectionDetail;
         }
+
+        public static void Connect(string SalesForceUrl, string SalesForceUserId, string SalesForcePassword, string SalesForcePasswordToken, string visualStudioProjFile)
+        {
+            // string projectDirectoryName = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            // List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
+
+            ConnectionDetail = LogIn.Connect(SalesForceUrl, SalesForceUserId, SalesForcePassword + SalesForcePasswordToken);
+            Log.LogMsg("Connection Detail", ConnectionDetail);
+
+   
+         //   project = new Microsoft.Build.Evaluation.Project(visualStudioProjFile);
+
+            
+        }
+
 
 
         public bool ConnectToDb()
@@ -81,36 +96,6 @@ namespace SalesForceAPI
             {
                 project.AddItem("Compile", cSharpFileName);
                 project.Save();
-            }
-        }
-
-        // Create DTO
-        public void CreateSalesForceObjectModel(ConnectionDetail connectionDetail,
-            System.Collections.Generic.List<SalesForceObjectModel> salesForceObjectModelList)
-        {
-            if (connectionDetail == null)
-            {
-                Console.WriteLine("Did you connect to SF");
-            }
-            else if (project == null)
-            {
-                Console.WriteLine("Visual Studio Project Is Not Set");
-            }
-            else
-            {
-                ModelGen createObject = new ModelGen();
-
-                foreach (var salesForceObjectModel in salesForceObjectModelList)
-                {
-                    // SalesForceObject salesForceObject = createObject.GetSalesForceObjectMetaData(connectionDetail, salesForceObjectModel);
-                    // createObject.CreateServiceStackClasses(salesForceObject);
-
-                    //  var apexCode = createObject.GetCSharpCode(salesForceObject, salesForceObjectModel);
-
-
-                    //  File.WriteAllText(project.DirectoryPath + @"\Model\" + salesForceObjectModel.LocalTableName + ".cs", apexCode);
-                    //   AddCShaprFile("Model", salesForceObjectModel.LocalTableName + ".cs");
-                }
             }
         }
 

@@ -37,17 +37,18 @@ namespace SalesForceAPI
             "address"
         };
 
-        public void CreateOfflineSymbolTable(string sObjectName)
+        public void CreateOfflineSymbolTable(string sObjectName, string dirPath)
         {
-            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+    
 
             HttpManager httpManager = new HttpManager();
-            var replyTask = httpManager.Get(ConnectionUtil.GetConnectionDetail(), "/data/v39.0/sobjects/");
+            var replyTask = httpManager.Get(ConnectionUtil.GetConnectionDetail(), "/data/v40.0/sobjects/");
             replyTask.Wait();
-            File.WriteAllText(path + @"\objectList.json", replyTask.Result);
+
+            File.WriteAllText(dirPath + @"\objectList.json", replyTask.Result);
 
 
-            var sObjectDescribeJson = File.ReadAllText(path + @"\objectList.json");
+            var sObjectDescribeJson = File.ReadAllText(dirPath + @"\objectList.json");
             SObjectDescribe sObjectList = JsonConvert.DeserializeObject<SObjectDescribe>(sObjectDescribeJson);
             List<Sobject> allSobjects = sObjectList.sobjects.ToList();
 
@@ -69,7 +70,7 @@ namespace SalesForceAPI
                 Sobject objectToDownload = objectsToGet.FirstOrDefault(x => x.downloaded == false);
                 Console.WriteLine(objectToDownload.name);
 
-                var objectToDownloadList = GetObjectData(path, objectToDownload);
+                var objectToDownloadList = GetObjectData(objectToDownload, dirPath);
                 objectToDownload.downloaded = true;
 
                 var objectsToDownload = allSobjects.Where(x => objectToDownloadList.Contains(x.name));
@@ -77,33 +78,35 @@ namespace SalesForceAPI
             }
         }
 
-        private List<string> GetObjectData(string path, Sobject sobject)
+        private List<string> GetObjectData(Sobject sobject, string dirPath)
         {
             HttpManager httpManager = new HttpManager();
             var replyTaskObject = httpManager.Get(ConnectionUtil.GetConnectionDetail(),
-                "/data/v39.0/sobjects/" + sobject.name + "/describe");
+                "/data/v40.0/sobjects/" + sobject.name + "/describe");
             replyTaskObject.Wait();
 
-            File.WriteAllText(path + @"\SObjectJson\" + sobject.name + ".json", replyTaskObject.Result);
+            File.WriteAllText(dirPath + @"\SObjectJson\" + sobject.name + ".json", replyTaskObject.Result);
 
             SObjectDetail sObjectDetail = JsonConvert.DeserializeObject<SObjectDetail>(replyTaskObject.Result);
 
-            List<string> objectToDownloadList = CreateSalesForceClasses(sobject, sObjectDetail, path);
+            List<string> objectToDownloadList = CreateSalesForceClasses(sObjectDetail, dirPath);
 
-            ConnectionUtil.AddCShaprFile("SObjects", sObjectDetail.name + ".cs");
+         //   ConnectionUtil.AddCShaprFile("SObjects", sObjectDetail.name + ".cs");
 
             return objectToDownloadList;
         }
 
-        private List<string> CreateSalesForceClasses(Sobject sobject, SObjectDetail objectDetail, string path)
+        private List<string> CreateSalesForceClasses(SObjectDetail objectDetail, string dirPath)
         {
             List<string> objectsToDownload = new List<string>();
 
             var sb = new StringBuilder();
 
-            sb.AppendLine("namespace ApexSharpDemo.SObjects");
+            sb.AppendLine("namespace PrivateDemo.SObjects");
             sb.AppendLine("{");
             sb.AppendLine("using Apex.System;");
+            sb.AppendLine("using SalesForceAPI.ApexApi;");
+            
             sb.AppendLine("\tpublic class " + objectDetail.name + " : SObject");
             sb.AppendLine("\t{");
 
@@ -114,8 +117,7 @@ namespace SalesForceAPI
                 {
                     sb.Append("\t\t").Append($"public string {field.name} ").AppendLine("{set;get;}");
 
-                    sb.Append("\t\t").Append($"public {field.referenceTo[1]} {field.relationshipName} ")
-                        .AppendLine("{set;get;}");
+                    sb.Append("\t\t").Append($"public {field.referenceTo[1]} {field.relationshipName} ").AppendLine("{set;get;}");
                 }
                 else if (field.type == "reference" && field.referenceTo.Length > 0)
                 {
@@ -139,8 +141,45 @@ namespace SalesForceAPI
             sb.AppendLine("\t}");
             sb.AppendLine("}");
 
-            File.WriteAllText(path + @"\SObjects\" + objectDetail.name + ".cs", sb.ToString());
+            File.WriteAllText(dirPath + @"\SObjects\" + objectDetail.name + ".cs", sb.ToString());
             return objectsToDownload;
+        }
+
+        private string GetField(string objectName, Field salesForceField)
+        {
+            if (SalesForceDefaultFieldTyps.Contains(salesForceField.type))
+            {
+                switch (salesForceField.type)
+                {
+                    case "address":
+                        return "Address";
+                    case "id":
+                    case "string":
+                    case "picklist":
+                    case "email":
+                    case "textarea":
+                    case "phone":
+                    case "url":
+                        return "string";
+                    case "boolean":
+                        return "bool";
+                    case "datetime":
+                    case "time":
+                    case "date":
+                        return "DateTime";
+                    case "currency":
+                    case "percent":
+                    case "double":
+                        return "double";
+                    case "int":
+                        return "int";
+                }
+            }
+
+            Console.WriteLine(
+                $"Object Name: {objectName} Field Type: {salesForceField.type} Field Name : {salesForceField.name} Field Length: {salesForceField.length}",
+                Color.Red);
+            return "string";
         }
 
         public void CreateServiceStackClasses(SObjectDetail objectDetail)
@@ -230,43 +269,6 @@ namespace SalesForceAPI
                         sb.ToString());
                 }
             }
-        }
-
-        private string GetField(string objectName, Field salesForceField)
-        {
-            if (SalesForceDefaultFieldTyps.Contains(salesForceField.type))
-            {
-                switch (salesForceField.type)
-                {
-                    case "address":
-                        return "Address";
-                    case "id":
-                    case "string":
-                    case "picklist":
-                    case "email":
-                    case "textarea":
-                    case "phone":
-                    case "url":
-                        return "string";
-                    case "boolean":
-                        return "bool";
-                    case "datetime":
-                    case "time":
-                    case "date":
-                        return "DateTime";
-                    case "currency":
-                    case "percent":
-                    case "double":
-                        return "double";
-                    case "int":
-                        return "int";
-                }
-            }
-
-            Console.WriteLine(
-                $"Object Name: {objectName} Field Type: {salesForceField.type} Field Name : {salesForceField.name} Field Length: {salesForceField.length}",
-                Color.Red);
-            return "string";
         }
     }
 }

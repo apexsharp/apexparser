@@ -18,8 +18,8 @@ namespace ApexSharpDemo
                .AndPassword("SalesForce Password")
                .AndToken("SalesForce Token")
                .SetApexFileLocation("Location Where you want your APEX Files to be saved")
-               .SetLogLevel(LogLevle.Info)
-               .SaveApexSharpConfig()
+               .SetLogLevel(LogLevel.Info)
+               .SaveApexSharpConfig("Location")
                .Connect();
 
 

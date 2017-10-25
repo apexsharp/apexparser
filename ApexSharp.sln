@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParser", "ApexParser\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParserTest", "ApexParserTest\ApexParserTest.csproj", "{CF5E395C-086F-4D21-B2B2-7595E348A557}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateDemo", "PrivateDemo\PrivateDemo.csproj", "{D7B06531-2EAB-43A2-90FC-74D35FAD272A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

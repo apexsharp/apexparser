@@ -27,8 +27,8 @@ namespace ApexTest.ApexSharp
                .AndPassword("9cHgyTpoRFuy8sv92ox9ycLAX")
                .AndToken("1v0EGMfR0NTkbmyQ2Jk4082PA")
                .SetApexFileLocation(@"C:\Dev\ApexSharp\src\classes\")
-               .SetLogLevel(LogLevle.Info)
-               .SaveApexSharpConfig();
+               .SetLogLevel(LogLevel.Info)
+               .SaveApexSharpConfig(@"C:\Dev\ApexSharp\src\classes\ConfigInfo.json");
 
             apexSharp.Connect();
 
