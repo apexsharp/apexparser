@@ -36,7 +36,7 @@ namespace ApexParserTest
             // ParseAll("repos/financialforcedev/fflib-apex-common-samplecode/contents/master/fflib-sample-code/src/classes");
             ParseZip("fflib-apex-common-samplecode-master.zip");
 
-        [Test(Description = "https://github.com/SalesforceFoundation/Cumulus"), Ignore("TODO")]
+        [Test(Description = "https://github.com/SalesforceFoundation/Cumulus")]
         public void TestCumulus() =>
             // ParseAll("repos/SalesforceFoundation/Cumulus/contents/master/src/classes");
             ParseZip("Cumulus-master.zip");

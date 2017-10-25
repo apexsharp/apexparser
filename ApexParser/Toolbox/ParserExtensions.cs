@@ -29,11 +29,8 @@ namespace ApexParser.Toolbox
         private class SourceSpan<T> : ISourceSpan<T>
         {
             public T Value { get; set; }
-
             public Position Start { get; set; }
-
             public Position End { get; set; }
-
             public int Length { get; set; }
         }
 
@@ -134,11 +131,8 @@ namespace ApexParser.Toolbox
             }
 
             private static readonly string[] EmptyList = new string[0];
-
             public IEnumerable<string> LeadingComments { get; }
-
             public T Value { get; }
-
             public IEnumerable<string> TrailingComments { get; }
         }
 

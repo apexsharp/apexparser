@@ -520,6 +520,7 @@ namespace ApexParser.Parser
             from members in ClassMemberDeclaration.Many()
             from trailingComments in CommentParser.AnyComment.Token().Many()
             from closeBrace in Parse.Char('}').Token()
+            from skippedTrailingComments in CommentParser.AnyComment.Token().Many()
             select new ClassDeclarationSyntax()
             {
                 Identifier = className,

@@ -46,7 +46,7 @@ namespace ApexParser.Parser
         public const string Commit = "commit";
         ////public const string Const = "const"; // reserved for future use
         public const string Continue = "continue";
-        public const string ConvertCurrency = "convertcurrency";
+        ////public const string ConvertCurrency = "convertcurrency"; // hack, see below
         public const string Decimal = "decimal";
         ////public const string Default = "default"; // reserved for future use
         public const string Delete = "delete";
@@ -170,6 +170,7 @@ namespace ApexParser.Parser
 
         // 3. Not listed in the official documentation but apparently used
         public static string Boolean => "boolean";
+        public static string ConvertCurrency => "convertcurrency"; // seems to be a valid method name
         ////public static string Database => "database"; // the status is unclear
         public static string Double => "double";
         public static string Get => "get"; // "get" seems to be a valid method name

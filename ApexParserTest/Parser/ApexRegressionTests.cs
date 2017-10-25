@@ -451,5 +451,17 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void ConvertCurrencyIsAValidMethodName()
+        {
+            var text = @"
+            public class Test {
+                public static decimal convertCurrency(String fromISO, String toISO, Decimal amt) {
+                    return 0;
+                }
+            }";
+            var cd = Apex.ClassDeclaration.Parse(text);
+        }
     }
 }
