@@ -175,9 +175,11 @@ namespace ApexSharpBase.Formatter
             var needExtraLine = false;
             var padding = 0;
 
+            int i = 0;
             foreach (var apexCode in apexCodeList)
             {
-                // if(padding == 0)Console.WriteLine(padding + " " + apexCode);
+                i++;
+                
 
                 if (apexCode.Trim() == "}")
                 {
@@ -194,6 +196,7 @@ namespace ApexSharpBase.Formatter
                     needExtraLine = false;
                 }
 
+          //      Console.WriteLine(i + "  " + padding + " " + apexCode);
                 sb.AppendLine(new string(' ', padding) + apexCode);
 
                 if (apexCode.Trim() == "{")
