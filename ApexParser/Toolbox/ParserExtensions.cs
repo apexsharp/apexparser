@@ -115,6 +115,38 @@ namespace ApexParser.Toolbox
             };
         }
 
+        /// <summary>
+        /// Constructs the eXclusive version of the Optional{T} parser.
+        /// https://nblumhardt.com/2015/11/aggregate-queries-in-seq-part-3-an-opportunistic-parser/
+        /// </summary>
+        /// <typeparam name="T">The result type of the given parser</typeparam>
+        /// <param name="parser">The parser to wrap</param>
+        /// <returns>An eXclusive optional version of the given parser.</returns>
+        /// <seealso cref="XOr"/>
+        public static Parser<IOption<T>> XOptional<T>(this Parser<T> parser)
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            return i =>
+            {
+                var result = parser(i);
+                if (result.WasSuccessful)
+                {
+                    return Result.Success(new Some<T>(result.Value), result.Remainder);
+                }
+
+                if (result.Remainder.Equals(i))
+                {
+                    return Result.Success(new None<T>(), i);
+                }
+
+                return Result.Failure<IOption<T>>(result.Remainder, result.Message, result.Expectations);
+            };
+        }
+
         private class CommentedValue<T> : ICommented<T>
         {
             public CommentedValue(T value)
@@ -130,10 +162,10 @@ namespace ApexParser.Toolbox
                 TrailingComments = trailing ?? EmptyList;
             }
 
-            private static readonly string[] EmptyList = new string[0];
-            public IEnumerable<string> LeadingComments { get; }
             public T Value { get; }
+            public IEnumerable<string> LeadingComments { get; }
             public IEnumerable<string> TrailingComments { get; }
+            private static readonly string[] EmptyList = new string[0];
         }
 
         /// <summary>

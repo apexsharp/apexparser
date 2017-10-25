@@ -461,7 +461,24 @@ namespace ApexParserTest.Parser
                     return 0;
                 }
             }";
-            var cd = Apex.ClassDeclaration.Parse(text);
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test, Ignore("Fails")]
+        public void RestResponseInstrumenterIsParsed()
+        {
+            var text = @"
+            public class RestResponseInstrumenter {
+                private class Insturmentation
+                {
+                    String instrument(final String s)
+                    {
+                    }
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
     }
 }

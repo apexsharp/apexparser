@@ -247,5 +247,38 @@ namespace ApexParserTest.Toolbox
             Assert.True(result.LeadingComments.Last().Trim().EndsWith("this is the second line"));
             Assert.False(result.TrailingComments.Any());
         }
+
+        private Parser<string> OptionalTestParser =>
+            from test in Parse.String("test").Text().Optional()
+            from t in Parse.String("t").Text().Optional()
+            from method in Parse.String("method").Text()
+            select test.GetOrElse(string.Empty) + t.GetOrElse(string.Empty) + method;
+
+        private Parser<string> XOptionalTestParser =>
+            from test in Parse.String("test").Text().XOptional()
+            from t in Parse.String("t").Text().Optional() // this part never succeeds
+            from method in Parse.String("method").Text()
+            select test.GetOrElse(string.Empty) + t.GetOrElse(string.Empty) + method;
+
+        [Test]
+        public void XOptionalParserFailsIfSomeInputIsConsumed()
+        {
+            var result = OptionalTestParser.Parse("testmethod");
+            Assert.AreEqual("testmethod", result);
+
+            XOptionalTestParser.Parse("testmethod");
+            Assert.AreEqual("testmethod", result);
+
+            result = OptionalTestParser.Parse("method");
+            Assert.AreEqual("method", result);
+
+            result = XOptionalTestParser.Parse("method");
+            Assert.AreEqual("method", result);
+
+            result = OptionalTestParser.Parse("tmethod");
+            Assert.AreEqual("tmethod", result);
+
+            Assert.Throws<ParseException>(() => XOptionalTestParser.Parse("tmethod"));
+        }
     }
 }
