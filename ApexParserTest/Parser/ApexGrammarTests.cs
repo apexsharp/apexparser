@@ -1740,5 +1740,28 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
             Assert.AreEqual(1, stmt.TrailingComments.Count);
         }
+
+        // [Test] // TODO: Try to improve the diagnostics
+        public void TestParseExceptionImprovements()
+        {
+            var text = @"
+            public with sharing class NavPackageController1 {
+
+                private List<PackageDetails>  sort(List<PackageDetails> pkgList)
+                {
+                    class
+                }
+             }";
+
+            try
+            {
+                Apex.ClassDeclaration.ParseEx(text);
+                Assert.Fail("This snippet should not parse.");
+            }
+            catch (ParseExceptionCustom ex)
+            {
+                Assert.AreEqual(5, ex.LineNumber);
+            }
+        }
     }
 }
