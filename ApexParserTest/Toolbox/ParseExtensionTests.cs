@@ -197,5 +197,55 @@ namespace ApexParserTest.Toolbox
             var testMethod = PreviewParserDemo.Parse("   testMethod  ");
             Assert.AreEqual("testMethod", testMethod);
         }
+
+        private Parser<ICommented<string>> Identifier4 =>
+            from id in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).Commented(this)
+            select id;
+
+        [Test]
+        public void CommentedParserStripsOutLeadingCommentsAndSingleTrailingCommentThatStartsOnTheSameLine()
+        {
+            // whitespace only
+            var result = Identifier4.Parse("    \t hello123   \t\r\n  ");
+            Assert.AreEqual("hello123", result.Value);
+            Assert.False(result.LeadingComments.Any());
+            Assert.False(result.TrailingComments.Any());
+
+            // trailing comments
+            result = Identifier4.End().Parse("    \t hello123   // what's that? ");
+            Assert.AreEqual("hello123", result.Value);
+            Assert.False(result.LeadingComments.Any());
+            Assert.True(result.TrailingComments.Any());
+            Assert.AreEqual("what's that?", result.TrailingComments.First().Trim());
+
+            // leading and trailing comments
+            result = Identifier4.Parse(@" // leading comments!
+            /* more leading comments! */
+            helloWorld // trailing comments!
+            // more trailing comments! (that don't belong to the parsed value)");
+            Assert.AreEqual("helloWorld", result.Value);
+            Assert.AreEqual(2, result.LeadingComments.Count());
+            Assert.AreEqual("leading comments!", result.LeadingComments.First().Trim());
+            Assert.AreEqual("more leading comments!", result.LeadingComments.Last().Trim());
+            Assert.AreEqual(1, result.TrailingComments.Count());
+            Assert.AreEqual("trailing comments!", result.TrailingComments.First().Trim());
+
+            // multiple leading and trailing comments
+            result = Identifier4.Parse(@" // leading comments!
+
+            /* multiline leading comments
+            this is the second line */
+
+            test321
+
+            // trailing comments!
+            /* --==-- */");
+            Assert.AreEqual("test321", result.Value);
+            Assert.AreEqual(2, result.LeadingComments.Count());
+            Assert.AreEqual("leading comments!", result.LeadingComments.First().Trim());
+            Assert.True(result.LeadingComments.Last().Trim().StartsWith("multiline leading comments"));
+            Assert.True(result.LeadingComments.Last().Trim().EndsWith("this is the second line"));
+            Assert.False(result.TrailingComments.Any());
+        }
     }
 }

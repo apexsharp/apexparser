@@ -70,6 +70,28 @@ namespace ApexParser.Toolbox
             };
         }
 
+        internal abstract class AbstractOption<T> : IOption<T>
+        {
+            public abstract bool IsEmpty { get; }
+            public bool IsDefined => !IsEmpty;
+            public T GetOrDefault() => IsEmpty ? default(T) : Get();
+            public abstract T Get();
+        }
+
+        internal sealed class Some<T> : AbstractOption<T>
+        {
+            public Some(T value) => Value = value;
+            private T Value { get; }
+            public override bool IsEmpty => false;
+            public override T Get() => Value;
+        }
+
+        internal sealed class None<T> : AbstractOption<T>
+        {
+            public override bool IsEmpty => true;
+            public override T Get() => throw new InvalidOperationException("Cannot get value from None.");
+        }
+
         /// <summary>
         /// Constructs a parser that will succeed if the given parser succeeds,
         /// but won't consume any input. It's like a positive look-ahead in regex.
@@ -77,7 +99,7 @@ namespace ApexParser.Toolbox
         /// <typeparam name="T">The result type of the given parser</typeparam>
         /// <param name="parser">The parser to wrap</param>
         /// <returns>A non-consuming version of the given parser.</returns>
-        public static Parser<T> Preview<T>(this Parser<T> parser)
+        public static Parser<IOption<T>> Preview<T>(this Parser<T> parser)
         {
             if (parser == null)
             {
@@ -89,22 +111,22 @@ namespace ApexParser.Toolbox
                 var result = parser(i);
                 if (result.WasSuccessful)
                 {
-                    return Result.Success(result.Value, i);
+                    return Result.Success(new Some<T>(result.Value), i);
                 }
 
-                return result;
+                return Result.Success(new None<T>(), i);
             };
         }
 
-        private class Commented<T> : ICommented<T>
+        private class CommentedValue<T> : ICommented<T>
         {
-            public Commented(T value)
+            public CommentedValue(T value)
             {
                 LeadingComments = TrailingComments = EmptyList;
                 Value = value;
             }
 
-            public Commented(IEnumerable<string> leading, T value, IEnumerable<string> trailing)
+            public CommentedValue(IEnumerable<string> leading, T value, IEnumerable<string> trailing)
             {
                 LeadingComments = leading ?? EmptyList;
                 Value = value;
@@ -120,6 +142,14 @@ namespace ApexParser.Toolbox
             public IEnumerable<string> TrailingComments { get; }
         }
 
+        /// <summary>
+        /// Constructs a parser that consumes a whitespace and all comments
+        /// parsed by the provider.Comment parser.
+        /// </summary>
+        /// <typeparam name="T">The result type of the given parser</typeparam>
+        /// <param name="parser">The parser to wrap</param>
+        /// <param name="provider">The provider for the Comment parser</param>
+        /// <returns>An extended Token() version of the given parser.</returns>
         public static Parser<ICommented<T>> Token<T>(this Parser<T> parser, ICommentParserProvider provider)
         {
             if (parser == null)
@@ -132,7 +162,7 @@ namespace ApexParser.Toolbox
             {
                 return
                     from p in parser.Token()
-                    select new Commented<T>(p);
+                    select new CommentedValue<T>(p);
             }
 
             // add leading and trailing comments to the parser
@@ -141,7 +171,48 @@ namespace ApexParser.Toolbox
                 from leadingComments in provider.Comment.Token().Many()
                 from value in parser
                 from trailingComments in provider.Comment.Token().Many()
-                select new Commented<T>(leadingComments, value, trailingComments);
+                select new CommentedValue<T>(leadingComments, value, trailingComments);
+        }
+
+        /// <summary>
+        /// Constructs a parser that consumes a whitespace and all comments
+        /// parsed by the provider.Comment parser, but parses only one trailing
+        /// comment that starts exactly on the last line of the parsed value.
+        /// </summary>
+        /// <typeparam name="T">The result type of the given parser</typeparam>
+        /// <param name="parser">The parser to wrap</param>
+        /// <param name="provider">The provider for the Comment parser</param>
+        /// <returns>An extended Token() version of the given parser.</returns>
+        public static Parser<ICommented<T>> Commented<T>(this Parser<T> parser, ICommentParserProvider provider)
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            // the grammar has no support for comments, use the original Token combinator
+            if (provider == null)
+            {
+                return
+                    from p in parser.Token()
+                    select new CommentedValue<T>(p);
+            }
+
+            // returns true if the second span starts on the first span's last line
+            bool IsSameLine(ISourceSpan<T> first, IOption<ISourceSpan<string>> second) =>
+                first.End.Line == second.GetOrDefault()?.Start.Line;
+
+            // add leading and trailing comments to the parser
+            return
+                from leadingWhiteSpace in Parse.WhiteSpace.Many()
+                from leadingComments in provider.Comment.Token().Many()
+                from valueSpan in parser.Span()
+                from trailingWhiteSpace in Parse.WhiteSpace.Many()
+                from trailingPreview in provider.Comment.Span().Preview()
+                from trailingComments in IsSameLine(valueSpan, trailingPreview) ?
+                    provider.Comment.Token().Once() :
+                    Parse.WhiteSpace.Many().Text().Return(Enumerable.Empty<string>())
+                select new CommentedValue<T>(leadingComments, valueSpan.Value, trailingComments);
         }
     }
 }
