@@ -198,16 +198,25 @@ namespace ApexParserTest.Parser
             var pd = Apex.ParameterDeclaration.Parse(" int a");
             Assert.AreEqual("int", pd.Type.Identifier);
             Assert.AreEqual("a", pd.Identifier);
+            Assert.AreEqual(0, pd.Modifiers.Count);
 
             pd = Apex.ParameterDeclaration.Parse(" SomeClass b");
             Assert.AreEqual("SomeClass", pd.Type.Identifier);
             Assert.AreEqual("b", pd.Identifier);
+            Assert.AreEqual(0, pd.Modifiers.Count);
 
             pd = Apex.ParameterDeclaration.Parse(" List<string> stringList");
             Assert.AreEqual("list", pd.Type.Identifier);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
             Assert.AreEqual("string", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("stringList", pd.Identifier);
+            Assert.AreEqual(0, pd.Modifiers.Count);
+
+            pd = Apex.ParameterDeclaration.Parse(" final int a");
+            Assert.AreEqual("int", pd.Type.Identifier);
+            Assert.AreEqual("a", pd.Identifier);
+            Assert.AreEqual(1, pd.Modifiers.Count);
+            Assert.AreEqual("final", pd.Modifiers[0]);
 
             Assert.Throws<ParseException>(() => Apex.ParameterDeclaration.Parse("Hello!"));
         }

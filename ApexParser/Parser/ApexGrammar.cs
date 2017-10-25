@@ -87,9 +87,13 @@ namespace ApexParser.Parser
 
         // example: string name
         protected internal virtual Parser<ParameterSyntax> ParameterDeclaration =>
+            from modifiers in Modifier.Token().Many()
             from type in TypeReference
             from name in Identifier
-            select new ParameterSyntax(type, name);
+            select new ParameterSyntax(type, name)
+            {
+                Modifiers = modifiers.ToList(),
+            };
 
         // example: int a, Boolean flag
         protected internal virtual Parser<IEnumerable<ParameterSyntax>> ParameterDeclarations =>

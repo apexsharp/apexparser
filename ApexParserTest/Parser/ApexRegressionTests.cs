@@ -465,7 +465,7 @@ namespace ApexParserTest.Parser
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
 
-        [Test, Ignore("Fails")]
+        [Test]
         public void RestResponseInstrumenterIsParsed()
         {
             var text = @"
