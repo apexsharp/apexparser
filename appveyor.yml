@@ -3,6 +3,7 @@ image: Visual Studio 2017
 init:
 - cmd: git config --global core.autocrlf true
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore ApexSharp.sln
 build:
+  project: ApexSharp.sln
   verbosity: minimal
