@@ -148,4 +148,10 @@
   <data name="FormatDemo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\FormatDemo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="Manager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\Manager.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Manager_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\Manager_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

@@ -184,7 +184,6 @@
   <ItemGroup>
     <None Include="ApexTestClasses\ClassOne.cls" />
     <None Include="ApexTestClasses\ClassTwo.cls" />
-    <None Include="ApexTestClasses\Demo.cls" />
     <None Include="ApexTestClasses\ClassOne_Formatted.cls" />
     <None Include="ApexTestClasses\ClassTwo_Formatted.cls" />
     <None Include="ApexTestClasses\ClassWithComments.cls" />
@@ -193,8 +192,8 @@
     <None Include="ApexTestClasses\FormatDemo_Formatted.cls" />
     <None Include="ApexTestClasses\CustomerDto.cls" />
     <None Include="ApexTestClasses\CustomerDto_Formatted.cls" />
-    <None Include="ApexTestClasses\Demo2.cls" />
-    <None Include="ApexTestClasses\ForIfWhile.cls" />
+    <None Include="ApexTestClasses\Manager.cls" />
+    <None Include="ApexTestClasses\Manager_Formatted.cls" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApexSharpBase\ApexSharpBase.csproj">

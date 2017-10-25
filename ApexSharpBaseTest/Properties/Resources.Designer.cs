@@ -273,5 +273,54 @@ namespace ApexSharpBaseTest.Properties {
                 return ResourceManager.GetString("FormatDemo_Formatted", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to global without sharing class Manager
+        ///{
+        /////closeout Invoices to Payout the amount
+        ///public static void closeOutInvoices()
+        ///{
+        ////*
+        ///}
+        ///else
+        ///{
+        ///if(paymentCaseDetails != null)
+        ///paymentCaseDetails = setCaseDetails(paymentCaseDetails, &apos;No unpaid invoices found &apos;, &apos;In Review&apos;, true, null, paymentCaseDetails.paymentConfirmationNumber);
+        ///return;
+        ///}
+        ///*/
+        ///}
+        ///}.
+        /// </summary>
+        internal static string Manager {
+            get {
+                return ResourceManager.GetString("Manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to global without sharing class Manager
+        ///{
+        ///    //closeout Invoices to Payout the amount
+        ///    public static void closeOutInvoices()
+        ///    {
+        ///        /*
+        ///        }
+        ///        else
+        ///        {
+        ///        if(paymentCaseDetails != null)
+        ///        paymentCaseDetails = setCaseDetails(paymentCaseDetails, &apos;No unpaid invoices found &apos;, &apos;In Review&apos;, true, null, paymentCaseDetails.paymentConfirmationNumber);
+        ///        return;
+        ///        }
+        ///        */
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string Manager_Formatted {
+            get {
+                return ResourceManager.GetString("Manager_Formatted", resourceCulture);
+            }
+        }
     }
 }

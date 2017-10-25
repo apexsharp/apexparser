@@ -175,18 +175,31 @@ namespace ApexSharpBase.Formatter
             var needExtraLine = false;
             var padding = 0;
 
+            // comment tracking
+            var multiLineCommentLevel = 0;
+            bool outsideComments() =>
+                multiLineCommentLevel == 0;
+
             int i = 0;
             foreach (var apexCode in apexCodeList)
             {
                 i++;
-                
 
-                if (apexCode.Trim() == "}")
+                if (apexCode.Contains("/*"))
+                {
+                    multiLineCommentLevel++;
+                }
+                else if (apexCode.Contains("*/"))
+                {
+                    multiLineCommentLevel--;
+                }
+
+                if (apexCode.Trim() == "}" && outsideComments())
                 {
                     padding = padding - IndentSize;
                     needExtraLine = true;
                 }
-                else if (apexCode.Trim().EndsWith("}"))
+                else if (apexCode.Trim().EndsWith("}") && outsideComments())
                 {
                     needExtraLine = true;
                 }
@@ -196,10 +209,9 @@ namespace ApexSharpBase.Formatter
                     needExtraLine = false;
                 }
 
-          //      Console.WriteLine(i + "  " + padding + " " + apexCode);
                 sb.AppendLine(new string(' ', padding) + apexCode);
 
-                if (apexCode.Trim() == "{")
+                if (apexCode.Trim() == "{" && outsideComments())
                 {
                     padding = padding + IndentSize;
                 }

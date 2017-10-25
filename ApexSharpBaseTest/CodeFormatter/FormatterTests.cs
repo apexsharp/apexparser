@@ -1,6 +1,7 @@
 ﻿using System;
 using ApexSharpBase.Formatter;
 using NUnit.Framework;
+using static ApexSharpBaseTest.Properties.Resources;
 
 namespace ApexSharpBaseTest.CodeFormatter
 {
@@ -58,24 +59,28 @@ namespace ApexSharpBaseTest.CodeFormatter
         public void PropertyDefinitionWithEmptyGetSetInsideCurlyBracketsEndUpOnTheSameLine() =>
             ValidateLineByLine("public\nstring\nName\n{\nget;\nset;\n}\n", "public string Name { get; set; }\n");
 
-        //[Test]
-        //public void ClassOneIsFormatted() =>
-        //    ValidateLineByLine(ClassOne, ClassOne_Formatted);
+        [Test]
+        public void ManagerIsFormatted() =>
+            ValidateLineByLine(Manager, Manager_Formatted);
 
-        //[Test]
-        //public void ClassTwoIsFormatted() =>
-        //    ValidateLineByLine(ClassTwo, ClassTwo_Formatted);
+        [Test]
+        public void ClassOneIsFormatted() =>
+            ValidateLineByLine(ClassOne, ClassOne_Formatted);
 
-        //[Test]
-        //public void ClassWithCommentsIsFormatted() =>
-        //    ValidateLineByLine(ClassWithComments, ClassWithComments_Formatted);
+        [Test]
+        public void ClassTwoIsFormatted() =>
+            ValidateLineByLine(ClassTwo, ClassTwo_Formatted);
 
-        //[Test]
-        //public void FormatDemoIsFormatted() =>
-        //    ValidateLineByLine(FormatDemo, FormatDemo_Formatted);
+        [Test]
+        public void ClassWithCommentsIsFormatted() =>
+            ValidateLineByLine(ClassWithComments, ClassWithComments_Formatted);
 
-        //[Test]
-        //public void CustomerDtoIsFormatted() =>
-        //    ValidateLineByLine(CustomerDto, CustomerDto_Formatted);
+        [Test]
+        public void FormatDemoIsFormatted() =>
+            ValidateLineByLine(FormatDemo, FormatDemo_Formatted);
+
+        [Test]
+        public void CustomerDtoIsFormatted() =>
+            ValidateLineByLine(CustomerDto, CustomerDto_Formatted);
     }
 }
