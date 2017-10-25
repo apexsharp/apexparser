@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace ApexParserTest
 {
-    [TestFixture]
+    [TestFixture, Explicit]
     public class ApexParserMasterTest
     {
         [Test(Description = "https://github.com/jayonsoftware/SalesForceApexSharp")]

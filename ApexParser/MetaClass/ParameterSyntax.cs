@@ -1,4 +1,5 @@
-﻿using ApexParser.Visitors;
+﻿using System.Collections.Generic;
+using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
 {
@@ -18,6 +19,8 @@ namespace ApexParser.MetaClass
         public override SyntaxType Kind => SyntaxType.Parameter;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitParameter(this);
+
+        public List<string> Modifiers { get; set; } = new List<string>();
 
         public TypeSyntax Type { get; set; }
 

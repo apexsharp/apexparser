@@ -198,16 +198,25 @@ namespace ApexParserTest.Parser
             var pd = Apex.ParameterDeclaration.Parse(" int a");
             Assert.AreEqual("int", pd.Type.Identifier);
             Assert.AreEqual("a", pd.Identifier);
+            Assert.AreEqual(0, pd.Modifiers.Count);
 
             pd = Apex.ParameterDeclaration.Parse(" SomeClass b");
             Assert.AreEqual("SomeClass", pd.Type.Identifier);
             Assert.AreEqual("b", pd.Identifier);
+            Assert.AreEqual(0, pd.Modifiers.Count);
 
             pd = Apex.ParameterDeclaration.Parse(" List<string> stringList");
             Assert.AreEqual("list", pd.Type.Identifier);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
             Assert.AreEqual("string", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("stringList", pd.Identifier);
+            Assert.AreEqual(0, pd.Modifiers.Count);
+
+            pd = Apex.ParameterDeclaration.Parse(" final int a");
+            Assert.AreEqual("int", pd.Type.Identifier);
+            Assert.AreEqual("a", pd.Identifier);
+            Assert.AreEqual(1, pd.Modifiers.Count);
+            Assert.AreEqual("final", pd.Modifiers[0]);
 
             Assert.Throws<ParseException>(() => Apex.ParameterDeclaration.Parse("Hello!"));
         }
@@ -543,6 +552,17 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("return 0", block.Statements[0].Body);
+        }
+
+        [Test]
+        public void PropertyAccessorCanHaveComments()
+        {
+            var get = Apex.PropertyAccessor.End().Parse(" get; // getter");
+            Assert.False(get.LeadingComments.Any());
+            Assert.False(get.Annotations.Any());
+            Assert.AreEqual(0, get.Modifiers.Count);
+            Assert.True(get.IsGetter);
+            Assert.Null(get.Body);
         }
 
         [Test]
@@ -1656,6 +1676,21 @@ namespace ApexParserTest.Parser
             Assert.NotNull(ts.Finally);
             Assert.NotNull(ts.Finally.Block);
             Assert.AreEqual(1, ts.Finally.Block.Statements.Count);
+
+            ts = Apex.TryCatchFinallyStatement.Parse(@"
+            try // leading for block
+            { // inside the block
+            } // trailing for try
+            // leading for catch
+            catch // ignored
+            // ignored
+            (Exception e) // leading for block
+            { // inside the block
+            } // trailing for block
+            // leading for finally
+            finally // leading for block
+            { // inside the block
+            } // trailing for the block");
 
             Assert.Throws<ParseException>(() => Apex.TryCatchFinallyStatement.Parse("try {}"));
         }

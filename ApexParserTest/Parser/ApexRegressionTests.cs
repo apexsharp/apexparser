@@ -461,7 +461,81 @@ namespace ApexParserTest.Parser
                     return 0;
                 }
             }";
-            var cd = Apex.ClassDeclaration.Parse(text);
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void RestResponseInstrumenterIsParsed()
+        {
+            var text = @"
+            public class RestResponseInstrumenter {
+                private class Insturmentation
+                {
+                    String instrument(final String s)
+                    {
+                    }
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void NavPackageControllerIsParsed()
+        {
+            var text = @"
+            public with sharing class NavPackageController1 {
+
+                private List<PackageDetails>  sort(List<PackageDetails> pkgList)
+                {
+                }
+             }
+            ";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void OfferCategoryIsParsed()
+        {
+            var text = @"
+            public  with sharing class OfferCategory
+            {
+                public boolean isChangeCommitted
+                {
+                    get // declaration of get
+                    {
+                        return true;
+                    }
+                    private set; //declaration of set
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void VehicleLifecycleHandlerIsParsed()
+        {
+            var text = @"
+            global with sharing class VehicleLifecycleHandler
+            {
+                public static void eventSold(String vin )
+                {
+                        try        //ONS-21
+                        {
+
+
+                        }        //ONS-21
+                        catch(Exception e)    //ONS-21
+                        {            //ONS-21
+
+                        }    //ONS-21
+                    }
+                }
+            }";
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
     }
 }

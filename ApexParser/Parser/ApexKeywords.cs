@@ -122,7 +122,7 @@ namespace ApexParser.Parser
         public const string Select = "select";
         ////public const string Set = "set"; // hack, see below
         public const string Short = "short"; // reserved for future use
-        public const string Sort = "sort";
+        ////public const string Sort = "sort"; // hack, see below
         ////public const string Stat = "stat"; // reserved for future use
         public const string Static = "static";
         public const string Super = "super";
@@ -178,6 +178,7 @@ namespace ApexParser.Parser
         ////public const string Throws = "throws"; // the status is unclear
         public static string RunAs => "runas"; // System.runAs has special syntax
         public static string Set => "set"; // "set" seems to be a valid method name
+        public static string Sort => "sort"; // seems to be valid method name
         public static string Today => "today"; // System.today() method
         public static string Transient => "transient"; // variable modifier
         public static string Void => "void";

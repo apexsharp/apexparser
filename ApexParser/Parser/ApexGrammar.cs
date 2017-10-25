@@ -87,9 +87,13 @@ namespace ApexParser.Parser
 
         // example: string name
         protected internal virtual Parser<ParameterSyntax> ParameterDeclaration =>
+            from modifiers in Modifier.Token().Many()
             from type in TypeReference
             from name in Identifier
-            select new ParameterSyntax(type, name);
+            select new ParameterSyntax(type, name)
+            {
+                Modifiers = modifiers.ToList(),
+            };
 
         // example: int a, Boolean flag
         protected internal virtual Parser<IEnumerable<ParameterSyntax>> ParameterDeclarations =>
@@ -177,11 +181,12 @@ namespace ApexParser.Parser
         protected internal virtual Parser<AccessorDeclarationSyntax> PropertyAccessor =>
             from heading in MemberDeclarationHeading
             from keyword in Parse.IgnoreCase(ApexKeywords.Get).Or(Parse.IgnoreCase(ApexKeywords.Set)).Token().Text()
-            from body in Parse.Char(';').Token().Return(default(BlockSyntax)).Or(Block)
+            from body in Parse.Char(';').Return(default(BlockSyntax)).Or(Block).Commented(this)
             select new AccessorDeclarationSyntax(heading)
             {
                 IsGetter = keyword == ApexKeywords.Get,
-                Body = body,
+                Body = body.Value,
+                TrailingComments = body.TrailingComments.ToList(),
             };
 
         // example: private static int x, y, z = 3;
@@ -271,34 +276,39 @@ namespace ApexParser.Parser
 
         // examples: catch { ... }, catch (MyEx) { ...}, catch (MyEx ex) { ... }
         protected internal virtual Parser<CatchClauseSyntax> CatchClause =>
-            from @catch in Parse.IgnoreCase(ApexKeywords.Catch).Token()
-            from expr in CatchExpressionTypeName.Optional()
-            from block in Block
+            from @catch in Parse.IgnoreCase(ApexKeywords.Catch).Commented(this)
+            from expr in CatchExpressionTypeName.Commented(this).Optional()
+            from block in Block.Commented(this)
             select new CatchClauseSyntax
             {
-                Type = expr.GetOrDefault()?.Type,
-                Identifier = expr.GetOrDefault()?.Identifier,
-                Block = block,
+                LeadingComments = @catch.LeadingComments.ToList(),
+                Type = expr.GetOrDefault()?.Value?.Type,
+                Identifier = expr.GetOrDefault()?.Value?.Identifier,
+                Block = block.Value.WithLeadingComments(block.LeadingComments),
+                TrailingComments = block.TrailingComments.ToList(),
             };
 
         // examples: finally { ... }
         protected internal virtual Parser<FinallyClauseSyntax> FinallyClause =>
-            from @finally in Parse.IgnoreCase(ApexKeywords.Finally).Token()
-            from block in Block
+            from @finally in Parse.IgnoreCase(ApexKeywords.Finally).Commented(this)
+            from block in Block.Commented(this)
             select new FinallyClauseSyntax
             {
-                Block = block,
+                LeadingComments = @finally.LeadingComments.ToList(),
+                Block = block.Value.WithLeadingComments(block.LeadingComments),
+                TrailingComments = block.TrailingComments.ToList(),
             };
 
         // example: try { ... } catch (Ex) { ... } finally { }
         protected internal virtual Parser<TryStatementSyntax> TryCatchFinallyStatement =>
-            from @try in Parse.IgnoreCase(ApexKeywords.Try).Token()
+            from @try in Parse.IgnoreCase(ApexKeywords.Try).Commented(this)
             from block in Block
-            from catchClauses in CatchClause.XMany()
+            from catchClauses in CatchClause.Many()
             from @finally in FinallyClause.Optional()
             where @finally.IsDefined || catchClauses.Any()
             select new TryStatementSyntax
             {
+                LeadingComments = @try.LeadingComments.ToList(),
                 Block = block,
                 Catches = catchClauses.ToList(),
                 Finally = @finally.GetOrDefault(),
