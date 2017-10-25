@@ -1677,6 +1677,21 @@ namespace ApexParserTest.Parser
             Assert.NotNull(ts.Finally.Block);
             Assert.AreEqual(1, ts.Finally.Block.Statements.Count);
 
+            ts = Apex.TryCatchFinallyStatement.Parse(@"
+            try // leading for block
+            { // inside the block
+            } // trailing for try
+            // leading for catch
+            catch // ignored
+            // ignored
+            (Exception e) // leading for block
+            { // inside the block
+            } // trailing for block
+            // leading for finally
+            finally // leading for block
+            { // inside the block
+            } // trailing for the block");
+
             Assert.Throws<ParseException>(() => Apex.TryCatchFinallyStatement.Parse("try {}"));
         }
 

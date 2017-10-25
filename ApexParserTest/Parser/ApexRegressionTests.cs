@@ -514,5 +514,28 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void VehicleLifecycleHandlerIsParsed()
+        {
+            var text = @"
+            global with sharing class VehicleLifecycleHandler
+            {
+                public static void eventSold(String vin )
+                {
+                        try        //ONS-21
+                        {
+
+
+                        }        //ONS-21
+                        catch(Exception e)    //ONS-21
+                        {            //ONS-21
+
+                        }    //ONS-21
+                    }
+                }
+            }";
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }
