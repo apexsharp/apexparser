@@ -458,6 +458,31 @@ namespace ApexParser.Parser
                 Statement = loopBody,
             };
 
+        // examples: return x; insert y; delete z;
+        protected internal virtual Parser<string> KeywordExpressionStatement(string keyword) =>
+            from key in Parse.IgnoreCase(keyword).Token()
+            from expr in GenericExpression.XOptional()
+            from semicolon in Parse.Char(';').Token()
+            select expr.GetOrDefault();
+
+        // example: insert contact;
+        protected internal virtual Parser<InsertStatementSyntax> InsertStatement =>
+            from expr in KeywordExpressionStatement(ApexKeywords.Insert)
+            where !string.IsNullOrWhiteSpace(expr)
+            select new InsertStatementSyntax
+            {
+                Expression = expr,
+            };
+
+        // example: delete user;
+        protected internal virtual Parser<DeleteStatementSyntax> DeleteStatement =>
+            from expr in KeywordExpressionStatement(ApexKeywords.Delete)
+            where !string.IsNullOrWhiteSpace(expr)
+            select new DeleteStatementSyntax
+            {
+                Expression = expr,
+            };
+
         // examples: /* this is a member */ @isTest public
         protected internal virtual Parser<MemberDeclarationSyntax> MemberDeclarationHeading =>
             from comments in CommentParser.AnyComment.Token().Many()

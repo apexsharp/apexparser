@@ -65,6 +65,7 @@
     <Compile Include="MetaClass\ClassDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ClassInitializerSyntax.cs" />
     <Compile Include="MetaClass\ConstructorDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\DeleteStatementSyntax.cs" />
     <Compile Include="MetaClass\DoStatementSyntax.cs" />
     <Compile Include="MetaClass\EnumDeclarationSyntax.cs" />
     <Compile Include="MetaClass\EnumMemberDeclarationSyntax.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="MetaClass\ForEachStatementSyntax.cs" />
     <Compile Include="MetaClass\ForStatementSyntax.cs" />
     <Compile Include="MetaClass\IfStatementSyntax.cs" />
+    <Compile Include="MetaClass\InsertStatementSyntax.cs" />
     <Compile Include="MetaClass\MemberDeclarationSyntax.cs" />
     <Compile Include="MetaClass\MethodDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ParameterSyntax.cs" />

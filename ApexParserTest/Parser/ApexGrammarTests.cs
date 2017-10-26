@@ -1137,6 +1137,19 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void KeywordExpressionStatementHandlesInsertDeleteAndReturn()
+        {
+            var ins = Apex.InsertStatement.Parse("  insert contact; ");
+            Assert.AreEqual("contact", ins.Expression);
+
+            var del = Apex.DeleteStatement.Parse("  delete\tuser;");
+            Assert.AreEqual("user", del.Expression);
+
+            Assert.Throws<ParseException>(() => Apex.InsertStatement.Parse(" insert ;"));
+            Assert.Throws<ParseException>(() => Apex.InsertStatement.Parse(" delete ;"));
+        }
+
+        [Test]
         public void UnknownGenericStatementIsAnythingExceptBlockEndingWithATerminator()
         {
             var stmt = Apex.UnknownGenericStatement.Parse("return 'Hello World';");

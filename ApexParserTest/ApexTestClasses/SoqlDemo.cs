@@ -16,7 +16,7 @@
 
             System.Debug(contactNew.Id);
 
-            List<Contact> contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew.Id });
+            List<Contact> contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew });
 
             foreach (Contact contact in contacts)
             {
@@ -26,14 +26,14 @@
             SOQL.Update(contacts);
 
 
-            contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew.Id });
+            contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew });
             foreach (Contact contact in contacts)
             {
                 System.Debug(contact.Email);
             }
             SOQL.Delete(contacts);
 
-            contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew.Id });
+            contacts = SOQL.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew });
             if (contacts.IsEmpty())
             {
                 System.Debug("Del Worked");

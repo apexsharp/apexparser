@@ -29,6 +29,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitConstructorDeclaration(ConstructorDeclarationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitDeleteStatement(DeleteStatementSyntax node) => DefaultVisit(node);
+
         public virtual void VisitDoStatement(DoStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitEnum(EnumDeclarationSyntax node) => DefaultVisit(node);
@@ -46,6 +48,8 @@ namespace ApexParser.Visitors
         public virtual void VisitForEachStatement(ForEachStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitIfStatement(IfStatementSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitInsertStatement(InsertStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitMethodDeclaration(MethodDeclarationSyntax node) => DefaultVisit(node);
 
