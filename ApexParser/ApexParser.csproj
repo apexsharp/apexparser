@@ -86,6 +86,7 @@
     <Compile Include="MetaClass\SyntaxType.cs" />
     <Compile Include="MetaClass\TryStatementSyntax.cs" />
     <Compile Include="MetaClass\TypeSyntax.cs" />
+    <Compile Include="MetaClass\UpdateStatementSyntax.cs" />
     <Compile Include="MetaClass\VariableDeclarationSyntax.cs" />
     <Compile Include="MetaClass\VariableDeclaratorSyntax.cs" />
     <Compile Include="MetaClass\WhileStatementSyntax.cs" />

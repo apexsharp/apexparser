@@ -223,6 +223,9 @@ namespace ApexParser.Parser
                 .Or(BreakStatement)
                 .Or(RunAsStatement)
                 .Or(TryCatchFinallyStatement)
+                .Or(InsertStatement)
+                .Or(UpdateStatement)
+                .Or(DeleteStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
             select statement.WithLeadingComments(comments);
@@ -470,6 +473,15 @@ namespace ApexParser.Parser
             from expr in KeywordExpressionStatement(ApexKeywords.Insert)
             where !string.IsNullOrWhiteSpace(expr)
             select new InsertStatementSyntax
+            {
+                Expression = expr,
+            };
+
+        // example: update items;
+        protected internal virtual Parser<UpdateStatementSyntax> UpdateStatement =>
+            from expr in KeywordExpressionStatement(ApexKeywords.Update)
+            where !string.IsNullOrWhiteSpace(expr)
+            select new UpdateStatementSyntax
             {
                 Expression = expr,
             };

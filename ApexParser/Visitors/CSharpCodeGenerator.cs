@@ -56,7 +56,7 @@ namespace ApexParser.Visitors
 
                 using (Indented())
                 {
-                    foreach (var md in node.Methods.AsSmart())
+                    foreach (var md in node.Members.AsSmart())
                     {
                         md.Value.Accept(this);
                         if (!md.IsLast)
@@ -364,6 +364,21 @@ namespace ApexParser.Visitors
 
             AppendIndentedLine("}}");
             EmptyLineIsRequired = true;
+        }
+
+        public override void VisitInsertStatement(InsertStatementSyntax node)
+        {
+            AppendIndentedLine("SOQL.Insert({0});", node.Expression);
+        }
+
+        public override void VisitUpdateStatement(UpdateStatementSyntax node)
+        {
+            AppendIndentedLine("SOQL.Update({0});", node.Expression);
+        }
+
+        public override void VisitDeleteStatement(DeleteStatementSyntax node)
+        {
+            AppendIndentedLine("SOQL.Delete({0});", node.Expression);
         }
     }
 }

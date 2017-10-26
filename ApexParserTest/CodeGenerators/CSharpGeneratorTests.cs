@@ -436,5 +436,38 @@ namespace ApexParserTest.CodeGenerators
                     break;
                 }");
         }
+
+        [Test]
+        public void ApexInsertStatementGeneratesSoqlHelperMethod()
+        {
+            var insertStatement = new InsertStatementSyntax
+            {
+                Expression = "contactNew"
+            };
+
+            Check(insertStatement, @"SOQL.Insert(contactNew);");
+        }
+
+        [Test]
+        public void ApexUpdateStatementGeneratesSoqlHelperMethod()
+        {
+            var updateStatement = new UpdateStatementSyntax
+            {
+                Expression = "contacts"
+            };
+
+            Check(updateStatement, @"SOQL.Update(contacts);");
+        }
+
+        [Test]
+        public void ApexDeleteStatementGeneratesSoqlHelperMethod()
+        {
+            var deleteStatement = new DeleteStatementSyntax
+            {
+                Expression = "contactOld"
+            };
+
+            Check(deleteStatement, @"SOQL.Delete(contactOld);");
+        }
     }
 }

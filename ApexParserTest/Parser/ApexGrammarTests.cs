@@ -1145,8 +1145,12 @@ namespace ApexParserTest.Parser
             var del = Apex.DeleteStatement.Parse("  delete\tuser;");
             Assert.AreEqual("user", del.Expression);
 
+            var upd = Apex.UpdateStatement.Parse("  update \r\n items;");
+            Assert.AreEqual("items", upd.Expression);
+
             Assert.Throws<ParseException>(() => Apex.InsertStatement.Parse(" insert ;"));
-            Assert.Throws<ParseException>(() => Apex.InsertStatement.Parse(" delete ;"));
+            Assert.Throws<ParseException>(() => Apex.DeleteStatement.Parse(" delete ;"));
+            Assert.Throws<ParseException>(() => Apex.UpdateStatement.Parse(" update ;"));
         }
 
         [Test]
@@ -1493,7 +1497,9 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("return 'Hello World'", stmt.Body);
 
             stmt = Apex.Statement.Parse("insert something;");
-            Assert.AreEqual("insert something", stmt.Body);
+            var ins = stmt as InsertStatementSyntax;
+            Assert.NotNull(ins);
+            Assert.AreEqual("something", ins.Expression);
 
             stmt = Apex.Statement.Parse(@"
             for (Contact c : contacts)
@@ -1575,6 +1581,21 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
             Assert.AreEqual("System.debug('wow!')", block.Statements[0].Body);
+
+            stmt = Apex.Statement.Parse("  insert contact; ");
+            ins = stmt as InsertStatementSyntax;
+            Assert.NotNull(ins);
+            Assert.AreEqual("contact", ins.Expression);
+
+            stmt = Apex.Statement.Parse("  delete\tuser;");
+            var del = stmt as DeleteStatementSyntax;
+            Assert.NotNull(del);
+            Assert.AreEqual("user", del.Expression);
+
+            stmt = Apex.Statement.Parse("  update \r\n items;");
+            var upd = stmt as UpdateStatementSyntax;
+            Assert.NotNull(upd);
+            Assert.AreEqual("items", upd.Expression);
         }
 
         [Test]
