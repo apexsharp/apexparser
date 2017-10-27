@@ -99,7 +99,6 @@
     <Compile Include="NoApex\Serilog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleDemo.cs" />
-    <Compile Include="SimpleDemoLocal.cs" />
     <Compile Include="SObjects\Account.cs" />
     <Compile Include="SObjects\Contact.cs" />
     <Compile Include="SObjects\DandBCompany.cs" />
@@ -116,6 +115,10 @@
     <Folder Include="CustomSettings\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ApexSharpBase\ApexSharpBase.csproj">
+      <Project>{2bbd10d7-1b35-4dbe-a2e7-61b1e7f4750d}</Project>
+      <Name>ApexSharpBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apex\Apex.csproj">
       <Project>{269b0981-154b-4dde-9b0a-18685c38bd9b}</Project>
       <Name>Apex</Name>

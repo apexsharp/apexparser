@@ -146,7 +146,6 @@
     <Compile Include="ApexPages\Severity.cs" />
     <Compile Include="ApexPages\StandardController.cs" />
     <Compile Include="ApexPages\StandardSetController.cs" />
-    <Compile Include="ApexSharp\ApexSharp.cs" />
     <Compile Include="ApexSharp\SharpToApex\ApexClassDeclarationSyntax.cs" />
     <Compile Include="ApexSharp\SharpToApex\ApexLineGenerator.cs" />
     <Compile Include="ApexSharp\SharpToApex\CSharpParser.cs" />

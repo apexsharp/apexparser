@@ -12,7 +12,7 @@ namespace ApexSharpBaseTest
         //[Test, Ignore("Appveyor fails on this test")]
         public void ParseCSharpCodeTest()
         {
-            ApesSharp apexSharp = new ApesSharp();
+          //  ApesSharp apexSharp = new ApesSharp();
             //var cSharpFile = File.ReadAllText(@"C:\DevSharp\apexsharp\ApexSharpDemo\ApexCode\ForIfWhile.cs");
             //var classContainer = apexSharp.ParseCSharpCode(cSharpFile);
 

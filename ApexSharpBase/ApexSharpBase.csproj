@@ -169,7 +169,12 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.3.0-beta1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.3.0-beta1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SalesForceAPI\SalesForceAPI.csproj">
+      <Project>{a13785db-05bb-4842-957d-56d5b251d608}</Project>
+      <Name>SalesForceAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

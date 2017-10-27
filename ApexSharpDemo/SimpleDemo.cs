@@ -1,5 +1,6 @@
 ﻿using System;
 using Apex.ApexSharp;
+using ApexSharpBase;
 using ApexSharpDemo.ApexCode;
 
 namespace ApexSharpDemo
