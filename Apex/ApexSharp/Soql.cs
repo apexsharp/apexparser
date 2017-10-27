@@ -2,33 +2,24 @@
 using SalesForceAPI;
 using SalesForceAPI.ApexApi;
 
-
 namespace Apex.ApexSharp
 {
-    public class SOQL
+    public class Soql
     {
         public static List<T> Query<T>(string soql, object dynamicInput)
         {
             SoqlApi api = new SoqlApi();
-
-            global::System.Collections.Generic.List<T> result = api.Query<T>(soql, dynamicInput);
-
-            List<T> dataList = new List<T>();
-
-            foreach (var record in result)
-            {
-                dataList.Add(record);
-            }
-
-            return dataList;
+            return ConvertList(api.Query<T>(soql, dynamicInput));
         }
 
         public static List<T> Query<T>(string soql)
         {
             SoqlApi api = new SoqlApi();
+            return ConvertList(api.Query<T>(soql));        
+        }
 
-            global::System.Collections.Generic.List<T> result = api.Query<T>(soql);
-
+        private static List<T> ConvertList<T>(global::System.Collections.Generic.List<T> result)
+        {
             List<T> dataList = new List<T>();
 
             foreach (var record in result)
@@ -62,6 +53,5 @@ namespace Apex.ApexSharp
             SoqlApi api = new SoqlApi();
             api.Delete<T>(sObjectList);
         }
-
     }
 }
