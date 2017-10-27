@@ -45,8 +45,7 @@
   <ItemGroup>
     <Compile Include="ApexApi\Id.cs" />
     <Compile Include="ApexApi\SObject.cs" />
-    <Compile Include="ApexApi\SoqlApi.cs" />
-    <Compile Include="AssertErase.cs" />
+    <Compile Include="SoqlApi.cs" />
     <Compile Include="Attribute\FieldType.cs" />
     <Compile Include="CompositeApi.cs" />
     <Compile Include="HttpManager.cs" />
@@ -56,7 +55,6 @@
     <Compile Include="Model\API\SalesForceField.cs" />
     <Compile Include="Model\API\SalesForceObject.cs" />
     <Compile Include="Attribute\ObjectNameAttribute.cs" />
-    <Compile Include="Model\BaseObject.cs" />
     <Compile Include="Model\BulkApi\Attributes.cs" />
     <Compile Include="Model\BulkApi\JobInfoReply.cs" />
     <Compile Include="Model\BulkApi\JobInfoRequest.cs" />
@@ -71,7 +69,6 @@
     <Compile Include="Model\RestApi\RecordReadList.cs" />
     <Compile Include="Model\RestApi\SObjectDescribe.cs" />
     <Compile Include="Model\RestApi\SObjectDetail.cs" />
-    <Compile Include="Model\SalesForceObjectModel.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="ConnectionUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

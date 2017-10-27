@@ -10,8 +10,8 @@ namespace SalesForceAPI.Model.BulkApi
 
     public class BulkInsertRequest
     {
-        [JsonProperty(PropertyName = "records")]
-        public BaseObject[] Records { get; set; }
+      //  [JsonProperty(PropertyName = "records")]
+      //  public BaseObject[] Records { get; set; }
     }
 
     public class BulkAttributes

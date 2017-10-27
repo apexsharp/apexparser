@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
-
-namespace SalesForceAPI.ApexApi
+namespace SalesForceAPI
 {
     public class SoqlApi
     {

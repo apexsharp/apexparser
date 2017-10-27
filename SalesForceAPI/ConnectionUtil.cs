@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Build.Evaluation;
+using SalesForceAPI.ApexApi;
 using SalesForceAPI.Model;
 using SalesForceAPI.Model.BulkApi;
 using SalesForceAPI.Model.RestApi;
@@ -228,7 +229,7 @@ namespace SalesForceAPI
         }
 
 
-        public BulkInsertReply BulkInsert<T>(System.Collections.Generic.List<T> dataList) where T : BaseObject
+        public BulkInsertReply BulkInsert<T>(System.Collections.Generic.List<T> dataList) where T : SObject
         {
             // ToDo limit to 200 Exception 
             BulkInsertRequest<T> request = new BulkInsertRequest<T> { Records = new T[dataList.Count] };

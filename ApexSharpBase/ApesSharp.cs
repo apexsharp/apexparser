@@ -5,6 +5,7 @@
     public class ApesSharp
     {
 
+
         // Format APEX code so it looks nice
         public string GetFormatedApexCode(string apexCode)
         {
