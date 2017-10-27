@@ -136,6 +136,35 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
+        public void ApexConstructorIsConvertedToCSharp()
+        {
+            var constr = new ConstructorDeclarationSyntax
+            {
+                Annotations = new List<AnnotationSyntax>
+                {
+                    new AnnotationSyntax
+                    {
+                        Identifier = "DefaultConstructor"
+                    },
+                },
+                Modifiers = new List<string> { "public" },
+                ReturnType = new TypeSyntax("Sample"),
+                Identifier = "Sample",
+                Parameters = new List<ParameterSyntax>
+                {
+                    new ParameterSyntax("int", "x"),
+                    new ParameterSyntax("int", "y")
+                }
+            };
+
+            Check(constr,
+                @"[DefaultConstructor]
+                public Sample(int x, int y)
+                {
+                }");
+        }
+
+        [Test]
         public void UnknownGenericStatementIsEmittedAsIs()
         {
             var st = new StatementSyntax("UnknownGenericStatement()");
@@ -468,6 +497,209 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(deleteStatement, @"SOQL.Delete(contactOld);");
+        }
+
+        [Test]
+        public void EmptyPublicGetAccessorIsGenerated()
+        {
+            var acc = new AccessorDeclarationSyntax
+            {
+                IsGetter = true,
+                Modifiers = new List<string> { "public" }
+            };
+
+            Check(acc, "public get;");
+        }
+
+        [Test]
+        public void EmptyPrivateSetAccessorIsGenerated()
+        {
+            var acc = new AccessorDeclarationSyntax
+            {
+                IsGetter = false,
+                Modifiers = new List<string> { "private" }
+            };
+
+            Check(acc, "private set;");
+        }
+
+        [Test]
+        public void NonEmptyProtectedGetAccessorIsGenerated()
+        {
+            var acc = new AccessorDeclarationSyntax
+            {
+                IsGetter = true,
+                Modifiers = new List<string> { "protected" },
+                Body = new BlockSyntax
+                {
+                    new BreakStatementSyntax(),
+                },
+            };
+
+            Check(acc,
+                @"protected get
+                {
+                    break;
+                }");
+        }
+
+        [Test]
+        public void NonEmptySetAccessorIsGenerated()
+        {
+            var acc = new AccessorDeclarationSyntax
+            {
+                IsGetter = false,
+                Body = new BlockSyntax
+                {
+                    new InsertStatementSyntax
+                    {
+                        Expression = "customer",
+                    },
+                },
+            };
+
+            Check(acc,
+                @"set
+                {
+                    SOQL.Insert(customer);
+                }");
+        }
+
+        [Test]
+        public void AutomaticPropertyIsGeneratedAsGetSetRegardlessOfTheAccessorOrder()
+        {
+            var prop = new PropertyDeclarationSyntax
+            {
+                Modifiers = new List<string> { "public" },
+                Type = new TypeSyntax("string"),
+                Identifier = "Name",
+                Accessors = new List<AccessorDeclarationSyntax>
+                {
+                    new AccessorDeclarationSyntax
+                    {
+                        IsGetter = false,
+                    },
+                    new AccessorDeclarationSyntax
+                    {
+                        IsGetter = true
+                    }
+                }
+            };
+
+            Check(prop, "public string Name { get; set; }");
+        }
+
+        [Test]
+        public void AutomaticPropertyIsGeneratedWithModifiersOnASingleLine()
+        {
+            var prop = new PropertyDeclarationSyntax
+            {
+                Modifiers = new List<string> { "protected" },
+                Type = new TypeSyntax("int"),
+                Identifier = "Age",
+                Accessors = new List<AccessorDeclarationSyntax>
+                {
+                    new AccessorDeclarationSyntax
+                    {
+                        IsGetter = true,
+                        Modifiers = new List<string>{ "public" },
+                    },
+                    new AccessorDeclarationSyntax
+                    {
+                        IsGetter = false,
+                        Modifiers = new List<string>{ "private" },
+                    }
+                }
+            };
+
+            Check(prop, "protected int Age { public get; private set; }");
+        }
+
+        [Test]
+        public void NonAutomaticPropertyIsGeneratedOnMultipleLines()
+        {
+            var prop = new PropertyDeclarationSyntax
+            {
+                Type = new TypeSyntax("object"),
+                Identifier = "Something",
+                Accessors = new List<AccessorDeclarationSyntax>
+                {
+                    new AccessorDeclarationSyntax
+                    {
+                        IsGetter = true,
+                        Body = new BlockSyntax
+                        {
+                            new StatementSyntax { Body = "return null" },
+                        },
+                    },
+                    new AccessorDeclarationSyntax
+                    {
+                        IsGetter = false,
+                    }
+                }
+            };
+
+            Check(prop,
+                @"object Something
+                {
+                    get
+                    {
+                        return null;
+                    }
+                    set;
+                }");
+        }
+
+        [Test]
+        public void ClassWithConstructorMethodAndPropertyIsGenerated()
+        {
+            var apex = Apex.ParseClass(@"
+            public class MyDemo {
+                private MyDemo(float s) { Size = s;while(true){break;} }
+                public void Test(string name, int age) {
+                    Contact c = new Contact(name, age);
+                    insert c;
+                }
+                public float Size { get; private set {
+                        System.debug('trying to set');
+                    }
+                }
+            }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    public class MyDemo
+                    {
+                        private MyDemo(float s)
+                        {
+                            Size = s;
+                            while (true)
+                            {
+                                break;
+                            }
+                        }
+
+                        public void Test(string name, int age)
+                        {
+                            Contact c = new Contact(name, age);
+                            SOQL.Insert(c);
+                        }
+
+                        public float Size
+                        {
+                            get;
+                            private set
+                            {
+                                System.debug('trying to set');
+                            }
+                        }
+                    }
+                }");
         }
     }
 }

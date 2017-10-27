@@ -124,7 +124,18 @@ namespace ApexParser.Visitors
         {
             AppendCommentsAttributesAndModifiers(node);
             Append("{0} {1}(", node.ReturnType.Identifier, node.Identifier);
+            AppendMethodParametersAndBody(node);
+        }
 
+        public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
+        {
+            AppendCommentsAttributesAndModifiers(node);
+            Append("{0}(", node.ReturnType?.Identifier ?? node.Identifier);
+            AppendMethodParametersAndBody(node);
+        }
+
+        private void AppendMethodParametersAndBody(MethodDeclarationSyntax node)
+        {
             foreach (var p in node.Parameters.AsSmart())
             {
                 p.Value.Accept(this);
@@ -256,7 +267,7 @@ namespace ApexParser.Visitors
         public override void VisitForStatement(ForStatementSyntax node)
         {
             AppendIndented("for (");
-            using (SkipNewLines())
+            using (SkipNewLines(replaceWithSpace: false))
             {
                 if (node.Declaration != null)
                 {
@@ -379,6 +390,54 @@ namespace ApexParser.Visitors
         public override void VisitDeleteStatement(DeleteStatementSyntax node)
         {
             AppendIndentedLine("SOQL.Delete({0});", node.Expression);
+        }
+
+        public override void VisitAccessor(AccessorDeclarationSyntax node)
+        {
+            AppendIndent();
+            foreach (var mod in node.Modifiers)
+            {
+                Append("{0} ", mod);
+            }
+
+            Append(node.IsGetter ? "get" : "set");
+            if (node.IsEmpty)
+            {
+                AppendLine(";");
+            }
+            else
+            {
+                AppendLine();
+                node.Body.Accept(this);
+            }
+        }
+
+        public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
+        {
+            AppendIndent();
+            foreach (var mod in node.Modifiers)
+            {
+                Append("{0} ", mod);
+            }
+
+            node.Type?.Accept(this);
+            Append(" {0}", node.Identifier);
+
+            // put empty accessors on the same line
+            var noNewLines = node.Accessors.All(acc => acc.IsEmpty);
+            using (noNewLines ? SkipNewLines() : null)
+            {
+                AppendLine();
+                AppendIndentedLine("{{");
+
+                using (Indented())
+                {
+                    node.Getter?.Accept(this);
+                    node.Setter?.Accept(this);
+                }
+
+                AppendIndentedLine("}}");
+            }
         }
     }
 }

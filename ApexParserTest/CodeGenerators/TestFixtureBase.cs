@@ -24,6 +24,11 @@ namespace ApexParserTest.CodeGenerators
             {
                 Assert.AreEqual(expectedList[i].Trim(), actualList[i].Trim());
             }
+
+            if (Abs(expectedList.Length - actualList.Length) > 1)
+            {
+                Assert.Fail("Too many difference in lines: expected {0}, actual {1}", expectedList.Length, actualList.Length);
+            }
         }
     }
 }

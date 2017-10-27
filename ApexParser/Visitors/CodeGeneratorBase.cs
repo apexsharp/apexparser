@@ -28,6 +28,10 @@ namespace ApexParser.Visitors
             {
                 Code.AppendLine();
             }
+            else if (ReplaceNewLineWithSpace)
+            {
+                Code.Append(" ");
+            }
         }
 
         protected IDisposable Indented()
@@ -38,10 +42,19 @@ namespace ApexParser.Visitors
 
         private int SkipNewLinesLevel { get; set; }
 
-        protected IDisposable SkipNewLines()
+        private bool ReplaceNewLineWithSpace { get; set; }
+
+        protected IDisposable SkipNewLines(bool replaceWithSpace = true)
         {
+            var oldReplace = ReplaceNewLineWithSpace;
+            ReplaceNewLineWithSpace = replaceWithSpace;
             SkipNewLinesLevel++;
-            return new Disposable(() => SkipNewLinesLevel--);
+
+            return new Disposable(() =>
+            {
+                SkipNewLinesLevel--;
+                ReplaceNewLineWithSpace = oldReplace;
+            });
         }
 
         protected void AppendIndented(string format, params string[] args)
