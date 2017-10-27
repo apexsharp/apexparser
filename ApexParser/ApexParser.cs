@@ -29,7 +29,7 @@ namespace ApexParser
         }
 
         // Indent APEX code, Pass the Tab Length.
-        public string IndendApexCode(int tabLength)
+        public string IndendApex(int tabLength)
         {
             return string.Empty;
         }
