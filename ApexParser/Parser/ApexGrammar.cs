@@ -213,7 +213,6 @@ namespace ApexParser.Parser
 
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
-            from comments in CommentParser.AnyComment.Token().Many()
             from statement in Block.Select(s => s as StatementSyntax)
                 .Or(IfStatement)
                 .Or(DoStatement)
@@ -228,20 +227,23 @@ namespace ApexParser.Parser
                 .Or(DeleteStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
-            select statement.WithLeadingComments(comments);
+                .Commented(this)
+            select statement.Value
+                .WithLeadingComments(statement.LeadingComments)
+                .WithTrailingComments(statement.TrailingComments);
 
-        // examples: {}, { /* empty block */ }, { int a = 0; return; }
+        // examples: {}, { /* inner comments */ }, { int a = 0; return; } // trailing comments
         protected internal virtual Parser<BlockSyntax> Block =>
             from comments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from statements in Statement.Many()
-            from trailingComment in CommentParser.AnyComment.Token().Many()
-            from closeBrace in Parse.Char('}').Token()
+            from closeBrace in Parse.Char('}').Commented(this)
             select new BlockSyntax
             {
                 LeadingComments = comments.ToList(),
                 Statements = statements.ToList(),
-                TrailingComments = trailingComment.ToList(),
+                InnerComments = closeBrace.LeadingComments.ToList(),
+                TrailingComments = closeBrace.TrailingComments.ToList(),
             };
 
         // example: int x, y, z = 3;

@@ -29,7 +29,8 @@ namespace ApexParser.Visitors
                 }
             }
 
-            AppendIndentedLine("}}");
+            AppendIndented("}}");
+            AppendTrailingComments(node);
         }
 
         public override void VisitAnnotation(AnnotationSyntax node)
@@ -44,10 +45,38 @@ namespace ApexParser.Visitors
             }
         }
 
-        protected virtual void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node)
+        protected virtual void AppendLeadingComments(BaseSyntax node) =>
+            AppendComments(node?.LeadingComments);
+
+        protected virtual void AppendTrailingComments(BaseSyntax node) =>
+            AppendComments(node?.TrailingComments, indentFirst: false);
+
+        protected virtual void AppendComments(IEnumerable<string> comments, bool indentFirst = true)
         {
-            foreach (var comment in node.LeadingComments.AsSmart())
+            if (comments.IsNullOrEmpty())
             {
+                if (!indentFirst)
+                {
+                    AppendLine();
+                }
+
+                return;
+            }
+
+            foreach (var comment in comments.AsSmart())
+            {
+                void EmitLine(string format, params string[] args)
+                {
+                    if (indentFirst || !comment.IsFirst)
+                    {
+                        AppendIndentedLine(format, args);
+                    }
+                    else
+                    {
+                        AppendLine(" " + format, args);
+                    }
+                }
+
                 var multiLine = comment.Value.Contains('\n');
                 if (multiLine)
                 {
@@ -56,15 +85,19 @@ namespace ApexParser.Visitors
                     {
                         var format = line.IsFirst ? "/*{0}" : line.IsLast ? "{0}*/" : "{0}";
                         var value = Regex.Replace(line.Value, @"^\s+|\s+$", " ");
-                        AppendIndentedLine(format, value);
+                        EmitLine(format, value);
                     }
                 }
                 else
                 {
-                    AppendIndentedLine("//{0}", comment.Value.TrimEnd());
+                    EmitLine("//{0}", comment.Value.TrimEnd());
                 }
             }
+        }
 
+        protected virtual void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node)
+        {
+            AppendLeadingComments(node);
             foreach (var annotation in node.Annotations.AsSmart())
             {
                 annotation.Value.Accept(this);
@@ -114,16 +147,19 @@ namespace ApexParser.Visitors
                 }
             }
 
-            AppendLine(")");
+            Append(")");
 
             if (node.Body != null)
             {
+                // non-abstract method
+                AppendLine();
                 node.Body.Accept(this);
             }
             else
             {
-                AppendIndentedLine("{{");
-                AppendIndentedLine("}}");
+                // abstract method
+                Append(";");
+                AppendTrailingComments(node);
             }
         }
 
@@ -165,11 +201,14 @@ namespace ApexParser.Visitors
 
         public override void VisitBreakStatement(BreakStatementSyntax node)
         {
-            AppendIndentedLine("break;");
+            AppendLeadingComments(node);
+            AppendIndented("break;");
+            AppendTrailingComments(node);
         }
 
         public override void VisitIfStatement(IfStatementSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndentedLine("if ({0})", node.Expression);
             if (node.ThenStatement != null)
             {
@@ -196,16 +235,19 @@ namespace ApexParser.Visitors
 
         public override void VisitStatement(StatementSyntax node)
         {
+            AppendLeadingComments(node);
             if (!string.IsNullOrWhiteSpace(node.Body))
             {
                 AppendIndented(node.Body);
             }
 
-            AppendLine(";");
+            Append(";");
+            AppendTrailingComments(node);
         }
 
         public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndent();
 
             node.Type.Accept(this);
@@ -220,7 +262,8 @@ namespace ApexParser.Visitors
                 }
             }
 
-            AppendLine(";");
+            Append(";");
+            AppendTrailingComments(node);
         }
 
         public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
@@ -235,6 +278,7 @@ namespace ApexParser.Visitors
 
         public override void VisitForStatement(ForStatementSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndented("for (");
             using (SkipNewLines(replaceWithSpace: false))
             {
@@ -274,6 +318,7 @@ namespace ApexParser.Visitors
 
         public override void VisitForEachStatement(ForEachStatementSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndented("for (");
             using (SkipNewLines())
             {
@@ -296,13 +341,16 @@ namespace ApexParser.Visitors
 
         public override void VisitDoStatement(DoStatementSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndentedLine("do");
             AppendStatementWithOptionalIndent(node.Statement);
-            AppendIndentedLine("while ({0});", node.Expression);
+            AppendIndented("while ({0});", node.Expression);
+            AppendTrailingComments(node);
         }
 
         public override void VisitWhileStatement(WhileStatementSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndentedLine("while ({0})", node.Expression);
             AppendStatementWithOptionalIndent(node.Statement);
         }
@@ -325,6 +373,7 @@ namespace ApexParser.Visitors
 
         public override void VisitBlock(BlockSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndentedLine("{{");
             EmptyLineIsRequired = false;
 
@@ -340,25 +389,34 @@ namespace ApexParser.Visitors
 
                     st.Value.Accept(this);
                 }
+
+                AppendComments(node.InnerComments);
             }
 
-            AppendIndentedLine("}}");
+            AppendIndented("}}");
+            AppendTrailingComments(node);
             EmptyLineIsRequired = true;
         }
 
         public override void VisitInsertStatement(InsertStatementSyntax node)
         {
-            AppendIndentedLine("insert {0};", node.Expression);
+            AppendLeadingComments(node);
+            AppendIndented("insert {0};", node.Expression);
+            AppendTrailingComments(node);
         }
 
         public override void VisitUpdateStatement(UpdateStatementSyntax node)
         {
-            AppendIndentedLine("update {0};", node.Expression);
+            AppendLeadingComments(node);
+            AppendIndented("update {0};", node.Expression);
+            AppendTrailingComments(node);
         }
 
         public override void VisitDeleteStatement(DeleteStatementSyntax node)
         {
-            AppendIndentedLine("delete {0};", node.Expression);
+            AppendLeadingComments(node);
+            AppendIndented("delete {0};", node.Expression);
+            AppendTrailingComments(node);
         }
 
         public override void VisitAccessor(AccessorDeclarationSyntax node)
@@ -372,7 +430,8 @@ namespace ApexParser.Visitors
             Append(node.IsGetter ? "get" : "set");
             if (node.IsEmpty)
             {
-                AppendLine(";");
+                Append(";");
+                AppendTrailingComments(node);
             }
             else
             {
@@ -383,12 +442,7 @@ namespace ApexParser.Visitors
 
         public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
         {
-            AppendIndent();
-            foreach (var mod in node.Modifiers)
-            {
-                Append("{0} ", mod);
-            }
-
+            AppendCommentsAttributesAndModifiers(node);
             node.Type?.Accept(this);
             Append(" {0}", node.Identifier);
 
@@ -405,7 +459,8 @@ namespace ApexParser.Visitors
                     node.Setter?.Accept(this);
                 }
 
-                AppendIndentedLine("}}");
+                AppendIndented("}}");
+                AppendTrailingComments(node);
             }
         }
     }

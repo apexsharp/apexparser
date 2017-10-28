@@ -1771,8 +1771,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(3, stmt.LeadingComments.Count);
             Assert.AreEqual(2, stmt.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
+            Assert.AreEqual(1, stmt.Statements[0].TrailingComments.Count);
+            Assert.AreEqual("method contents might not be valid", stmt.Statements[0].TrailingComments[0].Trim());
             Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
-            Assert.AreEqual(1, stmt.TrailingComments.Count);
+            Assert.AreEqual(1, stmt.Statements[1].TrailingComments.Count);
+            Assert.AreEqual("comments", stmt.Statements[1].TrailingComments[0].Trim());
+            Assert.AreEqual(0, stmt.TrailingComments.Count);
         }
 
         // [Test] // TODO: Try to improve the diagnostics

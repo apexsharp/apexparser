@@ -19,6 +19,17 @@ namespace ApexParser.MetaClass
             return syntax;
         }
 
+        public static T WithLeadingComment<T>(this T syntax, string comment)
+            where T : BaseSyntax
+        {
+            if (comment != null)
+            {
+                syntax.LeadingComments.Add(comment);
+            }
+
+            return syntax;
+        }
+
         public static T WithTrailingComments<T>(this T syntax, IEnumerable<string> comments)
             where T : BaseSyntax
         {
@@ -29,6 +40,30 @@ namespace ApexParser.MetaClass
 
             return syntax;
         }
+
+        public static T WithTrailingComment<T>(this T syntax, string comment)
+            where T : BaseSyntax
+        {
+            if (comment != null)
+            {
+                syntax.TrailingComments.Add(comment);
+            }
+
+            return syntax;
+        }
+
+        public static BlockSyntax WithInnerComments(this BlockSyntax syntax, IEnumerable<string> comments)
+        {
+            if (comments != null)
+            {
+                syntax.InnerComments.AddRange(comments);
+            }
+
+            return syntax;
+        }
+
+        public static BlockSyntax WithInnerComment(this BlockSyntax syntax, params string[] comments) =>
+            syntax.WithInnerComments(comments);
 
         public static T WithProperties<T>(this T syntax, MemberDeclarationSyntax other = null)
             where T : MemberDeclarationSyntax

@@ -23,5 +23,9 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void ClassTwoIsFormattedUsingNewApexFormatter() =>
             Check(ClassTwo, ClassTwo_Formatted);
+
+        [Test]
+        public void ClassWithCommentsIsFormattedUsingNewApexFormatter() =>
+            Check(ClassWithComments, ClassWithComments_Formatted);
     }
 }

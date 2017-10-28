@@ -162,9 +162,9 @@ namespace ApexParserTest.Parser
                 block = cc.Body;
                 Assert.NotNull(block);
                 Assert.False(block.Statements.Any());
-                Assert.AreEqual(2, block.TrailingComments.Count);
-                Assert.AreEqual("another constructor", block.TrailingComments[0].Trim());
-                Assert.AreEqual("with a lot of misplaced comments", block.TrailingComments[1].Trim());
+                Assert.AreEqual(2, block.InnerComments.Count);
+                Assert.AreEqual("another constructor", block.InnerComments[0].Trim());
+                Assert.AreEqual("with a lot of misplaced comments", block.InnerComments[1].Trim());
 
                 var mp = cc.Parameters[0];
                 Assert.AreEqual("String", mp.Type.Identifier);

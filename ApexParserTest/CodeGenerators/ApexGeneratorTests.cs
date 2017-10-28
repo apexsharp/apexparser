@@ -107,7 +107,8 @@ namespace ApexParserTest.CodeGenerators
                 {
                     new ParameterSyntax("int", "x"),
                     new ParameterSyntax("int", "y")
-                }
+                },
+                Body = new BlockSyntax(),
             };
 
             Check(method,
@@ -136,7 +137,8 @@ namespace ApexParserTest.CodeGenerators
                 {
                     new ParameterSyntax("int", "x"),
                     new ParameterSyntax("int", "y")
-                }
+                },
+                Body = new BlockSyntax(),
             };
 
             Check(constr,
@@ -172,14 +174,21 @@ namespace ApexParserTest.CodeGenerators
         {
             var ifStatement = new IfStatementSyntax
             {
+                LeadingComments = new List<string>
+                {
+                    " this is the first leading comment",
+                    " this is the second leading comment"
+                },
                 Expression = "true",
-                ThenStatement = new StatementSyntax("hello()"),
+                ThenStatement = new StatementSyntax("hello()").WithTrailingComment(" hello"),
                 ElseStatement = new BreakStatementSyntax(),
             };
 
             Check(ifStatement,
-                @"if (true)
-                    hello();
+                @"// this is the first leading comment
+                // this is the second leading comment
+                if (true)
+                    hello(); // hello
                 else
                     break;");
         }
@@ -189,23 +198,25 @@ namespace ApexParserTest.CodeGenerators
         {
             var ifStatement = new IfStatementSyntax
             {
+                LeadingComments = new List<string> { "some nested ifs" },
                 Expression = "true",
-                ThenStatement = new StatementSyntax("hello()"),
+                ThenStatement = new StatementSyntax("hello()").WithTrailingComment("there"),
                 ElseStatement = new IfStatementSyntax
                 {
                     Expression = "false",
-                    ThenStatement = new StatementSyntax("goodbye()"),
-                    ElseStatement = new BreakStatementSyntax()
+                    ThenStatement = new StatementSyntax("goodbye()").WithTrailingComment("and everywhere"),
+                    ElseStatement = new BreakStatementSyntax().WithTrailingComment("down")
                 }
             };
 
             Check(ifStatement,
-                @"if (true)
-                    hello();
+                @"//some nested ifs
+                if (true)
+                    hello(); //there
                 else if (false)
-                    goodbye();
+                    goodbye(); //and everywhere
                 else
-                    break;");
+                    break; //down");
         }
 
         [Test]
