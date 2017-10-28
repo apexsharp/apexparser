@@ -116,7 +116,7 @@ namespace ApexSharpBase
         }
 
 
-        public void ConvertToApexAndAddToProject(string fileName, bool overWrite)
+        public void ConvertToApex(string fileName, bool overWrite)
         {
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             path = path + "\\ApexCode\\" + fileName + ".cs";
