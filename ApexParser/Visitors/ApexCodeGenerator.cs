@@ -4,56 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApexParser.MetaClass;
+using ApexParser.Toolbox;
 
 namespace ApexParser.Visitors
 {
-    public class ApexCodeGenerator : CodeGeneratorBase
+    public class ApexCodeGenerator : CSharpCodeGenerator
     {
-        public static string Generate(ClassDeclarationSyntax cd)
+        public static string GenerateApex(BaseSyntax ast, int tabSize = 4)
         {
-            var generator = new ApexCodeGenerator();
-            cd.Accept(generator);
+            var generator = new ApexCodeGenerator { IndentSize = tabSize };
+            ast.Accept(generator);
             return generator.Code.ToString();
         }
 
-        public override void VisitClassDeclaration(ClassDeclarationSyntax cd)
+        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
         {
-            AppendIndentedLine("class {0}", cd.Identifier);
+            AppendCommentsAttributesAndModifiers(node);
+            AppendLine("class {0}", node.Identifier);
             AppendIndentedLine("{{");
 
             using (Indented())
             {
-                foreach (var md in cd.Methods)
+                foreach (var md in node.Members.AsSmart())
                 {
-                    md.Accept(this);
+                    md.Value.Accept(this);
+                    if (!md.IsLast)
+                    {
+                        AppendLine();
+                    }
                 }
             }
 
             AppendIndentedLine("}}");
-        }
-
-        public override void VisitMethodDeclaration(MethodDeclarationSyntax md)
-        {
-            AppendIndented("{0} {1}(", md.ReturnType.Identifier, md.Identifier);
-
-            var last = md.Parameters.LastOrDefault();
-            foreach (var p in md.Parameters)
-            {
-                p.Accept(this);
-                if (p != last)
-                {
-                    Append(", ");
-                }
-            }
-
-            AppendLine(")");
-            AppendIndentedLine("{{");
-            AppendIndentedLine("}}");
-        }
-
-        public override void VisitParameter(ParameterSyntax pd)
-        {
-            Code.AppendFormat("{0} {1}", pd.Type.Identifier, pd.Identifier);
         }
     }
 }

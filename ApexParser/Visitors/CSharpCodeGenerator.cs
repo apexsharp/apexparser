@@ -24,9 +24,9 @@ namespace ApexParser.Visitors
             "SObjects",
         };
 
-        public static string Generate(BaseSyntax ast)
+        public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4)
         {
-            var generator = new CSharpCodeGenerator();
+            var generator = new CSharpCodeGenerator { IndentSize = tabSize };
             ast.Accept(generator);
             return generator.Code.ToString();
         }
@@ -77,7 +77,7 @@ namespace ApexParser.Visitors
             }
         }
 
-        private void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node)
+        protected void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node)
         {
             foreach (var comment in node.LeadingComments.AsSmart())
             {

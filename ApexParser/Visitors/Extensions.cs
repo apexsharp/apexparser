@@ -9,7 +9,10 @@ namespace ApexParser.Visitors
 {
     public static class Extensions
     {
-        public static string ToCSharp(this BaseSyntax node) =>
-            CSharpCodeGenerator.Generate(node);
+        public static string ToCSharp(this BaseSyntax node, int tabSize = 4) =>
+            CSharpCodeGenerator.GenerateCSharp(node, tabSize);
+
+        public static string ToApex(this BaseSyntax node, int tabSize = 4) =>
+            ApexCodeGenerator.GenerateApex(node, tabSize);
     }
 }
