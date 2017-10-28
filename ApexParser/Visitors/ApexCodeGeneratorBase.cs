@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ApexParser.MetaClass;
+using ApexParser.Parser;
 using ApexParser.Toolbox;
 
 namespace ApexParser.Visitors
@@ -169,6 +170,13 @@ namespace ApexParser.Visitors
             Append(" {0}", pd.Identifier);
         }
 
+        protected virtual HashSet<string> SystemClasses =>
+            new HashSet<string> { ApexKeywords.Map, ApexKeywords.List, ApexKeywords.Set };
+
+        public virtual string NormalizeTypeName(string id) =>
+            SystemClasses.Contains(id) ?
+                id.Substring(0, 1).ToUpper() + id.Substring(1) : id;
+
         public override void VisitType(TypeSyntax node)
         {
             foreach (var ns in node.Namespaces.AsSmart())
@@ -176,7 +184,8 @@ namespace ApexParser.Visitors
                 Append("{0}.", ns.Value);
             }
 
-            Append(node.Identifier);
+            // normalize type names like Map<...>, List<...> and Set<...>
+            Append(NormalizeTypeName(node.Identifier));
 
             foreach (var type in node.TypeParameters.AsSmart())
             {
@@ -460,8 +469,9 @@ namespace ApexParser.Visitors
                 }
 
                 AppendIndented("}}");
-                AppendTrailingComments(node);
             }
+
+            AppendTrailingComments(node);
         }
     }
 }

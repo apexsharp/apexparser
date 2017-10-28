@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ApexParser;
 using NUnit.Framework;
-using static ApexParser.ApexParser;
 using static ApexParserTest.Properties.Resources;
 
 namespace ApexParserTest.CodeGenerators
@@ -14,7 +13,7 @@ namespace ApexParserTest.CodeGenerators
     public class ApexResourceTests : TestFixtureBase
     {
         private void Check(string source, string expected) =>
-            CompareLineByLine(expected, IndentApex(source));
+            CompareLineByLine(ApexParser.ApexParser.IndentApex(source), expected);
 
         [Test]
         public void ClassOneIsFormattedUsingNewApexFormatter() =>
@@ -27,5 +26,13 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void ClassWithCommentsIsFormattedUsingNewApexFormatter() =>
             Check(ClassWithComments, ClassWithComments_Formatted);
+
+        [Test]
+        public void CustomerDtoIsFormattedUsingNewApexFormatter() =>
+            Check(CustomerDto, CustomerDto_Formatted);
+
+        [Test]
+        public void FormatDemoIsFormattedUsingNewApexFormatter() =>
+            Check(FormatDemo, FormatDemo_Formatted);
     }
 }
