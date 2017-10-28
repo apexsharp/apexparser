@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="ApexApi\Id.cs" />
     <Compile Include="ApexApi\SObject.cs" />
+    <Compile Include="Model\ApexSharpConfig.cs" />
+    <Compile Include="Model\LogLevel.cs" />
     <Compile Include="SoqlApi.cs" />
     <Compile Include="Attribute\FieldType.cs" />
     <Compile Include="CompositeApi.cs" />

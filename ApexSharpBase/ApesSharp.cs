@@ -1,48 +1,86 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using SalesForceAPI;
+using SalesForceAPI.Model;
 
 namespace ApexSharpBase
 {
-    public enum LogLevel
-    {
-        Info
-    }
-
-    public class ApexSharpConfig
-    {
-        public string ApexFileLocation { get; set; }
-        public string SalesForceUrl { get; set; }
-        public string HttpProxy { get; set; }
-        public string SalesForceUserId { get; set; }
-        public string SalesForcePassword { get; set; }
-        public string SalesForcePasswordToken { get; set; }
-        public int SalesForceApiVersion { get; set; }
-        public string VisualStudioProjectFile { get; set; }
-        public LogLevel LogLevel { get; set; }
-    }
-
     public class ApexSharp
     {
+        public void CreateOfflineClasses(string sObjectName)
+        {
+            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            ModelGen modelGen = new ModelGen();
+            modelGen.CreateOfflineSymbolTable(sObjectName, path);
+        }
+
+        public void ConvertCSharpToApex(FileInfo cSharpFile)
+        {
+            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            path = path + "\\ApexCode\\" + cSharpFile.Name + ".cs";
+
+            FileInfo cSharpFileInfo = new FileInfo(path);
+            var apexFileName = cSharpFileInfo.Name.Replace(".cs", "");
+            apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
+
+            Console.WriteLine($"Converting {apexFileName}");
+
+            //  CSharpParser parser = new CSharpParser();
+            //  ApexClassDeclarationSyntax apexClassDeclarationSyntax = parser.ParseCSharpFromFile(cSharpFileInfo);
+
+            // Console.WriteLine(String.Join("\n", convertedApex));
+            Console.WriteLine($"Saving {apexFileName}");
+            //File.WriteAllLines(apexFileName, convertedApex);
+        }
+
+
+        public List<string> GetAllObjects()
+        {
+            return new List<string>();
+        }
+
         public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
-        private string ConfigFileName { get; set; }
 
-        public ApexSharp()
+        public ApexSharp Connect()
         {
-            ConfigFileName = String.Empty;
+            try
+            {
+                ConnectionUtil.Connect(ApexSharpConfigSettings);
+                return this;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        public void Connect()
+
+ 
+
+        public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
         {
-            ConnectionUtil.Connect(ApexSharpConfigSettings.SalesForceUrl, ApexSharpConfigSettings.SalesForceUserId, ApexSharpConfigSettings.SalesForcePassword, ApexSharpConfigSettings.SalesForcePasswordToken, ApexSharpConfigSettings.VisualStudioProjectFile);
+            FileInfo saveFileInfo = new FileInfo(dirLocationAndFileName);
+            string json = JsonConvert.SerializeObject(ApexSharpConfigSettings);
+            File.WriteAllText(saveFileInfo.FullName, json);
+            
+            return this;
         }
+
+
+        public ApexSharp LoadApexSharpConfig(string dirLocationAndFileName)
+        {
+            FileInfo loadFileInfo = new FileInfo(dirLocationAndFileName);
+            string json = File.ReadAllText(loadFileInfo.FullName);
+            ApexSharpConfigSettings = (ApexSharpConfig) JsonConvert.DeserializeObject(json);
+            return this;
+        }
+
 
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {
-
-            salesForceUrl = salesForceUrl + "services/Soap/c/40.0/";
-            ApexSharpConfigSettings.SalesForceUrl = salesForceUrl;
+            ApexSharpConfigSettings.SalesForceUrl = salesForceUrl + "services/Soap/c/" + ApexSharpConfigSettings.SalesForceApiVersion + ".0/";
             return this;
         }
 
@@ -64,13 +102,13 @@ namespace ApexSharpBase
             return this;
         }
 
-        public ApexSharp UseSalesForceApiVersion(int apiVersion)
+        public ApexSharp AndSalesForceApiVersion(int apiVersion)
         {
             ApexSharpConfigSettings.SalesForceApiVersion = apiVersion;
             return this;
         }
 
-        public ApexSharp AndHttpProxy(string httpProxy)
+        public ApexSharp AddHttpProxy(string httpProxy)
         {
             ApexSharpConfigSettings.HttpProxy = httpProxy;
             return this;
@@ -82,11 +120,6 @@ namespace ApexSharpBase
             return this;
         }
 
-        public ApexSharp LoadApexSharpConfig()
-        {
-            ConfigFileName = "ApexSharpProjectSetup.json";
-            return this;
-        }
 
         public ApexSharp SetVisualStudioProjectLocation(string dir)
         {
@@ -99,54 +132,6 @@ namespace ApexSharpBase
             ApexSharpConfigSettings.LogLevel = logLevel;
             return this;
         }
-
-        public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
-        {
-            string json = JsonConvert.SerializeObject(ApexSharpConfigSettings);
-            File.WriteAllText(dirLocationAndFileName, json);
-            return this;
-        }
-
-
-        public void CreateOfflineClasses(string sObjectName)
-        {
-            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            ModelGen modelGen = new ModelGen();
-            modelGen.CreateOfflineSymbolTable(sObjectName, path);
-        }
-
-
-        public void ConvertToApex(string fileName, bool overWrite)
-        {
-            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            path = path + "\\ApexCode\\" + fileName + ".cs";
-
-            FileInfo cSharpFileInfo = new FileInfo(path);
-
-
-            var apexFileName = cSharpFileInfo.Name.Replace(".cs", "");
-            apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
-
-            Console.WriteLine($"Converting {apexFileName}");
-
-
-
-
-          //  CSharpParser parser = new CSharpParser();
-          //  ApexClassDeclarationSyntax apexClassDeclarationSyntax = parser.ParseCSharpFromFile(cSharpFileInfo);
-
-
-            //Console.WriteLine(ConvertToApex.GetApexCode(apexClassDeclarationSyntax));
-
-
-         //   List<string> convertedApex = apexClassDeclarationSyntax.GetApexCode();
-            Console.WriteLine();
-           // Console.WriteLine(String.Join("\n", convertedApex));
-            Console.WriteLine($"Saving {apexFileName}");
-            //File.WriteAllLines(apexFileName, convertedApex);
-        }
-
-
 
 
     }

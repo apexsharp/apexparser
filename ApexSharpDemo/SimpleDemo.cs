@@ -11,13 +11,13 @@ namespace ApexSharpDemo
 
             // Setup connection info
             apexSharp.SalesForceUrl("https://login.salesforce.com")
-               .AndHttpProxy("http://yourproxy.com")
-               .UseSalesForceApiVersion(40)
+               .AddHttpProxy("http://yourproxy.com")
+               .AndSalesForceApiVersion(40)
                .WithUserId("SalesForce User Id")
                .AndPassword("SalesForce Password")
                .AndToken("SalesForce Token")
                .SetApexFileLocation("Location Where you want your APEX Files to be saved")
-               .SetLogLevel(LogLevel.Info)
+               .SetLogLevel(SalesForceAPI.Model.LogLevel.Info)
                .SaveApexSharpConfig("Location")
                .Connect(); // Always Initialize your settings before using it.
 
@@ -29,7 +29,7 @@ namespace ApexSharpDemo
             ApexCode.SoqlDemo.CrudExample();
 
             //Convert the SoqlDemo.cs File to APEX and save it.
-            apexSharp.ConvertToApex("SoqlDemo", overWrite: true);
+            //apexSharp.ConvertToApex("SoqlDemo", overWrite: true);
 
             Console.WriteLine("Done");
             Console.ReadLine();

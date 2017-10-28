@@ -15,14 +15,7 @@ namespace SalesForceAPI
     {
         private static Project project = null;
 
-        private int _limitNumber;
-        private string _salesForcePassword;
-        private string _salesForcePasswordToken;
-        private string _salesForceUrl;
-        private string _salesForceUserId;
-        private int _skipNumer;
 
-        private string _sqlConnectionString;
 
         public bool debug = true;
 
@@ -35,6 +28,12 @@ namespace SalesForceAPI
         public static ConnectionDetail GetConnectionDetail()
         {
             return ConnectionDetail;
+        }
+
+
+        public static void Connect(ApexSharpConfig config)
+        {
+            
         }
 
         public static void Connect(string SalesForceUrl, string SalesForceUserId, string SalesForcePassword, string SalesForcePasswordToken, string visualStudioProjFile)
@@ -52,23 +51,23 @@ namespace SalesForceAPI
         }
 
 
-
         public bool ConnectToDb()
         {
-            try
-            {
-                using (var connection = new SqlConnection(_sqlConnectionString))
-                {
-                    connection.Open();
-                    Console.WriteLine("Connected To Database " + connection.Database);
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return false; // any error is considered as db connection error for now
-            }
+            //try
+            //{
+            //    using (var connection = new SqlConnection(_sqlConnectionString))
+            //    {
+            //        connection.Open();
+            //        Console.WriteLine("Connected To Database " + connection.Database);
+            //        return true;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex);
+            //    return false; // any error is considered as db connection error for now
+            //}
+            return true;
         }
 
 
@@ -118,6 +117,7 @@ namespace SalesForceAPI
             return 0;
         }
 
+        private int _limitNumber, _skipNumer = 0;
         public System.Collections.Generic.List<T> ToList<T>()
         {
             Db db = new Db(ConnectionDetail);
