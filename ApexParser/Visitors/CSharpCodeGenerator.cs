@@ -15,6 +15,8 @@ namespace ApexParser.Visitors
 
         private bool HasRootNamespace => !string.IsNullOrWhiteSpace(Namespace);
 
+        public const string Soql = "Soql";
+
         public List<string> Usings { get; set; } = new List<string>
         {
             "Apex.ApexSharp",
@@ -379,17 +381,17 @@ namespace ApexParser.Visitors
 
         public override void VisitInsertStatement(InsertStatementSyntax node)
         {
-            AppendIndentedLine("SOQL.Insert({0});", node.Expression);
+            AppendIndentedLine("{0}.Insert({1});", Soql, node.Expression);
         }
 
         public override void VisitUpdateStatement(UpdateStatementSyntax node)
         {
-            AppendIndentedLine("SOQL.Update({0});", node.Expression);
+            AppendIndentedLine("{0}.Update({1});", Soql, node.Expression);
         }
 
         public override void VisitDeleteStatement(DeleteStatementSyntax node)
         {
-            AppendIndentedLine("SOQL.Delete({0});", node.Expression);
+            AppendIndentedLine("{0}.Delete({1});", Soql, node.Expression);
         }
 
         public override void VisitAccessor(AccessorDeclarationSyntax node)

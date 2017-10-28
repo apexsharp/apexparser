@@ -474,7 +474,7 @@ namespace ApexParserTest.CodeGenerators
                 Expression = "contactNew"
             };
 
-            Check(insertStatement, @"SOQL.Insert(contactNew);");
+            Check(insertStatement, @"Soql.Insert(contactNew);");
         }
 
         [Test]
@@ -485,7 +485,7 @@ namespace ApexParserTest.CodeGenerators
                 Expression = "contacts"
             };
 
-            Check(updateStatement, @"SOQL.Update(contacts);");
+            Check(updateStatement, @"Soql.Update(contacts);");
         }
 
         [Test]
@@ -496,7 +496,7 @@ namespace ApexParserTest.CodeGenerators
                 Expression = "contactOld"
             };
 
-            Check(deleteStatement, @"SOQL.Delete(contactOld);");
+            Check(deleteStatement, @"Soql.Delete(contactOld);");
         }
 
         [Test]
@@ -561,7 +561,7 @@ namespace ApexParserTest.CodeGenerators
             Check(acc,
                 @"set
                 {
-                    SOQL.Insert(customer);
+                    Soql.Insert(customer);
                 }");
         }
 
@@ -687,7 +687,7 @@ namespace ApexParserTest.CodeGenerators
                         public void Test(string name, int age)
                         {
                             Contact c = new Contact(name, age);
-                            SOQL.Insert(c);
+                            Soql.Insert(c);
                         }
 
                         public float Size
