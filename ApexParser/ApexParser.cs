@@ -28,13 +28,13 @@ namespace ApexParser
         }
 
         // Format APEX Code so each statement is in its own line
-        public string FormatApex(string apexCode)
+        public static string FormatApex(string apexCode)
         {
             return GetApexAst(apexCode).ToApex(tabSize: 0);
         }
 
         // Indent APEX code, Pass the Tab Size.
-        public string IndendApex(string apexCode, int tabSize = 4)
+        public static string IndentApex(string apexCode, int tabSize = 4)
         {
             return GetApexAst(apexCode).ToApex(tabSize);
         }
