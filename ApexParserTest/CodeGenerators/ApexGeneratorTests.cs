@@ -89,7 +89,7 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
-        public void ApexVoidMethodIsConvertedToCSharp()
+        public void ApexVoidMethodIsGenerated()
         {
             var method = new MethodDeclarationSyntax
             {
@@ -118,7 +118,7 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
-        public void ApexConstructorIsConvertedToCSharp()
+        public void ApexConstructorIsGenerated()
         {
             var constr = new ConstructorDeclarationSyntax
             {
@@ -636,6 +636,7 @@ namespace ApexParserTest.CodeGenerators
         public void ClassWithConstructorMethodAndPropertyIsGenerated()
         {
             var apex = Apex.ParseClass(@"
+            // this is my demo
             public class MyDemo {
                 private MyDemo(float s) { Size = s;while(true){break;} }
                 public void Test(string name, int age) {
@@ -649,7 +650,8 @@ namespace ApexParserTest.CodeGenerators
             }");
 
             Check(apex,
-                @"public class MyDemo
+                @"// this is my demo
+                public class MyDemo
                 {
                     private MyDemo(float s)
                     {
