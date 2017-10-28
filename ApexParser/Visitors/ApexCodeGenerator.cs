@@ -8,34 +8,13 @@ using ApexParser.Toolbox;
 
 namespace ApexParser.Visitors
 {
-    public class ApexCodeGenerator : CSharpCodeGenerator
+    public class ApexCodeGenerator : ApexCodeGeneratorBase
     {
         public static string GenerateApex(BaseSyntax ast, int tabSize = 4)
         {
             var generator = new ApexCodeGenerator { IndentSize = tabSize };
             ast.Accept(generator);
             return generator.Code.ToString();
-        }
-
-        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
-        {
-            AppendCommentsAttributesAndModifiers(node);
-            AppendLine("class {0}", node.Identifier);
-            AppendIndentedLine("{{");
-
-            using (Indented())
-            {
-                foreach (var md in node.Members.AsSmart())
-                {
-                    md.Value.Accept(this);
-                    if (!md.IsLast)
-                    {
-                        AppendLine();
-                    }
-                }
-            }
-
-            AppendIndentedLine("}}");
         }
     }
 }

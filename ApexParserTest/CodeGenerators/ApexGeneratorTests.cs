@@ -10,10 +10,10 @@ using NUnit.Framework;
 namespace ApexParserTest.CodeGenerators
 {
     [TestFixture]
-    public class CSharpGeneratorTests : TestFixtureBase
+    public class ApexGeneratorTests : TestFixtureBase
     {
         protected void Check(BaseSyntax node, string expected) =>
-            CompareLineByLine(node.ToCSharp(), expected);
+            CompareLineByLine(node.ToApex(), expected);
 
         [Test]
         public void EmptyClassDeclarationProducesTheRequiredNamespaceImports()
@@ -24,15 +24,8 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(cd,
-                @"namespace ApexSharpDemo.ApexCode
+                @"class TestClass
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    class TestClass
-                    {
-                    }
                 }");
         }
 
@@ -46,16 +39,9 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(cd,
-                @"namespace ApexSharpDemo.ApexCode
+                @"// Test class
+                class TestClass
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    // Test class
-                    class TestClass
-                    {
-                    }
                 }");
         }
 
@@ -71,29 +57,22 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(cd,
-                @"namespace ApexSharpDemo.ApexCode
+                @"/* Test class
+                with several lines
+                of comments */
+                class TestClass
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    /* Test class
-                    with several lines
-                    of comments */
-                    class TestClass
-                    {
-                    }
                 }");
         }
 
         [Test]
-        public void ApexTypesGetConvertedToCSharpTypes()
+        public void ApexTypesAreSupported()
         {
             var apexVoid = new TypeSyntax(ApexKeywords.Void);
-            Assert.AreEqual("void", apexVoid.ToCSharp());
+            Assert.AreEqual("void", apexVoid.ToApex());
 
             var apexContact = new TypeSyntax("MyApp", "Dto", "Contact");
-            Assert.AreEqual("MyApp.Dto.Contact", apexContact.ToCSharp());
+            Assert.AreEqual("MyApp.Dto.Contact", apexContact.ToApex());
 
             var apexList = new TypeSyntax("List")
             {
@@ -103,10 +82,10 @@ namespace ApexParserTest.CodeGenerators
                 }
             };
 
-            Assert.AreEqual("List<Custom.Class>", apexList.ToCSharp());
+            Assert.AreEqual("List<Custom.Class>", apexList.ToApex());
 
             var apexArray = new TypeSyntax("String") { IsArray = true };
-            Assert.AreEqual("String[]", apexArray.ToCSharp());
+            Assert.AreEqual("String[]", apexArray.ToApex());
         }
 
         [Test]
@@ -132,7 +111,7 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(method,
-                @"[TestAttribute]
+                @"@TestAttribute
                 public static void Sample(int x, int y)
                 {
                 }");
@@ -161,7 +140,7 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(constr,
-                @"[DefaultConstructor]
+                @"@DefaultConstructor
                 public Sample(int x, int y)
                 {
                 }");
@@ -171,7 +150,7 @@ namespace ApexParserTest.CodeGenerators
         public void UnknownGenericStatementIsEmittedAsIs()
         {
             var st = new StatementSyntax("UnknownGenericStatement()");
-            Assert.AreEqual("UnknownGenericStatement();", st.ToCSharp().Trim());
+            Assert.AreEqual("UnknownGenericStatement();", st.ToApex().Trim());
         }
 
         [Test]
@@ -410,7 +389,7 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(forEachStatement,
-                @"foreach (Contact c in contacts)
+                @"for (Contact c : contacts)
                 {
                 }");
         }
@@ -470,36 +449,36 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
-        public void ApexInsertStatementGeneratesSoqlHelperMethod()
+        public void ApexInsertStatementIsGenerated()
         {
             var insertStatement = new InsertStatementSyntax
             {
                 Expression = "contactNew"
             };
 
-            Check(insertStatement, @"Soql.Insert(contactNew);");
+            Check(insertStatement, @"insert contactNew;");
         }
 
         [Test]
-        public void ApexUpdateStatementGeneratesSoqlHelperMethod()
+        public void ApexUpdateStatementIsGenerated()
         {
             var updateStatement = new UpdateStatementSyntax
             {
                 Expression = "contacts"
             };
 
-            Check(updateStatement, @"Soql.Update(contacts);");
+            Check(updateStatement, @"update contacts;");
         }
 
         [Test]
-        public void ApexDeleteStatementGeneratesSoqlHelperMethod()
+        public void ApexDeleteStatementIsGenerated()
         {
             var deleteStatement = new DeleteStatementSyntax
             {
                 Expression = "contactOld"
             };
 
-            Check(deleteStatement, @"Soql.Delete(contactOld);");
+            Check(deleteStatement, @"delete contactOld;");
         }
 
         [Test]
@@ -564,7 +543,7 @@ namespace ApexParserTest.CodeGenerators
             Check(acc,
                 @"set
                 {
-                    Soql.Insert(customer);
+                    insert customer;
                 }");
         }
 
@@ -670,36 +649,29 @@ namespace ApexParserTest.CodeGenerators
             }");
 
             Check(apex,
-                @"namespace ApexSharpDemo.ApexCode
+                @"public class MyDemo
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    public class MyDemo
+                    private MyDemo(float s)
                     {
-                        private MyDemo(float s)
+                        Size = s;
+                        while (true)
                         {
-                            Size = s;
-                            while (true)
-                            {
-                                break;
-                            }
+                            break;
                         }
+                    }
 
-                        public void Test(string name, int age)
-                        {
-                            Contact c = new Contact(name, age);
-                            Soql.Insert(c);
-                        }
+                    public void Test(string name, int age)
+                    {
+                        Contact c = new Contact(name, age);
+                        insert c;
+                    }
 
-                        public float Size
+                    public float Size
+                    {
+                        get;
+                        private set
                         {
-                            get;
-                            private set
-                            {
-                                System.debug('trying to set');
-                            }
+                            System.debug('trying to set');
                         }
                     }
                 }");

@@ -12,9 +12,6 @@ namespace ApexParserTest.CodeGenerators
 {
     public class TestFixtureBase
     {
-        protected void Check(BaseSyntax node, string expected) =>
-            CompareLineByLine(node.ToCSharp(), expected);
-
         protected void CompareLineByLine(string actual, string expected)
         {
             var actualList = actual.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
