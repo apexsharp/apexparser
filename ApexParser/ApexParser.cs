@@ -30,7 +30,7 @@ namespace ApexParser
         // Format APEX Code so each statement is in its own line
         public string FormatApex(string apexCode)
         {
-            return GetApexAst(apexCode).ToApex();
+            return GetApexAst(apexCode).ToApex(tabSize: 0);
         }
 
         // Indent APEX code, Pass the Tab Size.
