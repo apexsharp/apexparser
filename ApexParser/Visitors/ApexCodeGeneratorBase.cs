@@ -64,11 +64,6 @@ namespace ApexParser.Visitors
                 return;
             }
 
-            ////if (indentFirst && CurrentBlock != null)
-            ////{
-            ////    AppendLine();
-            ////}
-
             foreach (var comment in comments.AsSmart())
             {
                 void EmitLine(string format, params string[] args)
