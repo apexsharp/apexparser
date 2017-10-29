@@ -151,7 +151,7 @@ namespace ApexParser.Parser
         // int Dispose();
         protected internal virtual Parser<MethodDeclarationSyntax> MethodParametersAndBody =>
             from parameters in MethodParameters
-            from methodBody in Block.Token().Or(Parse.Char(';').Token().Return(default(BlockSyntax)))
+            from methodBody in Block.Or(Parse.Char(';').Return(default(BlockSyntax))).Token()
             select new MethodDeclarationSyntax
             {
                 Parameters = parameters,
@@ -555,6 +555,7 @@ namespace ApexParser.Parser
                 BaseType = classBody.BaseType,
                 Interfaces = classBody.Interfaces,
                 Members = classBody.Members,
+                InnerComments = classBody.InnerComments,
                 TrailingComments = classBody.TrailingComments,
             };
 
@@ -567,9 +568,9 @@ namespace ApexParser.Parser
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
-            from trailingComments in CommentParser.AnyComment.Token().Many()
+            from innerComments in CommentParser.AnyComment.Token().Many()
             from closeBrace in Parse.Char('}').Token()
-            from skippedTrailingComments in CommentParser.AnyComment.Token().Many()
+            from trailingComments in CommentParser.AnyComment.Token().Many()
             select new ClassDeclarationSyntax()
             {
                 Identifier = className,
@@ -577,6 +578,7 @@ namespace ApexParser.Parser
                 BaseType = baseType.GetOrDefault(),
                 Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
                 Members = ConvertConstructors(members).ToList(),
+                InnerComments = innerComments.ToList(),
                 TrailingComments = trailingComments.ToList(),
             };
 

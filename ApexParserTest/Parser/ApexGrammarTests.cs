@@ -805,13 +805,15 @@ namespace ApexParserTest.Parser
         [Test]
         public void ClassDeclarationCanBeEmptyWithComments()
         {
-            var cd = Apex.ClassDeclaration.Parse(" class Test /* Comment1 */ { /* Comment2 */ }");
+            var cd = Apex.ClassDeclaration.Parse(" class Test /* Comment1 */ { /* Comment2 */ } // Comment3");
             Assert.False(cd.Annotations.Any());
             Assert.False(cd.Methods.Any());
             Assert.False(cd.Modifiers.Any());
-            Assert.AreEqual(1, cd.TrailingComments.Count);
-            Assert.AreEqual("Comment2", cd.TrailingComments[0].Trim());
             Assert.AreEqual("Test", cd.Identifier);
+            Assert.AreEqual(1, cd.InnerComments.Count);
+            Assert.AreEqual("Comment2", cd.InnerComments[0].Trim());
+            Assert.AreEqual(1, cd.TrailingComments.Count);
+            Assert.AreEqual("Comment3", cd.TrailingComments[0].Trim());
         }
 
         [Test]

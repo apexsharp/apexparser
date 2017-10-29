@@ -64,6 +64,11 @@ namespace ApexParser.Visitors
                 return;
             }
 
+            ////if (indentFirst && CurrentBlock != null)
+            ////{
+            ////    AppendLine();
+            ////}
+
             foreach (var comment in comments.AsSmart())
             {
                 void EmitLine(string format, params string[] args)
@@ -378,10 +383,15 @@ namespace ApexParser.Visitors
             }
         }
 
+        protected BlockSyntax CurrentBlock { get; set; }
+
         private bool EmptyLineIsRequired { get; set; }
 
         public override void VisitBlock(BlockSyntax node)
         {
+            var lastBlock = CurrentBlock;
+            CurrentBlock = node;
+
             AppendLeadingComments(node);
             AppendIndentedLine("{{");
             EmptyLineIsRequired = false;
@@ -395,8 +405,17 @@ namespace ApexParser.Visitors
                         AppendLine();
                         EmptyLineIsRequired = false;
                     }
+                    else if (!st.IsFirst && !st.Value.LeadingComments.IsNullOrEmpty())
+                    {
+                        AppendLine();
+                    }
 
                     st.Value.Accept(this);
+                }
+
+                if (!node.Statements.IsNullOrEmpty() && !node.InnerComments.IsNullOrEmpty())
+                {
+                    AppendLine();
                 }
 
                 AppendComments(node.InnerComments);
@@ -404,6 +423,7 @@ namespace ApexParser.Visitors
 
             AppendIndented("}}");
             AppendTrailingComments(node);
+            CurrentBlock = lastBlock;
             EmptyLineIsRequired = true;
         }
 

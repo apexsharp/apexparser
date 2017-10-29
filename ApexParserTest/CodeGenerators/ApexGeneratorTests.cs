@@ -689,5 +689,52 @@ namespace ApexParserTest.CodeGenerators
                     }
                 }");
         }
+
+        [Test]
+        public void LeadingAndTrailingCommentsForStatementsAreGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(@"// TestClass leading comment
+            public class TestClass {
+                // sample method leading comment
+                void SampleMethod()
+                // block leading comment
+                {
+                    // variable declaration leading comment1
+                    // variable declaration leading comment2
+                    int i = 10; // variable declaration trailing comment
+                    // while loop leading comment
+                    while (true) { break; } // loop body trailing comment
+
+                    // return null leading comment
+                    return null; // return null trailing comment
+                // block inner comment
+                } // block trailing comment
+            } // class trailing comment");
+
+            Check(apex,
+                @"// TestClass leading comment
+                public class TestClass
+                {
+                    // sample method leading comment
+                    void SampleMethod()
+                    // block leading comment
+                    {
+                        // variable declaration leading comment1
+                        // variable declaration leading comment2
+                        int i = 10; // variable declaration trailing comment
+
+                        // while loop leading comment
+                        while (true)
+                        {
+                            break;
+                        } // loop body trailing comment
+
+                        // return null leading comment
+                        return null; // return null trailing comment
+
+                        // block inner comment
+                    } // block trailing comment
+                } // class trailing comment");
+        }
     }
 }

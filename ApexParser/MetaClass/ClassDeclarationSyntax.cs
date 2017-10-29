@@ -27,6 +27,8 @@ namespace ApexParser.MetaClass
 
         public List<TypeSyntax> Interfaces { get; set; } = new List<TypeSyntax>();
 
+        public List<string> InnerComments { get; set; } = new List<string>();
+
         public List<MemberDeclarationSyntax> Members { get; set; } = new List<MemberDeclarationSyntax>();
 
         // the following members are kept for the unit testing purposes only
