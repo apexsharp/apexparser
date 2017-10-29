@@ -54,23 +54,8 @@ namespace SalesForceAPI
 
         public List<T> Query<T>(string soql)
         {
-            var connectiondetail = ConnectionUtil.GetConnectionDetail();
-
-            Db db = new Db(connectiondetail);
-
-            var asyncWait = db.Query<T>(soql);
-
-            try
-            {
-                asyncWait.Wait();
-            }
-            catch (Exception)
-            {
-                return new List<T>();
-            }
-
-            List<T> result = asyncWait.Result;
-            return result;
+            Db db = new Db();
+            return db.Query<T>(soql);        
         }
 
 

@@ -2,6 +2,7 @@
 using System.IO;
 using ApexSharpBase;
 using NUnit.Framework;
+using SalesForceAPI.Model;
 
 namespace ApexSharpBaseTest
 {
@@ -9,6 +10,18 @@ namespace ApexSharpBaseTest
     [TestFixture]
     public class ApexSharpTest
     {
+       // [Test]
+        public void ConnectTest()
+        {
+            ApexSharp apexSharp = new ApexSharp();
+            ApexSharpConfig config = new ApexSharpConfig();
+        
+            var newConfig = apexSharp.Connect(config);
+
+            Assert.AreEqual(newConfig.SalesForceApiVersion, 10);
+        }
+
+
         //[Test, Ignore("Appveyor fails on this test")]
         public void ParseCSharpCodeTest()
         {
@@ -32,14 +45,6 @@ namespace ApexSharpBaseTest
             }
         }
 
-        public void ResourceFileTest()
-        {
-            var qaData = ApexSharpBaseTest.Properties.TestData.Demo;
-            Console.WriteLine(qaData);
-
-            Assert.AreEqual(5, 5);
-        }
-
-
+ 
     }
 }

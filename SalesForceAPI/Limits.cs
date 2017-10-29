@@ -5,9 +5,9 @@ namespace SalesForceAPI
 {
     public class Limits
     {
-        private readonly ConnectionDetail _connectionDetail;
+        private readonly ApexSharpConfig _connectionDetail;
 
-        public Limits(ConnectionDetail connectionDetail)
+        public Limits(ApexSharpConfig connectionDetail)
         {
             _connectionDetail = connectionDetail;
         }

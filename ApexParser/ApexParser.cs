@@ -33,7 +33,7 @@ namespace ApexParser
             return GetApexAst(apexCode).ToApex(tabSize: 0);
         }
 
-        // Indent APEX code, Pass the Tab Size.
+        // Indent APEX code, Pass the Tab Size. If Tab size is set to 0, no indentions
         public static string IndentApex(string apexCode, int tabSize = 4)
         {
             return GetApexAst(apexCode).ToApex(tabSize);

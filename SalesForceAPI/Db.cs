@@ -17,23 +17,28 @@ namespace SalesForceAPI
 {
     public class Db
     {
-        private readonly ConnectionDetail _connectionDetail;
+        private readonly ApexSharpConfig _connectionDetail;
 
         public static readonly NullValueHandling JsonNullValue = NullValueHandling.Ignore;
 
-        public Db(ConnectionDetail connectionDetail)
+        public Db()
+        {
+            _connectionDetail = ConnectionUtil.GetConnectionDetail();
+        }
+
+        public Db(ApexSharpConfig connectionDetail)
         {
             _connectionDetail = connectionDetail;
         }
 
 
-        public async Task<List<T>> Query<T>(string query)
+        public List<T> Query<T>(string query)
         {
-            Console.WriteLine(query);
+            Console.WriteLine("32 " + query);
 
             HttpRequestMessage request = new HttpRequestMessage
             {
-                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/query/?q=" + query),
+                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v40.0/query/?q=" + query),
                 Method = HttpMethod.Get
             };
 
@@ -45,7 +50,7 @@ namespace SalesForceAPI
             HttpClient httpClient = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
+            HttpResponseMessage responseMessage = httpClient.SendAsync(request).Result;
 
             switch (responseMessage.StatusCode)
             {
@@ -56,7 +61,7 @@ namespace SalesForceAPI
                     return returnData.records;
                 default:
                     Log.LogMsg("Query Error", responseMessage.Content.ReadAsStringAsync().Result);
-                    throw new Exception(responseMessage.Content.ReadAsStringAsync().Result);
+                    return new List<T>();
             }
         }
 
@@ -317,7 +322,7 @@ namespace SalesForceAPI
 
             query = query + " LIMIT " + limit;
             Console.WriteLine(query);
-            return Query<T>(query).Result;
+            return Query<T>(query);
         }
 
         public async Task<System.Collections.Generic.List<T>> GetAllRecordsAsyncOffset<T>(int offset)
@@ -327,7 +332,7 @@ namespace SalesForceAPI
 
             query = query + " OFFSET " + offset;
             Console.WriteLine(query);
-            return Query<T>(query).Result;
+            return Query<T>(query);
         }
 
         public async Task<System.Collections.Generic.List<T>> GetAllRecordsAsync<T>(int limit, int offset)
@@ -336,7 +341,7 @@ namespace SalesForceAPI
             string query = soql.GetSoql<T>();
 
             query = query + " LIMIT " + limit + " OFFSET " + offset;
-            return Query<T>(query).Result;
+            return Query<T>(query);
         }
 
         public async Task<System.Collections.Generic.List<T>> GetAllRecordsAsync<T>()

@@ -16,9 +16,9 @@ namespace SalesForceAPI
         /**
          * Get the SF Session and Save. If the saved session is more then 2 hours old then get a new session
          */
-        public static ConnectionDetail Connect(string url, string userId, string password)
+        public static ApexSharpConfig Connect(string url, string userId, string password)
         {
-            Dictionary<string, ConnectionDetail> conectionDetails = new Dictionary<string, ConnectionDetail>();
+            Dictionary<string, ApexSharpConfig> conectionDetails = new Dictionary<string, ApexSharpConfig>();
 
             //string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 
@@ -44,6 +44,7 @@ namespace SalesForceAPI
             //Console.WriteLine("Session Expired or not found, Obtaining a new session for " + userId);
 
             var newConectionDetails = GetNewConnection(url, userId, password);
+            return newConectionDetails;
 
             if (newConectionDetails != null)
             {
@@ -66,10 +67,10 @@ namespace SalesForceAPI
 
             }
 
-            return newConectionDetails;
+           
         }
 
-        private static ConnectionDetail GetNewConnection(string url, string userId, string password)
+        private static ApexSharpConfig GetNewConnection(string url, string userId, string password)
         {
             var xml =
                 @"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:urn=""urn:enterprise.soap.sforce.com"">
@@ -101,7 +102,7 @@ namespace SalesForceAPI
                 var restUrl = envelope.Body.loginResponse.result.serverUrl.Substring(0, soapIndex);
                 var restSessionId = "Bearer " + envelope.Body.loginResponse.result.sessionId;
 
-                var connectDetail = new ConnectionDetail()
+                var connectDetail = new ApexSharpConfig()
                 {
                     Url = envelope.Body.loginResponse.result.serverUrl,
                     SessionId = envelope.Body.loginResponse.result.sessionId,

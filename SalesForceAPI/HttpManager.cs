@@ -10,7 +10,7 @@ namespace SalesForceAPI
 {
     public class HttpManager
     {
-        public async Task<string> Get(ConnectionDetail connectionDetail, string endPoint)
+        public async Task<string> Get(ApexSharpConfig connectionDetail, string endPoint)
         {
             HttpRequestMessage request = new HttpRequestMessage
             {

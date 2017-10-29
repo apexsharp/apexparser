@@ -13,43 +13,33 @@ namespace SalesForceAPI
 {
     public class ConnectionUtil
     {
-        private static Project project = null;
-
-
-
-        public bool debug = true;
-
-        // SF Conneciton 
-
-
-             
+       
         // SF Connection Details
-        private static ConnectionDetail ConnectionDetail;
-        public static ConnectionDetail GetConnectionDetail()
+        private static ApexSharpConfig _connectionDetail;
+
+        public static ApexSharpConfig GetConnectionDetail()
         {
-            return ConnectionDetail;
+            return _connectionDetail;
         }
 
 
-        public static void Connect(ApexSharpConfig config)
+        public void Connect(ApexSharpConfig config)
         {
-            
+            _connectionDetail = LogIn.Connect(config.SalesForceUrl, config.SalesForceUserId, config.SalesForcePassword + config.SalesForcePasswordToken);
+            Log.LogMsg("Connection Detail", _connectionDetail);
         }
 
-        public static void Connect(string SalesForceUrl, string SalesForceUserId, string SalesForcePassword, string SalesForcePasswordToken, string visualStudioProjFile)
+ 
+        public void SetupProject()
         {
             // string projectDirectoryName = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             // List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
 
-            ConnectionDetail = LogIn.Connect(SalesForceUrl, SalesForceUserId, SalesForcePassword + SalesForcePasswordToken);
-            Log.LogMsg("Connection Detail", ConnectionDetail);
 
-   
-         //   project = new Microsoft.Build.Evaluation.Project(visualStudioProjFile);
 
-            
+
+            //   project = new Microsoft.Build.Evaluation.Project(visualStudioProjFile);
         }
-
 
         public bool ConnectToDb()
         {
@@ -75,6 +65,7 @@ namespace SalesForceAPI
 
         private void AddDirectory(string dirName)
         {
+            var project = new Project(dirName);
             Directory.CreateDirectory(project.DirectoryPath + @"\Model\");
             dirName = dirName + @"\";
             var projectItems = project.GetItems("Folder").ToList();
@@ -89,6 +80,7 @@ namespace SalesForceAPI
         //    AddCShaprFile("Model", "Demo.cs");
         public static void AddCShaprFile(string dirName, string fileName)
         {
+            var project = new Project(dirName);
             var cSharpFileName = dirName + @"\" + fileName;
             var projectItems = project.GetItems("Compile").ToList();
 
@@ -100,7 +92,7 @@ namespace SalesForceAPI
         }
 
         // Get Count
-        public int GetSalesForceRecordCount<T>(ConnectionDetail connectionDetail)
+        public int GetSalesForceRecordCount<T>(ApexSharpConfig connectionDetail)
         {
             Db db = new Db(connectionDetail);
             var asyncWait = db.Count<T>();
@@ -120,7 +112,7 @@ namespace SalesForceAPI
         private int _limitNumber, _skipNumer = 0;
         public System.Collections.Generic.List<T> ToList<T>()
         {
-            Db db = new Db(ConnectionDetail);
+            Db db = new Db(_connectionDetail);
 
             if (_limitNumber > 0 && _skipNumer > 0)
             {
@@ -160,7 +152,7 @@ namespace SalesForceAPI
             return this;
         }
 
-        public System.Collections.Generic.List<T> GetAllSalesForceRecords<T>(ConnectionDetail connection)
+        public System.Collections.Generic.List<T> GetAllSalesForceRecords<T>(ApexSharpConfig connection)
         {
             Db db = new Db(connection);
             var asyncWait = db.GetAllRecordsAsync<T>();
@@ -169,7 +161,7 @@ namespace SalesForceAPI
         }
 
 
-        public System.Collections.Generic.List<T> GetSalesForceRecords<T>(ConnectionDetail connection, int offset,
+        public System.Collections.Generic.List<T> GetSalesForceRecords<T>(ApexSharpConfig connection, int offset,
             int limit)
         {
             Db db = new Db(connection);
@@ -179,7 +171,7 @@ namespace SalesForceAPI
         }
 
 
-        public T GetRecordById<T>(ConnectionDetail connection, string id)
+        public T GetRecordById<T>(ApexSharpConfig connection, string id)
         {
             Db db = new Db(connection);
 
@@ -224,7 +216,7 @@ namespace SalesForceAPI
 
         public string BulkRequest<T>(int checkIntervel)
         {
-            BulkApi api = new BulkApi(ConnectionDetail);
+            BulkApi api = new BulkApi(_connectionDetail);
             return api.BulkRequest<T>(checkIntervel);
         }
 
@@ -235,20 +227,20 @@ namespace SalesForceAPI
             BulkInsertRequest<T> request = new BulkInsertRequest<T> { Records = new T[dataList.Count] };
             request.Records = dataList.ToArray();
 
-            BulkApi api = new BulkApi(ConnectionDetail);
+            BulkApi api = new BulkApi(_connectionDetail);
             var replyTask = api.CreateRecordBulk<T>(request);
             replyTask.Wait();
             return replyTask.Result;
         }
 
         // Get the API Limits
-        public int GetRemainingApiLimit(ConnectionDetail connectionDetail, LimitType limitType)
+        public int GetRemainingApiLimit(ApexSharpConfig connectionDetail, LimitType limitType)
         {
             Limits limits = new Limits(connectionDetail);
             return limits.GetRemainingApiLimit(limitType);
         }
 
-        public int GetDailyApiLimit(ConnectionDetail connectionDetail, LimitType limitType)
+        public int GetDailyApiLimit(ApexSharpConfig connectionDetail, LimitType limitType)
         {
             Limits limits = new Limits(connectionDetail);
             return limits.GetDailyApiLimit(limitType);

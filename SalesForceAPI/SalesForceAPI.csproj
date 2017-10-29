@@ -63,7 +63,6 @@
     <Compile Include="Model\RestApi\LoginReply.cs" />
     <Compile Include="Model\BulkApi\BulkInsertRequest.cs" />
     <Compile Include="Model\Composite\CompositInsertReply.cs" />
-    <Compile Include="Model\ConnectionDetail.cs" />
     <Compile Include="Model\RestApi\Count.cs" />
     <Compile Include="Limits.cs" />
     <Compile Include="Model\RestApi\SalesForceApiLimits.cs" />

@@ -9,6 +9,29 @@ namespace ApexSharpBase
 {
     public class ApexSharp
     {
+
+        public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
+
+        public ApexSharpConfig Connect(ApexSharpConfig config)
+        {
+            return config;
+        }
+
+        public void Connect()
+        {
+            try
+            {
+                ApexSharpConfigSettings.SalesForceUrl = ApexSharpConfigSettings.SalesForceUrl + "services/Soap/c/" + ApexSharpConfigSettings.SalesForceApiVersion + ".0/";
+
+                ConnectionUtil connect = new ConnectionUtil();
+                connect.Connect(ApexSharpConfigSettings);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void CreateOfflineClasses(string sObjectName)
         {
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
@@ -41,24 +64,6 @@ namespace ApexSharpBase
             return new List<string>();
         }
 
-        public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
-
-        public ApexSharp Connect()
-        {
-            try
-            {
-                ConnectionUtil.Connect(ApexSharpConfigSettings);
-                return this;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-
- 
-
         public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
         {
             FileInfo saveFileInfo = new FileInfo(dirLocationAndFileName);
@@ -68,7 +73,6 @@ namespace ApexSharpBase
             return this;
         }
 
-
         public ApexSharp LoadApexSharpConfig(string dirLocationAndFileName)
         {
             FileInfo loadFileInfo = new FileInfo(dirLocationAndFileName);
@@ -77,10 +81,9 @@ namespace ApexSharpBase
             return this;
         }
 
-
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {
-            ApexSharpConfigSettings.SalesForceUrl = salesForceUrl + "services/Soap/c/" + ApexSharpConfigSettings.SalesForceApiVersion + ".0/";
+            ApexSharpConfigSettings.SalesForceUrl = salesForceUrl;
             return this;
         }
 

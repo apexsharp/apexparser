@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Colorful;
 using Newtonsoft.Json;
+using SalesForceAPI.Model;
 using SalesForceAPI.Model.RestApi;
 
 namespace SalesForceAPI
@@ -81,8 +82,7 @@ namespace SalesForceAPI
         private List<string> GetObjectData(Sobject sobject, string dirPath)
         {
             HttpManager httpManager = new HttpManager();
-            var replyTaskObject = httpManager.Get(ConnectionUtil.GetConnectionDetail(),
-                "/data/v40.0/sobjects/" + sobject.name + "/describe");
+            var replyTaskObject = httpManager.Get(ConnectionUtil.GetConnectionDetail(),"/data/v40.0/sobjects/" + sobject.name + "/describe");
             replyTaskObject.Wait();
 
             File.WriteAllText(dirPath + @"\SObjectJson\" + sobject.name + ".json", replyTaskObject.Result);

@@ -16,9 +16,9 @@ namespace SalesForceAPI
 {
     public class BulkApi
     {
-        private readonly ConnectionDetail _connectionDetail;
+        private readonly ApexSharpConfig _connectionDetail;
 
-        public BulkApi(ConnectionDetail connectionDetail)
+        public BulkApi(ApexSharpConfig connectionDetail)
         {
             _connectionDetail = connectionDetail;
         }

@@ -4,9 +4,9 @@ namespace SalesForceAPI
 {
     public class CompositeApi
     {
-        private readonly ConnectionDetail _connectionDetail;
+        private readonly ApexSharpConfig _connectionDetail;
 
-        public CompositeApi(ConnectionDetail connectionDetail)
+        public CompositeApi(ApexSharpConfig connectionDetail)
         {
             _connectionDetail = connectionDetail;
         }

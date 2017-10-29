@@ -82,7 +82,8 @@
     <Compile Include="ApexCode\ClassRest.cs" />
     <Compile Include="ApexCode\ClassUnitTestSeeAllData.cs" />
     <Compile Include="ApexCode\ClassVirtual.cs" />
-    <Compile Include="ApexCode\DemoDemo.cs" />
+    <Compile Include="ApexCode\Demo.cs" />
+    <Compile Include="ApexCode\DemoTest.cs" />
     <Compile Include="ApexCode\ExceptionDemo.cs" />
     <Compile Include="ApexCode\Expression.cs" />
     <Compile Include="ApexCode\ForIfWhile.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="ApexCode\IClassInterface.cs" />
     <Compile Include="ApexCode\ClassUnitTest.cs" />
     <Compile Include="ApexCode\IClassInterfaceExt.cs" />
+    <Compile Include="ApexCode\JasonExampleTest.cs" />
     <Compile Include="ApexCode\JsonExample.cs" />
     <Compile Include="ApexCode\ListAndArrayDemo.cs" />
     <Compile Include="ApexCode\PrimitiveTypes.cs" />
