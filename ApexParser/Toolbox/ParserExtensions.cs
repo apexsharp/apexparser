@@ -216,12 +216,10 @@ namespace ApexParser.Toolbox
                 throw new ArgumentNullException(nameof(parser));
             }
 
-            // the grammar has no support for comments, use the original Token combinator
             if (provider == null)
             {
-                return
-                    from p in parser.Token()
-                    select new CommentedValue<T>(p);
+                // if the grammar has no support for comments, use the original Token combinator
+                throw new ArgumentNullException(nameof(provider));
             }
 
             // parses any whitespace except for the new lines

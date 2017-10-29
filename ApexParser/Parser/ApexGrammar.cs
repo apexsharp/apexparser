@@ -250,7 +250,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<VariableDeclarationSyntax> VariableDeclaration =>
             from type in TypeReference
             from declarators in VariableDeclarator.DelimitedBy(Parse.Char(',').Token())
-            from semicolon in Parse.Char(';').Token()
+            from semicolon in Parse.Char(';')
             select new VariableDeclarationSyntax
             {
                 Type = type,
@@ -335,7 +335,7 @@ namespace ApexParser.Parser
         // dummy generic parser for any unknown statement ending with a semicolon
         protected internal virtual Parser<StatementSyntax> UnknownGenericStatement =>
             from contents in GenericExpressionCore(forbidden: ";").Token()
-            from semicolon in Parse.Char(';').Token()
+            from semicolon in Parse.Char(';')
             select new StatementSyntax
             {
                 Body = contents.Trim(),
@@ -387,7 +387,7 @@ namespace ApexParser.Parser
         // example: break;
         protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>
             from @break in Parse.IgnoreCase(ApexKeywords.Break).Token()
-            from semicolon in Parse.Char(';').Token()
+            from semicolon in Parse.Char(';')
             select new BreakStatementSyntax();
 
         // simple if statement without the expressions support
@@ -445,7 +445,7 @@ namespace ApexParser.Parser
             from loopBody in Statement
             from whileKeyword in Parse.IgnoreCase(ApexKeywords.While).Token()
             from expression in GenericExpressionInBraces()
-            from semicolon in Parse.Char(';').Token()
+            from semicolon in Parse.Char(';')
             select new DoStatementSyntax
             {
                 Expression = expression,
@@ -467,7 +467,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<string> KeywordExpressionStatement(string keyword) =>
             from key in Parse.IgnoreCase(keyword).Token()
             from expr in GenericExpression.XOptional()
-            from semicolon in Parse.Char(';').Token()
+            from semicolon in Parse.Char(';')
             select expr.GetOrDefault();
 
         // example: insert contact;

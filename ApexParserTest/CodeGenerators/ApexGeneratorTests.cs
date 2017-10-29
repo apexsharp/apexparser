@@ -691,6 +691,54 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
+        public void LeadingAndTrailingCommentsForStatements()
+        {
+            var apex = Apex.ParseClass(@"
+            @isTest
+            public class ClassUnitTest
+            {
+                static testMethod void StaticTestMethodOne()
+                {
+                    //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                }
+
+                static testMethod void StaticTestMethodTwo()
+                {
+                    //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                }
+             }");
+
+            Check(apex,
+                @"@isTest
+                public class ClassUnitTest
+                {
+                    static testmethod void StaticTestMethodOne()
+                    {
+                        //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                        System.AssertNotEquals(5, 0, 'Assert Not Equal');
+
+                        //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                        System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    }
+
+                    static testmethod void StaticTestMethodTwo()
+                    {
+                        //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                        System.AssertNotEquals(5, 0, 'Assert Not Equal');
+
+                        //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                        System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                    }
+                 }");
+        }
+
+        [Test]
         public void LeadingAndTrailingCommentsForStatementsAreGeneratedProperly()
         {
             var apex = Apex.ParseClass(@"// TestClass leading comment
