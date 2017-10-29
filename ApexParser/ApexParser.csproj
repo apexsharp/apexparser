@@ -104,6 +104,7 @@
     <Compile Include="Toolbox\ParserExtensions.cs" />
     <Compile Include="Visitors\ApexCodeGenerator.cs" />
     <Compile Include="Visitors\ApexCodeGeneratorBase.cs" />
+    <Compile Include="Visitors\ApexMethodBodyGenerator.cs" />
     <Compile Include="Visitors\ApexSyntaxVisitor.cs" />
     <Compile Include="Visitors\CodeGeneratorBase.cs" />
     <Compile Include="Visitors\CSharpCodeGenerator.cs" />

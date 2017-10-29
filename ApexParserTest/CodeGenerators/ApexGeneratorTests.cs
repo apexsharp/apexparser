@@ -736,6 +736,14 @@ namespace ApexParserTest.CodeGenerators
                         System.AssertNotEquals(5, 0, 'Assert Not Equal');
                     }
                  }");
+
+            var md = apex.Methods.First();
+            CompareLineByLine(md.GetCodeInsideMethod(),
+                @"//System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                System.AssertNotEquals(5, 0, 'Assert Not Equal');
+
+                //System.AssertNotEquals(5, 0, 'Assert Not Equal');
+                System.AssertNotEquals(5, 0, 'Assert Not Equal');");
         }
 
         [Test]
@@ -783,6 +791,23 @@ namespace ApexParserTest.CodeGenerators
                         // block inner comment
                     } // block trailing comment
                 } // class trailing comment");
+
+            var md = apex.Methods.First();
+            CompareLineByLine(md.GetCodeInsideMethod(),
+                @"// variable declaration leading comment1
+                // variable declaration leading comment2
+                int i = 10; // variable declaration trailing comment
+
+                // while loop leading comment
+                while (true)
+                {
+                    break;
+                } // loop body trailing comment
+
+                // return null leading comment
+                return null; // return null trailing comment
+
+                // block inner comment");
         }
     }
 }

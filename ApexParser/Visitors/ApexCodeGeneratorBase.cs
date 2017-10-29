@@ -383,15 +383,10 @@ namespace ApexParser.Visitors
             }
         }
 
-        protected BlockSyntax CurrentBlock { get; set; }
-
         private bool EmptyLineIsRequired { get; set; }
 
         public override void VisitBlock(BlockSyntax node)
         {
-            var lastBlock = CurrentBlock;
-            CurrentBlock = node;
-
             AppendLeadingComments(node);
             AppendIndentedLine("{{");
             EmptyLineIsRequired = false;
@@ -423,7 +418,6 @@ namespace ApexParser.Visitors
 
             AppendIndented("}}");
             AppendTrailingComments(node);
-            CurrentBlock = lastBlock;
             EmptyLineIsRequired = true;
         }
 
