@@ -8,7 +8,7 @@ using ApexParser.Toolbox;
 
 namespace ApexParser.Parser
 {
-    public static class Apex
+    internal static class Apex
     {
         private static ApexGrammar ApexGrammar { get; } = new ApexGrammar();
 

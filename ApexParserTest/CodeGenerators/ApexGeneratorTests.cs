@@ -10,10 +10,10 @@ using NUnit.Framework;
 namespace ApexParserTest.CodeGenerators
 {
     [TestFixture]
-    public class CSharpGeneratorTests : TestFixtureBase
+    public class ApexGeneratorTests : TestFixtureBase
     {
         protected void Check(BaseSyntax node, string expected) =>
-            CompareLineByLine(node.ToCSharp(), expected);
+            CompareLineByLine(node.ToApex(), expected);
 
         [Test]
         public void EmptyClassDeclarationProducesTheRequiredNamespaceImports()
@@ -24,15 +24,8 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(cd,
-                @"namespace ApexSharpDemo.ApexCode
+                @"class TestClass
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    class TestClass
-                    {
-                    }
                 }");
         }
 
@@ -46,16 +39,9 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(cd,
-                @"namespace ApexSharpDemo.ApexCode
+                @"// Test class
+                class TestClass
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    // Test class
-                    class TestClass
-                    {
-                    }
                 }");
         }
 
@@ -71,29 +57,22 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(cd,
-                @"namespace ApexSharpDemo.ApexCode
+                @"/* Test class
+                with several lines
+                of comments */
+                class TestClass
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    /* Test class
-                    with several lines
-                    of comments */
-                    class TestClass
-                    {
-                    }
                 }");
         }
 
         [Test]
-        public void ApexTypesGetConvertedToCSharpTypes()
+        public void ApexTypesAreSupported()
         {
             var apexVoid = new TypeSyntax(ApexKeywords.Void);
-            Assert.AreEqual("void", apexVoid.ToCSharp());
+            Assert.AreEqual("void", apexVoid.ToApex());
 
             var apexContact = new TypeSyntax("MyApp", "Dto", "Contact");
-            Assert.AreEqual("MyApp.Dto.Contact", apexContact.ToCSharp());
+            Assert.AreEqual("MyApp.Dto.Contact", apexContact.ToApex());
 
             var apexList = new TypeSyntax("List")
             {
@@ -103,14 +82,14 @@ namespace ApexParserTest.CodeGenerators
                 }
             };
 
-            Assert.AreEqual("List<Custom.Class>", apexList.ToCSharp());
+            Assert.AreEqual("List<Custom.Class>", apexList.ToApex());
 
             var apexArray = new TypeSyntax("String") { IsArray = true };
-            Assert.AreEqual("String[]", apexArray.ToCSharp());
+            Assert.AreEqual("String[]", apexArray.ToApex());
         }
 
         [Test]
-        public void ApexVoidMethodIsConvertedToCSharp()
+        public void ApexVoidMethodIsGenerated()
         {
             var method = new MethodDeclarationSyntax
             {
@@ -128,18 +107,19 @@ namespace ApexParserTest.CodeGenerators
                 {
                     new ParameterSyntax("int", "x"),
                     new ParameterSyntax("int", "y")
-                }
+                },
+                Body = new BlockSyntax(),
             };
 
             Check(method,
-                @"[TestAttribute]
+                @"@TestAttribute
                 public static void Sample(int x, int y)
                 {
                 }");
         }
 
         [Test]
-        public void ApexConstructorIsConvertedToCSharp()
+        public void ApexConstructorIsGenerated()
         {
             var constr = new ConstructorDeclarationSyntax
             {
@@ -157,11 +137,12 @@ namespace ApexParserTest.CodeGenerators
                 {
                     new ParameterSyntax("int", "x"),
                     new ParameterSyntax("int", "y")
-                }
+                },
+                Body = new BlockSyntax(),
             };
 
             Check(constr,
-                @"[DefaultConstructor]
+                @"@DefaultConstructor
                 public Sample(int x, int y)
                 {
                 }");
@@ -171,7 +152,7 @@ namespace ApexParserTest.CodeGenerators
         public void UnknownGenericStatementIsEmittedAsIs()
         {
             var st = new StatementSyntax("UnknownGenericStatement()");
-            Assert.AreEqual("UnknownGenericStatement();", st.ToCSharp().Trim());
+            Assert.AreEqual("UnknownGenericStatement();", st.ToApex().Trim());
         }
 
         [Test]
@@ -193,14 +174,21 @@ namespace ApexParserTest.CodeGenerators
         {
             var ifStatement = new IfStatementSyntax
             {
+                LeadingComments = new List<string>
+                {
+                    " this is the first leading comment",
+                    " this is the second leading comment"
+                },
                 Expression = "true",
-                ThenStatement = new StatementSyntax("hello()"),
+                ThenStatement = new StatementSyntax("hello()").WithTrailingComment(" hello"),
                 ElseStatement = new BreakStatementSyntax(),
             };
 
             Check(ifStatement,
-                @"if (true)
-                    hello();
+                @"// this is the first leading comment
+                // this is the second leading comment
+                if (true)
+                    hello(); // hello
                 else
                     break;");
         }
@@ -210,23 +198,25 @@ namespace ApexParserTest.CodeGenerators
         {
             var ifStatement = new IfStatementSyntax
             {
+                LeadingComments = new List<string> { "some nested ifs" },
                 Expression = "true",
-                ThenStatement = new StatementSyntax("hello()"),
+                ThenStatement = new StatementSyntax("hello()").WithTrailingComment("there"),
                 ElseStatement = new IfStatementSyntax
                 {
                     Expression = "false",
-                    ThenStatement = new StatementSyntax("goodbye()"),
-                    ElseStatement = new BreakStatementSyntax()
+                    ThenStatement = new StatementSyntax("goodbye()").WithTrailingComment("and everywhere"),
+                    ElseStatement = new BreakStatementSyntax().WithTrailingComment("down")
                 }
             };
 
             Check(ifStatement,
-                @"if (true)
-                    hello();
+                @"//some nested ifs
+                if (true)
+                    hello(); //there
                 else if (false)
-                    goodbye();
+                    goodbye(); //and everywhere
                 else
-                    break;");
+                    break; //down");
         }
 
         [Test]
@@ -410,7 +400,7 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(forEachStatement,
-                @"foreach (Contact c in contacts)
+                @"for (Contact c : contacts)
                 {
                 }");
         }
@@ -470,36 +460,36 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
-        public void ApexInsertStatementGeneratesSoqlHelperMethod()
+        public void ApexInsertStatementIsGenerated()
         {
             var insertStatement = new InsertStatementSyntax
             {
                 Expression = "contactNew"
             };
 
-            Check(insertStatement, @"Soql.Insert(contactNew);");
+            Check(insertStatement, @"insert contactNew;");
         }
 
         [Test]
-        public void ApexUpdateStatementGeneratesSoqlHelperMethod()
+        public void ApexUpdateStatementIsGenerated()
         {
             var updateStatement = new UpdateStatementSyntax
             {
                 Expression = "contacts"
             };
 
-            Check(updateStatement, @"Soql.Update(contacts);");
+            Check(updateStatement, @"update contacts;");
         }
 
         [Test]
-        public void ApexDeleteStatementGeneratesSoqlHelperMethod()
+        public void ApexDeleteStatementIsGenerated()
         {
             var deleteStatement = new DeleteStatementSyntax
             {
                 Expression = "contactOld"
             };
 
-            Check(deleteStatement, @"Soql.Delete(contactOld);");
+            Check(deleteStatement, @"delete contactOld;");
         }
 
         [Test]
@@ -564,7 +554,7 @@ namespace ApexParserTest.CodeGenerators
             Check(acc,
                 @"set
                 {
-                    Soql.Insert(customer);
+                    insert customer;
                 }");
         }
 
@@ -657,6 +647,7 @@ namespace ApexParserTest.CodeGenerators
         public void ClassWithConstructorMethodAndPropertyIsGenerated()
         {
             var apex = Apex.ParseClass(@"
+            // this is my demo
             public class MyDemo {
                 private MyDemo(float s) { Size = s;while(true){break;} }
                 public void Test(string name, int age) {
@@ -670,39 +661,80 @@ namespace ApexParserTest.CodeGenerators
             }");
 
             Check(apex,
-                @"namespace ApexSharpDemo.ApexCode
+                @"// this is my demo
+                public class MyDemo
                 {
-                    using Apex.ApexSharp;
-                    using Apex.System;
-                    using SObjects;
-
-                    public class MyDemo
+                    private MyDemo(float s)
                     {
-                        private MyDemo(float s)
+                        Size = s;
+                        while (true)
                         {
-                            Size = s;
-                            while (true)
-                            {
-                                break;
-                            }
+                            break;
                         }
+                    }
 
-                        public void Test(string name, int age)
-                        {
-                            Contact c = new Contact(name, age);
-                            Soql.Insert(c);
-                        }
+                    public void Test(string name, int age)
+                    {
+                        Contact c = new Contact(name, age);
+                        insert c;
+                    }
 
-                        public float Size
+                    public float Size
+                    {
+                        get;
+                        private set
                         {
-                            get;
-                            private set
-                            {
-                                System.debug('trying to set');
-                            }
+                            System.debug('trying to set');
                         }
                     }
                 }");
+        }
+
+        [Test]
+        public void LeadingAndTrailingCommentsForStatementsAreGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(@"// TestClass leading comment
+            public class TestClass {
+                // sample method leading comment
+                void SampleMethod()
+                // block leading comment
+                {
+                    // variable declaration leading comment1
+                    // variable declaration leading comment2
+                    int i = 10; // variable declaration trailing comment
+                    // while loop leading comment
+                    while (true) { break; } // loop body trailing comment
+
+                    // return null leading comment
+                    return null; // return null trailing comment
+                // block inner comment
+                } // block trailing comment
+            } // class trailing comment");
+
+            Check(apex,
+                @"// TestClass leading comment
+                public class TestClass
+                {
+                    // sample method leading comment
+                    void SampleMethod()
+                    // block leading comment
+                    {
+                        // variable declaration leading comment1
+                        // variable declaration leading comment2
+                        int i = 10; // variable declaration trailing comment
+
+                        // while loop leading comment
+                        while (true)
+                        {
+                            break;
+                        } // loop body trailing comment
+
+                        // return null leading comment
+                        return null; // return null trailing comment
+
+                        // block inner comment
+                    } // block trailing comment
+                } // class trailing comment");
         }
     }
 }

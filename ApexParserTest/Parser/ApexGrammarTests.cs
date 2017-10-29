@@ -805,13 +805,15 @@ namespace ApexParserTest.Parser
         [Test]
         public void ClassDeclarationCanBeEmptyWithComments()
         {
-            var cd = Apex.ClassDeclaration.Parse(" class Test /* Comment1 */ { /* Comment2 */ }");
+            var cd = Apex.ClassDeclaration.Parse(" class Test /* Comment1 */ { /* Comment2 */ } // Comment3");
             Assert.False(cd.Annotations.Any());
             Assert.False(cd.Methods.Any());
             Assert.False(cd.Modifiers.Any());
-            Assert.AreEqual(1, cd.TrailingComments.Count);
-            Assert.AreEqual("Comment2", cd.TrailingComments[0].Trim());
             Assert.AreEqual("Test", cd.Identifier);
+            Assert.AreEqual(1, cd.InnerComments.Count);
+            Assert.AreEqual("Comment2", cd.InnerComments[0].Trim());
+            Assert.AreEqual(1, cd.TrailingComments.Count);
+            Assert.AreEqual("Comment3", cd.TrailingComments[0].Trim());
         }
 
         [Test]
@@ -1771,8 +1773,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(3, stmt.LeadingComments.Count);
             Assert.AreEqual(2, stmt.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
+            Assert.AreEqual(1, stmt.Statements[0].TrailingComments.Count);
+            Assert.AreEqual("method contents might not be valid", stmt.Statements[0].TrailingComments[0].Trim());
             Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
-            Assert.AreEqual(1, stmt.TrailingComments.Count);
+            Assert.AreEqual(1, stmt.Statements[1].TrailingComments.Count);
+            Assert.AreEqual("comments", stmt.Statements[1].TrailingComments[0].Trim());
+            Assert.AreEqual(0, stmt.TrailingComments.Count);
         }
 
         // [Test] // TODO: Try to improve the diagnostics

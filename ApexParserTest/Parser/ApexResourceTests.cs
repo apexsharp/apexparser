@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using ApexParser.MetaClass;
 using ApexParser.Parser;
-using ApexParserTest.Properties;
+using ApexParser.Visitors;
 using NUnit.Framework;
-using Sprache;
 using static ApexParserTest.Properties.Resources;
 
 namespace ApexParserTest.Parser
@@ -162,9 +156,9 @@ namespace ApexParserTest.Parser
                 block = cc.Body;
                 Assert.NotNull(block);
                 Assert.False(block.Statements.Any());
-                Assert.AreEqual(2, block.TrailingComments.Count);
-                Assert.AreEqual("another constructor", block.TrailingComments[0].Trim());
-                Assert.AreEqual("with a lot of misplaced comments", block.TrailingComments[1].Trim());
+                Assert.AreEqual(2, block.InnerComments.Count);
+                Assert.AreEqual("another constructor", block.InnerComments[0].Trim());
+                Assert.AreEqual("with a lot of misplaced comments", block.InnerComments[1].Trim());
 
                 var mp = cc.Parameters[0];
                 Assert.AreEqual("String", mp.Type.Identifier);
@@ -1098,7 +1092,8 @@ namespace ApexParserTest.Parser
             var cd = Apex.ParseClass(CommentFail);
             Assert.AreEqual("CommentFail", cd.Identifier);
             Assert.AreEqual(0, cd.LeadingComments.Count);
-            Assert.AreEqual(1, cd.TrailingComments.Count);
+            Assert.AreEqual(1, cd.InnerComments.Count);
+            Assert.AreEqual(0, cd.TrailingComments.Count);
         }
 
         [Test(Description = @"SalesForceApexSharp\src\classes\ForIfWhile.cls")]

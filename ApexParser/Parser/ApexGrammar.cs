@@ -151,7 +151,7 @@ namespace ApexParser.Parser
         // int Dispose();
         protected internal virtual Parser<MethodDeclarationSyntax> MethodParametersAndBody =>
             from parameters in MethodParameters
-            from methodBody in Block.Token().Or(Parse.Char(';').Token().Return(default(BlockSyntax)))
+            from methodBody in Block.Or(Parse.Char(';').Return(default(BlockSyntax))).Token()
             select new MethodDeclarationSyntax
             {
                 Parameters = parameters,
@@ -213,7 +213,6 @@ namespace ApexParser.Parser
 
         // examples: return true; if (false) return; etc.
         protected internal virtual Parser<StatementSyntax> Statement =>
-            from comments in CommentParser.AnyComment.Token().Many()
             from statement in Block.Select(s => s as StatementSyntax)
                 .Or(IfStatement)
                 .Or(DoStatement)
@@ -228,20 +227,23 @@ namespace ApexParser.Parser
                 .Or(DeleteStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
-            select statement.WithLeadingComments(comments);
+                .Commented(this)
+            select statement.Value
+                .WithLeadingComments(statement.LeadingComments)
+                .WithTrailingComments(statement.TrailingComments);
 
-        // examples: {}, { /* empty block */ }, { int a = 0; return; }
+        // examples: {}, { /* inner comments */ }, { int a = 0; return; } // trailing comments
         protected internal virtual Parser<BlockSyntax> Block =>
             from comments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from statements in Statement.Many()
-            from trailingComment in CommentParser.AnyComment.Token().Many()
-            from closeBrace in Parse.Char('}').Token()
+            from closeBrace in Parse.Char('}').Commented(this)
             select new BlockSyntax
             {
                 LeadingComments = comments.ToList(),
                 Statements = statements.ToList(),
-                TrailingComments = trailingComment.ToList(),
+                InnerComments = closeBrace.LeadingComments.ToList(),
+                TrailingComments = closeBrace.TrailingComments.ToList(),
             };
 
         // example: int x, y, z = 3;
@@ -553,6 +555,7 @@ namespace ApexParser.Parser
                 BaseType = classBody.BaseType,
                 Interfaces = classBody.Interfaces,
                 Members = classBody.Members,
+                InnerComments = classBody.InnerComments,
                 TrailingComments = classBody.TrailingComments,
             };
 
@@ -565,9 +568,9 @@ namespace ApexParser.Parser
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
-            from trailingComments in CommentParser.AnyComment.Token().Many()
+            from innerComments in CommentParser.AnyComment.Token().Many()
             from closeBrace in Parse.Char('}').Token()
-            from skippedTrailingComments in CommentParser.AnyComment.Token().Many()
+            from trailingComments in CommentParser.AnyComment.Token().Many()
             select new ClassDeclarationSyntax()
             {
                 Identifier = className,
@@ -575,6 +578,7 @@ namespace ApexParser.Parser
                 BaseType = baseType.GetOrDefault(),
                 Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
                 Members = ConvertConstructors(members).ToList(),
+                InnerComments = innerComments.ToList(),
                 TrailingComments = trailingComments.ToList(),
             };
 

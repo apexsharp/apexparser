@@ -11,9 +11,20 @@ namespace ApexParser.MetaClass
         public static T WithLeadingComments<T>(this T syntax, IEnumerable<string> comments)
             where T : BaseSyntax
         {
-            if (comments != null)
+            if (comments != null && syntax != null)
             {
                 syntax.LeadingComments.AddRange(comments);
+            }
+
+            return syntax;
+        }
+
+        public static T WithLeadingComment<T>(this T syntax, string comment)
+            where T : BaseSyntax
+        {
+            if (comment != null && syntax != null)
+            {
+                syntax.LeadingComments.Add(comment);
             }
 
             return syntax;
@@ -22,7 +33,7 @@ namespace ApexParser.MetaClass
         public static T WithTrailingComments<T>(this T syntax, IEnumerable<string> comments)
             where T : BaseSyntax
         {
-            if (comments != null)
+            if (comments != null && syntax != null)
             {
                 syntax.TrailingComments.AddRange(comments);
             }
@@ -30,10 +41,47 @@ namespace ApexParser.MetaClass
             return syntax;
         }
 
+        public static T WithTrailingComment<T>(this T syntax, string comment)
+            where T : BaseSyntax
+        {
+            if (comment != null && syntax != null)
+            {
+                syntax.TrailingComments.Add(comment);
+            }
+
+            return syntax;
+        }
+
+        public static BlockSyntax WithInnerComments(this BlockSyntax syntax, IEnumerable<string> comments)
+        {
+            if (comments != null && syntax != null)
+            {
+                syntax.InnerComments.AddRange(comments);
+            }
+
+            return syntax;
+        }
+
+        public static BlockSyntax WithInnerComment(this BlockSyntax syntax, params string[] comments) =>
+            syntax.WithInnerComments(comments);
+
+        public static ClassDeclarationSyntax WithInnerComments(this ClassDeclarationSyntax syntax, IEnumerable<string> comments)
+        {
+            if (comments != null && syntax != null)
+            {
+                syntax.InnerComments.AddRange(comments);
+            }
+
+            return syntax;
+        }
+
+        public static ClassDeclarationSyntax WithInnerComment(this ClassDeclarationSyntax syntax, params string[] comments) =>
+            syntax.WithInnerComments(comments);
+
         public static T WithProperties<T>(this T syntax, MemberDeclarationSyntax other = null)
             where T : MemberDeclarationSyntax
         {
-            if (other != null)
+            if (other != null && syntax != null)
             {
                 syntax.LeadingComments = other.LeadingComments;
                 syntax.TrailingComments = other.TrailingComments;

@@ -18,6 +18,8 @@ namespace ApexParser.MetaClass
 
         public void Add(StatementSyntax statement) => Statements.Add(statement);
 
+        public List<string> InnerComments { get; set; } = new List<string>();
+
         public IEnumerator GetEnumerator() => ((IEnumerable)Statements).GetEnumerator();
 
         IEnumerator<StatementSyntax> IEnumerable<StatementSyntax>.GetEnumerator() => Statements.GetEnumerator();
