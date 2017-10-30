@@ -21,12 +21,19 @@ namespace ApexSharpBase
             ConnectionUtil.Connect(ApexSharpConfigSettings);
         }
 
+        public List<string> GetAllObjects()
+        {
+            return new List<string>();
+        }
+
+
         public void CreateOfflineClasses(string sObjectName)
         {
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             ModelGen modelGen = new ModelGen();
             modelGen.CreateOfflineSymbolTable(sObjectName, path);
         }
+
 
         public void ConvertCSharpToApex(FileInfo cSharpFile)
         {
@@ -48,19 +55,11 @@ namespace ApexSharpBase
         }
 
 
-        public List<string> GetAllObjects()
-        {
-            return new List<string>();
-        }
-
         public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
         {
-
             ApexSharpConfigSettings.DirLocationAndFileName = dirLocationAndFileName;
             return this;
         }
-
-       
 
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {
@@ -85,38 +84,31 @@ namespace ApexSharpBase
             ApexSharpConfigSettings.SalesForcePasswordToken = salesForcePasswordToken;
             return this;
         }
-
         public ApexSharp AndSalesForceApiVersion(int apiVersion)
         {
             ApexSharpConfigSettings.SalesForceApiVersion = apiVersion;
             return this;
         }
-
         public ApexSharp AddHttpProxy(string httpProxy)
         {
             ApexSharpConfigSettings.HttpProxy = httpProxy;
             return this;
         }
-
         public ApexSharp SetApexFileLocation(string directory)
         {
             ApexSharpConfigSettings.ApexFileLocation = directory;
             return this;
         }
 
-
         public ApexSharp SetVisualStudioProjectLocation(string dir)
         {
             ApexSharpConfigSettings.VisualStudioProjectFile = dir;
             return this;
         }
-
         public ApexSharp SetLogLevel(LogLevel logLevel)
         {
             ApexSharpConfigSettings.LogLevel = logLevel;
             return this;
         }
-
-
     }
 }
