@@ -36,37 +36,25 @@ namespace SalesForceAPI
 
     public class ConnectionUtil
     {
-        private static ApexSharpConfig _connectionDetail;
+        public static ApexSharpConfig ConnectionDetail { get; set; }
 
-        public static ApexSharpConfig GetConnectionDetail()
+        public static void Connect(ApexSharpConfig config)
         {
-            return _connectionDetail;
+            config.SalesForceUrl = config.SalesForceUrl + "services/Soap/c/" + config.SalesForceApiVersion + ".0/";
+            config = GetNewConnection(config);
+            FileInfo saveFileInfo = new FileInfo(config.DirLocationAndFileName);
+            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+            File.WriteAllText(saveFileInfo.FullName, json);
         }
 
         public static void Connect(string configLocation)
         {
             FileInfo loadFileInfo = new FileInfo(configLocation);
             string json = File.ReadAllText(loadFileInfo.FullName);
-            Log.LogMsg(json);
-            _connectionDetail = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
-            Connect(_connectionDetail);
-
-
+            ConnectionDetail = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
         }
 
-        public static void Connect(ApexSharpConfig config)
-        {
-                config.SalesForceUrl = config.SalesForceUrl + "services/Soap/c/" + config.SalesForceApiVersion + ".0/";
-                config = GetNewConnection(config);
-                Log.LogMsg("Connection Detail", _connectionDetail);
 
-                FileInfo saveFileInfo = new FileInfo(config.DirLocationAndFileName);
-                string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-                File.WriteAllText(saveFileInfo.FullName, json);
-             
-            
-
-        }
 
         public static ApexSharpConfig GetNewConnection(ApexSharpConfig config)
         {
@@ -80,7 +68,7 @@ namespace SalesForceAPI
                     </soapenv:Header>
                     <soapenv:Body>
                         <urn:login>
-                            <urn:username>" + config.UserId + "</urn:username>" +
+                            <urn:username>" + config.SalesForceUserId + "</urn:username>" +
                             "<urn:password>" + config.SalesForcePassword + config.SalesForcePasswordToken + "</urn:password>" +
                         "</urn:login>" +
                     "</soapenv:Body>" +
@@ -88,12 +76,12 @@ namespace SalesForceAPI
 
 
             var waitTask = PostLoginTask(config.SalesForceUrl, xml);
-            waitTask.Wait();
+           
 
 
-            if (waitTask.Result != null)
+            if (waitTask != null)
             {
-                Envelope envelope = UtilXml.DeSerilizeFromXML<Envelope>(waitTask.Result);
+                Envelope envelope = UtilXml.DeSerilizeFromXML<Envelope>(waitTask);
 
                 var soapIndex = envelope.Body.loginResponse.result.serverUrl.IndexOf(@"/Soap", StringComparison.Ordinal);
                 var restUrl = envelope.Body.loginResponse.result.serverUrl.Substring(0, soapIndex);
@@ -115,7 +103,7 @@ namespace SalesForceAPI
             }
         }
 
-        private static async Task<string> PostLoginTask(string url, string json)
+        private static string PostLoginTask(string url, string json)
         {
             HttpRequestMessage request = new HttpRequestMessage
             {
@@ -128,7 +116,7 @@ namespace SalesForceAPI
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             HttpClient httpClient = new HttpClient();
-            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
+            HttpResponseMessage responseMessage = httpClient.SendAsync(request).Result;
 
             switch (responseMessage.StatusCode)
             {
@@ -221,7 +209,7 @@ namespace SalesForceAPI
         private int _limitNumber, _skipNumer = 0;
         public System.Collections.Generic.List<T> ToList<T>()
         {
-            Db db = new Db(_connectionDetail);
+            Db db = new Db(ConnectionDetail);
 
             if (_limitNumber > 0 && _skipNumer > 0)
             {
@@ -325,7 +313,7 @@ namespace SalesForceAPI
 
         public string BulkRequest<T>(int checkIntervel)
         {
-            BulkApi api = new BulkApi(_connectionDetail);
+            BulkApi api = new BulkApi(ConnectionDetail);
             return api.BulkRequest<T>(checkIntervel);
         }
 
@@ -336,7 +324,7 @@ namespace SalesForceAPI
             BulkInsertRequest<T> request = new BulkInsertRequest<T> { Records = new T[dataList.Count] };
             request.Records = dataList.ToArray();
 
-            BulkApi api = new BulkApi(_connectionDetail);
+            BulkApi api = new BulkApi(ConnectionDetail);
             var replyTask = api.CreateRecordBulk<T>(request);
             replyTask.Wait();
             return replyTask.Result;
