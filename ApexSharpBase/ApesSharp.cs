@@ -9,27 +9,16 @@ namespace ApexSharpBase
 {
     public class ApexSharp
     {
-
         public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
 
-        public ApexSharpConfig Connect(ApexSharpConfig config)
+        public void Connect(string configLocation)
         {
-            return config;
+            ConnectionUtil.Connect(configLocation);
         }
 
         public void Connect()
         {
-            try
-            {
-                ApexSharpConfigSettings.SalesForceUrl = ApexSharpConfigSettings.SalesForceUrl + "services/Soap/c/" + ApexSharpConfigSettings.SalesForceApiVersion + ".0/";
-
-                ConnectionUtil connect = new ConnectionUtil();
-                connect.Connect(ApexSharpConfigSettings);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            ConnectionUtil.Connect(ApexSharpConfigSettings);
         }
 
         public void CreateOfflineClasses(string sObjectName)
@@ -66,20 +55,12 @@ namespace ApexSharpBase
 
         public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
         {
-            FileInfo saveFileInfo = new FileInfo(dirLocationAndFileName);
-            string json = JsonConvert.SerializeObject(ApexSharpConfigSettings);
-            File.WriteAllText(saveFileInfo.FullName, json);
-            
+
+            ApexSharpConfigSettings.DirLocationAndFileName = dirLocationAndFileName;
             return this;
         }
 
-        public ApexSharp LoadApexSharpConfig(string dirLocationAndFileName)
-        {
-            FileInfo loadFileInfo = new FileInfo(dirLocationAndFileName);
-            string json = File.ReadAllText(loadFileInfo.FullName);
-            ApexSharpConfigSettings = (ApexSharpConfig) JsonConvert.DeserializeObject(json);
-            return this;
-        }
+       
 
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {

@@ -10,7 +10,11 @@ namespace SalesForceAPI
         public static void LogMsg(string logMessage, object obj)
         {
             Console.WriteLine(logMessage + ":" + JsonConvert.SerializeObject(obj, Formatting.Indented));
-            //SerilogLog.LogInfo(logMessage, obj);
+        }
+
+        public static void LogMsg(string logMessage)
+        {
+            Console.WriteLine(logMessage);
         }
     }
 

@@ -18,6 +18,14 @@ namespace Apex.ApexSharp
             return ConvertList(api.Query<T>(soql));        
         }
 
+        public static T QuerySingle<T>(string soql)
+        {
+            SoqlApi api = new SoqlApi();
+            List<T> dataList = ConvertList(api.Query<T>(soql));
+            return dataList[0];
+        }
+
+
         private static List<T> ConvertList<T>(global::System.Collections.Generic.List<T> result)
         {
             List<T> dataList = new List<T>();

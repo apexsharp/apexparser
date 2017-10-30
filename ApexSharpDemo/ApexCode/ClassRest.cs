@@ -1,42 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
-using ApexSharpBase.Attribute;
-
-namespace ApexSharpDemo.ApexCode
+﻿namespace ApexSharpDemo.ApexCode
 {
-    [Route("api/v1/restdemo")]
+    using ApexSharpBase.Attribute;
+
+  //  [Route("api/v1/restdemo")]
     public class ClassRest
     {
-        [HttpDelete]
+      //  [HttpDelete]
         [ApexGlobel]
         public static void DoDelete()
         {
         }
 
-        [HttpPost]
+      //  [HttpPost]
         [ApexGlobel]
         public static void Post()
         {
         }
 
-        [HttpGet]
+     //   [HttpGet]
         [ApexGlobel]
         public static string Get()
         {
             return "Jay";
         }
 
-        [HttpPatch]
+   //     [HttpPatch]
         [ApexGlobel]
         public static void Patch()
         {
         }
 
-        [HttpPut]
+      //  [HttpPut]
         [ApexGlobel]
         public static void Put()
         {
