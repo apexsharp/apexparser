@@ -636,5 +636,22 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void CommentsInMethodParametersAreParsed()
+        {
+            var text = @"
+            class Test
+            {
+                public void Test(int a, // first parameter
+                    int b // second parameter
+                )
+                {
+                    int a = new Map<string, string>().count() + new Map<string, string>().count();
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }
