@@ -895,11 +895,11 @@ namespace ApexParserTest.CodeGenerators
             {
                 public void Test()
                 {
-                    veh1.Capability_Metadata__c = '{""category"":[{""name"":""P13N.RecentDestinations"",""metadata"":{""property"":[{""val"":""50"",""name"":""RecentDestinationsMax""}]}},{""name"":""P13N.HomeScreen"",""metadata"":{""property"":[{""val"":""6"",""name"":""HomeScreenPages""},{""val"":""2"",""name"":""HomeScreenRows""},{""val"":""4"",""name"":""HomeScreenCols""}]}},{""name"":""P13N.Favorites"",""metadata"":{""property"":[{""val"":""40"",""name"":""FavoritesAudioMax""},{""val"":""10"",""name"":""FavoritesPhoneMax""},';
-                    veh1.Capability_Metadata__c += '{""val"":""20"",""name"":""FavoritesNavMax""},{""val"":""2"",""name"":""FavoriteBundleVersion""},{""val"":""false"",""name"":""FT_AM_FREQUENCY_SUPPORTED""},{""val"":""false"",""name"":""FT_FM_FREQUENCY_SUPPORTED""},{""val"":""false"",""name"":""FT_DAB_STATION_SUPPORTED""},{""val"":""false"",""name"":""FT_SDARS_CHANNEL_SUPPORTED""},{""val"":""false"",""name"":""FT_APP_STATION_SUPPORTED""},{""val"":""false"",""name"":""FT_PANDORA_STATION_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_ARTIST_SUPPORTED""},';
-                    veh1.Capability_Metadata__c += '{""val"":""false"",""name"":""FT_MEDIA_SONG_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_ALBUM_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_PLAYLIST_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_PODCAST_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_GENRE_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_AUDIO_BOOK_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_VIDEO_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_COMPILATION_SUPPORTED""},';
-                    veh1.Capability_Metadata__c += '{""val"":""false"",""name"":""FT_MEDIA_FOLDER_SUPPORTED""},{""val"":""true"",""name"":""FT_PHONE_NUMBER_SUPPORTED""},{""val"":""false"",""name"":""FT_CONTACT_NAME_SUPPORTED""},{""val"":""true"",""name"":""FT_DESTINATION_SUPPORTED""},{""val"":""false"",""name"":""FT_SEARCH _TERM_POI_SUPPORTED""},{""val"":""false"",""name"":""FT_POI_CATEGORY_SUPPORTED""},{""val"":""false"",""name"":""FT_POI_CHAIN_SUPPORTED""},{""val"":""false"",""name"":""FT_SEARCH _TERM_ADDRESS_SUPPORTED""},';
-                    veh1.Capability_Metadata__c += '{""val"":""false"",""name"":""FT_SEARCH _TERM_POI_SUPPORTED""}]}},{""name"":""P13N.SystemProperties"",""metadata"":{""property"":[{""val"":""1920x1080"",""name"":""HMIResolution""},{""val"":""5.1.1"",""name"":""AndroidOS""},{""val"":""gminfo3 Build/INFO3-R15.4-1"",""name"":""BuildVersion""},{""val"":""1"",""name"":""GMFrameworkVersion""},{""val"":""From CPUInfo"",""name"":""DeviceProcessor""}]}}]}';
+                    tmp.Some_Identifier__tmp = '{""category"":[{""name"":""L10N.Translations"",""details"":{""data"":[{""val"":""50"",""name"":""RecentDestinationsMax""}]}},{""name"":""L10N.Translations"",""metadata"":{""property"":[{""val"":""6"",""name"":""HomeScreenPages""},{""val"":""2"",""name"":""HomeScreenRows""},{""val"":""4"",""name"":""HomeScreenCols""}]}},{""name"":""L10N.Translations"",""metadata"":{""property"":[{""val"":""40"",""name"":""FavoritesAudioMax""},{""val"":""10"",""name"":""Unidentified""},';
+                    tmp.Some_Identifier__tmp += '{""tmp"":""20"",""name"":""Something""},{""val"":""2"",""name"":""FavoriteBundleVersion""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},';
+                    tmp.Some_Identifier__tmp += '{""tmp"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},';
+                    tmp.Some_Identifier__tmp += '{""tmp"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""true"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""true"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},';
+                    tmp.Some_Identifier__tmp += '{""tmp"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""}]}},{""name"":""L10N.Translations"",""metadata"":{""property"":[{""val"":""1920x1080"",""name"":""HMIResolution""},{""val"":""5.1.1"",""name"":""AndroidOS""},{""val"":""tmp"",""name"":""BuildVersion""},{""val"":""1"",""name"":""GMFrameworkVersion""},{""val"":""From CPUInfo"",""name"":""DeviceProcessor""}]}}]}';
                 }
             }";
 
@@ -909,11 +909,11 @@ namespace ApexParserTest.CodeGenerators
                 {
                     public void Test()
                     {
-                        veh1.Capability_Metadata__c = '{""category"":[{""name"":""P13N.RecentDestinations"",""metadata"":{""property"":[{""val"":""50"",""name"":""RecentDestinationsMax""}]}},{""name"":""P13N.HomeScreen"",""metadata"":{""property"":[{""val"":""6"",""name"":""HomeScreenPages""},{""val"":""2"",""name"":""HomeScreenRows""},{""val"":""4"",""name"":""HomeScreenCols""}]}},{""name"":""P13N.Favorites"",""metadata"":{""property"":[{""val"":""40"",""name"":""FavoritesAudioMax""},{""val"":""10"",""name"":""FavoritesPhoneMax""},';
-                        veh1.Capability_Metadata__c += '{""val"":""20"",""name"":""FavoritesNavMax""},{""val"":""2"",""name"":""FavoriteBundleVersion""},{""val"":""false"",""name"":""FT_AM_FREQUENCY_SUPPORTED""},{""val"":""false"",""name"":""FT_FM_FREQUENCY_SUPPORTED""},{""val"":""false"",""name"":""FT_DAB_STATION_SUPPORTED""},{""val"":""false"",""name"":""FT_SDARS_CHANNEL_SUPPORTED""},{""val"":""false"",""name"":""FT_APP_STATION_SUPPORTED""},{""val"":""false"",""name"":""FT_PANDORA_STATION_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_ARTIST_SUPPORTED""},';
-                        veh1.Capability_Metadata__c += '{""val"":""false"",""name"":""FT_MEDIA_SONG_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_ALBUM_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_PLAYLIST_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_PODCAST_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_GENRE_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_AUDIO_BOOK_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_VIDEO_SUPPORTED""},{""val"":""false"",""name"":""FT_MEDIA_COMPILATION_SUPPORTED""},';
-                        veh1.Capability_Metadata__c += '{""val"":""false"",""name"":""FT_MEDIA_FOLDER_SUPPORTED""},{""val"":""true"",""name"":""FT_PHONE_NUMBER_SUPPORTED""},{""val"":""false"",""name"":""FT_CONTACT_NAME_SUPPORTED""},{""val"":""true"",""name"":""FT_DESTINATION_SUPPORTED""},{""val"":""false"",""name"":""FT_SEARCH _TERM_POI_SUPPORTED""},{""val"":""false"",""name"":""FT_POI_CATEGORY_SUPPORTED""},{""val"":""false"",""name"":""FT_POI_CHAIN_SUPPORTED""},{""val"":""false"",""name"":""FT_SEARCH _TERM_ADDRESS_SUPPORTED""},';
-                        veh1.Capability_Metadata__c += '{""val"":""false"",""name"":""FT_SEARCH _TERM_POI_SUPPORTED""}]}},{""name"":""P13N.SystemProperties"",""metadata"":{""property"":[{""val"":""1920x1080"",""name"":""HMIResolution""},{""val"":""5.1.1"",""name"":""AndroidOS""},{""val"":""gminfo3 Build/INFO3-R15.4-1"",""name"":""BuildVersion""},{""val"":""1"",""name"":""GMFrameworkVersion""},{""val"":""From CPUInfo"",""name"":""DeviceProcessor""}]}}]}';
+                        tmp.Some_Identifier__tmp = '{""category"":[{""name"":""L10N.Translations"",""details"":{""data"":[{""val"":""50"",""name"":""RecentDestinationsMax""}]}},{""name"":""L10N.Translations"",""metadata"":{""property"":[{""val"":""6"",""name"":""HomeScreenPages""},{""val"":""2"",""name"":""HomeScreenRows""},{""val"":""4"",""name"":""HomeScreenCols""}]}},{""name"":""L10N.Translations"",""metadata"":{""property"":[{""val"":""40"",""name"":""FavoritesAudioMax""},{""val"":""10"",""name"":""Unidentified""},';
+                        tmp.Some_Identifier__tmp += '{""tmp"":""20"",""name"":""Something""},{""val"":""2"",""name"":""FavoriteBundleVersion""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},';
+                        tmp.Some_Identifier__tmp += '{""tmp"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},';
+                        tmp.Some_Identifier__tmp += '{""tmp"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""true"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""true"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},{""val"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""},';
+                        tmp.Some_Identifier__tmp += '{""tmp"":""false"",""name"":""IRQ_NOT_LESS_OR_EQUAL""}]}},{""name"":""L10N.Translations"",""metadata"":{""property"":[{""val"":""1920x1080"",""name"":""HMIResolution""},{""val"":""5.1.1"",""name"":""AndroidOS""},{""val"":""tmp"",""name"":""BuildVersion""},{""val"":""1"",""name"":""GMFrameworkVersion""},{""val"":""From CPUInfo"",""name"":""DeviceProcessor""}]}}]}';
                     }
                 }");
         }
@@ -926,21 +926,21 @@ namespace ApexParserTest.CodeGenerators
             {
                 public void Test()
                 {
-                    req.requestBody = Blob.valueof('{test}');
-                    req.requestBody = Blob.valueof('{test}');
-                    req.setBody('{""name"":""name""}');
-                    objCtrl.deliverableTypesName = new List<String> { 'test1', 'test2' };
-                    objCtrl.deliverableTypesDescription = new List<String> { 'test1', 'test2' };
-                    ct.CONTACT_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                    ct.CONTACT_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                    ct.CONTACT_SEGMENT_TXT__c = ' {}8236kjah{}{';
-                    vt.Device_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                    vt.Device_SEGMENT_TXT__c = 'value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                    vt.Vehicle_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                    vt.Vehicle_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                    vt.Vehicle_SEGMENT_TXT__c = ' : ""Wine Lover"" } ] }';
-                    req.requestBody = Blob.valueOf('{ ""checklist"": [ { ""checklistItem"": [ { ""id"": ""' + existingChecklist0.id + '"", ""isChecked"": false }, { ""id"": ""' + newChecklist0.id + '"", ""isChecked"": true }, { ""id"": ""' + newChecklist1.id + '"", ""isChecked"": false } ] } ] }');
-                    result = ZuoraUtil.zamend(new list<Zuora.zApi.AmendRequest> { amendRequest }, instance);
+                    tmp.requestBody = Blob.valueof('{test}');
+                    tmp.requestBody = Blob.valueof('{test}');
+                    tmp.setBody('{""name"":""name""}');
+                    tmp.tmpName = new List<String> {'test1', 'test2'};
+                    tmp.tmpDesc = new List<String> {'test1', 'test2'};
+                    tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                    tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                    tmp.SomeIdentifier__tmp = ' {}8236kjah{}{';
+                    tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                    tmp.SomeIdentifier__tmp = 'value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                    tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                    tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                    tmp.SomeIdentifier__tmp = ' : ""Temp"" } ] }';
+                    tmp.requestBody = Blob.valueOf('{ ""checklist"": [ { ""checklistItem"": [ { ""id"": ""' + existingChecklist0.id + '"", ""isChecked"": false }, { ""id"": ""' + newChecklist0.id + '"", ""isChecked"": true }, { ""id"": ""' + newChecklist1.id + '"", ""isChecked"": false } ] } ] }');
+                    result = Something.replace(new list<tmp.SomeRequest>{req}, tmp);
                 }
             }";
 
@@ -950,21 +950,56 @@ namespace ApexParserTest.CodeGenerators
                 {
                     public void Test()
                     {
-                        req.requestBody = Blob.valueof('{test}');
-                        req.requestBody = Blob.valueof('{test}');
-                        req.setBody('{""name"":""name""}');
-                        objCtrl.deliverableTypesName = new List<String> {'test1', 'test2'};
-                        objCtrl.deliverableTypesDescription = new List<String> {'test1', 'test2'};
-                        ct.CONTACT_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        ct.CONTACT_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        ct.CONTACT_SEGMENT_TXT__c = ' {}8236kjah{}{';
-                        vt.Device_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        vt.Device_SEGMENT_TXT__c = 'value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        vt.Vehicle_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        vt.Vehicle_SEGMENT_TXT__c = '{ ""SegmentationList"" : [ { ""key"" : ""Age"", ""value"" : ""25-34"" }, { ""key"" : ""Lifestyle"", ""value"" : ""Wine Lover"" } ] }';
-                        vt.Vehicle_SEGMENT_TXT__c = ' : ""Wine Lover"" } ] }';
-                        req.requestBody = Blob.valueOf('{ ""checklist"": [ { ""checklistItem"": [ { ""id"": ""'+ existingChecklist0.id + '"", ""isChecked"": false }, { ""id"": ""'+ newChecklist0.id + '"", ""isChecked"": true }, { ""id"": ""'+ newChecklist1.id + '"", ""isChecked"": false } ] } ] }');
-                        result = ZuoraUtil.zamend(new list<Zuora.zApi.AmendRequest>{amendRequest}, instance);
+                        tmp.requestBody = Blob.valueof('{test}');
+                        tmp.requestBody = Blob.valueof('{test}');
+                        tmp.setBody('{""name"":""name""}');
+                        tmp.tmpName = new List<String> {'test1', 'test2'};
+                        tmp.tmpDesc = new List<String> {'test1', 'test2'};
+                        tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                        tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                        tmp.SomeIdentifier__tmp = ' {}8236kjah{}{';
+                        tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                        tmp.SomeIdentifier__tmp = 'value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                        tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                        tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
+                        tmp.SomeIdentifier__tmp = ' : ""Temp"" } ] }';
+                        tmp.requestBody = Blob.valueOf('{ ""checklist"": [ { ""checklistItem"": [ { ""id"": ""'+ existingChecklist0.id + '"", ""isChecked"": false }, { ""id"": ""'+ newChecklist0.id + '"", ""isChecked"": true }, { ""id"": ""'+ newChecklist1.id + '"", ""isChecked"": false } ] } ] }');
+                        result = Something.replace(new list<tmp.SomeRequest>{req}, tmp);
+                    }
+                }");
+        }
+
+        [Test]
+        public void NewListExpressionIsGenerated()
+        {
+            var text = @"
+            class Test {
+                void Test() {
+                    objCtrl.deliverableTypesName = new List<String>
+                    {
+                            'test1', 'test2'
+                    }
+
+                    ;
+                    objCtrl.deliverableTypesDescription = new List<String>
+                    {
+                            'test1', 'test2'
+                    }
+
+                    ;
+                }
+            }";
+
+            var apex = Apex.ParseFile(text);
+            Check(apex,
+                @"class Test
+                {
+                    void Test()
+                    {
+                        objCtrl.deliverableTypesName = new List<String>
+                        {'test1', 'test2'};
+                        objCtrl.deliverableTypesDescription = new List<String>
+                        {'test1', 'test2'};
                     }
                 }");
         }
