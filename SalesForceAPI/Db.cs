@@ -23,7 +23,7 @@ namespace SalesForceAPI
 
         public Db()
         {
-            _connectionDetail = ConnectionUtil.GetConnectionDetail();
+            _connectionDetail = ConnectionUtil.ConnectionDetail;
         }
 
         public Db(ApexSharpConfig connectionDetail)

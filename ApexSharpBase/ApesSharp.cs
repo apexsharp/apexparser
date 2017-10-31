@@ -9,28 +9,23 @@ namespace ApexSharpBase
 {
     public class ApexSharp
     {
-
         public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
 
-        public ApexSharpConfig Connect(ApexSharpConfig config)
+        public void Connect(string configLocation)
         {
-            return config;
+            ConnectionUtil.Connect(configLocation);
         }
 
         public void Connect()
         {
-            try
-            {
-                ApexSharpConfigSettings.SalesForceUrl = ApexSharpConfigSettings.SalesForceUrl + "services/Soap/c/" + ApexSharpConfigSettings.SalesForceApiVersion + ".0/";
-
-                ConnectionUtil connect = new ConnectionUtil();
-                connect.Connect(ApexSharpConfigSettings);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            ConnectionUtil.Connect(ApexSharpConfigSettings);
         }
+
+        public List<string> GetAllObjects()
+        {
+            return new List<string>();
+        }
+
 
         public void CreateOfflineClasses(string sObjectName)
         {
@@ -38,6 +33,7 @@ namespace ApexSharpBase
             ModelGen modelGen = new ModelGen();
             modelGen.CreateOfflineSymbolTable(sObjectName, path);
         }
+
 
         public void ConvertCSharpToApex(FileInfo cSharpFile)
         {
@@ -59,25 +55,9 @@ namespace ApexSharpBase
         }
 
 
-        public List<string> GetAllObjects()
-        {
-            return new List<string>();
-        }
-
         public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
         {
-            FileInfo saveFileInfo = new FileInfo(dirLocationAndFileName);
-            string json = JsonConvert.SerializeObject(ApexSharpConfigSettings);
-            File.WriteAllText(saveFileInfo.FullName, json);
-            
-            return this;
-        }
-
-        public ApexSharp LoadApexSharpConfig(string dirLocationAndFileName)
-        {
-            FileInfo loadFileInfo = new FileInfo(dirLocationAndFileName);
-            string json = File.ReadAllText(loadFileInfo.FullName);
-            ApexSharpConfigSettings = (ApexSharpConfig) JsonConvert.DeserializeObject(json);
+            ApexSharpConfigSettings.DirLocationAndFileName = dirLocationAndFileName;
             return this;
         }
 
@@ -104,38 +84,31 @@ namespace ApexSharpBase
             ApexSharpConfigSettings.SalesForcePasswordToken = salesForcePasswordToken;
             return this;
         }
-
         public ApexSharp AndSalesForceApiVersion(int apiVersion)
         {
             ApexSharpConfigSettings.SalesForceApiVersion = apiVersion;
             return this;
         }
-
         public ApexSharp AddHttpProxy(string httpProxy)
         {
             ApexSharpConfigSettings.HttpProxy = httpProxy;
             return this;
         }
-
         public ApexSharp SetApexFileLocation(string directory)
         {
             ApexSharpConfigSettings.ApexFileLocation = directory;
             return this;
         }
 
-
         public ApexSharp SetVisualStudioProjectLocation(string dir)
         {
             ApexSharpConfigSettings.VisualStudioProjectFile = dir;
             return this;
         }
-
         public ApexSharp SetLogLevel(LogLevel logLevel)
         {
             ApexSharpConfigSettings.LogLevel = logLevel;
             return this;
         }
-
-
     }
 }

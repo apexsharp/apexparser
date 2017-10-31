@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="ApexApi\Id.cs" />
     <Compile Include="ApexApi\SObject.cs" />
-    <Compile Include="Model\ApexSharpConfig.cs" />
     <Compile Include="Model\LogLevel.cs" />
     <Compile Include="SoqlApi.cs" />
     <Compile Include="Attribute\FieldType.cs" />
@@ -74,7 +73,6 @@
     <Compile Include="ConnectionUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BulkApi.cs" />
-    <Compile Include="LogIn.cs" />
     <Compile Include="SoqlCreator.cs" />
     <Compile Include="UtilSalesForce.cs" />
     <Compile Include="UtilXml.cs" />

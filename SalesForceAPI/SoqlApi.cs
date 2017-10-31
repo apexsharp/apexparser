@@ -61,21 +61,21 @@ namespace SalesForceAPI
 
         public void Insert<T>(T sObject) where T : SObject
         {
-            Db db = new Db(ConnectionUtil.GetConnectionDetail());
+            Db db = new Db(ConnectionUtil.ConnectionDetail);
             Task<T> createRecord = db.CreateRecord<T>(sObject);
             createRecord.Wait();
         }
 
         public void Update<T>(List<T> sObjectList) where T : SObject
         {
-            Db db = new Db(ConnectionUtil.GetConnectionDetail());
+            Db db = new Db(ConnectionUtil.ConnectionDetail);
             Task<bool> updateRecord = db.UpdateRecord<T>(sObjectList);
             updateRecord.Wait();
         }
 
         public void Update<T>(T sObject) where T : SObject
         {
-            Db db = new Db(ConnectionUtil.GetConnectionDetail());
+            Db db = new Db(ConnectionUtil.ConnectionDetail);
             Task<bool> updateRecord = db.UpdateRecord<T>(sObject);
             updateRecord.Wait();
         }
@@ -84,7 +84,7 @@ namespace SalesForceAPI
         {
             foreach (var obj in sObjectList)
             {
-                Db db = new Db(ConnectionUtil.GetConnectionDetail());
+                Db db = new Db(ConnectionUtil.ConnectionDetail);
                 global::System.Threading.Tasks.Task<bool> deleteRecord = db.DeleteRecord<T>(obj);
                 deleteRecord.Wait();
             }

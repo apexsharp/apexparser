@@ -43,7 +43,7 @@ namespace SalesForceAPI
     
 
             HttpManager httpManager = new HttpManager();
-            var replyTask = httpManager.Get(ConnectionUtil.GetConnectionDetail(), "/data/v40.0/sobjects/");
+            var replyTask = httpManager.Get(ConnectionUtil.ConnectionDetail, "/data/v40.0/sobjects/");
             replyTask.Wait();
 
             File.WriteAllText(dirPath + @"\objectList.json", replyTask.Result);
@@ -82,7 +82,7 @@ namespace SalesForceAPI
         private List<string> GetObjectData(Sobject sobject, string dirPath)
         {
             HttpManager httpManager = new HttpManager();
-            var replyTaskObject = httpManager.Get(ConnectionUtil.GetConnectionDetail(),"/data/v40.0/sobjects/" + sobject.name + "/describe");
+            var replyTaskObject = httpManager.Get(ConnectionUtil.ConnectionDetail, "/data/v40.0/sobjects/" + sobject.name + "/describe");
             replyTaskObject.Wait();
 
             File.WriteAllText(dirPath + @"\SObjectJson\" + sobject.name + ".json", replyTaskObject.Result);
