@@ -353,13 +353,13 @@ namespace ApexParser.Parser
 
         // dummy generic parser for expressions with matching braces
         protected internal virtual Parser<string> GenericExpression =>
-            GenericExpressionCore(forbidden: ",;");
+            GenericExpressionCore(forbidden: ",;").Select(x => x.Trim());
 
         // creates dummy generic parser for expressions with matching braces allowing commas and semicolons by default
         protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null) =>
             from subExpressions in
-                GenericNewExpression
-                .Or(Parse.CharExcept("'/(){}[]" + forbidden).Many().Text().Token())
+                GenericNewExpression.Select(x => $" {x}")
+                .Or(Parse.CharExcept("'/(){}[]" + forbidden).Except(GenericNewExpression).Many().Text().Token())
                 .Or(Parse.Char('/').Then(_ => Parse.Not(Parse.Chars('/', '*'))).Once().Return("/"))
                 .Or(CommentParser.AnyComment.Return(string.Empty))
                 .Or(StringLiteral)

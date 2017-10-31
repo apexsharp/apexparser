@@ -953,8 +953,8 @@ namespace ApexParserTest.CodeGenerators
                         tmp.requestBody = Blob.valueof('{test}');
                         tmp.requestBody = Blob.valueof('{test}');
                         tmp.setBody('{""name"":""name""}');
-                        tmp.tmpName = new List<String> {'test1', 'test2'};
-                        tmp.tmpDesc = new List<String> {'test1', 'test2'};
+                        tmp.tmpName = new list<String>{'test1', 'test2'};
+                        tmp.tmpDesc = new list<String>{'test1', 'test2'};
                         tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
                         tmp.SomeIdentifier__tmp = '{ ""SegmentationFault"" : [ { ""key"" : ""Age"", ""value"" : ""1234"" }, { ""key"" : ""Species"", ""value"" : ""Beaver"" } ] }';
                         tmp.SomeIdentifier__tmp = ' {}8236kjah{}{';
@@ -996,10 +996,8 @@ namespace ApexParserTest.CodeGenerators
                 {
                     void Test()
                     {
-                        objCtrl.deliverableTypesName = new List<String>
-                        {'test1', 'test2'};
-                        objCtrl.deliverableTypesDescription = new List<String>
-                        {'test1', 'test2'};
+                        objCtrl.deliverableTypesName = new list<String>{'test1', 'test2'};
+                        objCtrl.deliverableTypesDescription = new list<String>{'test1', 'test2'};
                     }
                 }");
         }
