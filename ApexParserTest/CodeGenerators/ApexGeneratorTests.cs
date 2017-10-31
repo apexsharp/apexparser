@@ -460,6 +460,25 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
+        public void ApexRunAsStatementIsSupported()
+        {
+            var runAsStatement = new RunAsStatementSyntax
+            {
+                Expression = "getCurrentUser()",
+                Statement = new BlockSyntax
+                {
+                    new BreakStatementSyntax()
+                }
+            };
+
+            Check(runAsStatement,
+                @"System.runAs(getCurrentUser())
+                {
+                    break;
+                }");
+        }
+
+        [Test]
         public void ApexInsertStatementIsGenerated()
         {
             var insertStatement = new InsertStatementSyntax
@@ -808,6 +827,35 @@ namespace ApexParserTest.CodeGenerators
                 return null; // return null trailing comment
 
                 // block inner comment");
+        }
+
+        [Test]
+        public void RunAsStatementIsGenerated()
+        {
+            var text = @"
+            class Test
+            {
+                @isTest public static void LogErrorExceptionWithMessage()
+                {
+                    System.runAs(Info3TestFactory.getGatewayAdminUser())
+                    {
+
+                    }
+                }
+            }";
+
+            var apex = Apex.ParseFile(text);
+            Check(apex,
+                @"class Test
+                {
+                    @isTest
+                    public static void LogErrorExceptionWithMessage()
+                    {
+                        System.runAs(Info3TestFactory.getGatewayAdminUser())
+                        {
+                        }
+                    }
+                }");
         }
     }
 }

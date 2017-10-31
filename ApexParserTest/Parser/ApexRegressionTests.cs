@@ -537,5 +537,23 @@ namespace ApexParserTest.Parser
             }";
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void RunAsParsed()
+        {
+            var text = @"
+            class Test
+            {
+                @isTest public static void LogErrorExceptionWithMessage()
+                {
+                    System.runAs(Info3TestFactory.getGatewayAdminUser())
+                    {
+
+                    }
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }

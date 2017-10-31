@@ -364,6 +364,13 @@ namespace ApexParser.Visitors
             AppendStatementWithOptionalIndent(node.Statement);
         }
 
+        public override void VisitRunAsStatement(RunAsStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndentedLine("System.runAs({0})", node.Expression);
+            AppendStatementWithOptionalIndent(node.Statement);
+        }
+
         protected virtual void AppendStatementWithOptionalIndent(StatementSyntax node)
         {
             var optionalIndent = default(IDisposable);
