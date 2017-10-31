@@ -555,5 +555,23 @@ namespace ApexParserTest.Parser
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
         }
+
+        [Test]
+        public void JsonStringGeneratorIsParsed()
+        {
+            var text = @"
+            class Test
+            {
+                public void Test()
+                {
+                    string reqBody = '';
+                    reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';
+                    reqBody = '{""size"":0,""application"":[]}';
+                    reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';
+                }
+            }";
+
+            Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
     }
 }

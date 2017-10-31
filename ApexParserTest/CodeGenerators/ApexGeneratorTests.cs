@@ -857,5 +857,34 @@ namespace ApexParserTest.CodeGenerators
                     }
                 }");
         }
+
+        [Test]
+        public void JsonStringGeneratorIsGenerated()
+        {
+            var text = @"
+            class Test
+            {
+                public void Test()
+                {
+                    string reqBody = '';
+                    reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';
+                    reqBody = '{""size"":0,""application"":[]}';
+                    reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';
+                }
+            }";
+
+            var apex = Apex.ParseFile(text);
+            Check(apex,
+                @"class Test
+                {
+                    public void Test()
+                    {
+                        string reqBody = '';
+                        reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';
+                        reqBody = '{""size"":0,""application"":[]}';
+                        reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';
+                    }
+                }");
+        }
     }
 }

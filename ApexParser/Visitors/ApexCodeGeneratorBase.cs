@@ -247,7 +247,7 @@ namespace ApexParser.Visitors
             AppendLeadingComments(node);
             if (!string.IsNullOrWhiteSpace(node.Body))
             {
-                AppendIndented(node.Body);
+                AppendIndented("{0}", node.Body);
             }
 
             Append(";");
