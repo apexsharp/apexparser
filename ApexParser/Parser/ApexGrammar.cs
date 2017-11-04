@@ -42,24 +42,29 @@ namespace ApexParser.Parser
                 Parameters = parameters.Value.GetOrDefault(),
             };
 
+        // returns the keyword normalized to its canonic representation
+        // examples: void, testMethod
+        protected internal virtual Parser<string> Keyword(string text) =>
+            Parse.IgnoreCase(text).Return(text);
+
         // examples: int, void
         protected internal virtual Parser<TypeSyntax> SystemType =>
-            Parse.IgnoreCase(ApexKeywords.Blob).Or(
-            Parse.IgnoreCase(ApexKeywords.Boolean)).Or(
-            Parse.IgnoreCase(ApexKeywords.Byte)).Or(
-            Parse.IgnoreCase(ApexKeywords.Char)).Or(
-            Parse.IgnoreCase(ApexKeywords.Decimal)).Or(
-            Parse.IgnoreCase(ApexKeywords.Double)).Or(
-            Parse.IgnoreCase(ApexKeywords.Exception)).Or(
-            Parse.IgnoreCase(ApexKeywords.Float)).Or(
-            Parse.IgnoreCase(ApexKeywords.Int)).Or(
-            Parse.IgnoreCase(ApexKeywords.Long)).Or(
-            Parse.IgnoreCase(ApexKeywords.Set)).Or(
-            Parse.IgnoreCase(ApexKeywords.Short)).Or(
-            Parse.IgnoreCase(ApexKeywords.List)).Or(
-            Parse.IgnoreCase(ApexKeywords.Map)).Or(
-            Parse.IgnoreCase(ApexKeywords.Void))
-                .Text().Then(n => Parse.Not(Parse.LetterOrDigit.Or(Parse.Char('_'))).Return(n.ToLower()))
+            Keyword(ApexKeywords.Blob).Or(
+            Keyword(ApexKeywords.Boolean)).Or(
+            Keyword(ApexKeywords.Byte)).Or(
+            Keyword(ApexKeywords.Char)).Or(
+            Keyword(ApexKeywords.Decimal)).Or(
+            Keyword(ApexKeywords.Double)).Or(
+            Keyword(ApexKeywords.Exception)).Or(
+            Keyword(ApexKeywords.Float)).Or(
+            Keyword(ApexKeywords.Int)).Or(
+            Keyword(ApexKeywords.Long)).Or(
+            Keyword(ApexKeywords.SetType)).Or(
+            Keyword(ApexKeywords.Short)).Or(
+            Keyword(ApexKeywords.List)).Or(
+            Keyword(ApexKeywords.Map)).Or(
+            Keyword(ApexKeywords.Void))
+                .Text().Then(n => Parse.Not(Parse.LetterOrDigit.Or(Parse.Char('_'))).Return(n))
                 .Token().Select(n => new TypeSyntax(n))
                 .Named("SystemType");
 
@@ -110,20 +115,20 @@ namespace ApexParser.Parser
 
         // examples: public, private, with sharing
         protected internal virtual Parser<string> Modifier =>
-            Parse.IgnoreCase(ApexKeywords.Public).Or(
-            Parse.IgnoreCase(ApexKeywords.Protected)).Or(
-            Parse.IgnoreCase(ApexKeywords.Private)).Or(
-            Parse.IgnoreCase(ApexKeywords.Static)).Or(
-            Parse.IgnoreCase(ApexKeywords.Abstract)).Or(
-            Parse.IgnoreCase(ApexKeywords.Final)).Or(
-            Parse.IgnoreCase(ApexKeywords.Global)).Or(
-            Parse.IgnoreCase(ApexKeywords.WebService)).Or(
-            Parse.IgnoreCase(ApexKeywords.Override)).Or(
-            Parse.IgnoreCase(ApexKeywords.Virtual)).Or(
-            Parse.IgnoreCase(ApexKeywords.TestMethod)).Or(
-            Parse.IgnoreCase(ApexKeywords.With).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
-            Parse.IgnoreCase(ApexKeywords.Without).Token().Then(_ => Parse.IgnoreCase(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
-            Parse.IgnoreCase(ApexKeywords.Transient))
+            Keyword(ApexKeywords.Public).Or(
+            Keyword(ApexKeywords.Protected)).Or(
+            Keyword(ApexKeywords.Private)).Or(
+            Keyword(ApexKeywords.Static)).Or(
+            Keyword(ApexKeywords.Abstract)).Or(
+            Keyword(ApexKeywords.Final)).Or(
+            Keyword(ApexKeywords.Global)).Or(
+            Keyword(ApexKeywords.WebService)).Or(
+            Keyword(ApexKeywords.Override)).Or(
+            Keyword(ApexKeywords.Virtual)).Or(
+            Keyword(ApexKeywords.TestMethod)).Or(
+            Keyword(ApexKeywords.With).Token().Then(_ => Keyword(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
+            Keyword(ApexKeywords.Without).Token().Then(_ => Keyword(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
+            Keyword(ApexKeywords.Transient))
                 .Text().Token().Select(t => t.ToLower()).Named("Modifier");
 
         // examples:

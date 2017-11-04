@@ -59,6 +59,14 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void KeywordIsReturnedInItsNormalizedRepresentation()
+        {
+            Assert.AreEqual(ApexKeywords.Void, Apex.Keyword(ApexKeywords.Void).Parse("voiD"));
+            Assert.AreEqual(ApexKeywords.TestMethod, Apex.Keyword(ApexKeywords.TestMethod).Parse("TeStMeThOD"));
+            Assert.AreEqual(ApexKeywords.Last90Days, Apex.Keyword(ApexKeywords.Last90Days).Parse("LAST_90_days"));
+        }
+
+        [Test]
         public void AnnotationBeginsWithAtSign()
         {
             var ann = Apex.Annotation.Parse(" @isTest ");
@@ -155,7 +163,7 @@ namespace ApexParserTest.Parser
             Assert.False(tr.IsArray);
 
             tr = Apex.TypeReference.Parse("List<string>");
-            Assert.AreEqual("list", tr.Identifier);
+            Assert.AreEqual("List", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
             Assert.False(tr.IsArray);
 
@@ -184,7 +192,7 @@ namespace ApexParserTest.Parser
             Assert.True(tr.IsArray);
 
             tr = Apex.TypeReference.Parse(" List <string>[]");
-            Assert.AreEqual("list", tr.Identifier);
+            Assert.AreEqual("List", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
             Assert.True(tr.IsArray);
 
@@ -206,7 +214,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(0, pd.Modifiers.Count);
 
             pd = Apex.ParameterDeclaration.Parse(" List<string> stringList");
-            Assert.AreEqual("list", pd.Type.Identifier);
+            Assert.AreEqual("List", pd.Type.Identifier);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
             Assert.AreEqual("string", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("stringList", pd.Identifier);
@@ -381,7 +389,7 @@ namespace ApexParserTest.Parser
             Assert.False(md.Annotations.Any());
             Assert.AreEqual(1, md.Modifiers.Count);
             Assert.AreEqual("public", md.Modifiers[0]);
-            Assert.AreEqual("list", md.ReturnType.Identifier);
+            Assert.AreEqual("List", md.ReturnType.Identifier);
             Assert.AreEqual(1, md.ReturnType.TypeParameters.Count);
             Assert.AreEqual("int", md.ReturnType.TypeParameters[0].Identifier);
             Assert.AreEqual("Add", md.Identifier);
@@ -633,10 +641,10 @@ namespace ApexParserTest.Parser
             field = Apex.FieldDeclaration.Parse("public Set<String> stringSet = new Set<String>{};");
             Assert.AreEqual(1, field.Modifiers.Count);
             Assert.AreEqual("public", field.Modifiers[0]);
-            Assert.AreEqual("set", field.Type.Identifier);
+            Assert.AreEqual("Set", field.Type.Identifier);
             Assert.AreEqual(1, field.Fields.Count);
             Assert.AreEqual("stringSet", field.Fields[0].Identifier);
-            Assert.AreEqual("new set<String>{}", field.Fields[0].Expression);
+            Assert.AreEqual("new Set<String>{}", field.Fields[0].Expression);
 
             // incomplete field declaration
             Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x ="));
@@ -648,10 +656,10 @@ namespace ApexParserTest.Parser
             var field = Apex.FieldDeclaration.Parse("public Map<String, String> stringMap = new Map<String, String>() { 1, 2, 3 };");
             Assert.AreEqual(1, field.Modifiers.Count);
             Assert.AreEqual("public", field.Modifiers[0]);
-            Assert.AreEqual("map", field.Type.Identifier);
+            Assert.AreEqual("Map", field.Type.Identifier);
             Assert.AreEqual(1, field.Fields.Count);
             Assert.AreEqual("stringMap", field.Fields[0].Identifier);
-            Assert.AreEqual("new map<String, String>(){1, 2, 3}", field.Fields[0].Expression);
+            Assert.AreEqual("new Map<String, String>(){1, 2, 3}", field.Fields[0].Expression);
         }
 
         [Test]
@@ -674,10 +682,10 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("'b'", field.Fields[1].Expression);
 
             field = Apex.FieldDeclaration.Parse(" Map<string, string> map1 = new Map<string, string>(), map2 = null; ");
-            Assert.AreEqual("map", field.Type.Identifier);
+            Assert.AreEqual("Map", field.Type.Identifier);
             Assert.AreEqual(2, field.Fields.Count);
             Assert.AreEqual("map1", field.Fields[0].Identifier);
-            Assert.AreEqual(@"new map<string, string>()", field.Fields[0].Expression);
+            Assert.AreEqual(@"new Map<string, string>()", field.Fields[0].Expression);
             Assert.AreEqual("map2", field.Fields[1].Identifier);
             Assert.AreEqual("null", field.Fields[1].Expression);
         }
@@ -1215,7 +1223,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("';'", expr);
 
             expr = Apex.GenericExpression.Parse(" new Map<string, string> ");
-            Assert.AreEqual("new map<string, string>", expr);
+            Assert.AreEqual("new Map<string, string>", expr);
 
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("(something.IsEmpty(()"));
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("("));
@@ -1229,10 +1237,10 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("new string", nx);
 
             nx = Apex.GenericNewExpression.Parse(" new Map<string, string> ");
-            Assert.AreEqual("new map<string, string>", nx);
+            Assert.AreEqual("new Map<string, string>", nx);
 
             nx = Apex.GenericNewExpression.Parse(" new Map< List < string, boolean >, string> ");
-            Assert.AreEqual("new map<list<string, boolean>, string>", nx);
+            Assert.AreEqual("new Map<List<string, boolean>, string>", nx);
 
             Assert.Throws<ParseException>(() => Apex.GenericNewExpression.Parse(" new "));
             Assert.Throws<ParseException>(() => Apex.GenericNewExpression.End().Parse(" new map <>"));
@@ -1375,7 +1383,7 @@ namespace ApexParserTest.Parser
             Assert.IsNull(variable.Variables[1].Expression);
 
             variable = Apex.VariableDeclaration.Parse(" Map<string, DateTime>[] dates = GetDates(), temp, other; ");
-            Assert.AreEqual("map", variable.Type.Identifier);
+            Assert.AreEqual("Map", variable.Type.Identifier);
             Assert.IsTrue(variable.Type.IsArray);
             Assert.AreEqual(2, variable.Type.TypeParameters.Count);
             Assert.AreEqual("string", variable.Type.TypeParameters[0].Identifier);
@@ -1755,7 +1763,7 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual(2, stmt.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
-            Assert.AreEqual("return new list<string>()", stmt.Statements[1].Body);
+            Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
         }
 
         [Test]
@@ -1775,7 +1783,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
             Assert.AreEqual(1, stmt.Statements[0].TrailingComments.Count);
             Assert.AreEqual("method contents might not be valid", stmt.Statements[0].TrailingComments[0].Trim());
-            Assert.AreEqual("return new list<string>()", stmt.Statements[1].Body);
+            Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
             Assert.AreEqual(1, stmt.Statements[1].TrailingComments.Count);
             Assert.AreEqual("comments", stmt.Statements[1].TrailingComments[0].Trim());
             Assert.AreEqual(0, stmt.TrailingComments.Count);

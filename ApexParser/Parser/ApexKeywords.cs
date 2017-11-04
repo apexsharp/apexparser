@@ -87,10 +87,10 @@ namespace ApexParser.Parser
         public const string LastWeek = "last_week";
         public const string Like = "like";
         public const string Limit = "limit";
-        public const string List = "list";
+        public const string List = "List"; // built-in generic type
         public const string Long = "long";
         ////public const string Loop = "loop"; // reserved for future use
-        public const string Map = "map";
+        public const string Map = "Map"; // built-in generic type
         public const string Merge = "merge";
         public const string New = "new";
         public const string Next90Days = "next_90_days";
@@ -129,7 +129,7 @@ namespace ApexParser.Parser
         ////public const string Switch = "switch"; // reserved for future use
         ////public const string Synchronized = "synchronized"; // reserved for future use
         ////public const string System = "system"; // hack, see below
-        public const string TestMethod = "testmethod";
+        public const string TestMethod = "testMethod";
         ////public const string Then = "then"; // reserved for future use
         public const string This = "this";
         ////public const string ThisMonth = "this_month"; // reserved for future use
@@ -178,6 +178,7 @@ namespace ApexParser.Parser
         ////public const string Throws = "throws"; // the status is unclear
         public static string RunAs => "runas"; // System.runAs has special syntax
         public static string Set => "set"; // "set" seems to be a valid method name
+        public static string SetType => "Set"; // "Set<...>" is a built-in generic type
         public static string Sort => "sort"; // seems to be valid method name
         public static string Today => "today"; // System.today() method
         public static string Transient => "transient"; // variable modifier
@@ -185,6 +186,8 @@ namespace ApexParser.Parser
         ////public const string Volatile = "volatile"; // the status is unclear
         public static string WebService => "webservice"; // method modifier
         public static string Without => "without"; // part of "without sharing"
+
+        // 4. Annotations
 
         /*
         // Embedded database language keywords
