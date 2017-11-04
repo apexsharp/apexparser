@@ -687,7 +687,7 @@ namespace ApexParserTest.CodeGenerators
                             }
                         }
 
-                        public void Test(string name, int age)
+                        public void Test(String name, int age)
                         {
                             Contact c = new Contact(name, age);
                             Soql.Insert(c);

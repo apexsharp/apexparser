@@ -336,7 +336,7 @@ namespace ApexParserTest.Parser
                 Assert.False(pd.Annotations.Any());
                 Assert.AreEqual(1, pd.Modifiers.Count);
                 Assert.AreEqual("public", pd.Modifiers[0]);
-                Assert.AreEqual("string", pd.Type.Identifier);
+                Assert.AreEqual("String", pd.Type.Identifier);
                 Assert.AreEqual("userName", pd.Identifier);
             }
         }
@@ -490,7 +490,7 @@ namespace ApexParserTest.Parser
 
             var pd = cd.Properties[2];
             Assert.AreEqual("DateTimeGetSetArray", pd.Identifier);
-            Assert.AreEqual("DateTime", pd.Type.Identifier);
+            Assert.AreEqual("Datetime", pd.Type.Identifier);
             Assert.False(pd.Type.TypeParameters.Any());
             Assert.IsTrue(pd.Type.IsArray);
             Assert.NotNull(pd.Getter);
@@ -500,19 +500,19 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("DateTimeList", fd.Fields[0].Identifier);
             Assert.AreEqual("List", fd.Type.Identifier);
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
-            Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
+            Assert.AreEqual("Datetime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new List<DateTime>()", fd.Fields[0].Expression);
+            Assert.AreEqual("new List<Datetime>()", fd.Fields[0].Expression);
 
             fd = cd.Fields[3];
             Assert.False(fd.Annotations.Any());
             Assert.AreEqual("DateTimeArrary", fd.Fields[0].Identifier);
-            Assert.AreEqual("DateTime", fd.Type.Identifier);
+            Assert.AreEqual("Datetime", fd.Type.Identifier);
             Assert.False(fd.Type.TypeParameters.Any());
             Assert.IsTrue(fd.Type.IsArray);
             Assert.AreEqual(1, fd.Modifiers.Count);
             Assert.AreEqual("public", fd.Modifiers[0]);
-            Assert.AreEqual("new DateTime[5]", fd.Fields[0].Expression);
+            Assert.AreEqual("new Datetime[5]", fd.Fields[0].Expression);
 
             fd = cd.Fields[7];
             Assert.False(fd.Annotations.Any());
@@ -602,10 +602,10 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("IClassInterface", cd.Interfaces[0].Identifier);
 
             Assert.AreEqual(2, cd.Methods.Count);
-            Assert.AreEqual("Id", cd.Methods[0].ReturnType.Identifier);
+            Assert.AreEqual("ID", cd.Methods[0].ReturnType.Identifier);
             Assert.AreEqual("GetId", cd.Methods[0].Identifier);
             Assert.AreEqual(1, cd.Methods[0].Body.Statements.Count);
-            Assert.AreEqual("string", cd.Methods[1].ReturnType.Identifier);
+            Assert.AreEqual("String", cd.Methods[1].ReturnType.Identifier);
             Assert.AreEqual("GetName", cd.Methods[1].Identifier);
             Assert.AreEqual(1, cd.Methods[0].Body.Statements.Count);
         }
@@ -648,7 +648,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, cd.Methods[2].Annotations.Count);
             Assert.AreEqual("HttpGet", cd.Methods[2].Annotations[0].Identifier);
             Assert.AreEqual("Get", cd.Methods[2].Identifier);
-            Assert.AreEqual("string", cd.Methods[2].ReturnType.Identifier);
+            Assert.AreEqual("String", cd.Methods[2].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[3].Annotations.Count);
             Assert.AreEqual("HttpPatch", cd.Methods[3].Annotations[0].Identifier);
@@ -887,7 +887,7 @@ namespace ApexParserTest.Parser
 
             md = cd.Methods[6];
             Assert.AreEqual("GetContact", md.Identifier);
-            Assert.AreEqual("string", md.ReturnType.Identifier);
+            Assert.AreEqual("String", md.ReturnType.Identifier);
             Assert.False(md.Annotations.Any());
             Assert.AreEqual(1, md.Parameters.Count);
             block = md.Body as BlockSyntax;
@@ -995,7 +995,7 @@ namespace ApexParserTest.Parser
 
             var pd = cd.Properties[2];
             Assert.AreEqual("DateTimeGetSetArray", pd.Identifier);
-            Assert.AreEqual("DateTime", pd.Type.Identifier);
+            Assert.AreEqual("Datetime", pd.Type.Identifier);
             Assert.False(pd.Type.TypeParameters.Any());
             Assert.IsTrue(pd.Type.IsArray);
             Assert.NotNull(pd.Getter);
@@ -1005,19 +1005,19 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("DateTimeList", fd.Fields[0].Identifier);
             Assert.AreEqual("List", fd.Type.Identifier);
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
-            Assert.AreEqual("DateTime", fd.Type.TypeParameters[0].Identifier);
+            Assert.AreEqual("Datetime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new List<DateTime>()", fd.Fields[0].Expression);
+            Assert.AreEqual("new List<Datetime>()", fd.Fields[0].Expression);
 
             fd = cd.Fields[4];
             Assert.False(fd.Annotations.Any());
             Assert.AreEqual("DateTimeArray", fd.Fields[0].Identifier);
-            Assert.AreEqual("DateTime", fd.Type.Identifier);
+            Assert.AreEqual("Datetime", fd.Type.Identifier);
             Assert.False(fd.Type.TypeParameters.Any());
             Assert.IsTrue(fd.Type.IsArray);
             Assert.AreEqual(1, fd.Modifiers.Count);
             Assert.AreEqual("public", fd.Modifiers[0]);
-            Assert.AreEqual("new DateTime[5]", fd.Fields[0].Expression);
+            Assert.AreEqual("new Datetime[5]", fd.Fields[0].Expression);
 
             fd = cd.Fields[8];
             Assert.False(fd.Annotations.Any());

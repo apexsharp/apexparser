@@ -692,7 +692,7 @@ namespace ApexParserTest.CodeGenerators
                         }
                     }
 
-                    public void Test(string name, int age)
+                    public void Test(String name, int age)
                     {
                         Contact c = new Contact(name, age);
                         insert c;
@@ -879,7 +879,7 @@ namespace ApexParserTest.CodeGenerators
                 {
                     public void Test()
                     {
-                        string reqBody = '';
+                        String reqBody = '';
                         reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';
                         reqBody = '{""size"":0,""application"":[]}';
                         reqBody = '{""size"":1,""application"":[{""id"":""com.gm.testxy111.pkg"",""version"":""1"",""action"":""Update"",""status"":{""code"":""success""}}]}';

@@ -165,9 +165,11 @@ namespace ApexParserTest.Parser
         public void NonGenericTypeIsAPrimitiveTypeOrAnIdentifier()
         {
             Assert.AreEqual(ApexKeywords.Void, Apex.NonGenericType.Parse(" void ").Identifier);
-            Assert.AreEqual("String", Apex.NonGenericType.Parse(" String ").Identifier);
-            Assert.AreEqual("boolean", Apex.NonGenericType.Parse(" Boolean ").Identifier);
-            Assert.AreEqual("Integer", Apex.NonGenericType.Parse(" Integer ").Identifier);
+            Assert.AreEqual(ApexKeywords.String, Apex.NonGenericType.Parse(" String ").Identifier);
+            Assert.AreEqual(ApexKeywords.Boolean, Apex.NonGenericType.Parse(" Boolean ").Identifier);
+            Assert.AreEqual(ApexKeywords.Integer, Apex.NonGenericType.Parse(" Integer ").Identifier);
+            Assert.AreEqual(ApexKeywords.ID, Apex.NonGenericType.Parse(" Id ").Identifier);
+            Assert.AreEqual(ApexKeywords.Int, Apex.NonGenericType.Parse(" int ").Identifier);
 
             // not types or non-generic types
             Assert.Throws<ParseException>(() => Apex.SystemType.Parse("class"));
@@ -179,7 +181,7 @@ namespace ApexParserTest.Parser
         {
             var tp = Apex.TypeParameters.Parse("<string>").ToList();
             Assert.AreEqual(1, tp.Count);
-            Assert.AreEqual("string", tp[0].Identifier);
+            Assert.AreEqual("String", tp[0].Identifier);
 
             tp = Apex.TypeParameters.Parse(" < Sys.Collections.Hashtable, string, int, void, Sys.Character > ").ToList();
             Assert.AreEqual(5, tp.Count);
@@ -190,7 +192,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Collections", type.Namespaces[1]);
             Assert.AreEqual("Hashtable", type.Identifier);
 
-            Assert.AreEqual("string", tp[1].Identifier);
+            Assert.AreEqual("String", tp[1].Identifier);
             Assert.AreEqual("int", tp[2].Identifier);
             Assert.AreEqual("void", tp[3].Identifier);
 
@@ -219,11 +221,11 @@ namespace ApexParserTest.Parser
             Assert.False(tr.IsArray);
 
             Assert.AreEqual(1, tr.TypeParameters.Count);
-            Assert.AreEqual("string", tr.TypeParameters[0].Identifier);
+            Assert.AreEqual("String", tr.TypeParameters[0].Identifier);
             Assert.False(tr.TypeParameters[0].Namespaces.Any());
             Assert.False(tr.IsArray);
 
-            tr = Apex.TypeReference.Parse(" Sys.Collections.MyMap < Sys.string, List<Guid> >");
+            tr = Apex.TypeReference.Parse(" Sys.Collections.MyMap < Sys.String, List<Guid> >");
             Assert.AreEqual("MyMap", tr.Identifier);
             Assert.AreEqual(2, tr.Namespaces.Count);
             Assert.AreEqual("Sys", tr.Namespaces[0]);
@@ -233,12 +235,12 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(2, tr.TypeParameters.Count);
             var tp = tr.TypeParameters[0];
 
-            Assert.AreEqual("string", tp.Identifier);
+            Assert.AreEqual("String", tp.Identifier);
             Assert.AreEqual(1, tp.Namespaces.Count);
             Assert.False(tp.IsArray);
 
             tr = Apex.TypeReference.Parse(" string [ ] ");
-            Assert.AreEqual("string", tr.Identifier);
+            Assert.AreEqual("String", tr.Identifier);
             Assert.False(tr.Namespaces.Any());
             Assert.True(tr.IsArray);
 
@@ -267,7 +269,7 @@ namespace ApexParserTest.Parser
             pd = Apex.ParameterDeclaration.Parse(" List<string> stringList");
             Assert.AreEqual("List", pd.Type.Identifier);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
-            Assert.AreEqual("string", pd.Type.TypeParameters[0].Identifier);
+            Assert.AreEqual("String", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("stringList", pd.Identifier);
             Assert.AreEqual(0, pd.Modifiers.Count);
 
@@ -330,7 +332,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, pd.Type.Namespaces.Count);
             Assert.AreEqual("Sys", pd.Type.Namespaces[0]);
             Assert.AreEqual(1, pd.Type.TypeParameters.Count);
-            Assert.AreEqual("boolean", pd.Type.TypeParameters[0].Identifier);
+            Assert.AreEqual("Boolean", pd.Type.TypeParameters[0].Identifier);
             Assert.AreEqual("c123", pd.Identifier);
 
             // bad input examples
@@ -416,7 +418,7 @@ namespace ApexParserTest.Parser
             Assert.False(md.Annotations.Any());
             Assert.False(md.Modifiers.Any());
             Assert.AreEqual(2, md.Parameters.Count);
-            Assert.AreEqual("string", md.ReturnType.Identifier);
+            Assert.AreEqual("String", md.ReturnType.Identifier);
             Assert.AreEqual("Hello", md.Identifier);
 
             var mp = md.Parameters;
@@ -427,7 +429,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("name", pd.Identifier);
 
             pd = mp[1];
-            Assert.AreEqual("boolean", pd.Type.Identifier);
+            Assert.AreEqual("Boolean", pd.Type.Identifier);
             Assert.AreEqual("newLine", pd.Identifier);
 
             // method with visibility
@@ -510,7 +512,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("name", pd.Identifier);
 
             pd = mp[1];
-            Assert.AreEqual("boolean", pd.Type.Identifier);
+            Assert.AreEqual("Boolean", pd.Type.Identifier);
             Assert.AreEqual("newLine", pd.Identifier);
 
             // a constructor with annotation
@@ -531,7 +533,7 @@ namespace ApexParserTest.Parser
         public void TypeAndNameIsJustATypeReferenceAndIdentifierPair()
         {
             var tn = Apex.TypeAndName.Parse("string a");
-            Assert.AreEqual("string", tn.Type.Identifier);
+            Assert.AreEqual("String", tn.Type.Identifier);
             Assert.AreEqual("a", tn.Identifier);
 
             tn = Apex.TypeAndName.Parse("void Test");
@@ -684,7 +686,7 @@ namespace ApexParserTest.Parser
             var field = Apex.FieldDeclaration.Parse(" public string name = 'Bozo';");
             Assert.AreEqual(1, field.Modifiers.Count);
             Assert.AreEqual("public", field.Modifiers[0]);
-            Assert.AreEqual("string", field.Type.Identifier);
+            Assert.AreEqual("String", field.Type.Identifier);
             Assert.AreEqual(1, field.Fields.Count);
             Assert.AreEqual("name", field.Fields[0].Identifier);
             Assert.AreEqual("'Bozo'", field.Fields[0].Expression);
@@ -717,7 +719,7 @@ namespace ApexParserTest.Parser
         public void FieldDeclarationCanHaveMultipleDeclarators()
         {
             var field = Apex.FieldDeclaration.Parse(" string name, lastName; ");
-            Assert.AreEqual("string", field.Type.Identifier);
+            Assert.AreEqual("String", field.Type.Identifier);
             Assert.AreEqual(2, field.Fields.Count);
             Assert.AreEqual("name", field.Fields[0].Identifier);
             Assert.IsNull(field.Fields[0].Expression);
@@ -725,7 +727,7 @@ namespace ApexParserTest.Parser
             Assert.IsNull(field.Fields[1].Expression);
 
             field = Apex.FieldDeclaration.Parse(@" string name = 'a\'b', lastName = 'b'; ");
-            Assert.AreEqual("string", field.Type.Identifier);
+            Assert.AreEqual("String", field.Type.Identifier);
             Assert.AreEqual(2, field.Fields.Count);
             Assert.AreEqual("name", field.Fields[0].Identifier);
             Assert.AreEqual(@"'a\'b'", field.Fields[0].Expression);
@@ -736,7 +738,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Map", field.Type.Identifier);
             Assert.AreEqual(2, field.Fields.Count);
             Assert.AreEqual("map1", field.Fields[0].Identifier);
-            Assert.AreEqual(@"new Map<string, string>()", field.Fields[0].Expression);
+            Assert.AreEqual(@"new Map<String, String>()", field.Fields[0].Expression);
             Assert.AreEqual("map2", field.Fields[1].Identifier);
             Assert.AreEqual("null", field.Fields[1].Expression);
         }
@@ -791,7 +793,7 @@ namespace ApexParserTest.Parser
             pm = Apex.MethodOrPropertyDeclaration.Parse("string Test { get; }");
             var pd = pm as PropertyDeclarationSyntax;
             Assert.NotNull(pd);
-            Assert.AreEqual("string", pd.Type.Identifier);
+            Assert.AreEqual("String", pd.Type.Identifier);
             Assert.AreEqual("Test", pd.Identifier);
             Assert.NotNull(pd.Getter);
             Assert.True(pd.Getter.IsEmpty);
@@ -1122,7 +1124,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(pd);
 
             Assert.AreEqual("flag", pd.Identifier);
-            Assert.AreEqual("boolean", pd.Type.Identifier);
+            Assert.AreEqual("Boolean", pd.Type.Identifier);
             Assert.NotNull(pd.Getter);
             Assert.True(pd.Getter.IsEmpty);
 
@@ -1274,7 +1276,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("';'", expr);
 
             expr = Apex.GenericExpression.Parse(" new Map<string, string> ");
-            Assert.AreEqual("new Map<string, string>", expr);
+            Assert.AreEqual("new Map<String, String>", expr);
 
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("(something.IsEmpty(()"));
             Assert.Throws<ParseException>(() => Apex.GenericExpression.Parse("("));
@@ -1285,13 +1287,13 @@ namespace ApexParserTest.Parser
         public void GenericNewExpressionIsANewKeywordFollowedByATypeReference()
         {
             var nx = Apex.GenericNewExpression.Parse(" new string ");
-            Assert.AreEqual("new string", nx);
+            Assert.AreEqual("new String", nx);
 
             nx = Apex.GenericNewExpression.Parse(" new Map<string, string> ");
-            Assert.AreEqual("new Map<string, string>", nx);
+            Assert.AreEqual("new Map<String, String>", nx);
 
             nx = Apex.GenericNewExpression.Parse(" new Map< List < string, boolean >, string> ");
-            Assert.AreEqual("new Map<List<string, boolean>, string>", nx);
+            Assert.AreEqual("new Map<List<String, Boolean>, String>", nx);
 
             Assert.Throws<ParseException>(() => Apex.GenericNewExpression.Parse(" new "));
             Assert.Throws<ParseException>(() => Apex.GenericNewExpression.End().Parse(" new map <>"));
@@ -1425,7 +1427,7 @@ namespace ApexParserTest.Parser
             Assert.IsNull(variable.Variables[0].Expression);
 
             variable = Apex.VariableDeclaration.Parse(" string name, lastName; ");
-            Assert.AreEqual("string", variable.Type.Identifier);
+            Assert.AreEqual("String", variable.Type.Identifier);
             Assert.IsFalse(variable.Type.IsArray);
             Assert.AreEqual(2, variable.Variables.Count);
             Assert.AreEqual("name", variable.Variables[0].Identifier);
@@ -1437,8 +1439,8 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Map", variable.Type.Identifier);
             Assert.IsTrue(variable.Type.IsArray);
             Assert.AreEqual(2, variable.Type.TypeParameters.Count);
-            Assert.AreEqual("string", variable.Type.TypeParameters[0].Identifier);
-            Assert.AreEqual("DateTime", variable.Type.TypeParameters[1].Identifier);
+            Assert.AreEqual("String", variable.Type.TypeParameters[0].Identifier);
+            Assert.AreEqual("Datetime", variable.Type.TypeParameters[1].Identifier);
             Assert.AreEqual(3, variable.Variables.Count);
             Assert.AreEqual("dates", variable.Variables[0].Identifier);
             Assert.AreEqual("GetDates()", variable.Variables[0].Expression);
@@ -1814,7 +1816,7 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual(2, stmt.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
-            Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
+            Assert.AreEqual("return new List<String>()", stmt.Statements[1].Body);
         }
 
         [Test]
@@ -1834,7 +1836,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
             Assert.AreEqual(1, stmt.Statements[0].TrailingComments.Count);
             Assert.AreEqual("method contents might not be valid", stmt.Statements[0].TrailingComments[0].Trim());
-            Assert.AreEqual("return new List<string>()", stmt.Statements[1].Body);
+            Assert.AreEqual("return new List<String>()", stmt.Statements[1].Body);
             Assert.AreEqual(1, stmt.Statements[1].TrailingComments.Count);
             Assert.AreEqual("comments", stmt.Statements[1].TrailingComments[0].Trim());
             Assert.AreEqual(0, stmt.TrailingComments.Count);

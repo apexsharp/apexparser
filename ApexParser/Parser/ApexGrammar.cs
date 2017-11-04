@@ -53,14 +53,20 @@ namespace ApexParser.Parser
             Keyword(ApexKeywords.Boolean)).Or(
             Keyword(ApexKeywords.Byte)).Or(
             Keyword(ApexKeywords.Char)).Or(
+            Keyword(ApexKeywords.Datetime)).Or(
+            Keyword(ApexKeywords.Date)).Or(
             Keyword(ApexKeywords.Decimal)).Or(
             Keyword(ApexKeywords.Double)).Or(
             Keyword(ApexKeywords.Exception)).Or(
             Keyword(ApexKeywords.Float)).Or(
+            Keyword(ApexKeywords.ID)).Or(
+            Keyword(ApexKeywords.Integer)).Or(
             Keyword(ApexKeywords.Int)).Or(
             Keyword(ApexKeywords.Long)).Or(
+            Keyword(ApexKeywords.Object)).Or(
             Keyword(ApexKeywords.SetType)).Or(
             Keyword(ApexKeywords.Short)).Or(
+            Keyword(ApexKeywords.String)).Or(
             Keyword(ApexKeywords.List)).Or(
             Keyword(ApexKeywords.Map)).Or(
             Keyword(ApexKeywords.Void))

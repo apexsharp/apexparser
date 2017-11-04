@@ -36,7 +36,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("GetNumber", method.Identifier);
 
             Assert.AreEqual(1, method.Parameters.Count);
-            Assert.AreEqual("string", method.Parameters[0].Type.Identifier);
+            Assert.AreEqual("String", method.Parameters[0].Type.Identifier);
             Assert.AreEqual("name", method.Parameters[0].Identifier);
 
             var block = method.Body as BlockSyntax;
@@ -69,7 +69,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", block.Statements[0].Body);
-            Assert.AreEqual("return new List<string>()", block.Statements[1].Body);
+            Assert.AreEqual("return new List<String>()", block.Statements[1].Body);
         }
     }
 }

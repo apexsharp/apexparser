@@ -8,6 +8,6 @@ public class CustomerDto
 
      public class User
      {
-          public string userName { get; set; }
+          public String userName { get; set; }
      }
 }

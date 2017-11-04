@@ -29,6 +29,7 @@ namespace ApexParser.Parser
 
         // Reference:
         // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_reserved_words.htm
+        // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_primitives.htm
 
         // 1. Reserved words
         public const string Abstract = "abstract";
@@ -41,7 +42,7 @@ namespace ApexParser.Parser
         ////public const string Autonomous = "autonomous"; // reserved for future use
         ////public const string Begin = "begin"; // reserved for future use
         ////public const string BigDecimal = "bigdecimal"; // reserved for future use
-        public const string Blob = "blob";
+        public const string Blob = "Blob"; // built-in type
         public const string Break = "break";
         public const string Bulk = "bulk";
         public const string By = "by";
@@ -56,7 +57,7 @@ namespace ApexParser.Parser
         ////public const string Const = "const"; // reserved for future use
         public const string Continue = "continue";
         ////public const string ConvertCurrency = "convertcurrency"; // hack, see below
-        public const string Decimal = "decimal";
+        public const string Decimal = "Decimal"; // built-int type
         ////public const string Default = "default"; // reserved for future use
         public const string Delete = "delete";
         public const string Desc = "desc";
@@ -97,7 +98,7 @@ namespace ApexParser.Parser
         public const string Like = "like";
         public const string Limit = "limit";
         public const string List = "List"; // List<...> is a built-in generic type
-        public const string Long = "long";
+        public const string Long = "Long"; // built-in type
         ////public const string Loop = "loop"; // reserved for future use
         public const string Map = "Map"; // Map<...> is a built-in generic type
         public const string Merge = "merge";
@@ -176,21 +177,28 @@ namespace ApexParser.Parser
         public static string Last => "last";
         public static string Order => "order";
         public static string Sharing => "sharing";
-        public static string System => "system"; // used in qualified identifier: System.debug
+        public static string String => "String"; // built-in type
+        public static string System => "System"; // used in qualified identifier: System.debug
         public static string With => "with";
 
         // 3. Not listed in the official documentation but apparently used
-        public static string Boolean => "boolean";
+        public static string Boolean => "Boolean"; // built-in type
         public static string ConvertCurrency => "convertcurrency"; // seems to be a valid method name
         ////public static string Database => "database"; // the status is unclear
-        public static string Double => "double";
+        public static string Date => "Date"; // built-in type
+        public static string Datetime => "Datetime"; // built-in type
+        public static string Double => "Double"; // built-in type
         public static string Get => "get"; // "get" seems to be a valid method name
+        public static string ID => "ID"; // built-in type
+        public static string Integer => "Integer"; // built-in type
         ////public const string Native = "native"; // the status is unclear
+        public static string Object => "Object"; // built-in type
         ////public const string Throws = "throws"; // the status is unclear
         public static string RunAs => "runAs"; // System.runAs has special syntax
         public static string Set => "set"; // "set" seems to be a valid method name
         public static string SetType => "Set"; // Set<...> is a built-in generic type
         public static string Sort => "sort"; // seems to be valid method name
+        public static string Time => "time"; // built-in type
         public static string Today => "today"; // System.today() method
         public static string Transient => "transient"; // variable modifier
         public static string Void => "void";
