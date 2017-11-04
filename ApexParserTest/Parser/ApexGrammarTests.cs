@@ -17,6 +17,43 @@ namespace ApexParserTest.Parser
         private ApexGrammar Apex { get; } = new ApexGrammar();
 
         [Test]
+        public void KindPropertyCorrespondsToTheNodeType()
+        {
+            Assert.AreEqual(SyntaxType.Accessor, new AccessorDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Annotation, new AnnotationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Block, new BlockSyntax().Kind);
+            Assert.AreEqual(SyntaxType.BreakStatement, new BreakStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Catch, new CatchClauseSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Class, new ClassDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.ClassInitializer, new ClassInitializerSyntax().Kind);
+            Assert.AreEqual(SyntaxType.ClassMember, new MemberDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Constructor, new ConstructorDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.DeleteStatement, new DeleteStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.DoStatement, new DoStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Enum, new EnumDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.EnumMember, new EnumMemberDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Field, new FieldDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.FieldDeclarator, new FieldDeclaratorSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Finally, new FinallyClauseSyntax().Kind);
+            Assert.AreEqual(SyntaxType.ForEachStatement, new ForEachStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.ForStatement, new ForStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.IfStatement, new IfStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.InsertStatement, new InsertStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Interface, new InterfaceDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Method, new MethodDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Parameter, new ParameterSyntax("i", "i").Kind);
+            Assert.AreEqual(SyntaxType.Property, new PropertyDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.RunAsStatement, new RunAsStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Statement, new StatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.TryStatement, new TryStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.Type, new TypeSyntax().Kind);
+            Assert.AreEqual(SyntaxType.UpdateStatement, new UpdateStatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.VariableDeclaration, new VariableDeclarationSyntax().Kind);
+            Assert.AreEqual(SyntaxType.VariableDeclarator, new VariableDeclaratorSyntax().Kind);
+            Assert.AreEqual(SyntaxType.WhileStatement, new WhileStatementSyntax().Kind);
+        }
+
+        [Test]
         public void IdentifierIsALetterFollowedByALetterOrDigitOrUnderscore()
         {
             // every test case should include positive examples
