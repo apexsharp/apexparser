@@ -23,6 +23,7 @@
         ForEachStatement,
         IfStatement,
         InsertStatement,
+        Interface,
         Method,
         Parameter,
         Property,

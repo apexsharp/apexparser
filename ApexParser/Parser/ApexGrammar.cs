@@ -550,16 +550,7 @@ namespace ApexParser.Parser
         public virtual Parser<ClassDeclarationSyntax> ClassDeclaration =>
             from heading in MemberDeclarationHeading
             from classBody in ClassDeclarationBody
-            select new ClassDeclarationSyntax(heading)
-            {
-                Identifier = classBody.Identifier,
-                IsInterface = classBody.IsInterface,
-                BaseType = classBody.BaseType,
-                Interfaces = classBody.Interfaces,
-                Members = classBody.Members,
-                InnerComments = classBody.InnerComments,
-                TrailingComments = classBody.TrailingComments,
-            };
+            select ClassDeclarationSyntax.Create(heading, classBody);
 
         // example: class Program { void main() {} }
         protected internal virtual Parser<ClassDeclarationSyntax> ClassDeclarationBody =>

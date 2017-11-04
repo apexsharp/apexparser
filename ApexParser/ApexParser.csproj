@@ -77,6 +77,7 @@
     <Compile Include="MetaClass\ForStatementSyntax.cs" />
     <Compile Include="MetaClass\IfStatementSyntax.cs" />
     <Compile Include="MetaClass\InsertStatementSyntax.cs" />
+    <Compile Include="MetaClass\InterfaceDeclarationSyntax.cs" />
     <Compile Include="MetaClass\MemberDeclarationSyntax.cs" />
     <Compile Include="MetaClass\MethodDeclarationSyntax.cs" />
     <Compile Include="MetaClass\ParameterSyntax.cs" />

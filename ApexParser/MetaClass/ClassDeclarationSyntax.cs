@@ -15,6 +15,22 @@ namespace ApexParser.MetaClass
         {
         }
 
+        public ClassDeclarationSyntax(MemberDeclarationSyntax heading, ClassDeclarationSyntax classBody)
+            : this(heading)
+        {
+            Identifier = classBody.Identifier;
+            IsInterface = classBody.IsInterface;
+            BaseType = classBody.BaseType;
+            Interfaces = classBody.Interfaces;
+            Members = classBody.Members;
+            InnerComments = classBody.InnerComments;
+            TrailingComments = classBody.TrailingComments;
+        }
+
+        public static ClassDeclarationSyntax Create(MemberDeclarationSyntax heading, ClassDeclarationSyntax classBody) =>
+            classBody.IsInterface ? new InterfaceDeclarationSyntax(heading, classBody) :
+                new ClassDeclarationSyntax(heading, classBody);
+
         public override SyntaxType Kind => SyntaxType.Class;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitClassDeclaration(this);
@@ -23,7 +39,7 @@ namespace ApexParser.MetaClass
 
         public TypeSyntax BaseType { get; set; }
 
-        public bool IsInterface { get; set; }
+        public virtual bool IsInterface { get; set; }
 
         public List<TypeSyntax> Interfaces { get; set; } = new List<TypeSyntax>();
 

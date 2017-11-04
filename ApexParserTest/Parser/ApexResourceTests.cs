@@ -910,7 +910,8 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterface.cls")]
         public void IClassInterfaceIsParsed()
         {
-            var cd = Apex.ParseClass(IClassInterface);
+            var cd = Apex.ParseClass(IClassInterface) as InterfaceDeclarationSyntax;
+            Assert.IsNotNull(cd);
             Assert.AreEqual("IClassInterface", cd.Identifier);
             Assert.IsTrue(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);
@@ -922,7 +923,8 @@ namespace ApexParserTest.Parser
         [Test(Description = @"SalesForceApexSharp\src\classes\IClassInterfaceExt.cls")]
         public void IClassInterfaceExtIsParsed()
         {
-            var cd = Apex.ParseClass(IClassInterfaceExt);
+            var cd = Apex.ParseClass(IClassInterfaceExt) as InterfaceDeclarationSyntax;
+            Assert.IsNotNull(cd);
             Assert.AreEqual("IClassInterfaceExt", cd.Identifier);
             Assert.IsTrue(cd.IsInterface);
             Assert.AreEqual(1, cd.Modifiers.Count);

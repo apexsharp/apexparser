@@ -51,6 +51,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitInsertStatement(InsertStatementSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node) => DefaultVisit(node);
+
         public virtual void VisitMethodDeclaration(MethodDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitParameter(ParameterSyntax node) => DefaultVisit(node);
