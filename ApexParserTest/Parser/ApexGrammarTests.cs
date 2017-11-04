@@ -70,7 +70,7 @@ namespace ApexParserTest.Parser
         public void AnnotationBeginsWithAtSign()
         {
             var ann = Apex.Annotation.Parse(" @isTest ");
-            Assert.AreEqual("isTest", ann.Identifier);
+            Assert.AreEqual("IsTest", ann.Identifier);
             Assert.IsNull(ann.Parameters);
 
             Assert.Throws<ParseException>(() => Apex.Annotation.Parse(" isTest "));
@@ -80,10 +80,24 @@ namespace ApexParserTest.Parser
         public void AnnotationsCanHaveParameters()
         {
             var ann = Apex.Annotation.Parse(" @isTest(SeeAllData = true) ");
-            Assert.AreEqual("isTest", ann.Identifier);
+            Assert.AreEqual("IsTest", ann.Identifier);
             Assert.AreEqual("SeeAllData = true", ann.Parameters);
 
             Assert.Throws<ParseException>(() => Apex.Annotation.Parse(" @class "));
+        }
+
+        [Test]
+        public void KnownAnnotationsHaveTheirCanonicalForm()
+        {
+            var ann = Apex.Annotation.Parse(" @future ");
+            Assert.AreEqual("Future", ann.Identifier);
+            Assert.IsNull(ann.Parameters);
+
+            ann = Apex.Annotation.Parse(" @unknownAnnotation ");
+            Assert.AreEqual("unknownAnnotation", ann.Identifier);
+            Assert.IsNull(ann.Parameters);
+
+            Assert.Throws<ParseException>(() => Apex.Annotation.Parse(" @public "));
         }
 
         [Test]
@@ -406,7 +420,7 @@ namespace ApexParserTest.Parser
             md = Apex.MethodDeclaration.Parse("@isTest void Test() {}");
             Assert.False(md.IsAbstract);
             Assert.AreEqual(1, md.Annotations.Count);
-            Assert.AreEqual("isTest", md.Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", md.Annotations[0].Identifier);
             Assert.False(md.Modifiers.Any());
             Assert.False(md.Parameters.Any());
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -416,7 +430,7 @@ namespace ApexParserTest.Parser
             md = Apex.MethodDeclaration.Parse("@isTest void Test();");
             Assert.True(md.IsAbstract);
             Assert.AreEqual(1, md.Annotations.Count);
-            Assert.AreEqual("isTest", md.Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", md.Annotations[0].Identifier);
             Assert.False(md.Modifiers.Any());
             Assert.False(md.Parameters.Any());
             Assert.AreEqual("void", md.ReturnType.Identifier);
@@ -465,7 +479,7 @@ namespace ApexParserTest.Parser
             // a constructor with annotation
             md = Apex.MethodDeclaration.Parse("@isTest SampleClass() {}");
             Assert.AreEqual(1, md.Annotations.Count);
-            Assert.AreEqual("isTest", md.Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", md.Annotations[0].Identifier);
             Assert.False(md.Modifiers.Any());
             Assert.False(md.Parameters.Any());
             Assert.AreEqual("SampleClass", md.ReturnType.Identifier);
@@ -708,13 +722,13 @@ namespace ApexParserTest.Parser
 
             cm = Apex.MemberDeclarationHeading.Parse(" @isTest ");
             Assert.AreEqual(1, cm.Annotations.Count);
-            Assert.AreEqual("isTest", cm.Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", cm.Annotations[0].Identifier);
             Assert.False(cm.LeadingComments.Any());
             Assert.False(cm.Modifiers.Any());
 
             cm = Apex.MemberDeclarationHeading.Parse(" /* my class */ @isTest override ");
             Assert.AreEqual(1, cm.Annotations.Count);
-            Assert.AreEqual("isTest", cm.Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", cm.Annotations[0].Identifier);
             Assert.AreEqual(1, cm.LeadingComments.Count);
             Assert.AreEqual(" my class ", cm.LeadingComments[0]);
             Assert.AreEqual(1, cm.Modifiers.Count);

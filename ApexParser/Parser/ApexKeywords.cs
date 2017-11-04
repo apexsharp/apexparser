@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ApexParser.Toolbox;
 
 namespace ApexParser.Parser
 {
@@ -11,8 +10,18 @@ namespace ApexParser.Parser
         public static HashSet<string> ReservedWords { get; } =
             new HashSet<string>(AllStringConstants, StringComparer.InvariantCultureIgnoreCase);
 
+        public static Dictionary<string, string> NormalizedKeywords { get; } =
+            AllStringConstants.Concat(AllStringProperties).Except("set")
+                .ToDictionary(s => s, StringComparer.InvariantCultureIgnoreCase);
+
+        public static string Normalized(this string keyword) =>
+            NormalizedKeywords.TryGetValue(keyword, out var result) ? result : keyword;
+
         private static IEnumerable<string> AllStringConstants =>
             typeof(ApexKeywords).GetFields().Select(f => f.GetValue(null)).OfType<string>();
+
+        private static IEnumerable<string> AllStringProperties =>
+            typeof(ApexKeywords).GetProperties().Select(f => f.GetValue(null)).OfType<string>();
 
         // Keyword DSL convention:
         // 1. Reserved keywords are declared as constants
@@ -65,7 +74,7 @@ namespace ApexParser.Parser
         public const string Float = "float"; // reserved for future use
         public const string For = "for";
         public const string From = "from";
-        public const string Future = "future";
+        ////public const string Future = "future"; // annotation, see below
         public const string Global = "global";
         ////public const string Goto = "goto"; // reserved for future use
         ////public const string Group = "group"; // reserved for future use
@@ -87,10 +96,10 @@ namespace ApexParser.Parser
         public const string LastWeek = "last_week";
         public const string Like = "like";
         public const string Limit = "limit";
-        public const string List = "List"; // built-in generic type
+        public const string List = "List"; // List<...> is a built-in generic type
         public const string Long = "long";
         ////public const string Loop = "loop"; // reserved for future use
-        public const string Map = "Map"; // built-in generic type
+        public const string Map = "Map"; // Map<...> is a built-in generic type
         public const string Merge = "merge";
         public const string New = "new";
         public const string Next90Days = "next_90_days";
@@ -129,6 +138,8 @@ namespace ApexParser.Parser
         ////public const string Switch = "switch"; // reserved for future use
         ////public const string Synchronized = "synchronized"; // reserved for future use
         ////public const string System = "system"; // hack, see below
+        // note: testMethod modifier is written in camel case
+        // see also: https://developer.salesforce.com/page/An_Introduction_to_Apex_Code_Test_Methods
         public const string TestMethod = "testMethod";
         ////public const string Then = "then"; // reserved for future use
         public const string This = "this";
@@ -176,9 +187,9 @@ namespace ApexParser.Parser
         public static string Get => "get"; // "get" seems to be a valid method name
         ////public const string Native = "native"; // the status is unclear
         ////public const string Throws = "throws"; // the status is unclear
-        public static string RunAs => "runas"; // System.runAs has special syntax
+        public static string RunAs => "runAs"; // System.runAs has special syntax
         public static string Set => "set"; // "set" seems to be a valid method name
-        public static string SetType => "Set"; // "Set<...>" is a built-in generic type
+        public static string SetType => "Set"; // Set<...> is a built-in generic type
         public static string Sort => "sort"; // seems to be valid method name
         public static string Today => "today"; // System.today() method
         public static string Transient => "transient"; // variable modifier
@@ -187,7 +198,27 @@ namespace ApexParser.Parser
         public static string WebService => "webservice"; // method modifier
         public static string Without => "without"; // part of "without sharing"
 
+        // Reference:
+        // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_annotation.htm
+
         // 4. Annotations
+        public static string AuraEnabled => "AuraEnabled";
+        public static string Deprecated => "Deprecated";
+        public static string Future => "Future";
+        public static string InvocableMethod => "InvocableMethod";
+        public static string InvocableVariable => "InvocableVariable";
+        public static string IsTest => "IsTest";
+        public static string ReadOnly => "ReadOnly";
+        public static string RemoteAction => "RemoteAction";
+        public static string SuppressWarnings => "SuppressWarnings";
+        public static string TestSetup => "TestSetup";
+        public static string TestVisible => "TestVisible";
+        public static string RestResource => "RestResource";
+        public static string HttpDelete => "HttpDelete";
+        public static string HttpGet => "HttpGet";
+        public static string HttpPatch => "HttpPatch";
+        public static string HttpPost => "HttpPost";
+        public static string HttpPut => "HttpPut";
 
         /*
         // Embedded database language keywords

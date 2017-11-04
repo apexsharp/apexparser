@@ -31,10 +31,10 @@ namespace ApexParser.Parser
         // used by the Token(this) modifier
         Parser<string> ICommentParserProvider.Comment => CommentParser.AnyComment;
 
-        // example: @isTest
+        // example: @isTest, returned as IsTest
         protected internal virtual Parser<AnnotationSyntax> Annotation =>
             from at in Parse.Char('@').Token()
-            from name in Parse.IgnoreCase(ApexKeywords.Future).Token().Text().Or(Identifier)
+            from name in Identifier.Select(id => id.Normalized())
             from parameters in GenericExpressionInBraces().Optional().Token(this)
             select new AnnotationSyntax
             {
@@ -129,7 +129,7 @@ namespace ApexParser.Parser
             Keyword(ApexKeywords.With).Token().Then(_ => Keyword(ApexKeywords.Sharing)).Return($"{ApexKeywords.With} {ApexKeywords.Sharing}")).Or(
             Keyword(ApexKeywords.Without).Token().Then(_ => Keyword(ApexKeywords.Sharing)).Return($"{ApexKeywords.Without} {ApexKeywords.Sharing}")).Or(
             Keyword(ApexKeywords.Transient))
-                .Text().Token().Select(t => t.ToLower()).Named("Modifier");
+                .Text().Token().Named("Modifier");
 
         // examples:
         // @isTest void Test() {}

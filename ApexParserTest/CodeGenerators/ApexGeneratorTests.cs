@@ -734,10 +734,10 @@ namespace ApexParserTest.CodeGenerators
              }");
 
             Check(apex,
-                @"@isTest
+                @"@IsTest
                 public class ClassUnitTest
                 {
-                    static testmethod void StaticTestMethodOne()
+                    static testMethod void StaticTestMethodOne()
                     {
                         //System.AssertNotEquals(5, 0, 'Assert Not Equal');
                         System.AssertNotEquals(5, 0, 'Assert Not Equal');
@@ -746,7 +746,7 @@ namespace ApexParserTest.CodeGenerators
                         System.AssertNotEquals(5, 0, 'Assert Not Equal');
                     }
 
-                    static testmethod void StaticTestMethodTwo()
+                    static testMethod void StaticTestMethodTwo()
                     {
                         //System.AssertNotEquals(5, 0, 'Assert Not Equal');
                         System.AssertNotEquals(5, 0, 'Assert Not Equal');
@@ -848,7 +848,7 @@ namespace ApexParserTest.CodeGenerators
             Check(apex,
                 @"class Test
                 {
-                    @isTest
+                    @IsTest
                     public static void LogErrorExceptionWithMessage()
                     {
                         System.runAs(Info3TestFactory.getGatewayAdminUser())

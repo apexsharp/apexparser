@@ -21,6 +21,11 @@ namespace ApexParser.Toolbox
             return enumerable ?? Enumerable.Empty<T>();
         }
 
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> enumerable, params T[] values)
+        {
+            return enumerable.Except(values.AsEnumerable());
+        }
+
         public static SmartEnumerable<T> AsSmart<T>(this IEnumerable<T> enumerable)
         {
             return enumerable.EmptyIfNull().AsSmartEnumerable();

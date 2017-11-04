@@ -636,27 +636,27 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("urlMapping='/api/v1/RestDemo'", cd.Annotations[0].Parameters);
 
             Assert.AreEqual(1, cd.Methods[0].Annotations.Count);
-            Assert.AreEqual("httpDelete", cd.Methods[0].Annotations[0].Identifier);
+            Assert.AreEqual("HttpDelete", cd.Methods[0].Annotations[0].Identifier);
             Assert.AreEqual("DoDelete", cd.Methods[0].Identifier);
             Assert.AreEqual("void", cd.Methods[0].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[1].Annotations.Count);
-            Assert.AreEqual("httpPost", cd.Methods[1].Annotations[0].Identifier);
+            Assert.AreEqual("HttpPost", cd.Methods[1].Annotations[0].Identifier);
             Assert.AreEqual("Post", cd.Methods[1].Identifier);
             Assert.AreEqual("void", cd.Methods[1].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[2].Annotations.Count);
-            Assert.AreEqual("httpGet", cd.Methods[2].Annotations[0].Identifier);
+            Assert.AreEqual("HttpGet", cd.Methods[2].Annotations[0].Identifier);
             Assert.AreEqual("Get", cd.Methods[2].Identifier);
             Assert.AreEqual("string", cd.Methods[2].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[3].Annotations.Count);
-            Assert.AreEqual("httpPatch", cd.Methods[3].Annotations[0].Identifier);
+            Assert.AreEqual("HttpPatch", cd.Methods[3].Annotations[0].Identifier);
             Assert.AreEqual("Patch", cd.Methods[3].Identifier);
             Assert.AreEqual("void", cd.Methods[3].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[4].Annotations.Count);
-            Assert.AreEqual("httpPut", cd.Methods[4].Annotations[0].Identifier);
+            Assert.AreEqual("HttpPut", cd.Methods[4].Annotations[0].Identifier);
             Assert.AreEqual("Put", cd.Methods[4].Identifier);
             Assert.AreEqual("void", cd.Methods[4].ReturnType.Identifier);
         }
@@ -670,7 +670,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", cd.Modifiers[0]);
             Assert.AreEqual(7, cd.Methods.Count);
             Assert.AreEqual(1, cd.Annotations.Count);
-            Assert.AreEqual("isTest", cd.Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", cd.Annotations[0].Identifier);
 
             Assert.AreEqual(1, cd.Methods[0].Annotations.Count);
             Assert.AreEqual("TestSetup", cd.Methods[0].Annotations[0].Identifier);
@@ -678,23 +678,23 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("void", cd.Methods[0].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[1].Annotations.Count);
-            Assert.AreEqual("isTest", cd.Methods[1].Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", cd.Methods[1].Annotations[0].Identifier);
             Assert.AreEqual("AssertTrue", cd.Methods[1].Identifier);
             Assert.AreEqual("void", cd.Methods[1].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[2].Annotations.Count);
-            Assert.AreEqual("isTest", cd.Methods[2].Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", cd.Methods[2].Annotations[0].Identifier);
             Assert.AreEqual("AssertEquals", cd.Methods[2].Identifier);
             Assert.AreEqual("void", cd.Methods[2].ReturnType.Identifier);
 
             Assert.AreEqual(1, cd.Methods[3].Annotations.Count);
-            Assert.AreEqual("isTest", cd.Methods[3].Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", cd.Methods[3].Annotations[0].Identifier);
             Assert.AreEqual("AssertNotEquals", cd.Methods[3].Identifier);
             Assert.AreEqual("void", cd.Methods[3].ReturnType.Identifier);
 
             Assert.False(cd.Methods[4].Annotations.Any());
             Assert.AreEqual(3, cd.Methods[4].Modifiers.Count);
-            Assert.AreEqual("testmethod", cd.Methods[4].Modifiers[0]);
+            Assert.AreEqual("testMethod", cd.Methods[4].Modifiers[0]);
             Assert.AreEqual("public", cd.Methods[4].Modifiers[1]);
             Assert.AreEqual("static", cd.Methods[4].Modifiers[2]);
             Assert.AreEqual("AssertNew", cd.Methods[4].Identifier);
@@ -703,7 +703,7 @@ namespace ApexParserTest.Parser
             Assert.False(cd.Methods[5].Annotations.Any());
             Assert.AreEqual(3, cd.Methods[5].Modifiers.Count);
             Assert.AreEqual("static", cd.Methods[5].Modifiers[0]);
-            Assert.AreEqual("testmethod", cd.Methods[5].Modifiers[1]);
+            Assert.AreEqual("testMethod", cd.Methods[5].Modifiers[1]);
             Assert.AreEqual("public", cd.Methods[5].Modifiers[2]);
             Assert.AreEqual("AssertEqualsNew", cd.Methods[5].Identifier);
             Assert.AreEqual("void", cd.Methods[5].ReturnType.Identifier);
@@ -712,7 +712,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(3, cd.Methods[6].Modifiers.Count);
             Assert.AreEqual("static", cd.Methods[6].Modifiers[0]);
             Assert.AreEqual("public", cd.Methods[6].Modifiers[1]);
-            Assert.AreEqual("testmethod", cd.Methods[6].Modifiers[2]);
+            Assert.AreEqual("testMethod", cd.Methods[6].Modifiers[2]);
             Assert.AreEqual("AssertNotEqualsNew", cd.Methods[6].Identifier);
             Assert.AreEqual("void", cd.Methods[6].ReturnType.Identifier);
         }
@@ -723,7 +723,7 @@ namespace ApexParserTest.Parser
             var cd = Apex.ParseClass(ClassUnitTestSeeAllData);
             Assert.AreEqual("ClassUnitTestSeeAllData", cd.Identifier);
             Assert.AreEqual(1, cd.Annotations.Count);
-            Assert.AreEqual("isTest", cd.Annotations[0].Identifier);
+            Assert.AreEqual("IsTest", cd.Annotations[0].Identifier);
             Assert.AreEqual("SeeAllData=true", cd.Annotations[0].Parameters);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
@@ -1077,7 +1077,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("RunAsExample", md.Identifier);
             Assert.AreEqual(2, md.Modifiers.Count);
             Assert.AreEqual("static", md.Modifiers[0]);
-            Assert.AreEqual("testmethod", md.Modifiers[1]);
+            Assert.AreEqual("testMethod", md.Modifiers[1]);
 
             var block = md.Body;
             Assert.AreEqual(2, block.Statements.Count);
