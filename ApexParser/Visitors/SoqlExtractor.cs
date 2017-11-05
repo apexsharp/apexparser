@@ -34,6 +34,8 @@ namespace ApexParser.Visitors
             return SoqlRegex.Matches(expression).OfType<Match>().Select(m => m.Value);
         }
 
+        private void AddQueries(string expr) => SoqlQueries.AddRange(ExtractQueries(expr));
+
         public override void DefaultVisit(BaseSyntax node)
         {
             foreach (var child in node.ChildNodes)
@@ -43,53 +45,53 @@ namespace ApexParser.Visitors
         }
 
         public override void VisitFieldDeclarator(FieldDeclaratorSyntax node) =>
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
 
         public override void VisitVariableDeclarator(VariableDeclaratorSyntax node) =>
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
 
         public override void VisitStatement(StatementSyntax node) =>
-            SoqlQueries.AddRange(ExtractQueries(node.Body));
+            AddQueries(node.Body);
 
         public override void VisitDeleteStatement(DeleteStatementSyntax node) =>
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
 
         public override void VisitUpdateStatement(UpdateStatementSyntax node) =>
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
 
         public override void VisitInsertStatement(InsertStatementSyntax node) =>
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
 
         public override void VisitDoStatement(DoStatementSyntax node)
         {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
             base.VisitDoStatement(node);
         }
 
         public override void VisitWhileStatement(WhileStatementSyntax node)
         {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
             base.VisitWhileStatement(node);
         }
 
         public override void VisitForEachStatement(ForEachStatementSyntax node)
         {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
             base.VisitForEachStatement(node);
         }
 
         public override void VisitRunAsStatement(RunAsStatementSyntax node)
         {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            AddQueries(node.Expression);
             base.VisitRunAsStatement(node);
         }
 
         public override void VisitForStatement(ForStatementSyntax node)
         {
-            SoqlQueries.AddRange(ExtractQueries(node.Condition));
+            AddQueries(node.Condition);
             foreach (var inc in node.Incrementors.EmptyIfNull())
             {
-                SoqlQueries.AddRange(ExtractQueries(inc));
+                AddQueries(inc);
             }
 
             base.VisitForStatement(node);
