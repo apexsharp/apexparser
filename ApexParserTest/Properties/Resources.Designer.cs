@@ -62,7 +62,7 @@ namespace ApexParserTest.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @IsTest
-        ///private class fflib_ApplicationTest 
+        ///private class ApplicationTest 
         ///{
         ///	@IsTest
         ///	private static void callingDomainFactoryShouldGiveRegisteredImplsAndMocks()
@@ -74,8 +74,12 @@ namespace ApexParserTest.Properties {
         ///						Id = testAccountId,
         ///						Name = &apos;Test Account&apos;) }
         ///				, Account.SObjectType);
-        ///	}
-        ///}.
+        ///
+        ///		try {
+        ///			Domain.newInstance(new List&lt;Contact&gt;{ new Contact(LastName = &apos;TestContactLName&apos;) });
+        ///			System.assert(false, &apos;Expected exception&apos;);
+        ///		} catch (System.TypeException e) {
+        ///			System [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApplicationTest {
             get {
@@ -379,9 +383,9 @@ namespace ApexParserTest.Properties {
         ///     }
         ///
         ///     /*
-        ///     * This  is a comment line one
-        ///     * This is a comment // line two
-        ///     */
+        ///      * This  is a comment line one
+        ///      * This is a comment // line two
+        ///      */
         ///     public void Hello()
         ///     {
         ///          System.debug(&apos;Hello&apos;);
@@ -476,13 +480,15 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to public class CustomerDto
         ///{
-        ///     public String make { get;set; }
-        ///     public String year { get;set; }
-        ///     public CustomerDto.User user { get;set; }
+        ///     public String make { get; set; }
+        ///
+        ///     public String year { get; set; }
+        ///
+        ///     public CustomerDto.User user { get; set; }
         ///
         ///     public class User
         ///     {
-        ///          public string userName { get;set; }
+        ///          public String userName { get; set; }
         ///     }
         ///}
         ///.
@@ -745,16 +751,16 @@ namespace ApexParserTest.Properties {
         ///*/
         ///public with sharing class FormatDemo
         ///{
-        ///     public Integer dateOfBirth { get; set; }
+        ///    public Integer dateOfBirth { get; set; }
         ///
-        ///     public void ForLoopTest()
-        ///     {
-        ///          for (Integer i = 0; i &lt; 10; i++)
-        ///          {
-        ///               // This is a middle line comment
-        ///               List&lt;Contact&gt; contacts = [ SELECT Name, Email From Contact Where Name = &apos;Jay&apos; ];
-        ///          }
-        ///     }
+        ///    public void ForLoopTest()
+        ///    {
+        ///        for (Integer i = 0; i &lt; 10; i++)
+        ///        {
+        ///            List&lt;Contact&gt; contacts = [SELECT Name, Email From Contact
+        ///                    Where Name = &apos;Jay&apos;];
+        ///        }
+        ///    }
         ///}
         ///.
         /// </summary>
@@ -1024,6 +1030,36 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public with sharing abstract class SoqlDemo {
+        ///
+        ///    public List&lt;Contact&gt; contactList = [SELECT Id, Email FROM Contact];
+        ///
+        ///    public SoqlDemo()
+        ///    {
+        ///        contactList = [SELECT Id, Email FROM Contact];
+        ///    }
+        ///
+        ///    public abstract void AbstractMethod();
+        ///
+        ///    /**
+        ///     * A simple CRUD Example
+        ///     */
+        ///    public static void CrudExample()
+        ///    {
+        ///        Contact contactNew = new Contact(LastName = &apos;Jay&apos;, EMail = &apos;abc@abc.com&apos;);
+        ///        insert contactNew;
+        ///
+        ///        System.debug(contactNew.Id);
+        ///
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SoqlDemo2 {
+            get {
+                return ResourceManager.GetString("SoqlDemo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
@@ -1038,11 +1074,11 @@ namespace ApexParserTest.Properties {
         ///        public static void CrudExample()
         ///        {
         ///            Contact contactNew = new Contact() { LastName = &quot;Jay&quot;, Email = &quot;abc@abc.com&quot; };
-        ///            SOQL.Insert(contactNew);
+        ///            Soql.Insert(contactNew);
         ///
         ///            System.Debug(contactNew.Id);
         ///
-        ///            List&lt;Contact&gt; contacts = SOQL.Query&lt;Contact&gt;(&quot;SELECT Id, Email, Name FRO [rest of string was truncated]&quot;;.
+        ///            List&lt;Contact&gt; contacts = Soql.Query&lt;Contact&gt;(&quot;SELECT Id, Email, Name FRO [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemoCS {
             get {

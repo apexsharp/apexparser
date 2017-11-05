@@ -110,6 +110,7 @@
     <Compile Include="Visitors\CodeGeneratorBase.cs" />
     <Compile Include="Visitors\CSharpCodeGenerator.cs" />
     <Compile Include="Visitors\Extensions.cs" />
+    <Compile Include="Visitors\SoqlExtractor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

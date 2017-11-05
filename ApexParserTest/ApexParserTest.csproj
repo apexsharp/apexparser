@@ -70,6 +70,7 @@
     <Compile Include="CodeGenerators\ApexResourceTests.cs" />
     <Compile Include="CodeGenerators\CSharpGeneratorTests.cs" />
     <Compile Include="CodeGenerators\CSharpResourceTests.cs" />
+    <Compile Include="CodeGenerators\SoqlExtractorTests.cs" />
     <Compile Include="CodeGenerators\TestFixtureBase.cs" />
     <Compile Include="GitHubHelper.cs" />
     <Compile Include="Parser\ApexRegressionTests.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Toolbox\ParseExtensionTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApexTestClasses\SoqlDemo2.cls" />
     <Content Include="ApexTestLibraries\apex-lambda-master.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
