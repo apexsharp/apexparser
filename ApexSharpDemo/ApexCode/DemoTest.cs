@@ -17,7 +17,7 @@ namespace ApexSharpDemo.ApexCode
         }
 
 
-     //   [Test]
+        //[Test]
         public void GetAllContactsTest()
         {
             Demo demo = new Demo();

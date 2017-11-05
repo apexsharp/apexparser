@@ -1,11 +1,18 @@
 ﻿using Apex.System;
-using SalesForceAPI;
-using SalesForceAPI.ApexApi;
 
 namespace Apex.ApexSharp
 {
+    using SalesForceAPI;
+    using SalesForceAPI.ApexApi;
+
     public class Soql
     {
+        public static List<T> QueryNew<T>(string soql)
+        {
+            System.System.Debug(soql);
+            return new List<T>();
+        }
+
         public static List<T> Query<T>(string soql, object dynamicInput)
         {
             SoqlApi api = new SoqlApi();
@@ -15,7 +22,7 @@ namespace Apex.ApexSharp
         public static List<T> Query<T>(string soql)
         {
             SoqlApi api = new SoqlApi();
-            return ConvertList(api.Query<T>(soql));        
+            return ConvertList(api.Query<T>(soql));
         }
 
         public static T QuerySingle<T>(string soql)
