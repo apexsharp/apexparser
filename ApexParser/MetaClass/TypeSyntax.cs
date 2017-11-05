@@ -38,6 +38,9 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitType(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes =>
+            TypeParameters.Where(n => n != null);
+
         public List<string> Namespaces { get; set; }
 
         public string Identifier { get; set; }

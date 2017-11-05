@@ -19,6 +19,9 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => throw new InvalidOperationException();
 
+        public override IEnumerable<BaseSyntax> ChildNodes =>
+            Annotations.Where(n => n != null);
+
         public List<AnnotationSyntax> Annotations { get; set; } = new List<AnnotationSyntax>();
 
         public List<string> Modifiers { get; set; } = new List<string>();

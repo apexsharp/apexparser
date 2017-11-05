@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ApexParser.Visitors;
 using Sprache;
 
@@ -15,6 +16,9 @@ namespace ApexParser.MetaClass
         public override SyntaxType Kind => SyntaxType.Method;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitMethodDeclaration(this);
+
+        public override IEnumerable<BaseSyntax> ChildNodes =>
+            base.ChildNodes.Concat(GetNodes(ReturnType)).Concat(Parameters).Concat(GetNodes(Body)).Where(n => n != null);
 
         public TypeSyntax ReturnType { get; set; }
 

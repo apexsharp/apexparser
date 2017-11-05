@@ -14,6 +14,8 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitBlock(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes => Statements;
+
         public List<StatementSyntax> Statements { get; set; } = new List<StatementSyntax>();
 
         public void Add(StatementSyntax statement) => Statements.Add(statement);

@@ -12,5 +12,7 @@ namespace ApexParser.MetaClass
         public override SyntaxType Kind => SyntaxType.BreakStatement;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitBreakStatement(this);
+
+        public override IEnumerable<BaseSyntax> ChildNodes => NoChildren;
     }
 }

@@ -13,6 +13,8 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitFieldDeclarator(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes => NoChildren;
+
         public string Identifier { get; set; }
 
         public string Expression { get; set; }

@@ -18,6 +18,8 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitStatement(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes => NoChildren;
+
         public bool IsEmpty => string.IsNullOrWhiteSpace(Body);
 
         public string Body { get; set; }

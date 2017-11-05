@@ -35,6 +35,9 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitClassDeclaration(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes =>
+            base.ChildNodes.Concat(GetNodes(BaseType)).Concat(Interfaces).Concat(Members).Where(n => n != null);
+
         public string Identifier { get; set; }
 
         public TypeSyntax BaseType { get; set; }

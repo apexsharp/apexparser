@@ -76,6 +76,7 @@
     <Compile Include="Parser\ApexRegressionTests.cs" />
     <Compile Include="Parser\ApexResourceTests.cs" />
     <Compile Include="Parser\ApexGrammarTests.cs" />
+    <Compile Include="Parser\ApexSyntaxTests.cs" />
     <Compile Include="Parser\MethodTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

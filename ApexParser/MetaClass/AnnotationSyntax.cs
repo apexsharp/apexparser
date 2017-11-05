@@ -16,5 +16,7 @@ namespace ApexParser.MetaClass
         public string Parameters { get; set; }
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitAnnotation(this);
+
+        public override IEnumerable<BaseSyntax> ChildNodes => NoChildren;
     }
 }

@@ -18,6 +18,8 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitAccessor(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes => GetNodes(Body);
+
         public bool IsGetter { get; set; }
 
         public bool IsSetter => !IsGetter;

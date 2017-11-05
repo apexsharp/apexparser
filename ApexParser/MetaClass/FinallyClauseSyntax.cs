@@ -13,6 +13,8 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitFinally(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes => GetNodes(Block);
+
         public BlockSyntax Block { get; set; }
     }
 }

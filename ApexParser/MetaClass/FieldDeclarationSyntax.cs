@@ -19,6 +19,9 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitFieldDeclaration(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes =>
+            base.ChildNodes.Concat(GetNodes(Type)).Concat(Fields).Where(n => n != null);
+
         public override MemberDeclarationSyntax WithTypeAndName(ParameterSyntax typeAndName)
         {
             Type = typeAndName.Type;

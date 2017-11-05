@@ -13,6 +13,8 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitIfStatement(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes => GetNodes(ThenStatement, ElseStatement);
+
         public string Expression { get; set; }
 
         public StatementSyntax ThenStatement { get; set; }

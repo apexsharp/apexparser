@@ -25,6 +25,9 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitPropertyDeclaration(this);
 
+        public override IEnumerable<BaseSyntax> ChildNodes =>
+            base.ChildNodes.Concat(GetNodes(Type, Getter, Setter));
+
         public TypeSyntax Type { get; set; }
 
         public string Identifier { get; set; }
