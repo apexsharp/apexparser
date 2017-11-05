@@ -24,91 +24,6 @@ namespace ApexParser.Visitors
 
         private List<string> SoqlQueries { get; } = new List<string>();
 
-        public override void VisitFieldDeclarator(FieldDeclaratorSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-        }
-
-        public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-        }
-
-        public override void VisitStatement(StatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Body));
-        }
-
-        public override void VisitDoStatement(DoStatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-            if (node.Statement != null)
-            {
-                node.Statement.Accept(this);
-            }
-        }
-
-        public override void VisitWhileStatement(WhileStatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-            if (node.Statement != null)
-            {
-                node.Statement.Accept(this);
-            }
-        }
-
-        public override void VisitForEachStatement(ForEachStatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-            if (node.Statement != null)
-            {
-                node.Statement.Accept(this);
-            }
-        }
-
-        public override void VisitForStatement(ForStatementSyntax node)
-        {
-            foreach (var decl in node.Declaration?.Variables.EmptyIfNull())
-            {
-                decl.Accept(this);
-            }
-
-            SoqlQueries.AddRange(ExtractQueries(node.Condition));
-            foreach (var inc in node.Incrementors.EmptyIfNull())
-            {
-                SoqlQueries.AddRange(ExtractQueries(inc));
-            }
-
-            if (node.Statement != null)
-            {
-                node.Statement.Accept(this);
-            }
-        }
-
-        public override void VisitRunAsStatement(RunAsStatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-            if (node.Statement != null)
-            {
-                node.Statement.Accept(this);
-            }
-        }
-
-        public override void VisitDeleteStatement(DeleteStatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-        }
-
-        public override void VisitUpdateStatement(UpdateStatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-        }
-
-        public override void VisitInsertStatement(InsertStatementSyntax node)
-        {
-            SoqlQueries.AddRange(ExtractQueries(node.Expression));
-        }
-
         private IEnumerable<string> ExtractQueries(string expression)
         {
             if (string.IsNullOrWhiteSpace(expression))
@@ -119,78 +34,65 @@ namespace ApexParser.Visitors
             return SoqlRegex.Matches(expression).OfType<Match>().Select(m => m.Value);
         }
 
-        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+        public override void DefaultVisit(BaseSyntax node)
         {
-            foreach (var member in node.Members.EmptyIfNull())
+            foreach (var child in node.ChildNodes)
             {
-                member.Accept(this);
+                child.Accept(this);
             }
         }
 
-        public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
+        public override void VisitFieldDeclarator(FieldDeclaratorSyntax node) =>
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+
+        public override void VisitVariableDeclarator(VariableDeclaratorSyntax node) =>
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+
+        public override void VisitStatement(StatementSyntax node) =>
+            SoqlQueries.AddRange(ExtractQueries(node.Body));
+
+        public override void VisitDeleteStatement(DeleteStatementSyntax node) =>
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+
+        public override void VisitUpdateStatement(UpdateStatementSyntax node) =>
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+
+        public override void VisitInsertStatement(InsertStatementSyntax node) =>
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+
+        public override void VisitDoStatement(DoStatementSyntax node)
         {
-            foreach (var statement in node.Body.EmptyIfNull())
-            {
-                statement.Accept(this);
-            }
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            base.VisitDoStatement(node);
         }
 
-        public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+        public override void VisitWhileStatement(WhileStatementSyntax node)
         {
-            foreach (var statement in node.Body.EmptyIfNull())
-            {
-                statement.Accept(this);
-            }
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            base.VisitWhileStatement(node);
         }
 
-        public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+        public override void VisitForEachStatement(ForEachStatementSyntax node)
         {
-            foreach (var field in node.Fields.EmptyIfNull())
-            {
-                field.Accept(this);
-            }
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            base.VisitForEachStatement(node);
         }
 
-        public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
+        public override void VisitRunAsStatement(RunAsStatementSyntax node)
         {
-            foreach (var var in node.Variables.EmptyIfNull())
-            {
-                var.Accept(this);
-            }
+            SoqlQueries.AddRange(ExtractQueries(node.Expression));
+            base.VisitRunAsStatement(node);
         }
 
-        public override void VisitIfStatement(IfStatementSyntax node)
+        public override void VisitForStatement(ForStatementSyntax node)
         {
-            foreach (var stmt in new[] { node.ThenStatement, node.ElseStatement }.Where(st => st != null))
+            SoqlQueries.AddRange(ExtractQueries(node.Condition));
+            foreach (var inc in node.Incrementors.EmptyIfNull())
             {
-                stmt.Accept(this);
-            }
-        }
-
-        public override void VisitTryStatement(TryStatementSyntax node)
-        {
-            if (node.Block != null)
-            {
-                node.Block.Accept(this);
+                SoqlQueries.AddRange(ExtractQueries(inc));
             }
 
-            foreach (var @catch in node.Catches.EmptyIfNull())
-            {
-                @catch?.Block?.Accept(this);
-            }
-
-            if (node.Finally != null)
-            {
-                node.Finally?.Block?.Accept(this);
-            }
-        }
-
-        public override void VisitBlock(BlockSyntax node)
-        {
-            foreach (var stmt in node.Statements.EmptyIfNull())
-            {
-                stmt.Accept(this);
-            }
+            base.VisitForStatement(node);
         }
     }
 }
