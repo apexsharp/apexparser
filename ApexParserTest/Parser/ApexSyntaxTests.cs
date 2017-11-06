@@ -103,5 +103,24 @@ namespace ApexParserTest.Parser
             Assert.IsInstanceOf<TypeSyntax>(nodes[8]);
             Assert.IsInstanceOf<BlockSyntax>(nodes[9]);
         }
+
+        [Test]
+        public void CanLocateSpecificNodesInSoqlDemo2SyntaxTree()
+        {
+            var syntax = ApexParser.ApexParser.GetApexAst(SoqlDemo2);
+            var nodes = syntax.DescendantNodesAndSelf().ToArray();
+
+            var deleteWorked = nodes.OfType<StatementSyntax>().FirstOrDefault(n => n.Body == "System.debug('Delete Worked')");
+            Assert.NotNull(deleteWorked);
+            Assert.AreEqual(1, deleteWorked.DescendantNodesAndSelf().Count());
+
+            var forEachOverSoql = nodes.OfType<ForEachStatementSyntax>().FirstOrDefault(n => n.Expression.Contains("SELECT"));
+            Assert.NotNull(forEachOverSoql);
+            Assert.AreEqual(4, forEachOverSoql.DescendantNodesAndSelf().Count());
+
+            var runAsStatement = nodes.OfType<RunAsStatementSyntax>().SingleOrDefault();
+            Assert.NotNull(runAsStatement);
+            Assert.AreEqual(16, runAsStatement.DescendantNodesAndSelf().Count());
+        }
     }
 }
