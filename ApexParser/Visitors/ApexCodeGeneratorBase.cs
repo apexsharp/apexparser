@@ -247,6 +247,11 @@ namespace ApexParser.Visitors
             }
         }
 
+        public override void VisitExpression(ExpressionSyntax node)
+        {
+            Append("{0}", node.Expression);
+        }
+
         public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
         {
             AppendCommentsAttributesAndModifiers(node);
@@ -267,7 +272,8 @@ namespace ApexParser.Visitors
             Append("{0}", node.Identifier);
             if (node.Expression != null)
             {
-                Append(" = {0}", node.Expression);
+                Append(" = ");
+                node.Expression.Accept(this);
             }
         }
 
@@ -281,7 +287,10 @@ namespace ApexParser.Visitors
         public override void VisitIfStatement(IfStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndentedLine("if ({0})", node.Expression);
+            AppendIndented("if (");
+            node.Expression.Accept(this);
+            AppendLine(")");
+
             if (node.ThenStatement != null)
             {
                 AppendStatementWithOptionalIndent(node.ThenStatement);
@@ -382,10 +391,10 @@ namespace ApexParser.Visitors
         public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
         {
             Append(node.Identifier);
-
-            if (!string.IsNullOrWhiteSpace(node.Expression))
+            if (node.Expression != null)
             {
-                Append(" = {0}", node.Expression);
+                Append(" = ");
+                node.Expression.Accept(this);
             }
         }
 
@@ -445,7 +454,8 @@ namespace ApexParser.Visitors
                     Append(" {0} : ", node.Identifier);
                 }
 
-                Append("{0})", node.Expression);
+                node.Expression.Accept(this);
+                Append(")");
             }
 
             AppendLine();
@@ -457,21 +467,27 @@ namespace ApexParser.Visitors
             AppendLeadingComments(node);
             AppendIndentedLine("do");
             AppendStatementWithOptionalIndent(node.Statement);
-            AppendIndented("while ({0});", node.Expression);
+            AppendIndented("while (");
+            node.Expression.Accept(this);
+            Append(");");
             AppendTrailingComments(node);
         }
 
         public override void VisitWhileStatement(WhileStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndentedLine("while ({0})", node.Expression);
+            AppendIndented("while (");
+            node.Expression.Accept(this);
+            AppendLine(")");
             AppendStatementWithOptionalIndent(node.Statement);
         }
 
         public override void VisitRunAsStatement(RunAsStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndentedLine("System.runAs({0})", node.Expression);
+            AppendIndented("System.runAs(");
+            node.Expression.Accept(this);
+            AppendLine(")");
             AppendStatementWithOptionalIndent(node.Statement);
         }
 
@@ -530,21 +546,27 @@ namespace ApexParser.Visitors
         public override void VisitInsertStatement(InsertStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("insert {0};", node.Expression);
+            AppendIndented("insert ");
+            node.Expression.Accept(this);
+            Append(";");
             AppendTrailingComments(node);
         }
 
         public override void VisitUpdateStatement(UpdateStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("update {0};", node.Expression);
+            AppendIndented("update ");
+            node.Expression.Accept(this);
+            Append(";");
             AppendTrailingComments(node);
         }
 
         public override void VisitDeleteStatement(DeleteStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("delete {0};", node.Expression);
+            AppendIndented("delete ");
+            node.Expression.Accept(this);
+            Append(";");
             AppendTrailingComments(node);
         }
 

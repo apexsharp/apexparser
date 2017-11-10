@@ -221,7 +221,7 @@ namespace ApexParser.Parser
             select new FieldDeclaratorSyntax
             {
                 Identifier = identifier,
-                Expression = expression.GetOrDefault(),
+                Expression = ExpressionSyntax.CreateOrDefault(expression),
             };
 
         // examples: return true; if (false) return; etc.
@@ -277,7 +277,7 @@ namespace ApexParser.Parser
             select new VariableDeclaratorSyntax
             {
                 Identifier = identifier,
-                Expression = expression.GetOrDefault(),
+                Expression = ExpressionSyntax.CreateOrDefault(expression),
             };
 
         // examples: (MyExpr), (MyExpr ex)
@@ -341,7 +341,7 @@ namespace ApexParser.Parser
             from statement in Statement
             select new RunAsStatementSyntax
             {
-                Expression = expression,
+                Expression = new ExpressionSyntax(expression),
                 Statement = statement,
             };
 
@@ -411,7 +411,7 @@ namespace ApexParser.Parser
             from elseBranch in Parse.IgnoreCase(ApexKeywords.Else).Token(this).Then(_ => Statement).Optional()
             select new IfStatementSyntax
             {
-                Expression = expression,
+                Expression = new ExpressionSyntax(expression),
                 ThenStatement = thenBranch,
                 ElseStatement = elseBranch.GetOrDefault(),
             };
@@ -430,7 +430,7 @@ namespace ApexParser.Parser
             {
                 Type = typeReference,
                 Identifier = identifier,
-                Expression = expression,
+                Expression = new ExpressionSyntax(expression),
                 Statement = loopBody,
             };
 
@@ -461,7 +461,7 @@ namespace ApexParser.Parser
             from semicolon in Parse.Char(';')
             select new DoStatementSyntax
             {
-                Expression = expression,
+                Expression = new ExpressionSyntax(expression),
                 Statement = loopBody,
             };
 
@@ -472,7 +472,7 @@ namespace ApexParser.Parser
             from loopBody in Statement
             select new WhileStatementSyntax
             {
-                Expression = expression,
+                Expression = new ExpressionSyntax(expression),
                 Statement = loopBody,
             };
 
@@ -485,29 +485,29 @@ namespace ApexParser.Parser
 
         // example: insert contact;
         protected internal virtual Parser<InsertStatementSyntax> InsertStatement =>
-            from expr in KeywordExpressionStatement(ApexKeywords.Insert)
-            where !string.IsNullOrWhiteSpace(expr)
+            from expression in KeywordExpressionStatement(ApexKeywords.Insert)
+            where !string.IsNullOrWhiteSpace(expression)
             select new InsertStatementSyntax
             {
-                Expression = expr,
+                Expression = new ExpressionSyntax(expression),
             };
 
         // example: update items;
         protected internal virtual Parser<UpdateStatementSyntax> UpdateStatement =>
-            from expr in KeywordExpressionStatement(ApexKeywords.Update)
-            where !string.IsNullOrWhiteSpace(expr)
+            from expression in KeywordExpressionStatement(ApexKeywords.Update)
+            where !string.IsNullOrWhiteSpace(expression)
             select new UpdateStatementSyntax
             {
-                Expression = expr,
+                Expression = new ExpressionSyntax(expression),
             };
 
         // example: delete user;
         protected internal virtual Parser<DeleteStatementSyntax> DeleteStatement =>
-            from expr in KeywordExpressionStatement(ApexKeywords.Delete)
-            where !string.IsNullOrWhiteSpace(expr)
+            from expression in KeywordExpressionStatement(ApexKeywords.Delete)
+            where !string.IsNullOrWhiteSpace(expression)
             select new DeleteStatementSyntax
             {
-                Expression = expr,
+                Expression = new ExpressionSyntax(expression),
             };
 
         // examples: /* this is a member */ @isTest public

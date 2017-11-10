@@ -160,7 +160,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var ifStatement = new IfStatementSyntax
             {
-                Expression = "true",
+                Expression = new ExpressionSyntax("true"),
                 ThenStatement = new BreakStatementSyntax()
             };
 
@@ -179,7 +179,7 @@ namespace ApexParserTest.CodeGenerators
                     " this is the first leading comment",
                     " this is the second leading comment"
                 },
-                Expression = "true",
+                Expression = new ExpressionSyntax("true"),
                 ThenStatement = new StatementSyntax("hello()").WithTrailingComment(" hello"),
                 ElseStatement = new BreakStatementSyntax(),
             };
@@ -199,11 +199,11 @@ namespace ApexParserTest.CodeGenerators
             var ifStatement = new IfStatementSyntax
             {
                 LeadingComments = new List<string> { "some nested ifs" },
-                Expression = "true",
+                Expression = new ExpressionSyntax("true"),
                 ThenStatement = new StatementSyntax("hello()").WithTrailingComment("there"),
                 ElseStatement = new IfStatementSyntax
                 {
-                    Expression = "false",
+                    Expression = new ExpressionSyntax("false"),
                     ThenStatement = new StatementSyntax("goodbye()").WithTrailingComment("and everywhere"),
                     ElseStatement = new BreakStatementSyntax().WithTrailingComment("down")
                 }
@@ -243,12 +243,12 @@ namespace ApexParserTest.CodeGenerators
                     new VariableDeclaratorSyntax
                     {
                         Identifier = "alice",
-                        Expression = "'alice@wonderland.net'"
+                        Expression = new ExpressionSyntax("'alice@wonderland.net'")
                     },
                     new VariableDeclaratorSyntax
                     {
                         Identifier = "bob",
-                        Expression = "'bob@microsoft.com'"
+                        Expression = new ExpressionSyntax("'bob@microsoft.com'")
                     }
                 }
             };
@@ -285,12 +285,12 @@ namespace ApexParserTest.CodeGenerators
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "i",
-                            Expression = "0"
+                            Expression = new ExpressionSyntax("0")
                         },
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "j",
-                            Expression = "100"
+                            Expression = new ExpressionSyntax("100")
                         }
                     }
                 },
@@ -361,12 +361,12 @@ namespace ApexParserTest.CodeGenerators
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "i",
-                            Expression = "0"
+                            Expression = new ExpressionSyntax("0")
                         },
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "j",
-                            Expression = "1"
+                            Expression = new ExpressionSyntax("1")
                         }
                     }
                 },
@@ -395,7 +395,7 @@ namespace ApexParserTest.CodeGenerators
             {
                 Type = new TypeSyntax("Contact"),
                 Identifier = "c",
-                Expression = "contacts",
+                Expression = new ExpressionSyntax("contacts"),
                 Statement = new BlockSyntax()
             };
 
@@ -410,7 +410,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var doStatement = new DoStatementSyntax
             {
-                Expression = "contacts.IsEmpty()",
+                Expression = new ExpressionSyntax("contacts.IsEmpty()"),
                 Statement = new BlockSyntax
                 {
                     new BreakStatementSyntax()
@@ -430,7 +430,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var doStatement = new DoStatementSyntax
             {
-                Expression = "true",
+                Expression = new ExpressionSyntax("true"),
                 Statement = new BreakStatementSyntax()
             };
 
@@ -445,7 +445,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var whileStatement = new WhileStatementSyntax
             {
-                Expression = "contacts.IsEmpty()",
+                Expression = new ExpressionSyntax("contacts.IsEmpty()"),
                 Statement = new BlockSyntax
                 {
                     new BreakStatementSyntax()
@@ -464,7 +464,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var runAsStatement = new RunAsStatementSyntax
             {
-                Expression = "getCurrentUser()",
+                Expression = new ExpressionSyntax("getCurrentUser()"),
                 Statement = new BlockSyntax
                 {
                     new BreakStatementSyntax()
@@ -483,7 +483,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var insertStatement = new InsertStatementSyntax
             {
-                Expression = "contactNew"
+                Expression = new ExpressionSyntax("contactNew")
             };
 
             Check(insertStatement, @"insert contactNew;");
@@ -494,7 +494,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var updateStatement = new UpdateStatementSyntax
             {
-                Expression = "contacts"
+                Expression = new ExpressionSyntax("contacts")
             };
 
             Check(updateStatement, @"update contacts;");
@@ -505,7 +505,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var deleteStatement = new DeleteStatementSyntax
             {
-                Expression = "contactOld"
+                Expression = new ExpressionSyntax("contactOld")
             };
 
             Check(deleteStatement, @"delete contactOld;");
@@ -565,7 +565,7 @@ namespace ApexParserTest.CodeGenerators
                 {
                     new InsertStatementSyntax
                     {
-                        Expression = "customer",
+                        Expression = new ExpressionSyntax("customer"),
                     },
                 },
             };

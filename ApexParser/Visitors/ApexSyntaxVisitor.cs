@@ -37,6 +37,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitEnumMember(EnumMemberDeclarationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitExpression(ExpressionSyntax node) => DefaultVisit(node);
+
         public virtual void VisitFieldDeclaration(FieldDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitFieldDeclarator(FieldDeclaratorSyntax node) => DefaultVisit(node);

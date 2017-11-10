@@ -68,7 +68,7 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual("ClassTwo", varDecl.Type.Identifier);
                 Assert.AreEqual(1, varDecl.Variables.Count);
                 Assert.AreEqual("classTwo", varDecl.Variables[0].Identifier);
-                Assert.AreEqual("new ClassTwo()", varDecl.Variables[0].Expression);
+                Assert.AreEqual("new ClassTwo()", varDecl.Variables[0].Expression.Expression);
                 Assert.AreEqual("System.debug('Test')", block.Statements[1].Body);
             }
         }
@@ -206,7 +206,7 @@ namespace ApexParserTest.Parser
 
             var ifstmt = block.Statements[0] as IfStatementSyntax;
             Assert.NotNull(ifstmt);
-            Assert.AreEqual("x == 5", ifstmt.Expression);
+            Assert.AreEqual("x == 5", ifstmt.Expression.Expression);
             Assert.NotNull(ifstmt.ThenStatement);
             Assert.NotNull(ifstmt.ElseStatement);
 
@@ -219,7 +219,7 @@ namespace ApexParserTest.Parser
 
             var innerIf = block.Statements[1] as IfStatementSyntax;
             Assert.NotNull(innerIf);
-            Assert.AreEqual("x == 8", innerIf.Expression);
+            Assert.AreEqual("x == 8", innerIf.Expression.Expression);
             Assert.NotNull(innerIf.ThenStatement);
             Assert.Null(innerIf.ElseStatement);
 
@@ -268,7 +268,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(forStmt);
             Assert.AreEqual("Contact", forStmt.Type.Identifier);
             Assert.AreEqual("c", forStmt.Identifier);
-            Assert.AreEqual("contacts", forStmt.Expression);
+            Assert.AreEqual("contacts", forStmt.Expression.Expression);
             var loopBody = forStmt.Statement as BlockSyntax;
             Assert.NotNull(loopBody);
             Assert.AreEqual(2, loopBody.Statements.Count);
@@ -377,9 +377,9 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Integer", forStmt.Declaration.Type.Identifier);
             Assert.AreEqual(2, forStmt.Declaration.Variables.Count);
             Assert.AreEqual("i", forStmt.Declaration.Variables[0].Identifier);
-            Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression);
+            Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression.Expression);
             Assert.AreEqual("j", forStmt.Declaration.Variables[1].Identifier);
-            Assert.AreEqual("0", forStmt.Declaration.Variables[1].Expression);
+            Assert.AreEqual("0", forStmt.Declaration.Variables[1].Expression.Expression);
             Assert.AreEqual("i < 10", forStmt.Condition);
             Assert.NotNull(forStmt.Incrementors);
             Assert.AreEqual(1, forStmt.Incrementors.Count);
@@ -403,7 +403,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(forEachStmt);
             Assert.AreEqual("Integer", forEachStmt.Type.Identifier);
             Assert.AreEqual("i", forEachStmt.Identifier);
-            Assert.AreEqual("myInts", forEachStmt.Expression);
+            Assert.AreEqual("myInts", forEachStmt.Expression.Expression);
             block = forEachStmt.Statement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
@@ -502,7 +502,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("Datetime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new List<Datetime>()", fd.Fields[0].Expression);
+            Assert.AreEqual("new List<Datetime>()", fd.Fields[0].Expression.Expression);
 
             fd = cd.Fields[3];
             Assert.False(fd.Annotations.Any());
@@ -512,7 +512,7 @@ namespace ApexParserTest.Parser
             Assert.IsTrue(fd.Type.IsArray);
             Assert.AreEqual(1, fd.Modifiers.Count);
             Assert.AreEqual("public", fd.Modifiers[0]);
-            Assert.AreEqual("new Datetime[5]", fd.Fields[0].Expression);
+            Assert.AreEqual("new Datetime[5]", fd.Fields[0].Expression.Expression);
 
             fd = cd.Fields[7];
             Assert.False(fd.Annotations.Any());
@@ -524,7 +524,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", fd.Modifiers[0]);
             Assert.AreEqual("static", fd.Modifiers[1]);
             Assert.AreEqual("final", fd.Modifiers[2]);
-            Assert.AreEqual("'jay'", fd.Fields[0].Expression);
+            Assert.AreEqual("'jay'", fd.Fields[0].Expression.Expression);
 
             var md = cd.Methods[0];
             Assert.AreEqual("MethodOne", md.Identifier);
@@ -828,7 +828,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Integer", forStmt.Declaration.Type.Identifier);
             Assert.AreEqual(1, forStmt.Declaration.Variables.Count);
             Assert.AreEqual("i", forStmt.Declaration.Variables[0].Identifier);
-            Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression);
+            Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression.Expression);
             Assert.AreEqual("i < 10", forStmt.Condition);
             Assert.NotNull(forStmt.Incrementors);
             Assert.AreEqual(1, forStmt.Incrementors.Count);
@@ -852,7 +852,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(forEachStmt);
             Assert.AreEqual("Integer", forEachStmt.Type.Identifier);
             Assert.AreEqual("myInt", forEachStmt.Identifier);
-            Assert.AreEqual("myInts", forEachStmt.Expression);
+            Assert.AreEqual("myInts", forEachStmt.Expression.Expression);
             block = forEachStmt.Statement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
@@ -1007,7 +1007,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, fd.Type.TypeParameters.Count);
             Assert.AreEqual("Datetime", fd.Type.TypeParameters[0].Identifier);
             Assert.IsFalse(fd.Type.IsArray);
-            Assert.AreEqual("new List<Datetime>()", fd.Fields[0].Expression);
+            Assert.AreEqual("new List<Datetime>()", fd.Fields[0].Expression.Expression);
 
             fd = cd.Fields[4];
             Assert.False(fd.Annotations.Any());
@@ -1017,7 +1017,7 @@ namespace ApexParserTest.Parser
             Assert.IsTrue(fd.Type.IsArray);
             Assert.AreEqual(1, fd.Modifiers.Count);
             Assert.AreEqual("public", fd.Modifiers[0]);
-            Assert.AreEqual("new Datetime[5]", fd.Fields[0].Expression);
+            Assert.AreEqual("new Datetime[5]", fd.Fields[0].Expression.Expression);
 
             fd = cd.Fields[8];
             Assert.False(fd.Annotations.Any());
@@ -1029,7 +1029,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("public", fd.Modifiers[0]);
             Assert.AreEqual("static", fd.Modifiers[1]);
             Assert.AreEqual("final", fd.Modifiers[2]);
-            Assert.AreEqual("'jay'", fd.Fields[0].Expression);
+            Assert.AreEqual("'jay'", fd.Fields[0].Expression.Expression);
 
             var md = cd.Methods[0];
             Assert.AreEqual("MethodOne", md.Identifier);
@@ -1084,7 +1084,7 @@ namespace ApexParserTest.Parser
 
             var runAs = block.Statements[1] as RunAsStatementSyntax;
             Assert.NotNull(runAs);
-            Assert.AreEqual("newUser", runAs.Expression);
+            Assert.AreEqual("newUser", runAs.Expression.Expression);
             Assert.NotNull(runAs.Statement as BlockSyntax);
         }
 
@@ -1112,7 +1112,7 @@ namespace ApexParserTest.Parser
             var forEach = md.Body.Statements[0] as ForEachStatementSyntax;
             Assert.AreEqual("Contact", forEach.Type.Identifier);
             Assert.AreEqual("contactList", forEach.Identifier);
-            Assert.AreEqual("[SELECT Id, Name FROM Contact]", forEach.Expression);
+            Assert.AreEqual("[SELECT Id, Name FROM Contact]", forEach.Expression.Expression);
             Assert.NotNull(forEach.Statement as BlockSyntax);
         }
 

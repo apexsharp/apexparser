@@ -9,8 +9,8 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitDeleteStatement(this);
 
-        public override IEnumerable<BaseSyntax> ChildNodes => NoChildren;
+        public override IEnumerable<BaseSyntax> ChildNodes => GetNodes(Expression);
 
-        public string Expression { get; set; }
+        public ExpressionSyntax Expression { get; set; }
     }
 }

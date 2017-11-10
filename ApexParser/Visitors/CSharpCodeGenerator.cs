@@ -154,7 +154,8 @@ namespace ApexParser.Visitors
                     Append(" {0} in ", node.Identifier);
                 }
 
-                Append("{0})", node.Expression);
+                node.Expression.Accept(this);
+                Append(")");
             }
 
             AppendLine();
@@ -163,17 +164,29 @@ namespace ApexParser.Visitors
 
         public override void VisitInsertStatement(InsertStatementSyntax node)
         {
-            AppendIndentedLine("{0}.Insert({1});", Soql, node.Expression);
+            AppendLeadingComments(node);
+            AppendIndented("{0}.Insert(", Soql);
+            node.Expression.Accept(this);
+            Append(");");
+            AppendTrailingComments(node);
         }
 
         public override void VisitUpdateStatement(UpdateStatementSyntax node)
         {
-            AppendIndentedLine("{0}.Update({1});", Soql, node.Expression);
+            AppendLeadingComments(node);
+            AppendIndented("{0}.Update(", Soql);
+            node.Expression.Accept(this);
+            Append(");");
+            AppendTrailingComments(node);
         }
 
         public override void VisitDeleteStatement(DeleteStatementSyntax node)
         {
-            AppendIndentedLine("{0}.Delete({1});", Soql, node.Expression);
+            AppendLeadingComments(node);
+            AppendIndented("{0}.Delete(", Soql);
+            node.Expression.Accept(this);
+            Append(");");
+            AppendTrailingComments(node);
         }
     }
 }

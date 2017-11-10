@@ -36,6 +36,8 @@ namespace ApexParser.Visitors
 
         private void AddQueries(string expr) => SoqlQueries.AddRange(ExtractQueries(expr));
 
+        private void AddQueries(ExpressionSyntax expr) => AddQueries(expr?.Expression);
+
         public override void DefaultVisit(BaseSyntax node)
         {
             foreach (var child in node.ChildNodes)
@@ -44,57 +46,8 @@ namespace ApexParser.Visitors
             }
         }
 
-        public override void VisitFieldDeclarator(FieldDeclaratorSyntax node) =>
-            AddQueries(node.Expression);
+        public override void VisitExpression(ExpressionSyntax node) => AddQueries(node);
 
-        public override void VisitVariableDeclarator(VariableDeclaratorSyntax node) =>
-            AddQueries(node.Expression);
-
-        public override void VisitStatement(StatementSyntax node) =>
-            AddQueries(node.Body);
-
-        public override void VisitDeleteStatement(DeleteStatementSyntax node) =>
-            AddQueries(node.Expression);
-
-        public override void VisitUpdateStatement(UpdateStatementSyntax node) =>
-            AddQueries(node.Expression);
-
-        public override void VisitInsertStatement(InsertStatementSyntax node) =>
-            AddQueries(node.Expression);
-
-        public override void VisitDoStatement(DoStatementSyntax node)
-        {
-            AddQueries(node.Expression);
-            base.VisitDoStatement(node);
-        }
-
-        public override void VisitWhileStatement(WhileStatementSyntax node)
-        {
-            AddQueries(node.Expression);
-            base.VisitWhileStatement(node);
-        }
-
-        public override void VisitForEachStatement(ForEachStatementSyntax node)
-        {
-            AddQueries(node.Expression);
-            base.VisitForEachStatement(node);
-        }
-
-        public override void VisitRunAsStatement(RunAsStatementSyntax node)
-        {
-            AddQueries(node.Expression);
-            base.VisitRunAsStatement(node);
-        }
-
-        public override void VisitForStatement(ForStatementSyntax node)
-        {
-            AddQueries(node.Condition);
-            foreach (var inc in node.Incrementors.EmptyIfNull())
-            {
-                AddQueries(inc);
-            }
-
-            base.VisitForStatement(node);
-        }
+        public override void VisitStatement(StatementSyntax node) => AddQueries(node.Body);
     }
 }

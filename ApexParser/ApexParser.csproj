@@ -70,6 +70,7 @@
     <Compile Include="MetaClass\DoStatementSyntax.cs" />
     <Compile Include="MetaClass\EnumDeclarationSyntax.cs" />
     <Compile Include="MetaClass\EnumMemberDeclarationSyntax.cs" />
+    <Compile Include="MetaClass\ExpressionSyntax.cs" />
     <Compile Include="MetaClass\FieldDeclarationSyntax.cs" />
     <Compile Include="MetaClass\FieldDeclaratorSyntax.cs" />
     <Compile Include="MetaClass\FinallyClauseSyntax.cs" />
