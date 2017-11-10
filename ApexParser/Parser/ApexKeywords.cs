@@ -171,7 +171,7 @@ namespace ApexParser.Parser
         public static string Before => "before";
         public static string Count => "count";
         public static string Excludes => "excludes";
-        public static string Exception => "exception"; // can be used as a method name
+        public static string Exception => "Exception"; // can be used as a class or method name
         public static string First => "first";
         public static string Includes => "includes";
         public static string Last => "last";

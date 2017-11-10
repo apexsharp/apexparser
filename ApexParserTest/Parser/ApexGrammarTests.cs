@@ -1688,7 +1688,7 @@ namespace ApexParserTest.Parser
         public void CatchExpressionClauseIsATypeAndNameInBraces()
         {
             var cexpr = Apex.CatchExpressionTypeName.Parse(" ( exception )");
-            Assert.AreEqual("exception", cexpr.Type.Identifier);
+            Assert.AreEqual("Exception", cexpr.Type.Identifier);
             Assert.IsNull(cexpr.Identifier);
 
             cexpr = Apex.CatchExpressionTypeName.Parse("(NullReferenceException ex   )");
@@ -1702,7 +1702,7 @@ namespace ApexParserTest.Parser
         public void CatchExpressionClauseCanHaveTypeNameOrNothing()
         {
             var cexpr = Apex.CatchClause.Parse("catch ( exception ) { return; }");
-            Assert.AreEqual("exception", cexpr.Type.Identifier);
+            Assert.AreEqual("Exception", cexpr.Type.Identifier);
             Assert.IsNull(cexpr.Identifier);
             Assert.NotNull(cexpr.Block);
             Assert.AreEqual(1, cexpr.Block.Statements.Count);
@@ -1740,7 +1740,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, ts.Block.Statements.Count);
             Assert.AreEqual(1, ts.Catches.Count);
             var cexpr = ts.Catches[0];
-            Assert.AreEqual("exception", cexpr.Type.Identifier);
+            Assert.AreEqual("Exception", cexpr.Type.Identifier);
             Assert.IsNull(cexpr.Identifier);
             Assert.NotNull(cexpr.Block);
             Assert.AreEqual(1, cexpr.Block.Statements.Count);

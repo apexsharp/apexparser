@@ -579,7 +579,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("ClassException", cd.Identifier);
             Assert.AreEqual(1, cd.Modifiers.Count);
             Assert.AreEqual("public", cd.Modifiers[0]);
-            Assert.AreEqual("exception", cd.BaseType.Identifier);
+            Assert.AreEqual("Exception", cd.BaseType.Identifier);
         }
 
         [Test(Description = @"SalesForceApexSharp\src\classes\ClassGlobal.cls")]

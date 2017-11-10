@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ApexParser.MetaClass;
+using ApexParser.Parser;
 using ApexParser.Toolbox;
 
 namespace ApexParser.Visitors
@@ -96,6 +97,29 @@ namespace ApexParser.Visitors
             if (appendNamespace)
             {
                 AppendIndentedLine("}}");
+            }
+        }
+
+        protected override string ConvertModifier(string modifier, MemberDeclarationSyntax ownerNode)
+        {
+            switch (modifier)
+            {
+                case ApexKeywords.Final:
+                    if (ownerNode is ClassDeclarationSyntax || ownerNode is MethodDeclarationSyntax)
+                    {
+                        return "sealed";
+                    }
+                    else if (ownerNode is FieldDeclarationSyntax)
+                    {
+                        return "readonly";
+                    }
+                    else
+                    {
+                        return "/* final */";
+                    }
+
+                default:
+                    return modifier;
             }
         }
 

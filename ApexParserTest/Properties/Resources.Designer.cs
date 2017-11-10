@@ -800,21 +800,24 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
-        /// */
-        ///
-        ////**
-        /// *	&apos;Classic&apos; invocation verifier - checks that a method was called with the given arguments the expected number of times.
-        /// *	The order of method calls is not important.
-        /// *	@group Core
-        /// */
-        ///public class fflib_AnyOrder extends fflib_MethodVerifier
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
-        ///	/*
-        ///	 * Verifies a method was invoked the expected number of times, with the expected arguments.
-        ///	 * @param qualifiedMethod The method to be verified.
-        ///	 * @param methodArg The arguments  [rest of string was truncated]&quot;;.
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    /*
+        ///     Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        ///     */
+        ///    /**
+        ///     *	&apos;Classic&apos; invocation verifier - checks that a method was called with the given arguments the expected number of times.
+        ///     *	The order of method calls is not important.
+        ///     *	@group Core
+        ///     */
+        ///    public class fflib_AnyOrder : fflib_MethodVerifier
+        ///    {
+        ///        /*
+        ///         * Verifies  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrder_CSharp {
             get {
@@ -826,7 +829,6 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to /*
         /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
         /// */
-        ///
         ////**
         /// *	&apos;Classic&apos; invocation verifier - checks that a method was called with the given arguments the expected number of times.
         /// *	The order of method calls is not important.
@@ -834,14 +836,104 @@ namespace ApexParserTest.Properties {
         /// */
         ///public class fflib_AnyOrder extends fflib_MethodVerifier
         ///{
-        ///	/*
-        ///	 * Verifies a method was invoked the expected number of times, with the expected arguments.
-        ///	 * @param qualifiedMethod The method to be verified.
-        ///	 * @param methodArg The arguments  [rest of string was truncated]&quot;;.
+        ///    /*
+        ///     * Verifies a method was invoked the expected number of times, with the expected arguments.
+        ///     * @param qualifiedMethod The method to be verified.
+        ///     * @param  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrder_Formatted {
             get {
                 return ResourceManager.GetString("fflib_AnyOrder_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_AnyOrderTest
+        ///{
+        ///	private static final String BASIC_VERIFY_ASSERTION_MESSAGE = &apos;Expected : {0}, Actual: {1} -- Wanted but not invoked: &apos;;
+        ///
+        ///	/*
+        ///	 *	replicating the apex mocks tests with the new syntax
+        ///	 */
+        ///
+        ///	@isTest
+        ///	private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockLi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnyOrderTest {
+            get {
+                return ResourceManager.GetString("fflib_AnyOrderTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_AnyOrderTest
+        ///{
+        ///	private static final String BASIC_VERIFY_ASSERTION_MESSAGE = &apos;Expected : {0}, Actual: {1} -- Wanted but not invoked: &apos;;
+        ///
+        ///	/*
+        ///	 *	replicating the apex mocks tests with the new syntax
+        ///	 */
+        ///
+        ///	@isTest
+        ///	private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockLi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnyOrderTest_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_AnyOrderTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_AnyOrderTest
+        ///{
+        ///	private static final String BASIC_VERIFY_ASSERTION_MESSAGE = &apos;Expected : {0}, Actual: {1} -- Wanted but not invoked: &apos;;
+        ///
+        ///	/*
+        ///	 *	replicating the apex mocks tests with the new syntax
+        ///	 */
+        ///
+        ///	@isTest
+        ///	private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockLi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnyOrderTest_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_AnyOrderTest_Formatted", resourceCulture);
             }
         }
         

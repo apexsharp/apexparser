@@ -152,7 +152,7 @@ namespace ApexParser.Visitors
                     indented = true;
                 }
 
-                Append("{0} ", modifier.Value);
+                Append("{0} ", ConvertModifier(modifier.Value, node));
             }
 
             if (!indented)
@@ -161,6 +161,8 @@ namespace ApexParser.Visitors
                 indented = true;
             }
         }
+
+        protected virtual string ConvertModifier(string modifier, MemberDeclarationSyntax ownerNode) => modifier;
 
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
