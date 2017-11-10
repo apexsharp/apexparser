@@ -42,5 +42,9 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_AnswerTestIsFormattedUsingNewApexFormatter() =>
             Check(fflib_AnswerTest, fflib_AnswerTest_Formatted);
+
+        [Test]
+        public void fflib_AnyOrderIsFormattedUsingNewApexFormatter() =>
+            Check(fflib_AnyOrder, fflib_AnyOrder_Formatted);
     }
 }

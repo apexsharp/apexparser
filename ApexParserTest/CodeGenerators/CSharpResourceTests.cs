@@ -32,5 +32,9 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_AnswerTestIsGeneratedInCSharp() =>
             Check(fflib_AnswerTest, fflib_AnswerTest_CSharp);
+
+        [Test]
+        public void fflib_AnyOrderIsGeneratedInCSharp() =>
+            Check(fflib_AnyOrder, fflib_AnyOrder_CSharp);
     }
 }

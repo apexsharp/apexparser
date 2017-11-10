@@ -15,9 +15,17 @@ namespace ApexParser.Visitors
 
         public int IndentSize { get; set; } = 4;
 
+        private int SkipIndentCounter { get; set; } = 0;
+
+        protected void SkipIndent(int count = 1) => SkipIndentCounter += count;
+
         protected void AppendIndent()
         {
-            if (SkipNewLinesLevel == 0)
+            if (SkipIndentCounter > 0)
+            {
+                SkipIndentCounter--;
+            }
+            else if (SkipNewLinesLevel == 0)
             {
                 Code.Append(new string(' ', IndentLevel * IndentSize));
             }

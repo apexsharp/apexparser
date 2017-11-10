@@ -720,28 +720,28 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
-        /// */
-        ///
-        ////**
-        /// * @nodoc
-        /// */
-        ///@isTest
-        ///private class fflib_AnswerTest
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
         ///
-        ///	private static fflib_InvocationOnMock actualInvocation = null;
+        ///    /*
+        ///     Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        ///     */
+        ///    /**
+        ///     * @nodoc
+        ///     */
+        ///    [IsTest]
+        ///    private class fflib_AnswerTest
+        ///    {
+        ///        private static fflib_InvocationOnMock actualInvocation = null;
         ///
-        ///	@isTest
-        ///	static void thatAnswersWithException()
-        ///	{
-        ///		// Given
-        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
-        ///
-        ///		mocks.startStubbing();
-        ///		mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi hi&apos;)).thenAnswer(new fflib_AnswerTest.ExceptionForAnswer [rest of string was truncated]&quot;;.
+        ///        [IsTest]
+        ///        static void thatAnswersWithException()
+        ///        {
+        ///            // Given
+        ///            fflib_ApexMocks mocks = new fflib_Ape [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnswerTest_CSharp {
             get {
@@ -753,29 +753,95 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to /*
         /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
         /// */
-        ///
         ////**
         /// * @nodoc
         /// */
-        ///@isTest
+        ///@IsTest
         ///private class fflib_AnswerTest
         ///{
+        ///    private static fflib_InvocationOnMock actualInvocation = null;
         ///
-        ///	private static fflib_InvocationOnMock actualInvocation = null;
-        ///
-        ///	@isTest
-        ///	static void thatAnswersWithException()
-        ///	{
-        ///		// Given
-        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
-        ///
-        ///		mocks.startStubbing();
-        ///		mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi hi&apos;)).thenAnswer(new fflib_AnswerTest.ExceptionForAnswer [rest of string was truncated]&quot;;.
+        ///    @IsTest
+        ///    static void thatAnswersWithException()
+        ///    {
+        ///        // Given
+        ///        fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///        fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+        ///        mocks.startStubbing();
+        ///        mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnswerTest_Formatted {
             get {
                 return ResourceManager.GetString("fflib_AnswerTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// *	&apos;Classic&apos; invocation verifier - checks that a method was called with the given arguments the expected number of times.
+        /// *	The order of method calls is not important.
+        /// *	@group Core
+        /// */
+        ///public class fflib_AnyOrder extends fflib_MethodVerifier
+        ///{
+        ///	/*
+        ///	 * Verifies a method was invoked the expected number of times, with the expected arguments.
+        ///	 * @param qualifiedMethod The method to be verified.
+        ///	 * @param methodArg The arguments  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnyOrder {
+            get {
+                return ResourceManager.GetString("fflib_AnyOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// *	&apos;Classic&apos; invocation verifier - checks that a method was called with the given arguments the expected number of times.
+        /// *	The order of method calls is not important.
+        /// *	@group Core
+        /// */
+        ///public class fflib_AnyOrder extends fflib_MethodVerifier
+        ///{
+        ///	/*
+        ///	 * Verifies a method was invoked the expected number of times, with the expected arguments.
+        ///	 * @param qualifiedMethod The method to be verified.
+        ///	 * @param methodArg The arguments  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnyOrder_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_AnyOrder_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// *	&apos;Classic&apos; invocation verifier - checks that a method was called with the given arguments the expected number of times.
+        /// *	The order of method calls is not important.
+        /// *	@group Core
+        /// */
+        ///public class fflib_AnyOrder extends fflib_MethodVerifier
+        ///{
+        ///	/*
+        ///	 * Verifies a method was invoked the expected number of times, with the expected arguments.
+        ///	 * @param qualifiedMethod The method to be verified.
+        ///	 * @param methodArg The arguments  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnyOrder_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_AnyOrder_Formatted", resourceCulture);
             }
         }
         
@@ -1197,11 +1263,11 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to public with sharing abstract class SoqlDemo {
         ///
-        ///    public List&lt;Contact&gt; contactList = [SELECT Id, Email FROM Contact];
+        ///    public List&lt;Contact&gt; contactList = [SELECT 1, Id, Email FROM Contact];
         ///
         ///    public SoqlDemo()
         ///    {
-        ///        contactList = [SELECT Id, Email FROM Contact];
+        ///        contactList = [SELECT 2, Id, Email FROM Contact];
         ///    }
         ///
         ///    public abstract void AbstractMethod();
@@ -1214,9 +1280,7 @@ namespace ApexParserTest.Properties {
         ///    	/* 
         ///        	List&lt;Contact&gt; contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
         ///    	*/
-        ///    }
-        ///
-        ///    [rest of string was truncated]&quot;;.
+        ///    }        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemo2 {
             get {

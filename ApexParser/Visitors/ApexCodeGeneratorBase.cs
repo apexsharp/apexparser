@@ -341,6 +341,7 @@ namespace ApexParser.Visitors
                 {
                     // support "else if" style formatting
                     Append(" ");
+                    SkipIndent();
                     ifStmt.Accept(this);
                 }
                 else
