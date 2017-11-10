@@ -102,25 +102,27 @@ namespace ApexParser.Visitors
 
         protected override string ConvertModifier(string modifier, MemberDeclarationSyntax ownerNode)
         {
-            switch (modifier)
+            if (modifier == ApexKeywords.Final)
             {
-                case ApexKeywords.Final:
-                    if (ownerNode is ClassDeclarationSyntax || ownerNode is MethodDeclarationSyntax)
-                    {
-                        return "sealed";
-                    }
-                    else if (ownerNode is FieldDeclarationSyntax)
-                    {
-                        return "readonly";
-                    }
-                    else
-                    {
-                        return "/* final */";
-                    }
-
-                default:
-                    return modifier;
+                if (ownerNode is ClassDeclarationSyntax || ownerNode is MethodDeclarationSyntax)
+                {
+                    return "sealed";
+                }
+                else if (ownerNode is FieldDeclarationSyntax)
+                {
+                    return "readonly";
+                }
+                else
+                {
+                    return "/* final */";
+                }
             }
+            else if (modifier.EndsWith(ApexKeywords.Sharing))
+            {
+                return $"/* {modifier} */";
+            }
+
+            return modifier;
         }
 
         public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)

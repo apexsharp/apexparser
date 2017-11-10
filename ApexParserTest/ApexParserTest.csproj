@@ -151,6 +151,9 @@
     <None Include="ApexCSharpClasses\fflib_AnyOrderTest.cls" />
     <None Include="ApexCSharpClasses\fflib_AnyOrderTest_CSharp.cs" />
     <None Include="ApexCSharpClasses\fflib_AnyOrderTest_Formatted.cls" />
+    <None Include="ApexCSharpClasses\fflib_ApexMocks.cls" />
+    <None Include="ApexCSharpClasses\fflib_ApexMocks_CSharp.cs" />
+    <None Include="ApexCSharpClasses\fflib_ApexMocks_Formatted.cls" />
     <None Include="ApexTestClasses\ApplicationTest.cls" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />

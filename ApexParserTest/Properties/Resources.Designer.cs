@@ -878,28 +878,26 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
-        /// */
-        ///
-        ////**
-        /// * @nodoc
-        /// */
-        ///@isTest
-        ///private class fflib_AnyOrderTest
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
-        ///	private static final String BASIC_VERIFY_ASSERTION_MESSAGE = &apos;Expected : {0}, Actual: {1} -- Wanted but not invoked: &apos;;
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
         ///
-        ///	/*
-        ///	 *	replicating the apex mocks tests with the new syntax
-        ///	 */
+        ///    /*
+        ///     Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        ///     */
+        ///    /**
+        ///     * @nodoc
+        ///     */
+        ///    [IsTest]
+        ///    private class fflib_AnyOrderTest
+        ///    {
+        ///        private static readonly String BASIC_VERIFY_ASSERTION_MESSAGE = &quot;Expected : {0}, Actual: {1} -- Wanted but not invoked: &quot;;
         ///
-        ///	@isTest
-        ///	private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
-        ///	{
-        ///		// Given
-        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockLi [rest of string was truncated]&quot;;.
+        ///        /*
+        ///         *	replicating the apex mocks tests with the new syntax
+        ///          [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrderTest_CSharp {
             get {
@@ -911,29 +909,107 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to /*
         /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
         /// */
-        ///
         ////**
         /// * @nodoc
         /// */
-        ///@isTest
+        ///@IsTest
         ///private class fflib_AnyOrderTest
         ///{
-        ///	private static final String BASIC_VERIFY_ASSERTION_MESSAGE = &apos;Expected : {0}, Actual: {1} -- Wanted but not invoked: &apos;;
+        ///    private static final String BASIC_VERIFY_ASSERTION_MESSAGE = &apos;Expected : {0}, Actual: {1} -- Wanted but not invoked: &apos;;
         ///
-        ///	/*
-        ///	 *	replicating the apex mocks tests with the new syntax
-        ///	 */
-        ///
-        ///	@isTest
-        ///	private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
-        ///	{
-        ///		// Given
-        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockLi [rest of string was truncated]&quot;;.
+        ///    /*
+        ///     *	replicating the apex mocks tests with the new syntax
+        ///     */
+        ///    @IsTest
+        ///    private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
+        ///    {
+        ///        // Given
+        ///        fflib_ApexMocks moc [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrderTest_Formatted {
             get {
                 return ResourceManager.GetString("fflib_AnyOrderTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @group Core
+        /// */
+        ///public with sharing class fflib_ApexMocks implements System.StubProvider
+        ///{
+        ///	public static final Integer NEVER = 0;
+        ///
+        ///	private final fflib_MethodCountRecorder methodCountRecorder;
+        ///	private final fflib_MethodReturnValueRecorder methodReturnValueRecorder;
+        ///
+        ///	private fflib_MethodVerifier methodVerifier;
+        ///	private fflib_VerificationMode verificationMode;
+        ///	private fflib_Answer myAnswer;
+        ///
+        ///	public Boolean Verifying { [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocks {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @group Core
+        /// */
+        ///public with sharing class fflib_ApexMocks implements System.StubProvider
+        ///{
+        ///	public static final Integer NEVER = 0;
+        ///
+        ///	private final fflib_MethodCountRecorder methodCountRecorder;
+        ///	private final fflib_MethodReturnValueRecorder methodReturnValueRecorder;
+        ///
+        ///	private fflib_MethodVerifier methodVerifier;
+        ///	private fflib_VerificationMode verificationMode;
+        ///	private fflib_Answer myAnswer;
+        ///
+        ///	public Boolean Verifying { [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocks_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocks_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @group Core
+        /// */
+        ///public with sharing class fflib_ApexMocks implements System.StubProvider
+        ///{
+        ///	public static final Integer NEVER = 0;
+        ///
+        ///	private final fflib_MethodCountRecorder methodCountRecorder;
+        ///	private final fflib_MethodReturnValueRecorder methodReturnValueRecorder;
+        ///
+        ///	private fflib_MethodVerifier methodVerifier;
+        ///	private fflib_VerificationMode verificationMode;
+        ///	private fflib_Answer myAnswer;
+        ///
+        ///	public Boolean Verifying { [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocks_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocks_Formatted", resourceCulture);
             }
         }
         
