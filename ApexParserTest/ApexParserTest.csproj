@@ -88,7 +88,6 @@
     <Compile Include="Toolbox\ParseExtensionTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApexTestClasses\SoqlDemo2.cls" />
     <Content Include="ApexTestLibraries\apex-lambda-master.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -139,6 +138,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApexCSharpClasses\fflib_Answer.cls" />
+    <None Include="ApexCSharpClasses\fflib_Answer_CSharp.cs" />
+    <None Include="ApexCSharpClasses\fflib_Answer_Formatted.cls" />
     <None Include="ApexTestClasses\ApplicationTest.cls" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />
@@ -185,6 +187,7 @@
     <None Include="ApexTestClasses\RunAll.cls" />
     <None Include="ApexTestClasses\SoqlDemo.cs" />
     <None Include="ApexTestClasses\SoqlDemo.cls" />
+    <None Include="ApexTestClasses\SoqlDemo2.cls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

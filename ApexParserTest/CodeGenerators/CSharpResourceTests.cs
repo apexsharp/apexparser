@@ -14,6 +14,9 @@ namespace ApexParserTest.CodeGenerators
     [TestFixture]
     public class CSharpResourceTests : TestFixtureBase
     {
+        private void Check(string source, string expected) =>
+            CompareLineByLine(ApexParser.ApexParser.ConvertApexToCSharp(source), expected);
+
         [Test]
         public void SoqlDemoIsGeneratedInCSharp()
         {
@@ -21,5 +24,9 @@ namespace ApexParserTest.CodeGenerators
             var soqlCSharp = soqlDemo.ToCSharp();
             Assert.NotNull(soqlCSharp);
         }
+
+        [Test]
+        public void fflib_AnswerIsGeneratedInCSharp() =>
+            Check(fflib_Answer, fflib_Answer_CSharp);
     }
 }

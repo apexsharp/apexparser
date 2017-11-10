@@ -34,5 +34,9 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void FormatDemoIsFormattedUsingNewApexFormatter() =>
             Check(FormatDemo, FormatDemo_Formatted);
+
+        [Test]
+        public void fflib_AnswerIsFormattedUsingNewApexFormatter() =>
+            Check(fflib_Answer, fflib_Answer_Formatted);
     }
 }

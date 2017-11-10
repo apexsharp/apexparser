@@ -12,10 +12,10 @@ namespace ApexParser.Visitors
 {
     public class ApexCodeGeneratorBase : CodeGeneratorBase
     {
-        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+        protected virtual void AppendClassDeclaration(ClassDeclarationSyntax node, string classOrInterface = "class")
         {
             AppendCommentsAttributesAndModifiers(node);
-            AppendLine("class {0}", node.Identifier);
+            AppendLine("{0} {1}", classOrInterface, node.Identifier);
             AppendIndentedLine("{{");
 
             using (Indented())
@@ -32,6 +32,16 @@ namespace ApexParser.Visitors
 
             AppendIndented("}}");
             AppendTrailingComments(node);
+        }
+
+        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+        {
+            AppendClassDeclaration(node);
+        }
+
+        public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
+        {
+            AppendClassDeclaration(node, "interface");
         }
 
         public override void VisitAnnotation(AnnotationSyntax node)

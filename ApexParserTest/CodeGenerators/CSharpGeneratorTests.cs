@@ -124,6 +124,7 @@ namespace ApexParserTest.CodeGenerators
                 Modifiers = new List<string> { "public", "static" },
                 ReturnType = new TypeSyntax("void"),
                 Identifier = "Sample",
+                Body = new BlockSyntax(),
                 Parameters = new List<ParameterSyntax>
                 {
                     new ParameterSyntax("int", "x"),
@@ -153,6 +154,7 @@ namespace ApexParserTest.CodeGenerators
                 Modifiers = new List<string> { "public" },
                 ReturnType = new TypeSyntax("Sample"),
                 Identifier = "Sample",
+                Body = new BlockSyntax(),
                 Parameters = new List<ParameterSyntax>
                 {
                     new ParameterSyntax("int", "x"),

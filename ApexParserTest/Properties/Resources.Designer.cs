@@ -615,6 +615,84 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// *	Interface for the answering framework.
+        /// *	This interface must be implemented inside the test class and implement the call back method answer.
+        /// *	@group Core
+        /// */
+        ///public interface fflib_Answer
+        ///{
+        ///	/**
+        ///	 *	Method to be implemented in the test class to implement the call back method.
+        ///	 *	@param invocation The invocation on the mock.
+        ///	 *	@throws The exception to be thrown.
+        ///	 *	@return The value to be returned.
+        ///	 */
+        ///	Object answer(ff [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_Answer {
+            get {
+                return ResourceManager.GetString("fflib_Answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// *	Interface for the answering framework.
+        /// *	This interface must be implemented inside the test class and implement the call back method answer.
+        /// *	@group Core
+        /// */
+        ///public interface fflib_Answer
+        ///{
+        ///	/**
+        ///	 *	Method to be implemented in the test class to implement the call back method.
+        ///	 *	@param invocation The invocation on the mock.
+        ///	 *	@throws The exception to be thrown.
+        ///	 *	@return The value to be returned.
+        ///	 */
+        ///	Object answer(ff [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_Answer_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_Answer_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// *	Interface for the answering framework.
+        /// *	This interface must be implemented inside the test class and implement the call back method answer.
+        /// *	@group Core
+        /// */
+        ///public interface fflib_Answer
+        ///{
+        ///	/**
+        ///	 *	Method to be implemented in the test class to implement the call back method.
+        ///	 *	@param invocation The invocation on the mock.
+        ///	 *	@throws The exception to be thrown.
+        ///	 *	@return The value to be returned.
+        ///	 */
+        ///	Object answer(ff [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_Answer_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_Answer_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public with sharing class ForIfWhile
         ///{
         ///    public void MethodIfClean()
@@ -1041,17 +1119,17 @@ namespace ApexParserTest.Properties {
         ///
         ///    public abstract void AbstractMethod();
         ///
-        ///    /**
-        ///     * A simple CRUD Example
-        ///     */
-        ///    public static void CrudExample()
+        ///
+        ///    public void CommentedQueryIsIgnored()
         ///    {
-        ///        Contact contactNew = new Contact(LastName = &apos;Jay&apos;, EMail = &apos;abc@abc.com&apos;);
-        ///        insert contactNew;
+        ///    	// Contact contact = [SELECT Id, Email FROM Contact LIMIT 1];
         ///
-        ///        System.debug(contactNew.Id);
+        ///    	/* 
+        ///        	List&lt;Contact&gt; contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
+        ///    	*/
+        ///    }
         ///
-        /// [rest of string was truncated]&quot;;.
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemo2 {
             get {

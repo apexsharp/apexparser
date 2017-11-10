@@ -31,7 +31,7 @@ namespace ApexParser.Visitors
             return generator.Code.ToString();
         }
 
-        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+        protected override void AppendClassDeclaration(ClassDeclarationSyntax node, string classOrInterface = "class")
         {
             var optionalIndent = default(IDisposable);
             if (HasRootNamespace)
@@ -53,7 +53,7 @@ namespace ApexParser.Visitors
                 }
 
                 AppendCommentsAttributesAndModifiers(node);
-                AppendLine("class {0}", node.Identifier);
+                AppendLine("{0} {1}", classOrInterface, node.Identifier);
                 AppendIndentedLine("{{");
 
                 using (Indented())
@@ -101,16 +101,19 @@ namespace ApexParser.Visitors
                 }
             }
 
-            AppendLine(")");
+            Append(")");
 
             if (node.Body != null)
             {
+                // non-abstract method
+                AppendLine();
                 node.Body.Accept(this);
             }
             else
             {
-                AppendIndentedLine("{{");
-                AppendIndentedLine("}}");
+                // abstract method
+                Append(";");
+                AppendTrailingComments(node);
             }
         }
 
