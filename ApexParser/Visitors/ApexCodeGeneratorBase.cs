@@ -247,10 +247,47 @@ namespace ApexParser.Visitors
             }
         }
 
+        public override void VisitStatement(StatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            if (!string.IsNullOrWhiteSpace(node.Body))
+            {
+                AppendIndent();
+                SplitAndAppendParts(node.Body);
+            }
+
+            Append(";");
+            AppendTrailingComments(node);
+        }
+
         public override void VisitExpression(ExpressionSyntax node)
         {
-            Append("{0}", node.Expression);
+            SplitAndAppendParts(node.Expression);
         }
+
+        private void SplitAndAppendParts(string expression)
+        {
+            var parts = SimpleExpressionSplitter.Split(expression);
+            foreach (var part in parts)
+            {
+                if (part.StartsWith("'"))
+                {
+                    AppendStringLiteral(part);
+                }
+                else if (part.StartsWith("["))
+                {
+                    AppendSoqlQuery(part);
+                }
+                else
+                {
+                    Append("{0}", part);
+                }
+            }
+        }
+
+        protected virtual void AppendStringLiteral(string literal) => Append("{0}", literal);
+
+        protected virtual void AppendSoqlQuery(string soqlQuery) => Append("{0}", soqlQuery);
 
         public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
         {
@@ -312,18 +349,6 @@ namespace ApexParser.Visitors
                     AppendStatementWithOptionalIndent(node.ElseStatement);
                 }
             }
-        }
-
-        public override void VisitStatement(StatementSyntax node)
-        {
-            AppendLeadingComments(node);
-            if (!string.IsNullOrWhiteSpace(node.Body))
-            {
-                AppendIndented("{0}", node.Body);
-            }
-
-            Append(";");
-            AppendTrailingComments(node);
         }
 
         public override void VisitTryStatement(TryStatementSyntax node)

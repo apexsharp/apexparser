@@ -188,5 +188,11 @@ namespace ApexParser.Visitors
             Append(");");
             AppendTrailingComments(node);
         }
+
+        protected override void AppendStringLiteral(string literal) =>
+            Append("\"{0}\"", literal.Substring(1, literal.Length - 2));
+
+        protected override void AppendSoqlQuery(string soqlQuery) =>
+            Append("Soql.Query<T>(\"{0}\")", soqlQuery.Substring(1, soqlQuery.Length - 2));
     }
 }

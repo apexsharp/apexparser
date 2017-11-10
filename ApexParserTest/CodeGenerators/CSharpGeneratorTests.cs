@@ -265,7 +265,7 @@ namespace ApexParserTest.CodeGenerators
                 }
             };
 
-            Check(decl, @"CustomerDto.User alice = 'alice@wonderland.net', bob = 'bob@microsoft.com';");
+            Check(decl, @"CustomerDto.User alice = ""alice@wonderland.net"", bob = ""bob@microsoft.com"";");
         }
 
         [Test]
@@ -700,7 +700,7 @@ namespace ApexParserTest.CodeGenerators
                             get;
                             private set
                             {
-                                System.debug('trying to set');
+                                System.debug(""trying to set"");
                             }
                         }
                     }
