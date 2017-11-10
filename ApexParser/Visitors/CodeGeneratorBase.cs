@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ApexParser.MetaClass;
 using ApexParser.Toolbox;
 
 namespace ApexParser.Visitors
@@ -77,6 +78,25 @@ namespace ApexParser.Visitors
         {
             Code.AppendFormat(format, args);
             AppendLine();
+        }
+
+        protected MemberDeclarationSyntax CurrentMember { get; private set; }
+
+        private int MemberDeclarationLevel { get; set; }
+
+        protected bool IsTopLevelDeclaration => MemberDeclarationLevel <= 1;
+
+        protected IDisposable SetCurrentMember(MemberDeclarationSyntax node)
+        {
+            var oldMember = CurrentMember;
+            CurrentMember = node;
+            MemberDeclarationLevel++;
+
+            return new Disposable(() =>
+            {
+                CurrentMember = oldMember;
+                MemberDeclarationLevel--;
+            });
         }
     }
 }

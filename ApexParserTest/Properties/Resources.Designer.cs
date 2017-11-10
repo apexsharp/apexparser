@@ -641,24 +641,24 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
-        /// */
-        ///
-        ////**
-        /// *	Interface for the answering framework.
-        /// *	This interface must be implemented inside the test class and implement the call back method answer.
-        /// *	@group Core
-        /// */
-        ///public interface fflib_Answer
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
-        ///	/**
-        ///	 *	Method to be implemented in the test class to implement the call back method.
-        ///	 *	@param invocation The invocation on the mock.
-        ///	 *	@throws The exception to be thrown.
-        ///	 *	@return The value to be returned.
-        ///	 */
-        ///	Object answer(ff [rest of string was truncated]&quot;;.
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    /*
+        ///     Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        ///     */
+        ///    /**
+        ///     *	Interface for the answering framework.
+        ///     *	This interface must be implemented inside the test class and implement the call back method answer.
+        ///     *	@group Core
+        ///     */
+        ///    public interface fflib_Answer
+        ///    {
+        ///        /**
+        ///         *	Method to be implemented in the test class to impleme [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_Answer_CSharp {
             get {
@@ -670,7 +670,6 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to /*
         /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
         /// */
-        ///
         ////**
         /// *	Interface for the answering framework.
         /// *	This interface must be implemented inside the test class and implement the call back method answer.
@@ -678,17 +677,105 @@ namespace ApexParserTest.Properties {
         /// */
         ///public interface fflib_Answer
         ///{
-        ///	/**
-        ///	 *	Method to be implemented in the test class to implement the call back method.
-        ///	 *	@param invocation The invocation on the mock.
-        ///	 *	@throws The exception to be thrown.
-        ///	 *	@return The value to be returned.
-        ///	 */
-        ///	Object answer(ff [rest of string was truncated]&quot;;.
+        ///    /**
+        ///     *	Method to be implemented in the test class to implement the call back method.
+        ///     *	@param invocation The invocation on the mock.
+        ///     *	@throws The exception to be thrown.
+        ///     *	@return The value to be retu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_Answer_Formatted {
             get {
                 return ResourceManager.GetString("fflib_Answer_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_AnswerTest
+        ///{
+        ///
+        ///	private static fflib_InvocationOnMock actualInvocation = null;
+        ///
+        ///	@isTest
+        ///	static void thatAnswersWithException()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+        ///
+        ///		mocks.startStubbing();
+        ///		mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi hi&apos;)).thenAnswer(new fflib_AnswerTest.ExceptionForAnswer [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnswerTest {
+            get {
+                return ResourceManager.GetString("fflib_AnswerTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_AnswerTest
+        ///{
+        ///
+        ///	private static fflib_InvocationOnMock actualInvocation = null;
+        ///
+        ///	@isTest
+        ///	static void thatAnswersWithException()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+        ///
+        ///		mocks.startStubbing();
+        ///		mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi hi&apos;)).thenAnswer(new fflib_AnswerTest.ExceptionForAnswer [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnswerTest_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_AnswerTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_AnswerTest
+        ///{
+        ///
+        ///	private static fflib_InvocationOnMock actualInvocation = null;
+        ///
+        ///	@isTest
+        ///	static void thatAnswersWithException()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+        ///
+        ///		mocks.startStubbing();
+        ///		mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi hi&apos;)).thenAnswer(new fflib_AnswerTest.ExceptionForAnswer [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_AnswerTest_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_AnswerTest_Formatted", resourceCulture);
             }
         }
         

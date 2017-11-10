@@ -15,7 +15,30 @@ namespace ApexParser.Visitors
         protected virtual void AppendClassDeclaration(ClassDeclarationSyntax node, string classOrInterface = "class")
         {
             AppendCommentsAttributesAndModifiers(node);
-            AppendLine("{0} {1}", classOrInterface, node.Identifier);
+            Append("{0} {1}", classOrInterface, node.Identifier);
+
+            if (node.BaseType != null)
+            {
+                Append(" extends ");
+                node.BaseType.Accept(this);
+            }
+
+            foreach (var @interface in node.Interfaces.AsSmart())
+            {
+                if (@interface.IsFirst)
+                {
+                    Append(" implements ");
+                }
+
+                @interface.Value.Accept(this);
+
+                if (!@interface.IsLast)
+                {
+                    Append(", ");
+                }
+            }
+
+            AppendLine();
             AppendIndentedLine("{{");
 
             using (Indented())
@@ -36,12 +59,18 @@ namespace ApexParser.Visitors
 
         public override void VisitClassDeclaration(ClassDeclarationSyntax node)
         {
-            AppendClassDeclaration(node);
+            using (SetCurrentMember(node))
+            {
+                AppendClassDeclaration(node);
+            }
         }
 
         public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
         {
-            AppendClassDeclaration(node, "interface");
+            using (SetCurrentMember(node))
+            {
+                AppendClassDeclaration(node, "interface");
+            }
         }
 
         public override void VisitAnnotation(AnnotationSyntax node)
@@ -218,6 +247,30 @@ namespace ApexParser.Visitors
             }
         }
 
+        public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+        {
+            AppendCommentsAttributesAndModifiers(node);
+            node.Type.Accept(this);
+            Append(" ");
+
+            foreach (var field in node.Fields.AsSmart())
+            {
+                field.Value.Accept(this);
+                Append(field.IsLast ? ";" : ", ");
+            }
+
+            AppendTrailingComments(node);
+        }
+
+        public override void VisitFieldDeclarator(FieldDeclaratorSyntax node)
+        {
+            Append("{0}", node.Identifier);
+            if (node.Expression != null)
+            {
+                Append(" = {0}", node.Expression);
+            }
+        }
+
         public override void VisitBreakStatement(BreakStatementSyntax node)
         {
             AppendLeadingComments(node);
@@ -264,24 +317,65 @@ namespace ApexParser.Visitors
             AppendTrailingComments(node);
         }
 
+        public override void VisitTryStatement(TryStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndentedLine("try");
+            node.Block.Accept(this);
+
+            foreach (var @catch in node.Catches.AsSmart())
+            {
+                @catch.Value.Accept(this);
+            }
+
+            if (node.Finally != null)
+            {
+                node.Finally.Accept(this);
+            }
+        }
+
+        public override void VisitCatch(CatchClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("catch");
+
+            if (node.Type != null)
+            {
+                Append(" (");
+                node.Type.Accept(this);
+
+                if (node.Identifier != null)
+                {
+                    Append(" {0}", node.Identifier);
+                }
+
+                Append(")");
+            }
+
+            AppendLine();
+            node.Block.Accept(this);
+        }
+
+        public override void VisitFinally(FinallyClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("finally");
+            node.Block.Accept(this);
+        }
+
         public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
         {
             AppendLeadingComments(node);
             AppendIndent();
-
             node.Type.Accept(this);
             Append(" ");
 
             foreach (var var in node.Variables.AsSmart())
             {
                 var.Value.Accept(this);
-                if (!var.IsLast)
-                {
-                    Append(", ");
-                }
+                Append(var.IsLast ? ";" : ", ");
             }
 
-            Append(";");
             AppendTrailingComments(node);
         }
 

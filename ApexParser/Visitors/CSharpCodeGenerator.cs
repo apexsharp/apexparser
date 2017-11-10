@@ -34,7 +34,8 @@ namespace ApexParser.Visitors
         protected override void AppendClassDeclaration(ClassDeclarationSyntax node, string classOrInterface = "class")
         {
             var optionalIndent = default(IDisposable);
-            if (HasRootNamespace)
+            var appendNamespace = IsTopLevelDeclaration && HasRootNamespace;
+            if (appendNamespace)
             {
                 AppendIndentedLine("namespace {0}", Namespace);
                 AppendIndentedLine("{{");
@@ -43,17 +44,38 @@ namespace ApexParser.Visitors
 
             using (optionalIndent)
             {
-                foreach (var ns in Usings.AsSmart())
+                if (IsTopLevelDeclaration)
                 {
-                    AppendIndentedLine("using {0};", ns.Value);
-                    if (ns.IsLast)
+                    foreach (var ns in Usings.AsSmart())
                     {
-                        AppendLine();
+                        AppendIndentedLine("using {0};", ns.Value);
+                        if (ns.IsLast)
+                        {
+                            AppendLine();
+                        }
                     }
                 }
 
                 AppendCommentsAttributesAndModifiers(node);
-                AppendLine("{0} {1}", classOrInterface, node.Identifier);
+                Append("{0} {1}", classOrInterface, node.Identifier);
+
+                // base type and all interfaces are merged into one comma-separated list
+                var baseTypes = Enumerable.Repeat(node.BaseType, 1).Concat(node.Interfaces.EmptyIfNull());
+                foreach (var baseType in baseTypes.Where(t => t != null).AsSmart())
+                {
+                    if (baseType.IsFirst)
+                    {
+                        Append(" : ");
+                    }
+
+                    baseType.Value.Accept(this);
+                    if (!baseType.IsLast)
+                    {
+                        Append(", ");
+                    }
+                }
+
+                AppendLine();
                 AppendIndentedLine("{{");
 
                 using (Indented())
@@ -71,7 +93,7 @@ namespace ApexParser.Visitors
                 AppendIndentedLine("}}");
             }
 
-            if (HasRootNamespace)
+            if (appendNamespace)
             {
                 AppendIndentedLine("}}");
             }
@@ -115,25 +137,6 @@ namespace ApexParser.Visitors
                 Append(";");
                 AppendTrailingComments(node);
             }
-        }
-
-        public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
-        {
-            AppendIndent();
-
-            node.Type.Accept(this);
-            Append(" ");
-
-            foreach (var var in node.Variables.AsSmart())
-            {
-                var.Value.Accept(this);
-                if (!var.IsLast)
-                {
-                    Append(", ");
-                }
-            }
-
-            AppendLine(";");
         }
 
         public override void VisitForEachStatement(ForEachStatementSyntax node)

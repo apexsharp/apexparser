@@ -141,6 +141,9 @@
     <None Include="ApexCSharpClasses\fflib_Answer.cls" />
     <None Include="ApexCSharpClasses\fflib_Answer_CSharp.cs" />
     <None Include="ApexCSharpClasses\fflib_Answer_Formatted.cls" />
+    <None Include="ApexCSharpClasses\fflib_AnswerTest.cls" />
+    <None Include="ApexCSharpClasses\fflib_AnswerTest_CSharp.cs" />
+    <None Include="ApexCSharpClasses\fflib_AnswerTest_Formatted.cls" />
     <None Include="ApexTestClasses\ApplicationTest.cls" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />
