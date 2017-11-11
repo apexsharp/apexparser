@@ -77,21 +77,7 @@ namespace ApexParser.Visitors
                 }
 
                 AppendLine();
-                AppendIndentedLine("{{");
-
-                using (Indented())
-                {
-                    foreach (var md in node.Members.AsSmart())
-                    {
-                        md.Value.Accept(this);
-                        if (!md.IsLast)
-                        {
-                            AppendLine();
-                        }
-                    }
-                }
-
-                AppendIndentedLine("}}");
+                AppendClassMembers(node);
             }
 
             if (appendNamespace)
@@ -130,6 +116,54 @@ namespace ApexParser.Visitors
             AppendCommentsAttributesAndModifiers(node);
             Append("{0}(", node.ReturnType?.Identifier ?? node.Identifier);
             AppendMethodParametersAndBody(node);
+        }
+
+        private HashSet<ClassDeclarationSyntax> GeneratedInitializers { get; } =
+            new HashSet<ClassDeclarationSyntax>();
+
+        public override void VisitClassInitializer(ClassInitializerSyntax node)
+        {
+            // generate class initializers once per class
+            var currentClass = CurrentMember as ClassDeclarationSyntax;
+            if (!GeneratedInitializers.Add(currentClass))
+            {
+                return;
+            }
+
+            // TODO: generate instance initializer
+            var initializers = currentClass?.Members?.EmptyIfNull().OfType<ClassInitializerSyntax>();
+            GenerateStaticConstructor(currentClass, initializers.Where(init => init.IsStatic));
+        }
+
+        private void GenerateStaticConstructor(ClassDeclarationSyntax @class, IEnumerable<ClassInitializerSyntax> initializers)
+        {
+            if (initializers.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            var nodes = initializers.ToArray();
+            var node = initializers.First();
+            AppendCommentsAttributesAndModifiers(node);
+            AppendLine("{0}()", @class.Identifier);
+            if (nodes.Length == 1)
+            {
+                node.Body.Accept(this);
+                return;
+            }
+
+            // merge all bodies into one block
+            var statements =
+                from n in nodes
+                let block = new BlockSyntax
+                {
+                    LeadingComments = n.LeadingComments,
+                    Statements = n.Body.Statements,
+                    TrailingComments = n.Body.TrailingComments,
+                }
+                select block as StatementSyntax;
+
+            new BlockSyntax(statements).Accept(this);
         }
 
         public override void VisitAnnotation(AnnotationSyntax node)

@@ -706,5 +706,82 @@ namespace ApexParserTest.CodeGenerators
                     }
                 }");
         }
+
+        [Test]
+        public void SingleStaticInitializerIsGeneratedAsStaticConstructor()
+        {
+            var apex = Apex.ParseClass(@"
+            class SingleStaticInitializer {
+                static {
+                    System.debug('Hello');
+                }
+            }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class SingleStaticInitializer
+                    {
+                        static SingleStaticInitializer()
+                        {
+                            System.debug(""Hello"");
+                        }
+                    }
+                }");
+        }
+
+        [Test]
+        public void MultipleStaticInitializersAreGeneratedAsStaticConstructorWithSeveralBlocks()
+        {
+            var apex = Apex.ParseClass(@"
+            class MultipleStaticInitializers {
+                // the first initializer
+                static {
+                    System.debug(1);
+                }
+                // the second initializer
+                static {
+                    System.debug(2);
+                }
+                // the last initializer
+                static {
+                    System.debug(3);
+                } // trailing comment
+            }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class MultipleStaticInitializers
+                    {
+                        // the first initializer
+                        static MultipleStaticInitializers()
+                        {
+                            // the first initializer
+                            {
+                                System.debug(1);
+                            }
+
+                            // the second initializer
+                            {
+                                System.debug(2);
+                            }
+
+                            // the last initializer
+                            {
+                                System.debug(3);
+                            } // trailing comment
+                        }
+                    }
+                }");
+        }
     }
 }

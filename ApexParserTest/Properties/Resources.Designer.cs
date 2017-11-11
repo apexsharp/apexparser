@@ -960,25 +960,25 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
-        /// */
-        ///
-        ////**
-        /// * @group Core
-        /// */
-        ///public with sharing class fflib_ApexMocks implements System.StubProvider
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
-        ///	public static final Integer NEVER = 0;
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
         ///
-        ///	private final fflib_MethodCountRecorder methodCountRecorder;
-        ///	private final fflib_MethodReturnValueRecorder methodReturnValueRecorder;
+        ///    /*
+        ///     Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        ///     */
+        ///    /**
+        ///     * @group Core
+        ///     */
+        ///    public /* with sharing */ class fflib_ApexMocks : System.StubProvider
+        ///    {
+        ///        public static readonly Integer NEVER = 0;
         ///
-        ///	private fflib_MethodVerifier methodVerifier;
-        ///	private fflib_VerificationMode verificationMode;
-        ///	private fflib_Answer myAnswer;
+        ///        private readonly fflib_MethodCountRecorder methodCountRecorder;
         ///
-        ///	public Boolean Verifying { [rest of string was truncated]&quot;;.
+        ///        private readonly fflib_MethodReturnValueRecorder me [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocks_CSharp {
             get {
@@ -990,26 +990,92 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to /*
         /// Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
         /// */
-        ///
         ////**
         /// * @group Core
         /// */
         ///public with sharing class fflib_ApexMocks implements System.StubProvider
         ///{
-        ///	public static final Integer NEVER = 0;
+        ///    public static final Integer NEVER = 0;
         ///
-        ///	private final fflib_MethodCountRecorder methodCountRecorder;
-        ///	private final fflib_MethodReturnValueRecorder methodReturnValueRecorder;
+        ///    private final fflib_MethodCountRecorder methodCountRecorder;
         ///
-        ///	private fflib_MethodVerifier methodVerifier;
-        ///	private fflib_VerificationMode verificationMode;
-        ///	private fflib_Answer myAnswer;
+        ///    private final fflib_MethodReturnValueRecorder methodReturnValueRecorder;
         ///
-        ///	public Boolean Verifying { [rest of string was truncated]&quot;;.
+        ///    private fflib_MethodVerifier methodVerifier;
+        ///
+        ///    private fflib_VerificationMode verificationMode;
+        ///
+        ///    private fflib_Answer  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocks_Formatted {
             get {
                 return ResourceManager.GetString("fflib_ApexMocks_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///@IsTest
+        ///public class fflib_ApexMocksConfig
+        ///{
+        ///	/**
+        ///	 * When false, stubbed behaviour and invocation counts are shared among all test spies.
+        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
+        ///	 * - This is the default for backwards compatibility.
+        ///	 * When true, each test spy instance has its own stubbed behaviour and invocations.
+        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependently
+        ///	 */
+        ///	p [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksConfig {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///@IsTest
+        ///public class fflib_ApexMocksConfig
+        ///{
+        ///	/**
+        ///	 * When false, stubbed behaviour and invocation counts are shared among all test spies.
+        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
+        ///	 * - This is the default for backwards compatibility.
+        ///	 * When true, each test spy instance has its own stubbed behaviour and invocations.
+        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependently
+        ///	 */
+        ///	p [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksConfig_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksConfig_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///@IsTest
+        ///public class fflib_ApexMocksConfig
+        ///{
+        ///	/**
+        ///	 * When false, stubbed behaviour and invocation counts are shared among all test spies.
+        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
+        ///	 * - This is the default for backwards compatibility.
+        ///	 * When true, each test spy instance has its own stubbed behaviour and invocations.
+        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependently
+        ///	 */
+        ///	p [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksConfig_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksConfig_Formatted", resourceCulture);
             }
         }
         

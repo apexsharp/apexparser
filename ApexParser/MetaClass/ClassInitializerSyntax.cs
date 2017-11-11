@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Parser;
+using ApexParser.Toolbox;
 using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
@@ -22,5 +24,7 @@ namespace ApexParser.MetaClass
             base.ChildNodes.Concat(GetNodes(Body));
 
         public BlockSyntax Body { get; set; }
+
+        public bool IsStatic => Modifiers.EmptyIfNull().Any(m => m == ApexKeywords.Static);
     }
 }

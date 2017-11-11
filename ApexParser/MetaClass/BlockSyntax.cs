@@ -4,12 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Toolbox;
 using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
 {
     public class BlockSyntax : StatementSyntax, IEnumerable, IEnumerable<StatementSyntax>
     {
+        public BlockSyntax()
+        {
+        }
+
+        public BlockSyntax(IEnumerable<StatementSyntax> statements)
+        {
+            Statements.AddRange(statements.EmptyIfNull());
+        }
+
         public override SyntaxType Kind => SyntaxType.Block;
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitBlock(this);

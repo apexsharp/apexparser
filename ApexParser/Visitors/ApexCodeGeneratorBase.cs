@@ -39,16 +39,32 @@ namespace ApexParser.Visitors
             }
 
             AppendLine();
-            AppendIndentedLine("{{");
+            AppendClassMembers(node);
+        }
 
+        protected void AppendClassMembers(ClassDeclarationSyntax node)
+        {
+            AppendIndentedLine("{{");
             using (Indented())
             {
-                foreach (var md in node.Members.AsSmart())
+                var isFirstMember = true;
+                foreach (var md in node.Members.EmptyIfNull())
                 {
-                    md.Value.Accept(this);
-                    if (!md.IsLast)
+                    // some class members may generate no code
+                    var lastPosition = Code.Length;
+                    md.Accept(this);
+
+                    // if the code was generated, prepend the empty line...
+                    var codeGenerated = Code.Length > lastPosition;
+                    if (!isFirstMember && codeGenerated)
                     {
-                        AppendLine();
+                        Code.Insert(lastPosition, Environment.NewLine);
+                    }
+
+                    // ...unless it's the first non-empty member of the class
+                    if (isFirstMember && codeGenerated)
+                    {
+                        isFirstMember = false;
                     }
                 }
             }
@@ -135,7 +151,7 @@ namespace ApexParser.Visitors
             }
         }
 
-        protected virtual void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node)
+        protected virtual void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node, string afterLastModifier = " ")
         {
             AppendLeadingComments(node);
             foreach (var annotation in node.Annotations.AsSmart())
@@ -152,7 +168,8 @@ namespace ApexParser.Visitors
                     indented = true;
                 }
 
-                Append("{0} ", ConvertModifier(modifier.Value, node));
+                Append("{0}", ConvertModifier(modifier.Value, node));
+                Append("{0}", modifier.IsLast ? afterLastModifier : " ");
             }
 
             if (!indented)
@@ -176,6 +193,13 @@ namespace ApexParser.Visitors
             AppendCommentsAttributesAndModifiers(node);
             Append("{0}(", node.ReturnType?.Identifier ?? node.Identifier);
             AppendMethodParametersAndBody(node);
+        }
+
+        public override void VisitClassInitializer(ClassInitializerSyntax node)
+        {
+            AppendCommentsAttributesAndModifiers(node, afterLastModifier: string.Empty);
+            AppendLine();
+            node.Body.Accept(this);
         }
 
         protected virtual void AppendMethodParametersAndBody(MethodDeclarationSyntax node)
