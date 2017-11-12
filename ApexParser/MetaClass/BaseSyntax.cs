@@ -11,8 +11,6 @@ namespace ApexParser.MetaClass
     [DebuggerTypeProxy(typeof(BaseSyntaxDebuggerProxy))]
     public abstract class BaseSyntax
     {
-        private static Regex WhitespaceRegex { get; } = new Regex(@"\s+", RegexOptions.Compiled);
-
         public abstract SyntaxType Kind { get; }
 
         public abstract void Accept(ApexSyntaxVisitor visitor);
@@ -27,6 +25,8 @@ namespace ApexParser.MetaClass
         public List<string> LeadingComments { get; set; } = new List<string>();
 
         public List<string> TrailingComments { get; set; } = new List<string>();
+
+        private static Regex WhitespaceRegex { get; } = new Regex(@"\s+", RegexOptions.Compiled);
 
         private string CompactApex => WhitespaceRegex.Replace(this.ToApex(), " ");
 

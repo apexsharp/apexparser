@@ -178,6 +178,9 @@
     <None Include="ApexCSharpClasses\fflib_IDGeneratorTest.cls" />
     <None Include="ApexCSharpClasses\fflib_IDGeneratorTest_CSharp.cs" />
     <None Include="ApexCSharpClasses\fflib_IDGeneratorTest_Formatted.cls" />
+    <None Include="ApexCSharpClasses\fflib_IMatcher.cls" />
+    <None Include="ApexCSharpClasses\fflib_IMatcher_CSharp.cs" />
+    <None Include="ApexCSharpClasses\fflib_IMatcher_Formatted.cls" />
     <None Include="ApexTestClasses\ApplicationTest.cls" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />

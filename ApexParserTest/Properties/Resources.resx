@@ -376,4 +376,13 @@
   <data name="fflib_IDGeneratorTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexCSharpClasses\fflib_IDGeneratorTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="fflib_IMatcher" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IMatcher.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IMatcher_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IMatcher_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IMatcher_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IMatcher_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
 </root>
