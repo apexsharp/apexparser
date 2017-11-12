@@ -572,19 +572,18 @@ namespace ApexParser.Parser
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
             from members in ClassMemberDeclaration.Many()
-            from innerComments in CommentParser.AnyComment.Token().Many()
-            from closeBrace in Parse.Char('}').Token()
-            from trailingComments in CommentParser.AnyComment.Token().Many()
-            select new ClassDeclarationSyntax()
+            from closeBrace in Parse.Char('}').Commented(this)
+            let classBody = new ClassDeclarationSyntax()
             {
                 Identifier = className,
                 IsInterface = @class == ApexKeywords.Interface,
                 BaseType = baseType.GetOrDefault(),
                 Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
                 Members = ConvertConstructors(members).ToList(),
-                InnerComments = innerComments.ToList(),
-                TrailingComments = trailingComments.ToList(),
-            };
+                InnerComments = closeBrace.LeadingComments.ToList(),
+                TrailingComments = closeBrace.TrailingComments.ToList(),
+            }
+            select ClassDeclarationSyntax.Create(null, classBody);
 
         private IEnumerable<MemberDeclarationSyntax> ConvertConstructors(IEnumerable<MemberDeclarationSyntax> members)
         {
@@ -633,6 +632,9 @@ namespace ApexParser.Parser
 
         // top-level declaration: a class or an enum followed by the end of file
         protected internal virtual Parser<MemberDeclarationSyntax> CompilationUnit =>
-            ClassDeclaration.Select(c => c as MemberDeclarationSyntax).Or(EnumDeclaration).End();
+            from member in ClassDeclaration.Select(c => c as MemberDeclarationSyntax).Or(EnumDeclaration)
+            from whiteSpace in Parse.WhiteSpace.Many()
+            from trailingComments in CommentParser.AnyComment.Token().Many().End()
+            select member.WithTrailingComments(trailingComments);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.MetaClass;
 using ApexParser.Parser;
 using NUnit.Framework;
 using Sprache;
@@ -652,6 +653,46 @@ namespace ApexParserTest.Parser
             }";
 
             Assert.DoesNotThrow(() => Apex.ClassDeclaration.Parse(text));
+        }
+
+        [Test]
+        public void InnerInterfaceIsParserAsInterface()
+        {
+            var text = @"
+            class Test
+            {
+                interface InnerTest
+                {
+                }
+            }";
+
+            var cd = Apex.ClassDeclaration.Parse(text);
+            Assert.AreEqual(1, cd.Members.Count);
+            Assert.AreEqual(1, cd.InnerClasses.Count);
+
+            var inner = cd.Members.OfType<InterfaceDeclarationSyntax>().FirstOrDefault();
+            Assert.NotNull(inner);
+        }
+
+        [Test]
+        public void MethodLeadingCommentsAfterInnerClassArePreserved()
+        {
+            var text = @"
+            class Test
+            {
+                class InnerTest
+                {
+                }
+                // leading comments
+                void Hello()
+                {
+                }
+            }";
+
+            var cd = Apex.ClassDeclaration.Parse(text);
+            Assert.AreEqual(1, cd.Methods.Count);
+            var md = cd.Methods[0];
+            Assert.AreEqual(1, md.LeadingComments.Count);
         }
     }
 }

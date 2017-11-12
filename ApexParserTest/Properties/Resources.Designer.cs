@@ -1103,21 +1103,24 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
-        /// */
-        ///@isTest
-        ///private class fflib_ApexMocksTest
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
-        ///	private static final fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
-        ///	private static final fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
         ///
-        ///	@isTest
-        ///	static void whenStubMultipleCallsWithMatchersShouldReturnExpectedValues()
-        ///	{
-        ///		// Given
-        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.clas [rest of string was truncated]&quot;;.
+        ///    /*
+        ///     * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        ///     */
+        ///    [IsTest]
+        ///    private class fflib_ApexMocksTest
+        ///    {
+        ///        private static readonly fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
+        ///
+        ///        private static readonly fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
+        ///
+        ///        [IsTest]
+        ///        static void whenStubMu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksTest_CSharp {
             get {
@@ -1129,22 +1132,80 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to /*
         /// * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
         /// */
-        ///@isTest
+        ///@IsTest
         ///private class fflib_ApexMocksTest
         ///{
-        ///	private static final fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
-        ///	private static final fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
+        ///    private static final fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
         ///
-        ///	@isTest
-        ///	static void whenStubMultipleCallsWithMatchersShouldReturnExpectedValues()
-        ///	{
-        ///		// Given
-        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.clas [rest of string was truncated]&quot;;.
+        ///    private static final fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
+        ///
+        ///    @IsTest
+        ///    static void whenStubMultipleCallsWithMatchersShouldReturnExpectedValues()
+        ///    {
+        ///        // Given
+        ///        fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///        fflib_MyList mock [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksTest_Formatted {
             get {
                 return ResourceManager.GetString("fflib_ApexMocksTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * Copyright (c) 2014, FinancialForce.com, inc
+        /// * All rights reserved.
+        /// *
+        /// * Redistribution and use in source and binary forms, with or without modification,
+        /// * are permitted provided that the following conditions are met:
+        /// *
+        /// * - Redistributions of source code must retain the above copyright notice,
+        /// *      this list of conditions and the following disclaimer.
+        /// * - Redistributions in binary form must reproduce the above copyright notice,
+        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksUtils {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksUtils", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * Copyright (c) 2014, FinancialForce.com, inc
+        /// * All rights reserved.
+        /// *
+        /// * Redistribution and use in source and binary forms, with or without modification,
+        /// * are permitted provided that the following conditions are met:
+        /// *
+        /// * - Redistributions of source code must retain the above copyright notice,
+        /// *      this list of conditions and the following disclaimer.
+        /// * - Redistributions in binary form must reproduce the above copyright notice,
+        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksUtils_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksUtils_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * Copyright (c) 2014, FinancialForce.com, inc
+        /// * All rights reserved.
+        /// *
+        /// * Redistribution and use in source and binary forms, with or without modification,
+        /// * are permitted provided that the following conditions are met:
+        /// *
+        /// * - Redistributions of source code must retain the above copyright notice,
+        /// *      this list of conditions and the following disclaimer.
+        /// * - Redistributions in binary form must reproduce the above copyright notice,
+        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksUtils_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksUtils_Formatted", resourceCulture);
             }
         }
         

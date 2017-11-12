@@ -62,5 +62,9 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_ApexMocksTestIsFormattedUsingNewApexFormatter() =>
             Check(fflib_ApexMocksTest, fflib_ApexMocksTest_Formatted);
+
+        [Test]
+        public void fflib_ApexMocksUtilsIsFormattedUsingNewApexFormatter() =>
+            Check(fflib_ApexMocksUtils, fflib_ApexMocksUtils_Formatted);
     }
 }
