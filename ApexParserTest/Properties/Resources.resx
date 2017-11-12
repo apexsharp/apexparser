@@ -340,4 +340,13 @@
   <data name="fflib_ApexMocksUtilsTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexCSharpClasses\fflib_ApexMocksUtilsTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="fflib_ArgumentCaptor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptor.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptor_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptor_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptor_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptor_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
 </root>

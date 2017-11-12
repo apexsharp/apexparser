@@ -166,6 +166,9 @@
     <None Include="ApexCSharpClasses\fflib_ApexMocksUtilsTest.cls" />
     <None Include="ApexCSharpClasses\fflib_ApexMocksUtilsTest_CSharp.cs" />
     <None Include="ApexCSharpClasses\fflib_ApexMocksUtilsTest_Formatted.cls" />
+    <None Include="ApexCSharpClasses\fflib_ArgumentCaptor.cls" />
+    <None Include="ApexCSharpClasses\fflib_ArgumentCaptor_CSharp.cs" />
+    <None Include="ApexCSharpClasses\fflib_ArgumentCaptor_Formatted.cls" />
     <None Include="ApexTestClasses\ApplicationTest.cls" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />

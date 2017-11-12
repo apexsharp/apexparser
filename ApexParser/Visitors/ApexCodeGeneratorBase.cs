@@ -179,7 +179,7 @@ namespace ApexParser.Visitors
             }
         }
 
-        protected virtual string ConvertModifier(string modifier, MemberDeclarationSyntax ownerNode) => modifier;
+        protected virtual string ConvertModifier(string modifier, BaseSyntax ownerNode) => modifier;
 
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
@@ -232,6 +232,11 @@ namespace ApexParser.Visitors
 
         public override void VisitParameter(ParameterSyntax pd)
         {
+            foreach (var modifier in pd.Modifiers.AsSmart())
+            {
+                Append("{0} ", ConvertModifier(modifier.Value, pd));
+            }
+
             pd.Type.Accept(this);
             Append(" {0}", pd.Identifier);
         }

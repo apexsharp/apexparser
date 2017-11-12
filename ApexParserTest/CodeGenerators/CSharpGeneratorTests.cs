@@ -783,5 +783,50 @@ namespace ApexParserTest.CodeGenerators
                     }
                 }");
         }
+
+        [Test]
+        public void UnsupportedModifiersGetConvertedIntoComments()
+        {
+            var apex = Apex.ParseClass(@"// unsupported modifiers
+            public global class TestClass {
+                private with sharing class Inner1 { }
+                public without sharing class Inner2 { }
+                private testMethod void MyTest(final int x) { }
+                public webservice void MyService() { }
+                transient void TransientMethod() { }
+            }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    // unsupported modifiers
+                    public /* global */ class TestClass
+                    {
+                        private /* with sharing */ class Inner1
+                        {
+                        }
+
+                        public /* without sharing */ class Inner2
+                        {
+                        }
+
+                        private /* testMethod */ void MyTest(/* final */ int x)
+                        {
+                        }
+
+                        public /* webservice */ void MyService()
+                        {
+                        }
+
+                        /* transient */ void TransientMethod()
+                        {
+                        }
+                    }
+                }");
+        }
     }
 }

@@ -86,7 +86,7 @@ namespace ApexParser.Visitors
             }
         }
 
-        protected override string ConvertModifier(string modifier, MemberDeclarationSyntax ownerNode)
+        protected override string ConvertModifier(string modifier, BaseSyntax ownerNode)
         {
             if (modifier == ApexKeywords.Final)
             {
@@ -103,7 +103,11 @@ namespace ApexParser.Visitors
                     return "/* final */";
                 }
             }
-            else if (modifier.EndsWith(ApexKeywords.Sharing))
+            else if (modifier == ApexKeywords.Global ||
+                modifier.EndsWith(ApexKeywords.Sharing) ||
+                modifier == ApexKeywords.TestMethod ||
+                modifier == ApexKeywords.Transient ||
+                modifier == ApexKeywords.WebService)
             {
                 return $"/* {modifier} */";
             }

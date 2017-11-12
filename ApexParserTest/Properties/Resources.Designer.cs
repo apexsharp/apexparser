@@ -1233,17 +1233,21 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /**
-        /// * Copyright (c) 2014, FinancialForce.com, inc
-        /// * All rights reserved.
-        /// *
-        /// * Redistribution and use in source and binary forms, with or without modification,
-        /// * are permitted provided that the following conditions are met:
-        /// *
-        /// * - Redistributions of source code must retain the above copyright notice,
-        /// *      this list of conditions and the following disclaimer.
-        /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    /**
+        ///     * Copyright (c) 2014, FinancialForce.com, inc
+        ///     * All rights reserved.
+        ///     *
+        ///     * Redistribution and use in source and binary forms, with or without modification,
+        ///     * are permitted provided that the following conditions are met:
+        ///     *
+        ///     * - Redistributions of source code must retain the above copyright notice,
+        ///     *      this list of conditions and the following d [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtilsTest_CSharp {
             get {
@@ -1262,11 +1266,68 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtilsTest_Formatted {
             get {
                 return ResourceManager.GetString("fflib_ApexMocksUtilsTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2016, FinancialForce.com, inc
+        /// * All rights reserved.
+        /// *
+        /// * Redistribution and use in source and binary forms, with or without modification,
+        /// * are permitted provided that the following conditions are met:
+        /// *
+        /// * - Redistributions of source code must retain the above copyright notice,
+        /// *      this list of conditions and the following disclaimer.
+        /// * - Redistributions in binary form must reproduce the above copyright notice,
+        /// *      this list of conditions and the following disclaimer in th [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ArgumentCaptor {
+            get {
+                return ResourceManager.GetString("fflib_ArgumentCaptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2016, FinancialForce.com, inc
+        /// * All rights reserved.
+        /// *
+        /// * Redistribution and use in source and binary forms, with or without modification,
+        /// * are permitted provided that the following conditions are met:
+        /// *
+        /// * - Redistributions of source code must retain the above copyright notice,
+        /// *      this list of conditions and the following disclaimer.
+        /// * - Redistributions in binary form must reproduce the above copyright notice,
+        /// *      this list of conditions and the following disclaimer in th [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ArgumentCaptor_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_ArgumentCaptor_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2016, FinancialForce.com, inc
+        /// * All rights reserved.
+        /// *
+        /// * Redistribution and use in source and binary forms, with or without modification,
+        /// * are permitted provided that the following conditions are met:
+        /// *
+        /// * - Redistributions of source code must retain the above copyright notice,
+        /// *      this list of conditions and the following disclaimer.
+        /// * - Redistributions in binary form must reproduce the above copyright notice,
+        /// *      this list of conditions and the following disclaimer in th [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ArgumentCaptor_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_ArgumentCaptor_Formatted", resourceCulture);
             }
         }
         

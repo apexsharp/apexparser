@@ -1001,5 +1001,43 @@ namespace ApexParserTest.CodeGenerators
                     }
                 }");
         }
+
+        [Test]
+        public void ModifiersAreGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(@"// these modifiers are not supported by C# target
+            public global class TestClass {
+                private with sharing class Inner1 { }
+                public without sharing class Inner2 { }
+                private testMethod void MyTest(final int x) { }
+                public webservice void MyService() { }
+                transient void TransientMethod() { }
+            }");
+
+            Check(apex,
+                @"// these modifiers are not supported by C# target
+                public global class TestClass
+                {
+                    private with sharing class Inner1
+                    {
+                    }
+
+                    public without sharing class Inner2
+                    {
+                    }
+
+                    private testMethod void MyTest(final int x)
+                    {
+                    }
+
+                    public webservice void MyService()
+                    {
+                    }
+
+                    transient void TransientMethod()
+                    {
+                    }
+                }");
+        }
     }
 }
