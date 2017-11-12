@@ -64,5 +64,9 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_ArgumentCaptorIsGeneratedInCSharp() =>
             Check(fflib_ArgumentCaptor, fflib_ArgumentCaptor_CSharp);
+
+        [Test]
+        public void fflib_ArgumentCaptorTestIsGeneratedInCSharp() =>
+            Check(fflib_ArgumentCaptorTest, fflib_ArgumentCaptorTest_CSharp);
     }
 }

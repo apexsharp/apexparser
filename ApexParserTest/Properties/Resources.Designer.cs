@@ -1294,17 +1294,21 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// * Copyright (c) 2016, FinancialForce.com, inc
-        /// * All rights reserved.
-        /// *
-        /// * Redistribution and use in source and binary forms, with or without modification,
-        /// * are permitted provided that the following conditions are met:
-        /// *
-        /// * - Redistributions of source code must retain the above copyright notice,
-        /// *      this list of conditions and the following disclaimer.
-        /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in th [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    /*
+        ///     * Copyright (c) 2016, FinancialForce.com, inc
+        ///     * All rights reserved.
+        ///     *
+        ///     * Redistribution and use in source and binary forms, with or without modification,
+        ///     * are permitted provided that the following conditions are met:
+        ///     *
+        ///     * - Redistributions of source code must retain the above copyright notice,
+        ///     *      this list of conditions and the following di [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptor_CSharp {
             get {
@@ -1323,11 +1327,101 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in th [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discla [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptor_Formatted {
             get {
                 return ResourceManager.GetString("fflib_ArgumentCaptor_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2016-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_ArgumentCaptorTest
+        ///{
+        ///	@isTest
+        ///	static void thatArgumentValueIsCaptured()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+        ///
+        ///		// When
+        ///		mockList.add(&apos;Fred&apos;);
+        ///
+        ///		// Then
+        ///		fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(String.class);
+        ///		((fflib_MyList.IList) mocks.verify(mockList)).add( [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ArgumentCaptorTest {
+            get {
+                return ResourceManager.GetString("fflib_ArgumentCaptorTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2016-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_ArgumentCaptorTest
+        ///{
+        ///	@isTest
+        ///	static void thatArgumentValueIsCaptured()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+        ///
+        ///		// When
+        ///		mockList.add(&apos;Fred&apos;);
+        ///
+        ///		// Then
+        ///		fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(String.class);
+        ///		((fflib_MyList.IList) mocks.verify(mockList)).add( [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ArgumentCaptorTest_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_ArgumentCaptorTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2016-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ////**
+        /// * @nodoc
+        /// */
+        ///@isTest
+        ///private class fflib_ArgumentCaptorTest
+        ///{
+        ///	@isTest
+        ///	static void thatArgumentValueIsCaptured()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+        ///
+        ///		// When
+        ///		mockList.add(&apos;Fred&apos;);
+        ///
+        ///		// Then
+        ///		fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(String.class);
+        ///		((fflib_MyList.IList) mocks.verify(mockList)).add( [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ArgumentCaptorTest_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_ArgumentCaptorTest_Formatted", resourceCulture);
             }
         }
         
