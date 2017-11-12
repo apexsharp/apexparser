@@ -184,7 +184,8 @@ namespace ApexParser.Visitors
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
             AppendCommentsAttributesAndModifiers(node);
-            Append("{0} {1}(", node.ReturnType.Identifier, node.Identifier);
+            node.ReturnType.Accept(this);
+            Append(" {0}(", node.Identifier);
             AppendMethodParametersAndBody(node);
         }
 
