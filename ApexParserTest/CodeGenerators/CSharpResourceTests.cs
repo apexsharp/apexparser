@@ -68,5 +68,13 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_ArgumentCaptorTestIsGeneratedInCSharp() =>
             Check(fflib_ArgumentCaptorTest, fflib_ArgumentCaptorTest_CSharp);
+
+        [Test]
+        public void fflib_IDGeneratorIsGeneratedInCSharp() =>
+            Check(fflib_IDGenerator, fflib_IDGenerator_CSharp);
+
+        [Test]
+        public void fflib_IDGeneratorTestIsGeneratedInCSharp() =>
+            Check(fflib_IDGeneratorTest, fflib_IDGeneratorTest_CSharp);
     }
 }

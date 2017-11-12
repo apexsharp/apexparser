@@ -172,6 +172,12 @@
     <None Include="ApexCSharpClasses\fflib_ArgumentCaptorTest.cls" />
     <None Include="ApexCSharpClasses\fflib_ArgumentCaptorTest_CSharp.cs" />
     <None Include="ApexCSharpClasses\fflib_ArgumentCaptorTest_Formatted.cls" />
+    <None Include="ApexCSharpClasses\fflib_IDGenerator.cls" />
+    <None Include="ApexCSharpClasses\fflib_IDGenerator_CSharp.cs" />
+    <None Include="ApexCSharpClasses\fflib_IDGenerator_Formatted.cls" />
+    <None Include="ApexCSharpClasses\fflib_IDGeneratorTest.cls" />
+    <None Include="ApexCSharpClasses\fflib_IDGeneratorTest_CSharp.cs" />
+    <None Include="ApexCSharpClasses\fflib_IDGeneratorTest_Formatted.cls" />
     <None Include="ApexTestClasses\ApplicationTest.cls" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />

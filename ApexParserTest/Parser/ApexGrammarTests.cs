@@ -55,6 +55,18 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void DebuggerProxyClassReturnsToString()
+        {
+            var node = new ParameterSyntax("i", "i");
+            var proxy = new BaseSyntaxDebuggerProxy(node);
+            Assert.NotNull(proxy.NodeType);
+            Assert.NotNull(proxy.ApexCode);
+            Assert.NotNull(proxy.CSharpCode);
+            Assert.NotNull(proxy.ToString());
+            Assert.NotNull(node.ToString());
+        }
+
+        [Test]
         public void IdentifierIsALetterFollowedByALetterOrDigitOrUnderscore()
         {
             // every test case should include positive examples

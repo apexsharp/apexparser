@@ -60,6 +60,7 @@
     <Compile Include="MetaClass\AccessorDeclarationSyntax.cs" />
     <Compile Include="MetaClass\AnnotationSyntax.cs" />
     <Compile Include="MetaClass\BaseSyntax.cs" />
+    <Compile Include="MetaClass\BaseSyntaxDebuggerProxy.cs" />
     <Compile Include="MetaClass\BlockSyntax.cs" />
     <Compile Include="MetaClass\BreakStatementSyntax.cs" />
     <Compile Include="MetaClass\CatchClauseSyntax.cs" />

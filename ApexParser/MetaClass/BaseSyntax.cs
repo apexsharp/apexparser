@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ApexParser.Toolbox;
 using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
 {
+    [DebuggerTypeProxy(typeof(BaseSyntaxDebuggerProxy))]
     public abstract class BaseSyntax
     {
+        private static Regex WhitespaceRegex { get; } = new Regex(@"\s+", RegexOptions.Compiled);
+
         public abstract SyntaxType Kind { get; }
 
         public abstract void Accept(ApexSyntaxVisitor visitor);
@@ -23,7 +28,9 @@ namespace ApexParser.MetaClass
 
         public List<string> TrailingComments { get; set; } = new List<string>();
 
-        public override string ToString() => $"{GetType().Name}: {this.ToApex()}";
+        private string CompactApex => WhitespaceRegex.Replace(this.ToApex(), " ");
+
+        public override string ToString() => $"{GetType().Name}: {CompactApex}";
 
         public IEnumerable<BaseSyntax> DescendantNodes(Func<BaseSyntax, bool> descendIntoChildren = null) =>
             DescendantNodesAndSelf(descendIntoChildren).Skip(1);

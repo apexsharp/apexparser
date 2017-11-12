@@ -78,5 +78,13 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_ArgumentCaptorTestIsFormattedUsingNewApexFormatter() =>
             Check(fflib_ArgumentCaptorTest, fflib_ArgumentCaptorTest_Formatted);
+
+        [Test]
+        public void fflib_IDGeneratorIsFormattedUsingNewApexFormatter() =>
+            Check(fflib_IDGenerator, fflib_IDGenerator_Formatted);
+
+        [Test]
+        public void fflib_IDGeneratorTestIsFormattedUsingNewApexFormatter() =>
+            Check(fflib_IDGeneratorTest, fflib_IDGeneratorTest_Formatted);
     }
 }
