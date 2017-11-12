@@ -8,21 +8,21 @@ using ApexParser.Visitors;
 using NUnit.Framework;
 using static ApexParserTest.Properties.Resources;
 
-namespace ApexParserTest.CodeGenerators
+namespace ApexParserTest.Toolbox
 {
     [TestFixture]
-    public class SimpleExpressionSplitterTests
+    public class GenericExpressionHelperTests
     {
         private void Check(string expr, int count)
         {
-            var parts = SimpleExpressionSplitter.Split(expr);
+            var parts = GenericExpressionHelper.Split(expr);
             Assert.AreEqual(expr ?? string.Empty, string.Concat(parts));
             Assert.AreEqual(count, parts.Length);
         }
 
         private void Check(string expr, params string[] expectedParts)
         {
-            var parts = SimpleExpressionSplitter.Split(expr);
+            var parts = GenericExpressionHelper.Split(expr);
             Assert.AreEqual(expr, string.Concat(parts));
 
             if (!expectedParts.IsNullOrEmpty())

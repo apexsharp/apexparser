@@ -293,7 +293,7 @@ namespace ApexParser.Visitors
 
         private void SplitAndAppendParts(string expression)
         {
-            var parts = SimpleExpressionSplitter.Split(expression);
+            var parts = GenericExpressionHelper.Split(expression);
             foreach (var part in parts)
             {
                 if (part.StartsWith("'"))

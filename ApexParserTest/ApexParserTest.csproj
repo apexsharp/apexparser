@@ -70,7 +70,7 @@
     <Compile Include="CodeGenerators\ApexResourceTests.cs" />
     <Compile Include="CodeGenerators\CSharpGeneratorTests.cs" />
     <Compile Include="CodeGenerators\CSharpResourceTests.cs" />
-    <Compile Include="CodeGenerators\SimpleExpressionSplitterTests.cs" />
+    <Compile Include="Toolbox\GenericExpressionHelperTests.cs" />
     <Compile Include="CodeGenerators\SoqlExtractorTests.cs" />
     <Compile Include="CodeGenerators\TestFixtureBase.cs" />
     <Compile Include="GitHubHelper.cs" />

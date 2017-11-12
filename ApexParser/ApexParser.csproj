@@ -111,7 +111,7 @@
     <Compile Include="Visitors\CodeGeneratorBase.cs" />
     <Compile Include="Visitors\CSharpCodeGenerator.cs" />
     <Compile Include="Visitors\Extensions.cs" />
-    <Compile Include="Visitors\SimpleExpressionSplitter.cs" />
+    <Compile Include="Toolbox\GenericExpressionHelper.cs" />
     <Compile Include="Visitors\SoqlExtractor.cs" />
   </ItemGroup>
   <ItemGroup>

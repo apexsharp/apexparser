@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ApexParser.Visitors
+namespace ApexParser.Toolbox
 {
-    internal static class SimpleExpressionSplitter
+    internal static class GenericExpressionHelper
     {
         private static Regex SplitRegex { get; } =
             new Regex(@"
