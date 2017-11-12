@@ -54,6 +54,7 @@ namespace ApexParser.MetaClass
         public string AsString() =>
             string.Join(".", Namespaces.Concat(Enumerable.Repeat(Identifier, 1))) +
                 (TypeParameters.IsNullOrEmpty() ? string.Empty :
-                    "<" + string.Join(", ", TypeParameters.Select(t => t.AsString())) + ">");
+                    "<" + string.Join(", ", TypeParameters.Select(t => t.AsString())) + ">") +
+                (IsArray ? "[]" : string.Empty);
     }
 }

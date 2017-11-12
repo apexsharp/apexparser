@@ -1036,20 +1036,22 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
-        /// */
-        ///@IsTest
-        ///public class fflib_ApexMocksConfig
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
-        ///	/**
-        ///	 * When false, stubbed behaviour and invocation counts are shared among all test spies.
-        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
-        ///	 * - This is the default for backwards compatibility.
-        ///	 * When true, each test spy instance has its own stubbed behaviour and invocations.
-        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependently
-        ///	 */
-        ///	p [rest of string was truncated]&quot;;.
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    /*
+        ///     * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
+        ///     */
+        ///    [IsTest]
+        ///    public class fflib_ApexMocksConfig
+        ///    {
+        ///        /**
+        ///         * When false, stubbed behaviour and invocation counts are shared among all test spies.
+        ///         * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
+        ///         * - This is the default for backwards compatibil [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksConfig_CSharp {
             get {
@@ -1064,18 +1066,85 @@ namespace ApexParserTest.Properties {
         ///@IsTest
         ///public class fflib_ApexMocksConfig
         ///{
-        ///	/**
-        ///	 * When false, stubbed behaviour and invocation counts are shared among all test spies.
-        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
-        ///	 * - This is the default for backwards compatibility.
-        ///	 * When true, each test spy instance has its own stubbed behaviour and invocations.
-        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependently
-        ///	 */
-        ///	p [rest of string was truncated]&quot;;.
+        ///    /**
+        ///     * When false, stubbed behaviour and invocation counts are shared among all test spies.
+        ///     * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
+        ///     * - This is the default for backwards compatibility.
+        ///     * When true, each test spy instance has its own stubbed behaviour and invocations.
+        ///     * - See fflib_ApexMocksTest.thatMultipleInstancesCan [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksConfig_Formatted {
             get {
                 return ResourceManager.GetString("fflib_ApexMocksConfig_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///@isTest
+        ///private class fflib_ApexMocksTest
+        ///{
+        ///	private static final fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
+        ///	private static final fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
+        ///
+        ///	@isTest
+        ///	static void whenStubMultipleCallsWithMatchersShouldReturnExpectedValues()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.clas [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksTest {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///@isTest
+        ///private class fflib_ApexMocksTest
+        ///{
+        ///	private static final fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
+        ///	private static final fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
+        ///
+        ///	@isTest
+        ///	static void whenStubMultipleCallsWithMatchersShouldReturnExpectedValues()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.clas [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksTest_CSharp {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        /// * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
+        /// */
+        ///@isTest
+        ///private class fflib_ApexMocksTest
+        ///{
+        ///	private static final fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
+        ///	private static final fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
+        ///
+        ///	@isTest
+        ///	static void whenStubMultipleCallsWithMatchersShouldReturnExpectedValues()
+        ///	{
+        ///		// Given
+        ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.clas [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fflib_ApexMocksTest_Formatted {
+            get {
+                return ResourceManager.GetString("fflib_ApexMocksTest_Formatted", resourceCulture);
             }
         }
         
