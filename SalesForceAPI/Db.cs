@@ -34,7 +34,7 @@ namespace SalesForceAPI
 
         public List<T> Query<T>(string query)
         {
-            Console.WriteLine("32 " + query);
+
 
             HttpRequestMessage request = new HttpRequestMessage
             {

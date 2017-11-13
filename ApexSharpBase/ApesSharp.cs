@@ -4,6 +4,8 @@ using System.IO;
 using Newtonsoft.Json;
 using SalesForceAPI;
 using SalesForceAPI.Model;
+using Serilog;
+using Serilog.Configuration;
 
 namespace ApexSharpBase
 {
@@ -105,8 +107,14 @@ namespace ApexSharpBase
             ApexSharpConfigSettings.VisualStudioProjectFile = dir;
             return this;
         }
+
         public ApexSharp SetLogLevel(LogLevel logLevel)
         {
+            Serilog.Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.ColoredConsole()
+            .CreateLogger();
+
             ApexSharpConfigSettings.LogLevel = logLevel;
             return this;
         }

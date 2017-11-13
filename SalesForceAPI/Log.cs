@@ -14,7 +14,7 @@ namespace SalesForceAPI
 
         public static void LogMsg(string logMessage)
         {
-            Console.WriteLine(logMessage);
+            SerilogLog.LogInfo(logMessage);
         }
     }
 
@@ -22,11 +22,13 @@ namespace SalesForceAPI
     {
         public static void LogInfo(string logMessage)
         {
-            Serilog.Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.ColoredConsole()
-                .CreateLogger();
 
+
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+
+
+            Serilog.Log.Information(watch.ElapsedMilliseconds.ToString());
             Serilog.Log.Information(logMessage);
         }
 
