@@ -41,11 +41,8 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MiscUtil, Version=0.2.0.0, Culture=neutral, PublicKeyToken=d3c42c4bfacf7596, processorArchitecture=MSIL">
-      <HintPath>..\packages\JonSkeet.MiscUtil.0.2.0\lib\net35\MiscUtil.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
@@ -87,6 +84,7 @@
     </Compile>
     <Compile Include="Toolbox\IEnumerableExtensionTests.cs" />
     <Compile Include="Toolbox\ParseExtensionTests.cs" />
+    <Compile Include="Toolbox\SmartEnumerableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApexTestLibraries\apex-lambda-master.zip">
@@ -119,14 +117,7 @@
     <Content Include="ApexTestLibraries\fflib-apex-common-samplecode-master.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ApexParser\ApexParser.csproj">
-      <Project>{7f1c15e4-1b67-4f35-bf46-5b0506992a0f}</Project>
-      <Name>ApexParser</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -228,6 +219,12 @@
     <None Include="ApexTestClasses\SoqlDemo.cs" />
     <None Include="ApexTestClasses\SoqlDemo.cls" />
     <None Include="ApexTestClasses\SoqlDemo2.cls" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApexParser\ApexParser.csproj">
+      <Project>{9402b41a-5143-4345-84fc-1e18674e4d87}</Project>
+      <Name>ApexParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using ApexParser.Toolbox;
 
 namespace ApexParser.Parser
@@ -8,20 +9,20 @@ namespace ApexParser.Parser
     public static class ApexKeywords
     {
         public static HashSet<string> ReservedWords { get; } =
-            new HashSet<string>(AllStringConstants, StringComparer.InvariantCultureIgnoreCase);
+            new HashSet<string>(AllStringConstants, StringComparer.OrdinalIgnoreCase);
 
         public static Dictionary<string, string> NormalizedKeywords { get; } =
             AllStringConstants.Concat(AllStringProperties).Except("set")
-                .ToDictionary(s => s, StringComparer.InvariantCultureIgnoreCase);
+                .ToDictionary(s => s, StringComparer.OrdinalIgnoreCase);
 
         public static string Normalized(this string keyword) =>
             NormalizedKeywords.TryGetValue(keyword, out var result) ? result : keyword;
 
         private static IEnumerable<string> AllStringConstants =>
-            typeof(ApexKeywords).GetFields().Select(f => f.GetValue(null)).OfType<string>();
+            typeof(ApexKeywords).GetTypeInfo().GetFields().Select(f => f.GetValue(null)).OfType<string>();
 
         private static IEnumerable<string> AllStringProperties =>
-            typeof(ApexKeywords).GetProperties().Select(f => f.GetValue(null)).OfType<string>();
+            typeof(ApexKeywords).GetTypeInfo().GetProperties().Select(f => f.GetValue(null)).OfType<string>();
 
         // Keyword DSL convention:
         // 1. Reserved keywords are declared as constants
