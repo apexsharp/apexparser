@@ -6,6 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="Sprache" Version="2.1.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\ApexSharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
 
 </Project>
