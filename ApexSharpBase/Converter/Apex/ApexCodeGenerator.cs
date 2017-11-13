@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Text;
 using ApexSharpBase.Ext;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -36,7 +34,7 @@ namespace ApexSharpBase.Converter.Apex
 
         public string GetParametr(ParameterListSyntax parameterListSyntax)
         {
-            StringBuilder parameterString  = new StringBuilder();
+            StringBuilder parameterString = new StringBuilder();
             parameterString.Append(parameterListSyntax.OpenParenToken);
             foreach (var parameter in parameterListSyntax.Parameters)
             {
@@ -53,55 +51,55 @@ namespace ApexSharpBase.Converter.Apex
             switch (node.Kind())
             {
                 case SyntaxKind.ClassDeclaration:
-                {
-                    sb.AppendLine("class {");
-                    base.Visit(node);
-                    sb.AppendLine("}");
-                    break;
-                }
+                    {
+                        sb.AppendLine("class {");
+                        base.Visit(node);
+                        sb.AppendLine("}");
+                        break;
+                    }
                 case SyntaxKind.MethodDeclaration:
-                {
-                    var syntax = (MethodDeclarationSyntax) node;
+                    {
+                        var syntax = (MethodDeclarationSyntax)node;
 
-                    sb.Append(GetAttributes(syntax.AttributeLists));
-                    sb.AppendLine();
-                    sb.Append($"{GetModifiers(syntax.Modifiers)} {ExpressionConverter.TypeConverter(syntax.ReturnType.ToString())} {syntax.Identifier.Text}{GetParametr(syntax.ParameterList)}");
-                    sb.AppendLine();
+                        sb.Append(GetAttributes(syntax.AttributeLists));
+                        sb.AppendLine();
+                        sb.Append($"{GetModifiers(syntax.Modifiers)} {ExpressionConverter.TypeConverter(syntax.ReturnType.ToString())} {syntax.Identifier.Text}{GetParametr(syntax.ParameterList)}");
+                        sb.AppendLine();
 
-                    sb.AppendLine(syntax.Body.OpenBraceToken.Text);
-                    base.Visit(node);
-                    sb.AppendLine(syntax.Body.CloseBraceToken.Text);
-                    break;
-                }
+                        sb.AppendLine(syntax.Body.OpenBraceToken.Text);
+                        base.Visit(node);
+                        sb.AppendLine(syntax.Body.CloseBraceToken.Text);
+                        break;
+                    }
                 case SyntaxKind.LocalDeclarationStatement:
-                {
-                    
-                    var syntax = (LocalDeclarationStatementSyntax)node;
-                    sb.AppendLine(ExpressionConverter.GetApexLine(syntax.GetText()));
-                        base.Visit(node);
-                    break;
-                }
-                case SyntaxKind.ExpressionStatement:
-                {                 
-                    var syntax = (ExpressionStatementSyntax) node;
-                    sb.AppendLine(ExpressionConverter.GetApexLine(syntax.GetText()));
-                        base.Visit(node);
-                    break;
-                }
-                case SyntaxKind.IfStatement:
-                {
-                    sb.AppendLine("If {");
-                    base.Visit(node);
-                    sb.AppendLine("}");
-                    break;
-                }
-                default:
-                {
-                    //Console.WriteLine(node.Kind());
+                    {
 
-                    base.Visit(node);
-                    break;
-                }
+                        var syntax = (LocalDeclarationStatementSyntax)node;
+                        sb.AppendLine(ExpressionConverter.GetApexLine(syntax.GetText()));
+                        base.Visit(node);
+                        break;
+                    }
+                case SyntaxKind.ExpressionStatement:
+                    {
+                        var syntax = (ExpressionStatementSyntax)node;
+                        sb.AppendLine(ExpressionConverter.GetApexLine(syntax.GetText()));
+                        base.Visit(node);
+                        break;
+                    }
+                case SyntaxKind.IfStatement:
+                    {
+                        sb.AppendLine("If {");
+                        base.Visit(node);
+                        sb.AppendLine("}");
+                        break;
+                    }
+                default:
+                    {
+                        //Console.WriteLine(node.Kind());
+
+                        base.Visit(node);
+                        break;
+                    }
 
             }
         }
