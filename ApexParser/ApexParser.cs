@@ -10,9 +10,9 @@ namespace ApexParser
         private static ApexGrammar ApexGrammar { get; } = new ApexGrammar();
 
         // Convert Apex Code to C#
-        public static string ConvertApexToCSharp(string nameSpace, string apexCode)
+        public static string ConvertApexToCSharp(string apexCode, string @namespace = null)
         {
-            return GetApexAst(apexCode).ToCSharp();
+            return GetApexAst(apexCode).ToCSharp(@namespace: @namespace);
         }
 
         // Get the AST for a given APEX File
@@ -22,9 +22,9 @@ namespace ApexParser
         }
 
         // Convert a given Apex Ast to C#
-        public static string ConvertApexAstToCSharp(string nameSpace, MemberDeclarationSyntax astSyntax)
+        public static string ConvertApexAstToCSharp(MemberDeclarationSyntax astSyntax, string @namespace = null)
         {
-            return astSyntax.ToCSharp();
+            return astSyntax.ToCSharp(@namespace: @namespace);
         }
 
         // Format APEX Code so each statement is in its own line

@@ -25,9 +25,14 @@ namespace ApexParser.Visitors
             "SObjects",
         };
 
-        public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4)
+        public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4, string @namespace = null)
         {
             var generator = new CSharpCodeGenerator { IndentSize = tabSize };
+            if (!string.IsNullOrWhiteSpace(@namespace))
+            {
+                generator.Namespace = @namespace;
+            }
+
             ast.Accept(generator);
             return generator.Code.ToString();
         }

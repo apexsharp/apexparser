@@ -793,7 +793,7 @@ namespace ApexParserTest.CodeGenerators
                 public without sharing class Inner2 { }
                 private testMethod void MyTest(final int x) { }
                 public webservice void MyService() { }
-                transient void TransientMethod() { }
+                transient int TransientField = 0;
             }");
 
             Check(apex,
@@ -822,7 +822,30 @@ namespace ApexParserTest.CodeGenerators
                         {
                         }
 
-                        /* transient */ void TransientMethod()
+                        /* transient */ int TransientField = 0;
+                    }
+                }");
+        }
+
+        [Test]
+        public void CustomCSharpNamespaceIsSupported()
+        {
+            var apex = Apex.ParseClass(@"// custom namespace
+            public global class TestClass {
+                private with sharing class TestInner { }
+            }");
+
+            CompareLineByLine(apex.ToCSharp(@namespace: "MyNamespace"),
+                @"namespace MyNamespace
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    // custom namespace
+                    public /* global */ class TestClass
+                    {
+                        private /* with sharing */ class TestInner
                         {
                         }
                     }

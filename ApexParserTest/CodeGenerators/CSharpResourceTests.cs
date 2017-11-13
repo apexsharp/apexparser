@@ -15,7 +15,7 @@ namespace ApexParserTest.CodeGenerators
     public class CSharpResourceTests : TestFixtureBase
     {
         private void Check(string source, string expected) =>
-            CompareLineByLine(ApexParser.ApexParser.ConvertApexToCSharp("namespace", source), expected);
+            CompareLineByLine(ApexParser.ApexParser.ConvertApexToCSharp(source), expected);
 
         [Test]
         public void SoqlDemoIsGeneratedInCSharp()

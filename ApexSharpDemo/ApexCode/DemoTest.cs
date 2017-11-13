@@ -15,7 +15,7 @@
         }
 
         [SetUp]
-        static void Setup()
+        public static void Setup()
         {
             Contact contactNew = new Contact();
             contactNew.LastName = "Jay";
