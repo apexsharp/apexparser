@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27019.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apex", "Apex\Apex.csproj", "{269B0981-154B-4DDE-9B0A-18685C38BD9B}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParserTest", "ApexParserTest\ApexParserTest.csproj", "{CF5E395C-086F-4D21-B2B2-7595E348A557}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateDemo", "PrivateDemo\PrivateDemo.csproj", "{D7B06531-2EAB-43A2-90FC-74D35FAD272A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpParser", "CSharpParser\CSharpParser.csproj", "{E5D0E1A9-0741-4538-8FEF-020A6393225E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5D0E1A9-0741-4538-8FEF-020A6393225E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D0E1A9-0741-4538-8FEF-020A6393225E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D0E1A9-0741-4538-8FEF-020A6393225E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D0E1A9-0741-4538-8FEF-020A6393225E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
