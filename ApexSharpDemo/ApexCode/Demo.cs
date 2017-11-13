@@ -3,6 +3,7 @@
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     public class Demo
     {

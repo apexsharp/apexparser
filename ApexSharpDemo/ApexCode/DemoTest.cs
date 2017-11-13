@@ -1,11 +1,9 @@
-﻿using Apex.ApexSharp;
-using ApexSharpBase;
-using NUnit.Framework;
-
-namespace ApexSharpDemo.ApexCode
+﻿namespace ApexSharpDemo.ApexCode
 {
+    using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     [TestFixture, Ignore("Until we find how to store connect.json secure")]
     public class DemoTest
@@ -13,7 +11,7 @@ namespace ApexSharpDemo.ApexCode
         [OneTimeSetUp]
         public void NoApexSetup()
         {
-            new ApexSharp().Connect("C:\\DevSharp\\connect.json");
+            new ApexSharpBase.ApexSharp().Connect("C:\\DevSharp\\connect.json");
         }
 
         [SetUp]
