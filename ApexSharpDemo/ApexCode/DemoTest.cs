@@ -1,4 +1,5 @@
-﻿using ApexSharpBase;
+﻿using Apex.ApexSharp;
+using ApexSharpBase;
 using NUnit.Framework;
 
 namespace ApexSharpDemo.ApexCode
@@ -6,23 +7,38 @@ namespace ApexSharpDemo.ApexCode
     using Apex.System;
     using SObjects;
 
-    [TestFixture]
+    [TestFixture, Ignore("Until we find how to store connect.json secure")]
     public class DemoTest
     {
         [OneTimeSetUp]
-        public void Setup()
+        public void NoApexSetup()
         {
-            var apexSharp = new ApexSharp();
-            apexSharp.Connect("C:\\DevSharp\\connect.json");
+            new ApexSharp().Connect("C:\\DevSharp\\connect.json");
         }
 
-
-        //[Test]
-        public void GetAllContactsTest()
+        [SetUp]
+        static void Setup()
         {
-            Demo demo = new Demo();
-            List<Contact> contacts = demo.GetAllContacts();
-            Assert.IsTrue(contacts.Count > 0);
+            Contact contactNew = new Contact();
+            contactNew.LastName = "Jay";
+            contactNew.Email = "jay@jay.com";
+            Soql.Insert(contactNew);
+        }
+
+        [Test]
+        static void UpdatePhoneTestValidEmail()
+        {
+            Demo.UpdatePhone("jay@jay.com", "555-1212");
+            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'");
+            System.AssertEquals(contacts[0].Phone, "555-1212");
+        }
+
+        [Test]
+        static void UpdatePhoneTestNotValidEmail()
+        {
+            Demo.UpdatePhone("nojay@jay.com", "555-1212");
+            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'");
+            System.AssertEquals(contacts.Size(), 0);
         }
     }
 }
