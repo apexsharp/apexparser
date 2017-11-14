@@ -6,6 +6,7 @@ namespace ApexSharpDemo.SObjects
 {
     public class UserRole : SObject
     {
+
         public string Id { set; get; }
         public string Name { set; get; }
         public string ParentRoleId { set; get; }

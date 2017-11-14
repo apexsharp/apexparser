@@ -9,7 +9,7 @@ namespace SalesForceAPI
     {
         public static void LogMsg(string logMessage, object obj)
         {
-            Console.WriteLine(logMessage + ":" + JsonConvert.SerializeObject(obj, Formatting.Indented));
+            LogMsg(logMessage + ":" + JsonConvert.SerializeObject(obj, Formatting.Indented));
         }
 
         public static void LogMsg(string logMessage)
@@ -24,11 +24,11 @@ namespace SalesForceAPI
         {
 
 
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            // var watch = System.Diagnostics.Stopwatch.StartNew();
 
 
 
-            Serilog.Log.Information(watch.ElapsedMilliseconds.ToString());
+            // Serilog.Log.Information(watch.ElapsedMilliseconds.ToString());
             Serilog.Log.Information(logMessage);
         }
 

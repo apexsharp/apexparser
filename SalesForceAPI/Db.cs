@@ -34,7 +34,7 @@ namespace SalesForceAPI
 
         public List<T> Query<T>(string query)
         {
-
+            Log.LogMsg(query);
 
             HttpRequestMessage request = new HttpRequestMessage
             {
@@ -56,6 +56,9 @@ namespace SalesForceAPI
             {
                 case HttpStatusCode.OK:
                     string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                    Log.LogMsg(responseMessage.Content.ReadAsStringAsync().Result);
+
                     RecordReadList<T> returnData = JsonConvert.DeserializeObject<RecordReadList<T>>(jsonData,
                         new JsonSerializerSettings { NullValueHandling = JsonNullValue });
                     return returnData.records;

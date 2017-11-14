@@ -9,26 +9,25 @@ namespace Apex.ApexSharp
     {
         public static List<T> QueryNew<T>(string soql)
         {
-            System.System.Debug(soql);
             return new List<T>();
         }
 
         public static List<T> Query<T>(string soql, object dynamicInput)
         {
-            SoqlApi api = new SoqlApi();
-            return ConvertList(api.Query<T>(soql, dynamicInput));
+
+            return ConvertList(SoqlApi.Query<T>(soql, dynamicInput));
         }
 
         public static List<T> Query<T>(string soql)
         {
-            SoqlApi api = new SoqlApi();
-            return ConvertList(api.Query<T>(soql));
+
+            return ConvertList(SoqlApi.Query<T>(soql));
         }
 
         public static T QuerySingle<T>(string soql)
         {
-            SoqlApi api = new SoqlApi();
-            List<T> dataList = ConvertList(api.Query<T>(soql));
+
+            List<T> dataList = ConvertList(SoqlApi.Query<T>(soql));
             return dataList[0];
         }
 
@@ -47,26 +46,26 @@ namespace Apex.ApexSharp
 
         public static void Insert<T>(T sObject) where T : SObject
         {
-            SoqlApi api = new SoqlApi();
-            api.Insert<T>(sObject);
+
+            SoqlApi.Insert<T>(sObject);
         }
 
         public static void Update<T>(List<T> sObjectList) where T : SObject
         {
-            SoqlApi api = new SoqlApi();
-            api.Update<T>(sObjectList);
+
+            SoqlApi.Update<T>(sObjectList);
         }
 
         public static void Update<T>(T sObject) where T : SObject
         {
-            SoqlApi api = new SoqlApi();
-            api.Update<T>(sObject);
+
+            SoqlApi.Update<T>(sObject);
         }
 
         public static void Delete<T>(List<T> sObjectList) where T : SObject
         {
-            SoqlApi api = new SoqlApi();
-            api.Delete<T>(sObjectList);
+
+            SoqlApi.Delete<T>(sObjectList);
         }
     }
 }

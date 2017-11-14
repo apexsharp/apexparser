@@ -6,6 +6,7 @@ namespace ApexSharpDemo.SObjects
 {
     public class Account : SObject
     {
+
         public string Id { set; get; }
         public bool IsDeleted { set; get; }
         public string MasterRecordId { set; get; }

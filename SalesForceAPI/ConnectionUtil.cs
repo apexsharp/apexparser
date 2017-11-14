@@ -41,9 +41,10 @@ namespace SalesForceAPI
         public static void Connect(ApexSharpConfig config)
         {
             config.SalesForceUrl = config.SalesForceUrl + "services/Soap/c/" + config.SalesForceApiVersion + ".0/";
-            config = GetNewConnection(config);
+            ConnectionDetail = GetNewConnection(config);
+
             FileInfo saveFileInfo = new FileInfo(config.DirLocationAndFileName);
-            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(ConnectionDetail, Formatting.Indented);
             File.WriteAllText(saveFileInfo.FullName, json);
         }
 
@@ -56,7 +57,7 @@ namespace SalesForceAPI
 
 
 
-        public static ApexSharpConfig GetNewConnection(ApexSharpConfig config)
+        private static ApexSharpConfig GetNewConnection(ApexSharpConfig config)
         {
             var xml = @"
                 <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:urn=""urn:enterprise.soap.sforce.com"">
@@ -76,7 +77,7 @@ namespace SalesForceAPI
 
 
             var waitTask = PostLoginTask(config.SalesForceUrl, xml);
-           
+
 
 
             if (waitTask != null)
@@ -137,28 +138,6 @@ namespace SalesForceAPI
             // List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
             //   project = new Microsoft.Build.Evaluation.Project(visualStudioProjFile);
         }
-
-        public bool ConnectToDb()
-        {
-            //try
-            //{
-            //    using (var connection = new SqlConnection(_sqlConnectionString))
-            //    {
-            //        connection.Open();
-            //        Console.WriteLine("Connected To Database " + connection.Database);
-            //        return true;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex);
-            //    return false; // any error is considered as db connection error for now
-            //}
-            return true;
-        }
-
-
-
 
         private void AddDirectory(string dirName)
         {
@@ -258,14 +237,6 @@ namespace SalesForceAPI
         }
 
 
-        public System.Collections.Generic.List<T> GetSalesForceRecords<T>(ApexSharpConfig connection, int offset,
-            int limit)
-        {
-            Db db = new Db(connection);
-            var asyncWait = db.GetAllRecordsAsync<T>(limit, offset);
-            asyncWait.Wait();
-            return asyncWait.Result;
-        }
 
 
         public T GetRecordById<T>(ApexSharpConfig connection, string id)
@@ -330,17 +301,5 @@ namespace SalesForceAPI
             return replyTask.Result;
         }
 
-        // Get the API Limits
-        public int GetRemainingApiLimit(ApexSharpConfig connectionDetail, LimitType limitType)
-        {
-            Limits limits = new Limits(connectionDetail);
-            return limits.GetRemainingApiLimit(limitType);
-        }
-
-        public int GetDailyApiLimit(ApexSharpConfig connectionDetail, LimitType limitType)
-        {
-            Limits limits = new Limits(connectionDetail);
-            return limits.GetDailyApiLimit(limitType);
-        }
     }
 }

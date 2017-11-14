@@ -6,6 +6,7 @@ namespace ApexSharpDemo.SObjects
 {
     public class UserLicense : SObject
     {
+
         public string Id { set; get; }
         public string LicenseDefinitionKey { set; get; }
         public string Name { set; get; }

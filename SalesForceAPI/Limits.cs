@@ -7,9 +7,9 @@ namespace SalesForceAPI
     {
         private readonly ApexSharpConfig _connectionDetail;
 
-        public Limits(ApexSharpConfig connectionDetail)
+        public Limits()
         {
-            _connectionDetail = connectionDetail;
+            _connectionDetail = ConnectionUtil.ConnectionDetail;
         }
 
         public int GetDailyApiLimit(LimitType limitType)

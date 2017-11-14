@@ -6,6 +6,7 @@ namespace ApexSharpDemo.SObjects
 {
     public class DandBCompany : SObject
     {
+
         public string Id { set; get; }
         public bool IsDeleted { set; get; }
         public string Name { set; get; }

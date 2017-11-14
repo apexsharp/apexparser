@@ -6,6 +6,7 @@ namespace ApexSharpDemo.SObjects
 {
     public class Profile : SObject
     {
+
         public string Id { set; get; }
         public string Name { set; get; }
         public bool PermissionsEmailSingle { set; get; }

@@ -1,11 +1,13 @@
 using Apex.System;
 using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
+using String = System.String;
 
 namespace Apex.ConnectApi
 {
     public class User : SObject
     {
+
         public object Clone()
         {
             throw new global::System.NotImplementedException("User.Clone");

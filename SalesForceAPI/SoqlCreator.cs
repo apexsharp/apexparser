@@ -12,8 +12,7 @@ namespace SalesForceAPI
         public string GetSalesForceObjectName<T>()
         {
             string objectName = typeof(T).Name;
-            ObjectNameAttribute objectNameAttrbute = typeof(T).GetCustomAttributes(typeof(ObjectNameAttribute), true)
-                .FirstOrDefault() as ObjectNameAttribute;
+            ObjectNameAttribute objectNameAttrbute = typeof(T).GetCustomAttributes(typeof(ObjectNameAttribute), true).FirstOrDefault() as ObjectNameAttribute;
             if (objectNameAttrbute != null)
             {
                 objectName = objectNameAttrbute.SalesForceObjectName;
@@ -25,28 +24,18 @@ namespace SalesForceAPI
         public string GetSoql<T>()
         {
             List<string> soqlList = Reflection<T>();
-
-
-            // Build the SOQL
-            StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT ");
-
-
-            string newSoql = string.Join(",", soqlList);
-
-            sb.Append(newSoql);
-
-            sb.Append(" FROM ").Append(GetSalesForceObjectName<T>());
-            return sb.ToString();
+            return soqlList[0];
         }
 
         private List<string> Reflection<T>()
         {
             List<string> dbFieldInfoList = new List<string>();
 
-            foreach (PropertyInfo membner in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            // foreach (PropertyInfo membner in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+
+            foreach (var membner in typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static))
             {
-                dbFieldInfoList.Add(membner.Name);
+                dbFieldInfoList.Add(membner.GetValue(null).ToString());
             }
             return dbFieldInfoList;
         }

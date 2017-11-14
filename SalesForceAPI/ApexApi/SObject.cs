@@ -2,7 +2,7 @@ using SalesForceAPI.Apex;
 
 namespace SalesForceAPI.ApexApi
 {
-    public class SObject
+    public abstract class SObject
     {
         public Id Id { get; set; }
 

@@ -7,9 +7,26 @@ using SalesForceAPI.ApexApi;
 
 namespace SalesForceAPI
 {
+
     public class SoqlApi
     {
-        public List<T> Query<T>(string soql, object dynamicInput)
+        public static List<T> Query<T>() where T : SObject
+        {
+            SoqlCreator soqlCreator = new SoqlCreator();
+            var soql = soqlCreator.GetSoql<T>();
+
+            Db db = new Db();
+            return db.Query<T>(soql);
+        }
+
+        public static List<T> Query<T>(string soql)
+        {
+            Db db = new Db();
+            return db.Query<T>(soql);
+        }
+
+
+        public static List<T> Query<T>(string soql, object dynamicInput)
         {
             soql = GetFormatedSoql(soql, dynamicInput);
             return Query<T>(soql);
@@ -29,18 +46,18 @@ namespace SalesForceAPI
 
                 if (p.PropertyType.Name == "Int32")
                 {
-                    int intValue = (int) p.GetValue(dynamicInput);
+                    int intValue = (int)p.GetValue(dynamicInput);
                     string intValueInString = Convert.ToString(intValue);
                     soql = soql.Replace(varName, " " + intValueInString + " ");
                 }
                 else if (p.PropertyType.Name == "String")
                 {
-                    string stringValue = (string) p.GetValue(dynamicInput);
+                    string stringValue = (string)p.GetValue(dynamicInput);
                     soql = soql.Replace(varName, " '" + stringValue + "' ");
                 }
                 else if (p.PropertyType.Name == "Id")
                 {
-                    Id id = (Id) p.GetValue(dynamicInput);
+                    Id id = (Id)p.GetValue(dynamicInput);
                     string stringValue = id.ToString();
                     soql = soql.Replace(varName, " '" + stringValue + "' ");
                 }
@@ -52,35 +69,29 @@ namespace SalesForceAPI
             return soql;
         }
 
-        public List<T> Query<T>(string soql)
-        {
-            Db db = new Db();
-            return db.Query<T>(soql);        
-        }
 
-
-        public void Insert<T>(T sObject) where T : SObject
+        public static void Insert<T>(T sObject) where T : SObject
         {
             Db db = new Db(ConnectionUtil.ConnectionDetail);
             Task<T> createRecord = db.CreateRecord<T>(sObject);
             createRecord.Wait();
         }
 
-        public void Update<T>(List<T> sObjectList) where T : SObject
+        public static void Update<T>(List<T> sObjectList) where T : SObject
         {
             Db db = new Db(ConnectionUtil.ConnectionDetail);
             Task<bool> updateRecord = db.UpdateRecord<T>(sObjectList);
             updateRecord.Wait();
         }
 
-        public void Update<T>(T sObject) where T : SObject
+        public static void Update<T>(T sObject) where T : SObject
         {
             Db db = new Db(ConnectionUtil.ConnectionDetail);
             Task<bool> updateRecord = db.UpdateRecord<T>(sObject);
             updateRecord.Wait();
         }
 
-        public void Delete<T>(List<T> sObjectList) where T : SObject
+        public static void Delete<T>(List<T> sObjectList) where T : SObject
         {
             foreach (var obj in sObjectList)
             {
