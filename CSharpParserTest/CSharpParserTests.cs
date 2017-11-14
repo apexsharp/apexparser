@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpParser;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
 
 namespace CSharpParserTest
@@ -14,7 +16,24 @@ namespace CSharpParserTest
         [Test]
         public void CSharpParserTest()
         {
-            Assert.AreEqual(0, CSharpHelper.Sample());
+            var tree = CSharpHelper.ParseText(
+                @"using System;
+                using System.Collections;
+                using System.Linq;
+                using System.Text;
+
+                namespace HelloWorld
+                {
+                    class Program
+                    {
+                        static void Main(string[] args)
+                        {
+                            Console.WriteLine(""Hello, World!"");
+                        }
+                    }
+                }");
+
+            Assert.NotNull(tree);
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿using System;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpParser
 {
     public class CSharpHelper
     {
-        public static int Sample()
+        public static CompilationUnitSyntax ParseText(string text)
         {
-            return 0;
+            var tree = CSharpSyntaxTree.ParseText(text);
+            return tree.GetRoot() as CompilationUnitSyntax;
         }
     }
 }
