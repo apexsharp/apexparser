@@ -11,5 +11,10 @@ namespace CSharpParser
             var tree = CSharpSyntaxTree.ParseText(text);
             return tree.GetRoot() as CompilationUnitSyntax;
         }
+
+        public static string ToCSharp(CompilationUnitSyntax syntax)
+        {
+            return syntax.ToFullString();
+        }
     }
 }

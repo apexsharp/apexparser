@@ -34,6 +34,9 @@ namespace CSharpParserTest
                 }");
 
             Assert.NotNull(tree);
+
+            var txt = CSharpHelper.ToCSharp(tree);
+            Assert.NotNull(txt);
         }
     }
 }
