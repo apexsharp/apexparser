@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 using SalesForceAPI.Attribute;
@@ -57,10 +58,14 @@ namespace SalesForceAPI
                 case HttpStatusCode.OK:
                     string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                    Log.LogMsg(responseMessage.Content.ReadAsStringAsync().Result);
 
                     RecordReadList<T> returnData = JsonConvert.DeserializeObject<RecordReadList<T>>(jsonData,
                         new JsonSerializerSettings { NullValueHandling = JsonNullValue });
+
+
+                    string jsonFormatted = JToken.Parse(jsonData).ToString(Formatting.Indented);
+                    Serilog.Log.Information(jsonFormatted);
+
                     return returnData.records;
                 default:
                     Log.LogMsg("Query Error", responseMessage.Content.ReadAsStringAsync().Result);

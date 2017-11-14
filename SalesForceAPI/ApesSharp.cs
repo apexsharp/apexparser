@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using SalesForceAPI.Model;
 using Serilog;
+using Serilog.Formatting.Json;
 
 namespace SalesForceAPI
 {
@@ -107,8 +108,10 @@ namespace SalesForceAPI
 
         public ApexSharp SetLogLevel(LogLevel logLevel)
         {
+
+
             Serilog.Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
+            .MinimumLevel.Information()
             .WriteTo.ColoredConsole()
             .CreateLogger();
 
