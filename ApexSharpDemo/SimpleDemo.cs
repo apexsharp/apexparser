@@ -1,5 +1,6 @@
 ﻿using System;
 using ApexSharpBase;
+using SalesForceAPI;
 
 namespace ApexSharpDemo
 {

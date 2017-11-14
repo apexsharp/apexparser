@@ -160,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApexCodeFormatter\FormatterTests.cs" />
-    <Compile Include="ApexSharpTest.cs" />
     <Compile Include="CodeFormatter\FormaterTestData.cs" />
     <Compile Include="CodeFormatter\FormatterTests.cs" />
     <Compile Include="Converter\CSharp\CSharpLineConveterTest.cs" />

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
-using SalesForceAPI;
 using SalesForceAPI.Model;
 using Serilog;
-using Serilog.Configuration;
 
-namespace ApexSharpBase
+namespace SalesForceAPI
 {
     public class ApexSharp
     {

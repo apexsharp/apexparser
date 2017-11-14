@@ -1,4 +1,6 @@
-﻿namespace ApexSharpDemo.ApexCode
+﻿using SalesForceAPI;
+
+namespace ApexSharpDemo.ApexCode
 {
     using Apex.ApexSharp;
     using Apex.System;
@@ -11,7 +13,7 @@
         [OneTimeSetUp]
         public void NoApexSetup()
         {
-            new ApexSharpBase.ApexSharp().Connect("C:\\DevSharp\\connect.json");
+            new ApexSharp().Connect("C:\\DevSharp\\connect.json");
         }
 
         [SetUp]

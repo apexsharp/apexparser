@@ -43,6 +43,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ApesSharp.cs" />
     <Compile Include="ApexApi\Id.cs" />
     <Compile Include="ApexApi\SObject.cs" />
     <Compile Include="Model\LogLevel.cs" />

@@ -149,7 +149,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApesSharp.cs" />
     <Compile Include="Converter\Apex\ApexCodeGenerator.cs" />
     <Compile Include="Converter\Apex\ExpressionConverter.cs" />
     <Compile Include="Formatter\FormatApexCode.cs" />
