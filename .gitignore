@@ -47,3 +47,4 @@ packages/
 *.json
 /*.bak
 /PrivateDemo
+/Demo
