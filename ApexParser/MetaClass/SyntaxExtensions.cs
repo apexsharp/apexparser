@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Toolbox;
 
 namespace ApexParser.MetaClass
 {
@@ -83,14 +84,17 @@ namespace ApexParser.MetaClass
         {
             if (other != null && syntax != null)
             {
-                syntax.LeadingComments = other.LeadingComments;
-                syntax.TrailingComments = other.TrailingComments;
-                syntax.Annotations = other.Annotations;
-                syntax.Modifiers = other.Modifiers;
+                syntax.LeadingComments = Concat(syntax.LeadingComments, other.LeadingComments);
+                syntax.TrailingComments = Concat(syntax.TrailingComments, other.TrailingComments);
+                syntax.Annotations = Concat(syntax.Annotations, other.Annotations);
+                syntax.Modifiers = Concat(syntax.Modifiers, other.Modifiers);
             }
 
             return syntax;
         }
+
+        private static List<T> Concat<T>(List<T> first, List<T> second) =>
+            first.EmptyIfNull().Concat(second.EmptyIfNull()).ToList();
 
         public static bool IsConstructor(this MethodDeclarationSyntax method) =>
             method is ConstructorDeclarationSyntax ||

@@ -198,6 +198,22 @@ namespace ApexParser.Visitors
             new BlockSyntax(statements).Accept(this);
         }
 
+        public const string SpecialCommentSignature = ":NoApex ";
+
+        protected override bool IsSpecialComment(string comment) =>
+            (comment ?? string.Empty).TrimStart().StartsWith(SpecialCommentSignature);
+
+        protected override string ProcessSpecialComment(string comment)
+        {
+            comment = (comment ?? string.Empty).TrimStart();
+            if (comment.StartsWith(SpecialCommentSignature))
+            {
+                comment = comment.Substring(SpecialCommentSignature.Length);
+            }
+
+            return comment;
+        }
+
         public override void VisitAnnotation(AnnotationSyntax node)
         {
             var attribute = ConvertUnitTestAnnotation(node, CurrentMember);

@@ -3,7 +3,6 @@
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using NUnit.Framework;
 
     public class Demo
     {
@@ -20,14 +19,13 @@
             {
                 Soql.Insert(contact);
             }
-            catch (DmlException e)
+            catch (DMLException e)
             {
                 ApexPages.AddMessages(e);
-
             }
+
             return null;
         }
-
 
         public static string UpdatePhone(string email, string newPhone)
         {
@@ -49,7 +47,6 @@
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = :email", email);
             return contacts;
         }
-
 
         public static List<Contact> GetContacts()
         {

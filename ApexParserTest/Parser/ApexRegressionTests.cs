@@ -694,5 +694,30 @@ namespace ApexParserTest.Parser
             var md = cd.Methods[0];
             Assert.AreEqual(1, md.LeadingComments.Count);
         }
+
+        [Test]
+        public void ClassInnerCommentsAfterInnerClassArePreserved()
+        {
+            var text = @"
+            class Test
+            {
+                // leading
+                class InnerTest
+                {
+                    // inner comment
+                } // trailing comment
+
+                // inner comments
+            }";
+
+            var cd = Apex.ClassDeclaration.Parse(text);
+            Assert.AreEqual(1, cd.InnerClasses.Count);
+            Assert.AreEqual(1, cd.InnerComments.Count);
+
+            cd = cd.InnerClasses[0];
+            Assert.AreEqual(1, cd.LeadingComments.Count);
+            Assert.AreEqual(1, cd.InnerComments.Count);
+            Assert.AreEqual(1, cd.TrailingComments.Count);
+        }
     }
 }

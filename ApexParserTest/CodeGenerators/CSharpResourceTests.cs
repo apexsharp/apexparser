@@ -80,5 +80,13 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_IMatcherIsGeneratedInCSharp() =>
             Check(fflib_IMatcher, fflib_IMatcher_CSharp);
+
+        [Test]
+        public void ApexDemoIsGeneratedInCSharp() =>
+            Check(ApexDemo, ApexDemo_CSharp);
+
+        [Test]
+        public void ApexDemoTestIsGeneratedInCSharp() =>
+            Check(ApexDemoTest, ApexDemoTest_CSharp);
     }
 }

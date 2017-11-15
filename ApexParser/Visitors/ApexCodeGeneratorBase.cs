@@ -67,6 +67,13 @@ namespace ApexParser.Visitors
                         isFirstMember = false;
                     }
                 }
+
+                if (!isFirstMember && !node.InnerComments.IsNullOrEmpty())
+                {
+                    AppendLine();
+                }
+
+                AppendComments(node.InnerComments);
             }
 
             AppendIndented("}}");
@@ -133,6 +140,12 @@ namespace ApexParser.Visitors
                     }
                 }
 
+                if (IsSpecialComment(comment.Value))
+                {
+                    EmitLine("{0}", ProcessSpecialComment(comment.Value).TrimEnd());
+                    continue;
+                }
+
                 var multiLine = comment.Value.Contains('\n');
                 if (multiLine)
                 {
@@ -150,6 +163,10 @@ namespace ApexParser.Visitors
                 }
             }
         }
+
+        protected virtual bool IsSpecialComment(string comment) => false;
+
+        protected virtual string ProcessSpecialComment(string comment) => comment;
 
         protected virtual void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node, string afterLastModifier = " ")
         {

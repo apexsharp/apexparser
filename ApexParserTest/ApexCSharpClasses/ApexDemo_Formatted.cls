@@ -42,7 +42,7 @@
         return contacts;
     }
 
-    private static List<Contact> GetContacts()
+    public static List<Contact> GetContacts()
     {
         List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact];
         return contacts;

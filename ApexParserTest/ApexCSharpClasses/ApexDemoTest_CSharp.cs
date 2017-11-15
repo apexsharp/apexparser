@@ -1,13 +1,11 @@
-﻿using SalesForceAPI;
-
-namespace ApexSharpDemo.ApexCode
+﻿namespace ApexSharpDemo.ApexCode
 {
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
     using NUnit.Framework;
 
-    [TestFixture, Ignore("Until we find how to store connect.json secure")]
+    [TestFixture]
     public class DemoTest
     {
         [OneTimeSetUp]
@@ -26,7 +24,7 @@ namespace ApexSharpDemo.ApexCode
         }
 
         [Test]
-        static void UpdatePhoneTestValidEmail()
+        public static void UpdatePhoneTestValidEmail()
         {
             Demo.UpdatePhone("jay@jay.com", "555-1212");
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'");
@@ -34,7 +32,7 @@ namespace ApexSharpDemo.ApexCode
         }
 
         [Test]
-        static void UpdatePhoneTestNotValidEmail()
+        public static void UpdatePhoneTestNotValidEmail()
         {
             Demo.UpdatePhone("nojay@jay.com", "555-1212");
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'");

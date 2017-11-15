@@ -953,5 +953,55 @@ namespace ApexParserTest.CodeGenerators
             Assert.AreEqual("bool", Normalize(ApexKeywords.Boolean));
             Assert.AreEqual(nameof(DateTime), Normalize(ApexKeywords.Datetime));
         }
+
+        [Test]
+        public void CommentsPrefixedWithNoApexAreCopiedAsIs()
+        {
+            var apex = Apex.ParseClass(@"
+            public class MyDemo {
+                private MyDemo(float s) { Size = s;while(true){break;} }
+                public void Test(string name, int age) {
+                    Contact c = new Contact(name, age);
+                    insert c;
+                }
+                //:NoApex public float Size
+                //:NoApex {
+                //:NoApex     get;
+                //:NoApex     private set;
+                //:NoApex }
+            }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    public class MyDemo
+                    {
+                        private MyDemo(float s)
+                        {
+                            Size = s;
+                            while (true)
+                            {
+                                break;
+                            }
+                        }
+
+                        public void Test(string name, int age)
+                        {
+                            Contact c = new Contact(name, age);
+                            Soql.Insert(c);
+                        }
+
+                        public float Size
+                        {
+                            get;
+                            private set;
+                        }
+                    }
+                }");
+        }
     }
 }

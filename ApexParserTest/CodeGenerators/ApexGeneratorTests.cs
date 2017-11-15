@@ -1039,5 +1039,32 @@ namespace ApexParserTest.CodeGenerators
                     }
                 }");
         }
+
+        [Test]
+        public void ClassInnerCommentsAfterInnerClassAreGenerated()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test
+                {
+                    // leading
+                    class InnerTest
+                    {
+                        // inner comment
+                    } // trailing comment
+                    // inner comments
+                } // trailing");
+
+            Check(apex,
+                @"class Test
+                {
+                    // leading
+                    class InnerTest
+                    {
+                        // inner comment
+                    } // trailing comment
+
+                    // inner comments
+                } // trailing");
+        }
     }
 }
