@@ -38,7 +38,7 @@ namespace ApexSharpDemo.ApexCode
      */
     public /* with sharing */ class fflib_ArgumentCaptor
     {
-        protected List<Object> argumentsCaptured = new List<Object>();
+        protected List<object> argumentsCaptured = new List<Object>();
 
         /**
          *	Factory method to create a new fflib_ArgumentCaptor.
@@ -61,7 +61,7 @@ namespace ApexSharpDemo.ApexCode
          *
          * 	@return a special matcher that matches any argument and remembers the value.
          */
-        public Object capture()
+        public object capture()
         {
             AnyObject myMatcher = new AnyObject(this);
             return fflib_Match.matches(myMatcher);
@@ -73,7 +73,7 @@ namespace ApexSharpDemo.ApexCode
          *
          * 	@return	captured argument value.
          */
-        public Object getValue()
+        public object getValue()
         {
             if (argumentsCaptured == null ||
 			argumentsCaptured.size()== 0)
@@ -91,7 +91,7 @@ namespace ApexSharpDemo.ApexCode
          *
          * 	@return	Returns all captured values. Use it when capturing multiple arguments on the same call or when the verified method was called multiple times.
          */
-        public List<Object> getAllValues()
+        public List<object> getAllValues()
         {
             return argumentsCaptured;
         }
@@ -100,7 +100,7 @@ namespace ApexSharpDemo.ApexCode
         {
             private fflib_ArgumentCaptor captor;
 
-            private Object value;
+            private object value;
 
             public AnyObject(fflib_ArgumentCaptor captor)
             {
@@ -108,7 +108,7 @@ namespace ApexSharpDemo.ApexCode
             }
 
             //match with all the possible values and store the arg value
-            public Boolean matches(Object arg)
+            public bool matches(object arg)
             {
                 value = arg;
                 return true;

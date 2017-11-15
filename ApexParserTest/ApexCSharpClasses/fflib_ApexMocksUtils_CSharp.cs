@@ -70,13 +70,13 @@ namespace ApexSharpDemo.ApexCode
          *		        }
          * 		]
          */
-        public static Object makeRelationship(Type parentsType, List<SObject> parents, SObjectField relationshipField, List<List<SObject>> children)
+        public static object makeRelationship(Type parentsType, List<SObject> parents, SObjectField relationshipField, List<List<SObject>> children)
         {
             // Find out more about this relationship...
-            String relationshipFieldName = relationshipField.getDescribe().getName();
+            string relationshipFieldName = relationshipField.getDescribe().getName();
             DescribeSObjectResult parentDescribe = parents.getSObjectType().getDescribe();
             List<Schema.ChildRelationship> childRelationships = parentDescribe.getChildRelationships();
-            String relationshipName = null;
+            string relationshipName = null;
             foreach (Schema.ChildRelationship childRelationship in childRelationships)
             {
                 if (childRelationship.getField()== relationshipField)
@@ -104,13 +104,13 @@ namespace ApexSharpDemo.ApexCode
         {
             private JSONParser childrenParser;
 
-            private String relationshipName;
+            private string relationshipName;
 
             private List<List<SObject>> children;
 
-            private Integer childListIdx = 0;
+            private int childListIdx = 0;
 
-            public InjectChildrenEventHandler(JSONParser childrenParser, String relationshipName, List<List<SObject>> children)
+            public InjectChildrenEventHandler(JSONParser childrenParser, string relationshipName, List<List<SObject>> children)
             {
                 this.childrenParser = childrenParser;
                 this.relationshipName = relationshipName;
@@ -118,7 +118,7 @@ namespace ApexSharpDemo.ApexCode
                 this.childrenParser.nextToken(); // Consume the outer array token
             }
 
-            public void nextToken(JSONParser fromStream, Integer depth, JSONGenerator toStream)
+            public void nextToken(JSONParser fromStream, int depth, JSONGenerator toStream)
             {
                 // Inject children?
                 JSONToken currentToken = fromStream.getCurrentToken();
@@ -141,7 +141,7 @@ namespace ApexSharpDemo.ApexCode
          **/
         private static void streamTokens(JSONParser fromStream, JSONGenerator toStream, JSONParserEvents events)
         {
-            Integer depth = 0;
+            int depth = 0;
             while (fromStream.nextToken()!=null)
             {
                 // Give event handler chance to inject
@@ -190,7 +190,7 @@ namespace ApexSharpDemo.ApexCode
          **/
         private interface JSONParserEvents
         {
-            void nextToken(JSONParser fromStream, Integer depth, JSONGenerator toStream);
+            void nextToken(JSONParser fromStream, int depth, JSONGenerator toStream);
         }
     }
 }

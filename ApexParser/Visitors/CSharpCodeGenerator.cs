@@ -25,6 +25,11 @@ namespace ApexParser.Visitors
             "SObjects",
         };
 
+        public List<string> UnitTestUsings { get; set; } = new List<string>
+        {
+            "NUnit.Framework",
+        };
+
         public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4, string @namespace = null)
         {
             var generator = new CSharpCodeGenerator { IndentSize = tabSize };
@@ -52,7 +57,7 @@ namespace ApexParser.Visitors
             {
                 if (IsTopLevelDeclaration)
                 {
-                    foreach (var ns in Usings.AsSmart())
+                    foreach (var ns in GetUsings(node).AsSmart())
                     {
                         AppendIndentedLine("using {0};", ns.Value);
                         if (ns.IsLast)
@@ -89,6 +94,17 @@ namespace ApexParser.Visitors
             {
                 AppendIndentedLine("}}");
             }
+        }
+
+        private IEnumerable<string> GetUsings(ClassDeclarationSyntax node)
+        {
+            var isTest = node?.Annotations?.Any(a => a?.IsTest ?? false);
+            if (isTest ?? false)
+            {
+                return Usings.Concat(UnitTestUsings);
+            }
+
+            return Usings;
         }
 
         protected override string ConvertModifier(string modifier, BaseSyntax ownerNode)
@@ -263,5 +279,29 @@ namespace ApexParser.Visitors
 
         protected override void AppendSoqlQuery(string soqlQuery) =>
             Append("Soql.Query<T>(\"{0}\")", soqlQuery.Substring(1, soqlQuery.Length - 2));
+
+        private static Dictionary<string, string> CSharpTypes { get; } =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { ApexKeywords.Boolean, "bool" },
+                { ApexKeywords.Byte, "byte" },
+                { ApexKeywords.Char, "char" },
+                { ApexKeywords.Datetime, nameof(DateTime) },
+                { ApexKeywords.Date, nameof(DateTime) },
+                { ApexKeywords.Decimal, "decimal" },
+                { ApexKeywords.Double, "double" },
+                { ApexKeywords.Exception, nameof(Exception) },
+                { ApexKeywords.Float, "float" },
+                { ApexKeywords.Int, "int" },
+                { ApexKeywords.Integer, "int" },
+                { ApexKeywords.Long, "long" },
+                { ApexKeywords.Object, "object" },
+                { ApexKeywords.Short, "short" },
+                { ApexKeywords.String, "string" },
+                { ApexKeywords.Void, "void" },
+            };
+
+        public override string NormalizeTypeName(string identifier) =>
+            CSharpTypes.TryGetValue(identifier, out var result) ? result : identifier;
     }
 }

@@ -3,6 +3,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     /**
      * Copyright (c) 2014, FinancialForce.com, inc
@@ -35,17 +36,17 @@ namespace ApexSharpDemo.ApexCode
         [IsTest]
         static void itShouldGenerateValidIDs()
         {
-            String id1 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id2 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id3 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id4 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id5 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id6 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id7 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id8 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id9 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id10 = fflib_IDGenerator.generate(Account.SObjectType);
-            String id11 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id1 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id2 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id3 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id4 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id5 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id6 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id7 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id8 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id9 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id10 = fflib_IDGenerator.generate(Account.SObjectType);
+            string id11 = fflib_IDGenerator.generate(Account.SObjectType);
             System.assertEquals("001000000000001AAA", id1);
             System.assertEquals("001000000000002AAA", id2);
             System.assertEquals("001000000000003AAA", id3);

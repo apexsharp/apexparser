@@ -31,18 +31,18 @@ namespace ApexSharpDemo.ApexCode
      */
     public /* with sharing */ class fflib_IDGenerator
     {
-        private static Integer fakeIdCount = 0;
+        private static int fakeIdCount = 0;
 
-        private static readonly String ID_PATTERN = "000000000000";
+        private static readonly string ID_PATTERN = "000000000000";
 
         /**
          * Generate a fake Salesforce Id for the given SObjectType
          */
         public static ID generate(Schema.SObjectType sobjectType)
         {
-            String keyPrefix = sobjectType.getDescribe().getKeyPrefix();
+            string keyPrefix = sobjectType.getDescribe().getKeyPrefix();
             fakeIdCount++;
-            String fakeIdPrefix = ID_PATTERN.substring(0, 12 - fakeIdCount.format().length());
+            string fakeIdPrefix = ID_PATTERN.substring(0, 12 - fakeIdCount.format().length());
             return Id.valueOf(keyPrefix + fakeIdPrefix + fakeIdCount);
         }
     }

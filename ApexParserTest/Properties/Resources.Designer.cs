@@ -61,6 +61,189 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to public class Demo
+        ///{
+        ///    public Contact contact { get; set; }
+        ///
+        ///    public Demo() {
+        ///        contact = new Contact();
+        ///    }
+        ///
+        ///    public PageReference Save() {
+        ///        try {
+        ///            insert contact;
+        ///        } catch(DMLException e) {
+        ///            ApexPages.AddMessages(e);
+        ///
+        ///        }
+        ///        return null;
+        ///    }
+        ///
+        ///
+        ///    public static string UpdatePhone(string email, string newPhone)
+        ///    {
+        ///        List&lt;Contact&gt; contacts = GetContactByEMail(email);
+        ///        if(contacts.IsEmpty()) {
+        ///            r [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApexDemo {
+            get {
+                return ResourceManager.GetString("ApexDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///    using NUnit.Framework;
+        ///
+        ///    public class Demo
+        ///    {
+        ///        public Contact contact { get; set; }
+        ///
+        ///        public Demo()
+        ///        {
+        ///            contact = new Contact();
+        ///        }
+        ///
+        ///        public PageReference Save()
+        ///        {
+        ///            try
+        ///            {
+        ///                Soql.Insert(contact);
+        ///            }
+        ///            catch (DmlException e)
+        ///            {
+        ///                ApexPages [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApexDemo_CSharp {
+            get {
+                return ResourceManager.GetString("ApexDemo_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class Demo
+        ///{
+        ///    public Contact contact { get; set; }
+        ///
+        ///    public Demo() {
+        ///        contact = new Contact();
+        ///    }
+        ///
+        ///    public PageReference Save() {
+        ///        try {
+        ///            insert contact;
+        ///        } catch(DMLException e) {
+        ///            ApexPages.AddMessages(e);
+        ///
+        ///        }
+        ///        return null;
+        ///    }
+        ///
+        ///
+        ///    public static string UpdatePhone(string email, string newPhone)
+        ///    {
+        ///        List&lt;Contact&gt; contacts = GetContactByEMail(email);
+        ///        if(contacts.IsEmpty()) {
+        ///            r [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApexDemo_Formatted {
+            get {
+                return ResourceManager.GetString("ApexDemo_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @IsTest
+        ///private class DemoTest {
+        ///
+        ///    //:NoApex   [OneTimeSetUp]
+        ///    //:NoApex   public void NoApexSetup()
+        ///    //:NoApex   {
+        ///    //:NoApex           new ApexSharp().Connect(&quot;C:\\DevSharp\\connect.json&quot;);
+        ///    //:NoApex   }
+        ///
+        ///    @testSetup
+        ///    static void Setup() {
+        ///        Contact contactNew = new Contact();
+        ///        contactNew.LastName = &apos;Jay&apos;;
+        ///        contactNew.Email = &apos;jay@jay.com&apos;;
+        ///        insert contactNew;
+        ///    }
+        ///
+        ///    @IsTest
+        ///    static void UpdatePhoneTestValidEmail() {
+        ///        Demo.U [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApexDemoTest {
+            get {
+                return ResourceManager.GetString("ApexDemoTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using SalesForceAPI;
+        ///
+        ///namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///    using NUnit.Framework;
+        ///
+        ///    [TestFixture, Ignore(&quot;Until we find how to store connect.json secure&quot;)]
+        ///    public class DemoTest
+        ///    {
+        ///        [OneTimeSetUp]
+        ///        public void NoApexSetup()
+        ///        {
+        ///            new ApexSharp().Connect(&quot;C:\\DevSharp\\connect.json&quot;);
+        ///        }
+        ///
+        ///        [SetUp]
+        ///        public static void Setup()
+        ///        {
+        ///            Contact con [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApexDemoTest_CSharp {
+            get {
+                return ResourceManager.GetString("ApexDemoTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @IsTest
+        ///private class DemoTest {
+        ///
+        ///    //:NoApex   [OneTimeSetUp]
+        ///    //:NoApex   public void NoApexSetup()
+        ///    //:NoApex   {
+        ///    //:NoApex           new ApexSharp().Connect(&quot;C:\\DevSharp\\connect.json&quot;);
+        ///    //:NoApex   }
+        ///
+        ///    @testSetup
+        ///    static void Setup() {
+        ///        Contact contactNew = new Contact();
+        ///        contactNew.LastName = &apos;Jay&apos;;
+        ///        contactNew.Email = &apos;jay@jay.com&apos;;
+        ///        insert contactNew;
+        ///    }
+        ///
+        ///    @IsTest
+        ///    static void UpdatePhoneTestValidEmail() {
+        ///        Demo.U [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApexDemoTest_Formatted {
+            get {
+                return ResourceManager.GetString("ApexDemoTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @IsTest
         ///private class ApplicationTest 
         ///{
@@ -1565,17 +1748,21 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /**
-        /// * Copyright (c) 2014, FinancialForce.com, inc
-        /// * All rights reserved.
-        /// *
-        /// * Redistribution and use in source and binary forms, with or without modification,
-        /// * are permitted provided that the following conditions are met:
-        /// *
-        /// * - Redistributions of source code must retain the above copyright notice,
-        /// *      this list of conditions and the following disclaimer.
-        /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    /**
+        ///     * Copyright (c) 2014, FinancialForce.com, inc
+        ///     * All rights reserved.
+        ///     *
+        ///     * Redistribution and use in source and binary forms, with or without modification,
+        ///     * are permitted provided that the following conditions are met:
+        ///     *
+        ///     * - Redistributions of source code must retain the above copyright notice,
+        ///     *      this list of conditions and the following d [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IMatcher_CSharp {
             get {
@@ -1594,7 +1781,7 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IMatcher_Formatted {
             get {

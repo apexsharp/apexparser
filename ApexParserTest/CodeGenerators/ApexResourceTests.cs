@@ -90,5 +90,13 @@ namespace ApexParserTest.CodeGenerators
         [Test]
         public void fflib_IMatcherIsFormattedUsingNewApexFormatter() =>
             Check(fflib_IMatcher, fflib_IMatcher_Formatted);
+
+        [Test]
+        public void ApexDemoIsFormattedUsingNewApexFormatter() =>
+            Check(ApexDemo, ApexDemo_Formatted);
+
+        [Test]
+        public void ApexDemoTestIsFormattedUsingNewApexFormatter() =>
+            Check(ApexDemoTest, ApexDemoTest_Formatted);
     }
 }

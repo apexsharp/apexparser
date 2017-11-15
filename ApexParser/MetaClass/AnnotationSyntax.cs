@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Parser;
 using ApexParser.Visitors;
 
 namespace ApexParser.MetaClass
@@ -18,5 +19,7 @@ namespace ApexParser.MetaClass
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitAnnotation(this);
 
         public override IEnumerable<BaseSyntax> ChildNodes => NoChildren;
+
+        public bool IsTest => ApexKeywords.UnitTestKeywords.Contains(Identifier);
     }
 }

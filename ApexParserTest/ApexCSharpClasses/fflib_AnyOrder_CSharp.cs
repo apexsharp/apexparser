@@ -22,9 +22,9 @@ namespace ApexSharpDemo.ApexCode
          */
         protected override void verify(fflib_QualifiedMethod qm, fflib_MethodArgValues methodArg, fflib_VerificationMode verificationMode)
         {
-            Integer methodCount = getMethodCount(qm, methodArg);
-            String qualifier = "";
-            Integer expectedCount = null;
+            int methodCount = getMethodCount(qm, methodArg);
+            string qualifier = "";
+            int expectedCount = null;
             if ((verificationMode.VerifyMin == verificationMode.VerifyMax)&& methodCount != verificationMode.VerifyMin)
             {
                 expectedCount = verificationMode.VerifyMin;
@@ -46,10 +46,10 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        private Integer getMethodCount(fflib_QualifiedMethod qm, fflib_MethodArgValues methodArg)
+        private int getMethodCount(fflib_QualifiedMethod qm, fflib_MethodArgValues methodArg)
         {
             List<fflib_IMatcher> matchers = fflib_Match.Matching ? fflib_Match.getAndClearMatchers(methodArg.argValues.size()): null;
-            Integer retval = 0;
+            int retval = 0;
             List<fflib_MethodArgValues> methodArgs = fflib_MethodCountRecorder.getMethodArgumentsByTypeName().get(qm);
             if (methodArgs != null)
             {
@@ -73,9 +73,9 @@ namespace ApexSharpDemo.ApexCode
             return retval;
         }
 
-        private Integer countCalls(List<fflib_MethodArgValues> methodArgs, fflib_MethodArgValues methodArg)
+        private int countCalls(List<fflib_MethodArgValues> methodArgs, fflib_MethodArgValues methodArg)
         {
-            Integer count = 0;
+            int count = 0;
             foreach (fflib_MethodArgValues arg in methodArgs)
             {
                 if (arg == methodArg)

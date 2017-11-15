@@ -37,6 +37,36 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
+        public void EmptyTestClassDeclarationProducesTheRequiredNamespaceImports()
+        {
+            var cd = new ClassDeclarationSyntax
+            {
+                Identifier = "TestClass",
+                Annotations = new List<AnnotationSyntax>
+                {
+                    new AnnotationSyntax
+                    {
+                        Identifier = "IsTest"
+                    }
+                }
+            };
+
+            Check(cd,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+                    using NUnit.Framework;
+
+                    [IsTest]
+                    class TestClass
+                    {
+                    }
+                }");
+        }
+
+        [Test]
         public void ClassDeclarationWithCommentsIsEmittedWithSingleLineComments()
         {
             var cd = new ClassDeclarationSyntax
@@ -106,7 +136,7 @@ namespace ApexParserTest.CodeGenerators
             Assert.AreEqual("List<Custom.Class>", apexList.ToCSharp());
 
             var apexArray = new TypeSyntax("String") { IsArray = true };
-            Assert.AreEqual("String[]", apexArray.ToCSharp());
+            Assert.AreEqual("string[]", apexArray.ToCSharp());
         }
 
         [Test]
@@ -689,7 +719,7 @@ namespace ApexParserTest.CodeGenerators
                             }
                         }
 
-                        public void Test(String name, int age)
+                        public void Test(string name, int age)
                         {
                             Contact c = new Contact(name, age);
                             Soql.Insert(c);
@@ -850,6 +880,17 @@ namespace ApexParserTest.CodeGenerators
                         }
                     }
                 }");
+        }
+
+        [Test]
+        public void BuiltinApexTypesConvertedToCSharpTypes()
+        {
+            string Normalize(string id) =>
+                new CSharpCodeGenerator().NormalizeTypeName(id);
+
+            Assert.AreEqual("string", Normalize(ApexKeywords.String));
+            Assert.AreEqual("bool", Normalize(ApexKeywords.Boolean));
+            Assert.AreEqual(nameof(DateTime), Normalize(ApexKeywords.Datetime));
         }
     }
 }

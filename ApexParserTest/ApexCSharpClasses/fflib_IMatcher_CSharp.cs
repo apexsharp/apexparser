@@ -38,6 +38,6 @@ namespace ApexSharpDemo.ApexCode
          * @param arg The argument value supplied to the method
          * @return Boolean True if the argument value is a match, false otherwise.
          */
-        Boolean matches(Object arg);
+        bool matches(object arg);
     }
 }

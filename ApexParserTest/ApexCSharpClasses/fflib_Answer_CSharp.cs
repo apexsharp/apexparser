@@ -20,6 +20,6 @@ namespace ApexSharpDemo.ApexCode
          *	@throws The exception to be thrown.
          *	@return The value to be returned.
          */
-        Object answer(fflib_InvocationOnMock invocation);
+        object answer(fflib_InvocationOnMock invocation);
     }
 }

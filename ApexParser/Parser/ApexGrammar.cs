@@ -45,7 +45,7 @@ namespace ApexParser.Parser
         // returns the keyword normalized to its canonic representation
         // examples: void, testMethod
         protected internal virtual Parser<string> Keyword(string text) =>
-            Parse.IgnoreCase(text).Return(text);
+            Parse.IgnoreCase(text).Then(n => Parse.Not(Parse.LetterOrDigit.Or(Parse.Char('_')))).Return(text);
 
         // examples: int, void
         protected internal virtual Parser<TypeSyntax> SystemType =>
@@ -70,7 +70,6 @@ namespace ApexParser.Parser
             Keyword(ApexKeywords.List)).Or(
             Keyword(ApexKeywords.Map)).Or(
             Keyword(ApexKeywords.Void))
-                .Text().Then(n => Parse.Not(Parse.LetterOrDigit.Or(Parse.Char('_'))).Return(n))
                 .Token().Select(n => new TypeSyntax(n))
                 .Named("SystemType");
 
@@ -478,7 +477,7 @@ namespace ApexParser.Parser
 
         // examples: return x; insert y; delete z;
         protected internal virtual Parser<string> KeywordExpressionStatement(string keyword) =>
-            from key in Parse.IgnoreCase(keyword).Token()
+            from key in Keyword(keyword).Token()
             from expr in GenericExpression.XOptional()
             from semicolon in Parse.Char(';')
             select expr.GetOrDefault();

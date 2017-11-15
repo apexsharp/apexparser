@@ -3,6 +3,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     /*
      * Copyright (c) 2016-2017 FinancialForce.com, inc.  All rights reserved.
@@ -45,7 +46,7 @@ namespace ApexSharpDemo.ApexCode
             //Then
             fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(TestInnerClass.class);
             ((fflib_MyList.IList)mocks.verify(mockList)).set(fflib_Match.anyInteger(),  argument.capture());
-            Object capturedArg = argument.getValue();
+            object capturedArg = argument.getValue();
             System.assertNotEquals(null, capturedArg, "CapturedArg should not be null");
             System.assert(capturedArg instanceof TestInnerClass, "CapturedArg should be SObject, instead was "+ capturedArg);
             TestInnerClass testValueCaptured = (TestInnerClass)capturedArg;
@@ -80,7 +81,7 @@ namespace ApexSharpDemo.ApexCode
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
             fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
-            List<String> stringList = new List<String>{"3"};
+            List<string> stringList = new List<String>{"3"};
 
             // When
             mockList.add("Fred");
@@ -92,7 +93,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add((String)argument.capture());
             ((fflib_MyList.IList)mocks.verify(mockList)).add((List<String>)argument.capture());
             System.assertEquals(stringList, (List<String>)argument.getValue(), "the argument captured is not as expected");
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(2, argsCaptured.size(), "expected 2 argument to be captured");
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
         }
@@ -150,7 +151,7 @@ namespace ApexSharpDemo.ApexCode
             // Then
             fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(String.class);
             ((fflib_MyList.IList)mocks.verify(mockList, 4)).add((String)argument.capture());
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(4, argsCaptured.size(), "expected 4 argument to be captured");
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
             System.assertEquals("Barney", (String)argsCaptured[1], "the second value is not as expected");
@@ -175,7 +176,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((String)argument.capture());
             ((fflib_MyList.IList)mocks.verify(mockList)).get2((Integer)fflib_Match.eq(3),
 				(String)argument.capture());
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(3, argsCaptured.size(), "expected 3 argument to be captured");
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
             System.assertEquals("Barney", (String)argsCaptured[1], "the second value is not as expected");
@@ -198,7 +199,7 @@ namespace ApexSharpDemo.ApexCode
 				(String)argument.capture(),
 				(String)argument.capture(),
 				(String)fflib_Match.eq("Betty"));
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(2, argsCaptured.size(), "expected 2 argument to be captured");
             System.assertEquals("Barney", (String)argsCaptured[0], "the first value is not as expected");
             System.assertEquals("Wilma", (String)argsCaptured[1], "the second value is not as expected");
@@ -217,7 +218,7 @@ namespace ApexSharpDemo.ApexCode
             // Then
             fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(List<String>.class);
             ((fflib_MyList.IList)mocks.verify(mockList, fflib_ApexMocks.NEVER)).add((List<String>)argument.capture());
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(0, argsCaptured.size(), "expected 0 argument to be captured");
             System.assertEquals(null, argument.getValue(), "no value should be captured, so must return null");
         }
@@ -265,7 +266,7 @@ namespace ApexSharpDemo.ApexCode
 				fflib_Match.eqString("First call")),
 			(String)fflib_Match.allOf(argument.capture(),
 				fflib_Match.eqString("First call")));
-            List<Object> capturedValues = argument.getAllValues();
+            List<object> capturedValues = argument.getAllValues();
             System.assertEquals(0, capturedValues.size(),
 			"nothing should have been capture because the matcher it not really a capture type, but a allOf()");
             System.assertEquals(null, (String)argument.getValue(),
@@ -306,7 +307,7 @@ namespace ApexSharpDemo.ApexCode
             //Then
             fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(TestInnerClass.class);
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).set(fflib_Match.anyInteger(),  argument.capture());
-            Object capturedArg = argument.getValue();
+            object capturedArg = argument.getValue();
             System.assertNotEquals(null, capturedArg, "CapturedArg should not be null");
             System.assert(capturedArg instanceof TestInnerClass, "CapturedArg should be SObject, instead was "+ capturedArg);
             TestInnerClass testValueCaptured = (TestInnerClass)capturedArg;
@@ -343,7 +344,7 @@ namespace ApexSharpDemo.ApexCode
             fflib_ApexMocks mocks = new fflib_ApexMocks();
             fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<Object>{mockList});
-            List<String> stringList = new List<String>{"3"};
+            List<string> stringList = new List<String>{"3"};
 
             // When
             mockList.add("Fred");
@@ -355,7 +356,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((String)argument.capture());
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((List<String>)argument.capture());
             System.assertEquals(stringList, (List<String>)argument.getValue(), "the argument captured is not as expected");
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(2, argsCaptured.size(), "expected 2 argument to be captured");
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
         }
@@ -416,7 +417,7 @@ namespace ApexSharpDemo.ApexCode
             // Then
             fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(String.class);
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(4))).add((String)argument.capture());
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(4, argsCaptured.size(), "expected 4 argument to be captured");
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
             System.assertEquals("Barney", (String)argsCaptured[1], "the second value is not as expected");
@@ -442,7 +443,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(2))).add((String)argument.capture());
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).get2((Integer)fflib_Match.eq(3),
 				(String)argument.capture());
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(3, argsCaptured.size(), "expected 3 argument to be captured");
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
             System.assertEquals("Barney", (String)argsCaptured[1], "the second value is not as expected");
@@ -466,7 +467,7 @@ namespace ApexSharpDemo.ApexCode
 				(String)argument.capture(),
 				(String)argument.capture(),
 				(String)fflib_Match.eq("Betty"));
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(2, argsCaptured.size(), "expected 2 argument to be captured");
             System.assertEquals("Barney", (String)argsCaptured[0], "the first value is not as expected");
             System.assertEquals("Wilma", (String)argsCaptured[1], "the second value is not as expected");
@@ -486,7 +487,7 @@ namespace ApexSharpDemo.ApexCode
             // Then
             fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(List<String>.class);
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.never())).add((List<String>)argument.capture());
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(0, argsCaptured.size(), "expected 0 argument to be captured");
             System.assertEquals(null, argument.getValue(), "no value should be captured, so must return null");
         }
@@ -536,7 +537,7 @@ namespace ApexSharpDemo.ApexCode
 				fflib_Match.eqString("First call")),
 			(String)fflib_Match.allOf(argument.capture(),
 				fflib_Match.eqString("First call")));
-            List<Object> capturedValues = argument.getAllValues();
+            List<object> capturedValues = argument.getAllValues();
             System.assertEquals(0, capturedValues.size(),
 			"nothing should have been capture because the matcher it not really a capture type, but a allOf()");
             System.assertEquals(null, (String)argument.getValue(),
@@ -561,7 +562,7 @@ namespace ApexSharpDemo.ApexCode
             // Then
             fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(String.class);
             ((fflib_MyList.IList)mocks.verify(mockList, 6)).add((String)argument.capture());
-            List<Object> argsCaptured = argument.getAllValues();
+            List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(6, argsCaptured.size(), "expected 6 arguments to be captured");
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
             System.assertEquals("Barney", (String)argsCaptured[1], "the second value is not as expected");
@@ -573,9 +574,9 @@ namespace ApexSharpDemo.ApexCode
 
         private class TestInnerClass
         {
-            public Integer i;
+            public int i;
 
-            public String s;
+            public string s;
         }
     }
 }

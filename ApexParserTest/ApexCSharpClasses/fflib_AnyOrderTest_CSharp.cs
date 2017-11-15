@@ -3,6 +3,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     /*
      Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
@@ -13,7 +14,7 @@ namespace ApexSharpDemo.ApexCode
     [IsTest]
     private class fflib_AnyOrderTest
     {
-        private static readonly String BASIC_VERIFY_ASSERTION_MESSAGE = "Expected : {0}, Actual: {1} -- Wanted but not invoked: ";
+        private static readonly string BASIC_VERIFY_ASSERTION_MESSAGE = "Expected : {0}, Actual: {1} -- Wanted but not invoked: ";
 
         /*
          *	replicating the apex mocks tests with the new syntax
@@ -292,7 +293,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("bob");
             mockList.add("bob");
             mockList.add("bob");
-            String customAssertMessage = "Custom message to explain the reason of the verification";
+            string customAssertMessage = "Custom message to explain the reason of the verification";
 
             // Then
             try
@@ -302,8 +303,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (Exception exc)
             {
-                String exceptionMessage = exc.getMessage();
-                String expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<String>{"2", "3"})+ fflib_MyList.getStubClassName()+ ".add(String). "+ customAssertMessage + ".";
+                string exceptionMessage = exc.getMessage();
+                string expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<String>{"2", "3"})+ fflib_MyList.getStubClassName()+ ".add(String). "+ customAssertMessage + ".";
                 System.assertEquals(expectedMessage, exceptionMessage,
 				"The exception was caught, but the message was not as expected. "+
 				"Expected: ["+ expectedMessage + "],  Actual: ["+ exceptionMessage + "].");
@@ -369,8 +370,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -427,8 +428,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -497,8 +498,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 3 or fewer times, Actual: 4 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 3 or fewer times, Actual: 4 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -557,8 +558,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 3 or fewer times, Actual: 4 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 3 or fewer times, Actual: 4 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -619,8 +620,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -680,8 +681,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -731,8 +732,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -774,8 +775,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 3 or more times, Actual: 2 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -807,8 +808,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 5 or fewer times, Actual: 6 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 5 or fewer times, Actual: 6 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -837,8 +838,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 5 or fewer times, Actual: 6 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 5 or fewer times, Actual: 6 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -985,8 +986,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -1043,8 +1044,8 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ex)
             {
-                String expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
-                String actualMessage = ex.getMessage();
+                string expectedMessage = "Expected : 1 or more times, Actual: 0 -- Wanted but not invoked: "+ fflib_MyList.getStubClassName()+ ".add(String).";
+                string actualMessage = ex.getMessage();
                 System.assertEquals(expectedMessage, actualMessage,
 				"the exception has been caught as expected, however the message is not as expected");
             }
@@ -1053,9 +1054,9 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	HELPER METHODS
          */
-        private static void assertFailMessage(String exceptionMessage, Integer expectedInvocations, Integer actualsInvocations)
+        private static void assertFailMessage(string exceptionMessage, int expectedInvocations, int actualsInvocations)
         {
-            String expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<String>{String.valueOf(expectedInvocations), String.valueOf(actualsInvocations)});
+            string expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<String>{String.valueOf(expectedInvocations), String.valueOf(actualsInvocations)});
             System.assert(exceptionMessage.contains(expectedMessage),
 			"The exception was caught, but the message was not as expected. "+
 			"Expected: ["+ expectedMessage + "],  Actual: ["+ exceptionMessage + "].");
@@ -1066,7 +1067,7 @@ namespace ApexSharpDemo.ApexCode
          */
         private class isOdd : fflib_IMatcher
         {
-            public Boolean matches(Object arg)
+            public bool matches(object arg)
             {
                 return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 1: false;
             }
@@ -1074,7 +1075,7 @@ namespace ApexSharpDemo.ApexCode
 
         private class isEven : fflib_IMatcher
         {
-            public Boolean matches(Object arg)
+            public bool matches(object arg)
             {
                 return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 0: false;
             }

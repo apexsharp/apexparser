@@ -3,6 +3,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     /*
      * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
@@ -26,7 +27,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
+            string actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
 
             // Then
             System.assertEquals("hello", actualValue);
@@ -107,11 +108,11 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String s1 = mockList.get(1);
-            String s2 = mockList.get(2);
-            String s3 = mockList.get(3);
-            String s4 = mockList.get(4);
-            String s5 = mockList.get(5);
+            string s1 = mockList.get(1);
+            string s2 = mockList.get(2);
+            string s3 = mockList.get(3);
+            string s4 = mockList.get(4);
+            string s5 = mockList.get(5);
 
             // Then
             System.assertEquals("Odd", s1);
@@ -146,7 +147,7 @@ namespace ApexSharpDemo.ApexCode
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
             fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
-            String expectedError = "The number of matchers defined (1)."+ " does not match the number expected (2)\n"+ "If you are using matchers all arguments must be passed in as matchers.\n"+ "For example myList.add(fflib_Match.anyInteger(), \'String\') should be defined as myList.add(fflib_Match.anyInteger(), fflib_Match.eq(\'String\')).";
+            string expectedError = "The number of matchers defined (1)."+ " does not match the number expected (2)\n"+ "If you are using matchers all arguments must be passed in as matchers.\n"+ "For example myList.add(fflib_Match.anyInteger(), \'String\') should be defined as myList.add(fflib_Match.anyInteger(), fflib_Match.eq(\'String\')).";
 
             // Then
             try
@@ -167,7 +168,7 @@ namespace ApexSharpDemo.ApexCode
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
             fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
-            String expectedError = "The number of matchers defined (1)."+ " does not match the number expected (2)\n"+ "If you are using matchers all arguments must be passed in as matchers.\n"+ "For example myList.add(fflib_Match.anyInteger(), \'String\') should be defined as myList.add(fflib_Match.anyInteger(), fflib_Match.eq(\'String\')).";
+            string expectedError = "The number of matchers defined (1)."+ " does not match the number expected (2)\n"+ "If you are using matchers all arguments must be passed in as matchers.\n"+ "For example myList.add(fflib_Match.anyInteger(), \'String\') should be defined as myList.add(fflib_Match.anyInteger(), fflib_Match.eq(\'String\')).";
             mockList.get2(1, "String literal");
 
             // Then
@@ -246,7 +247,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get(0);
+            string actualValue = mockList.get(0);
 
             // Then
             System.assertEquals("bob", actualValue);
@@ -263,7 +264,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get(0);
+            string actualValue = mockList.get(0);
 
             // Then
             System.assertEquals(null, actualValue);
@@ -281,9 +282,9 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValueArg0 = mockList.get(0);
-            String actualValueArg1 = mockList.get(1);
-            String actualValueArg2 = mockList.get(2);
+            string actualValueArg0 = mockList.get(0);
+            string actualValueArg1 = mockList.get(1);
+            string actualValueArg2 = mockList.get(2);
 
             // Then
             System.assertEquals("bob", actualValueArg0);
@@ -303,7 +304,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get(0);
+            string actualValue = mockList.get(0);
 
             // Then
             System.assertEquals("bob2", actualValue);
@@ -320,7 +321,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            Boolean actualValue = mockList.isEmpty();
+            bool actualValue = mockList.isEmpty();
 
             // Then
             System.assertEquals(false, actualValue);
@@ -432,7 +433,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.clear();
 
             // When
-            Boolean actualValue = mockList.isEmpty();
+            bool actualValue = mockList.isEmpty();
 
             // Then
             System.assertEquals(false, actualValue);
@@ -602,11 +603,11 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValueArg0 = mockList.get2(0, "zero");
-            String actualValueArg1 = mockList.get2(1, "one");
-            String actualValueArg2 = mockList.get2(0, "two");
-            String actualValueArg3 = mockList.get2(1, "three");
-            String actualValueArg4 = mockList.get2(0, "three");
+            string actualValueArg0 = mockList.get2(0, "zero");
+            string actualValueArg1 = mockList.get2(1, "one");
+            string actualValueArg2 = mockList.get2(0, "two");
+            string actualValueArg3 = mockList.get2(1, "three");
+            string actualValueArg4 = mockList.get2(0, "three");
 
             // Then
             System.assertEquals("bob", actualValueArg0);
@@ -622,13 +623,13 @@ namespace ApexSharpDemo.ApexCode
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
             fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
-            String expected = "hello";
+            string expected = "hello";
             mocks.startStubbing();
             mocks.when(mockList.get(null)).thenReturn(expected);
             mocks.stopStubbing();
 
             // When
-            String actual = mockList.get(null);
+            string actual = mockList.get(null);
 
             // Then
             System.assertEquals(expected, actual);
@@ -714,7 +715,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actual = first.get(0);
+            string actual = first.get(0);
 
             // Then
             System.assertEquals("First", actual, "Should have returned stubbed value");
@@ -737,7 +738,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actual = first.get(0);
+            string actual = first.get(0);
 
             // Then
             System.assertEquals("Second", actual, "Should have returned stubbed value");
@@ -1443,7 +1444,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, MY_MOCK_LIST.get(1), "it should be possible stub using the null value");
         }
 
-        private static void assertExceptionMessage(String expectedMessage)
+        private static void assertExceptionMessage(string expectedMessage)
         {
             try
             {
@@ -1456,7 +1457,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        private static void assertExceptionMessageForGet2(String expectedMessage)
+        private static void assertExceptionMessageForGet2(string expectedMessage)
         {
             try
             {
@@ -1469,7 +1470,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        private static void assertExceptionMessageOnVoidMethod(String expectedMessage)
+        private static void assertExceptionMessageOnVoidMethod(string expectedMessage)
         {
             try
             {
@@ -1482,7 +1483,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        private static void assertExceptionMessageOnAddMoreVoidMethod(String expectedMessage)
+        private static void assertExceptionMessageOnAddMoreVoidMethod(string expectedMessage)
         {
             try
             {
@@ -1495,12 +1496,12 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        private static void assertReturnedValue(String expectedValue)
+        private static void assertReturnedValue(string expectedValue)
         {
             System.assertEquals(expectedValue, MY_MOCK_LIST.get(1), "the method did not returned the expected value");
         }
 
-        private static void assertReturnedValueForGet2(String expectedValue)
+        private static void assertReturnedValueForGet2(string expectedValue)
         {
             System.assertEquals(expectedValue, MY_MOCK_LIST.get2(2, "Hello."), "the method did not returned the expected value");
         }
@@ -1511,7 +1512,7 @@ namespace ApexSharpDemo.ApexCode
 
         private class isOdd : fflib_IMatcher
         {
-            public Boolean matches(Object arg)
+            public bool matches(object arg)
             {
                 return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 1: false;
             }
@@ -1519,7 +1520,7 @@ namespace ApexSharpDemo.ApexCode
 
         private class isEven : fflib_IMatcher
         {
-            public Boolean matches(Object arg)
+            public bool matches(object arg)
             {
                 return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 0: false;
             }

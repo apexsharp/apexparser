@@ -9,7 +9,13 @@ namespace ApexParser.Parser
     public static class ApexKeywords
     {
         public static HashSet<string> ReservedWords { get; } =
-            new HashSet<string>(AllStringConstants, StringComparer.OrdinalIgnoreCase);
+            GetStrings(AllStringConstants.ToArray());
+
+        public static HashSet<string> UnitTestKeywords { get; } =
+            GetStrings(IsTest, TestSetup, TestMethod, TestVisible);
+
+        private static HashSet<string> GetStrings(params string[] strings) =>
+            new HashSet<string>(strings, StringComparer.OrdinalIgnoreCase);
 
         public static Dictionary<string, string> NormalizedKeywords { get; } =
             AllStringConstants.Concat(AllStringProperties).Except("set")
@@ -28,11 +34,11 @@ namespace ApexParser.Parser
         // 1. Reserved keywords are declared as constants
         // 2. Non-reserved keywords are declared as static properties
 
-        // Reference:
-        // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_reserved_words.htm
-        // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_primitives.htm
+            // Reference:
+            // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_reserved_words.htm
+            // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_primitives.htm
 
-        // 1. Reserved words
+            // 1. Reserved words
         public const string Abstract = "abstract";
         ////public const string Activate = "activate"; // reserved for future use
         public const string And = "and";

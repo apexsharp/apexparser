@@ -3,6 +3,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     /*
      Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
@@ -33,7 +34,7 @@ namespace ApexSharpDemo.ApexCode
             }
             catch (fflib_ApexMocks.ApexMocksException ansExpt)
             {
-                String expectedMessage = "an error occurs on the execution of the answer";
+                string expectedMessage = "an error occurs on the execution of the answer";
 
                 // Then
                 System.assertEquals(expectedMessage, ansExpt.getMessage(), "the message from the answer is not as expected");
@@ -54,9 +55,9 @@ namespace ApexSharpDemo.ApexCode
             mockList.get2(0, "Hi hi Hello Hi hi");
 
             // Then
-            Object methodCalled = actualInvocation.getMethod();
+            object methodCalled = actualInvocation.getMethod();
             System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
-            String expectedMethodSignature = fflib_MyList.getStubClassName()+ ".get2(Integer, String)";
+            string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".get2(Integer, String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), " the method is no the one expected");
         }
 
@@ -73,13 +74,13 @@ namespace ApexSharpDemo.ApexCode
 
             // When
             mockList.add("one");
-            String noAnswered = mockList.get(3);
+            string noAnswered = mockList.get(3);
             mockList.get2(0, "Hi hi Hello Hi hi");
 
             // Then
-            Object methodCalled = actualInvocation.getMethod();
+            object methodCalled = actualInvocation.getMethod();
             System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
-            String expectedMethodSignature = fflib_MyList.getStubClassName()+ ".get2(Integer, String)";
+            string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".get2(Integer, String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), " the method is no the one expected");
             System.assertEquals("ted", noAnswered, "the get method should have returned the stubbed string");
         }
@@ -97,8 +98,8 @@ namespace ApexSharpDemo.ApexCode
 
             // When
             mockList.add("one");
-            String answer1 = mockList.get(3);
-            String answer2 = mockList.get2(0, "Hi hi Hello Hi hi");
+            string answer1 = mockList.get(3);
+            string answer2 = mockList.get2(0, "Hi hi Hello Hi hi");
             System.assertEquals("this is the first answer", answer1, "the answer wasnt the one expected");
             System.assertEquals("and this is the second one", answer2, "the answer wasnt the one expected");
         }
@@ -114,7 +115,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String mockCalled = mockList.get2(0, "Hi hi Hello Hi hi");
+            string mockCalled = mockList.get2(0, "Hi hi Hello Hi hi");
 
             // Then
             System.assert(actualInvocation.getMock()instanceof fflib_MyList.IList, "the object returned is not a mock instance as expected");
@@ -132,7 +133,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
+            string actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
 
             // Then
             System.assertEquals("Bye hi Hello Bye hi", actualValue, "the answer is not correct");
@@ -149,9 +150,9 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue1 = mockList.get2(0, "some string for my method");
-            String actualValue2 = mockList.get2(0, "Hi hi Hello Hi hi");
-            String actualValue3 = mockList.get2(0, "another string for the same method");
+            string actualValue1 = mockList.get2(0, "some string for my method");
+            string actualValue2 = mockList.get2(0, "Hi hi Hello Hi hi");
+            string actualValue3 = mockList.get2(0, "another string for the same method");
 
             // Then
             System.assertEquals("Bye hi Hello Bye hi", actualValue2, "the answer is not correct");
@@ -170,7 +171,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
+            string actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
 
             // Then
             System.assertEquals("Bye hi Hello Bye hi", actualValue, "the answer is not correct");
@@ -187,7 +188,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
+            string actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
         }
 
         [IsTest]
@@ -201,7 +202,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
+            string actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
         }
 
         [IsTest]
@@ -215,7 +216,7 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            Boolean actualValue = mockList.isEmpty();
+            bool actualValue = mockList.isEmpty();
         }
 
         [IsTest]
@@ -232,9 +233,9 @@ namespace ApexSharpDemo.ApexCode
             mockList.addMore("Hi hi Hello Hi hi");
 
             // Then
-            Object methodCalled = actualInvocation.getMethod();
+            object methodCalled = actualInvocation.getMethod();
             System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
-            String expectedMethodSignature = fflib_MyList.getStubClassName()+ ".addMore(String)";
+            string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".addMore(String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), "Unexpected method name: "+ methodCalled);
         }
 
@@ -251,14 +252,14 @@ namespace ApexSharpDemo.ApexCode
             mocks.stopStubbing();
 
             // When
-            String answer1 = mockList.get(3);
-            String answer2 = mockList.get2(4, "Hi hi Hello Hi hi");
+            string answer1 = mockList.get(3);
+            string answer2 = mockList.get2(4, "Hi hi Hello Hi hi");
             mockList.addMore("Hi hi Hello Hi hi");
 
             // Then
-            Object methodCalled = actualInvocation.getMethod();
+            object methodCalled = actualInvocation.getMethod();
             System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
-            String expectedMethodSignature = fflib_MyList.getStubClassName()+ ".addMore(String)";
+            string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".addMore(String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(),
 			"the last method called should be the addMore, so should be the last to set the actualInvocation variable.");
             System.assertEquals("this is the first answer", answer1, "the answer was not the one expected");
@@ -292,7 +293,7 @@ namespace ApexSharpDemo.ApexCode
         //Answers
         public class BasicAnswer : fflib_Answer
         {
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
                 return null;
@@ -301,7 +302,7 @@ namespace ApexSharpDemo.ApexCode
 
         public class ExceptionForAnswer : fflib_Answer
         {
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
                 throw new fflib_ApexMocks.ApexMocksException("an error occurs on the execution of the answer");
@@ -311,18 +312,18 @@ namespace ApexSharpDemo.ApexCode
 
         public class ExceptionForArgumentsOutOfBound : fflib_Answer
         {
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
                 try
                 {
-                    Object noExistingObj = invocation.getArgument(2);
+                    object noExistingObj = invocation.getArgument(2);
                     System.assert(false, "an exception was expected because the argument in the method are only 2");
                 }
                 catch (fflib_ApexMocks.ApexMocksException exp)
                 {
-                    String expectedMessage = "Invalid index, must be greater or equal to zero and less of 2.";
-                    String actualMessage = exp.getMessage();
+                    string expectedMessage = "Invalid index, must be greater or equal to zero and less of 2.";
+                    string actualMessage = exp.getMessage();
                     System.assertEquals(expectedMessage, actualMessage, "the message return by the exception is not as expected");
                 }
 
@@ -332,18 +333,18 @@ namespace ApexSharpDemo.ApexCode
 
         public class ExceptionForNegativeArgumentIndex : fflib_Answer
         {
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
                 try
                 {
-                    Object noExistingObj = invocation.getArgument(-1);
+                    object noExistingObj = invocation.getArgument(-1);
                     System.assert(false, "an exception was expected because the argument index cannot be negative");
                 }
                 catch (fflib_ApexMocks.ApexMocksException exp)
                 {
-                    String expectedMessage = "Invalid index, must be greater or equal to zero and less of 2.";
-                    String actualMessage = exp.getMessage();
+                    string expectedMessage = "Invalid index, must be greater or equal to zero and less of 2.";
+                    string actualMessage = exp.getMessage();
                     System.assertEquals(expectedMessage, actualMessage, "the message return by the exception is not as expected");
                 }
 
@@ -353,10 +354,10 @@ namespace ApexSharpDemo.ApexCode
 
         public class ArgumentListEmptyForMethodWithNoArgument : fflib_Answer
         {
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
-                List<Object> emptyList = invocation.getArguments();
+                List<object> emptyList = invocation.getArguments();
                 System.assertEquals(0, emptyList.size(), "the argument list from a method without arguments should be empty");
                 return null;
             }
@@ -364,14 +365,14 @@ namespace ApexSharpDemo.ApexCode
 
         public class FirstAnswer : fflib_Answer
         {
-            private String answerMessage;
+            private string answerMessage;
 
-            public String getMessage()
+            public string getMessage()
             {
                 return this.answerMessage;
             }
 
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
                 this.answerMessage = "this is the first answer";
@@ -381,14 +382,14 @@ namespace ApexSharpDemo.ApexCode
 
         public class SecondAnswer : fflib_Answer
         {
-            private String answerMessage;
+            private string answerMessage;
 
-            public String getMessage()
+            public string getMessage()
             {
                 return this.answerMessage;
             }
 
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
                 this.answerMessage = "and this is the second one";
@@ -398,10 +399,10 @@ namespace ApexSharpDemo.ApexCode
 
         public class ProcessArgumentAnswer : fflib_Answer
         {
-            public Object answer(fflib_InvocationOnMock invocation)
+            public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
-                String argument = (String)invocation.getArgument(1);
+                string argument = (String)invocation.getArgument(1);
                 System.assertNotEquals(null, argument, " the argument should have some value");
                 argument = argument.replace("Hi", "Bye");
                 return argument;

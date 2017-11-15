@@ -12,7 +12,7 @@ namespace ApexSharpDemo.ApexCode
      */
     public /* with sharing */ class fflib_ApexMocks : System.StubProvider
     {
-        public static readonly Integer NEVER = 0;
+        public static readonly int NEVER = 0;
 
         private readonly fflib_MethodCountRecorder methodCountRecorder;
 
@@ -24,9 +24,9 @@ namespace ApexSharpDemo.ApexCode
 
         private fflib_Answer myAnswer;
 
-        public Boolean Verifying { get; set; }
+        public bool Verifying { get; set; }
 
-        public Boolean Stubbing
+        public bool Stubbing
         {
             get
             {
@@ -65,7 +65,7 @@ namespace ApexSharpDemo.ApexCode
          * @param classToMock class or interface to mock.
          * @return mock object.
          */
-        public Object mock(Type classToMock)
+        public object mock(Type classToMock)
         {
             return Test.createStub(classToMock, this);
         }
@@ -80,12 +80,12 @@ namespace ApexSharpDemo.ApexCode
          * @param listOfArgs The actual argument values passed into this method at runtime.
          * @return The stubbed return value. Null by default, unless you prepared one that matches this method and argument values in stubbing.
          */
-        public Object handleMethodCall(Object stubbedObject, String stubbedMethodName, Type returnType, List<type> listOfParamTypes, List<String> listOfParamNames, List<Object> listOfArgs)
+        public object handleMethodCall(object stubbedObject, string stubbedMethodName, Type returnType, List<type> listOfParamTypes, List<string> listOfParamNames, List<object> listOfArgs)
         {
             return mockNonVoidMethod(stubbedObject, stubbedMethodName, listOfParamTypes, listOfArgs);
         }
 
-        public static String extractTypeName(Object mockInstance)
+        public static string extractTypeName(object mockInstance)
         {
             return String.valueOf(mockInstance).split(":").get(0);
         }
@@ -95,7 +95,7 @@ namespace ApexSharpDemo.ApexCode
          * @param mockInstance The mock object instance.
          * @return The mock object instance.
          */
-        public Object verify(Object mockInstance)
+        public object verify(object mockInstance)
         {
             return verify(mockInstance, this.times(1));
         }
@@ -106,7 +106,7 @@ namespace ApexSharpDemo.ApexCode
          * @param verificationMode Defines the constraints for performing the verification (e.g. the minimum and maximum expected invocation counts).
          * @return The mock object instance.
          */
-        public Object verify(Object mockInstance, fflib_VerificationMode verificationMode)
+        public object verify(object mockInstance, fflib_VerificationMode verificationMode)
         {
             Verifying = true;
             this.verificationMode = verificationMode;
@@ -119,7 +119,7 @@ namespace ApexSharpDemo.ApexCode
          * @param times The number of times you expect the method to have been called.
          * @return The mock object instance.
          */
-        public Object verify(Object mockInstance, Integer times)
+        public object verify(object mockInstance, int times)
         {
             return verify(mockInstance, this.times(times));
         }
@@ -156,7 +156,7 @@ namespace ApexSharpDemo.ApexCode
          * @param ignoredRetVal This is the return value from the method called on the mockInstance, and is ignored here since we are about to setup
          *        the stubbed return value using thenReturn() (see MethodReturnValue class below).
          */
-        public fflib_MethodReturnValue when(Object ignoredRetVal)
+        public fflib_MethodReturnValue when(object ignoredRetVal)
         {
             return methodReturnValueRecorder.MethodReturnValue;
         }
@@ -195,7 +195,7 @@ namespace ApexSharpDemo.ApexCode
          * @param e The exception to throw.
          * @param mockInstance The mock object instance.
          */
-        public Object doThrowWhen(Exception e, Object mockInstance)
+        public object doThrowWhen(Exception e, object mockInstance)
         {
             methodReturnValueRecorder.prepareDoThrowWhenExceptions(new List<Exception>{e});
             return mockInstance;
@@ -206,7 +206,7 @@ namespace ApexSharpDemo.ApexCode
          * @param exps The list of exceptions to throw.
          * @param mockInstance The mock object instance.
          */
-        public Object doThrowWhen(List<Exception> exps, Object mockInstance)
+        public object doThrowWhen(List<Exception> exps, object mockInstance)
         {
             methodReturnValueRecorder.prepareDoThrowWhenExceptions(exps);
             return mockInstance;
@@ -217,7 +217,7 @@ namespace ApexSharpDemo.ApexCode
          * @param answer The answer to invoke.
          * @param mockInstance The mock object instance.
          */
-        public Object doAnswer(fflib_Answer answer, Object mockInstance)
+        public object doAnswer(fflib_Answer answer, object mockInstance)
         {
             this.myAnswer = answer;
             return mockInstance;
@@ -231,7 +231,7 @@ namespace ApexSharpDemo.ApexCode
          * @param methodArgTypes The method argument types for which to prepare a return value.
          * @param methodArgValues The method argument values for which to prepare a return value.
          */
-        public void mockVoidMethod(Object mockInstance, String methodName, List<Type> methodArgTypes, List<Object> methodArgValues)
+        public void mockVoidMethod(object mockInstance, string methodName, List<Type> methodArgTypes, List<object> methodArgValues)
         {
             mockNonVoidMethod(mockInstance, methodName, methodArgTypes, methodArgValues);
         }
@@ -244,7 +244,7 @@ namespace ApexSharpDemo.ApexCode
          * @param methodArgTypes The method argument types for which to prepare a return value.
          * @param methodArgValues The method argument values for which to prepare a return value.
          */
-        public Object mockNonVoidMethod(Object mockInstance, String methodName, List<Type> methodArgTypes, List<Object> methodArgValues)
+        public object mockNonVoidMethod(object mockInstance, string methodName, List<Type> methodArgTypes, List<object> methodArgValues)
         {
             fflib_QualifiedMethod qm = new fflib_QualifiedMethod(extractTypeName(mockInstance), methodName, methodArgTypes, mockInstance);
             fflib_MethodArgValues argValues = new fflib_MethodArgValues(methodArgValues);
@@ -285,7 +285,7 @@ namespace ApexSharpDemo.ApexCode
         {
         }
 
-        private Object returnValue(fflib_InvocationOnMock invocation)
+        private object returnValue(fflib_InvocationOnMock invocation)
         {
             fflib_MethodReturnValue methodReturnValue = getMethodReturnValue(invocation);
             if (methodReturnValue != null)
@@ -295,7 +295,7 @@ namespace ApexSharpDemo.ApexCode
                     throw new fflib_ApexMocks.ApexMocksException("The stubbing is not correct, no return values have been set.");
                 }
 
-                Object returnedValue = methodReturnValue.Answer.answer(invocation);
+                object returnedValue = methodReturnValue.Answer.answer(invocation);
                 if (returnedValue == null)
                 {
                     return null;
@@ -324,7 +324,7 @@ namespace ApexSharpDemo.ApexCode
          * @param times The number of times you expect the method to have been called.
          * @return The fflib_VerificationMode object instance with the proper settings.
          */
-        public fflib_VerificationMode times(Integer times)
+        public fflib_VerificationMode times(int times)
         {
             return new fflib_VerificationMode().times(times);
         }
@@ -335,7 +335,7 @@ namespace ApexSharpDemo.ApexCode
          * @param times The number of times you expect the method to have been called in the InOrder verifying ( no greedy verify).
          * @return The fflib_VerificationMode object instance with the proper settings.
          */
-        public fflib_VerificationMode calls(Integer times)
+        public fflib_VerificationMode calls(int times)
         {
             return new fflib_VerificationMode().calls(times);
         }
@@ -345,7 +345,7 @@ namespace ApexSharpDemo.ApexCode
          * @param customAssertMessage The custom message for the assert in case the assert is false. The custom message is queued to the default message.
          * @return The fflib_VerificationMode object instance with the proper settings.
          */
-        public fflib_VerificationMode description(String customAssertMessage)
+        public fflib_VerificationMode description(string customAssertMessage)
         {
             return new fflib_VerificationMode().description(customAssertMessage);
         }
@@ -356,7 +356,7 @@ namespace ApexSharpDemo.ApexCode
          * @param atLeastTimes The minimum number of times you expect the method to have been called.
          * @return The fflib_VerificationMode object instance with the proper settings.
          */
-        public fflib_VerificationMode atLeast(Integer atLeastTimes)
+        public fflib_VerificationMode atLeast(int atLeastTimes)
         {
             return new fflib_VerificationMode().atLeast(atLeastTimes);
         }
@@ -366,7 +366,7 @@ namespace ApexSharpDemo.ApexCode
          * @param atMostTimes The maximum number of times the method is expected to be called.
          * @return The fflib_VerificationMode object instance with the proper settings.
          */
-        public fflib_VerificationMode atMost(Integer atMostTimes)
+        public fflib_VerificationMode atMost(int atMostTimes)
         {
             return new fflib_VerificationMode().atMost(atMostTimes);
         }
@@ -387,7 +387,7 @@ namespace ApexSharpDemo.ApexCode
          * @param atMostTimes The maximum number of times the method is expected to be called.
          * @return The fflib_VerificationMode object instance with the proper settings.
          */
-        public fflib_VerificationMode between(Integer atLeastTimes, Integer atMostTimes)
+        public fflib_VerificationMode between(int atLeastTimes, int atMostTimes)
         {
             return new fflib_VerificationMode().between(atLeastTimes, atMostTimes);
         }

@@ -3,6 +3,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using NUnit.Framework;
 
     /*
      * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
@@ -17,7 +18,7 @@ namespace ApexSharpDemo.ApexCode
          * When true, each test spy instance has its own stubbed behaviour and invocations.
          * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependently
          */
-        public static Boolean HasIndependentMocks { get; set; }
+        public static bool HasIndependentMocks { get; set; }
 
         static fflib_ApexMocksConfig()
         {

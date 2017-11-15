@@ -129,6 +129,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApexCSharpClasses\ApexDemo.cls" />
+    <None Include="ApexCSharpClasses\ApexDemo_CSharp.cs" />
+    <None Include="ApexCSharpClasses\ApexDemo_Formatted.cls" />
+    <None Include="ApexCSharpClasses\ApexDemoTest.cls" />
+    <None Include="ApexCSharpClasses\ApexDemoTest_CSharp.cs" />
+    <None Include="ApexCSharpClasses\ApexDemoTest_Formatted.cls" />
     <None Include="ApexCSharpClasses\fflib_Answer.cls" />
     <None Include="ApexCSharpClasses\fflib_Answer_CSharp.cs" />
     <None Include="ApexCSharpClasses\fflib_Answer_Formatted.cls" />
