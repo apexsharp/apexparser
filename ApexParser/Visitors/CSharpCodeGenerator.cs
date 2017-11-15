@@ -98,10 +98,24 @@ namespace ApexParser.Visitors
 
         private IEnumerable<string> GetUsings(ClassDeclarationSyntax node)
         {
-            var isTest = node?.Annotations?.Any(a => a?.IsTest ?? false);
-            if (isTest ?? false)
+            if (node != null)
             {
-                return Usings.Concat(UnitTestUsings);
+                var isTest = node.Annotations.EmptyIfNull().Any(a => a?.IsTest ?? false);
+                if (!isTest)
+                {
+                    var testMethods =
+                        from method in node.Members.EmptyIfNull().OfType<MethodDeclarationSyntax>()
+                        from ann in method.Annotations.EmptyIfNull()
+                        where ann?.IsTest ?? false
+                        select method;
+
+                    isTest = testMethods.Any();
+                }
+
+                if (isTest)
+                {
+                    return Usings.Concat(UnitTestUsings);
+                }
             }
 
             return Usings;
@@ -134,13 +148,6 @@ namespace ApexParser.Visitors
             }
 
             return modifier;
-        }
-
-        public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
-        {
-            AppendCommentsAttributesAndModifiers(node);
-            Append("{0}(", node.ReturnType?.Identifier ?? node.Identifier);
-            AppendMethodParametersAndBody(node);
         }
 
         private HashSet<ClassDeclarationSyntax> GeneratedInitializers { get; } =
@@ -193,7 +200,60 @@ namespace ApexParser.Visitors
 
         public override void VisitAnnotation(AnnotationSyntax node)
         {
-            AppendIndentedLine("[{0}{1}]", node.Identifier, node.Parameters);
+            var attribute = ConvertUnitTestAnnotation(node, CurrentMember);
+            AppendIndentedLine("[{0}{1}]", attribute.Identifier, attribute.Parameters);
+        }
+
+        internal static AnnotationSyntax ConvertUnitTestAnnotation(AnnotationSyntax node, BaseSyntax parentNode)
+        {
+            // TODO: refactor this method out of CSharpCodeGenerator
+            if (!node.IsTest)
+            {
+                return node;
+            }
+
+            if (parentNode is ClassDeclarationSyntax)
+            {
+                // IsTest => TestFixture
+                if (string.Equals(node.Identifier, ApexKeywords.IsTest, StringComparison.OrdinalIgnoreCase))
+                {
+                    return new AnnotationSyntax
+                    {
+                        LeadingComments = node.LeadingComments,
+                        Identifier = "TestFixture",
+                        Parameters = node.Parameters,
+                        TrailingComments = node.TrailingComments,
+                    };
+                }
+            }
+            else if (parentNode is MethodDeclarationSyntax)
+            {
+                // IsTest => Test
+                if (string.Equals(node.Identifier, ApexKeywords.IsTest, StringComparison.OrdinalIgnoreCase))
+                {
+                    return new AnnotationSyntax
+                    {
+                        LeadingComments = node.LeadingComments,
+                        Identifier = "Test",
+                        Parameters = node.Parameters,
+                        TrailingComments = node.TrailingComments,
+                    };
+                }
+
+                // TestSetup => SetUp
+                else if (string.Equals(node.Identifier, ApexKeywords.TestSetup, StringComparison.OrdinalIgnoreCase))
+                {
+                    return new AnnotationSyntax
+                    {
+                        LeadingComments = node.LeadingComments,
+                        Identifier = "SetUp",
+                        Parameters = node.Parameters,
+                        TrailingComments = node.TrailingComments,
+                    };
+                }
+            }
+
+            return node;
         }
 
         protected override void AppendMethodParametersAndBody(MethodDeclarationSyntax node)
@@ -277,8 +337,19 @@ namespace ApexParser.Visitors
         protected override void AppendStringLiteral(string literal) =>
             Append("\"{0}\"", literal.Substring(1, literal.Length - 2));
 
-        protected override void AppendSoqlQuery(string soqlQuery) =>
-            Append("Soql.Query<T>(\"{0}\")", soqlQuery.Substring(1, soqlQuery.Length - 2));
+        protected override void AppendSoqlQuery(string soqlQuery)
+        {
+            var queryText = soqlQuery.Substring(1, soqlQuery.Length - 2);
+            var tableName = GenericExpressionHelper.GetSoqlTableName(queryText);
+            var parameters = GenericExpressionHelper.GetSoqlParameters(queryText);
+            var paramList = string.Empty;
+            if (parameters.Any())
+            {
+                paramList = ", " + string.Join(", ", parameters);
+            }
+
+            Append("Soql.Query<{0}>(\"{1}\"{2})", tableName, queryText, paramList);
+        }
 
         private static Dictionary<string, string> CSharpTypes { get; } =
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)

@@ -11,12 +11,12 @@ namespace ApexSharpDemo.ApexCode
     /**
      * @nodoc
      */
-    [IsTest]
+    [TestFixture]
     private class fflib_AnswerTest
     {
         private static fflib_InvocationOnMock actualInvocation = null;
 
-        [IsTest]
+        [Test]
         static void thatAnswersWithException()
         {
             // Given
@@ -41,7 +41,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void thatStoresMethodIntoInvocationOnMock()
         {
             // Given
@@ -61,7 +61,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), " the method is no the one expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatAnswerOnlyForTheMethodStubbedWithAnswer()
         {
             // Given
@@ -85,7 +85,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("ted", noAnswered, "the get method should have returned the stubbed string");
         }
 
-        [IsTest]
+        [Test]
         static void thatMultipleAnswersAreHandled()
         {
             // Given
@@ -104,7 +104,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("and this is the second one", answer2, "the answer wasnt the one expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatStoresMockInstanceIntoInvocationOnMock()
         {
             // Given
@@ -122,7 +122,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(mockList, actualInvocation.getMock(), "the mock returned should be the mockList used in the stubbing");
         }
 
-        [IsTest]
+        [Test]
         static void thatMethodsParametersAreAccessible()
         {
             // Given
@@ -139,7 +139,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Bye hi Hello Bye hi", actualValue, "the answer is not correct");
         }
 
-        [IsTest]
+        [Test]
         static void thatAnswerOnlyForTheStubbedParameter()
         {
             // Given
@@ -160,7 +160,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, actualValue3, "the answer is not correct");
         }
 
-        [IsTest]
+        [Test]
         static void thatMethodsParametersAreAccessibleWhenCalledWithMatchers()
         {
             // Given
@@ -177,7 +177,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Bye hi Hello Bye hi", actualValue, "the answer is not correct");
         }
 
-        [IsTest]
+        [Test]
         static void thatExceptionIsThrownWhenAccessOutOfIndexArgument()
         {
             // Given
@@ -191,7 +191,7 @@ namespace ApexSharpDemo.ApexCode
             string actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
         }
 
-        [IsTest]
+        [Test]
         static void thatExceptionIsThrownWhenAccessNegativeIndexArgument()
         {
             // Given
@@ -205,7 +205,7 @@ namespace ApexSharpDemo.ApexCode
             string actualValue = mockList.get2(0, "Hi hi Hello Hi hi");
         }
 
-        [IsTest]
+        [Test]
         static void thatArgumentListEmptyForMethodWithNoArgument()
         {
             // Given
@@ -219,7 +219,7 @@ namespace ApexSharpDemo.ApexCode
             bool actualValue = mockList.isEmpty();
         }
 
-        [IsTest]
+        [Test]
         static void thatAnswerToVoidMethod()
         {
             // Given
@@ -239,7 +239,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), "Unexpected method name: "+ methodCalled);
         }
 
-        [IsTest]
+        [Test]
         static void thatAnswerToVoidAndNotVoidMethods()
         {
             // Given
@@ -266,7 +266,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("and this is the second one", answer2, "the answer was not the one expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatAnswerToDifferentVoidMethods()
         {
             // Given

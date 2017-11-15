@@ -8,7 +8,7 @@ namespace ApexSharpDemo.ApexCode
     /*
      * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
      */
-    [IsTest]
+    [TestFixture]
     public class fflib_ApexMocksConfig
     {
         /**

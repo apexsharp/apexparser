@@ -11,10 +11,10 @@ namespace ApexSharpDemo.ApexCode
     /**
      * @nodoc
      */
-    [IsTest]
+    [TestFixture]
     private class fflib_ArgumentCaptorTest
     {
-        [IsTest]
+        [Test]
         static void thatArgumentValueIsCaptured()
         {
             // Given
@@ -30,7 +30,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Fred", (String)argument.getValue(), "the argument captured is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCanPerformFurtherAssertionsOnCapturedArgumentValue()
         {
             // Given
@@ -54,7 +54,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("5", testValueCaptured.s, "the values inside the argument captured should be the same of the original one");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureArgumentOnlyFromVerifiedMethod()
         {
             // Given
@@ -75,7 +75,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(1, argument.getAllValues().size(), "the argument captured should be only one");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureAllArgumentsForTheVerifiedMethods()
         {
             // Given
@@ -98,7 +98,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureArgumentFromRequestedParameter()
         {
             // Given
@@ -118,7 +118,7 @@ namespace ApexSharpDemo.ApexCode
 			"the argument captured is not as expected, should be Wilma because is the 3rd parameter in the call");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureLastArgument()
         {
             // Given
@@ -135,7 +135,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Fred", (String)argument.getValue(), "the argument captured is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureAllArguments()
         {
             // Given
@@ -159,7 +159,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Betty", (String)argsCaptured[3], "the forth value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureAllArgumentsFromMultipleMethods()
         {
             // Given
@@ -183,7 +183,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("pebble", (String)argsCaptured[2], "the third value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCanHandleMultipleCapturesInOneMethodCall()
         {
             // Given
@@ -205,7 +205,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Wilma", (String)argsCaptured[1], "the second value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatDoesNotCaptureIfNotVerified()
         {
             // Given
@@ -223,7 +223,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, argument.getValue(), "no value should be captured, so must return null");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureOnlyMethodsThatMatchesWithOtherMatcherAsWell()
         {
             // Given
@@ -243,7 +243,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("First call", (String)argument.getValue());
         }
 
-        [IsTest]
+        [Test]
         static void thatDoesNotCaptureAnythingWhenCaptorIsWrappedInAMatcher()
         {
             // Given
@@ -273,7 +273,7 @@ namespace ApexSharpDemo.ApexCode
 			"nothing should have been capture because the matcher it not really a capture type, but a allOf()");
         }
 
-        [IsTest]
+        [Test]
         static void thatArgumentValueIsCapturedWithInOrderVerification()
         {
             // Given
@@ -290,7 +290,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Fred", (String)argument.getValue(), "the argument captured is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCanPerformFurtherAssertionsOnCapturedArgumentValueWithInOrderVerification()
         {
             // Given
@@ -315,7 +315,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("5", testValueCaptured.s, "the values inside the argument captured should be the same of the original one");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureArgumentOnlyFromVerifiedMethodWithInOrderVerification()
         {
             // Given
@@ -337,7 +337,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(1, argument.getAllValues().size(), "the argument captured should be only one");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureAllArgumentsForTheVerifiedMethodsWithInOrderVerification()
         {
             // Given
@@ -361,7 +361,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Fred", (String)argsCaptured[0], "the first value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureArgumentFromRequestedParameterWithInOrderVerification()
         {
             // Given
@@ -382,7 +382,7 @@ namespace ApexSharpDemo.ApexCode
 			"the argument captured is not as expected, should be Wilma because is the 3rd parameter in the call");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureLastArgumentWithInOrderVerification()
         {
             // Given
@@ -400,7 +400,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Fred", (String)argument.getValue(), "the argument captured is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureAllArgumentsWithInOrderVerification()
         {
             // Given
@@ -425,7 +425,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Betty", (String)argsCaptured[3], "the forth value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureAllArgumentsFromMultipleMethodsWithInOrderVerification()
         {
             // Given
@@ -450,7 +450,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("pebble", (String)argsCaptured[2], "the third value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatCanHandleMultipleCapturesInOneMethodCallWithInOrderVerification()
         {
             // Given
@@ -473,7 +473,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Wilma", (String)argsCaptured[1], "the second value is not as expected");
         }
 
-        [IsTest]
+        [Test]
         static void thatDoesNotCaptureIfNotVerifiedWithInOrderVerification()
         {
             // Given
@@ -492,7 +492,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, argument.getValue(), "no value should be captured, so must return null");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureOnlyMethodsThatMatchesWithOtherMatcherAsWellWithInOrderVerification()
         {
             // Given
@@ -513,7 +513,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("First call", (String)argument.getValue());
         }
 
-        [IsTest]
+        [Test]
         static void thatDoesNotCaptureAnythingWhenCaptorIsWrappedInAMatcherWithInOrderVerification()
         {
             // Given
@@ -544,7 +544,7 @@ namespace ApexSharpDemo.ApexCode
 			"nothing should have been capture because the matcher it not really a capture type, but a allOf()");
         }
 
-        [IsTest]
+        [Test]
         static void thatCaptureAllArgumentswhenMethodIsCalledWithTheSameArgument()
         {
             // Given

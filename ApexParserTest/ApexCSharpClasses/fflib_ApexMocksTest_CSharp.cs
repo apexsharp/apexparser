@@ -8,14 +8,14 @@ namespace ApexSharpDemo.ApexCode
     /*
      * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
      */
-    [IsTest]
+    [TestFixture]
     private class fflib_ApexMocksTest
     {
         private static readonly fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
 
         private static readonly fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 
-        [IsTest]
+        [Test]
         static void whenStubMultipleCallsWithMatchersShouldReturnExpectedValues()
         {
             // Given
@@ -33,7 +33,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("hello", actualValue);
         }
 
-        [IsTest]
+        [Test]
         static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
         {
             // Given
@@ -50,7 +50,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add(fflib_Match.stringContains("fred"));
         }
 
-        [IsTest]
+        [Test]
         static void whenStubExceptionWithMatchersShouldThrowException()
         {
             // Given
@@ -74,7 +74,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void whenVerifyWithCombinedMatchersShouldReturnCorrectMethodCallCounts()
         {
             // Given
@@ -96,7 +96,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((String)fflib_Match.isNot(fflib_Match.eq("jack")));
         }
 
-        [IsTest]
+        [Test]
         static void whenStubCustomMatchersCanBeUsed()
         {
             // Given
@@ -122,7 +122,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Odd", s5);
         }
 
-        [IsTest]
+        [Test]
         static void whenVerifyCustomMatchersCanBeUsed()
         {
             // Given
@@ -141,7 +141,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, 2)).get((Integer)fflib_Match.matches(new isEven()));
         }
 
-        [IsTest]
+        [Test]
         static void whenStubWithMatcherAndNonMatcherArgumentsShouldThrowException()
         {
             // Given
@@ -162,7 +162,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void whenVerifyWithMatcherAndNonMatcherArgumentsShouldThrowException()
         {
             // Given
@@ -183,7 +183,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void whenStubSameMethodWithMatchersAndNonMatchersShouldStubInOrder()
         {
             // Given
@@ -201,7 +201,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("Good", mockList.get2(1, "Matcher first"));
         }
 
-        [IsTest]
+        [Test]
         static void whenStubExceptionSameMethodWithMatchersAndNonMatchersShouldStubInOrder()
         {
             // Given
@@ -236,7 +236,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void whenStubSingleCallWithSingleArgumentShouldReturnStubbedValue()
         {
             // Given
@@ -253,7 +253,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("bob", actualValue);
         }
 
-        [IsTest]
+        [Test]
         static void whenStubSingleCallWithNullReturnValueItShouldReturnNull()
         {
             // Given
@@ -270,7 +270,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, actualValue);
         }
 
-        [IsTest]
+        [Test]
         static void whenStubMultipleCallsWithSingleArgumentShouldReturnStubbedValues()
         {
             // Given
@@ -292,7 +292,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, actualValueArg2);
         }
 
-        [IsTest]
+        [Test]
         static void whenStubSameCallWithDifferentArgumentValueShouldReturnLastStubbedValue()
         {
             // Given
@@ -310,7 +310,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals("bob2", actualValue);
         }
 
-        [IsTest]
+        [Test]
         static void whenStubCallWithNoArgumentsShouldReturnStubbedValue()
         {
             // Given
@@ -327,7 +327,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(false, actualValue);
         }
 
-        [IsTest]
+        [Test]
         static void verifySingleMethodCallWithNoArguments()
         {
             // Given
@@ -341,7 +341,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).isEmpty();
         }
 
-        [IsTest]
+        [Test]
         static void verifySingleMethodCallWithSingleArgument()
         {
             // Given
@@ -355,7 +355,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add("bob");
         }
 
-        [IsTest]
+        [Test]
         static void verifyMultipleMethodCallsWithSameSingleArgument()
         {
             // Given
@@ -370,7 +370,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, 2)).add("bob");
         }
 
-        [IsTest]
+        [Test]
         static void verifyMultipleMethodCallsWithDifferentSingleArgument()
         {
             // Given
@@ -386,7 +386,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add("fred");
         }
 
-        [IsTest]
+        [Test]
         static void verifyMethodCallsWithSameNameButDifferentArgumentTypes()
         {
             // Given
@@ -406,7 +406,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add((String[])null);
         }
 
-        [IsTest]
+        [Test]
         static void verifyMethodNotCalled()
         {
             // Given
@@ -421,7 +421,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).get(0);
         }
 
-        [IsTest]
+        [Test]
         static void stubAndVerifyMethodCallsWithNoArguments()
         {
             // Given
@@ -440,7 +440,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).clear();
         }
 
-        [IsTest]
+        [Test]
         static void whenStubExceptionTheExceptionShouldBeThrown()
         {
             // Given
@@ -464,7 +464,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void whenStubVoidMethodWithExceptionThenExceptionShouldBeThrown()
         {
             // Given
@@ -488,7 +488,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void whenStubMultipleVoidMethodsWithExceptionsThenExceptionsShouldBeThrown()
         {
             // Given
@@ -526,7 +526,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void whenStubVoidMethodWithExceptionAndCallMethodTwiceThenExceptionShouldBeThrownTwice()
         {
             // Given
@@ -563,7 +563,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void verifyMethodCallWhenNoCallsBeenMadeForType()
         {
             // Given
@@ -574,7 +574,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, fflib_ApexMocks.NEVER)).add("bob");
         }
 
-        [IsTest]
+        [Test]
         static void verifySingleMethodCallWithMultipleArguments()
         {
             // Given
@@ -589,7 +589,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, fflib_ApexMocks.NEVER)).set(0, "fred");
         }
 
-        [IsTest]
+        [Test]
         static void whenStubMultipleCallsWithMultipleArgumentShouldReturnStubbedValues()
         {
             // Given
@@ -617,7 +617,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, actualValueArg4);
         }
 
-        [IsTest]
+        [Test]
         static void whenStubNullConcreteArgValueCorrectValueIsReturned()
         {
             // Given
@@ -635,7 +635,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(expected, actual);
         }
 
-        [IsTest]
+        [Test]
         static void whenSetDoThrowWhenExceptionsValuesAreSet()
         {
             //Given
@@ -650,7 +650,7 @@ namespace ApexSharpDemo.ApexCode
             System.assert(expsList === mocks.DoThrowWhenExceptions);
         }
 
-        [IsTest]
+        [Test]
         static void whenVerifyMethodNeverCalledMatchersAreReset()
         {
             // Given
@@ -665,7 +665,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         static void whenMockIsGeneratedCanVerify()
         {
             // Given
@@ -680,7 +680,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add("bob");
         }
 
-        [IsTest]
+        [Test]
         static void whenMockIsGeneratedCanStubVerify()
         {
             // Given
@@ -700,7 +700,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(">Two", mockList.get(3));
         }
 
-        [IsTest]
+        [Test]
         static void thatMultipleInstancesCanBeMockedIndependently()
         {
             fflib_ApexMocksConfig.HasIndependentMocks = true;
@@ -723,7 +723,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList)mocks.verify(second, mocks.never())).get(0);
         }
 
-        [IsTest]
+        [Test]
         static void thatMultipleInstancesCanBeMockedDependently()
         {
             fflib_ApexMocksConfig.HasIndependentMocks = false;
@@ -759,7 +759,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("One");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingCanBeChainedFirstValueThenException()
         {
             // Given
@@ -773,7 +773,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("Stubbed exception.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleMethodsCanBeChainedFirstExceptionThenValue()
         {
             // Given
@@ -790,7 +790,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValueForGet2("One2");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleMethodsCanBeChainedFirstValueThenException()
         {
             // Given
@@ -807,7 +807,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessageForGet2("Stubbed exception2.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingReturnsDifferentValuesForDifferentCalls()
         {
             // Given
@@ -822,7 +822,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Three");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingReturnsDifferentValuesForDifferentCallsAndRepeatLastValuesForFurtherCalls()
         {
             // Given
@@ -839,7 +839,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Three");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingThrowsDifferentExceptionsForDifferentCalls()
         {
             // Given
@@ -858,7 +858,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("third.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingThrowsDifferentExceptionsForDifferentCallsAndRepeatLastExceptionForFurtherCalls()
         {
             // Given
@@ -879,7 +879,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("third.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingThrowsAndReturnsDifferentExceptionsAndValuesForDifferentCalls()
         {
             // Given
@@ -905,7 +905,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Three");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingReturnsAndThrowsDifferentValuesAndExceptionsForDifferentCalls()
         {
             // Given
@@ -931,7 +931,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("third.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnWithSingleValue()
         {
             // Given
@@ -946,7 +946,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Two");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnMultiWithSingleValue()
         {
             // Given
@@ -961,7 +961,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Two");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnMultiWithMultiValue()
         {
             // Given
@@ -979,7 +979,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Six");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnWithMultiValues()
         {
             // Given
@@ -997,7 +997,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Three");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnMultiWithSingleException()
         {
             // Given
@@ -1014,7 +1014,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("first.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnMultiWithMultiExceptions()
         {
             // Given
@@ -1036,7 +1036,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("third.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnWithMultiExceptions()
         {
             // Given
@@ -1058,7 +1058,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("third.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenReturnWithSingleException()
         {
             // Given
@@ -1075,7 +1075,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("first.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowWithSingleValue()
         {
             // Given
@@ -1092,7 +1092,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Two");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowMultiWithSingleValue()
         {
             // Given
@@ -1111,7 +1111,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Two");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowMultiWithMultiValue()
         {
             // Given
@@ -1133,7 +1133,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Six");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowWithMultiValues()
         {
             // Given
@@ -1153,7 +1153,7 @@ namespace ApexSharpDemo.ApexCode
             assertReturnedValue("Three");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowMultiWithSingleException()
         {
             // Given
@@ -1173,7 +1173,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("fourth.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowMultiWithMultiExceptions()
         {
             // Given
@@ -1198,7 +1198,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("sixth.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowWithMultiExceptions()
         {
             // Given
@@ -1221,7 +1221,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("third.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMultipleTimesOverridePreviousThenThrowWithSingleException()
         {
             // Given
@@ -1239,7 +1239,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessage("first.");
         }
 
-        [IsTest]
+        [Test]
         static void thatVoidMethodThrowsMultipleExceptions()
         {
             // Given
@@ -1261,7 +1261,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessageOnVoidMethod("third.");
         }
 
-        [IsTest]
+        [Test]
         static void thatMultipleVoidMethodsThrowsMultipleExceptions()
         {
             // Given
@@ -1291,7 +1291,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessageOnAddMoreVoidMethod("third2.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMutipleTimesVoidMethodThrowsMultipleExceptionsOverride()
         {
             // Given
@@ -1317,7 +1317,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessageOnVoidMethod("sixth.");
         }
 
-        [IsTest]
+        [Test]
         static void thatStubbingMutipleTimesVoidMethodThrowsMultipleExceptionsOverrideWithSingleException()
         {
             // Given
@@ -1340,7 +1340,7 @@ namespace ApexSharpDemo.ApexCode
             assertExceptionMessageOnVoidMethod("fourth.");
         }
 
-        [IsTest]
+        [Test]
         static void thatExceptionIsthrownWhenStubbingIsNotDone()
         {
             MY_MOCKS.startStubbing();
@@ -1358,7 +1358,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void thatExceptionIsthrownWhenReturnMultiPassEmptyList()
         {
             try
@@ -1375,7 +1375,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void thatExceptionIsthrownWhenReturnMultiPassNullList()
         {
             try
@@ -1392,7 +1392,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void thatExceptionIsthrownWhenThrowMultiPassEmptyList()
         {
             try
@@ -1409,7 +1409,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void thatExceptionIsthrownWhenThrowMultiPassNullList()
         {
             try
@@ -1426,7 +1426,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         static void thatNullCanBeUsedAsReturnValue()
         {
             MY_MOCKS.startStubbing();
@@ -1435,7 +1435,7 @@ namespace ApexSharpDemo.ApexCode
             System.assertEquals(null, MY_MOCK_LIST.get(1), "it should be possible stub using the null value");
         }
 
-        [IsTest]
+        [Test]
         static void thatNullCanBeUsedAsExceptionvalue()
         {
             MY_MOCKS.startStubbing();

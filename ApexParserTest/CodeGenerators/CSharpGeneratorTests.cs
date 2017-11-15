@@ -59,9 +59,48 @@ namespace ApexParserTest.CodeGenerators
                     using SObjects;
                     using NUnit.Framework;
 
-                    [IsTest]
+                    [TestFixture]
                     class TestClass
                     {
+                    }
+                }");
+        }
+
+        [Test]
+        public void ClassDeclarationWithAnnotatedTestMethodProducesTheRequiredNamespaceImports()
+        {
+            var cd = new ClassDeclarationSyntax
+            {
+                Identifier = "TestClass",
+                Members = new List<MemberDeclarationSyntax>
+                {
+                    new MethodDeclarationSyntax
+                    {
+                        ReturnType = new TypeSyntax("void"),
+                        Identifier = "Sample",
+                        Annotations = new List<AnnotationSyntax>
+                        {
+                            new AnnotationSyntax { Identifier = "isTest" }
+                        },
+                        Body = new BlockSyntax(),
+                    }
+                }
+            };
+
+            Check(cd,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+                    using NUnit.Framework;
+
+                    class TestClass
+                    {
+                        [Test]
+                        void Sample()
+                        {
+                        }
                     }
                 }");
         }
@@ -532,6 +571,28 @@ namespace ApexParserTest.CodeGenerators
             };
 
             Check(deleteStatement, @"Soql.Delete(contactOld);");
+        }
+
+        [Test]
+        public void ApexSoqlQueryIsTranslatedProperly()
+        {
+            var stmt = new StatementSyntax
+            {
+                Body = "[SELECT Id, Name FROM Contact WHERE Email = :email]"
+            };
+
+            Check(stmt, "Soql.Query<Contact>(\"SELECT Id, Name FROM Contact WHERE Email = :email\", email);");
+        }
+
+        [Test]
+        public void ApexTestAnnotationsConvertedToNUnitAttributes()
+        {
+            var annotation = new AnnotationSyntax { Identifier = ApexKeywords.IsTest };
+            var attribute = CSharpCodeGenerator.ConvertUnitTestAnnotation(annotation, new ClassDeclarationSyntax());
+            Assert.AreEqual("TestFixture", attribute.Identifier);
+
+            attribute = CSharpCodeGenerator.ConvertUnitTestAnnotation(annotation, new MethodDeclarationSyntax());
+            Assert.AreEqual("Test", attribute.Identifier);
         }
 
         [Test]

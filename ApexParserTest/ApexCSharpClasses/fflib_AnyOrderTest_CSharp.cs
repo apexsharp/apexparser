@@ -11,7 +11,7 @@ namespace ApexSharpDemo.ApexCode
     /**
      * @nodoc
      */
-    [IsTest]
+    [TestFixture]
     private class fflib_AnyOrderTest
     {
         private static readonly string BASIC_VERIFY_ASSERTION_MESSAGE = "Expected : {0}, Actual: {1} -- Wanted but not invoked: ";
@@ -19,7 +19,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	replicating the apex mocks tests with the new syntax
          */
-        [IsTest]
+        [Test]
         private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts()
         {
             // Given
@@ -36,7 +36,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).add(fflib_Match.stringContains("fred"));
         }
 
-        [IsTest]
+        [Test]
         private static void whenVerifyWithCombinedMatchersShouldReturnCorrectMethodCallCounts()
         {
             // Given
@@ -58,7 +58,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((String)fflib_Match.isNot(fflib_Match.eq("jack")));
         }
 
-        [IsTest]
+        [Test]
         private static void whenVerifyCustomMatchersCanBeUsed()
         {
             // Given
@@ -77,7 +77,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).get((Integer)fflib_Match.matches(new isEven()));
         }
 
-        [IsTest]
+        [Test]
         private static void verifyMultipleMethodCallsWithSameSingleArgument()
         {
             // Given
@@ -92,7 +92,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void verifyMethodNotCalled()
         {
             // Given
@@ -107,7 +107,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).get(0);
         }
 
-        [IsTest]
+        [Test]
         private static void verifySingleMethodCallWithMultipleArguments()
         {
             // Given
@@ -122,7 +122,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.never())).set(0, "fred");
         }
 
-        [IsTest]
+        [Test]
         private static void verifyMethodCallWhenNoCallsBeenMadeForType()
         {
             // Given
@@ -133,7 +133,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.never())).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void whenVerifyMethodNeverCalledMatchersAreReset()
         {
             // Given
@@ -151,7 +151,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	times
          */
-        [IsTest]
+        [Test]
         private static void verifyTimesMethodHasBeenCalled()
         {
             // Given
@@ -167,7 +167,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(3))).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void verifyTimesMethodHasBeenCalledWithMatchers()
         {
             // Given
@@ -183,7 +183,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(3))).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifyTimesMethodFailsWhenCalledLessTimes()
         {
             // Given
@@ -207,7 +207,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifyTimesMethodFailsWhenCalledMoreTimes()
         {
             // Given
@@ -231,7 +231,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifyTimesMethodFailsWhenCalledLessTimesWithMatchers()
         {
             // Given
@@ -255,7 +255,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifyTimesMethodFailsWhenCalledMoreTimesWithMatchers()
         {
             // Given
@@ -282,7 +282,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	description
          */
-        [IsTest]
+        [Test]
         private static void thatCustomMessageIsAdded()
         {
             // Given
@@ -314,7 +314,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	atLeast
          */
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastNumberOfTimes()
         {
             // Given
@@ -331,7 +331,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeast(2))).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastNumberOfTimesWhenIsCalledMoreTimes()
         {
             // Given
@@ -350,7 +350,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeast(2))).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledLessThanAtLeastNumberOfTimes()
         {
             // Given
@@ -377,7 +377,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastNumberOfTimesWithMatchers()
         {
             // Given
@@ -392,7 +392,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeast(2))).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastNumberOfTimesWhenIsCalledMoreTimesWithMatchers()
         {
             // Given
@@ -409,7 +409,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeast(2))).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledLessThanAtLeastNumberOfTimesWithMatchers()
         {
             // Given
@@ -438,7 +438,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	atMost
          */
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtMostNumberOfTimes()
         {
             // Given
@@ -456,7 +456,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atMost(5))).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtMostSameNumberOfTimes()
         {
             // Given
@@ -474,7 +474,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atMost(3))).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledMoreThanAtMostNumberOfTimes()
         {
             // Given
@@ -505,7 +505,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtMostNumberOfTimesWithMatchers()
         {
             // Given
@@ -521,7 +521,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atMost(5))).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtMostSameNumberOfTimesWithMatchers()
         {
             // Given
@@ -537,7 +537,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atMost(3))).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledMoreThanAtMostNumberOfTimesWithMatchers()
         {
             // Given
@@ -568,7 +568,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	atLeastOnce
          */
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnceNumberOfTimes()
         {
             // Given
@@ -584,7 +584,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnceNumberOfTimesWhenIsCalledMoreTimes()
         {
             // Given
@@ -601,7 +601,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledLessThanAtLeastOnceNumberOfTimes()
         {
             // Given
@@ -627,7 +627,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnceNumberOfTimesWithMatchers()
         {
             // Given
@@ -642,7 +642,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnceNumberOfTimesWhenIsCalledMoreTimesWithMatchers()
         {
             // Given
@@ -661,7 +661,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledLessThanAtLeastOnceNumberOfTimesWithMatchers()
         {
             // Given
@@ -691,7 +691,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	between
          */
-        [IsTest]
+        [Test]
         private static void thatVerifiesBetweenNumberOfTimes()
         {
             // Given
@@ -712,7 +712,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.between(3, 5))).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatBetweenThrownExceptionIfCalledLessThanAtLeastNumberOfTimes()
         {
             // Given
@@ -739,7 +739,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesBetweenNumberOfTimesWithMatchers()
         {
             // Given
@@ -756,7 +756,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.between(3, 5))).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatBetweenThrownExceptionIfCalledLessThanAtLeastNumberOfTimesWithMatchers()
         {
             // Given
@@ -782,7 +782,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatBetweenThrownExceptionIfCalledMoreThanAtMostNumberOfTimes()
         {
             // Given
@@ -815,7 +815,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatBetweenThrownExceptionIfCalledMoreThanAtMostNumberOfTimesWithMatchers()
         {
             // Given
@@ -848,7 +848,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	never
          */
-        [IsTest]
+        [Test]
         private static void verifyNeverMethodHasNotBeenCalled()
         {
             // Given
@@ -864,7 +864,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.never())).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void verifyNeverMethodHasBeenNotCalledWithMatchers()
         {
             // Given
@@ -880,7 +880,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.never())).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifyNeverFailsWhenCalledMoreTimes()
         {
             // Given
@@ -903,7 +903,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifyNeverFailsWhenCalledMoreTimesWithMatchers()
         {
             // Given
@@ -930,7 +930,7 @@ namespace ApexSharpDemo.ApexCode
         /*
          *	atLeastOnce
          */
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnce()
         {
             // Given
@@ -947,7 +947,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnceWhenIsCalledMoreTimes()
         {
             // Given
@@ -966,7 +966,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add("bob");
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledLessThanAtLeastOnce()
         {
             // Given
@@ -993,7 +993,7 @@ namespace ApexSharpDemo.ApexCode
             }
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnceWithMatchers()
         {
             // Given
@@ -1008,7 +1008,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatVerifiesAtLeastOnceWhenIsCalledMoreTimesWithMatchers()
         {
             // Given
@@ -1025,7 +1025,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
         }
 
-        [IsTest]
+        [Test]
         private static void thatThrownExceptionIfCalledLessThanAtLeastOnceWithMatchers()
         {
             // Given

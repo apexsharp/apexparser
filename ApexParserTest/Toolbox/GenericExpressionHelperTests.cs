@@ -104,5 +104,54 @@ namespace ApexParserTest.Toolbox
                 FormatDemo, FormatDemo_Formatted, GetSetDemo, IClassInterface, IClassInterfaceExt,
                 JsonExample, ListAndArrayDemo, MethodAndConstructor, PrimitiveTypes, PropertyAndField,
                 PropertyAndField2, PropertyAndField3, RunAll, SoqlDemo, SoqlDemo2);
+
+        private string GetTableName(string soqlQuery) => GenericExpressionHelper.GetSoqlTableName(soqlQuery);
+
+        [Test]
+        public void GetSoqlTableNameForInvalidInputDoesntThrowExpressions()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                Assert.True(string.IsNullOrEmpty(GetTableName(null)));
+                Assert.True(string.IsNullOrEmpty(GetTableName(string.Empty)));
+                Assert.True(string.IsNullOrEmpty(GetTableName("Hello World")));
+            });
+        }
+
+        [Test]
+        public void GetSoqlTableNameForValidSoqlQueriesReturnsTableNameSpecifiedAfterFromKeyword() =>
+            Assert.AreEqual("Contact", GetTableName(@"SELECT Id, Email, Phone
+                FROM
+                Contact WHERE Email = :email"));
+
+        private string[] GetParameters(string soqlQuery) => GenericExpressionHelper.GetSoqlParameters(soqlQuery);
+
+        [Test]
+        public void GetSoqlParametersForInvalidInputDoesntThrowExpressions()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                Assert.True(GetParameters(null).IsNullOrEmpty());
+                Assert.True(GetParameters(string.Empty).IsNullOrEmpty());
+                Assert.True(GetParameters("Hello World").IsNullOrEmpty());
+            });
+        }
+
+        [Test]
+        public void GetSoqlParametersForValidSoqlQueriesReturnsTableNameSpecifiedAfterFromKeyword()
+        {
+            var args = GetParameters(@"SELECT Id, Email, Phone
+                FROM
+                Contact WHERE Email = :email");
+            Assert.NotNull(args);
+            Assert.AreEqual(1, args.Length);
+            Assert.AreEqual("email", args[0]);
+
+            args = GetParameters("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id or Email = :email");
+            Assert.NotNull(args);
+            Assert.AreEqual(2, args.Length);
+            Assert.AreEqual("contactNew.Id", args[0]);
+            Assert.AreEqual("email", args[1]);
+        }
     }
 }

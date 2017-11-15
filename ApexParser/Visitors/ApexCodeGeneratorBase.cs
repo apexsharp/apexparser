@@ -183,17 +183,23 @@ namespace ApexParser.Visitors
 
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
-            AppendCommentsAttributesAndModifiers(node);
-            node.ReturnType.Accept(this);
-            Append(" {0}(", node.Identifier);
-            AppendMethodParametersAndBody(node);
+            using (SetCurrentMember(node))
+            {
+                AppendCommentsAttributesAndModifiers(node);
+                node.ReturnType.Accept(this);
+                Append(" {0}(", node.Identifier);
+                AppendMethodParametersAndBody(node);
+            }
         }
 
         public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
         {
-            AppendCommentsAttributesAndModifiers(node);
-            Append("{0}(", node.ReturnType?.Identifier ?? node.Identifier);
-            AppendMethodParametersAndBody(node);
+            using (SetCurrentMember(node))
+            {
+                AppendCommentsAttributesAndModifiers(node);
+                Append("{0}(", node.ReturnType?.Identifier ?? node.Identifier);
+                AppendMethodParametersAndBody(node);
+            }
         }
 
         public override void VisitClassInitializer(ClassInitializerSyntax node)
