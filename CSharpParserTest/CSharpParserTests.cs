@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpParser;
+using CSharpParser.Visitors;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
@@ -14,13 +15,14 @@ namespace CSharpParserTest
     public class CSharpParserTests
     {
         [Test]
-        public void CSharpParserTest()
+        public void CSharpHelperParsesTheCSharpCodeAndReturnsTheSyntaxTree()
         {
-            var tree = CSharpHelper.ParseText(
+            var unit = CSharpHelper.ParseText(
                 @"using System;
                 using System.Collections;
-                using System.Linq;
+                using System.Linq.Think;
                 using System.Text;
+                using system.debug;
 
                 namespace HelloWorld
                 {
@@ -33,10 +35,38 @@ namespace CSharpParserTest
                     }
                 }");
 
-            Assert.NotNull(tree);
+            Assert.NotNull(unit);
 
-            var txt = CSharpHelper.ToCSharp(tree);
+            var txt = CSharpHelper.ToCSharp(unit);
             Assert.NotNull(txt);
+        }
+
+        [Test]
+        public void SampleWalkerDisplaysTheSyntaxTreeStructure()
+        {
+            var unit = CSharpHelper.ParseText(
+                @"using System;
+                using System.Collections;
+                using System.Linq.Think;
+                using System.Text;
+                using system.debug;
+
+                namespace Demo
+                {
+                    struct Program
+                    {
+                        static void Main(string[] args)
+                        {
+                            Console.WriteLine(""Hello, World!"");
+                        }
+                    }
+                }");
+
+            var walker = new SampleWalker();
+            unit.Accept(walker);
+
+            var tree = walker.ToString();
+            Assert.False(string.IsNullOrWhiteSpace(tree));
         }
     }
 }
