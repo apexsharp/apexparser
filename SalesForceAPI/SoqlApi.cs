@@ -34,7 +34,11 @@ namespace SalesForceAPI
 
         public static string GetFormatedSoql(string soql, object dynamicInput)
         {
+            Console.WriteLine(nameof(dynamicInput));
             var dynamicType = dynamicInput.GetType();
+            Console.WriteLine(dynamicType.Name);
+            Console.WriteLine(dynamicInput);
+
             PropertyInfo[] pi = dynamicType.GetProperties();
 
             foreach (PropertyInfo p in pi)
