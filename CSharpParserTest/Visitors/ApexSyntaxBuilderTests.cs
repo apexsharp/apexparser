@@ -118,5 +118,12 @@ namespace CSharpParserTest.Visitors
             Check("class X { public int Y, Z; }", "class X { public int Y, Z; }");
             Check("class Test { public int Y = 10, Z = 20 + 30; }", "class Test { public int Y = 10, Z = 20 + 30; }");
         }
+
+        [Test]
+        public void ClassWithPropertyIsGenerated()
+        {
+            Check("class X { int Y { get; } }", "class X { int Y { get; } }");
+            Check("class Test { public int Name { get; set; } }", "class Test { public int Name { get; set; } }");
+        }
     }
 }

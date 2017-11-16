@@ -6,6 +6,7 @@ using ApexParser.MetaClass;
 using ApexParser.Toolbox;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ApexAccessorDeclarationSyntax = ApexParser.MetaClass.AccessorDeclarationSyntax;
 using ApexBlockSyntax = ApexParser.MetaClass.BlockSyntax;
 using ApexClassDeclarationSyntax = ApexParser.MetaClass.ClassDeclarationSyntax;
 using ApexConstructorDeclarationSyntax = ApexParser.MetaClass.ConstructorDeclarationSyntax;
@@ -16,9 +17,12 @@ using ApexFieldDeclarationSyntax = ApexParser.MetaClass.FieldDeclarationSyntax;
 using ApexFieldDeclaratorSyntax = ApexParser.MetaClass.FieldDeclaratorSyntax;
 using ApexMethodDeclarationSyntax = ApexParser.MetaClass.MethodDeclarationSyntax;
 using ApexParameterSyntax = ApexParser.MetaClass.ParameterSyntax;
+using ApexPropertyDeclarationSyntax = ApexParser.MetaClass.PropertyDeclarationSyntax;
+using ApexSyntaxType = ApexParser.MetaClass.SyntaxType;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
+using CSharpAccessorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.AccessorDeclarationSyntax;
 using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
 using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
 using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
@@ -27,6 +31,8 @@ using CSharpExpressionSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSy
 using CSharpFieldDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax;
 using CSharpMethodDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax;
 using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax;
+using CSharpPropertyDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax;
+using CSharpSyntaxKind = Microsoft.CodeAnalysis.CSharp.SyntaxKind;
 using CSharpTypeSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax;
 using CSharpVariableDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclarationSyntax;
 using CSharpVariableDeclaratorSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax;
@@ -134,11 +140,13 @@ namespace CSharpParser.Visitors
                 Identifier = node.Identifier.ValueText,
                 ReturnType = new ApexTypeSyntax(CurrentClass.Identifier),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
-                Body = CurrentBlock = new ApexBlockSyntax(),
             };
 
             CurrentClass.Members.Add(CurrentMethod);
-            ConvertedNodes[node.Body] = CurrentBlock;
+            if (node.Body != null)
+            {
+                ConvertedNodes[node.Body] = CurrentBlock = CurrentMethod.Body = new ApexBlockSyntax();
+            }
 
             base.VisitConstructorDeclaration(node);
         }
@@ -150,11 +158,13 @@ namespace CSharpParser.Visitors
                 Identifier = node.Identifier.ValueText,
                 ReturnType = ConvertType(node.ReturnType),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
-                Body = CurrentBlock = new ApexBlockSyntax(),
             };
 
             CurrentClass.Members.Add(CurrentMethod);
-            ConvertedNodes[node.Body] = CurrentBlock;
+            if (node.Body != null)
+            {
+                ConvertedNodes[node.Body] = CurrentBlock = CurrentMethod.Body = new ApexBlockSyntax();
+            }
 
             base.VisitMethodDeclaration(node);
         }
@@ -231,6 +241,38 @@ namespace CSharpParser.Visitors
             }
 
             return new ApexExpressionSyntax(expression.ToString());
+        }
+
+        private ApexPropertyDeclarationSyntax CurrentProperty { get; set; }
+
+        public override void VisitPropertyDeclaration(CSharpPropertyDeclarationSyntax node)
+        {
+            ConvertedNodes[node] = CurrentProperty = new ApexPropertyDeclarationSyntax
+            {
+                Type = ConvertType(node.Type),
+                Identifier = node.Identifier.ValueText,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            CurrentClass.Members.Add(CurrentProperty);
+            base.VisitPropertyDeclaration(node);
+        }
+
+        public override void VisitAccessorDeclaration(CSharpAccessorDeclarationSyntax node)
+        {
+            var accessor = new ApexAccessorDeclarationSyntax
+            {
+                IsGetter = node.Kind() == CSharpSyntaxKind.GetAccessorDeclaration,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            CurrentProperty.Accessors.Add(accessor);
+            if (node.Body != null)
+            {
+                ConvertedNodes[node.Body] = CurrentBlock = accessor.Body = new ApexBlockSyntax();
+            }
+
+            base.VisitAccessorDeclaration(node);
         }
     }
 }
