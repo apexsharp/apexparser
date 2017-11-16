@@ -23,6 +23,7 @@ using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
 using CSharpAccessorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.AccessorDeclarationSyntax;
+using CSharpBlockSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.BlockSyntax;
 using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
 using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
 using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
@@ -280,6 +281,26 @@ namespace CSharpParser.Visitors
             }
 
             base.VisitAccessorDeclaration(node);
+        }
+
+        public override void VisitBlock(CSharpBlockSyntax node)
+        {
+            var block = default(ApexBlockSyntax);
+            if (ConvertedNodes.TryGetValue(node, out var apexNode))
+            {
+                block = (ApexBlockSyntax)apexNode;
+            }
+            else
+            {
+                block = new ApexBlockSyntax();
+                CurrentBlock.Statements.Add(block);
+            }
+
+            // handle nested blocks
+            var oldCurrentBlock = CurrentBlock;
+            CurrentBlock = block;
+            base.VisitBlock(node);
+            CurrentBlock = oldCurrentBlock;
         }
     }
 }

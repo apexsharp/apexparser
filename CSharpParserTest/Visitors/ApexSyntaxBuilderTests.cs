@@ -135,6 +135,16 @@ namespace CSharpParserTest.Visitors
 
             // TODO: convert built-in types
             ////Check("class T { void Z() { MyString a = \"yes\"; } }", "class T { void Z() { MyString a = 'yes'; } }");
+
+            // var keyword requires semantic analysis
+            ////Check("class T { void Z() { var x = 10; } }", "class T { void Z() { int x = 10; } }");
+        }
+
+        [Test]
+        public void NestedBlockStatementIsGenerated()
+        {
+            Check("class T { void Z() { {} } }", "class T { void Z() { {} } }");
+            Check("class T { void Z() { int x; { int y; } int z; } }", "class T { void Z() { int x; { int y; } int z; } }");
         }
     }
 }
