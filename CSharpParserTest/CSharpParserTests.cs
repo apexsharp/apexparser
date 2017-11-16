@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharpParser;
 using CSharpParser.Visitors;
+using CSharpParserTest.Visitors;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ using NUnit.Framework;
 namespace CSharpParserTest
 {
     [TestFixture]
-    public class CSharpParserTests
+    public class CSharpParserTests : TestFixtureBase
     {
         [Test]
         public void CSharpHelperParsesTheCSharpCodeAndReturnsTheSyntaxTree()
@@ -67,6 +68,27 @@ namespace CSharpParserTest
 
             var tree = walker.ToString();
             Assert.False(string.IsNullOrWhiteSpace(tree));
+        }
+
+        [Test]
+        public void CSharpHelperConvertsCSharpTextsToApex()
+        {
+            var csharp = "class Test1 { public Test1(int x) { } } class Test2 {}";
+            var apexClasses = CSharpHelper.ToApex(csharp);
+            Assert.AreEqual(2, apexClasses.Length);
+
+            CompareLineByLine(
+                @"class Test1
+                {
+                    public Test1(int x)
+                    {
+                    }
+                }", apexClasses[0]);
+
+            CompareLineByLine(
+                @"class Test2
+                {
+                }", apexClasses[1]);
         }
     }
 }
