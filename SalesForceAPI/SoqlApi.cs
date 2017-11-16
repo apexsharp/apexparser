@@ -28,49 +28,36 @@ namespace SalesForceAPI
 
         public static List<T> Query<T>(string soql, object dynamicInput)
         {
-            soql = GetFormatedSoql(soql, dynamicInput);
-            return Query<T>(soql);
-        }
 
-        public static string GetFormatedSoql(string soql, object dynamicInput)
-        {
-            Console.WriteLine(nameof(dynamicInput));
             var dynamicType = dynamicInput.GetType();
-            Console.WriteLine(dynamicType.Name);
-            Console.WriteLine(dynamicInput);
+            // Console.WriteLine(dynamicType.Name);
+            // Console.WriteLine(dynamicInput);
 
-            PropertyInfo[] pi = dynamicType.GetProperties();
+            var varName = ":email";
 
-            foreach (PropertyInfo p in pi)
+            if (dynamicType.Name == "Int32")
             {
-                Console.WriteLine(p.PropertyType.Name);
-                Console.WriteLine(p.Name);
 
-                var varName = ":" + p.Name + " ";
-
-                if (p.PropertyType.Name == "Int32")
-                {
-                    int intValue = (int)p.GetValue(dynamicInput);
-                    string intValueInString = Convert.ToString(intValue);
-                    soql = soql.Replace(varName, " " + intValueInString + " ");
-                }
-                else if (p.PropertyType.Name == "String")
-                {
-                    string stringValue = (string)p.GetValue(dynamicInput);
-                    soql = soql.Replace(varName, " '" + stringValue + "' ");
-                }
-                else if (p.PropertyType.Name == "Id")
-                {
-                    Id id = (Id)p.GetValue(dynamicInput);
-                    string stringValue = id.ToString();
-                    soql = soql.Replace(varName, " '" + stringValue + "' ");
-                }
-                else
-                {
-                    Console.WriteLine("Soql.Query Missing Type");
-                }
+                string intValueInString = Convert.ToString(dynamicInput);
+                soql = soql.Replace(varName, " " + intValueInString + " ");
             }
-            return soql;
+            else if (dynamicType.Name == "String")
+            {
+
+                soql = soql.Replace(varName, "'" + dynamicInput + "'");
+            }
+            else if (dynamicType.Name == "Id")
+            {
+
+                soql = soql.Replace(varName, "'" + dynamicInput + "'");
+            }
+            else
+            {
+                Console.WriteLine("Soql.Query Missing Type");
+            }
+
+            Console.WriteLine(soql);
+            return Query<T>(soql);
         }
 
 
