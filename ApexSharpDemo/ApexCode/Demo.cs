@@ -1,9 +1,8 @@
-﻿namespace ApexSharpDemo.ApexCode
+namespace ApexSharpDemo.ApexCode
 {
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using NUnit.Framework;
 
     public class Demo
     {
@@ -23,11 +22,10 @@
             catch (DmlException e)
             {
                 ApexPages.AddMessages(e);
-
             }
+
             return null;
         }
-
 
         public static string UpdatePhone(string email, string newPhone)
         {
@@ -44,12 +42,11 @@
             }
         }
 
-        private static List<Contact> GetContactByEMail(string email)
+        public static List<Contact> GetContactByEMail(string email)
         {
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = :email", email);
             return contacts;
         }
-
 
         public static List<Contact> GetContacts()
         {
@@ -57,7 +54,7 @@
             return contacts;
         }
 
-        private static void UpdateContacts(List<Contact> contacts)
+        public static void UpdateContacts(List<Contact> contacts)
         {
             Soql.Update(contacts);
         }
