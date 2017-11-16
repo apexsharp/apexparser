@@ -58,7 +58,7 @@ namespace CSharpParser.Visitors
         {
             base.VisitCompilationUnit(node);
 
-            var types = node.ChildNodes().OfType<BaseTypeDeclarationSyntax>().ToArray();
+            var types = GetTopLevelTypeDeclarations(node);
             foreach (var type in types)
             {
                 if (ConvertedNodes.TryGetValue(type, out var apexType))
@@ -67,6 +67,10 @@ namespace CSharpParser.Visitors
                 }
             }
         }
+
+        private BaseTypeDeclarationSyntax[] GetTopLevelTypeDeclarations(CompilationUnitSyntax node) =>
+            node.DescendantNodes(n => !(n is CSharpClassDeclarationSyntax))
+                .OfType<BaseTypeDeclarationSyntax>().ToArray();
 
         private ApexClassDeclarationSyntax CurrentClass { get; set; }
 
