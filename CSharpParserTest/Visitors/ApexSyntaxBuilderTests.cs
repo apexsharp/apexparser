@@ -199,6 +199,30 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void CommentOutNoApexCode()
+        {
+            var builder = new ApexSyntaxBuilder();
+            var code = builder.CommentOutNoApexCode("int x;");
+            Assert.AreEqual(1, code.Count);
+            Assert.AreEqual(":NoApex int x;", code[0]);
+
+            code = builder.CommentOutNoApexCode(@"[Test]
+            public void CommentOutNoApexCode()
+            {
+                var builder = new ApexSyntaxBuilder();
+                    var code = builder.CommentOutNoApexCode();
+            }");
+
+            Assert.AreEqual(6, code.Count);
+            Assert.AreEqual(":NoApex [Test]", code[0]);
+            Assert.AreEqual(":NoApex public void CommentOutNoApexCode()", code[1]);
+            Assert.AreEqual(":NoApex {", code[2]);
+            Assert.AreEqual(":NoApex     var builder = new ApexSyntaxBuilder();", code[3]);
+            Assert.AreEqual(":NoApex         var code = builder.CommentOutNoApexCode();", code[4]);
+            Assert.AreEqual(":NoApex }", code[5]);
+        }
+
+        [Test]
         public void DemoIsConverted()
         {
             var csharpCode =
@@ -321,6 +345,92 @@ namespace CSharpParserTest.Visitors
                     public static void UpdateContacts(List<Contact> contacts)
                     {
                         update contacts;
+                    }
+                }");
+        }
+
+        [Test]
+        public void DemoTestIsConverted()
+        {
+            var csharpCode =
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+                    using NUnit.Framework;
+
+                    [TestFixture]
+                    public class DemoTest
+                    {
+                        [OneTimeSetUp]
+                        public void NoApexSetup()
+                        {
+                            new ApexSharp().Connect(""C:\\DevSharp\\connect.json"");
+                        }
+
+                        [SetUp]
+                        public static void Setup()
+                        {
+                            Contact contactNew = new Contact();
+                            contactNew.LastName = ""Jay"";
+                            contactNew.Email = ""jay@jay.com"";
+                            Soql.Insert(contactNew);
+                        }
+
+                        [Test]
+                        public static void UpdatePhoneTestValidEmail()
+                        {
+                            Demo.UpdatePhone(""jay@jay.com"", ""555-1212"");
+                            List<Contact> contacts = Soql.Query<Contact>(""SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'"");
+                            System.AssertEquals(contacts[0].Phone, ""555-1212"");
+                        }
+
+                        [Test]
+                        public static void UpdatePhoneTestNotValidEmail()
+                        {
+                            Demo.UpdatePhone(""nojay@jay.com"", ""555-1212"");
+                            List<Contact> contacts = Soql.Query<Contact>(""SELECT Id, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'"");
+                            System.AssertEquals(contacts.Size(), 0);
+                        }
+                    }
+                }";
+
+            var apexClasses = CSharpHelper.ToApex(csharpCode);
+            Assert.AreEqual(1, apexClasses.Length);
+            CompareLineByLine(apexClasses[0],
+                @"@IsTest
+                public class DemoTest
+                {
+                    //:NoApex [OneTimeSetUp]
+                    //:NoApex public void NoApexSetup()
+                    //:NoApex {
+                    //:NoApex     new ApexSharp().Connect(""C:\\DevSharp\\connect.json"");
+                    //:NoApex }
+                    //:NoApex
+                    @TestSetup
+                    public static void Setup()
+                    {
+                        Contact contactNew = new Contact();
+                        contactNew.LastName = 'Jay';
+                        contactNew.Email = 'jay@jay.com';
+                        insert contactNew;
+                    }
+
+                    @IsTest
+                    public static void UpdatePhoneTestValidEmail()
+                    {
+                        Demo.UpdatePhone('jay@jay.com', '555-1212');
+                        List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'];
+                        System.AssertEquals(contacts[0].Phone, '555-1212');
+                    }
+
+                    @IsTest
+                    public static void UpdatePhoneTestNotValidEmail()
+                    {
+                        Demo.UpdatePhone('nojay@jay.com', '555-1212');
+                        List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'];
+                        System.AssertEquals(contacts.Size(), 0);
                     }
                 }");
         }

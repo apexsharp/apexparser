@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ApexParser.MetaClass;
+using ApexParser.Parser;
 using ApexParser.Toolbox;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -54,6 +55,10 @@ namespace CSharpParser.Visitors
 {
     public class ApexSyntaxBuilder : CSharpSyntaxWalker
     {
+        public const string NoApexSignature = "NoApex";
+
+        public const string NoApexCommentSignature = ":NoApex ";
+
         public static List<BaseSyntax> GetApexSyntaxNodes(CSharpSyntaxNode node)
         {
             var builder = new ApexSyntaxBuilder();
@@ -98,13 +103,25 @@ namespace CSharpParser.Visitors
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                classDeclaration.Annotations.Add(ConvertClassAnnotation(LastAnnotation));
+            }
+
             foreach (var member in node.Members.EmptyIfNull())
             {
                 member.Accept(this);
-                classDeclaration.Members.Add(LastClassMember);
+                if (LastClassMember != null)
+                {
+                    classDeclaration.Members.Add(LastClassMember);
+                    LastClassMember = null;
+                }
             }
 
             LastClassMember = LastClass = classDeclaration;
+            LastClass.InnerComments = LastComments.ToList();
+            LastComments.Clear();
         }
 
         private ApexTypeSyntax ConvertBaseType(BaseTypeSyntax csharpType)
@@ -119,6 +136,52 @@ namespace CSharpParser.Visitors
 
         private List<ApexTypeSyntax> ConvertBaseTypes(params BaseTypeSyntax[] csharpTypes) =>
             csharpTypes.EmptyIfNull().Select(ConvertBaseType).Where(t => t != null).ToList();
+
+        private AnnotationSyntax ConvertClassAnnotation(AnnotationSyntax node)
+        {
+            if (node.Identifier == "TestFixture")
+            {
+                return new AnnotationSyntax
+                {
+                    Identifier = ApexKeywords.IsTest,
+                    Parameters = node.Parameters,
+                };
+            }
+
+            return node;
+        }
+
+        private AnnotationSyntax ConvertMethodAnnotation(AnnotationSyntax node)
+        {
+            if (node.Identifier == "Test")
+            {
+                return new AnnotationSyntax
+                {
+                    Identifier = ApexKeywords.IsTest,
+                    Parameters = node.Parameters,
+                };
+            }
+            else if (node.Identifier == "SetUp")
+            {
+                return new AnnotationSyntax
+                {
+                    Identifier = ApexKeywords.TestSetup,
+                    Parameters = node.Parameters,
+                };
+            }
+
+            return node;
+        }
+
+        private AnnotationSyntax LastAnnotation { get; set; }
+
+        public override void VisitAttribute(AttributeSyntax node)
+        {
+            LastAnnotation = new AnnotationSyntax
+            {
+                Identifier = node.Name.ToString(),
+            };
+        }
 
         private ApexEnumDeclarationSyntax LastEnum { get; set; }
 
@@ -137,6 +200,8 @@ namespace CSharpParser.Visitors
             }
 
             LastClassMember = LastEnum = enumeration;
+            LastEnum.InnerComments = LastComments.ToList();
+            LastComments.Clear();
         }
 
         private ApexEnumMemberDeclarationSyntax LastEnumMember { get; set; }
@@ -145,8 +210,11 @@ namespace CSharpParser.Visitors
         {
             LastEnumMember = new ApexEnumMemberDeclarationSyntax
             {
+                LeadingComments = LastComments.ToList(),
                 Identifier = node.Identifier.ValueText,
             };
+
+            LastComments.Clear();
         }
 
         private ApexMemberDeclarationSyntax LastClassMember { get; set; }
@@ -155,9 +223,17 @@ namespace CSharpParser.Visitors
         {
             var method = new ApexConstructorDeclarationSyntax
             {
+                LeadingComments = LastComments.ToList(),
                 Identifier = node.Identifier.ValueText,
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
+
+            LastComments.Clear();
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                method.Annotations.Add(ConvertMethodAnnotation(LastAnnotation));
+            }
 
             foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())
             {
@@ -174,14 +250,31 @@ namespace CSharpParser.Visitors
             LastClassMember = method;
         }
 
+        private List<string> LastComments { get; set; } = new List<string>();
+
         public override void VisitMethodDeclaration(CSharpMethodDeclarationSyntax node)
         {
+            // skip methods starting with the signature
+            if (node.Identifier.ValueText.StartsWith(NoApexSignature))
+            {
+                LastComments = CommentOutNoApexCode(node.ToString() + Environment.NewLine);
+                return;
+            }
+
             var method = new ApexMethodDeclarationSyntax
             {
+                LeadingComments = LastComments.ToList(),
                 Identifier = node.Identifier.ValueText,
                 ReturnType = ConvertType(node.ReturnType),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
+
+            LastComments.Clear();
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                method.Annotations.Add(ConvertMethodAnnotation(LastAnnotation));
+            }
 
             foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())
             {
@@ -196,6 +289,45 @@ namespace CSharpParser.Visitors
             }
 
             LastClassMember = method;
+        }
+
+        internal List<string> CommentOutNoApexCode(string code)
+        {
+            var lines = code.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+            int CalcIndent(string line) =>
+                line.Length - line.TrimStart().Length;
+
+            // find out the minimal indent
+            var minIndent = 0;
+            var indents =
+                from line in lines
+                where !string.IsNullOrWhiteSpace(line)
+                let indent = CalcIndent(line)
+                where indent > 0
+                select indent;
+            if (indents.Any())
+            {
+                minIndent = indents.Min();
+            }
+
+            string TrimMinIndent(string line)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    return string.Empty;
+                }
+
+                if (minIndent > 0 && CalcIndent(line) >= minIndent)
+                {
+                    return line.Substring(minIndent);
+                }
+
+                return line;
+            }
+
+            // minimize indents and append the signatures
+            var processed = lines.Select(line => NoApexCommentSignature + TrimMinIndent(line));
+            return processed.ToList();
         }
 
         private ApexParameterSyntax LastParameter { get; set; }
