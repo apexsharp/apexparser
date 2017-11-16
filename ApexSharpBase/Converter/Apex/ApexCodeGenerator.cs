@@ -16,7 +16,7 @@ namespace ApexSharpBase.Converter.Apex
 
         public string GetApexCode(string cSharpCode)
         {
-            var syntaxTree = CSharpSyntaxTree.ParseText(cSharpCode);
+            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(cSharpCode);
             Visit(syntaxTree.GetRoot());
             return sb.ToString();
         }
