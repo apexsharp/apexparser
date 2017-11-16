@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ApexAccessorDeclarationSyntax = ApexParser.MetaClass.AccessorDeclarationSyntax;
 using ApexBlockSyntax = ApexParser.MetaClass.BlockSyntax;
+using ApexCatchClauseSyntax = ApexParser.MetaClass.CatchClauseSyntax;
 using ApexClassDeclarationSyntax = ApexParser.MetaClass.ClassDeclarationSyntax;
 using ApexConstructorDeclarationSyntax = ApexParser.MetaClass.ConstructorDeclarationSyntax;
 using ApexEnumDeclarationSyntax = ApexParser.MetaClass.EnumDeclarationSyntax;
@@ -22,11 +23,14 @@ using ApexParameterSyntax = ApexParser.MetaClass.ParameterSyntax;
 using ApexPropertyDeclarationSyntax = ApexParser.MetaClass.PropertyDeclarationSyntax;
 using ApexReturnStatementSyntax = ApexParser.MetaClass.ReturnStatementSyntax;
 using ApexStatementSyntax = ApexParser.MetaClass.StatementSyntax;
+using ApexTryStatementSyntax = ApexParser.MetaClass.TryStatementSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
 using CSharpAccessorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.AccessorDeclarationSyntax;
 using CSharpBlockSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.BlockSyntax;
+using CSharpCatchClauseSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.CatchClauseSyntax;
+using CSharpCatchDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.CatchDeclarationSyntax;
 using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
 using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
 using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
@@ -39,6 +43,7 @@ using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSynt
 using CSharpPropertyDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax;
 using CSharpReturnStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ReturnStatementSyntax;
 using CSharpSyntaxKind = Microsoft.CodeAnalysis.CSharp.SyntaxKind;
+using CSharpTryStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TryStatementSyntax;
 using CSharpTypeSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax;
 using CSharpVariableDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclarationSyntax;
 using CSharpVariableDeclaratorSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax;
@@ -369,6 +374,47 @@ namespace CSharpParser.Visitors
             {
                 Expression = ConvertExpression(node.Expression),
             };
+        }
+
+        public override void VisitTryStatement(CSharpTryStatementSyntax node)
+        {
+            var tryStatement = new ApexTryStatementSyntax();
+            if (node.Block != null)
+            {
+                node.Block.Accept(this);
+                tryStatement.Block = LastBlock;
+            }
+
+            foreach (var @catch in node.Catches.EmptyIfNull())
+            {
+                @catch.Accept(this);
+                tryStatement.Catches.Add(LastCatch);
+            }
+
+            LastStatement = tryStatement;
+        }
+
+        private ApexCatchClauseSyntax LastCatch { get; set; }
+
+        public override void VisitCatchClause(CSharpCatchClauseSyntax node)
+        {
+            var catchClause = new ApexCatchClauseSyntax();
+            if (node.Declaration != null)
+            {
+                if (node.Declaration.Type != null)
+                {
+                    catchClause.Type = ConvertType(node.Declaration.Type);
+                }
+
+                if (node.Declaration.Identifier != null)
+                {
+                    catchClause.Identifier = node.Declaration.Identifier.ValueText;
+                }
+            }
+
+            node.Block.Accept(this);
+            catchClause.Block = LastBlock;
+            LastCatch = catchClause;
         }
     }
 }
