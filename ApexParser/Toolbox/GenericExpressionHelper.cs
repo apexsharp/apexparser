@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApexParser.Toolbox
 {
-    internal static class GenericExpressionHelper
+    public static class GenericExpressionHelper
     {
         private static Regex SplitRegex { get; } =
             new Regex(@"
@@ -50,6 +50,21 @@ namespace ApexParser.Toolbox
         {
             var matches = SoqlParameterRegex.Matches(soqlQuery ?? string.Empty).OfType<Match>();
             return matches.Select(m => m.Groups["Parameter"].Value).ToArray();
+        }
+
+        private static Regex CSharpSoqlQueryRegex { get; } =
+            new Regex(@"Soql\s*\.\s*Query\s*\<[^>]+\>\s*\(\s*\""(?<Query>[^""]*)\""[^\)]*?\)",
+                RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string[] ExtractSoqlQueries(string expression)
+        {
+            return CSharpSoqlQueryRegex.Matches(expression)
+                .OfType<Match>().Select(m => m.Groups["Query"].Value).ToArray();
+        }
+
+        public static string ConvertSoqlQueriesToApex(string expression)
+        {
+            return CSharpSoqlQueryRegex.Replace(expression, @"[${Query}]");
         }
     }
 }

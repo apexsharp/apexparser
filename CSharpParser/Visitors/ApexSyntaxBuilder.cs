@@ -272,7 +272,9 @@ namespace CSharpParser.Visitors
                 return null;
             }
 
-            return new ApexExpressionSyntax(expression.ToString().Replace("\"", "'"));
+            var apexExpr = expression.ToString();
+            apexExpr = GenericExpressionHelper.ConvertSoqlQueriesToApex(apexExpr).Replace("\"", "'");
+            return new ApexExpressionSyntax(apexExpr);
         }
 
         public override void VisitPropertyDeclaration(CSharpPropertyDeclarationSyntax node)

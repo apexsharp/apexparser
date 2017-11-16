@@ -153,5 +153,31 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual("contactNew.Id", args[0]);
             Assert.AreEqual("email", args[1]);
         }
+
+        [Test]
+        public void GetSoqlExpressionReturnsApexSoqlExpressionBody()
+        {
+            var text = "List<Contact> contacts = Soql.Query<Contact>(\"SELECT Id, Email, Phone FROM Contact\");";
+            var expr = GenericExpressionHelper.ExtractSoqlQueries(text);
+            Assert.AreEqual(1, expr.Length);
+            Assert.AreEqual("SELECT Id, Email, Phone FROM Contact", expr[0]);
+
+            text = "Soql.Query<Contact>(\"SELECT Id, Email, Phone FROM Contact WHERE Email = :email\", email);";
+            expr = GenericExpressionHelper.ExtractSoqlQueries(text);
+            Assert.AreEqual(1, expr.Length);
+            Assert.AreEqual("SELECT Id, Email, Phone FROM Contact WHERE Email = :email", expr[0]);
+        }
+
+        [Test]
+        public void ConvertSoqlExpressionReturnsConvertedApexSoqlExpression()
+        {
+            var text = "List<Contact> contacts = Soql.Query<Contact>(\"SELECT Id, Email, Phone FROM Contact\");";
+            var expr = GenericExpressionHelper.ConvertSoqlQueriesToApex(text);
+            Assert.AreEqual("List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact];", expr);
+
+            text = @"List<Contact> contacts = Soql.Query<Contact>(""SELECT Id, Email, Phone FROM Contact WHERE Email = :email"", email);";
+            expr = GenericExpressionHelper.ConvertSoqlQueriesToApex(text);
+            Assert.AreEqual("List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = :email];", expr);
+        }
     }
 }

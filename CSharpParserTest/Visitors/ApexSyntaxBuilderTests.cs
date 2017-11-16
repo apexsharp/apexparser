@@ -173,6 +173,13 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void SoqlQueryIsGenerated()
+        {
+            Check("class A { void T() { Customer c = Soql.Query<T>(\"SELECT Id FROM Customer\"); } }",
+                "class A { void T() { Customer c = [SELECT Id FROM Customer]; } }");
+        }
+
+        [Test]
         public void DemoIsConverted()
         {
             var csharpCode =
