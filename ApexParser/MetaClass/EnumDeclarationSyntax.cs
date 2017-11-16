@@ -24,5 +24,7 @@ namespace ApexParser.MetaClass
         public string Identifier { get; set; }
 
         public List<EnumMemberDeclarationSyntax> Members { get; set; } = new List<EnumMemberDeclarationSyntax>();
+
+        public List<string> InnerComments { get; set; } = new List<string>();
     }
 }

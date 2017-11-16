@@ -12,13 +12,13 @@ namespace ApexParser.Parser
     public class ApexGrammar : ICommentParserProvider
     {
         // examples: a, Apex, code123
-        protected internal virtual Parser<string> Identifier =>
-        (
+        protected internal virtual Parser<string> RawIdentifier =>
             from identifier in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit.Or(Parse.Char('_')))
             where !ApexKeywords.ReservedWords.Contains(identifier)
-            select identifier
-        )
-        .Token().Named("Identifier");
+            select identifier;
+
+        protected internal virtual Parser<string> Identifier =>
+            RawIdentifier.Token().Named("Identifier");
 
         // examples: System.debug
         protected internal virtual Parser<IEnumerable<string>> QualifiedIdentifier =>
@@ -524,11 +524,11 @@ namespace ApexParser.Parser
         // example: SomeValue
         protected internal virtual Parser<EnumMemberDeclarationSyntax> EnumMember =>
             from heading in MemberDeclarationHeading
-            from identifier in Identifier
-            from skippedComments in CommentParser.AnyComment.Token().Many()
+            from identifier in RawIdentifier.Commented(this)
             select new EnumMemberDeclarationSyntax(heading)
             {
-                Identifier = identifier,
+                Identifier = identifier.Value,
+                TrailingComments = identifier.TrailingComments.ToList(),
             };
 
         // example: public enum Weekday { Monday, Thursday }
@@ -547,13 +547,14 @@ namespace ApexParser.Parser
             from identifier in Identifier
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
-            from members in EnumMember.XDelimitedBy(Parse.Char(',').Token())
-            from comment in CommentParser.AnyComment.Optional()
-            from closeBrace in Parse.Char('}').Token()
+            from members in EnumMember.DelimitedBy(Parse.Char(',').Commented(this))
+            from closeBrace in Parse.Char('}').Commented(this)
             select new EnumDeclarationSyntax
             {
                 Identifier = identifier,
                 Members = members.ToList(),
+                InnerComments = closeBrace.LeadingComments.ToList(),
+                TrailingComments = closeBrace.TrailingComments.ToList(),
             };
 
         // example: @TestFixture public static class Program { static void main() {} }

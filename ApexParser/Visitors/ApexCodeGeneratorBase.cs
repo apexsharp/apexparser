@@ -42,6 +42,34 @@ namespace ApexParser.Visitors
             AppendClassMembers(node);
         }
 
+        protected virtual void AppendEnumDeclaration(EnumDeclarationSyntax node)
+        {
+            AppendCommentsAttributesAndModifiers(node);
+            Append("enum {0}", node.Identifier);
+            AppendLine();
+
+            AppendIndentedLine("{{");
+            using (Indented())
+            {
+                foreach (var em in node.Members.AsSmart())
+                {
+                    em.Value.Accept(this);
+                    AppendLine(em.IsLast ? string.Empty : ",");
+                }
+
+                AppendComments(node.InnerComments);
+            }
+
+            AppendIndented("}}");
+            AppendTrailingComments(node);
+        }
+
+        public override void VisitEnumMember(EnumMemberDeclarationSyntax node)
+        {
+            AppendCommentsAttributesAndModifiers(node);
+            Append("{0}", node.Identifier);
+        }
+
         protected void AppendClassMembers(ClassDeclarationSyntax node)
         {
             AppendIndentedLine("{{");
@@ -93,6 +121,14 @@ namespace ApexParser.Visitors
             using (SetCurrentMember(node))
             {
                 AppendClassDeclaration(node, "interface");
+            }
+        }
+
+        public override void VisitEnum(EnumDeclarationSyntax node)
+        {
+            using (SetCurrentMember(node))
+            {
+                AppendEnumDeclaration(node);
             }
         }
 

@@ -14,5 +14,5 @@ build:
   verbosity: minimal
 
 test_script:
-- OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:".\ApexParserTest\bin\Debug\ApexParserTest.dll .\ApexSharpBaseTest\bin\Debug\ApexSharpBaseTest.dll .\ApexSharpDemo\bin\Debug\ApexSharpDemo.exe" -filter:"+[*]* -[Apex]* -[ApexSharpDemo]* -[SalesForceAPI]*" -output:".\ApexSharp_coverage.xml"
+- OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:".\ApexParserTest\bin\Debug\ApexParserTest.dll .\ApexSharpBaseTest\bin\Debug\ApexSharpBaseTest.dll .\ApexSharpBaseTest\bin\Debug\CSharpParserTest.dll .\ApexSharpDemo\bin\Debug\ApexSharpDemo.exe" -filter:"+[*]* -[Apex]* -[ApexSharpDemo]* -[SalesForceAPI]*" -output:".\ApexSharp_coverage.xml"
 - codecov -f "ApexSharp_coverage.xml" -t b5c5f914-ca2f-47fb-b891-81661c91fa04
