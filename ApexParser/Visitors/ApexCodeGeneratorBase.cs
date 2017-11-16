@@ -412,6 +412,13 @@ namespace ApexParser.Visitors
             AppendTrailingComments(node);
         }
 
+        public override void VisitContinueStatement(ContinueStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("continue;");
+            AppendTrailingComments(node);
+        }
+
         public override void VisitIfStatement(IfStatementSyntax node)
         {
             AppendLeadingComments(node);

@@ -393,7 +393,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(ret);
             Assert.NotNull(ret.Expression);
             Assert.AreEqual("true", ret.Expression.Expression);
-            Assert.AreEqual("continue", block.Statements[2].Body);
+            Assert.NotNull(block.Statements[2] as ContinueStatementSyntax);
 
             block = Apex.Block.Parse("{ if (false) { } }");
             Assert.AreEqual(1, block.Statements.Count);
@@ -1538,6 +1538,15 @@ namespace ApexParserTest.Parser
             Assert.NotNull(breakStmt);
 
             Assert.Throws<ParseException>(() => Apex.BreakStatement.Parse("break"));
+        }
+
+        [Test]
+        public void ContinueStatementHasNoParameters()
+        {
+            var contStmt = Apex.ContinueStatement.Parse(" continue ; ");
+            Assert.NotNull(contStmt);
+
+            Assert.Throws<ParseException>(() => Apex.ContinueStatement.Parse("continue"));
         }
 
         [Test]

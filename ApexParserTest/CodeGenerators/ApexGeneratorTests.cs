@@ -511,6 +511,18 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
+        public void ApexBreakStatementIsGenerated()
+        {
+            Check(new BreakStatementSyntax(), @"break;");
+        }
+
+        [Test]
+        public void ApexContinueStatementIsGenerated()
+        {
+            Check(new ContinueStatementSyntax(), @"continue;");
+        }
+
+        [Test]
         public void ApexUpdateStatementIsGenerated()
         {
             var updateStatement = new UpdateStatementSyntax

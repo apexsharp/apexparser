@@ -12,6 +12,7 @@
         ClassInitializer,
         ClassMember,
         Constructor,
+        ContinueStatement,
         DeleteStatement,
         DoStatement,
         Enum,

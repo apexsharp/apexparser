@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ApexParser.MetaClass;
 using ApexParser.Visitors;
@@ -14,8 +15,17 @@ namespace CSharpParserTest.Visitors
     [TestFixture]
     public class ApexSyntaxBuilderTests : TestFixtureBase
     {
-        protected void Check(BaseSyntax node, string expected) =>
-            CompareLineByLine(node.ToApex(), ApexParser.ApexParser.IndentApex(expected));
+        private static Regex NoWhitespaceRegex = new Regex(@"\s", RegexOptions.Compiled);
+
+        protected void Check(BaseSyntax node, string expected)
+        {
+            string nows(string s) =>
+                NoWhitespaceRegex.Replace(s, string.Empty);
+
+            var nodeToApex = node.ToApex();
+            Assert.AreEqual(nows(expected), nows(nodeToApex));
+            CompareLineByLine(nodeToApex, ApexParser.ApexParser.IndentApex(expected));
+        }
 
         protected void Check(string csharpUnit, params string[] apexClasses)
         {
@@ -203,6 +213,20 @@ namespace CSharpParserTest.Visitors
         {
             Check("class A { void T() { while(true) return x; } }", "class A { void T() { while(true) return x; } }");
             Check("class A { void T() { while(false) { return; } } }", "class A { void T() { while(false) { return; } } }");
+        }
+
+        [Test]
+        public void BreakStatementIsGenerated()
+        {
+            Check("class A { void T() { while(true) break; } }", "class A { void T() { while(true) break; } }");
+            Check("class A { void T() { while(false) { break; } } }", "class A { void T() { while(false) { break; } } }");
+        }
+
+        [Test]
+        public void ContinueStatementIsGenerated()
+        {
+            Check("class A { void T() { while(true) continue; } }", "class A { void T() { while(true) continue; } }");
+            Check("class A { void T() { while(false) { continue; } } }", "class A { void T() { while(false) { continue; } } }");
         }
 
         [Test]

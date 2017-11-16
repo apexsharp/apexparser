@@ -29,6 +29,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitConstructorDeclaration(ConstructorDeclarationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitContinueStatement(ContinueStatementSyntax node) => DefaultVisit(node);
+
         public virtual void VisitDeleteStatement(DeleteStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitDoStatement(DoStatementSyntax node) => DefaultVisit(node);

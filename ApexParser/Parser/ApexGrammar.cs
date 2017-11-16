@@ -232,6 +232,7 @@ namespace ApexParser.Parser
                 .Or(ForStatement)
                 .Or(WhileStatement)
                 .Or(BreakStatement)
+                .Or(ContinueStatement)
                 .Or(RunAsStatement)
                 .Or(TryCatchFinallyStatement)
                 .Or(ReturnStatement)
@@ -399,16 +400,22 @@ namespace ApexParser.Parser
 
         // example: break;
         protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>
-            from @break in Parse.IgnoreCase(ApexKeywords.Break).Token()
+            from @break in Keyword(ApexKeywords.Break).Token()
             from semicolon in Parse.Char(';')
             select new BreakStatementSyntax();
 
+        // example: continue;
+        protected internal virtual Parser<ContinueStatementSyntax> ContinueStatement =>
+            from @continue in Keyword(ApexKeywords.Continue).Token()
+            from semicolon in Parse.Char(';')
+            select new ContinueStatementSyntax();
+
         // simple if statement without the expressions support
         protected internal virtual Parser<IfStatementSyntax> IfStatement =>
-            from ifKeyword in Parse.IgnoreCase(ApexKeywords.If).Token()
+            from ifKeyword in Keyword(ApexKeywords.If).Token()
             from expression in GenericExpressionInBraces()
             from thenBranch in Statement
-            from elseBranch in Parse.IgnoreCase(ApexKeywords.Else).Token(this).Then(_ => Statement).Optional()
+            from elseBranch in Keyword(ApexKeywords.Else).Token(this).Then(_ => Statement).Optional()
             select new IfStatementSyntax
             {
                 Expression = new ExpressionSyntax(expression),

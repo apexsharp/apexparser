@@ -9,9 +9,11 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ApexAccessorDeclarationSyntax = ApexParser.MetaClass.AccessorDeclarationSyntax;
 using ApexBlockSyntax = ApexParser.MetaClass.BlockSyntax;
+using ApexBreakStatementSyntax = ApexParser.MetaClass.BreakStatementSyntax;
 using ApexCatchClauseSyntax = ApexParser.MetaClass.CatchClauseSyntax;
 using ApexClassDeclarationSyntax = ApexParser.MetaClass.ClassDeclarationSyntax;
 using ApexConstructorDeclarationSyntax = ApexParser.MetaClass.ConstructorDeclarationSyntax;
+using ApexContinueStatementSyntax = ApexParser.MetaClass.ContinueStatementSyntax;
 using ApexEnumDeclarationSyntax = ApexParser.MetaClass.EnumDeclarationSyntax;
 using ApexEnumMemberDeclarationSyntax = ApexParser.MetaClass.EnumMemberDeclarationSyntax;
 using ApexExpressionSyntax = ApexParser.MetaClass.ExpressionSyntax;
@@ -32,10 +34,12 @@ using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSynt
 using ApexWhileStatementSyntax = ApexParser.MetaClass.WhileStatementSyntax;
 using CSharpAccessorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.AccessorDeclarationSyntax;
 using CSharpBlockSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.BlockSyntax;
+using CSharpBreakStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.BreakStatementSyntax;
 using CSharpCatchClauseSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.CatchClauseSyntax;
 using CSharpCatchDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.CatchDeclarationSyntax;
 using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
 using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
+using CSharpContinueStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ContinueStatementSyntax;
 using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
 using CSharpEnumMemberDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumMemberDeclarationSyntax;
 using CSharpExpressionSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax;
@@ -513,6 +517,12 @@ namespace CSharpParser.Visitors
                 Expression = ConvertExpression(node.Expression),
             };
         }
+
+        public override void VisitBreakStatement(CSharpBreakStatementSyntax node) =>
+            LastStatement = new ApexBreakStatementSyntax();
+
+        public override void VisitContinueStatement(CSharpContinueStatementSyntax node) =>
+            LastStatement = new ApexContinueStatementSyntax();
 
         public override void VisitWhileStatement(CSharpWhileStatementSyntax node)
         {
