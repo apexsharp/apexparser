@@ -21,8 +21,8 @@ namespace Apex.System
 
         public T this[int index]
         {
-            get { return this[index]; }
-            set { this[index] = value; }
+            get => base[index];
+            set => base[index] = value;
         }
 
         public void Add(T item)

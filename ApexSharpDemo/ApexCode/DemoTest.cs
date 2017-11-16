@@ -8,11 +8,10 @@ namespace ApexSharpDemo.ApexCode
     [TestFixture]
     public class DemoTest
     {
-          [OneTimeSetUp]
-          public void NoApexSetup()
-          {
-                  new SalesForceAPI.ApexSharp().Connect("C:\\DevSharp\\connect.json");
-          }
+        public void NoApexSetup()
+        {
+            new SalesForceAPI.ApexSharp().Connect("C:\\DevSharp\\connect.json");
+        }
         [SetUp]
         public static void Setup()
         {
