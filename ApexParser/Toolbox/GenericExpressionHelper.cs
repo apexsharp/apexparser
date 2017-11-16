@@ -66,5 +66,15 @@ namespace ApexParser.Toolbox
         {
             return CSharpSoqlQueryRegex.Replace(expression, @"[${Query}]");
         }
+
+        private static Regex CShaspSoqlInsertUpdateDeleteRegex { get; } =
+            new Regex(@"Soql\s*\.\s*(?<Operation>Insert|Update|Delete)\s*\(\s*(?<Expression>[^\)]*)\s*\)",
+                RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertSoqlStatementsToApex(string expression)
+        {
+            return CShaspSoqlInsertUpdateDeleteRegex.Replace(expression,
+                x => x.Groups["Operation"].Value.ToLower() + " " + x.Groups["Expression"].Value);
+        }
     }
 }

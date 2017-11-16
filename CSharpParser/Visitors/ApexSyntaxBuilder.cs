@@ -280,7 +280,9 @@ namespace CSharpParser.Visitors
             }
 
             var apexExpr = expression.ToString();
-            apexExpr = GenericExpressionHelper.ConvertSoqlQueriesToApex(apexExpr).Replace("\"", "'");
+            apexExpr = GenericExpressionHelper.ConvertSoqlQueriesToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertSoqlStatementsToApex(apexExpr);
+            apexExpr = apexExpr.Replace("\"", "'");
             return new ApexExpressionSyntax(apexExpr);
         }
 

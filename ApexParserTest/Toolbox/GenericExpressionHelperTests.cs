@@ -179,5 +179,21 @@ namespace ApexParserTest.Toolbox
             expr = GenericExpressionHelper.ConvertSoqlQueriesToApex(text);
             Assert.AreEqual("List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = :email];", expr);
         }
+
+        [Test]
+        public void ConvertSoqlInserUpdateDeleteOperationsReturnsApexStatements()
+        {
+            var text = "Soql.Insert(contact);";
+            var apex = GenericExpressionHelper.ConvertSoqlStatementsToApex(text);
+            Assert.AreEqual("insert contact;", apex);
+
+            text = "Soql.Update(contact);";
+            apex = GenericExpressionHelper.ConvertSoqlStatementsToApex(text);
+            Assert.AreEqual("update contact;", apex);
+
+            text = "Soql.Delete(contact);";
+            apex = GenericExpressionHelper.ConvertSoqlStatementsToApex(text);
+            Assert.AreEqual("delete contact;", apex);
+        }
     }
 }

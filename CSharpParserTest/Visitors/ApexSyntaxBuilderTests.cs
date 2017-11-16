@@ -281,7 +281,7 @@ namespace CSharpParserTest.Visitors
                     {
                         try
                         {
-                            Soql.Insert(contact);
+                            insert contact;
                         }
                         catch (DmlException e)
                         {
@@ -320,7 +320,7 @@ namespace CSharpParserTest.Visitors
 
                     public static void UpdateContacts(List<Contact> contacts)
                     {
-                        Soql.Update(contacts);
+                        update contacts;
                     }
                 }");
         }
