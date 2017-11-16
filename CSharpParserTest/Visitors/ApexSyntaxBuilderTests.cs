@@ -93,6 +93,22 @@ namespace CSharpParserTest.Visitors
         {
             Check("enum A { B }", "enum A { B }");
             Check("public enum C { D, E, F }", "public enum C { D, E, F }");
+            Check("enum X { Y } enum Z { T }", "enum X { Y }", "enum Z { T }");
+        }
+
+        [Test]
+        public void ConstructorParametersAreGenerated()
+        {
+            Check("class T {T(int x){}}", "class T {T(int x){}}");
+            Check("class Sample {Sample(int x, Customer y){}}", "class Sample {Sample(int x, Customer y){}}");
+        }
+
+        [Test]
+        public void ClassWithMethodIsGenerated()
+        {
+            Check("class A { void X(){} }", "class A { void X(){} }");
+            Check("class B { public int T(int R){} }", "class B { public int T(int R){} }");
+            Check("class A { void X(){} int Y(){} }", "class A { void X(){} int Y(){} }");
         }
     }
 }

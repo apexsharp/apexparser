@@ -11,11 +11,16 @@ using ApexClassDeclarationSyntax = ApexParser.MetaClass.ClassDeclarationSyntax;
 using ApexConstructorDeclarationSyntax = ApexParser.MetaClass.ConstructorDeclarationSyntax;
 using ApexEnumDeclarationSyntax = ApexParser.MetaClass.EnumDeclarationSyntax;
 using ApexEnumMemberDeclarationSyntax = ApexParser.MetaClass.EnumMemberDeclarationSyntax;
+using ApexMethodDeclarationSyntax = ApexParser.MetaClass.MethodDeclarationSyntax;
+using ApexParameterSyntax = ApexParser.MetaClass.ParameterSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
 using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
 using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
 using CSharpEnumMemberDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumMemberDeclarationSyntax;
+using CSharpMethodDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax;
+using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax;
+using CSharpTypeSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax;
 
 namespace CSharpParser.Visitors
 {
@@ -64,15 +69,15 @@ namespace CSharpParser.Visitors
             ConvertedNodes[node] = CurrentClass = new ApexClassDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
-                BaseType = ConvertType(baseType),
-                Interfaces = ConvertTypes(interfaces),
+                BaseType = ConvertBaseType(baseType),
+                Interfaces = ConvertBaseTypes(interfaces),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
             base.VisitClassDeclaration(node);
         }
 
-        private ApexTypeSyntax ConvertType(BaseTypeSyntax csharpType)
+        private ApexTypeSyntax ConvertBaseType(BaseTypeSyntax csharpType)
         {
             if (csharpType != null)
             {
@@ -82,27 +87,8 @@ namespace CSharpParser.Visitors
             return null;
         }
 
-        private List<ApexTypeSyntax> ConvertTypes(params BaseTypeSyntax[] csharpTypes) =>
-            csharpTypes.EmptyIfNull().Select(ConvertType).Where(t => t != null).ToList();
-
-        private ApexConstructorDeclarationSyntax CurrentConstructor { get; set; }
-
-        private ApexBlockSyntax CurrentBlock { get; set; }
-
-        public override void VisitConstructorDeclaration(CSharpConstructorDeclarationSyntax node)
-        {
-            ConvertedNodes[node] = CurrentConstructor = new ApexConstructorDeclarationSyntax
-            {
-                Identifier = node.Identifier.ValueText,
-                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
-                Body = CurrentBlock = new ApexBlockSyntax(),
-            };
-
-            CurrentClass.Members.Add(CurrentConstructor);
-            ConvertedNodes[node.Body] = CurrentBlock;
-
-            base.VisitConstructorDeclaration(node);
-        }
+        private List<ApexTypeSyntax> ConvertBaseTypes(params BaseTypeSyntax[] csharpTypes) =>
+            csharpTypes.EmptyIfNull().Select(ConvertBaseType).Where(t => t != null).ToList();
 
         private ApexEnumDeclarationSyntax CurrentEnum { get; set; }
 
@@ -126,6 +112,60 @@ namespace CSharpParser.Visitors
             };
 
             base.VisitEnumMemberDeclaration(node);
+        }
+
+        private ApexMethodDeclarationSyntax CurrentMethod { get; set; }
+
+        private ApexBlockSyntax CurrentBlock { get; set; }
+
+        public override void VisitConstructorDeclaration(CSharpConstructorDeclarationSyntax node)
+        {
+            ConvertedNodes[node] = CurrentMethod = new ApexConstructorDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                ReturnType = new ApexTypeSyntax(CurrentClass.Identifier),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                Body = CurrentBlock = new ApexBlockSyntax(),
+            };
+
+            CurrentClass.Members.Add(CurrentMethod);
+            ConvertedNodes[node.Body] = CurrentBlock;
+
+            base.VisitConstructorDeclaration(node);
+        }
+
+        public override void VisitMethodDeclaration(CSharpMethodDeclarationSyntax node)
+        {
+            ConvertedNodes[node] = CurrentMethod = new ApexMethodDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                ReturnType = ConvertType(node.ReturnType),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                Body = CurrentBlock = new ApexBlockSyntax(),
+            };
+
+            CurrentClass.Members.Add(CurrentMethod);
+            ConvertedNodes[node.Body] = CurrentBlock;
+
+            base.VisitMethodDeclaration(node);
+        }
+
+        public override void VisitParameter(CSharpParameterSyntax node)
+        {
+            var param = new ApexParameterSyntax(ConvertType(node.Type), node.Identifier.ValueText);
+            ConvertedNodes[node] = param;
+            CurrentMethod.Parameters.Add(param);
+            base.VisitParameter(node);
+        }
+
+        private ApexTypeSyntax ConvertType(CSharpTypeSyntax type)
+        {
+            if (type != null)
+            {
+                return new ApexTypeSyntax(type.ToString());
+            }
+
+            return null;
         }
     }
 }
