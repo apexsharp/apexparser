@@ -73,7 +73,7 @@ namespace CSharpParserTest
         [Test]
         public void CSharpHelperConvertsCSharpTextsToApex()
         {
-            var csharp = "class Test1 { public Test1(int x) { } } class Test2 {}";
+            var csharp = "class Test1 { public Test1(int x) { } } class Test2 : Test1 {}";
             var apexClasses = CSharpHelper.ToApex(csharp);
             Assert.AreEqual(2, apexClasses.Length);
 
@@ -86,7 +86,7 @@ namespace CSharpParserTest
                 }", apexClasses[0]);
 
             CompareLineByLine(
-                @"class Test2
+                @"class Test2 extends Test1
                 {
                 }", apexClasses[1]);
         }
