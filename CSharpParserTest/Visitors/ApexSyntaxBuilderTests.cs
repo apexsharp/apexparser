@@ -158,6 +158,14 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void IfStatementIsGenerated()
+        {
+            Check("class A { void T() { if (true) int x; } }", "class A { void T() { if (true) int x; } }");
+            Check("class A { void T() { if (true) { } else int y; } }", "class A { void T() { if (true) { } else int y; } }");
+            Check("class A { void T() { if (true) { } else if (false) int y; } }", "class A { void T() { if (true) { } else if (false) int y; } }");
+        }
+
+        [Test]
         public void DemoIsConverted()
         {
             var csharpCode =

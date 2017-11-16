@@ -15,10 +15,12 @@ using ApexEnumMemberDeclarationSyntax = ApexParser.MetaClass.EnumMemberDeclarati
 using ApexExpressionSyntax = ApexParser.MetaClass.ExpressionSyntax;
 using ApexFieldDeclarationSyntax = ApexParser.MetaClass.FieldDeclarationSyntax;
 using ApexFieldDeclaratorSyntax = ApexParser.MetaClass.FieldDeclaratorSyntax;
+using ApexIfStatementSyntax = ApexParser.MetaClass.IfStatementSyntax;
+using ApexMemberDeclarationSyntax = ApexParser.MetaClass.MemberDeclarationSyntax;
 using ApexMethodDeclarationSyntax = ApexParser.MetaClass.MethodDeclarationSyntax;
 using ApexParameterSyntax = ApexParser.MetaClass.ParameterSyntax;
 using ApexPropertyDeclarationSyntax = ApexParser.MetaClass.PropertyDeclarationSyntax;
-using ApexSyntaxType = ApexParser.MetaClass.SyntaxType;
+using ApexStatementSyntax = ApexParser.MetaClass.StatementSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
@@ -30,6 +32,7 @@ using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDec
 using CSharpEnumMemberDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumMemberDeclarationSyntax;
 using CSharpExpressionSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax;
 using CSharpFieldDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax;
+using CSharpIfStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.IfStatementSyntax;
 using CSharpMethodDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax;
 using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax;
 using CSharpPropertyDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax;
@@ -51,20 +54,12 @@ namespace CSharpParser.Visitors
 
         public List<BaseSyntax> ApexClasses { get; set; } = new List<BaseSyntax>();
 
-        public Dictionary<CSharpSyntaxNode, BaseSyntax> ConvertedNodes { get; } =
-            new Dictionary<CSharpSyntaxNode, BaseSyntax>();
-
         public override void VisitCompilationUnit(CompilationUnitSyntax node)
         {
-            base.VisitCompilationUnit(node);
-
-            var types = GetTopLevelTypeDeclarations(node);
-            foreach (var type in types)
+            foreach (var member in node.Members.EmptyIfNull())
             {
-                if (ConvertedNodes.TryGetValue(type, out var apexType))
-                {
-                    ApexClasses.Add(apexType);
-                }
+                member.Accept(this);
+                ApexClasses.Add(LastClassMember);
             }
         }
 
@@ -72,7 +67,7 @@ namespace CSharpParser.Visitors
             node.DescendantNodes(n => !(n is CSharpClassDeclarationSyntax))
                 .OfType<BaseTypeDeclarationSyntax>().ToArray();
 
-        private ApexClassDeclarationSyntax CurrentClass { get; set; }
+        private ApexClassDeclarationSyntax LastClass { get; set; }
 
         public override void VisitClassDeclaration(CSharpClassDeclarationSyntax node)
         {
@@ -86,8 +81,7 @@ namespace CSharpParser.Visitors
             }
 
             // create the class
-            var oldCurrentClass = CurrentClass;
-            ConvertedNodes[node] = CurrentClass = new ApexClassDeclarationSyntax
+            var classDeclaration = new ApexClassDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
                 BaseType = ConvertBaseType(baseType),
@@ -95,13 +89,13 @@ namespace CSharpParser.Visitors
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
-            if (oldCurrentClass != null)
+            foreach (var member in node.Members.EmptyIfNull())
             {
-                oldCurrentClass.Members.Add(CurrentClass);
+                member.Accept(this);
+                classDeclaration.Members.Add(LastClassMember);
             }
 
-            base.VisitClassDeclaration(node);
-            CurrentClass = oldCurrentClass;
+            LastClassMember = LastClass = classDeclaration;
         }
 
         private ApexTypeSyntax ConvertBaseType(BaseTypeSyntax csharpType)
@@ -117,83 +111,89 @@ namespace CSharpParser.Visitors
         private List<ApexTypeSyntax> ConvertBaseTypes(params BaseTypeSyntax[] csharpTypes) =>
             csharpTypes.EmptyIfNull().Select(ConvertBaseType).Where(t => t != null).ToList();
 
-        private ApexEnumDeclarationSyntax CurrentEnum { get; set; }
+        private ApexEnumDeclarationSyntax LastEnum { get; set; }
 
         public override void VisitEnumDeclaration(CSharpEnumDeclarationSyntax node)
         {
-            // create the class
-            ConvertedNodes[node] = CurrentEnum = new ApexEnumDeclarationSyntax
+            var enumeration = new ApexEnumDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
-            if (CurrentClass != null)
+            foreach (var member in node.Members.EmptyIfNull())
             {
-                CurrentClass.Members.Add(CurrentEnum);
+                member.Accept(this);
+                enumeration.Members.Add(LastEnumMember);
             }
 
-            base.VisitEnumDeclaration(node);
+            LastClassMember = LastEnum = enumeration;
         }
+
+        private ApexEnumMemberDeclarationSyntax LastEnumMember { get; set; }
 
         public override void VisitEnumMemberDeclaration(CSharpEnumMemberDeclarationSyntax node)
         {
-            var member = new ApexEnumMemberDeclarationSyntax
+            LastEnumMember = new ApexEnumMemberDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
             };
-
-            ConvertedNodes[node] = member;
-            CurrentEnum.Members.Add(member);
-            base.VisitEnumMemberDeclaration(node);
         }
 
-        private ApexMethodDeclarationSyntax CurrentMethod { get; set; }
-
-        private ApexBlockSyntax CurrentBlock { get; set; }
+        private ApexMemberDeclarationSyntax LastClassMember { get; set; }
 
         public override void VisitConstructorDeclaration(CSharpConstructorDeclarationSyntax node)
         {
-            ConvertedNodes[node] = CurrentMethod = new ApexConstructorDeclarationSyntax
+            var method = new ApexConstructorDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
-                ReturnType = new ApexTypeSyntax(CurrentClass.Identifier),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
-            CurrentClass.Members.Add(CurrentMethod);
-            if (node.Body != null)
+            foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())
             {
-                ConvertedNodes[node.Body] = CurrentBlock = CurrentMethod.Body = new ApexBlockSyntax();
+                param.Accept(this);
+                method.Parameters.Add(LastParameter);
             }
 
-            base.VisitConstructorDeclaration(node);
+            if (node.Body != null)
+            {
+                node.Body.Accept(this);
+                method.Body = LastBlock;
+            }
+
+            LastClassMember = method;
         }
 
         public override void VisitMethodDeclaration(CSharpMethodDeclarationSyntax node)
         {
-            ConvertedNodes[node] = CurrentMethod = new ApexMethodDeclarationSyntax
+            var method = new ApexMethodDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
                 ReturnType = ConvertType(node.ReturnType),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
-            CurrentClass.Members.Add(CurrentMethod);
-            if (node.Body != null)
+            foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())
             {
-                ConvertedNodes[node.Body] = CurrentBlock = CurrentMethod.Body = new ApexBlockSyntax();
+                param.Accept(this);
+                method.Parameters.Add(LastParameter);
             }
 
-            base.VisitMethodDeclaration(node);
+            if (node.Body != null)
+            {
+                node.Body.Accept(this);
+                method.Body = LastBlock;
+            }
+
+            LastClassMember = method;
         }
+
+        private ApexParameterSyntax LastParameter { get; set; }
 
         public override void VisitParameter(CSharpParameterSyntax node)
         {
-            var param = new ApexParameterSyntax(ConvertType(node.Type), node.Identifier.ValueText);
-            ConvertedNodes[node] = param;
-            CurrentMethod.Parameters.Add(param);
-            base.VisitParameter(node);
+            LastParameter = new ApexParameterSyntax(ConvertType(node.Type), node.Identifier.ValueText);
         }
 
         private ApexTypeSyntax ConvertType(CSharpTypeSyntax type)
@@ -206,57 +206,61 @@ namespace CSharpParser.Visitors
             return null;
         }
 
-        private ApexFieldDeclarationSyntax CurrentField { get; set; }
-
         public override void VisitFieldDeclaration(CSharpFieldDeclarationSyntax node)
         {
-            ConvertedNodes[node] = CurrentField = new ApexFieldDeclarationSyntax
+            var field = new ApexFieldDeclarationSyntax
             {
                 Type = ConvertType(node.Declaration.Type),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
-            CurrentClass.Members.Add(CurrentField);
-            base.VisitFieldDeclaration(node);
-            if (CurrentVariable != null)
+            if (node.Declaration != null)
             {
-                CurrentField.Type = CurrentVariable.Type;
-                CurrentField.Fields = CurrentVariable.Variables.Select(v => new ApexFieldDeclaratorSyntax
+                node.Declaration.Accept(this);
+            }
+
+            if (LastVariable != null)
+            {
+                field.Type = LastVariable.Type;
+                field.Fields = LastVariable.Variables.Select(v => new ApexFieldDeclaratorSyntax
                 {
                     Identifier = v.Identifier,
                     Expression = v.Expression,
                 }).ToList();
             }
 
-            CurrentField = null;
+            LastClassMember = field;
         }
 
-        private ApexVariableDeclarationSyntax CurrentVariable { get; set; }
+        private ApexStatementSyntax LastStatement { get; set; }
+
+        private ApexVariableDeclarationSyntax LastVariable { get; set; }
 
         public override void VisitVariableDeclaration(CSharpVariableDeclarationSyntax node)
         {
-            ConvertedNodes[node] = CurrentVariable = new ApexVariableDeclarationSyntax
+            var variable = new ApexVariableDeclarationSyntax
             {
                 Type = ConvertType(node.Type),
             };
 
-            if (CurrentField == null && CurrentBlock != null)
+            foreach (var var in node.Variables.EmptyIfNull())
             {
-                CurrentBlock.Statements.Add(CurrentVariable);
+                var.Accept(this);
+                variable.Variables.Add(LastVariableDeclarator);
             }
 
-            base.VisitVariableDeclaration(node);
+            LastStatement = LastVariable = variable;
         }
+
+        private ApexVariableDeclaratorSyntax LastVariableDeclarator { get; set; }
 
         public override void VisitVariableDeclarator(CSharpVariableDeclaratorSyntax node)
         {
-            CurrentVariable.Variables.Add(new ApexVariableDeclaratorSyntax
+            LastVariableDeclarator = new ApexVariableDeclaratorSyntax
             {
                 Identifier = node.Identifier.ValueText,
                 Expression = ConvertExpression(node.Initializer?.Value),
-            });
-
-            base.VisitVariableDeclarator(node);
+            };
         }
 
         private ApexExpressionSyntax ConvertExpression(CSharpExpressionSyntax expression)
@@ -269,20 +273,25 @@ namespace CSharpParser.Visitors
             return new ApexExpressionSyntax(expression.ToString().Replace("\"", "'"));
         }
 
-        private ApexPropertyDeclarationSyntax CurrentProperty { get; set; }
-
         public override void VisitPropertyDeclaration(CSharpPropertyDeclarationSyntax node)
         {
-            ConvertedNodes[node] = CurrentProperty = new ApexPropertyDeclarationSyntax
+            var property = new ApexPropertyDeclarationSyntax
             {
                 Type = ConvertType(node.Type),
                 Identifier = node.Identifier.ValueText,
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
-            CurrentClass.Members.Add(CurrentProperty);
-            base.VisitPropertyDeclaration(node);
+            foreach (var accessor in node.AccessorList?.Accessors.EmptyIfNull())
+            {
+                accessor.Accept(this);
+                property.Accessors.Add(LastAccessor);
+            }
+
+            LastClassMember = property;
         }
+
+        private ApexAccessorDeclarationSyntax LastAccessor { get; set; }
 
         public override void VisitAccessorDeclaration(CSharpAccessorDeclarationSyntax node)
         {
@@ -292,33 +301,54 @@ namespace CSharpParser.Visitors
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
-            CurrentProperty.Accessors.Add(accessor);
             if (node.Body != null)
             {
-                ConvertedNodes[node.Body] = CurrentBlock = accessor.Body = new ApexBlockSyntax();
+                node.Body.Accept(this);
+                accessor.Body = LastBlock;
             }
 
-            base.VisitAccessorDeclaration(node);
+            LastAccessor = accessor;
         }
+
+        private ApexBlockSyntax LastBlock { get; set; }
 
         public override void VisitBlock(CSharpBlockSyntax node)
         {
-            var block = default(ApexBlockSyntax);
-            if (ConvertedNodes.TryGetValue(node, out var apexNode))
+            var block = new ApexBlockSyntax();
+
+            foreach (var stmt in node.Statements.EmptyIfNull())
             {
-                block = (ApexBlockSyntax)apexNode;
-            }
-            else
-            {
-                block = new ApexBlockSyntax();
-                CurrentBlock.Statements.Add(block);
+                stmt.Accept(this);
+                if (LastStatement != null)
+                {
+                    block.Statements.Add(LastStatement);
+                    LastStatement = null;
+                }
             }
 
-            // handle nested blocks
-            var oldCurrentBlock = CurrentBlock;
-            CurrentBlock = block;
-            base.VisitBlock(node);
-            CurrentBlock = oldCurrentBlock;
+            LastStatement = LastBlock = block;
+        }
+
+        public override void VisitIfStatement(CSharpIfStatementSyntax node)
+        {
+            var ifStmt = new ApexIfStatementSyntax
+            {
+                Expression = ConvertExpression(node.Condition),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                ifStmt.ThenStatement = LastStatement;
+            }
+
+            if (node.Else != null)
+            {
+                node.Else.Accept(this);
+                ifStmt.ElseStatement = LastStatement;
+            }
+
+            LastStatement = ifStmt;
         }
     }
 }
