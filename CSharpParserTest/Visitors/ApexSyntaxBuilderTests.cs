@@ -166,6 +166,13 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void ReturnStatementIsGenerated()
+        {
+            Check("class A { void T() { return x; } }", "class A { void T() { return x; } }");
+            Check("class A { void T() { return; } }", "class A { void T() { return; } }");
+        }
+
+        [Test]
         public void DemoIsConverted()
         {
             var csharpCode =

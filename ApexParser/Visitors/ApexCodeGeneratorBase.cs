@@ -687,6 +687,20 @@ namespace ApexParser.Visitors
             AppendTrailingComments(node);
         }
 
+        public override void VisitReturnStatement(ReturnStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("return");
+            if (node.Expression != null)
+            {
+                Append(" ");
+                node.Expression.Accept(this);
+            }
+
+            Append(";");
+            AppendTrailingComments(node);
+        }
+
         public override void VisitAccessor(AccessorDeclarationSyntax node)
         {
             AppendIndent();

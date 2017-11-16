@@ -40,17 +40,19 @@ namespace ApexParserTest.Parser
         {
             var syntax = ApexParser.ApexParser.GetApexAst(ClassInterface);
             var nodes = syntax.DescendantNodesAndSelf().ToArray();
-            Assert.AreEqual(10, nodes.Length);
+            Assert.AreEqual(12, nodes.Length);
             Assert.IsInstanceOf<ClassDeclarationSyntax>(nodes[0]);
             Assert.IsInstanceOf<TypeSyntax>(nodes[1]);
             Assert.IsInstanceOf<MethodDeclarationSyntax>(nodes[2]);
             Assert.IsInstanceOf<TypeSyntax>(nodes[3]);
             Assert.IsInstanceOf<BlockSyntax>(nodes[4]);
-            Assert.IsInstanceOf<StatementSyntax>(nodes[5]);
-            Assert.IsInstanceOf<MethodDeclarationSyntax>(nodes[6]);
-            Assert.IsInstanceOf<TypeSyntax>(nodes[7]);
-            Assert.IsInstanceOf<BlockSyntax>(nodes[8]);
-            Assert.IsInstanceOf<StatementSyntax>(nodes[9]);
+            Assert.IsInstanceOf<ReturnStatementSyntax>(nodes[5]);
+            Assert.IsInstanceOf<ExpressionSyntax>(nodes[6]);
+            Assert.IsInstanceOf<MethodDeclarationSyntax>(nodes[7]);
+            Assert.IsInstanceOf<TypeSyntax>(nodes[8]);
+            Assert.IsInstanceOf<BlockSyntax>(nodes[9]);
+            Assert.IsInstanceOf<ReturnStatementSyntax>(nodes[10]);
+            Assert.IsInstanceOf<ExpressionSyntax>(nodes[11]);
         }
 
         [Test]
@@ -58,16 +60,18 @@ namespace ApexParserTest.Parser
         {
             var syntax = ApexParser.ApexParser.GetApexAst(ClassInterface);
             var nodes = syntax.DescendantNodes().ToArray();
-            Assert.AreEqual(9, nodes.Length);
+            Assert.AreEqual(11, nodes.Length);
             Assert.IsInstanceOf<TypeSyntax>(nodes[0]);
             Assert.IsInstanceOf<MethodDeclarationSyntax>(nodes[1]);
             Assert.IsInstanceOf<TypeSyntax>(nodes[2]);
             Assert.IsInstanceOf<BlockSyntax>(nodes[3]);
-            Assert.IsInstanceOf<StatementSyntax>(nodes[4]);
-            Assert.IsInstanceOf<MethodDeclarationSyntax>(nodes[5]);
-            Assert.IsInstanceOf<TypeSyntax>(nodes[6]);
-            Assert.IsInstanceOf<BlockSyntax>(nodes[7]);
-            Assert.IsInstanceOf<StatementSyntax>(nodes[8]);
+            Assert.IsInstanceOf<ReturnStatementSyntax>(nodes[4]);
+            Assert.IsInstanceOf<ExpressionSyntax>(nodes[5]);
+            Assert.IsInstanceOf<MethodDeclarationSyntax>(nodes[6]);
+            Assert.IsInstanceOf<TypeSyntax>(nodes[7]);
+            Assert.IsInstanceOf<BlockSyntax>(nodes[8]);
+            Assert.IsInstanceOf<ReturnStatementSyntax>(nodes[9]);
+            Assert.IsInstanceOf<ExpressionSyntax>(nodes[10]);
         }
 
         [Test]

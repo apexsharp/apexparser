@@ -69,7 +69,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(block);
             Assert.AreEqual(2, block.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", block.Statements[0].Body);
-            Assert.AreEqual("return new List<String>()", block.Statements[1].Body);
+            Assert.AreEqual("new List<String>()", (block.Statements[1] as ReturnStatementSyntax).Expression.Expression);
         }
     }
 }

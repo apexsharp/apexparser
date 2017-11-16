@@ -20,6 +20,7 @@ using ApexMemberDeclarationSyntax = ApexParser.MetaClass.MemberDeclarationSyntax
 using ApexMethodDeclarationSyntax = ApexParser.MetaClass.MethodDeclarationSyntax;
 using ApexParameterSyntax = ApexParser.MetaClass.ParameterSyntax;
 using ApexPropertyDeclarationSyntax = ApexParser.MetaClass.PropertyDeclarationSyntax;
+using ApexReturnStatementSyntax = ApexParser.MetaClass.ReturnStatementSyntax;
 using ApexStatementSyntax = ApexParser.MetaClass.StatementSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
@@ -36,6 +37,7 @@ using CSharpIfStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.IfStatement
 using CSharpMethodDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax;
 using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax;
 using CSharpPropertyDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax;
+using CSharpReturnStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ReturnStatementSyntax;
 using CSharpSyntaxKind = Microsoft.CodeAnalysis.CSharp.SyntaxKind;
 using CSharpTypeSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax;
 using CSharpVariableDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclarationSyntax;
@@ -349,6 +351,22 @@ namespace CSharpParser.Visitors
             }
 
             LastStatement = ifStmt;
+        }
+
+        public override void VisitExpressionStatement(ExpressionStatementSyntax node)
+        {
+            LastStatement = new ApexStatementSyntax
+            {
+                Body = ConvertExpression(node.Expression).Expression,
+            };
+        }
+
+        public override void VisitReturnStatement(CSharpReturnStatementSyntax node)
+        {
+            LastStatement = new ApexReturnStatementSyntax
+            {
+                Expression = ConvertExpression(node.Expression),
+            };
         }
     }
 }

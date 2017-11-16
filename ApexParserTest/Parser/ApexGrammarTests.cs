@@ -389,7 +389,10 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(3, block.Statements.Count);
             var breakStmt = block.Statements[0] as BreakStatementSyntax;
             Assert.NotNull(breakStmt);
-            Assert.AreEqual("return true", block.Statements[1].Body);
+            var ret = block.Statements[1] as ReturnStatementSyntax;
+            Assert.NotNull(ret);
+            Assert.NotNull(ret.Expression);
+            Assert.AreEqual("true", ret.Expression.Expression);
             Assert.AreEqual("continue", block.Statements[2].Body);
 
             block = Apex.Block.Parse("{ if (false) { } }");
@@ -588,7 +591,7 @@ namespace ApexParserTest.Parser
             var block = get.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("return myProperty", block.Statements[0].Body);
+            Assert.AreEqual("myProperty", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
 
             var set = Apex.PropertyAccessor.Parse(" set { myProperty = value; if (true) { value++; } } ");
             Assert.False(set.LeadingComments.Any());
@@ -625,7 +628,7 @@ namespace ApexParserTest.Parser
             var block = get.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("return 0", block.Statements[0].Body);
+            Assert.AreEqual("0", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
         }
 
         [Test]
@@ -1130,7 +1133,7 @@ namespace ApexParserTest.Parser
             var block = md.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("return null", block.Statements[0].Body);
+            Assert.AreEqual("null", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
 
             cm = Apex.ClassMemberDeclaration.Parse("@required Boolean flag { set { throw; } get; }");
             var pd = cm as PropertyDeclarationSyntax;
@@ -1215,6 +1218,11 @@ namespace ApexParserTest.Parser
         [Test]
         public void KeywordExpressionStatementHandlesInsertDeleteAndReturn()
         {
+            var ret = Apex.ReturnStatement.Parse("  return contact; ");
+            Assert.AreEqual("contact", ret.Expression.Expression);
+            ret = Apex.ReturnStatement.Parse("  return; ");
+            Assert.IsNull(ret.Expression);
+
             var ins = Apex.InsertStatement.Parse("  insert contact; ");
             Assert.AreEqual("contact", ins.Expression.Expression);
 
@@ -1317,7 +1325,7 @@ namespace ApexParserTest.Parser
         {
             var ifstmt = Apex.IfStatement.Parse("if (true) return null;");
             Assert.AreEqual("true", ifstmt.Expression.Expression);
-            Assert.AreEqual("return null", ifstmt.ThenStatement.Body);
+            Assert.AreEqual("null", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
             Assert.IsNull(ifstmt.ElseStatement);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.Parse("if {}"));
@@ -1329,8 +1337,8 @@ namespace ApexParserTest.Parser
         {
             var ifstmt = Apex.IfStatement.Parse("if (false) return 'yes'; else return 'no';");
             Assert.AreEqual("false", ifstmt.Expression.Expression);
-            Assert.AreEqual("return 'yes'", ifstmt.ThenStatement.Body);
-            Assert.AreEqual("return 'no'", ifstmt.ElseStatement.Body);
+            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.Expression);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else}"));
         }
@@ -1340,8 +1348,8 @@ namespace ApexParserTest.Parser
         {
             var ifstmt = Apex.IfStatement.Parse("if (false) return 'yes'; /* oops */ else return 'no';");
             Assert.AreEqual("false", ifstmt.Expression.Expression);
-            Assert.AreEqual("return 'yes'", ifstmt.ThenStatement.Body);
-            Assert.AreEqual("return 'no'", ifstmt.ElseStatement.Body);
+            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.Expression);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else"));
         }
@@ -1355,12 +1363,12 @@ namespace ApexParserTest.Parser
             var block = ifstmt.ThenStatement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("return 'yes'", block.Statements[0].Body);
+            Assert.AreEqual("'yes'", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
 
             block = ifstmt.ElseStatement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("return 'no'", block.Statements[0].Body);
+            Assert.AreEqual("'no'", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) {return null; else {}"));
         }
@@ -1560,22 +1568,39 @@ namespace ApexParserTest.Parser
             var ifstmt = stmt as IfStatementSyntax;
             Assert.NotNull(ifstmt);
             Assert.AreEqual("false", ifstmt.Expression.Expression);
-            Assert.AreEqual("return 'yes'", ifstmt.ThenStatement.Body);
-            Assert.AreEqual("return 'no'", ifstmt.ElseStatement.Body);
+            var ret = ifstmt.ThenStatement as ReturnStatementSyntax;
+            Assert.NotNull(ret);
+            Assert.NotNull(ret.Expression);
+            Assert.AreEqual("'yes'", ret.Expression.Expression);
+            ret = ifstmt.ElseStatement as ReturnStatementSyntax;
+            Assert.NotNull(ret);
+            Assert.NotNull(ret.Expression);
+            Assert.AreEqual("'no'", ret.Expression.Expression);
 
             stmt = Apex.Statement.Parse("{ return x; }");
             var blockStmt = stmt as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
-            Assert.AreEqual("return x", blockStmt.Statements[0].Body);
+            ret = blockStmt.Statements[0] as ReturnStatementSyntax;
+            Assert.NotNull(ret);
+            Assert.NotNull(ret.Expression);
+            Assert.AreEqual("x", ret.Expression.Expression);
 
             stmt = Apex.Statement.Parse("return 'Hello World';");
-            Assert.AreEqual("return 'Hello World'", stmt.Body);
+            ret = stmt as ReturnStatementSyntax;
+            Assert.NotNull(ret);
+            Assert.NotNull(ret.Expression);
+            Assert.AreEqual("'Hello World'", ret.Expression.Expression);
 
             stmt = Apex.Statement.Parse("insert something;");
             var ins = stmt as InsertStatementSyntax;
             Assert.NotNull(ins);
             Assert.AreEqual("something", ins.Expression.Expression);
+
+            stmt = Apex.Statement.Parse("return null;");
+            ret = stmt as ReturnStatementSyntax;
+            Assert.NotNull(ret);
+            Assert.AreEqual("null", ret.Expression.Expression);
 
             stmt = Apex.Statement.Parse(@"
             for (Contact c : contacts)
@@ -1683,17 +1708,17 @@ namespace ApexParserTest.Parser
             var ifstmt = stmt as IfStatementSyntax;
             Assert.NotNull(ifstmt);
             Assert.AreEqual("false", ifstmt.Expression.Expression);
-            Assert.AreEqual("return 'yes'", ifstmt.ThenStatement.Body);
-            Assert.AreEqual("return 'no'", ifstmt.ElseStatement.Body);
+            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.Expression);
 
             stmt = Apex.Statement.Parse("/* here goes the block statement */ { return x; }");
             var blockStmt = stmt as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
-            Assert.AreEqual("return x", blockStmt.Statements[0].Body);
+            Assert.AreEqual("x", (blockStmt.Statements[0] as ReturnStatementSyntax).Expression.Expression);
 
             stmt = Apex.Statement.Parse("/* greeting //*/ return 'Hello World';");
-            Assert.AreEqual("return 'Hello World'", stmt.Body);
+            Assert.AreEqual("'Hello World'", (stmt as ReturnStatementSyntax).Expression.Expression);
         }
 
         [Test]
@@ -1829,7 +1854,10 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual(2, stmt.Statements.Count);
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
-            Assert.AreEqual("return new List<String>()", stmt.Statements[1].Body);
+            var ret = stmt.Statements[1] as ReturnStatementSyntax;
+            Assert.NotNull(ret);
+            Assert.NotNull(ret.Expression);
+            Assert.AreEqual("new List<String>()", ret.Expression.Expression);
         }
 
         [Test]
@@ -1849,7 +1877,8 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("final string methodSig = 'Something'", stmt.Statements[0].Body);
             Assert.AreEqual(1, stmt.Statements[0].TrailingComments.Count);
             Assert.AreEqual("method contents might not be valid", stmt.Statements[0].TrailingComments[0].Trim());
-            Assert.AreEqual("return new List<String>()", stmt.Statements[1].Body);
+            var ret = stmt.Statements[1] as ReturnStatementSyntax;
+            Assert.AreEqual("new List<String>()", ret.Expression.Expression);
             Assert.AreEqual(1, stmt.Statements[1].TrailingComments.Count);
             Assert.AreEqual("comments", stmt.Statements[1].TrailingComments[0].Trim());
             Assert.AreEqual(0, stmt.TrailingComments.Count);

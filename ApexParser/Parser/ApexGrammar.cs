@@ -234,6 +234,7 @@ namespace ApexParser.Parser
                 .Or(BreakStatement)
                 .Or(RunAsStatement)
                 .Or(TryCatchFinallyStatement)
+                .Or(ReturnStatement)
                 .Or(InsertStatement)
                 .Or(UpdateStatement)
                 .Or(DeleteStatement)
@@ -481,6 +482,14 @@ namespace ApexParser.Parser
             from expr in GenericExpression.XOptional()
             from semicolon in Parse.Char(';')
             select expr.GetOrDefault();
+
+        // example: return null;
+        protected internal virtual Parser<ReturnStatementSyntax> ReturnStatement =>
+            from expression in KeywordExpressionStatement(ApexKeywords.Return)
+            select new ReturnStatementSyntax
+            {
+                Expression = expression == null ? null : new ExpressionSyntax(expression),
+            };
 
         // example: insert contact;
         protected internal virtual Parser<InsertStatementSyntax> InsertStatement =>
