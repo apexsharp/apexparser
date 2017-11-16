@@ -29,6 +29,7 @@ using ApexTryStatementSyntax = ApexParser.MetaClass.TryStatementSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
+using ApexWhileStatementSyntax = ApexParser.MetaClass.WhileStatementSyntax;
 using CSharpAccessorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.AccessorDeclarationSyntax;
 using CSharpBlockSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.BlockSyntax;
 using CSharpCatchClauseSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.CatchClauseSyntax;
@@ -50,6 +51,7 @@ using CSharpTryStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TryStateme
 using CSharpTypeSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax;
 using CSharpVariableDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclarationSyntax;
 using CSharpVariableDeclaratorSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax;
+using CSharpWhileStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.WhileStatementSyntax;
 
 namespace CSharpParser.Visitors
 {
@@ -510,6 +512,22 @@ namespace CSharpParser.Visitors
             {
                 Expression = ConvertExpression(node.Expression),
             };
+        }
+
+        public override void VisitWhileStatement(CSharpWhileStatementSyntax node)
+        {
+            var whileStmt = new ApexWhileStatementSyntax
+            {
+                Expression = ConvertExpression(node.Condition),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                whileStmt.Statement = LastStatement;
+            }
+
+            LastStatement = whileStmt;
         }
 
         public override void VisitTryStatement(CSharpTryStatementSyntax node)

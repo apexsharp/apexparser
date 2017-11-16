@@ -199,6 +199,13 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void WhileStatementIsGenerated()
+        {
+            Check("class A { void T() { while(true) return x; } }", "class A { void T() { while(true) return x; } }");
+            Check("class A { void T() { while(false) { return; } } }", "class A { void T() { while(false) { return; } } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();
