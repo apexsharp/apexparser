@@ -82,6 +82,7 @@ namespace CSharpParser.Visitors
             }
 
             // create the class
+            var oldCurrentClass = CurrentClass;
             ConvertedNodes[node] = CurrentClass = new ApexClassDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
@@ -90,7 +91,13 @@ namespace CSharpParser.Visitors
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
+            if (oldCurrentClass != null)
+            {
+                oldCurrentClass.Members.Add(CurrentClass);
+            }
+
             base.VisitClassDeclaration(node);
+            CurrentClass = oldCurrentClass;
         }
 
         private ApexTypeSyntax ConvertBaseType(BaseTypeSyntax csharpType)
@@ -117,16 +124,23 @@ namespace CSharpParser.Visitors
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
+            if (CurrentClass != null)
+            {
+                CurrentClass.Members.Add(CurrentEnum);
+            }
+
             base.VisitEnumDeclaration(node);
         }
 
         public override void VisitEnumMemberDeclaration(CSharpEnumMemberDeclarationSyntax node)
         {
-            ConvertedNodes[node] = new ApexEnumMemberDeclarationSyntax
+            var member = new ApexEnumMemberDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
             };
 
+            ConvertedNodes[node] = member;
+            CurrentEnum.Members.Add(member);
             base.VisitEnumMemberDeclaration(node);
         }
 

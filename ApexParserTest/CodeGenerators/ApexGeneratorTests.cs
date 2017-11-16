@@ -66,6 +66,27 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
+        public void EnumDeclarationIsGenerated()
+        {
+            var ed = new EnumDeclarationSyntax
+            {
+                Identifier = "Boo",
+                Members = new List<EnumMemberDeclarationSyntax>
+                {
+                    new EnumMemberDeclarationSyntax { Identifier = "Tru" },
+                    new EnumMemberDeclarationSyntax { Identifier = "Fa" },
+                },
+            };
+
+            Check(ed,
+                @"enum Boo
+                {
+                    Tru,
+                    Fa
+                }");
+        }
+
+        [Test]
         public void ApexTypesAreSupported()
         {
             var apexVoid = new TypeSyntax(ApexKeywords.Void);
@@ -1061,6 +1082,41 @@ namespace ApexParserTest.CodeGenerators
                     class InnerTest
                     {
                         // inner comment
+                    } // trailing comment
+
+                    // inner comments
+                } // trailing");
+        }
+
+        [Test]
+        public void ClassInnerEnumsAreGenerated()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test
+                {
+                    // leading
+                    public enum Boo
+                    {
+                        // true
+                        Tru,
+                        // false
+                        Fa
+                        // inner enum comment
+                    } // trailing comment
+                    // inner comments
+                } // trailing");
+
+            Check(apex,
+                @"class Test
+                {
+                    // leading
+                    public enum Boo
+                    {
+                        // true
+                        Tru,
+                        // false
+                        Fa
+                        // inner enum comment
                     } // trailing comment
 
                     // inner comments

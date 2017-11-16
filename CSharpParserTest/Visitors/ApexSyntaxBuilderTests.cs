@@ -146,5 +146,15 @@ namespace CSharpParserTest.Visitors
             Check("class T { void Z() { {} } }", "class T { void Z() { {} } }");
             Check("class T { void Z() { int x; { int y; } int z; } }", "class T { void Z() { int x; { int y; } int z; } }");
         }
+
+        [Test]
+        public void NestedClassesAndEnumsAreGenerated()
+        {
+            Check("class O { class I {} }", "class O { class I {} }");
+            Check("class O { enum I { A } }", "class O { enum I { A } }");
+            Check("class O { class T { } enum I { A } }", "class O { class T { } enum I { A } }");
+            Check("class O { class T { enum I { A } } }", "class O { class T { enum I { A } } }");
+            Check("class O { class T { enum I { A } } enum Z { X } }", "class O { class T { enum I { A } } enum Z { X } }");
+        }
     }
 }
