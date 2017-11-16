@@ -180,6 +180,25 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void TryCatchIsGenerated()
+        {
+            Check("class X { void T() { try {} catch {} } }", "class X { void T() { try {} catch {} } }");
+            Check("class X { void T() { try {} catch(Exception) {} } }", "class X { void T() { try {} catch(Exception) {} } }");
+            Check("class X { void T() { try {} catch(Exception ex) {} } }", "class X { void T() { try {} catch(Exception ex) {} } }");
+            Check("class X { void T() { try {} catch(Exception ex) {} catch {} } }", "class X { void T() { try {} catch(Exception ex) {} catch {} } }");
+        }
+
+        [Test]
+        public void TryFinallyAndTryCatchFinallyIsGenerated()
+        {
+            Check("class X { void T() { try {} finally {} } }", "class X { void T() { try {} finally {} } }");
+            Check("class X { void T() { try {} catch {} finally {} } }", "class X { void T() { try {} catch {} finally {} } }");
+            Check("class X { void T() { try {} catch(Exception) {} finally {}} }", "class X { void T() { try {} catch(Exception) {} finally {}} }");
+            Check("class X { void T() { try {} catch(Exception ex) {} finally {} } }", "class X { void T() { try {} catch(Exception ex) {} finally {} } }");
+            Check("class X { void T() { try {} catch(Exception ex) {} catch {} finally {} } }", "class X { void T() { try {} catch(Exception ex) {} catch {} finally {} } }");
+        }
+
+        [Test]
         public void DemoIsConverted()
         {
             var csharpCode =

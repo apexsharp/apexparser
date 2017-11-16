@@ -16,6 +16,7 @@ using ApexEnumMemberDeclarationSyntax = ApexParser.MetaClass.EnumMemberDeclarati
 using ApexExpressionSyntax = ApexParser.MetaClass.ExpressionSyntax;
 using ApexFieldDeclarationSyntax = ApexParser.MetaClass.FieldDeclarationSyntax;
 using ApexFieldDeclaratorSyntax = ApexParser.MetaClass.FieldDeclaratorSyntax;
+using ApexFinallyClauseSyntax = ApexParser.MetaClass.FinallyClauseSyntax;
 using ApexIfStatementSyntax = ApexParser.MetaClass.IfStatementSyntax;
 using ApexMemberDeclarationSyntax = ApexParser.MetaClass.MemberDeclarationSyntax;
 using ApexMethodDeclarationSyntax = ApexParser.MetaClass.MethodDeclarationSyntax;
@@ -37,6 +38,7 @@ using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDec
 using CSharpEnumMemberDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumMemberDeclarationSyntax;
 using CSharpExpressionSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax;
 using CSharpFieldDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax;
+using CSharpFinallyClauseSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FinallyClauseSyntax;
 using CSharpIfStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.IfStatementSyntax;
 using CSharpMethodDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax;
 using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax;
@@ -391,6 +393,12 @@ namespace CSharpParser.Visitors
                 tryStatement.Catches.Add(LastCatch);
             }
 
+            if (node.Finally != null)
+            {
+                node.Finally.Accept(this);
+                tryStatement.Finally = LastFinally;
+            }
+
             LastStatement = tryStatement;
         }
 
@@ -415,6 +423,17 @@ namespace CSharpParser.Visitors
             node.Block.Accept(this);
             catchClause.Block = LastBlock;
             LastCatch = catchClause;
+        }
+
+        private ApexFinallyClauseSyntax LastFinally { get; set; }
+
+        public override void VisitFinallyClause(CSharpFinallyClauseSyntax node)
+        {
+            node.Block.Accept(this);
+            LastFinally = new ApexFinallyClauseSyntax
+            {
+                Block = LastBlock,
+            };
         }
     }
 }
