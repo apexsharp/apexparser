@@ -45,20 +45,37 @@ namespace CSharpParser.Visitors
         public override void VisitClassDeclaration(CSharpClassDeclarationSyntax node)
         {
             // get base types
-            var baseType = node.BaseList?.Types.EmptyIfNull().FirstOrDefault();
+            var baseTypes = (node.BaseList?.Types ?? Enumerable.Empty<BaseTypeSyntax>()).ToList();
+            var baseType = baseTypes.FirstOrDefault();
             var interfaces = new BaseTypeSyntax[0];
-            if (node.BaseList?.Types.Count > 1)
+            if (baseTypes.Count > 1)
             {
-                interfaces = node.BaseList.Types.Skip(1).ToArray();
+                interfaces = baseTypes.Skip(1).ToArray();
             }
 
             // create the class
             ConvertedNodes[node] = CurrentClass = new ApexClassDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
+                BaseType = ConvertType(baseType),
+                Interfaces = ConvertTypes(interfaces),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
             base.VisitClassDeclaration(node);
         }
+
+        private ApexTypeSyntax ConvertType(BaseTypeSyntax csharpType)
+        {
+            if (csharpType != null)
+            {
+                return new ApexTypeSyntax(csharpType.ToString());
+            }
+
+            return null;
+        }
+
+        private List<ApexTypeSyntax> ConvertTypes(params BaseTypeSyntax[] csharpTypes) =>
+            csharpTypes.EmptyIfNull().Select(ConvertType).Where(t => t != null).ToList();
     }
 }

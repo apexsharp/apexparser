@@ -59,6 +59,26 @@ namespace CSharpParserTest.Visitors
         public void MultipleClassesAreGeneratedAsDifferentFiles()
         {
             Check("class Test1{} class Test2{}", "class Test1{}", "class Test2{}");
+            Check("class t1{}class t2{}class t3{}class t4", "class t1{}", "class t2{}", "class t3{}", "class t4{}");
+        }
+
+        [Test]
+        public void BaseClassIsGenerated()
+        {
+            Check("class Test : Base {}", "class Test extends Base {}");
+            Check("class Test : List<Customer> {}", "class Test extends List<Customer> {}");
+            Check("class MyClass : MyBase, IDisposable, IMaybe<Entity> {}", "class MyClass extends MyBase implements IDisposable, IMaybe<Entity> {}");
+
+            // TODO: fix the ConvertType method
+            ////Check("class Test : List<string> {}", "class Test extends List<string> {}");
+        }
+
+        [Test]
+        public void ClassModifiersAreGenerated()
+        {
+            Check("public class Test {}", "public class Test {}");
+            Check("static class Test {}", "static class Test {}");
+            Check("public static class Test : Base {}", "public static class Test extends Base {}");
         }
     }
 }
