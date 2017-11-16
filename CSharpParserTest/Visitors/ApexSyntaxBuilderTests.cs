@@ -125,5 +125,16 @@ namespace CSharpParserTest.Visitors
             Check("class X { int Y { get; } }", "class X { int Y { get; } }");
             Check("class Test { public int Name { get; set; } }", "class Test { public int Name { get; set; } }");
         }
+
+        [Test]
+        public void VariableDeclarationIsGenerated()
+        {
+            Check("class T { void Z() { int x; } }", "class T { void Z() { int x; } }");
+            Check("class T { void Z() { int x = 10; } }", "class T { void Z() { int x = 10; } }");
+            Check("class T { void Z() { MyString a = \"yes\"; } }", "class T { void Z() { MyString a = 'yes'; } }");
+
+            // TODO: convert built-in types
+            ////Check("class T { void Z() { MyString a = \"yes\"; } }", "class T { void Z() { MyString a = 'yes'; } }");
+        }
     }
 }

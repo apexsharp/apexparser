@@ -208,6 +208,8 @@ namespace CSharpParser.Visitors
                     Expression = v.Expression,
                 }).ToList();
             }
+
+            CurrentField = null;
         }
 
         private ApexVariableDeclarationSyntax CurrentVariable { get; set; }
@@ -218,6 +220,11 @@ namespace CSharpParser.Visitors
             {
                 Type = ConvertType(node.Type),
             };
+
+            if (CurrentField == null && CurrentBlock != null)
+            {
+                CurrentBlock.Statements.Add(CurrentVariable);
+            }
 
             base.VisitVariableDeclaration(node);
         }
@@ -240,7 +247,7 @@ namespace CSharpParser.Visitors
                 return null;
             }
 
-            return new ApexExpressionSyntax(expression.ToString());
+            return new ApexExpressionSyntax(expression.ToString().Replace("\"", "'"));
         }
 
         private ApexPropertyDeclarationSyntax CurrentProperty { get; set; }
