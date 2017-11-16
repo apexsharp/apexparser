@@ -18,6 +18,6 @@ namespace ApexParser.MetaClass
 
         public TypeSyntax Type { get; set; }
 
-        public List<VariableDeclaratorSyntax> Variables { get; set; }
+        public List<VariableDeclaratorSyntax> Variables { get; set; } = new List<VariableDeclaratorSyntax>();
     }
 }

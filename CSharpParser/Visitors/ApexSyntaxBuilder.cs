@@ -11,16 +11,25 @@ using ApexClassDeclarationSyntax = ApexParser.MetaClass.ClassDeclarationSyntax;
 using ApexConstructorDeclarationSyntax = ApexParser.MetaClass.ConstructorDeclarationSyntax;
 using ApexEnumDeclarationSyntax = ApexParser.MetaClass.EnumDeclarationSyntax;
 using ApexEnumMemberDeclarationSyntax = ApexParser.MetaClass.EnumMemberDeclarationSyntax;
+using ApexExpressionSyntax = ApexParser.MetaClass.ExpressionSyntax;
+using ApexFieldDeclarationSyntax = ApexParser.MetaClass.FieldDeclarationSyntax;
+using ApexFieldDeclaratorSyntax = ApexParser.MetaClass.FieldDeclaratorSyntax;
 using ApexMethodDeclarationSyntax = ApexParser.MetaClass.MethodDeclarationSyntax;
 using ApexParameterSyntax = ApexParser.MetaClass.ParameterSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
+using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
+using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
 using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
 using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
 using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
 using CSharpEnumMemberDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumMemberDeclarationSyntax;
+using CSharpExpressionSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax;
+using CSharpFieldDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax;
 using CSharpMethodDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax;
 using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax;
 using CSharpTypeSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax;
+using CSharpVariableDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclarationSyntax;
+using CSharpVariableDeclaratorSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax;
 
 namespace CSharpParser.Visitors
 {
@@ -166,6 +175,62 @@ namespace CSharpParser.Visitors
             }
 
             return null;
+        }
+
+        private ApexFieldDeclarationSyntax CurrentField { get; set; }
+
+        public override void VisitFieldDeclaration(CSharpFieldDeclarationSyntax node)
+        {
+            ConvertedNodes[node] = CurrentField = new ApexFieldDeclarationSyntax
+            {
+                Type = ConvertType(node.Declaration.Type),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            CurrentClass.Members.Add(CurrentField);
+            base.VisitFieldDeclaration(node);
+            if (CurrentVariable != null)
+            {
+                CurrentField.Type = CurrentVariable.Type;
+                CurrentField.Fields = CurrentVariable.Variables.Select(v => new ApexFieldDeclaratorSyntax
+                {
+                    Identifier = v.Identifier,
+                    Expression = v.Expression,
+                }).ToList();
+            }
+        }
+
+        private ApexVariableDeclarationSyntax CurrentVariable { get; set; }
+
+        public override void VisitVariableDeclaration(CSharpVariableDeclarationSyntax node)
+        {
+            ConvertedNodes[node] = CurrentVariable = new ApexVariableDeclarationSyntax
+            {
+                Type = ConvertType(node.Type),
+            };
+
+            base.VisitVariableDeclaration(node);
+        }
+
+        public override void VisitVariableDeclarator(CSharpVariableDeclaratorSyntax node)
+        {
+            CurrentVariable.Variables.Add(new ApexVariableDeclaratorSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                Expression = ConvertExpression(node.Initializer?.Value),
+            });
+
+            base.VisitVariableDeclarator(node);
+        }
+
+        private ApexExpressionSyntax ConvertExpression(CSharpExpressionSyntax expression)
+        {
+            if (expression == null)
+            {
+                return null;
+            }
+
+            return new ApexExpressionSyntax(expression.ToString());
         }
     }
 }

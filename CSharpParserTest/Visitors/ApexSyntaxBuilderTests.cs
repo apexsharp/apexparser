@@ -110,5 +110,13 @@ namespace CSharpParserTest.Visitors
             Check("class B { public int T(int R){} }", "class B { public int T(int R){} }");
             Check("class A { void X(){} int Y(){} }", "class A { void X(){} int Y(){} }");
         }
+
+        [Test]
+        public void ClassWithFieldIsGenerated()
+        {
+            Check("class X { int Y; }", "class X { int Y; }");
+            Check("class X { public int Y, Z; }", "class X { public int Y, Z; }");
+            Check("class Test { public int Y = 10, Z = 20 + 30; }", "class Test { public int Y = 10, Z = 20 + 30; }");
+        }
     }
 }

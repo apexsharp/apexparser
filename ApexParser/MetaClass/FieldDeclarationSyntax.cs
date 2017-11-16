@@ -37,6 +37,6 @@ namespace ApexParser.MetaClass
 
         public TypeSyntax Type { get; set; }
 
-        public List<FieldDeclaratorSyntax> Fields { get; set; }
+        public List<FieldDeclaratorSyntax> Fields { get; set; } = new List<FieldDeclaratorSyntax>();
     }
 }
