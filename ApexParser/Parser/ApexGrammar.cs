@@ -547,7 +547,7 @@ namespace ApexParser.Parser
             from identifier in Identifier
             from skippedComments in CommentParser.AnyComment.Token().Many()
             from openBrace in Parse.Char('{').Token()
-            from members in EnumMember.XDelimitedBy(Parse.Char(',').Token())
+            from members in EnumMember.DelimitedBy(Parse.Char(',').Token())
             from comment in CommentParser.AnyComment.Optional()
             from closeBrace in Parse.Char('}').Token()
             select new EnumDeclarationSyntax

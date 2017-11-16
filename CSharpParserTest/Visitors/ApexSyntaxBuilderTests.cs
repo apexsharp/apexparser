@@ -80,5 +80,19 @@ namespace CSharpParserTest.Visitors
             Check("static class Test {}", "static class Test {}");
             Check("public static class Test : Base {}", "public static class Test extends Base {}");
         }
+
+        [Test]
+        public void ClassWithConstructorIsGenerated()
+        {
+            Check("class A { A(){} }", "class A { A(){} }");
+            Check("class B { public B(){} }", "class B { public B(){} }");
+        }
+
+        [Test]
+        public void EnumIsGenerated()
+        {
+            Check("enum A { B }", "enum A { B }");
+            Check("public enum C { D, E, F }", "public enum C { D, E, F }");
+        }
     }
 }

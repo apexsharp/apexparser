@@ -6,9 +6,16 @@ using ApexParser.MetaClass;
 using ApexParser.Toolbox;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ApexBlockSyntax = ApexParser.MetaClass.BlockSyntax;
 using ApexClassDeclarationSyntax = ApexParser.MetaClass.ClassDeclarationSyntax;
+using ApexConstructorDeclarationSyntax = ApexParser.MetaClass.ConstructorDeclarationSyntax;
+using ApexEnumDeclarationSyntax = ApexParser.MetaClass.EnumDeclarationSyntax;
+using ApexEnumMemberDeclarationSyntax = ApexParser.MetaClass.EnumMemberDeclarationSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
+using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
+using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
+using CSharpEnumMemberDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumMemberDeclarationSyntax;
 
 namespace CSharpParser.Visitors
 {
@@ -77,5 +84,48 @@ namespace CSharpParser.Visitors
 
         private List<ApexTypeSyntax> ConvertTypes(params BaseTypeSyntax[] csharpTypes) =>
             csharpTypes.EmptyIfNull().Select(ConvertType).Where(t => t != null).ToList();
+
+        private ApexConstructorDeclarationSyntax CurrentConstructor { get; set; }
+
+        private ApexBlockSyntax CurrentBlock { get; set; }
+
+        public override void VisitConstructorDeclaration(CSharpConstructorDeclarationSyntax node)
+        {
+            ConvertedNodes[node] = CurrentConstructor = new ApexConstructorDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                Body = CurrentBlock = new ApexBlockSyntax(),
+            };
+
+            CurrentClass.Members.Add(CurrentConstructor);
+            ConvertedNodes[node.Body] = CurrentBlock;
+
+            base.VisitConstructorDeclaration(node);
+        }
+
+        private ApexEnumDeclarationSyntax CurrentEnum { get; set; }
+
+        public override void VisitEnumDeclaration(CSharpEnumDeclarationSyntax node)
+        {
+            // create the class
+            ConvertedNodes[node] = CurrentEnum = new ApexEnumDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            base.VisitEnumDeclaration(node);
+        }
+
+        public override void VisitEnumMemberDeclaration(CSharpEnumMemberDeclarationSyntax node)
+        {
+            ConvertedNodes[node] = new ApexEnumMemberDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+            };
+
+            base.VisitEnumMemberDeclaration(node);
+        }
     }
 }
