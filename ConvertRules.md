@@ -1,12 +1,26 @@
 Apex
 
 ```csharp
+public without sharing abstract class SoqlDemo {
+```
+
+C#
+
+```csharp
+[WithOutSharing]
+    public abstract class SoqlDemo
+```
+
+
+Apex
+
+```csharp
 public with sharing abstract class SoqlDemo
 ```
 C#
 
 ```csharp
-[ApexWithSharing]
+[WithSharing]
 public abstract class SoqlDemo
 ```
 

@@ -5,7 +5,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.System;
     using SObjects;
 
-    [ApexWithSharing]
+    [WithOutSharing]
     public abstract class SoqlDemo
     {
         public List<Contact> ContactList = Soql.Query<Contact>("SELECT Id, Email FROM Contact");

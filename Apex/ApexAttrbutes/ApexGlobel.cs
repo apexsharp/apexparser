@@ -9,7 +9,7 @@ namespace ApexSharpBase.Attribute
 {
 
     [AttributeUsage(AttributeTargets.All)]
-    public class ApexGlobel : global::System.Attribute
+    public class Globel : global::System.Attribute
     {
     }
 }

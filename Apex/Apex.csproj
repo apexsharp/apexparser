@@ -131,11 +131,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApexAttrbutes\ApexFuture.cs" />
     <Compile Include="ApexAttrbutes\ApexGlobel.cs" />
     <Compile Include="ApexAttrbutes\ApexHttpPut.cs" />
     <Compile Include="ApexAttrbutes\ApexRest.cs" />
-    <Compile Include="ApexAttrbutes\ApexTestViewAllData.cs" />
-    <Compile Include="ApexAttrbutes\ApexWithSharing.cs" />
+    <Compile Include="ApexAttrbutes\TestSeeAllData.cs" />
+    <Compile Include="ApexAttrbutes\ApexTransient.cs" />
+    <Compile Include="ApexAttrbutes\WithSharing.cs" />
+    <Compile Include="ApexAttrbutes\WithOutSharing.cs" />
     <Compile Include="ApexPages\Action.cs" />
     <Compile Include="ApexPages\Component.cs" />
     <Compile Include="ApexPages\ComponentIteration.cs" />
