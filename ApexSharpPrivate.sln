@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateDemo", "PrivateDemo\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpParser", "CSharpParser\CSharpParser.csproj", "{E5D0E1A9-0741-4538-8FEF-020A6393225E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{A09E43AD-5F46-4AB3-BBF4-1356EB2CAFDA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,10 +75,6 @@ Global
 		{E5D0E1A9-0741-4538-8FEF-020A6393225E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5D0E1A9-0741-4538-8FEF-020A6393225E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5D0E1A9-0741-4538-8FEF-020A6393225E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A09E43AD-5F46-4AB3-BBF4-1356EB2CAFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A09E43AD-5F46-4AB3-BBF4-1356EB2CAFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A09E43AD-5F46-4AB3-BBF4-1356EB2CAFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A09E43AD-5F46-4AB3-BBF4-1356EB2CAFDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
