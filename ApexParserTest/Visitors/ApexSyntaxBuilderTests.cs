@@ -98,11 +98,22 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void InterfaceIsGenerated()
+        {
+            Check("interface A { }", "interface A { }");
+            Check("public interface B { int x { get; } }", "public interface B { int x { get; } }");
+            Check("interface C : IDisposable { }", "interface C implements IDisposable { }");
+            Check("public class D : B { interface C : IDisposable { } }", "public class D extends B { interface C implements IDisposable { } }");
+            Check("interface E { } interface F { }", "interface E { }", "interface F { }");
+        }
+
+        [Test]
         public void EnumIsGenerated()
         {
             Check("enum A { B }", "enum A { B }");
             Check("public enum C { D, E, F }", "public enum C { D, E, F }");
             Check("enum X { Y } enum Z { T }", "enum X { Y }", "enum Z { T }");
+            Check("public class D { enum X { Y } enum Z { T } }", "public class D { enum X { Y } enum Z { T } }");
         }
 
         [Test]

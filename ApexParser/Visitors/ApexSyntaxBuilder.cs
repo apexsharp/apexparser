@@ -70,9 +70,7 @@ namespace ApexParser.Visitors
             }
         }
 
-        private BaseTypeDeclarationSyntax[] GetTopLevelTypeDeclarations(CompilationUnitSyntax node) =>
-            node.DescendantNodes(n => !(n is ClassDeclarationSyntax))
-                .OfType<BaseTypeDeclarationSyntax>().ToArray();
+        private ApexMemberDeclarationSyntax LastClassMember { get; set; }
 
         public override void VisitClassDeclaration(ClassDeclarationSyntax node)
         {
@@ -110,9 +108,43 @@ namespace ApexParser.Visitors
                 }
             }
 
-            LastClassMember = classDeclaration;
             classDeclaration.InnerComments = LastComments.ToList();
             LastComments.Clear();
+            LastClassMember = classDeclaration;
+        }
+
+        public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
+        {
+            // get base interfaces
+            var interfaces = (node.BaseList?.Types ?? Enumerable.Empty<BaseTypeSyntax>()).ToArray();
+
+            // create the interface
+            var interfaceDeclaration = new ApexInterfaceDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                Interfaces = ConvertBaseTypes(interfaces),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                interfaceDeclaration.Annotations.Add(ConvertClassAnnotation(LastAnnotation));
+            }
+
+            foreach (var member in node.Members.EmptyIfNull())
+            {
+                member.Accept(this);
+                if (LastClassMember != null)
+                {
+                    interfaceDeclaration.Members.Add(LastClassMember);
+                    LastClassMember = null;
+                }
+            }
+
+            interfaceDeclaration.InnerComments = LastComments.ToList();
+            LastComments.Clear();
+            LastClassMember = interfaceDeclaration;
         }
 
         private ApexTypeSyntax ConvertBaseType(BaseTypeSyntax csharpType)
@@ -174,8 +206,6 @@ namespace ApexParser.Visitors
             };
         }
 
-        private ApexEnumDeclarationSyntax LastEnum { get; set; }
-
         public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
         {
             var enumeration = new ApexEnumDeclarationSyntax
@@ -190,9 +220,9 @@ namespace ApexParser.Visitors
                 enumeration.Members.Add(LastEnumMember);
             }
 
-            LastClassMember = LastEnum = enumeration;
-            LastEnum.InnerComments = LastComments.ToList();
+            enumeration.InnerComments = LastComments.ToList();
             LastComments.Clear();
+            LastClassMember = enumeration;
         }
 
         private ApexEnumMemberDeclarationSyntax LastEnumMember { get; set; }
@@ -207,8 +237,6 @@ namespace ApexParser.Visitors
 
             LastComments.Clear();
         }
-
-        private ApexMemberDeclarationSyntax LastClassMember { get; set; }
 
         public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
         {
