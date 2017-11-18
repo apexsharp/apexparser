@@ -8,13 +8,12 @@ namespace ApexSharpDemo.ApexCode
     [TestFixture]
     public class DemoTest
     {
-        public void NoApexSetup()
-        {
-            new SalesForceAPI.ApexSharp().Connect("C:\\DevSharp\\connect.json");
-        }
+
         [SetUp]
         public static void Setup()
         {
+            NoApex.SalesForceLogIn.Login();
+
             Contact contactNew = new Contact();
             contactNew.LastName = "Jay";
             contactNew.Email = "jay@jay.com";
@@ -26,7 +25,7 @@ namespace ApexSharpDemo.ApexCode
         {
             Demo.UpdatePhone("jay@jay.com", "555-1212");
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'");
-            System.AssertEquals(contacts[0].Phone, "555-1212");
+            Assert.AreEqual(contacts[0].Phone, "555-1212");
         }
 
         [Test]
@@ -34,7 +33,7 @@ namespace ApexSharpDemo.ApexCode
         {
             Demo.UpdatePhone("nojay@jay.com", "555-1212");
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'");
-            System.AssertEquals(contacts.Size(), 0);
+            Assert.AreEqual(contacts.Size(), 0);
         }
     }
 }
