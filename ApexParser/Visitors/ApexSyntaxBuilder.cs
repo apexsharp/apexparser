@@ -517,6 +517,7 @@ namespace ApexParser.Visitors
 
         public override void VisitExpressionStatement(ExpressionStatementSyntax node)
         {
+            // also handles SOQL insert/update/delete statements
             LastStatement = new ApexStatementSyntax
             {
                 Body = ConvertExpression(node.Expression).Expression,

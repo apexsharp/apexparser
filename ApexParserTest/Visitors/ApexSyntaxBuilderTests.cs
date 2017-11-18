@@ -200,6 +200,14 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void SoqlInsertUpdateDeleteStatementsAreGenerated()
+        {
+            Check("class A { void T() { Soql.Insert(customerNew); } }", "class A { void T() { insert customerNew; } }");
+            Check("class A { void T() { Soql.Update(customer); } }", "class A { void T() { update customer; } }");
+            Check("class A { void T() { Soql.Delete(customer); } }", "class A { void T() { delete customer; } }");
+        }
+
+        [Test]
         public void TryCatchIsGenerated()
         {
             Check("class X { void T() { try {} catch {} } }", "class X { void T() { try {} catch {} } }");
