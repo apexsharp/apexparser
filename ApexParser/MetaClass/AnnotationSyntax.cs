@@ -10,6 +10,12 @@ namespace ApexParser.MetaClass
 {
     public class AnnotationSyntax : BaseSyntax
     {
+        public AnnotationSyntax(string identifier = null, string parameters = null)
+        {
+            Identifier = identifier;
+            Parameters = parameters;
+        }
+
         public override SyntaxType Kind => SyntaxType.Annotation;
 
         public string Identifier { get; set; }

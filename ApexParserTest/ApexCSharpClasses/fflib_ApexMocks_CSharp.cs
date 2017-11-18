@@ -1,5 +1,6 @@
 namespace ApexSharpDemo.ApexCode
 {
+    using Apex.ApexAttributes;
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
@@ -10,7 +11,8 @@ namespace ApexSharpDemo.ApexCode
     /**
      * @group Core
      */
-    public /* with sharing */ class fflib_ApexMocks : System.StubProvider
+    [WithSharing]
+    public class fflib_ApexMocks : System.StubProvider
     {
         public static readonly int NEVER = 0;
 

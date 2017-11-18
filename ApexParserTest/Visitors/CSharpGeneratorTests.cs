@@ -26,6 +26,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -54,6 +55,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -90,6 +92,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -117,6 +120,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -142,6 +146,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -765,6 +770,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -811,6 +817,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -847,6 +854,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -876,7 +884,7 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
-        public void UnsupportedModifiersGetConvertedIntoComments()
+        public void UnsupportedModifiersGetConvertedIntoAttributes()
         {
             var apex = Apex.ParseClass(@"// unsupported modifiers
             public global class TestClass {
@@ -890,30 +898,37 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
 
                     // unsupported modifiers
-                    public /* global */ class TestClass
+                    [Global]
+                    public class TestClass
                     {
-                        private /* with sharing */ class Inner1
+                        [WithSharing]
+                        private class Inner1
                         {
                         }
 
-                        public /* without sharing */ class Inner2
+                        [WithoutSharing]
+                        public class Inner2
                         {
                         }
 
-                        private /* testMethod */ void MyTest(/* final */ int x)
+                        [Test]
+                        private void MyTest([Final] int x)
                         {
                         }
 
-                        public /* webservice */ void MyService()
+                        [WebService]
+                        public void MyService()
                         {
                         }
 
-                        /* transient */ int TransientField = 0;
+                        [Transient]
+                        int TransientField = 0;
                     }
                 }");
         }
@@ -929,14 +944,17 @@ namespace ApexParserTest.Visitors
             CompareLineByLine(apex.ToCSharp(@namespace: "MyNamespace"),
                 @"namespace MyNamespace
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
 
                     // custom namespace
-                    public /* global */ class TestClass
+                    [Global]
+                    public class TestClass
                     {
-                        private /* with sharing */ class TestInner
+                        [WithSharing]
+                        private class TestInner
                         {
                         }
                     }
@@ -974,6 +992,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;

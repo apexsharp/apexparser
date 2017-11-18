@@ -1,5 +1,6 @@
 namespace ApexSharpDemo.ApexCode
 {
+    using Apex.ApexAttributes;
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
@@ -29,7 +30,8 @@ namespace ApexSharpDemo.ApexCode
      * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
      * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
      */
-    public /* with sharing */ class fflib_IDGenerator
+    [WithSharing]
+    public class fflib_IDGenerator
     {
         private static int fakeIdCount = 0;
 

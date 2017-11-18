@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser;
 using ApexParser.Parser;
 using ApexParser.Visitors;
 using NUnit.Framework;
@@ -14,8 +15,8 @@ namespace ApexParserTest.Visitors
     [TestFixture]
     public class CSharpResourceTests : TestFixtureBase
     {
-        private void Check(string source, string expected) =>
-            CompareLineByLine(ApexParser.ApexParser.ConvertApexToCSharp(source), expected);
+        private void Check(string apex, string csharp) =>
+            CompareLineByLine(ApexParser.ApexParser.ConvertApexToCSharp(apex), csharp);
 
         [Test]
         public void SoqlDemoIsGeneratedInCSharp()
