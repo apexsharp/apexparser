@@ -27,6 +27,10 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void ClassUnitTestIsGeneratedInCSharp() =>
+            Check(ClassUnitTest, ClassUnitTest_CSharp);
+
+        [Test]
         public void fflib_AnswerIsGeneratedInCSharp() =>
             Check(fflib_Answer, fflib_Answer_CSharp);
 

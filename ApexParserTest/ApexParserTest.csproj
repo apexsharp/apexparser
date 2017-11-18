@@ -277,6 +277,7 @@
     <None Include="ApexTestClasses\ClassTwo_Formatted.cls" />
     <None Include="ApexTestClasses\ClassRest.cls" />
     <None Include="ApexTestClasses\ClassUnitTest.cls" />
+    <None Include="ApexTestClasses\ClassUnitTest_CSharp.cs" />
     <None Include="ApexTestClasses\ClassUnitTestRunAs.cls" />
     <None Include="ApexTestClasses\ClassUnitTestSeeAllData.cls" />
     <None Include="ApexTestClasses\ClassVirtual.cls" />

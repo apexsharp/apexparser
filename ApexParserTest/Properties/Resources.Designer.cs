@@ -95,10 +95,10 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
-        ///    using NUnit.Framework;
         ///
         ///    public class Demo
         ///    {
@@ -115,9 +115,9 @@ namespace ApexParserTest.Properties {
         ///            {
         ///                Soql.Insert(contact);
         ///            }
-        ///            catch (DmlException e)
+        ///            catch (DMLException e)
         ///            {
-        ///                ApexPages [rest of string was truncated]&quot;;.
+        ///                ApexP [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApexDemo_CSharp {
             get {
@@ -130,26 +130,29 @@ namespace ApexParserTest.Properties {
         ///{
         ///    public Contact contact { get; set; }
         ///
-        ///    public Demo() {
+        ///    public Demo()
+        ///    {
         ///        contact = new Contact();
         ///    }
         ///
-        ///    public PageReference Save() {
-        ///        try {
+        ///    public PageReference Save()
+        ///    {
+        ///        try
+        ///        {
         ///            insert contact;
-        ///        } catch(DMLException e) {
-        ///            ApexPages.AddMessages(e);
-        ///
         ///        }
+        ///        catch (DMLException e)
+        ///        {
+        ///            ApexPages.AddMessages(e);
+        ///        }
+        ///
         ///        return null;
         ///    }
         ///
-        ///
-        ///    public static string UpdatePhone(string email, string newPhone)
+        ///    public static String UpdatePhone(String email, String newPhone)
         ///    {
         ///        List&lt;Contact&gt; contacts = GetContactByEMail(email);
-        ///        if(contacts.IsEmpty()) {
-        ///            r [rest of string was truncated]&quot;;.
+        ///        if  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApexDemo_Formatted {
             get {
@@ -159,16 +162,17 @@ namespace ApexParserTest.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @IsTest
-        ///private class DemoTest {
+        ///public class DemoTest {
         ///
-        ///    //:NoApex   [OneTimeSetUp]
-        ///    //:NoApex   public void NoApexSetup()
-        ///    //:NoApex   {
-        ///    //:NoApex           new ApexSharp().Connect(&quot;C:\\DevSharp\\connect.json&quot;);
-        ///    //:NoApex   }
+        ///    //:NoApex [OneTimeSetUp]
+        ///    //:NoApex public void NoApexSetup()
+        ///    //:NoApex {
+        ///    //:NoApex     new ApexSharp().Connect(&quot;C:\\DevSharp\\connect.json&quot;);
+        ///    //:NoApex }
+        ///    //:NoApex 
         ///
         ///    @testSetup
-        ///    static void Setup() {
+        ///    public static void Setup() {
         ///        Contact contactNew = new Contact();
         ///        contactNew.LastName = &apos;Jay&apos;;
         ///        contactNew.Email = &apos;jay@jay.com&apos;;
@@ -176,8 +180,7 @@ namespace ApexParserTest.Properties {
         ///    }
         ///
         ///    @IsTest
-        ///    static void UpdatePhoneTestValidEmail() {
-        ///        Demo.U [rest of string was truncated]&quot;;.
+        ///    public static void UpdatePhoneTestValidEmail() {        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApexDemoTest {
             get {
@@ -186,16 +189,15 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using SalesForceAPI;
-        ///
-        ///namespace ApexSharpDemo.ApexCode
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
         ///    using NUnit.Framework;
         ///
-        ///    [TestFixture, Ignore(&quot;Until we find how to store connect.json secure&quot;)]
+        ///    [TestFixture]
         ///    public class DemoTest
         ///    {
         ///        [OneTimeSetUp]
@@ -207,7 +209,8 @@ namespace ApexParserTest.Properties {
         ///        [SetUp]
         ///        public static void Setup()
         ///        {
-        ///            Contact con [rest of string was truncated]&quot;;.
+        ///            Contact contactNew = new Contact();
+        ///            contactNew.L [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApexDemoTest_CSharp {
             get {
@@ -217,16 +220,17 @@ namespace ApexParserTest.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @IsTest
-        ///private class DemoTest {
-        ///
-        ///    //:NoApex   [OneTimeSetUp]
-        ///    //:NoApex   public void NoApexSetup()
-        ///    //:NoApex   {
-        ///    //:NoApex           new ApexSharp().Connect(&quot;C:\\DevSharp\\connect.json&quot;);
-        ///    //:NoApex   }
-        ///
-        ///    @testSetup
-        ///    static void Setup() {
+        ///public class DemoTest
+        ///{
+        ///    //:NoApex [OneTimeSetUp]
+        ///    //:NoApex public void NoApexSetup()
+        ///    //:NoApex {
+        ///    //:NoApex     new ApexSharp().Connect(&quot;C:\\DevSharp\\connect.json&quot;);
+        ///    //:NoApex }
+        ///    //:NoApex 
+        ///    @TestSetup
+        ///    public static void Setup()
+        ///    {
         ///        Contact contactNew = new Contact();
         ///        contactNew.LastName = &apos;Jay&apos;;
         ///        contactNew.Email = &apos;jay@jay.com&apos;;
@@ -234,8 +238,7 @@ namespace ApexParserTest.Properties {
         ///    }
         ///
         ///    @IsTest
-        ///    static void UpdatePhoneTestValidEmail() {
-        ///        Demo.U [rest of string was truncated]&quot;;.
+        ///    public static void UpdatePhoneTestValidEmail()        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApexDemoTest_Formatted {
             get {
@@ -481,6 +484,39 @@ namespace ApexParserTest.Properties {
         internal static string ClassUnitTest {
             get {
                 return ResourceManager.GetString("ClassUnitTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexAttributes;
+        ///    using Apex.ApexSharp;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///    using NUnit.Framework;
+        ///
+        ///    [TestFixture]
+        ///    public class ClassUnitTest
+        ///    {
+        ///        [SetUp]
+        ///        public static void Setup()
+        ///        {
+        ///            System.Debug(&quot;One Time Setup Got Called&quot;);
+        ///        }
+        ///
+        ///        [Test]
+        ///        public static void AssertTrue()
+        ///        {
+        ///            System.Assert(true, &quot;Assert True&quot;);
+        ///        }
+        ///
+        ///        [Test]
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassUnitTest_CSharp {
+            get {
+                return ResourceManager.GetString("ClassUnitTest_CSharp", resourceCulture);
             }
         }
         
@@ -826,6 +862,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -841,7 +878,7 @@ namespace ApexParserTest.Properties {
         ///    public interface fflib_Answer
         ///    {
         ///        /**
-        ///         *	Method to be implemented in the test class to impleme [rest of string was truncated]&quot;;.
+        ///         *	Method to be implemen [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_Answer_CSharp {
             get {
@@ -905,9 +942,11 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
+        ///    using NUnit.Framework;
         ///
         ///    /*
         ///     Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
@@ -915,16 +954,15 @@ namespace ApexParserTest.Properties {
         ///    /**
         ///     * @nodoc
         ///     */
-        ///    [IsTest]
+        ///    [TestFixture]
         ///    private class fflib_AnswerTest
         ///    {
         ///        private static fflib_InvocationOnMock actualInvocation = null;
         ///
-        ///        [IsTest]
+        ///        [Test]
         ///        static void thatAnswersWithException()
         ///        {
-        ///            // Given
-        ///            fflib_ApexMocks mocks = new fflib_Ape [rest of string was truncated]&quot;;.
+        ///         [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnswerTest_CSharp {
             get {
@@ -985,6 +1023,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -999,8 +1038,7 @@ namespace ApexParserTest.Properties {
         ///     */
         ///    public class fflib_AnyOrder : fflib_MethodVerifier
         ///    {
-        ///        /*
-        ///         * Verifies  [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrder_CSharp {
             get {
@@ -1063,9 +1101,11 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
+        ///    using NUnit.Framework;
         ///
         ///    /*
         ///     Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
@@ -1073,13 +1113,12 @@ namespace ApexParserTest.Properties {
         ///    /**
         ///     * @nodoc
         ///     */
-        ///    [IsTest]
+        ///    [TestFixture]
         ///    private class fflib_AnyOrderTest
         ///    {
-        ///        private static readonly String BASIC_VERIFY_ASSERTION_MESSAGE = &quot;Expected : {0}, Actual: {1} -- Wanted but not invoked: &quot;;
+        ///        private static readonly string BASIC_VERIFY_ASSERTION_MESSAGE = &quot;Expected : {0}, Actual: {1} -- Wanted but not invoked: &quot;;
         ///
         ///        /*
-        ///         *	replicating the apex mocks tests with the new syntax
         ///          [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrderTest_CSharp {
@@ -1145,6 +1184,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -1155,13 +1195,14 @@ namespace ApexParserTest.Properties {
         ///    /**
         ///     * @group Core
         ///     */
-        ///    public /* with sharing */ class fflib_ApexMocks : System.StubProvider
+        ///    [WithSharing]
+        ///    public class fflib_ApexMocks : System.StubProvider
         ///    {
-        ///        public static readonly Integer NEVER = 0;
+        ///        public static readonly int NEVER = 0;
         ///
         ///        private readonly fflib_MethodCountRecorder methodCountRecorder;
         ///
-        ///        private readonly fflib_MethodReturnValueRecorder me [rest of string was truncated]&quot;;.
+        ///        private readonly fflib_ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocks_CSharp {
             get {
@@ -1221,20 +1262,21 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
+        ///    using NUnit.Framework;
         ///
         ///    /*
         ///     * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
         ///     */
-        ///    [IsTest]
+        ///    [TestFixture]
         ///    public class fflib_ApexMocksConfig
         ///    {
         ///        /**
         ///         * When false, stubbed behaviour and invocation counts are shared among all test spies.
-        ///         * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
-        ///         * - This is the default for backwards compatibil [rest of string was truncated]&quot;;.
+        ///         * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDepen [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksConfig_CSharp {
             get {
@@ -1288,22 +1330,21 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
+        ///    using NUnit.Framework;
         ///
         ///    /*
         ///     * Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
         ///     */
-        ///    [IsTest]
+        ///    [TestFixture]
         ///    private class fflib_ApexMocksTest
         ///    {
         ///        private static readonly fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
         ///
-        ///        private static readonly fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-        ///
-        ///        [IsTest]
-        ///        static void whenStubMu [rest of string was truncated]&quot;;.
+        ///        private static readonly fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_M [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksTest_CSharp {
             get {
@@ -1357,6 +1398,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -1369,7 +1411,7 @@ namespace ApexParserTest.Properties {
         ///     * are permitted provided that the following conditions are met:
         ///     *
         ///     * - Redistributions of source code must retain the above copyright notice,
-        ///     *      this list of conditions and the following d [rest of string was truncated]&quot;;.
+        ///     *      this list o [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtils_CSharp {
             get {
@@ -1418,9 +1460,11 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
+        ///    using NUnit.Framework;
         ///
         ///    /**
         ///     * Copyright (c) 2014, FinancialForce.com, inc
@@ -1429,8 +1473,7 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of source code must retain the above copyright notice,
-        ///     *      this list of conditions and the following d [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above copyright noti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtilsTest_CSharp {
             get {
@@ -1479,6 +1522,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -1491,7 +1535,7 @@ namespace ApexParserTest.Properties {
         ///     * are permitted provided that the following conditions are met:
         ///     *
         ///     * - Redistributions of source code must retain the above copyright notice,
-        ///     *      this list of conditions and the following di [rest of string was truncated]&quot;;.
+        ///     *      this list of [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptor_CSharp {
             get {
@@ -1551,9 +1595,11 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
+        ///    using NUnit.Framework;
         ///
         ///    /*
         ///     * Copyright (c) 2016-2017 FinancialForce.com, inc.  All rights reserved.
@@ -1561,15 +1607,14 @@ namespace ApexParserTest.Properties {
         ///    /**
         ///     * @nodoc
         ///     */
-        ///    [IsTest]
+        ///    [TestFixture]
         ///    private class fflib_ArgumentCaptorTest
         ///    {
-        ///        [IsTest]
+        ///        [Test]
         ///        static void thatArgumentValueIsCaptured()
         ///        {
         ///            // Given
-        ///            fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///            fflib_MyList mockList = (fflib_My [rest of string was truncated]&quot;;.
+        ///            fflib_ApexMocks mocks = new ff [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptorTest_CSharp {
             get {
@@ -1628,6 +1673,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -1640,7 +1686,7 @@ namespace ApexParserTest.Properties {
         ///     * are permitted provided that the following conditions are met:
         ///     *
         ///     * - Redistributions of source code must retain the above copyright notice,
-        ///     *      this list of conditions and the following d [rest of string was truncated]&quot;;.
+        ///     *      this list o [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IDGenerator_CSharp {
             get {
@@ -1689,9 +1735,11 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
+        ///    using NUnit.Framework;
         ///
         ///    /**
         ///     * Copyright (c) 2014, FinancialForce.com, inc
@@ -1700,8 +1748,7 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of source code must retain the above copyright notice,
-        ///     *      this list of conditions and the following d [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above copyright noti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IDGeneratorTest_CSharp {
             get {
@@ -1750,6 +1797,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -1762,7 +1810,7 @@ namespace ApexParserTest.Properties {
         ///     * are permitted provided that the following conditions are met:
         ///     *
         ///     * - Redistributions of source code must retain the above copyright notice,
-        ///     *      this list of conditions and the following d [rest of string was truncated]&quot;;.
+        ///     *      this list o [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IMatcher_CSharp {
             get {
@@ -2235,6 +2283,7 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
+        ///    using Apex.ApexAttributes;
         ///    using Apex.ApexSharp;
         ///    using Apex.System;
         ///    using SObjects;
@@ -2251,7 +2300,7 @@ namespace ApexParserTest.Properties {
         ///
         ///            System.Debug(contactNew.Id);
         ///
-        ///            List&lt;Contact&gt; contacts = Soql.Query&lt;Contact&gt;(&quot;SELECT Id, Email, Name FRO [rest of string was truncated]&quot;;.
+        ///            List&lt;Contact&gt; contacts = Soql.Query&lt;Cont [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemoCS {
             get {
