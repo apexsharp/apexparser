@@ -4,39 +4,39 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using Apex.ApexAttrbutes;
+    using Apex.ApexAttributes;
 
     [RestResource("/api/v1/RestDemo")]
-    [Globel]
+    [Global]
     public class ClassRest
     {
         [HttpDelete]
-        [Globel]
+        [Global]
         public static void DoDelete()
         {
         }
 
         [HttpPost]
-        [Globel]
+        [Global]
         public static void Post()
         {
         }
 
         [HttpGet]
-        [Globel]
+        [Global]
         public static string Get()
         {
             return "Jay";
         }
 
         [HttpPatch]
-        [Globel]
+        [Global]
         public static void Patch()
         {
         }
 
         [HttpPut]
-        [Globel]
+        [Global]
         public static void Put()
         {
         }

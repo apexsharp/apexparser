@@ -380,10 +380,10 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression.Expression);
             Assert.AreEqual("j", forStmt.Declaration.Variables[1].Identifier);
             Assert.AreEqual("0", forStmt.Declaration.Variables[1].Expression.Expression);
-            Assert.AreEqual("i < 10", forStmt.Condition);
+            Assert.AreEqual("i < 10", forStmt.Condition.Expression);
             Assert.NotNull(forStmt.Incrementors);
             Assert.AreEqual(1, forStmt.Incrementors.Count);
-            Assert.AreEqual("i++", forStmt.Incrementors[0]);
+            Assert.AreEqual("i++", forStmt.Incrementors[0].Expression);
 
             block = forStmt.Statement as BlockSyntax;
             Assert.NotNull(block);
@@ -829,10 +829,10 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, forStmt.Declaration.Variables.Count);
             Assert.AreEqual("i", forStmt.Declaration.Variables[0].Identifier);
             Assert.AreEqual("0", forStmt.Declaration.Variables[0].Expression.Expression);
-            Assert.AreEqual("i < 10", forStmt.Condition);
+            Assert.AreEqual("i < 10", forStmt.Condition.Expression);
             Assert.NotNull(forStmt.Incrementors);
             Assert.AreEqual(1, forStmt.Incrementors.Count);
-            Assert.AreEqual("i++", forStmt.Incrementors[0]);
+            Assert.AreEqual("i++", forStmt.Incrementors[0].Expression);
 
             block = forStmt.Statement as BlockSyntax;
             Assert.NotNull(block);

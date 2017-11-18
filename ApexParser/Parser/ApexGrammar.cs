@@ -454,8 +454,8 @@ namespace ApexParser.Parser
             select new ForStatementSyntax
             {
                 Declaration = declaration,
-                Condition = condition.GetOrDefault(),
-                Incrementors = incrementors.GetOrElse(Enumerable.Empty<string>()).ToList(),
+                Condition = ExpressionSyntax.CreateOrDefault(condition),
+                Incrementors = incrementors.GetOrElse(new string[0]).Select(s => new ExpressionSyntax(s)).ToList(),
                 Statement = loopBody,
             };
 
@@ -595,17 +595,17 @@ namespace ApexParser.Parser
                 IsInterface = @class == ApexKeywords.Interface,
                 BaseType = baseType.GetOrDefault(),
                 Interfaces = interfaces.GetOrElse(Enumerable.Empty<TypeSyntax>()).ToList(),
-                Members = ConvertConstructors(members).ToList(),
+                Members = ConvertConstructors(members, className).ToList(),
                 InnerComments = closeBrace.LeadingComments.ToList(),
                 TrailingComments = closeBrace.TrailingComments.ToList(),
             }
             select ClassDeclarationSyntax.Create(null, classBody);
 
-        private IEnumerable<MemberDeclarationSyntax> ConvertConstructors(IEnumerable<MemberDeclarationSyntax> members)
+        private IEnumerable<MemberDeclarationSyntax> ConvertConstructors(IEnumerable<MemberDeclarationSyntax> members, string className)
         {
             foreach (var member in members)
             {
-                if (member is MethodDeclarationSyntax m && m.IsConstructor())
+                if (member is MethodDeclarationSyntax m && m.IsConstructor(className))
                 {
                     yield return new ConstructorDeclarationSyntax(m);
                     continue;

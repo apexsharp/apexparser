@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ApexParser;
 using ApexParser.MetaClass;
 using ApexParser.Visitors;
-using CSharpParser;
-using CSharpParser.Visitors;
 using NUnit.Framework;
 
-namespace CSharpParserTest.Visitors
+namespace ApexParserTest.Visitors
 {
     [TestFixture]
     public class ApexSyntaxBuilderTests : TestFixtureBase
@@ -99,11 +98,22 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void InterfaceIsGenerated()
+        {
+            Check("interface A { }", "interface A { }");
+            Check("public interface B { int x { get; } }", "public interface B { int x { get; } }");
+            Check("interface C : IDisposable { }", "interface C implements IDisposable { }");
+            Check("public class D : B { interface C : IDisposable { } }", "public class D extends B { interface C implements IDisposable { } }");
+            Check("interface E { } interface F { }", "interface E { }", "interface F { }");
+        }
+
+        [Test]
         public void EnumIsGenerated()
         {
             Check("enum A { B }", "enum A { B }");
             Check("public enum C { D, E, F }", "public enum C { D, E, F }");
             Check("enum X { Y } enum Z { T }", "enum X { Y }", "enum Z { T }");
+            Check("public class D { enum X { Y } enum Z { T } }", "public class D { enum X { Y } enum Z { T } }");
         }
 
         [Test]
@@ -190,6 +200,14 @@ namespace CSharpParserTest.Visitors
         }
 
         [Test]
+        public void SoqlInsertUpdateDeleteStatementsAreGenerated()
+        {
+            Check("class A { void T() { Soql.Insert(customerNew); } }", "class A { void T() { insert customerNew; } }");
+            Check("class A { void T() { Soql.Update(customer); } }", "class A { void T() { update customer; } }");
+            Check("class A { void T() { Soql.Delete(customer); } }", "class A { void T() { delete customer; } }");
+        }
+
+        [Test]
         public void TryCatchIsGenerated()
         {
             Check("class X { void T() { try {} catch {} } }", "class X { void T() { try {} catch {} } }");
@@ -227,6 +245,31 @@ namespace CSharpParserTest.Visitors
         {
             Check("class A { void T() { while(true) continue; } }", "class A { void T() { while(true) continue; } }");
             Check("class A { void T() { while(false) { continue; } } }", "class A { void T() { while(false) { continue; } } }");
+        }
+
+        [Test]
+        public void DoStatementIsGenerated()
+        {
+            Check("class A { void T() { do { break; } while(true); } }", "class A { void T() { do { break; } while(true); } }");
+            Check("class A { void T() { do continue; while(false); } }", "class A { void T() { do continue; while(false); } }");
+        }
+
+        [Test]
+        public void ForeachStatementIsGenerated()
+        {
+            Check("class A { void T() { foreach (X x in y) { break; } } }", "class A { void T() { for (X x : y) { break; } } }");
+            Check("class A { void T() { foreach (X x in new y[10]) continue; } }", "class A { void T() { for (X x : new y[10]) continue; } }");
+        }
+
+        [Test]
+        public void ForStatementIsGenerated()
+        {
+            Check("class A { void T() { for (;;) { break; } } }", "class A { void T() { for (;;) { break; } } }");
+            Check("class A { void T() { for (int x = 0;;) continue; } }", "class A { void T() { for (int x = 0;;) continue; } }");
+            Check("class A { void T() { for (int x = 0, y = 10;;) continue; } }", "class A { void T() { for (int x = 0, y = 10;;) continue; } }");
+            Check("class A { void T() { for (;i<10;) continue; } }", "class A { void T() { for (;i<10;) continue; } }");
+            Check("class A { void T() { for (;;i++) continue; } }", "class A { void T() { for (;;i++) continue; } }");
+            Check("class A { void T() { for (int i = 0;i < 10;i++,j--) continue; } }", "class A { void T() { for (int i = 0;i < 10;i++,j--) continue; } }");
         }
 
         [Test]

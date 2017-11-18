@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27019.1
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apex", "Apex\Apex.csproj", "{269B0981-154B-4DDE-9B0A-18685C38BD9B}"
 EndProject
@@ -21,13 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{76248AF8-215
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpParser", "CSharpParser\CSharpParser.csproj", "{6FFB6CCE-9DF3-4941-AC68-E3611C31AA04}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexParser", "ApexParser\ApexParser.csproj", "{9402B41A-5143-4345-84FC-1E18674E4D87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParserTest", "ApexParserTest\ApexParserTest.csproj", "{CF5E395C-086F-4D21-B2B2-7595E348A557}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpParserTest", "CSharpParserTest\CSharpParserTest.csproj", "{5EB3479F-296A-49EC-BA8F-8E7A91CC5DB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +55,6 @@ Global
 		{4E839445-F283-4288-8E2E-6699B40EC2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E839445-F283-4288-8E2E-6699B40EC2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E839445-F283-4288-8E2E-6699B40EC2A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6FFB6CCE-9DF3-4941-AC68-E3611C31AA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FFB6CCE-9DF3-4941-AC68-E3611C31AA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FFB6CCE-9DF3-4941-AC68-E3611C31AA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FFB6CCE-9DF3-4941-AC68-E3611C31AA04}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9402B41A-5143-4345-84FC-1E18674E4D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9402B41A-5143-4345-84FC-1E18674E4D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9402B41A-5143-4345-84FC-1E18674E4D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,10 +63,6 @@ Global
 		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF5E395C-086F-4D21-B2B2-7595E348A557}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5EB3479F-296A-49EC-BA8F-8E7A91CC5DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EB3479F-296A-49EC-BA8F-8E7A91CC5DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EB3479F-296A-49EC-BA8F-8E7A91CC5DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EB3479F-296A-49EC-BA8F-8E7A91CC5DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,6 +20,7 @@ namespace ApexParser.Visitors
 
         public List<string> Usings { get; set; } = new List<string>
         {
+            "Apex.ApexAttributes",
             "Apex.ApexSharp",
             "Apex.System",
             "SObjects",
@@ -44,29 +45,8 @@ namespace ApexParser.Visitors
 
         protected override void AppendClassDeclaration(ClassDeclarationSyntax node, string classOrInterface = "class")
         {
-            var optionalIndent = default(IDisposable);
-            var appendNamespace = IsTopLevelDeclaration && HasRootNamespace;
-            if (appendNamespace)
+            AppendNamespacesForTopLevelDeclaration(node, () =>
             {
-                AppendIndentedLine("namespace {0}", Namespace);
-                AppendIndentedLine("{{");
-                optionalIndent = Indented();
-            }
-
-            using (optionalIndent)
-            {
-                if (IsTopLevelDeclaration)
-                {
-                    foreach (var ns in GetUsings(node).AsSmart())
-                    {
-                        AppendIndentedLine("using {0};", ns.Value);
-                        if (ns.IsLast)
-                        {
-                            AppendLine();
-                        }
-                    }
-                }
-
                 AppendCommentsAttributesAndModifiers(node);
                 Append("{0} {1}", classOrInterface, node.Identifier);
 
@@ -88,6 +68,40 @@ namespace ApexParser.Visitors
 
                 AppendLine();
                 AppendClassMembers(node);
+            });
+        }
+
+        protected override void AppendEnumDeclaration(EnumDeclarationSyntax node)
+        {
+            AppendNamespacesForTopLevelDeclaration(node, () => base.AppendEnumDeclaration(node));
+        }
+
+        private void AppendNamespacesForTopLevelDeclaration(MemberDeclarationSyntax node, Action generateCode)
+        {
+            var optionalIndent = default(IDisposable);
+            var appendNamespace = IsTopLevelDeclaration && HasRootNamespace;
+            if (appendNamespace)
+            {
+                AppendIndentedLine("namespace {0}", Namespace);
+                AppendIndentedLine("{{");
+                optionalIndent = Indented();
+            }
+
+            using (optionalIndent)
+            {
+                if (IsTopLevelDeclaration)
+                {
+                    foreach (var ns in GetUsings(node as ClassDeclarationSyntax).AsSmart())
+                    {
+                        AppendIndentedLine("using {0};", ns.Value);
+                        if (ns.IsLast)
+                        {
+                            AppendLine();
+                        }
+                    }
+                }
+
+                generateCode();
             }
 
             if (appendNamespace)
@@ -121,33 +135,68 @@ namespace ApexParser.Visitors
             return Usings;
         }
 
-        protected override string ConvertModifier(string modifier, BaseSyntax ownerNode)
+        private class AnnotatedSyntax : IAnnotatedSyntax
         {
-            if (modifier == ApexKeywords.Final)
+            public List<AnnotationSyntax> Annotations { get; set; } = new List<AnnotationSyntax>();
+            public List<string> Modifiers { get; set; } = new List<string>();
+        }
+
+        protected override IAnnotatedSyntax ConvertModifiersAndAnnotations(IAnnotatedSyntax ownerNode)
+        {
+            var result = new AnnotatedSyntax
             {
-                if (ownerNode is ClassDeclarationSyntax || ownerNode is MethodDeclarationSyntax)
+                Annotations = (ownerNode?.Annotations).EmptyIfNull().ToList(),
+            };
+
+            // convert unsupported modifiers into annotations
+            foreach (var modifier in ownerNode.Modifiers)
+            {
+                if (modifier == ApexKeywords.Final)
                 {
-                    return "sealed";
+                    if (ownerNode is ClassDeclarationSyntax || ownerNode is MethodDeclarationSyntax)
+                    {
+                        result.Modifiers.Add("sealed");
+                    }
+                    else if (ownerNode is FieldDeclarationSyntax)
+                    {
+                        result.Modifiers.Add("readonly");
+                    }
+                    else
+                    {
+                        result.Annotations.Add(new AnnotationSyntax("Final"));
+                    }
                 }
-                else if (ownerNode is FieldDeclarationSyntax)
+                else if (modifier == ApexKeywords.Global)
                 {
-                    return "readonly";
+                    result.Annotations.Add(new AnnotationSyntax("Global"));
+                }
+                else if (modifier.StartsWith(ApexKeywords.Without))
+                {
+                    result.Annotations.Add(new AnnotationSyntax("WithoutSharing"));
+                }
+                else if (modifier.StartsWith(ApexKeywords.With))
+                {
+                    result.Annotations.Add(new AnnotationSyntax("WithSharing"));
+                }
+                else if (modifier == ApexKeywords.TestMethod)
+                {
+                    result.Annotations.Add(new AnnotationSyntax("IsTest"));
+                }
+                else if (modifier == ApexKeywords.Transient)
+                {
+                    result.Annotations.Add(new AnnotationSyntax("Transient"));
+                }
+                else if (modifier == ApexKeywords.WebService)
+                {
+                    result.Annotations.Add(new AnnotationSyntax("WebService"));
                 }
                 else
                 {
-                    return "/* final */";
+                    result.Modifiers.Add(modifier);
                 }
             }
-            else if (modifier == ApexKeywords.Global ||
-                modifier.EndsWith(ApexKeywords.Sharing) ||
-                modifier == ApexKeywords.TestMethod ||
-                modifier == ApexKeywords.Transient ||
-                modifier == ApexKeywords.WebService)
-            {
-                return $"/* {modifier} */";
-            }
 
-            return modifier;
+            return result;
         }
 
         private HashSet<ClassDeclarationSyntax> GeneratedInitializers { get; } =

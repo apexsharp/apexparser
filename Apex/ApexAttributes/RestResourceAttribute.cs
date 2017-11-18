@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Apex.ApexAttrbutes
+namespace Apex.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class RestResource : global::System.Attribute
+    public class RestResourceAttribute : Attribute
     {
-        public RestResource(string url)
+        public RestResourceAttribute(string url)
         {
             Url = url;
         }

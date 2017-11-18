@@ -7,7 +7,7 @@ using ApexParser.Parser;
 using ApexParser.Visitors;
 using NUnit.Framework;
 
-namespace ApexParserTest.CodeGenerators
+namespace ApexParserTest.Visitors
 {
     [TestFixture]
     public class CSharpGeneratorTests : TestFixtureBase
@@ -26,6 +26,7 @@ namespace ApexParserTest.CodeGenerators
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -54,6 +55,7 @@ namespace ApexParserTest.CodeGenerators
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -62,6 +64,33 @@ namespace ApexParserTest.CodeGenerators
                     [TestFixture]
                     class TestClass
                     {
+                    }
+                }");
+        }
+
+        [Test]
+        public void EnumDeclarationProducesTheRequiredNamespaceImports()
+        {
+            var cd = new EnumDeclarationSyntax
+            {
+                Identifier = "TestEnum",
+                Members = new List<EnumMemberDeclarationSyntax>
+                {
+                    new EnumMemberDeclarationSyntax { Identifier = "TestMember" },
+                },
+            };
+
+            Check(cd,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    enum TestEnum
+                    {
+                        TestMember
                     }
                 }");
         }
@@ -90,6 +119,7 @@ namespace ApexParserTest.CodeGenerators
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -117,6 +147,7 @@ namespace ApexParserTest.CodeGenerators
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -142,6 +173,7 @@ namespace ApexParserTest.CodeGenerators
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -393,7 +425,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var forStatement = new ForStatementSyntax
             {
-                Condition = "i < 10",
+                Condition = new ExpressionSyntax("i < 10"),
                 Statement = new BlockSyntax
                 {
                     new BreakStatementSyntax()
@@ -412,9 +444,10 @@ namespace ApexParserTest.CodeGenerators
         {
             var forStatement = new ForStatementSyntax
             {
-                Incrementors = new List<string>
+                Incrementors = new List<ExpressionSyntax>
                 {
-                    "i++", "j *= 2"
+                    new ExpressionSyntax("i++"),
+                    new ExpressionSyntax("j *= 2")
                 },
                 Statement = new BlockSyntax
                 {
@@ -451,10 +484,11 @@ namespace ApexParserTest.CodeGenerators
                         }
                     }
                 },
-                Condition = "j < 1000",
-                Incrementors = new List<string>
+                Condition = new ExpressionSyntax("j < 1000"),
+                Incrementors = new List<ExpressionSyntax>
                 {
-                    "i++", "j *= 2"
+                    new ExpressionSyntax("i++"),
+                    new ExpressionSyntax("j *= 2")
                 },
                 Statement = new BlockSyntax
                 {
@@ -765,6 +799,7 @@ namespace ApexParserTest.CodeGenerators
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -811,6 +846,7 @@ namespace ApexParserTest.CodeGenerators
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -847,6 +883,7 @@ namespace ApexParserTest.CodeGenerators
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -876,7 +913,7 @@ namespace ApexParserTest.CodeGenerators
         }
 
         [Test]
-        public void UnsupportedModifiersGetConvertedIntoComments()
+        public void UnsupportedModifiersGetConvertedIntoAttributes()
         {
             var apex = Apex.ParseClass(@"// unsupported modifiers
             public global class TestClass {
@@ -890,30 +927,37 @@ namespace ApexParserTest.CodeGenerators
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
 
                     // unsupported modifiers
-                    public /* global */ class TestClass
+                    [Global]
+                    public class TestClass
                     {
-                        private /* with sharing */ class Inner1
+                        [WithSharing]
+                        private class Inner1
                         {
                         }
 
-                        public /* without sharing */ class Inner2
+                        [WithoutSharing]
+                        public class Inner2
                         {
                         }
 
-                        private /* testMethod */ void MyTest(/* final */ int x)
+                        [Test]
+                        private void MyTest([Final] int x)
                         {
                         }
 
-                        public /* webservice */ void MyService()
+                        [WebService]
+                        public void MyService()
                         {
                         }
 
-                        /* transient */ int TransientField = 0;
+                        [Transient]
+                        int TransientField = 0;
                     }
                 }");
         }
@@ -929,14 +973,17 @@ namespace ApexParserTest.CodeGenerators
             CompareLineByLine(apex.ToCSharp(@namespace: "MyNamespace"),
                 @"namespace MyNamespace
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
 
                     // custom namespace
-                    public /* global */ class TestClass
+                    [Global]
+                    public class TestClass
                     {
-                        private /* with sharing */ class TestInner
+                        [WithSharing]
+                        private class TestInner
                         {
                         }
                     }
@@ -974,6 +1021,7 @@ namespace ApexParserTest.CodeGenerators
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
@@ -999,6 +1047,41 @@ namespace ApexParserTest.CodeGenerators
                         {
                             get;
                             private set;
+                        }
+                    }
+                }");
+        }
+
+        [Test]
+        public void MapStringStringIsGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(
+                @"class Sample
+                {
+                    public static Map<String, string> SomeMap { get; private set; }
+
+                    public Map<string, STRING> SomeMethod()
+                    {
+                        return new Map<String, string>();
+                    }
+                }");
+
+            // note that new Map<String, String> is not yet converted
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Sample
+                    {
+                        public static Map<string, string> SomeMap { get; private set; }
+
+                        public Map<string, string> SomeMethod()
+                        {
+                            return new Map<String, String>();
                         }
                     }
                 }");

@@ -106,9 +106,9 @@ namespace ApexParserTest.Parser
         public void CreateAgreementAndAttachmentIsParsed()
         {
             var cd = Apex.ClassDeclaration.Parse(@"
-            class Dummy
+            class DummyClass
             {
-                void Dummy()
+                void DummyMethod()
                 {
                     s=true;
                     //Create Agreement & attachment

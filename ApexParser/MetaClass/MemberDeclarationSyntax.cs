@@ -8,7 +8,7 @@ using Sprache;
 
 namespace ApexParser.MetaClass
 {
-    public class MemberDeclarationSyntax : BaseSyntax
+    public class MemberDeclarationSyntax : BaseSyntax, IAnnotatedSyntax
     {
         public MemberDeclarationSyntax(MemberDeclarationSyntax other = null)
         {

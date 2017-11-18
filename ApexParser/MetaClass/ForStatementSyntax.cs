@@ -17,9 +17,9 @@ namespace ApexParser.MetaClass
 
         public VariableDeclarationSyntax Declaration { get; set; }
 
-        public string Condition { get; set; }
+        public ExpressionSyntax Condition { get; set; }
 
-        public List<string> Incrementors { get; set; }
+        public List<ExpressionSyntax> Incrementors { get; set; }
 
         public StatementSyntax Statement { get; set; }
     }

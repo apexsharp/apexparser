@@ -8,7 +8,7 @@ using ApexParser.Visitors;
 using NUnit.Framework;
 using static System.Math;
 
-namespace ApexParserTest.CodeGenerators
+namespace ApexParserTest
 {
     public class TestFixtureBase
     {

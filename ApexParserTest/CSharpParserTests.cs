@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpParser;
-using CSharpParser.Visitors;
-using CSharpParserTest.Visitors;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ApexParser;
+using ApexParser.Visitors;
 using NUnit.Framework;
 
-namespace CSharpParserTest
+namespace ApexParserTest
 {
     [TestFixture]
     public class CSharpParserTests : TestFixtureBase
@@ -90,6 +87,58 @@ namespace CSharpParserTest
                 {
                     private int x = 10;
                 }", apexClasses[1]);
+        }
+
+        public class DevArtParameter
+        {
+            public string Name { get; }
+            public object Value { get; }
+            public DevArtParameter(string name, object value)
+            {
+                Name = name;
+                Value = value;
+            }
+        }
+        public class DevArtCommand
+        {
+            public DevArtCommand(string query) { }
+            public List<DevArtParameter> Parameters { get; } = new List<DevArtParameter>();
+            public void Execute()
+            {
+                Console.WriteLine("Executing command with parameters: ");
+                foreach (var p in Parameters)
+                {
+                    Console.WriteLine("{0} => {1}", p.Name, p.Value);
+                }
+            }
+        }
+
+        public class Soql
+        {
+            public static void Query(string soql, params object[] arguments)
+            {
+                // replace parameter names — :email with p0, :name with p1, etc.
+                var soqlQuery = soql;
+                var command = new DevArtCommand(soqlQuery);
+
+                // prepare parameters for the data provider command
+                for (var i = 0; i < arguments.Length; i++)
+                {
+                    var param = new DevArtParameter("p" + i, arguments[0]);
+                    command.Parameters.Add(param);
+                }
+
+                // execute the command and get the results
+                command.Execute();
+            }
+        }
+
+        [Test]
+        public void TestSoqlApiExample()
+        {
+            Soql.Query("select id from Customer where email = :email", "jay@jay.com");
+            Soql.Query("select id from Customer where email = :email and name = :name", "jay@jay.com", "jay");
+            Soql.Query("select id from Customer where email = :email and name = :name and age > :age", "jay@jay.com", "jay", 20);
         }
     }
 }

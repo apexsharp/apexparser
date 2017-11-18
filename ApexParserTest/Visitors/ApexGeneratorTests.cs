@@ -7,7 +7,7 @@ using ApexParser.Parser;
 using ApexParser.Visitors;
 using NUnit.Framework;
 
-namespace ApexParserTest.CodeGenerators
+namespace ApexParserTest.Visitors
 {
     [TestFixture]
     public class ApexGeneratorTests : TestFixtureBase
@@ -333,7 +333,7 @@ namespace ApexParserTest.CodeGenerators
         {
             var forStatement = new ForStatementSyntax
             {
-                Condition = "i < 10",
+                Condition = new ExpressionSyntax("i < 10"),
                 Statement = new BlockSyntax
                 {
                     new BreakStatementSyntax()
@@ -352,9 +352,10 @@ namespace ApexParserTest.CodeGenerators
         {
             var forStatement = new ForStatementSyntax
             {
-                Incrementors = new List<string>
+                Incrementors = new List<ExpressionSyntax>
                 {
-                    "i++", "j *= 2"
+                    new ExpressionSyntax("i++"),
+                    new ExpressionSyntax("j *= 2")
                 },
                 Statement = new BlockSyntax
                 {
@@ -391,10 +392,11 @@ namespace ApexParserTest.CodeGenerators
                         }
                     }
                 },
-                Condition = "j < 1000",
-                Incrementors = new List<string>
+                Condition = new ExpressionSyntax("j < 1000"),
+                Incrementors = new List<ExpressionSyntax>
                 {
-                    "i++", "j *= 2"
+                    new ExpressionSyntax("i++"),
+                    new ExpressionSyntax("j *= 2")
                 },
                 Statement = new BlockSyntax
                 {
@@ -895,7 +897,7 @@ namespace ApexParserTest.CodeGenerators
         public void JsonStringGeneratorIsGenerated()
         {
             var text = @"
-            class Test
+            class TestClass
             {
                 public void Test()
                 {
@@ -908,7 +910,7 @@ namespace ApexParserTest.CodeGenerators
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     public void Test()
                     {
@@ -924,7 +926,7 @@ namespace ApexParserTest.CodeGenerators
         public void JsonStringGeneratorIsGenerated2()
         {
             var text = @"
-            class Test
+            class TestClass
             {
                 public void Test()
                 {
@@ -938,7 +940,7 @@ namespace ApexParserTest.CodeGenerators
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     public void Test()
                     {
@@ -955,7 +957,7 @@ namespace ApexParserTest.CodeGenerators
         public void JsonStringGeneratorIsGenerated3()
         {
             var text = @"
-            class Test
+            class TestClass
             {
                 public void Test()
                 {
@@ -979,7 +981,7 @@ namespace ApexParserTest.CodeGenerators
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     public void Test()
                     {
@@ -1006,7 +1008,7 @@ namespace ApexParserTest.CodeGenerators
         public void NewListExpressionIsGenerated()
         {
             var text = @"
-            class Test {
+            class TestClass {
                 void Test() {
                     objCtrl.deliverableTypesName = new List<String>
                     {
@@ -1025,7 +1027,7 @@ namespace ApexParserTest.CodeGenerators
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     void Test()
                     {
@@ -1133,6 +1135,54 @@ namespace ApexParserTest.CodeGenerators
 
                     // inner comments
                 } // trailing");
+        }
+
+        [Test]
+        public void MapStringStringIsGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(
+                @"class Sample
+                {
+                    public static Map<String, string> SomeMap { get; private set; }
+
+                    public Map<string, STRING> SomeMethod()
+                    {
+                        return new Map<String, string>();
+                    }
+                }");
+
+            Check(apex,
+                @"class Sample
+                {
+                    public static Map<String, String> SomeMap { get; private set; }
+
+                    public Map<String, String> SomeMethod()
+                    {
+                        return new Map<String, String>();
+                    }
+                }");
+        }
+
+        [Test]
+        public void DatabaseQueryLocatorIsGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test
+                {
+                    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
+                    {
+                         return Database.getQueryLocator([SELECT Id FROM Contact]);
+                    }
+                }");
+
+            Check(apex,
+                @"class Test
+                {
+                    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
+                    {
+                         return Database.getQueryLocator([SELECT Id FROM Contact]);
+                    }
+                }");
         }
     }
 }

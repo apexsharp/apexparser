@@ -1,11 +1,11 @@
 namespace ApexSharpDemo.ApexCode
 {
-    using Apex.ApexAttrbutes;
+    using Apex.ApexAttributes;
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
 
-    [Globel]
+    [Global]
     public class ClassGlobal
     {
     }

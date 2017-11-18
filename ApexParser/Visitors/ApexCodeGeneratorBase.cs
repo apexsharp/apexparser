@@ -207,13 +207,15 @@ namespace ApexParser.Visitors
         protected virtual void AppendCommentsAttributesAndModifiers(MemberDeclarationSyntax node, string afterLastModifier = " ")
         {
             AppendLeadingComments(node);
-            foreach (var annotation in node.Annotations.AsSmart())
+
+            var convertedNode = ConvertModifiersAndAnnotations(node);
+            foreach (var annotation in convertedNode.Annotations.AsSmart())
             {
                 annotation.Value.Accept(this);
             }
 
             var indented = false;
-            foreach (var modifier in node.Modifiers.AsSmart())
+            foreach (var modifier in convertedNode.Modifiers.AsSmart())
             {
                 if (!indented)
                 {
@@ -221,7 +223,7 @@ namespace ApexParser.Visitors
                     indented = true;
                 }
 
-                Append("{0}", ConvertModifier(modifier.Value, node));
+                Append("{0}", modifier.Value);
                 Append("{0}", modifier.IsLast ? afterLastModifier : " ");
             }
 
@@ -232,7 +234,7 @@ namespace ApexParser.Visitors
             }
         }
 
-        protected virtual string ConvertModifier(string modifier, BaseSyntax ownerNode) => modifier;
+        protected virtual IAnnotatedSyntax ConvertModifiersAndAnnotations(IAnnotatedSyntax node) => node;
 
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
@@ -291,9 +293,18 @@ namespace ApexParser.Visitors
 
         public override void VisitParameter(ParameterSyntax pd)
         {
-            foreach (var modifier in pd.Modifiers.AsSmart())
+            var annotated = ConvertModifiersAndAnnotations(pd);
+            using (SkipNewLines())
             {
-                Append("{0} ", ConvertModifier(modifier.Value, pd));
+                foreach (var annotation in annotated.Annotations.EmptyIfNull())
+                {
+                    annotation.Accept(this);
+                }
+            }
+
+            foreach (var modifier in annotated.Modifiers.EmptyIfNull())
+            {
+                Append("{0} ", modifier);
             }
 
             pd.Type.Accept(this);
@@ -325,11 +336,7 @@ namespace ApexParser.Visitors
                 }
 
                 type.Value.Accept(this);
-
-                if (type.IsFirst)
-                {
-                    Append(">");
-                }
+                Append(type.IsLast ? ">" : ", ");
             }
 
             if (node.IsArray)
@@ -537,18 +544,17 @@ namespace ApexParser.Visitors
                     Append(";");
                 }
 
-                if (!string.IsNullOrWhiteSpace(node.Condition))
+                if (node.Condition != null)
                 {
-                    Append(" {0};", node.Condition);
-                }
-                else
-                {
-                    Append(";");
+                    Append(" ");
+                    node.Condition.Accept(this);
                 }
 
+                Append(";");
                 foreach (var inc in node.Incrementors.AsSmart())
                 {
-                    Append(" {0}", inc.Value);
+                    Append(" ");
+                    inc.Value.Accept(this);
                     if (!inc.IsLast)
                     {
                         Append(",");

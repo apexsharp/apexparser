@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
-namespace CSharpParser.Visitors
+namespace ApexParser.Visitors
 {
     public class SampleWalker : CSharpSyntaxWalker
     {

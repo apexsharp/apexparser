@@ -2,62 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ApexParser.MetaClass;
 using ApexParser.Parser;
 using ApexParser.Toolbox;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ApexAccessorDeclarationSyntax = ApexParser.MetaClass.AccessorDeclarationSyntax;
+using ApexAnnotationSyntax = ApexParser.MetaClass.AnnotationSyntax;
+using ApexBaseSyntax = ApexParser.MetaClass.BaseSyntax;
 using ApexBlockSyntax = ApexParser.MetaClass.BlockSyntax;
 using ApexBreakStatementSyntax = ApexParser.MetaClass.BreakStatementSyntax;
 using ApexCatchClauseSyntax = ApexParser.MetaClass.CatchClauseSyntax;
 using ApexClassDeclarationSyntax = ApexParser.MetaClass.ClassDeclarationSyntax;
+using ApexClassInitializerSyntax = ApexParser.MetaClass.ClassInitializerSyntax;
 using ApexConstructorDeclarationSyntax = ApexParser.MetaClass.ConstructorDeclarationSyntax;
 using ApexContinueStatementSyntax = ApexParser.MetaClass.ContinueStatementSyntax;
+using ApexDeleteStatementSyntax = ApexParser.MetaClass.DeleteStatementSyntax;
+using ApexDoStatementSyntax = ApexParser.MetaClass.DoStatementSyntax;
 using ApexEnumDeclarationSyntax = ApexParser.MetaClass.EnumDeclarationSyntax;
 using ApexEnumMemberDeclarationSyntax = ApexParser.MetaClass.EnumMemberDeclarationSyntax;
 using ApexExpressionSyntax = ApexParser.MetaClass.ExpressionSyntax;
 using ApexFieldDeclarationSyntax = ApexParser.MetaClass.FieldDeclarationSyntax;
 using ApexFieldDeclaratorSyntax = ApexParser.MetaClass.FieldDeclaratorSyntax;
 using ApexFinallyClauseSyntax = ApexParser.MetaClass.FinallyClauseSyntax;
+using ApexForEachStatementSyntax = ApexParser.MetaClass.ForEachStatementSyntax;
+using ApexForStatementSyntax = ApexParser.MetaClass.ForStatementSyntax;
 using ApexIfStatementSyntax = ApexParser.MetaClass.IfStatementSyntax;
+using ApexInsertStatementSyntax = ApexParser.MetaClass.InsertStatementSyntax;
+using ApexInterfaceDeclarationSyntax = ApexParser.MetaClass.InterfaceDeclarationSyntax;
 using ApexMemberDeclarationSyntax = ApexParser.MetaClass.MemberDeclarationSyntax;
 using ApexMethodDeclarationSyntax = ApexParser.MetaClass.MethodDeclarationSyntax;
 using ApexParameterSyntax = ApexParser.MetaClass.ParameterSyntax;
 using ApexPropertyDeclarationSyntax = ApexParser.MetaClass.PropertyDeclarationSyntax;
 using ApexReturnStatementSyntax = ApexParser.MetaClass.ReturnStatementSyntax;
+using ApexRunAsStatementSyntax = ApexParser.MetaClass.RunAsStatementSyntax;
 using ApexStatementSyntax = ApexParser.MetaClass.StatementSyntax;
+using ApexSyntaxType = ApexParser.MetaClass.SyntaxType;
 using ApexTryStatementSyntax = ApexParser.MetaClass.TryStatementSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
+using ApexUpdateStatementSyntax = ApexParser.MetaClass.UpdateStatementSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
 using ApexWhileStatementSyntax = ApexParser.MetaClass.WhileStatementSyntax;
-using CSharpAccessorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.AccessorDeclarationSyntax;
-using CSharpBlockSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.BlockSyntax;
-using CSharpBreakStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.BreakStatementSyntax;
-using CSharpCatchClauseSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.CatchClauseSyntax;
-using CSharpCatchDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.CatchDeclarationSyntax;
-using CSharpClassDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ClassDeclarationSyntax;
-using CSharpConstructorDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ConstructorDeclarationSyntax;
-using CSharpContinueStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ContinueStatementSyntax;
-using CSharpEnumDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax;
-using CSharpEnumMemberDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.EnumMemberDeclarationSyntax;
-using CSharpExpressionSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax;
-using CSharpFieldDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax;
-using CSharpFinallyClauseSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FinallyClauseSyntax;
-using CSharpIfStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.IfStatementSyntax;
-using CSharpMethodDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax;
-using CSharpParameterSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax;
-using CSharpPropertyDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax;
-using CSharpReturnStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.ReturnStatementSyntax;
-using CSharpSyntaxKind = Microsoft.CodeAnalysis.CSharp.SyntaxKind;
-using CSharpTryStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TryStatementSyntax;
-using CSharpTypeSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax;
-using CSharpVariableDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclarationSyntax;
-using CSharpVariableDeclaratorSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax;
-using CSharpWhileStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.WhileStatementSyntax;
 
-namespace CSharpParser.Visitors
+namespace ApexParser.Visitors
 {
     public class ApexSyntaxBuilder : CSharpSyntaxWalker
     {
@@ -65,14 +52,14 @@ namespace CSharpParser.Visitors
 
         public const string NoApexCommentSignature = ":NoApex ";
 
-        public static List<BaseSyntax> GetApexSyntaxNodes(CSharpSyntaxNode node)
+        public static List<ApexBaseSyntax> GetApexSyntaxNodes(CSharpSyntaxNode node)
         {
             var builder = new ApexSyntaxBuilder();
             node?.Accept(builder);
             return builder.ApexClasses;
         }
 
-        public List<BaseSyntax> ApexClasses { get; set; } = new List<BaseSyntax>();
+        public List<ApexBaseSyntax> ApexClasses { get; set; } = new List<ApexBaseSyntax>();
 
         public override void VisitCompilationUnit(CompilationUnitSyntax node)
         {
@@ -83,13 +70,9 @@ namespace CSharpParser.Visitors
             }
         }
 
-        private BaseTypeDeclarationSyntax[] GetTopLevelTypeDeclarations(CompilationUnitSyntax node) =>
-            node.DescendantNodes(n => !(n is CSharpClassDeclarationSyntax))
-                .OfType<BaseTypeDeclarationSyntax>().ToArray();
+        private ApexMemberDeclarationSyntax LastClassMember { get; set; }
 
-        private ApexClassDeclarationSyntax LastClass { get; set; }
-
-        public override void VisitClassDeclaration(CSharpClassDeclarationSyntax node)
+        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
         {
             // get base types
             var baseTypes = (node.BaseList?.Types ?? Enumerable.Empty<BaseTypeSyntax>()).ToList();
@@ -125,9 +108,43 @@ namespace CSharpParser.Visitors
                 }
             }
 
-            LastClassMember = LastClass = classDeclaration;
-            LastClass.InnerComments = LastComments.ToList();
+            classDeclaration.InnerComments = LastComments.ToList();
             LastComments.Clear();
+            LastClassMember = classDeclaration;
+        }
+
+        public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
+        {
+            // get base interfaces
+            var interfaces = (node.BaseList?.Types ?? Enumerable.Empty<BaseTypeSyntax>()).ToArray();
+
+            // create the interface
+            var interfaceDeclaration = new ApexInterfaceDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                Interfaces = ConvertBaseTypes(interfaces),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                interfaceDeclaration.Annotations.Add(ConvertClassAnnotation(LastAnnotation));
+            }
+
+            foreach (var member in node.Members.EmptyIfNull())
+            {
+                member.Accept(this);
+                if (LastClassMember != null)
+                {
+                    interfaceDeclaration.Members.Add(LastClassMember);
+                    LastClassMember = null;
+                }
+            }
+
+            interfaceDeclaration.InnerComments = LastComments.ToList();
+            LastComments.Clear();
+            LastClassMember = interfaceDeclaration;
         }
 
         private ApexTypeSyntax ConvertBaseType(BaseTypeSyntax csharpType)
@@ -143,11 +160,11 @@ namespace CSharpParser.Visitors
         private List<ApexTypeSyntax> ConvertBaseTypes(params BaseTypeSyntax[] csharpTypes) =>
             csharpTypes.EmptyIfNull().Select(ConvertBaseType).Where(t => t != null).ToList();
 
-        private AnnotationSyntax ConvertClassAnnotation(AnnotationSyntax node)
+        private ApexAnnotationSyntax ConvertClassAnnotation(ApexAnnotationSyntax node)
         {
             if (node.Identifier == "TestFixture")
             {
-                return new AnnotationSyntax
+                return new ApexAnnotationSyntax
                 {
                     Identifier = ApexKeywords.IsTest,
                     Parameters = node.Parameters,
@@ -157,11 +174,11 @@ namespace CSharpParser.Visitors
             return node;
         }
 
-        private AnnotationSyntax ConvertMethodAnnotation(AnnotationSyntax node)
+        private ApexAnnotationSyntax ConvertMethodAnnotation(ApexAnnotationSyntax node)
         {
             if (node.Identifier == "Test")
             {
-                return new AnnotationSyntax
+                return new ApexAnnotationSyntax
                 {
                     Identifier = ApexKeywords.IsTest,
                     Parameters = node.Parameters,
@@ -169,7 +186,7 @@ namespace CSharpParser.Visitors
             }
             else if (node.Identifier == "SetUp")
             {
-                return new AnnotationSyntax
+                return new ApexAnnotationSyntax
                 {
                     Identifier = ApexKeywords.TestSetup,
                     Parameters = node.Parameters,
@@ -179,19 +196,17 @@ namespace CSharpParser.Visitors
             return node;
         }
 
-        private AnnotationSyntax LastAnnotation { get; set; }
+        private ApexAnnotationSyntax LastAnnotation { get; set; }
 
         public override void VisitAttribute(AttributeSyntax node)
         {
-            LastAnnotation = new AnnotationSyntax
+            LastAnnotation = new ApexAnnotationSyntax
             {
                 Identifier = node.Name.ToString(),
             };
         }
 
-        private ApexEnumDeclarationSyntax LastEnum { get; set; }
-
-        public override void VisitEnumDeclaration(CSharpEnumDeclarationSyntax node)
+        public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
         {
             var enumeration = new ApexEnumDeclarationSyntax
             {
@@ -205,14 +220,14 @@ namespace CSharpParser.Visitors
                 enumeration.Members.Add(LastEnumMember);
             }
 
-            LastClassMember = LastEnum = enumeration;
-            LastEnum.InnerComments = LastComments.ToList();
+            enumeration.InnerComments = LastComments.ToList();
             LastComments.Clear();
+            LastClassMember = enumeration;
         }
 
         private ApexEnumMemberDeclarationSyntax LastEnumMember { get; set; }
 
-        public override void VisitEnumMemberDeclaration(CSharpEnumMemberDeclarationSyntax node)
+        public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
         {
             LastEnumMember = new ApexEnumMemberDeclarationSyntax
             {
@@ -223,9 +238,7 @@ namespace CSharpParser.Visitors
             LastComments.Clear();
         }
 
-        private ApexMemberDeclarationSyntax LastClassMember { get; set; }
-
-        public override void VisitConstructorDeclaration(CSharpConstructorDeclarationSyntax node)
+        public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
         {
             var method = new ApexConstructorDeclarationSyntax
             {
@@ -258,7 +271,7 @@ namespace CSharpParser.Visitors
 
         private List<string> LastComments { get; set; } = new List<string>();
 
-        public override void VisitMethodDeclaration(CSharpMethodDeclarationSyntax node)
+        public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
             // skip methods starting with the signature
             if (node.Identifier.ValueText.StartsWith(NoApexSignature))
@@ -338,12 +351,12 @@ namespace CSharpParser.Visitors
 
         private ApexParameterSyntax LastParameter { get; set; }
 
-        public override void VisitParameter(CSharpParameterSyntax node)
+        public override void VisitParameter(ParameterSyntax node)
         {
             LastParameter = new ApexParameterSyntax(ConvertType(node.Type), node.Identifier.ValueText);
         }
 
-        private ApexTypeSyntax ConvertType(CSharpTypeSyntax type)
+        private ApexTypeSyntax ConvertType(TypeSyntax type)
         {
             if (type != null)
             {
@@ -353,7 +366,7 @@ namespace CSharpParser.Visitors
             return null;
         }
 
-        public override void VisitFieldDeclaration(CSharpFieldDeclarationSyntax node)
+        public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
         {
             var field = new ApexFieldDeclarationSyntax
             {
@@ -366,10 +379,10 @@ namespace CSharpParser.Visitors
                 node.Declaration.Accept(this);
             }
 
-            if (LastVariable != null)
+            if (LastVariableDeclaration != null)
             {
-                field.Type = LastVariable.Type;
-                field.Fields = LastVariable.Variables.Select(v => new ApexFieldDeclaratorSyntax
+                field.Type = LastVariableDeclaration.Type;
+                field.Fields = LastVariableDeclaration.Variables.Select(v => new ApexFieldDeclaratorSyntax
                 {
                     Identifier = v.Identifier,
                     Expression = v.Expression,
@@ -381,9 +394,9 @@ namespace CSharpParser.Visitors
 
         private ApexStatementSyntax LastStatement { get; set; }
 
-        private ApexVariableDeclarationSyntax LastVariable { get; set; }
+        private ApexVariableDeclarationSyntax LastVariableDeclaration { get; set; }
 
-        public override void VisitVariableDeclaration(CSharpVariableDeclarationSyntax node)
+        public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
         {
             var variable = new ApexVariableDeclarationSyntax
             {
@@ -396,12 +409,12 @@ namespace CSharpParser.Visitors
                 variable.Variables.Add(LastVariableDeclarator);
             }
 
-            LastStatement = LastVariable = variable;
+            LastStatement = LastVariableDeclaration = variable;
         }
 
         private ApexVariableDeclaratorSyntax LastVariableDeclarator { get; set; }
 
-        public override void VisitVariableDeclarator(CSharpVariableDeclaratorSyntax node)
+        public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
         {
             LastVariableDeclarator = new ApexVariableDeclaratorSyntax
             {
@@ -410,7 +423,7 @@ namespace CSharpParser.Visitors
             };
         }
 
-        private ApexExpressionSyntax ConvertExpression(CSharpExpressionSyntax expression)
+        private ApexExpressionSyntax ConvertExpression(ExpressionSyntax expression)
         {
             if (expression == null)
             {
@@ -424,7 +437,7 @@ namespace CSharpParser.Visitors
             return new ApexExpressionSyntax(apexExpr);
         }
 
-        public override void VisitPropertyDeclaration(CSharpPropertyDeclarationSyntax node)
+        public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
         {
             var property = new ApexPropertyDeclarationSyntax
             {
@@ -444,11 +457,11 @@ namespace CSharpParser.Visitors
 
         private ApexAccessorDeclarationSyntax LastAccessor { get; set; }
 
-        public override void VisitAccessorDeclaration(CSharpAccessorDeclarationSyntax node)
+        public override void VisitAccessorDeclaration(AccessorDeclarationSyntax node)
         {
             var accessor = new ApexAccessorDeclarationSyntax
             {
-                IsGetter = node.Kind() == CSharpSyntaxKind.GetAccessorDeclaration,
+                IsGetter = node.Kind() == SyntaxKind.GetAccessorDeclaration,
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
@@ -463,7 +476,7 @@ namespace CSharpParser.Visitors
 
         private ApexBlockSyntax LastBlock { get; set; }
 
-        public override void VisitBlock(CSharpBlockSyntax node)
+        public override void VisitBlock(BlockSyntax node)
         {
             var block = new ApexBlockSyntax();
 
@@ -480,7 +493,7 @@ namespace CSharpParser.Visitors
             LastStatement = LastBlock = block;
         }
 
-        public override void VisitIfStatement(CSharpIfStatementSyntax node)
+        public override void VisitIfStatement(IfStatementSyntax node)
         {
             var ifStmt = new ApexIfStatementSyntax
             {
@@ -504,13 +517,14 @@ namespace CSharpParser.Visitors
 
         public override void VisitExpressionStatement(ExpressionStatementSyntax node)
         {
+            // also handles SOQL insert/update/delete statements
             LastStatement = new ApexStatementSyntax
             {
                 Body = ConvertExpression(node.Expression).Expression,
             };
         }
 
-        public override void VisitReturnStatement(CSharpReturnStatementSyntax node)
+        public override void VisitReturnStatement(ReturnStatementSyntax node)
         {
             LastStatement = new ApexReturnStatementSyntax
             {
@@ -518,13 +532,70 @@ namespace CSharpParser.Visitors
             };
         }
 
-        public override void VisitBreakStatement(CSharpBreakStatementSyntax node) =>
+        public override void VisitBreakStatement(BreakStatementSyntax node) =>
             LastStatement = new ApexBreakStatementSyntax();
 
-        public override void VisitContinueStatement(CSharpContinueStatementSyntax node) =>
+        public override void VisitContinueStatement(ContinueStatementSyntax node) =>
             LastStatement = new ApexContinueStatementSyntax();
 
-        public override void VisitWhileStatement(CSharpWhileStatementSyntax node)
+        public override void VisitDoStatement(DoStatementSyntax node)
+        {
+            var doStmt = new ApexDoStatementSyntax
+            {
+                Expression = ConvertExpression(node.Condition),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                doStmt.Statement = LastStatement;
+            }
+
+            LastStatement = doStmt;
+        }
+
+        public override void VisitForEachStatement(ForEachStatementSyntax node)
+        {
+            var forStmt = new ApexForEachStatementSyntax
+            {
+                Type = ConvertType(node.Type),
+                Identifier = node.Identifier.ValueText,
+                Expression = ConvertExpression(node.Expression),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                forStmt.Statement = LastStatement;
+            }
+
+            LastStatement = forStmt;
+        }
+
+        public override void VisitForStatement(ForStatementSyntax node)
+        {
+            var forStmt = new ApexForStatementSyntax
+            {
+                Condition = ConvertExpression(node.Condition),
+                Incrementors = node.Incrementors.EmptyIfNull().Select(x => ConvertExpression(x)).ToList(),
+            };
+
+            if (node.Declaration != null)
+            {
+                node.Declaration.Accept(this);
+                forStmt.Declaration = LastVariableDeclaration;
+            }
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                forStmt.Statement = LastStatement;
+            }
+
+            LastStatement = forStmt;
+        }
+
+        public override void VisitWhileStatement(WhileStatementSyntax node)
         {
             var whileStmt = new ApexWhileStatementSyntax
             {
@@ -540,7 +611,7 @@ namespace CSharpParser.Visitors
             LastStatement = whileStmt;
         }
 
-        public override void VisitTryStatement(CSharpTryStatementSyntax node)
+        public override void VisitTryStatement(TryStatementSyntax node)
         {
             var tryStatement = new ApexTryStatementSyntax();
             if (node.Block != null)
@@ -566,7 +637,7 @@ namespace CSharpParser.Visitors
 
         private ApexCatchClauseSyntax LastCatch { get; set; }
 
-        public override void VisitCatchClause(CSharpCatchClauseSyntax node)
+        public override void VisitCatchClause(CatchClauseSyntax node)
         {
             var catchClause = new ApexCatchClauseSyntax();
             if (node.Declaration != null)
@@ -589,7 +660,7 @@ namespace CSharpParser.Visitors
 
         private ApexFinallyClauseSyntax LastFinally { get; set; }
 
-        public override void VisitFinallyClause(CSharpFinallyClauseSyntax node)
+        public override void VisitFinallyClause(FinallyClauseSyntax node)
         {
             node.Block.Accept(this);
             LastFinally = new ApexFinallyClauseSyntax

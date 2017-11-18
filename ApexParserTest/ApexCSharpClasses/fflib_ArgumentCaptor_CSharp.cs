@@ -1,5 +1,6 @@
 namespace ApexSharpDemo.ApexCode
 {
+    using Apex.ApexAttributes;
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
@@ -36,7 +37,8 @@ namespace ApexSharpDemo.ApexCode
      *	To be consistent with Mockito, the capturer does not perform any checks on the type of the argument.
      * 	@group Core
      */
-    public /* with sharing */ class fflib_ArgumentCaptor
+    [WithSharing]
+    public class fflib_ArgumentCaptor
     {
         protected List<object> argumentsCaptured = new List<Object>();
 
