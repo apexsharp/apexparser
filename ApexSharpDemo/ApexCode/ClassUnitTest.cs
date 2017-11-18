@@ -30,34 +30,31 @@ namespace ApexSharpDemo.ApexCode
         [Test]
         public static void AssertEquals()
         {
-            System.AssertEquals(5, 5, "Assert Equal");
-
-            Assert.AreEqual(4, 2 + 2);
+            Assert.AreEqual(5, 5, "Assert Equal");
         }
 
         [Test]
-        public static /* testMethod */ void AssertEqualsTestMethod()
+        public static void AssertEqualsTestMethod()
         {
-            System.AssertEquals(5, 5, "Assert Equal");
+            Assert.AreEqual(5, 5, "Assert Equal");
         }
 
         [Test]
         public static void AssertNotEquals()
         {
-            System.AssertNotEquals(5, 0, "Assert Not Equal");
-            Assert.AreNotEqual();
+            Assert.AreNotEqual(5, 0, "Assert Were Equal");
         }
 
         [Test]
-        public static /* testMethod */ void AssertNotTestMethod()
+        public static void AssertNotTestMethod()
         {
-            System.AssertNotEquals(5, 0, "Assert Not Equal");
+            Assert.AreNotEqual(5, 0, "Assert Not Equal");
         }
 
         [Test]
-        static /* testMethod */ void StaticTestMethod()
+        static void StaticTestMethod()
         {
-            System.AssertNotEquals(5, 0, "Assert Not Equal");
+            Assert.AreNotEqual(5, 0, "Assert Not Equal");
         }
     }
 }
