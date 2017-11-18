@@ -88,5 +88,26 @@ namespace ApexParserTest
                     private int x = 10;
                 }", apexClasses[1]);
         }
+
+        public class Soql
+        {
+            public static void Query(string soql, params object[] arguments)
+            {
+                Console.WriteLine("Query: {0}", soql);
+                Console.WriteLine("Parameters:");
+                foreach (var arg in arguments)
+                {
+                    Console.WriteLine("\t{0}");
+                }
+            }
+        }
+
+        [Test]
+        public void TestSoqlApiExample()
+        {
+            Soql.Query("select id from Customer where email = :email", "jay@jay.com");
+            Soql.Query("select id from Customer where email = :email and name = :name", "jay@jay.com", "jay");
+            Soql.Query("select id from Customer where email = :email and name = :name and age > :age", "jay@jay.com", "jay", 20);
+        }
     }
 }
