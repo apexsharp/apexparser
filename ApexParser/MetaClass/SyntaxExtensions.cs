@@ -96,8 +96,8 @@ namespace ApexParser.MetaClass
         private static List<T> Concat<T>(List<T> first, List<T> second) =>
             first.EmptyIfNull().Concat(second.EmptyIfNull()).ToList();
 
-        public static bool IsConstructor(this MethodDeclarationSyntax method) =>
+        public static bool IsConstructor(this MethodDeclarationSyntax method, string className) =>
             method is ConstructorDeclarationSyntax ||
-            method.ReturnType.Identifier == method.Identifier;
+            method.Identifier == className;
     }
 }

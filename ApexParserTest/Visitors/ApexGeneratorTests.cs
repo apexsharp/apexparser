@@ -895,7 +895,7 @@ namespace ApexParserTest.Visitors
         public void JsonStringGeneratorIsGenerated()
         {
             var text = @"
-            class Test
+            class TestClass
             {
                 public void Test()
                 {
@@ -908,7 +908,7 @@ namespace ApexParserTest.Visitors
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     public void Test()
                     {
@@ -924,7 +924,7 @@ namespace ApexParserTest.Visitors
         public void JsonStringGeneratorIsGenerated2()
         {
             var text = @"
-            class Test
+            class TestClass
             {
                 public void Test()
                 {
@@ -938,7 +938,7 @@ namespace ApexParserTest.Visitors
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     public void Test()
                     {
@@ -955,7 +955,7 @@ namespace ApexParserTest.Visitors
         public void JsonStringGeneratorIsGenerated3()
         {
             var text = @"
-            class Test
+            class TestClass
             {
                 public void Test()
                 {
@@ -979,7 +979,7 @@ namespace ApexParserTest.Visitors
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     public void Test()
                     {
@@ -1006,7 +1006,7 @@ namespace ApexParserTest.Visitors
         public void NewListExpressionIsGenerated()
         {
             var text = @"
-            class Test {
+            class TestClass {
                 void Test() {
                     objCtrl.deliverableTypesName = new List<String>
                     {
@@ -1025,7 +1025,7 @@ namespace ApexParserTest.Visitors
 
             var apex = Apex.ParseFile(text);
             Check(apex,
-                @"class Test
+                @"class TestClass
                 {
                     void Test()
                     {
@@ -1157,6 +1157,28 @@ namespace ApexParserTest.Visitors
                     public Map<String, String> SomeMethod()
                     {
                         return new Map<String, String>();
+                    }
+                }");
+        }
+
+        [Test]
+        public void DatabaseQueryLocatorIsGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test
+                {
+                    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
+                    {
+                         return Database.getQueryLocator([SELECT Id FROM Contact]);
+                    }
+                }");
+
+            Check(apex,
+                @"class Test
+                {
+                    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
+                    {
+                         return Database.getQueryLocator([SELECT Id FROM Contact]);
                     }
                 }");
         }
