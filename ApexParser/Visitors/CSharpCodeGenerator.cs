@@ -45,29 +45,8 @@ namespace ApexParser.Visitors
 
         protected override void AppendClassDeclaration(ClassDeclarationSyntax node, string classOrInterface = "class")
         {
-            var optionalIndent = default(IDisposable);
-            var appendNamespace = IsTopLevelDeclaration && HasRootNamespace;
-            if (appendNamespace)
+            AppendNamespacesForTopLevelDeclaration(node, () =>
             {
-                AppendIndentedLine("namespace {0}", Namespace);
-                AppendIndentedLine("{{");
-                optionalIndent = Indented();
-            }
-
-            using (optionalIndent)
-            {
-                if (IsTopLevelDeclaration)
-                {
-                    foreach (var ns in GetUsings(node).AsSmart())
-                    {
-                        AppendIndentedLine("using {0};", ns.Value);
-                        if (ns.IsLast)
-                        {
-                            AppendLine();
-                        }
-                    }
-                }
-
                 AppendCommentsAttributesAndModifiers(node);
                 Append("{0} {1}", classOrInterface, node.Identifier);
 
@@ -89,6 +68,40 @@ namespace ApexParser.Visitors
 
                 AppendLine();
                 AppendClassMembers(node);
+            });
+        }
+
+        protected override void AppendEnumDeclaration(EnumDeclarationSyntax node)
+        {
+            AppendNamespacesForTopLevelDeclaration(node, () => base.AppendEnumDeclaration(node));
+        }
+
+        private void AppendNamespacesForTopLevelDeclaration(MemberDeclarationSyntax node, Action generateCode)
+        {
+            var optionalIndent = default(IDisposable);
+            var appendNamespace = IsTopLevelDeclaration && HasRootNamespace;
+            if (appendNamespace)
+            {
+                AppendIndentedLine("namespace {0}", Namespace);
+                AppendIndentedLine("{{");
+                optionalIndent = Indented();
+            }
+
+            using (optionalIndent)
+            {
+                if (IsTopLevelDeclaration)
+                {
+                    foreach (var ns in GetUsings(node as ClassDeclarationSyntax).AsSmart())
+                    {
+                        AppendIndentedLine("using {0};", ns.Value);
+                        if (ns.IsLast)
+                        {
+                            AppendLine();
+                        }
+                    }
+                }
+
+                generateCode();
             }
 
             if (appendNamespace)

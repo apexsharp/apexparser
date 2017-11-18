@@ -69,6 +69,33 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void EnumDeclarationProducesTheRequiredNamespaceImports()
+        {
+            var cd = new EnumDeclarationSyntax
+            {
+                Identifier = "TestEnum",
+                Members = new List<EnumMemberDeclarationSyntax>
+                {
+                    new EnumMemberDeclarationSyntax { Identifier = "TestMember" },
+                },
+            };
+
+            Check(cd,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    enum TestEnum
+                    {
+                        TestMember
+                    }
+                }");
+        }
+
+        [Test]
         public void ClassDeclarationWithAnnotatedTestMethodProducesTheRequiredNamespaceImports()
         {
             var cd = new ClassDeclarationSyntax
