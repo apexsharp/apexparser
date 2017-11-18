@@ -89,16 +89,47 @@ namespace ApexParserTest
                 }", apexClasses[1]);
         }
 
+        public class DevArtParameter
+        {
+            public string Name { get; }
+            public object Value { get; }
+            public DevArtParameter(string name, object value)
+            {
+                Name = name;
+                Value = value;
+            }
+        }
+        public class DevArtCommand
+        {
+            public DevArtCommand(string query) { }
+            public List<DevArtParameter> Parameters { get; } = new List<DevArtParameter>();
+            public void Execute()
+            {
+                Console.WriteLine("Executing command with parameters: ");
+                foreach (var p in Parameters)
+                {
+                    Console.WriteLine("{0} => {1}", p.Name, p.Value);
+                }
+            }
+        }
+
         public class Soql
         {
             public static void Query(string soql, params object[] arguments)
             {
-                Console.WriteLine("Query: {0}", soql);
-                Console.WriteLine("Parameters:");
-                foreach (var arg in arguments)
+                // replace parameter names — :email with p0, :name with p1, etc.
+                var soqlQuery = soql;
+                var command = new DevArtCommand(soqlQuery);
+
+                // prepare parameters for the data provider command
+                for (var i = 0; i < arguments.Length; i++)
                 {
-                    Console.WriteLine("\t{0}");
+                    var param = new DevArtParameter("p" + i, arguments[0]);
+                    command.Parameters.Add(param);
                 }
+
+                // execute the command and get the results
+                command.Execute();
             }
         }
 
