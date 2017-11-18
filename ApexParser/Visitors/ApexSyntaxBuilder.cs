@@ -57,7 +57,7 @@ using CSharpVariableDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.Var
 using CSharpVariableDeclaratorSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax;
 using CSharpWhileStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.WhileStatementSyntax;
 
-namespace CSharpParser.Visitors
+namespace ApexParser.Visitors
 {
     public class ApexSyntaxBuilder : CSharpSyntaxWalker
     {

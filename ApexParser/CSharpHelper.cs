@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using ApexParser.Visitors;
-using CSharpParser.Visitors;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpParser
+namespace ApexParser
 {
     public class CSharpHelper
     {

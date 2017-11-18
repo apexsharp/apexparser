@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpParser;
-using CSharpParser.Visitors;
+using ApexParser;
+using ApexParser.Visitors;
 using CSharpParserTest.Visitors;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
 
 namespace CSharpParserTest

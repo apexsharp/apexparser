@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ApexParser;
 using ApexParser.MetaClass;
 using ApexParser.Visitors;
-using CSharpParser;
-using CSharpParser.Visitors;
 using NUnit.Framework;
 
 namespace CSharpParserTest.Visitors
