@@ -527,6 +527,24 @@ namespace ApexParser.Visitors
             LastStatement = doStmt;
         }
 
+        public override void VisitForEachStatement(ForEachStatementSyntax node)
+        {
+            var forStmt = new ApexForEachStatementSyntax
+            {
+                Type = ConvertType(node.Type),
+                Identifier = node.Identifier.ValueText,
+                Expression = ConvertExpression(node.Expression),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                forStmt.Statement = LastStatement;
+            }
+
+            LastStatement = forStmt;
+        }
+
         public override void VisitWhileStatement(WhileStatementSyntax node)
         {
             var whileStmt = new ApexWhileStatementSyntax

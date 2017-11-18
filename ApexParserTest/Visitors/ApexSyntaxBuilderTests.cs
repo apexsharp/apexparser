@@ -236,6 +236,13 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void ForeachStatementIsGenerated()
+        {
+            Check("class A { void T() { foreach (X x in y) { break; } } }", "class A { void T() { for (X x : y) { break; } } }");
+            Check("class A { void T() { foreach (X x in new y[10]) continue; } }", "class A { void T() { for (X x : new y[10]) continue; } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();
