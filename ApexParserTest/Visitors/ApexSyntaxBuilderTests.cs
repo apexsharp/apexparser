@@ -9,7 +9,7 @@ using ApexParser.MetaClass;
 using ApexParser.Visitors;
 using NUnit.Framework;
 
-namespace CSharpParserTest.Visitors
+namespace ApexParserTest.Visitors
 {
     [TestFixture]
     public class ApexSyntaxBuilderTests : TestFixtureBase

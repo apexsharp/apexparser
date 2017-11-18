@@ -9,7 +9,7 @@ using NUnit.Framework;
 using Sprache;
 using static ApexParserTest.Properties.Resources;
 
-namespace ApexParserTest.CodeGenerators
+namespace ApexParserTest.Visitors
 {
     [TestFixture]
     public class CSharpResourceTests : TestFixtureBase

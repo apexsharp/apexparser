@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ApexParser;
 using ApexParser.Visitors;
-using CSharpParserTest.Visitors;
 using NUnit.Framework;
 
-namespace CSharpParserTest
+namespace ApexParserTest
 {
     [TestFixture]
     public class CSharpParserTests : TestFixtureBase

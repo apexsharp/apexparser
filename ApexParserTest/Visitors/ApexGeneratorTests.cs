@@ -7,7 +7,7 @@ using ApexParser.Parser;
 using ApexParser.Visitors;
 using NUnit.Framework;
 
-namespace ApexParserTest.CodeGenerators
+namespace ApexParserTest.Visitors
 {
     [TestFixture]
     public class ApexGeneratorTests : TestFixtureBase
