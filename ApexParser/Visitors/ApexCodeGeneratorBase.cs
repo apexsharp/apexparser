@@ -544,18 +544,17 @@ namespace ApexParser.Visitors
                     Append(";");
                 }
 
-                if (!string.IsNullOrWhiteSpace(node.Condition))
+                if (node.Condition != null)
                 {
-                    Append(" {0};", node.Condition);
-                }
-                else
-                {
-                    Append(";");
+                    Append(" ");
+                    node.Condition.Accept(this);
                 }
 
+                Append(";");
                 foreach (var inc in node.Incrementors.AsSmart())
                 {
-                    Append(" {0}", inc.Value);
+                    Append(" ");
+                    inc.Value.Accept(this);
                     if (!inc.IsLast)
                     {
                         Append(",");

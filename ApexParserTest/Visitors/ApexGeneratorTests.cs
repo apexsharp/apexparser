@@ -333,7 +333,7 @@ namespace ApexParserTest.Visitors
         {
             var forStatement = new ForStatementSyntax
             {
-                Condition = "i < 10",
+                Condition = new ExpressionSyntax("i < 10"),
                 Statement = new BlockSyntax
                 {
                     new BreakStatementSyntax()
@@ -352,9 +352,10 @@ namespace ApexParserTest.Visitors
         {
             var forStatement = new ForStatementSyntax
             {
-                Incrementors = new List<string>
+                Incrementors = new List<ExpressionSyntax>
                 {
-                    "i++", "j *= 2"
+                    new ExpressionSyntax("i++"),
+                    new ExpressionSyntax("j *= 2")
                 },
                 Statement = new BlockSyntax
                 {
@@ -391,10 +392,11 @@ namespace ApexParserTest.Visitors
                         }
                     }
                 },
-                Condition = "j < 1000",
-                Incrementors = new List<string>
+                Condition = new ExpressionSyntax("j < 1000"),
+                Incrementors = new List<ExpressionSyntax>
                 {
-                    "i++", "j *= 2"
+                    new ExpressionSyntax("i++"),
+                    new ExpressionSyntax("j *= 2")
                 },
                 Statement = new BlockSyntax
                 {

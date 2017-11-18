@@ -243,6 +243,17 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void ForStatementIsGenerated()
+        {
+            Check("class A { void T() { for (;;) { break; } } }", "class A { void T() { for (;;) { break; } } }");
+            Check("class A { void T() { for (int x = 0;;) continue; } }", "class A { void T() { for (int x = 0;;) continue; } }");
+            Check("class A { void T() { for (int x = 0, y = 10;;) continue; } }", "class A { void T() { for (int x = 0, y = 10;;) continue; } }");
+            Check("class A { void T() { for (;i<10;) continue; } }", "class A { void T() { for (;i<10;) continue; } }");
+            Check("class A { void T() { for (;;i++) continue; } }", "class A { void T() { for (;;i++) continue; } }");
+            Check("class A { void T() { for (int i = 0;i < 10;i++,j--) continue; } }", "class A { void T() { for (int i = 0;i < 10;i++,j--) continue; } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();

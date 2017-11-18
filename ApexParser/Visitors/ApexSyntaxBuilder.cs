@@ -74,8 +74,6 @@ namespace ApexParser.Visitors
             node.DescendantNodes(n => !(n is ClassDeclarationSyntax))
                 .OfType<BaseTypeDeclarationSyntax>().ToArray();
 
-        private ApexClassDeclarationSyntax LastClass { get; set; }
-
         public override void VisitClassDeclaration(ClassDeclarationSyntax node)
         {
             // get base types
@@ -112,8 +110,8 @@ namespace ApexParser.Visitors
                 }
             }
 
-            LastClassMember = LastClass = classDeclaration;
-            LastClass.InnerComments = LastComments.ToList();
+            LastClassMember = classDeclaration;
+            classDeclaration.InnerComments = LastComments.ToList();
             LastComments.Clear();
         }
 
@@ -353,10 +351,10 @@ namespace ApexParser.Visitors
                 node.Declaration.Accept(this);
             }
 
-            if (LastVariable != null)
+            if (LastVariableDeclaration != null)
             {
-                field.Type = LastVariable.Type;
-                field.Fields = LastVariable.Variables.Select(v => new ApexFieldDeclaratorSyntax
+                field.Type = LastVariableDeclaration.Type;
+                field.Fields = LastVariableDeclaration.Variables.Select(v => new ApexFieldDeclaratorSyntax
                 {
                     Identifier = v.Identifier,
                     Expression = v.Expression,
@@ -368,7 +366,7 @@ namespace ApexParser.Visitors
 
         private ApexStatementSyntax LastStatement { get; set; }
 
-        private ApexVariableDeclarationSyntax LastVariable { get; set; }
+        private ApexVariableDeclarationSyntax LastVariableDeclaration { get; set; }
 
         public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
         {
@@ -383,7 +381,7 @@ namespace ApexParser.Visitors
                 variable.Variables.Add(LastVariableDeclarator);
             }
 
-            LastStatement = LastVariable = variable;
+            LastStatement = LastVariableDeclaration = variable;
         }
 
         private ApexVariableDeclaratorSyntax LastVariableDeclarator { get; set; }
@@ -535,6 +533,29 @@ namespace ApexParser.Visitors
                 Identifier = node.Identifier.ValueText,
                 Expression = ConvertExpression(node.Expression),
             };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                forStmt.Statement = LastStatement;
+            }
+
+            LastStatement = forStmt;
+        }
+
+        public override void VisitForStatement(ForStatementSyntax node)
+        {
+            var forStmt = new ApexForStatementSyntax
+            {
+                Condition = ConvertExpression(node.Condition),
+                Incrementors = node.Incrementors.EmptyIfNull().Select(x => ConvertExpression(x)).ToList(),
+            };
+
+            if (node.Declaration != null)
+            {
+                node.Declaration.Accept(this);
+                forStmt.Declaration = LastVariableDeclaration;
+            }
 
             if (node.Statement != null)
             {
