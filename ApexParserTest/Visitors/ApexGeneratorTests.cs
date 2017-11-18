@@ -1134,5 +1134,31 @@ namespace ApexParserTest.Visitors
                     // inner comments
                 } // trailing");
         }
+
+        [Test]
+        public void MapStringStringIsGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(
+                @"class Sample
+                {
+                    public static Map<String, string> SomeMap { get; private set; }
+
+                    public Map<string, STRING> SomeMethod()
+                    {
+                        return new Map<String, string>();
+                    }
+                }");
+
+            Check(apex,
+                @"class Sample
+                {
+                    public static Map<String, String> SomeMap { get; private set; }
+
+                    public Map<String, String> SomeMethod()
+                    {
+                        return new Map<String, String>();
+                    }
+                }");
+        }
     }
 }

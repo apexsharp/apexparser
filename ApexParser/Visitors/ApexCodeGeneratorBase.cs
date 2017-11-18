@@ -336,11 +336,7 @@ namespace ApexParser.Visitors
                 }
 
                 type.Value.Accept(this);
-
-                if (type.IsFirst)
-                {
-                    Append(">");
-                }
+                Append(type.IsLast ? ">" : ", ");
             }
 
             if (node.IsArray)

@@ -1049,5 +1049,40 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void MapStringStringIsGeneratedProperly()
+        {
+            var apex = Apex.ParseClass(
+                @"class Sample
+                {
+                    public static Map<String, string> SomeMap { get; private set; }
+
+                    public Map<string, STRING> SomeMethod()
+                    {
+                        return new Map<String, string>();
+                    }
+                }");
+
+            // note that new Map<String, String> is not yet converted
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Sample
+                    {
+                        public static Map<string, string> SomeMap { get; private set; }
+
+                        public Map<string, string> SomeMethod()
+                        {
+                            return new Map<String, String>();
+                        }
+                    }
+                }");
+        }
     }
 }
