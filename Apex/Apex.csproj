@@ -134,7 +134,7 @@
     <Compile Include="ApexAttrbutes\ApexFuture.cs" />
     <Compile Include="ApexAttrbutes\ApexGlobel.cs" />
     <Compile Include="ApexAttrbutes\ApexHttpPut.cs" />
-    <Compile Include="ApexAttrbutes\ApexRest.cs" />
+    <Compile Include="ApexAttrbutes\RestResource.cs" />
     <Compile Include="ApexAttrbutes\TestSeeAllData.cs" />
     <Compile Include="ApexAttrbutes\ApexTransient.cs" />
     <Compile Include="ApexAttrbutes\WithSharing.cs" />

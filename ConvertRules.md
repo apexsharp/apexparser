@@ -1,20 +1,15 @@
 Apex
-
 ```csharp
-public without sharing abstract class SoqlDemo {
+global class ClassGlobal
 ```
-
 C#
-
 ```csharp
-[WithOutSharing]
-    public abstract class SoqlDemo
+[Globel]
+public class ClassGlobal
 ```
-
-
 Apex
-
 ```csharp
+
 public with sharing abstract class SoqlDemo
 ```
 C#
@@ -23,7 +18,6 @@ C#
 [WithSharing]
 public abstract class SoqlDemo
 ```
-
 Apex
 
 ```csharp
@@ -74,6 +68,121 @@ C#
 Soql.Delete(contacts);
 ```
 
+Apex
+```csharp
+global class ClassGlobal
+```
+C#
+```csharp
+Soql.Delete(contacts);
+```
+Apex
+```csharp
+@RestResource(urlMapping='/api/v1/RestDemo')
+global class ClassRest
+{
+    @httpDelete
+    global static void DoDelete() {
+    }
+    
+    @httpPost
+    global static void Post() {
+    }
 
+    @httpGet
+    global static string Get() {
+        return 'Jay';
+    }
+
+    @httpPatch
+    global static void Patch() {
+    }
+
+    @httpPut
+    global static void Put() {
+    }
+}
+```
+C#
+```csharp
+[RestResource("/api/v1/RestDemo")]
+    [Globel]
+    public class ClassRest
+    {
+        [HttpDelete]
+        [Globel]
+        public static void DoDelete()
+        {
+        }
+
+        [HttpPost]
+        [Globel]
+        public static void Post()
+        {
+        }
+
+        [HttpGet]
+        [Globel]
+        public static string Get()
+        {
+            return "Jay";
+        }
+
+        [HttpPatch]
+        [Globel]
+        public static void Patch()
+        {
+        }
+
+        [HttpPut]
+        [Globel]
+        public static void Put()
+        {
+        }
+    }
+```
+
+Apex
+```csharp
+@isTest
+public class ClassUnitTest {
+    @TestSetup
+    public static void Setup() {
+        System.Debug('One Time Setup Got Called');
+    }
+
+    @isTest
+    public static void Assert() {
+        System.Assert(true, 'Assert True');
+    }
+    public static testMethod void AssertTestMethod() {
+        System.Assert(true, 'Assert True');
+    }
+}
+```
+C#
+```csharp
+    [TestFixture]
+    public class ClassUnitTest
+    {
+        [SetUp]
+        public static void Setup()
+        {
+            System.Debug("One Time Setup Got Called");
+        }
+
+        [Test]
+        public static void Assert()
+        {
+            System.Assert(true, "Assert True");
+        }
+
+        [Test]
+        public static void AssertTestMethod()
+        {
+            System.Assert(true, "Assert True");
+        }
+    }
+```
 
 		           

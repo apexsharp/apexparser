@@ -9,5 +9,10 @@ namespace ApexSharpDemo.NoApex
             System.Console.Write(msg);
             return System.Console.ReadLine();
         }
+
+        public static void WriteLine(string msg)
+        {
+            System.Console.WriteLine(msg);
+        }
     }
 }

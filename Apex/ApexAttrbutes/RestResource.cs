@@ -3,9 +3,9 @@
 namespace Apex.ApexAttrbutes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class ApexRest : global::System.Attribute
+    public class RestResource : global::System.Attribute
     {
-        public ApexRest(string url)
+        public RestResource(string url)
         {
             Url = url;
         }
