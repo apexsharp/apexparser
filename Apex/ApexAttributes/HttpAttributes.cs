@@ -1,25 +1,29 @@
 ﻿using System;
 
-namespace Apex.ApexAttrbutes
+namespace Apex.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class HttpDelete : global::System.Attribute
+    public class HttpDeleteAttribute : Attribute
     {
     }
+
     [AttributeUsage(AttributeTargets.Method)]
-    public class HttpPost : global::System.Attribute
+    public class HttpPostAttribute : Attribute
     {
     }
+
     [AttributeUsage(AttributeTargets.Method)]
-    public class HttpGet : global::System.Attribute
+    public class HttpGetAttribute : Attribute
     {
     }
+
     [AttributeUsage(AttributeTargets.Method)]
-    public class HttpPatch : global::System.Attribute
+    public class HttpPatchAttribute : Attribute
     {
     }
+
     [AttributeUsage(AttributeTargets.Method)]
-    public class HttpPut : global::System.Attribute
+    public class HttpPutAttribute : Attribute
     {
     }
 }

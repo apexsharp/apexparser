@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace Apex.ApexAttrbutes
+namespace Apex.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class Future : global::System.Attribute
+    public class FutureAttribute : Attribute
     {
-        public Future()
+        public FutureAttribute()
         {
             CallOut = false;
         }
 
-        public Future(bool callOut)
+        public FutureAttribute(bool callOut)
         {
             CallOut = callOut;
         }

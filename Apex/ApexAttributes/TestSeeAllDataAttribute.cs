@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Apex.ApexAttrbutes
+namespace Apex.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.All)]
-    public class TestSeeAllData : global::System.Attribute
+    public class TestSeeAllDataAttribute : Attribute
     {
-        public TestSeeAllData()
+        public TestSeeAllDataAttribute()
         {
             IsSharing = true;
         }
