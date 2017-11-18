@@ -35,7 +35,7 @@ namespace SalesForceAPI
 
         public SalesForceApiLimits GetLimits()
         {
-            Db db = new Db(_connectionDetail);
+            Db db = new Db();
             var limitWait = db.GetApiLimits();
 
             limitWait.Wait();

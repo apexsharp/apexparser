@@ -154,7 +154,7 @@
     <Compile Include="ApexSharp\SharpToApex\CSharpParser.cs" />
     <Compile Include="ApexSharp\SharpToApex\Type.cs" />
     <Compile Include="ApexSharp\SharpToApex\ExtensionMethods.cs" />
-    <Compile Include="ApexSharp\SOQL.cs" />
+    <Compile Include="ApexSharp\Soql.cs" />
     <Compile Include="Apex\EmptyStackException.cs" />
     <Compile Include="Apex\Stack.cs" />
     <Compile Include="Applauncher\AccountSettingsController.cs" />

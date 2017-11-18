@@ -39,7 +39,7 @@ namespace SalesForceAPI
 
         public string BulkRequest<T>(int checkIntervel)
         {
-            Db db = new Db(_connectionDetail);
+            Db db = new Db();
 
             SoqlCreator soql = new SoqlCreator();
             string query = soql.GetSoql<T>();

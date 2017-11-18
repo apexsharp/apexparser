@@ -27,15 +27,10 @@ namespace SalesForceAPI
             _connectionDetail = ConnectionUtil.ConnectionDetail;
         }
 
-        public Db(ApexSharpConfig connectionDetail)
-        {
-            _connectionDetail = connectionDetail;
-        }
-
 
         public List<T> Query<T>(string query)
         {
-            Log.LogMsg(query);
+            Serilog.Log.Information(query);
 
             HttpRequestMessage request = new HttpRequestMessage
             {
@@ -68,7 +63,7 @@ namespace SalesForceAPI
 
                     return returnData.records;
                 default:
-                    Log.LogMsg("Query Error", responseMessage.Content.ReadAsStringAsync().Result);
+                    Serilog.Log.Information("Query Error", responseMessage.Content.ReadAsStringAsync().Result);
                     return new List<T>();
             }
         }

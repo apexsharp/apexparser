@@ -168,9 +168,9 @@ namespace SalesForceAPI
         }
 
         // Get Count
-        public int GetSalesForceRecordCount<T>(ApexSharpConfig connectionDetail)
+        public int GetSalesForceRecordCount<T>()
         {
-            Db db = new Db(connectionDetail);
+            Db db = new Db();
             var asyncWait = db.Count<T>();
             try
             {
@@ -188,7 +188,7 @@ namespace SalesForceAPI
         private int _limitNumber, _skipNumer = 0;
         public System.Collections.Generic.List<T> ToList<T>()
         {
-            Db db = new Db(ConnectionDetail);
+            Db db = new Db();
 
             if (_limitNumber > 0 && _skipNumer > 0)
             {
@@ -228,9 +228,9 @@ namespace SalesForceAPI
             return this;
         }
 
-        public System.Collections.Generic.List<T> GetAllSalesForceRecords<T>(ApexSharpConfig connection)
+        public System.Collections.Generic.List<T> GetAllSalesForceRecords<T>()
         {
-            Db db = new Db(connection);
+            Db db = new Db();
             var asyncWait = db.GetAllRecordsAsync<T>();
             asyncWait.Wait();
             return asyncWait.Result;
@@ -239,9 +239,9 @@ namespace SalesForceAPI
 
 
 
-        public T GetRecordById<T>(ApexSharpConfig connection, string id)
+        public T GetRecordById<T>(string id)
         {
-            Db db = new Db(connection);
+            Db db = new Db();
 
             var asyncWait = db.GetSingleRecordByIdAsync<T>(id);
             asyncWait.Wait();
