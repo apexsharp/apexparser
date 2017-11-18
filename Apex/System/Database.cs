@@ -6,6 +6,37 @@ namespace Apex.System
 {
     public class Database
     {
+        public class QueryLocator
+        {
+            public string GetQuery()
+            {
+                throw new global::System.NotImplementedException("QueryLocator.GetQuery");
+            }
+
+            //public Database.QueryLocatorIterator Iterator()
+            //{
+            //    throw new global::System.NotImplementedException("QueryLocator.Iterator");
+            //}
+
+            public List<SObject> Querymore(int num)
+            {
+                throw new global::System.NotImplementedException("QueryLocator.Querymore");
+            }
+        }
+
+        public class BatchableContext
+        {
+            public Id GetChildJobId()
+            {
+                throw new global::System.NotImplementedException("BatchableContext.GetChildJobId");
+            }
+
+            public Id GetJobId()
+            {
+                throw new global::System.NotImplementedException("BatchableContext.GetJobId");
+            }
+        }
+
         public static LeadConvertResult ConvertLead(LeadConvert leadConvert)
         {
             throw new global::System.NotImplementedException("Database.ConvertLead");

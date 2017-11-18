@@ -1,17 +1,12 @@
 namespace ApexSharpDemo.ApexCode
 {
-    using Apex.ApexAttrbutes;
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
 
-    [WithOutSharing]
-    public abstract class SoqlDemo
+    public class SoqlDemo
     {
         public List<Contact> ContactList = Soql.Query<Contact>("SELECT Id, Email FROM Contact");
-
-
-        public abstract void AbstractMethod();
 
         /**
          * A simple CRUD Example
@@ -19,7 +14,6 @@ namespace ApexSharpDemo.ApexCode
         public static void CrudExample()
         {
             Contact contactNew = new Contact() { LastName = "Jay", Email = "abc@abc.com" };
-
             Soql.Insert(contactNew);
             System.Debug(contactNew.Id);
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);

@@ -52,7 +52,7 @@ namespace ApexSharpDemo.ApexCode
         }
 
         [Test]
-        static void StaticTestMethod()
+        public static void StaticTestMethod()
         {
             Assert.AreNotEqual(5, 0, "Assert Not Equal");
         }

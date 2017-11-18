@@ -3,18 +3,18 @@
 namespace Apex.ApexAttrbutes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class ApexFuture : global::System.Attribute
+    public class Future : global::System.Attribute
     {
-        public ApexFuture()
+        public Future()
         {
             CallOut = false;
         }
 
-        public ApexFuture(bool callOut)
+        public Future(bool callOut)
         {
             CallOut = callOut;
         }
 
-        protected virtual bool CallOut{ get; }
+        protected virtual bool CallOut { get; }
     }
 }

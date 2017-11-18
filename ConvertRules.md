@@ -67,7 +67,6 @@ C#
 ```csharp
 Soql.Delete(contacts);
 ```
-
 Apex
 ```csharp
 global class ClassGlobal
@@ -142,6 +141,8 @@ C#
     }
 ```
 
+### Unit Testing Example
+
 Apex
 ```csharp
 @isTest
@@ -183,6 +184,43 @@ C#
             System.Assert(true, "Assert True");
         }
     }
+```
+
+### JSON Deserialization Example
+
+Apex
+```csharp
+Contact newContact = (Contact)JSON.Deserialize(jsonString, String.class);
+```
+C#
+```csharp
+Contact newContact = JSON.Deserialize<Contact>(jsonString);
+```
+
+Apex
+
+```csharp
+@future
+public static void FutureMethod()
+{
+}
+@future(callOut=true)
+public static void FutureMethodWithCallOut()
+{
+}
+```
+C#
+
+```csharp
+[Future]
+public static void FutureMethod()
+{
+}
+
+[Future(callOut:true)]
+public static void FutureMethodWithCallOut()
+{
+}
 ```
 
 		           

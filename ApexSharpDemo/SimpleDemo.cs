@@ -27,7 +27,7 @@ namespace ApexSharpDemo
 
             // SoqlDemo is a CRUD C# code that we will convert APEX. This can be executed now.
             // Take a look at the SoqlDemo.cs file in the /ApexCode Folder.  
-            ApexCode.SoqlDemo.CrudExample();
+            // ApexCode.SoqlDemo.CrudExample();
 
             //Convert the SoqlDemo.cs File to APEX and save it.
             //apexSharp.ConvertToApex("SoqlDemo", overWrite: true);
