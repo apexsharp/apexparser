@@ -229,6 +229,13 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void DoStatementIsGenerated()
+        {
+            Check("class A { void T() { do { break; } while(true); } }", "class A { void T() { do { break; } while(true); } }");
+            Check("class A { void T() { do continue; while(false); } }", "class A { void T() { do continue; while(false); } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();

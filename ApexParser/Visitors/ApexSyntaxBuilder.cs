@@ -511,6 +511,22 @@ namespace ApexParser.Visitors
         public override void VisitContinueStatement(ContinueStatementSyntax node) =>
             LastStatement = new ApexContinueStatementSyntax();
 
+        public override void VisitDoStatement(DoStatementSyntax node)
+        {
+            var doStmt = new ApexDoStatementSyntax
+            {
+                Expression = ConvertExpression(node.Condition),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                doStmt.Statement = LastStatement;
+            }
+
+            LastStatement = doStmt;
+        }
+
         public override void VisitWhileStatement(WhileStatementSyntax node)
         {
             var whileStmt = new ApexWhileStatementSyntax
