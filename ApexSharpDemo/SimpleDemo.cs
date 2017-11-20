@@ -24,8 +24,7 @@ namespace ApexSharpDemo
                .WithUserId("SalesForce User Id")
                .AndPassword("SalesForce Password")
                .AndToken("SalesForce Token")
-               .SetApexFileLocation("Location Where you want your APEX Files to be saved")
-               .SaveApexSharpConfig("Location")
+               .SaveApexSharpConfigAs("Configuration Name")
                .Connect(); // Always Initialize your settings before using it.
 
             // Create a local C# for Contact object in SF

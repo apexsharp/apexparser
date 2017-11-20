@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
+using SalesForceAPI.ApexApi;
+using SalesForceAPI.Model.BulkApi;
 
 namespace SalesForceAPI
 {
@@ -8,19 +11,18 @@ namespace SalesForceAPI
     {
         public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
 
-        public void Connect(string configLocation)
-        {
-            ConnectionUtil.Connect(configLocation);
-        }
-
         public void Connect()
         {
             ConnectionUtil.Connect(ApexSharpConfigSettings);
         }
 
-        public List<string> GetAllObjects()
+
+        public void Connect(string configLocation)
         {
-            return new List<string>();
+            FileInfo loadFileInfo = new FileInfo(configLocation);
+            string json = File.ReadAllText(loadFileInfo.FullName);
+            ApexSharpConfigSettings = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
+            Connect();
         }
 
 
@@ -32,27 +34,127 @@ namespace SalesForceAPI
         }
 
 
-        public void ConvertCSharpToApex(FileInfo cSharpFile)
+        public int GetSalesForceRecordCount<T>()
         {
-            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            path = path + "\\ApexCode\\" + cSharpFile.Name + ".cs";
+            Db db = new Db();
+            var asyncWait = db.Count<T>();
+            try
+            {
+                asyncWait.Wait();
+                return asyncWait.Result;
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e);
+            }
+            // ToDo : Exception
+            return 0;
+        }
 
-            FileInfo cSharpFileInfo = new FileInfo(path);
-            var apexFileName = cSharpFileInfo.Name.Replace(".cs", "");
-            apexFileName = ApexSharpConfigSettings.ApexFileLocation + apexFileName + ".cls";
+        private int _limitNumber, _skipNumer = 0;
+        public System.Collections.Generic.List<T> ToList<T>()
+        {
+            Db db = new Db();
 
-            Console.WriteLine($"Converting {apexFileName}");
-
-            //  CSharpParser parser = new CSharpParser();
-            //  ApexClassDeclarationSyntax apexClassDeclarationSyntax = parser.ParseCSharpFromFile(cSharpFileInfo);
-
-            // Console.WriteLine(String.Join("\n", convertedApex));
-            Console.WriteLine($"Saving {apexFileName}");
-            //File.WriteAllLines(apexFileName, convertedApex);
+            if (_limitNumber > 0 && _skipNumer > 0)
+            {
+                var asyncWait = db.GetAllRecordsAsync<T>(_limitNumber, _skipNumer);
+                asyncWait.Wait();
+                return asyncWait.Result;
+            }
+            else if (_limitNumber > 0)
+            {
+                var asyncWait = db.GetAllRecordsAsyncLimit<T>(_limitNumber);
+                asyncWait.Wait();
+                return asyncWait.Result;
+            }
+            else if (_skipNumer > 0)
+            {
+                var asyncWait = db.GetAllRecordsAsyncOffset<T>(_skipNumer);
+                asyncWait.Wait();
+                return asyncWait.Result;
+            }
+            else
+            {
+                var asyncWait = db.GetAllRecordsAsync<T>();
+                asyncWait.Wait();
+                return asyncWait.Result;
+            }
         }
 
 
-        public ApexSharp SaveApexSharpConfig(string dirLocationAndFileName)
+        public System.Collections.Generic.List<T> GetAllSalesForceRecords<T>()
+        {
+            Db db = new Db();
+            var asyncWait = db.GetAllRecordsAsync<T>();
+            asyncWait.Wait();
+            return asyncWait.Result;
+        }
+
+        public T GetRecordById<T>(string id)
+        {
+            Db db = new Db();
+
+            var asyncWait = db.GetSingleRecordByIdAsync<T>(id);
+            asyncWait.Wait();
+
+            return asyncWait.Result;
+        }
+
+
+        //public T CreateOrUpdateRecord<T>(ConnectionDetail connection, T data) where T : BaseObject
+        //{
+        //    Db db = new Db(connection);
+
+        //    if (data.Id == null)
+        //    {
+        //        var waitForInsert = db.CreateRecord(data);
+        //        waitForInsert.Wait();
+        //        return waitForInsert.Result;
+        //    }
+
+        //    Regex regex = new Regex(@"[a-zA-Z0-9]{18}");
+        //    var match = regex.Match(data.Id);
+
+        //    if (match.Success)
+        //    {
+        //        var waitForInsert = db.UpdateRecord(data);
+        //        waitForInsert.Wait();
+        //        return waitForInsert.Result;
+
+        //    }
+        //    else
+        //    {
+        //        var waitForInsert = db.CreateRecord(data);
+        //        waitForInsert.Wait();
+        //        return waitForInsert.Result;
+        //    }
+        //}
+
+        public string BulkRequest<T>(int checkIntervel)
+        {
+            BulkApi api = new BulkApi(ConnectionUtil.GetConnectionDetail());
+            return api.BulkRequest<T>(checkIntervel);
+        }
+
+        public BulkInsertReply BulkInsert<T>(System.Collections.Generic.List<T> dataList) where T : SObject
+        {
+            // ToDo limit to 200 Exception 
+            BulkInsertRequest<T> request = new BulkInsertRequest<T> { Records = new T[dataList.Count] };
+            request.Records = dataList.ToArray();
+
+            BulkApi api = new BulkApi(ConnectionUtil.GetConnectionDetail());
+            var replyTask = api.CreateRecordBulk<T>(request);
+            replyTask.Wait();
+            return replyTask.Result;
+        }
+
+
+
+
+
+
+        public ApexSharp SaveApexSharpConfigAs(string dirLocationAndFileName)
         {
             ApexSharpConfigSettings.DirLocationAndFileName = dirLocationAndFileName;
             return this;
@@ -89,17 +191,6 @@ namespace SalesForceAPI
         public ApexSharp AddHttpProxy(string httpProxy)
         {
             ApexSharpConfigSettings.HttpProxy = httpProxy;
-            return this;
-        }
-        public ApexSharp SetApexFileLocation(string directory)
-        {
-            ApexSharpConfigSettings.ApexFileLocation = directory;
-            return this;
-        }
-
-        public ApexSharp SetVisualStudioProjectLocation(string dir)
-        {
-            ApexSharpConfigSettings.VisualStudioProjectFile = dir;
             return this;
         }
     }

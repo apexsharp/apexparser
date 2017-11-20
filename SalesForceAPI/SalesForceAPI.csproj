@@ -76,6 +76,7 @@
     <Compile Include="SoqlCreator.cs" />
     <Compile Include="UtilSalesForce.cs" />
     <Compile Include="UtilXml.cs" />
+    <Compile Include="VsProject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
