@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ApexParser;
 using ApexParser.Visitors;
@@ -118,7 +119,8 @@ namespace ApexParserTest
             public static void Query(string soql, params object[] arguments)
             {
                 // replace parameter names — :email with p0, :name with p1, etc.
-                var soqlQuery = soql;
+                var index = 0;
+                var soqlQuery = Regex.Replace(soql, @"(\:\S+)", m => $"p{index++}");
                 var command = new DevArtCommand(soqlQuery);
 
                 // prepare parameters for the data provider command
