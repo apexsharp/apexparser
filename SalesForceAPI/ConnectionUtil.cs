@@ -25,7 +25,6 @@ namespace SalesForceAPI
         public int SalesForceApiVersion { get; set; }
         public string VisualStudioProjectFile { get; set; }
         public string DirLocationAndFileName { get; set; }
-        public LogLevel LogLevel { get; set; }
         public string UserId { get; set; }
         public string Url { get; set; }
         public string SessionId { get; set; }

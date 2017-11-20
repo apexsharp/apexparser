@@ -292,9 +292,9 @@
     <Folder Include="OrginalApex\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ApexSharpBase\ApexSharpBase.csproj">
-      <Project>{2bbd10d7-1b35-4dbe-a2e7-61b1e7f4750d}</Project>
-      <Name>ApexSharpBase</Name>
+    <ProjectReference Include="..\ApexParser\ApexParser.csproj">
+      <Project>{7f1c15e4-1b67-4f35-bf46-5b0506992a0f}</Project>
+      <Name>ApexParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apex\Apex.csproj">
       <Project>{269b0981-154b-4dde-9b0a-18685c38bd9b}</Project>

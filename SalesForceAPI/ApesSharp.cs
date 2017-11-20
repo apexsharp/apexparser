@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using SalesForceAPI.Model;
-using Serilog;
-using Serilog.Formatting.Json;
 
 namespace SalesForceAPI
 {
@@ -103,19 +100,6 @@ namespace SalesForceAPI
         public ApexSharp SetVisualStudioProjectLocation(string dir)
         {
             ApexSharpConfigSettings.VisualStudioProjectFile = dir;
-            return this;
-        }
-
-        public ApexSharp SetLogLevel(LogLevel logLevel)
-        {
-
-
-            Serilog.Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
-            .WriteTo.ColoredConsole()
-            .CreateLogger();
-
-            ApexSharpConfigSettings.LogLevel = logLevel;
             return this;
         }
     }

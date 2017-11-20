@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
+using Serilog;
 
 namespace SalesForceAPI
 {
@@ -51,7 +52,7 @@ namespace SalesForceAPI
             }
             else
             {
-                Console.WriteLine("No Match");
+                Log.Logger.Error("Fail in ConvertSoql");
             }
             return soql;
         }
