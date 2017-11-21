@@ -4,25 +4,30 @@ using System.IO;
 using Newtonsoft.Json;
 using SalesForceAPI.ApexApi;
 using SalesForceAPI.Model.BulkApi;
+using Serilog;
 
 namespace SalesForceAPI
 {
     public class ApexSharp
     {
-        public ApexSharpConfig ApexSharpConfigSettings = new ApexSharpConfig();
+        private readonly ApexSharpConfig _apexSharpConfigSettings = new ApexSharpConfig();
 
-        public void Connect()
+
+        public void ValidateConnection()
         {
-            ConnectionUtil.Connect(ApexSharpConfigSettings);
+            var connected = ConnectionUtil.Connect(_apexSharpConfigSettings);
+            if (connected)
+            {
+                SaveConfig();
+            }
+
         }
 
-
-        public void Connect(string configLocation)
+        private void SaveConfig()
         {
-            FileInfo loadFileInfo = new FileInfo(configLocation);
-            string json = File.ReadAllText(loadFileInfo.FullName);
-            ApexSharpConfigSettings = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
-            Connect();
+            FileInfo saveFileInfo = AppSetting.GetConfiLocation();
+            string json = JsonConvert.SerializeObject(_apexSharpConfigSettings, Formatting.Indented);
+            File.WriteAllText(saveFileInfo.FullName, json);
         }
 
 
@@ -150,47 +155,43 @@ namespace SalesForceAPI
         }
 
 
-
-
-
-
-        public ApexSharp SaveApexSharpConfigAs(string dirLocationAndFileName)
+        public ApexSharp DontCacheSession()
         {
-            ApexSharpConfigSettings.DirLocationAndFileName = dirLocationAndFileName;
             return this;
         }
 
+
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {
-            ApexSharpConfigSettings.SalesForceUrl = salesForceUrl;
+            _apexSharpConfigSettings.SalesForceUrl = salesForceUrl;
             return this;
         }
 
         public ApexSharp WithUserId(string salesForceUserId)
         {
-            ApexSharpConfigSettings.SalesForceUserId = salesForceUserId;
+            _apexSharpConfigSettings.SalesForceUserId = salesForceUserId;
             return this;
         }
 
         public ApexSharp AndPassword(string salesForcePassword)
         {
-            ApexSharpConfigSettings.SalesForcePassword = salesForcePassword;
+            _apexSharpConfigSettings.SalesForcePassword = salesForcePassword;
             return this;
         }
 
         public ApexSharp AndToken(string salesForcePasswordToken)
         {
-            ApexSharpConfigSettings.SalesForcePasswordToken = salesForcePasswordToken;
+            _apexSharpConfigSettings.SalesForcePasswordToken = salesForcePasswordToken;
             return this;
         }
         public ApexSharp AndSalesForceApiVersion(int apiVersion)
         {
-            ApexSharpConfigSettings.SalesForceApiVersion = apiVersion;
+            _apexSharpConfigSettings.SalesForceApiVersion = apiVersion;
             return this;
         }
         public ApexSharp AddHttpProxy(string httpProxy)
         {
-            ApexSharpConfigSettings.HttpProxy = httpProxy;
+            _apexSharpConfigSettings.HttpProxy = httpProxy;
             return this;
         }
     }

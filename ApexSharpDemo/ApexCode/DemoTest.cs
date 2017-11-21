@@ -8,24 +8,22 @@ namespace ApexSharpDemo.ApexCode
     [TestFixture]
     public class DemoTest
     {
-
         [SetUp]
         public static void Setup()
         {
-            NoApex.SalesForceLogIn.Login();
-
             Contact contactNew = new Contact();
             contactNew.LastName = "Jay";
-            contactNew.Email = "jay@jay.com";
+            contactNew.Email = "jay@jay12.com";
             Soql.Insert(contactNew);
         }
 
         [Test]
         public static void UpdatePhoneTestValidEmail()
         {
-            Demo.UpdatePhone("jay@jay.com", "555-1212");
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'");
-            Assert.AreEqual(contacts[0].Phone, "555-1212");
+            Demo.UpdatePhone("jay@jay12.com", "555-1212");
+            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay12.com'");
+            Assert.AreEqual(1, contacts.Size());
+            if (contacts.Size() > 0) Assert.AreEqual("555-1212", contacts[0].Phone);
         }
 
         [Test]

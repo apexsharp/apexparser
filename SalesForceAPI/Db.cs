@@ -24,7 +24,7 @@ namespace SalesForceAPI
 
         public Db()
         {
-            _connectionDetail = ConnectionUtil.ConnectionDetail;
+            _connectionDetail = ConnectionUtil.GetConnectionDetail();
         }
 
 
@@ -47,11 +47,12 @@ namespace SalesForceAPI
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             HttpResponseMessage responseMessage = httpClient.SendAsync(request).Result;
+            string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
 
             switch (responseMessage.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
+
 
 
                     RecordReadList<T> returnData = JsonConvert.DeserializeObject<RecordReadList<T>>(jsonData,
@@ -63,7 +64,7 @@ namespace SalesForceAPI
 
                     return returnData.records;
                 default:
-                    Serilog.Log.Information("Query Error", responseMessage.Content.ReadAsStringAsync().Result);
+                    Serilog.Log.Error(jsonData);
                     return new List<T>();
             }
         }

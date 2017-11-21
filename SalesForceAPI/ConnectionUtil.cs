@@ -2,51 +2,63 @@
 using Newtonsoft.Json;
 using SalesForceAPI.Model.RestApi;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using Serilog;
 
 namespace SalesForceAPI
 {
-    public class ApexSharpConfig
-    {
-        public string SalesForceUrl { get; set; }
-        public string HttpProxy { get; set; }
-        public string SalesForceUserId { get; set; }
-        public string SalesForcePassword { get; set; }
-        public string SalesForcePasswordToken { get; set; }
-        public int SalesForceApiVersion { get; set; }
-        public string DirLocationAndFileName { get; set; }
-        public string SessionId { get; set; }
-        public string RestUrl { get; set; }
-        public string RestSessionId { get; set; }
-        public DateTime SessionCreationDateTime { get; set; }
-    }
-
     public class ConnectionUtil
     {
-        public static ApexSharpConfig ConnectionDetail { get; set; }
-
         public static ApexSharpConfig GetConnectionDetail()
         {
-            return ConnectionDetail;
+
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Information()
+            .WriteTo.ColoredConsole()
+            .CreateLogger();
+
+            FileInfo loadFileInfo = AppSetting.GetConfiLocation();
+
+            if (loadFileInfo.Exists)
+            {
+
+                string json = File.ReadAllText(loadFileInfo.FullName);
+                ApexSharpConfig config = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
+                return config;
+            }
+            else
+            {
+                throw new SalesForceLoginException("Error in JSON");
+            }
+
+
+
         }
 
-        public static void Connect(ApexSharpConfig config)
+
+        public static bool Connect(ApexSharpConfig config)
         {
             config.SalesForceUrl = config.SalesForceUrl + "services/Soap/c/" + config.SalesForceApiVersion + ".0/";
-            ConnectionDetail = GetNewConnection(config);
 
-            FileInfo saveFileInfo = new FileInfo(config.DirLocationAndFileName);
-            string json = JsonConvert.SerializeObject(ConnectionDetail, Formatting.Indented);
+            var connected = GetNewConnection(config);
+
+            FileInfo saveFileInfo = AppSetting.GetConfiLocation();
+            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
             File.WriteAllText(saveFileInfo.FullName, json);
+
+            Log.Information(json);
+
+            return connected;
+
         }
 
 
-
-        private static ApexSharpConfig GetNewConnection(ApexSharpConfig config)
+        private static bool GetNewConnection(ApexSharpConfig config)
         {
             var xml = @"
                 <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:urn=""urn:enterprise.soap.sforce.com"">
@@ -65,32 +77,26 @@ namespace SalesForceAPI
                 "</soapenv:Envelope>";
 
 
-            var waitTask = PostLoginTask(config.SalesForceUrl, xml);
+            var retrunXml = PostLoginTask(config.SalesForceUrl, xml);
 
-
-
-            if (waitTask != null)
+            if (retrunXml.Contains("INVALID_LOGIN"))
             {
-                Envelope envelope = UtilXml.DeSerilizeFromXML<Envelope>(waitTask);
-
-                var soapIndex = envelope.Body.loginResponse.result.serverUrl.IndexOf(@"/Soap", StringComparison.Ordinal);
-                var restUrl = envelope.Body.loginResponse.result.serverUrl.Substring(0, soapIndex);
-                var restSessionId = "Bearer " + envelope.Body.loginResponse.result.sessionId;
-
-
-                config.SalesForceUrl = envelope.Body.loginResponse.result.serverUrl;
-                config.SessionId = envelope.Body.loginResponse.result.sessionId;
-                config.RestUrl = restUrl;
-                config.RestSessionId = restSessionId;
-                config.SessionCreationDateTime = DateTime.Now;
-
-
-                return config;
+                throw new SalesForceLoginException(retrunXml);
             }
-            else
-            {
-                return null;
-            }
+
+            Envelope envelope = UtilXml.DeSerilizeFromXML<Envelope>(retrunXml);
+
+            var soapIndex = envelope.Body.loginResponse.result.serverUrl.IndexOf(@"/Soap", StringComparison.Ordinal);
+            var restUrl = envelope.Body.loginResponse.result.serverUrl.Substring(0, soapIndex);
+            var restSessionId = "Bearer " + envelope.Body.loginResponse.result.sessionId;
+
+
+            config.SalesForceUrl = envelope.Body.loginResponse.result.serverUrl;
+            config.SessionId = envelope.Body.loginResponse.result.sessionId;
+            config.RestUrl = restUrl;
+            config.RestSessionId = restSessionId;
+            config.SessionCreationDateTime = DateTime.Now.AddSeconds(envelope.Body.loginResponse.result.userInfo.sessionSecondsValid);
+            return true;
         }
 
         private static string PostLoginTask(string url, string json)
@@ -108,18 +114,15 @@ namespace SalesForceAPI
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage responseMessage = httpClient.SendAsync(request).Result;
 
+            string xml = responseMessage.Content.ReadAsStringAsync().Result;
             switch (responseMessage.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    string xml = responseMessage.Content.ReadAsStringAsync().Result;
-
-                    Serilog.Log.Logger.Information(xml);
-
+                    Log.Logger.Information(xml);
                     return xml;
                 default:
-                    Console.WriteLine("Error on Posting To " + url);
-                    Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    return null;
+                    Log.Logger.Error(xml);
+                    return xml;
             }
         }
     }

@@ -46,6 +46,9 @@
     <Compile Include="ApesSharp.cs" />
     <Compile Include="ApexApi\Id.cs" />
     <Compile Include="ApexApi\SObject.cs" />
+    <Compile Include="ApexSharpConfig.cs" />
+    <Compile Include="AppSetting.cs" />
+    <Compile Include="SalesForceLoginException.cs" />
     <Compile Include="SoqlApi.cs" />
     <Compile Include="Attribute\FieldType.cs" />
     <Compile Include="CompositeApi.cs" />
@@ -112,6 +115,7 @@
       <HintPath>..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
