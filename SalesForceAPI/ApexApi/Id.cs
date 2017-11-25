@@ -1,7 +1,6 @@
 namespace SalesForceAPI.Apex
 {
-
-    public class Id
+    public class Id : System.IEquatable<Id>
     {
         private string _id;
         public static implicit operator Id(string v)
@@ -35,16 +34,19 @@ namespace SalesForceAPI.Apex
             throw new global::System.NotImplementedException("Id.AddError");
         }
 
-        public bool Equals(string o)
-        {
-            throw new global::System.NotImplementedException("Id.Equals");
-        }
-
         //    public SObjectType GetSobjectType() { throw new global::System.NotImplementedException("Id.GetSobjectType"); }
         public static Id ValueOf(string v)
         {
             var id = new Id { _id = v };
             return id;
         }
+
+        public bool Equals(string o) => _id == o;
+
+        public bool Equals(Id other) => other != null && other._id == _id;
+
+        public override bool Equals(object obj) => Equals(obj as Id);
+
+        public override int GetHashCode() => $"{_id}".GetHashCode();
     }
 }

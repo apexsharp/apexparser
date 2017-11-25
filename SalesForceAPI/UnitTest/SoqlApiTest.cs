@@ -11,7 +11,6 @@ namespace SalesForceAPI.UnitTest
         [Test]
         public void CrudTest()
         {
-
             Console.WriteLine(ConnectionUtil.GetSession().RestSessionId);
 
             Contact contactNew = new Contact() { LastName = "Jay", Email = "jay@jayjayjay.com" };
