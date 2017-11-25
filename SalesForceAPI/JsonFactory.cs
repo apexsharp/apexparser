@@ -34,7 +34,7 @@ namespace SalesForceAPI
             jObject.Remove("SystemModstamp");
             jObject.Remove("LastViewedDate");
             jObject.Remove("LastReferencedDate");
-
+            jObject.Remove("IsEmailBounced");
 
             requestJson = jObject.ToString();
 
@@ -68,6 +68,8 @@ namespace SalesForceAPI
             jObject.Remove("SystemModstamp");
             jObject.Remove("LastViewedDate");
             jObject.Remove("LastReferencedDate");
+            jObject.Remove("IsEmailBounced");
+
 
 
             requestJson = jObject.ToString();

@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace SalesForceAPI
 {
-    public class SalesForceLoginException : Exception
+    public class SalesForceInvalidLoginException : Exception
     {
 
-        public SalesForceLoginException(string message)
+        public SalesForceInvalidLoginException(string message)
+        : base(message)
+        {
+        }
+
+    }
+
+    public class SalesForceNoFileFoundException : Exception
+    {
+
+        public SalesForceNoFileFoundException(string message)
         : base(message)
         {
         }
@@ -20,6 +30,16 @@ namespace SalesForceAPI
     {
 
         public SalesSessionExpiredException(string message)
+        : base(message)
+        {
+        }
+
+    }
+
+    public class ApexSharpHttpException : Exception
+    {
+
+        public ApexSharpHttpException(string message)
         : base(message)
         {
         }

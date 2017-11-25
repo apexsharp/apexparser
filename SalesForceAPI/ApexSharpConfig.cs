@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Serilog;
 
 namespace SalesForceAPI
@@ -11,10 +12,11 @@ namespace SalesForceAPI
         public string SalesForcePassword { get; set; }
         public string SalesForcePasswordToken { get; set; }
         public int SalesForceApiVersion { get; set; }
-        public string DirLocationAndFileName { get; set; }
         public string SessionId { get; set; }
         public string RestUrl { get; set; }
         public string RestSessionId { get; set; }
-        public DateTime SessionCreationDateTime { get; set; }
+        public FileInfo ConfigLocation { get; set; }
+        public DirectoryInfo CatchLocation { get; set; }
+        public long SessionCreationDateTime { get; set; }
     }
 }

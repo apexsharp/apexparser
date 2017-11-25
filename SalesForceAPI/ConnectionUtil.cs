@@ -14,51 +14,63 @@ namespace SalesForceAPI
 {
     public class ConnectionUtil
     {
-        public static ApexSharpConfig GetConnectionDetail()
+        public static ApexSharpConfig Session { get; set; }
+
+        public static ApexSharpConfig GetSession()
         {
+            if (Session == null)
+            {
+                throw new SalesForceNoFileFoundException("Cofnig is Null");
+            }
+            if (Session.SessionCreationDateTime <= DateTimeOffset.Now.ToUnixTimeSeconds())
+            {
+                Log.ForContext<ConnectionUtil>().Information("Session Expired, Creating a New Session");
 
-            Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
-            .WriteTo.ColoredConsole()
-            .CreateLogger();
+                Session = CreateSession(Session);
+            }
+            return Session;
+        }
 
-            FileInfo loadFileInfo = AppSetting.GetConfiLocation();
 
+
+        public static ApexSharpConfig LoadSession(string configFileLocation)
+        {
+            FileInfo loadFileInfo = new FileInfo(configFileLocation);
             if (loadFileInfo.Exists)
             {
-
                 string json = File.ReadAllText(loadFileInfo.FullName);
-                ApexSharpConfig config = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
-                return config;
+                Session = JsonConvert.DeserializeObject<ApexSharpConfig>(json);
+
+                if (Session.SessionCreationDateTime <= DateTimeOffset.Now.ToUnixTimeSeconds())
+                {
+                    Log.ForContext<ConnectionUtil>().Information("Session Expired, Creating a New Session");
+                    Session = CreateSession(Session);
+                    return Session;
+                }
+                else
+                {
+                    Log.ForContext<ConnectionUtil>().Information("Session info found in file {configFileLocation}", configFileLocation);
+                    return Session;
+                }
             }
             else
             {
-                throw new SalesForceLoginException("Error in JSON");
+                throw new SalesForceNoFileFoundException(loadFileInfo.FullName);
             }
-
-
-
         }
 
-
-        public static bool Connect(ApexSharpConfig config)
+        public static ApexSharpConfig CreateSession(ApexSharpConfig config)
         {
             config.SalesForceUrl = config.SalesForceUrl + "services/Soap/c/" + config.SalesForceApiVersion + ".0/";
+            config = GetNewConnection(config);
 
-            var connected = GetNewConnection(config);
-
-            FileInfo saveFileInfo = AppSetting.GetConfiLocation();
             string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-            File.WriteAllText(saveFileInfo.FullName, json);
+            File.WriteAllText(config.ConfigLocation.FullName, json);
 
-            Log.Information(json);
-
-            return connected;
-
+            return config;
         }
 
-
-        private static bool GetNewConnection(ApexSharpConfig config)
+        private static ApexSharpConfig GetNewConnection(ApexSharpConfig config)
         {
             var xml = @"
                 <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:urn=""urn:enterprise.soap.sforce.com"">
@@ -81,9 +93,8 @@ namespace SalesForceAPI
 
             if (retrunXml.Contains("INVALID_LOGIN"))
             {
-                throw new SalesForceLoginException(retrunXml);
+                throw new SalesForceInvalidLoginException("Invalid Login");
             }
-
             Envelope envelope = UtilXml.DeSerilizeFromXML<Envelope>(retrunXml);
 
             var soapIndex = envelope.Body.loginResponse.result.serverUrl.IndexOf(@"/Soap", StringComparison.Ordinal);
@@ -95,8 +106,9 @@ namespace SalesForceAPI
             config.SessionId = envelope.Body.loginResponse.result.sessionId;
             config.RestUrl = restUrl;
             config.RestSessionId = restSessionId;
-            config.SessionCreationDateTime = DateTime.Now.AddSeconds(envelope.Body.loginResponse.result.userInfo.sessionSecondsValid);
-            return true;
+            config.SessionCreationDateTime = DateTimeOffset.Now.ToUnixTimeSeconds() + envelope.Body.loginResponse.result.userInfo.sessionSecondsValid;
+
+            return config;
         }
 
         private static string PostLoginTask(string url, string json)
@@ -118,10 +130,10 @@ namespace SalesForceAPI
             switch (responseMessage.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    Log.Logger.Information(xml);
+                    Log.ForContext<ConnectionUtil>().Information(xml, "Login Success");
                     return xml;
                 default:
-                    Log.Logger.Error(xml);
+                    Log.ForContext<ConnectionUtil>().Error(xml, "Login Fail");
                     return xml;
             }
         }

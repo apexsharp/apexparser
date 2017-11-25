@@ -28,12 +28,9 @@ namespace SalesForceAPI
 
         public SalesForceApiLimits GetLimits()
         {
-            Db db = new Db();
-            var limitWait = db.GetApiLimits();
 
-            limitWait.Wait();
 
-            return limitWait.Result;
+            return null;
         }
     }
 }

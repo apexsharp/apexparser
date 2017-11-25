@@ -19,8 +19,8 @@ namespace ApexSharpDemo
                 .AndSalesForceApiVersion(40)
                 .WithUserId("SalesForce User Id")
                 .AndPassword("SalesForce Password")
-                .AndToken("SalesForce Token")
-                .ValidateConnection(); // Always Initialize your settings before using it.
+                .AndToken("SalesForce Token");
+            // Always Initialize your settings before using it.
 
             // Create a local C# for Contact object in SF
             apexSharp.CreateOfflineClasses("Contact");

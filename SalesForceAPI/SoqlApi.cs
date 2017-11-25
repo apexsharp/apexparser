@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using SalesForceAPI.Apex;
+using Newtonsoft.Json;
 using SalesForceAPI.ApexApi;
+using SalesForceAPI.Model.RestApi;
 using Serilog;
 
 namespace SalesForceAPI
 {
-
     public class SoqlApi
     {
-        public static List<T> Query<T>(string soql, params object[] param)
-        {
-            var newSoql = ConvertSoql(soql, param);
-            return Query<T>(newSoql);
-        }
-
         public static List<T> Query<T>() where T : SObject
         {
             SoqlCreator soqlCreator = new SoqlCreator();
@@ -27,10 +18,10 @@ namespace SalesForceAPI
             return db.Query<T>(soql);
         }
 
-        public static List<T> Query<T>(string soql)
+        public static List<T> Query<T>(string soql, params object[] param)
         {
-            Db db = new Db();
-            return db.Query<T>(soql);
+            var newSoql = ConvertSoql(soql, param);
+            return Query<T>(newSoql);
         }
 
         public static string ConvertSoql(string soql, params object[] param)
@@ -57,35 +48,47 @@ namespace SalesForceAPI
             return soql;
         }
 
-        public static void Insert<T>(T sObject) where T : SObject
+        public static List<T> Query<T>(string query)
         {
-            Db db = new Db();
-            Task<T> createRecord = db.CreateRecord<T>(sObject);
-            createRecord.Wait();
+            Log.ForContext<SoqlApi>().Debug("SOQL Query {query}", query);
+
+            HttpManager httpManager = new HttpManager();
+            var json = httpManager.Get($"query/?q={query}");
+
+            RecordReadList<T> returnData = JsonConvert.DeserializeObject<RecordReadList<T>>(json,
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            return returnData.records;
         }
 
-        public static void Update<T>(List<T> sObjectList) where T : SObject
+        public static T Insert<T>(T obj) where T : SObject
         {
-            Db db = new Db();
-            Task<bool> updateRecord = db.UpdateRecord<T>(sObjectList);
-            updateRecord.Wait();
+            var jsonData = JsonFactory.GetJson(obj);
+
+            var objectName = typeof(T).Name;
+            HttpManager httpManager = new HttpManager();
+            jsonData = httpManager.Post($"sobjects/{objectName}/", jsonData);
+            RecordCreateResponse recordCreateResponse = JsonConvert.DeserializeObject<RecordCreateResponse>(jsonData);
+            obj.Id = recordCreateResponse.id;
+            return obj;
         }
 
-        public static void Update<T>(T sObject) where T : SObject
+        public static void Update<T>(T obj) where T : SObject
         {
-            Db db = new Db();
-            Task<bool> updateRecord = db.UpdateRecord<T>(sObject);
-            updateRecord.Wait();
+            var jsonData = JsonFactory.GetJsonUpdate(obj);
+            var objectName = typeof(T).Name;
+
+            HttpManager httpManager = new HttpManager();
+            httpManager.Patch($"sobjects/{objectName}/{obj.Id}", jsonData);
         }
 
-        public static void Delete<T>(List<T> sObjectList) where T : SObject
+        public static void Delete<T>(T obj) where T : SObject
         {
-            foreach (var obj in sObjectList)
-            {
-                Db db = new Db();
-                global::System.Threading.Tasks.Task<bool> deleteRecord = db.DeleteRecord<T>(obj);
-                deleteRecord.Wait();
-            }
+            var objectName = typeof(T).Name;
+            Log.ForContext<SoqlApi>().Debug("Deleting {objectName} {Id}", objectName, obj.Id);
+            HttpManager httpManager = new HttpManager();
+            httpManager.Del($"sobjects/{objectName}/{obj.Id}");
+
         }
     }
 }

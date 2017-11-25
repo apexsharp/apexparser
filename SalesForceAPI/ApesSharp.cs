@@ -13,22 +13,6 @@ namespace SalesForceAPI
         private readonly ApexSharpConfig _apexSharpConfigSettings = new ApexSharpConfig();
 
 
-        public void ValidateConnection()
-        {
-            var connected = ConnectionUtil.Connect(_apexSharpConfigSettings);
-            if (connected)
-            {
-                SaveConfig();
-            }
-
-        }
-
-        private void SaveConfig()
-        {
-            FileInfo saveFileInfo = AppSetting.GetConfiLocation();
-            string json = JsonConvert.SerializeObject(_apexSharpConfigSettings, Formatting.Indented);
-            File.WriteAllText(saveFileInfo.FullName, json);
-        }
 
 
         public void CreateOfflineClasses(string sObjectName)
@@ -57,44 +41,10 @@ namespace SalesForceAPI
         }
 
         private int _limitNumber, _skipNumer = 0;
-        public System.Collections.Generic.List<T> ToList<T>()
-        {
-            Db db = new Db();
-
-            if (_limitNumber > 0 && _skipNumer > 0)
-            {
-                var asyncWait = db.GetAllRecordsAsync<T>(_limitNumber, _skipNumer);
-                asyncWait.Wait();
-                return asyncWait.Result;
-            }
-            else if (_limitNumber > 0)
-            {
-                var asyncWait = db.GetAllRecordsAsyncLimit<T>(_limitNumber);
-                asyncWait.Wait();
-                return asyncWait.Result;
-            }
-            else if (_skipNumer > 0)
-            {
-                var asyncWait = db.GetAllRecordsAsyncOffset<T>(_skipNumer);
-                asyncWait.Wait();
-                return asyncWait.Result;
-            }
-            else
-            {
-                var asyncWait = db.GetAllRecordsAsync<T>();
-                asyncWait.Wait();
-                return asyncWait.Result;
-            }
-        }
 
 
-        public System.Collections.Generic.List<T> GetAllSalesForceRecords<T>()
-        {
-            Db db = new Db();
-            var asyncWait = db.GetAllRecordsAsync<T>();
-            asyncWait.Wait();
-            return asyncWait.Result;
-        }
+
+
 
         public T GetRecordById<T>(string id)
         {
@@ -138,7 +88,7 @@ namespace SalesForceAPI
 
         public string BulkRequest<T>(int checkIntervel)
         {
-            BulkApi api = new BulkApi(ConnectionUtil.GetConnectionDetail());
+            BulkApi api = new BulkApi(ConnectionUtil.GetSession());
             return api.BulkRequest<T>(checkIntervel);
         }
 
@@ -148,18 +98,19 @@ namespace SalesForceAPI
             BulkInsertRequest<T> request = new BulkInsertRequest<T> { Records = new T[dataList.Count] };
             request.Records = dataList.ToArray();
 
-            BulkApi api = new BulkApi(ConnectionUtil.GetConnectionDetail());
+            BulkApi api = new BulkApi(ConnectionUtil.GetSession());
             var replyTask = api.CreateRecordBulk<T>(request);
             replyTask.Wait();
             return replyTask.Result;
         }
 
 
-        public ApexSharp DontCacheSession()
-        {
-            return this;
-        }
 
+        // Double Check For All These Values
+        public ApexSharpConfig CreateSession()
+        {
+            return ConnectionUtil.CreateSession(_apexSharpConfigSettings);
+        }
 
         public ApexSharp SalesForceUrl(string salesForceUrl)
         {
@@ -192,6 +143,18 @@ namespace SalesForceAPI
         public ApexSharp AddHttpProxy(string httpProxy)
         {
             _apexSharpConfigSettings.HttpProxy = httpProxy;
+            return this;
+        }
+
+        public ApexSharp CacheLocation(string dirLocation)
+        {
+            _apexSharpConfigSettings.CatchLocation = new DirectoryInfo(dirLocation);
+            return this;
+        }
+
+        public ApexSharp SaveConfigAt(string configFileLocation)
+        {
+            _apexSharpConfigSettings.ConfigLocation = new FileInfo(configFileLocation);
             return this;
         }
     }

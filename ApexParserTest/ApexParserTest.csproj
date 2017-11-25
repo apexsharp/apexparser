@@ -321,6 +321,14 @@
       <Project>{9402b41a-5143-4345-84fc-1e18674e4d87}</Project>
       <Name>ApexParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ApexSharpDemo\ApexSharpDemo.csproj">
+      <Project>{b66b3389-06c9-4973-bead-7569f620be36}</Project>
+      <Name>ApexSharpDemo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SalesForceAPI\SalesForceAPI.csproj">
+      <Project>{a13785db-05bb-4842-957d-56d5b251d608}</Project>
+      <Name>SalesForceAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

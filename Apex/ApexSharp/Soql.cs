@@ -9,7 +9,6 @@ namespace Apex.ApexSharp
     {
         public static List<T> Query<T>(string soql, object dynamicInput)
         {
-
             return ConvertList(SoqlApi.Query<T>(soql, dynamicInput));
         }
 
@@ -20,7 +19,6 @@ namespace Apex.ApexSharp
 
         public static T QuerySingle<T>(string soql)
         {
-
             List<T> dataList = ConvertList(SoqlApi.Query<T>(soql));
             return dataList[0];
         }
@@ -40,26 +38,18 @@ namespace Apex.ApexSharp
 
         public static void Insert<T>(T sObject) where T : SObject
         {
-
-            SoqlApi.Insert<T>(sObject);
+            SoqlApi.Insert(sObject);
         }
 
-        public static void Update<T>(List<T> sObjectList) where T : SObject
-        {
-
-            SoqlApi.Update<T>(sObjectList);
-        }
 
         public static void Update<T>(T sObject) where T : SObject
         {
-
-            SoqlApi.Update<T>(sObject);
+            SoqlApi.Update(sObject);
         }
 
-        public static void Delete<T>(List<T> sObjectList) where T : SObject
+        public static void Delete<T>(T sObject) where T : SObject
         {
-
-            SoqlApi.Delete<T>(sObjectList);
+            SoqlApi.Delete(sObject);
         }
     }
 }

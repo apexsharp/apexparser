@@ -56,7 +56,7 @@ namespace ApexSharpDemo.ApexCode
 
         public static void UpdateContacts(List<Contact> contacts)
         {
-            Soql.Update(contacts);
+            //Soql.Update(contacts);
         }
     }
 }

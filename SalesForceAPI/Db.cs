@@ -24,7 +24,7 @@ namespace SalesForceAPI
 
         public Db()
         {
-            _connectionDetail = ConnectionUtil.GetConnectionDetail();
+            _connectionDetail = ConnectionUtil.GetSession();
         }
 
 
@@ -198,14 +198,6 @@ namespace SalesForceAPI
         }
 
 
-        public async Task<bool> UpdateRecord<T>(List<T> objList) where T : SObject
-        {
-            foreach (var obj in objList)
-            {
-                await UpdateRecord<T>(obj);
-            }
-            return true;
-        }
         public async Task<bool> UpdateRecord<T>(T obj) where T : SObject
         {
             var objectName = GetSalesForceObjectName<T>();
@@ -284,156 +276,6 @@ namespace SalesForceAPI
             }
             return false;
         }
-
-
-        public async Task<SalesForceApiLimits> GetApiLimits()
-        {
-            HttpRequestMessage request = new HttpRequestMessage
-            {
-                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/limits/"),
-                Method = HttpMethod.Get
-            };
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
-
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
-
-            // Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-
-            switch (responseMessage.StatusCode)
-            {
-                case HttpStatusCode.OK:
-                    string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
-                    SalesForceApiLimits returnData = JsonConvert.DeserializeObject<SalesForceApiLimits>(jsonData,
-                        new JsonSerializerSettings { NullValueHandling = JsonNullValue });
-                    return returnData;
-                case HttpStatusCode.Unauthorized:
-                    Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    break;
-                default:
-                    Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    break;
-            }
-            return null;
-        }
-
-
-        public async Task<System.Collections.Generic.List<T>> GetAllRecordsAsyncLimit<T>(int limit)
-        {
-            SoqlCreator soql = new SoqlCreator();
-            string query = soql.GetSoql<T>();
-
-            query = query + " LIMIT " + limit;
-            Console.WriteLine(query);
-            return Query<T>(query);
-        }
-
-        public async Task<System.Collections.Generic.List<T>> GetAllRecordsAsyncOffset<T>(int offset)
-        {
-            SoqlCreator soql = new SoqlCreator();
-            string query = soql.GetSoql<T>();
-
-            query = query + " OFFSET " + offset;
-            Console.WriteLine(query);
-            return Query<T>(query);
-        }
-
-        public async Task<System.Collections.Generic.List<T>> GetAllRecordsAsync<T>(int limit, int offset)
-        {
-            SoqlCreator soql = new SoqlCreator();
-            string query = soql.GetSoql<T>();
-
-            query = query + " LIMIT " + limit + " OFFSET " + offset;
-            return Query<T>(query);
-        }
-
-        public async Task<System.Collections.Generic.List<T>> GetAllRecordsAsync<T>()
-        {
-            System.Collections.Generic.List<T> allRecords = new System.Collections.Generic.List<T>();
-
-            var soql = new SoqlCreator();
-            string query = soql.GetSoql<T>();
-
-
-            query = query.Replace("SmallBannerPhotoUrl,", "");
-            query = query.Replace("MediumBannerPhotoUrl,", "");
-            query = query.Replace("CreatedBy,", "");
-            query = query.Replace("LastModifiedBy,", "");
-
-
-            //  Console.WriteLine(query);
-
-            RecordReadList<T> result = BigQuery<T>(query).Result;
-            allRecords.AddRange(result.records);
-
-
-            while (result.done == false)
-            {
-                Console.WriteLine(allRecords.Count + "  OF " + result.totalSize);
-
-                var url = result.nextRecordsUrl;
-                url = url.Replace("/services", "");
-
-                var httpManager = new HttpManager();
-                var data = await httpManager.Get(_connectionDetail, url);
-                result = JsonConvert.DeserializeObject<RecordReadList<T>>(data,
-                    new JsonSerializerSettings { NullValueHandling = JsonNullValue });
-                allRecords.AddRange(result.records);
-            }
-
-
-            return allRecords;
-        }
-
-
-        private async Task<RecordReadList<T>> BigQuery<T>(string query)
-        {
-            //   query = query + " LIMIT 1";
-
-            HttpRequestMessage request = new HttpRequestMessage
-            {
-                RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/query/?q=" + query),
-                Method = HttpMethod.Get
-            };
-
-
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
-
-
-            WebProxy proxy = new WebProxy { Address = new Uri("http://naproxy.gm.com:80") };
-
-            HttpClientHandler httpClientHandler = new HttpClientHandler()
-            {
-                Proxy = proxy,
-                PreAuthenticate = true,
-                UseDefaultCredentials = false,
-            };
-
-
-            HttpClient httpClient = new HttpClient(httpClientHandler);
-
-            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
-
-            switch (responseMessage.StatusCode)
-            {
-                case HttpStatusCode.OK:
-                    string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
-
-                    RecordReadList<T> returnData = JsonConvert.DeserializeObject<RecordReadList<T>>(jsonData,
-                        new JsonSerializerSettings { NullValueHandling = JsonNullValue });
-                    return returnData;
-                case HttpStatusCode.Unauthorized:
-                    Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    break;
-                default:
-                    Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    break;
-            }
-            return null;
-        }
-
 
     }
 }

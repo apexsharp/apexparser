@@ -23,14 +23,16 @@ namespace ApexSharpDemo.ApexCode
                 c.Email = "new@new.com";
             }
 
-            Soql.Update(contacts);
+            // Soql.Update(contacts);
+
             contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             foreach (Contact c in contacts)
             {
                 System.Debug(c.Email);
             }
 
-            Soql.Delete(contacts);
+            // Soql.Delete(contacts);
+
             contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             if (contacts.IsEmpty())
             {

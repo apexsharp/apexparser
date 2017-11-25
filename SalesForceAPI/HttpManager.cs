@@ -2,54 +2,105 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using SalesForceAPI.Model;
-using Console = Colorful.Console;
+using System.Text;
+using Serilog;
 
 namespace SalesForceAPI
 {
     public class HttpManager
     {
-        public async Task<string> Get(ApexSharpConfig connectionDetail, string endPoint)
+        public string Get(string uriFunction)
+        {
+
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
+                                     ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
+                Method = HttpMethod.Get
+            };
+            return Http(request);
+        }
+
+
+        public string Post(string uriFunction, string json)
         {
             HttpRequestMessage request = new HttpRequestMessage
             {
-                RequestUri = new Uri(connectionDetail.RestUrl + endPoint),
-                Method = HttpMethod.Get
+                RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
+                                     ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
+                Method = HttpMethod.Post,
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.Add("Authorization", connectionDetail.RestSessionId);
+            return Http(request);
+        }
 
-
-            //     Console.WriteLine(request.RequestUri);
-
-            //   WebProxy proxy = new WebProxy { Address = new Uri("http://naproxy.gm.com:80") };
-
-            HttpClientHandler httpClientHandler = new HttpClientHandler()
+        public string Patch(string uriFunction, string json)
+        {
+            HttpRequestMessage request = new HttpRequestMessage
             {
-                //     Proxy = proxy,
-                PreAuthenticate = true,
-                UseDefaultCredentials = false,
+                RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
+                                     ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
+                Method = new HttpMethod("PATCH"),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
+            return Http(request);
+        }
 
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            HttpClient httpClient = new HttpClient(httpClientHandler);
+        public string Del(string uriFunction)
+        {
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
+                         ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
+                Method = HttpMethod.Delete
+            };
+            return Http(request);
+        }
 
-            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
+
+
+        private string Http(HttpRequestMessage request)
+        {
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Headers.Add("Authorization", ConnectionUtil.GetSession().RestSessionId);
+
+            //WebProxy proxy = new WebProxy { Address = new Uri("http://naproxy.gm.com:80") };
+
+            //HttpClientHandler httpClientHandler = new HttpClientHandler()
+            //{
+            //    Proxy = proxy,
+            //    PreAuthenticate = true,
+            //    UseDefaultCredentials = false,
+            //};
+
+            //HttpClient httpClient = new HttpClient(httpClientHandler);
+
+
+            HttpClient httpClient = new HttpClient();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            //  Log.ForContext<SalesForceLogin>().Verbose("Outgoing Request {@request}", request);
+            HttpResponseMessage responseMessage = httpClient.SendAsync(request).Result;
+            //  Log.ForContext<SalesForceLogin>().Verbose("Incoming Response {@response}", responseMessage);
+
+            string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine(jsonData);
+
+            Console.WriteLine(responseMessage.StatusCode);
+
 
             switch (responseMessage.StatusCode)
             {
+                case HttpStatusCode.NoContent:
+                case HttpStatusCode.Created:
                 case HttpStatusCode.OK:
-                    string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
                     return jsonData;
-                case HttpStatusCode.Unauthorized:
-                    Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    break;
                 default:
-                    Console.WriteLine(responseMessage.Content.ReadAsStringAsync().Result);
-                    break;
+                    var exp = new ApexSharpHttpException(Environment.StackTrace);
+                    Log.ForContext<HttpManager>().Error(exp, jsonData);
+                    throw exp;
             }
-            return null;
         }
     }
 }
