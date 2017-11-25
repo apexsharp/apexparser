@@ -88,7 +88,6 @@ namespace SalesForceAPI
             Log.ForContext<SoqlApi>().Debug("Deleting {objectName} {Id}", objectName, obj.Id);
             HttpManager httpManager = new HttpManager();
             httpManager.Del($"sobjects/{objectName}/{obj.Id}");
-
         }
     }
 }

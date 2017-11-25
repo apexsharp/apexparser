@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ApexSharpDemo.SObjects;
 using NUnit.Framework;
-using SalesForceAPI;
 using SalesForceAPI.Apex;
 
-namespace ApexSharpApiTest
+namespace SalesForceAPI
 {
     [TestFixture]
-    public class SoqlApiTest
+    public class TempTest
     {
         [SetUp]
         public void Init()
         {
             ConnectionUtil.Session = ConnectionUtil.LoadSession(@"C:\DevSharp\ApexSharp\PrivateDemo\config.json");
-
         }
 
         [Test]

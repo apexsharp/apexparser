@@ -28,8 +28,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParserTest", "ApexParse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateDemo", "PrivateDemo\PrivateDemo.csproj", "{D7B06531-2EAB-43A2-90FC-74D35FAD272A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpApiTest", "ApexSharpApiTest\ApexSharpApiTest.csproj", "{CED16986-9AA0-48DA-8440-27AF6F179C5B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,10 +70,6 @@ Global
 		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B06531-2EAB-43A2-90FC-74D35FAD272A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CED16986-9AA0-48DA-8440-27AF6F179C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CED16986-9AA0-48DA-8440-27AF6F179C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CED16986-9AA0-48DA-8440-27AF6F179C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CED16986-9AA0-48DA-8440-27AF6F179C5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
