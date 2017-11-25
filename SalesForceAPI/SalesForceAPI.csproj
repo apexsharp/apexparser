@@ -48,10 +48,10 @@
     <Compile Include="ApexApi\SObject.cs" />
     <Compile Include="ApexSharpConfig.cs" />
     <Compile Include="AppSetting.cs" />
-    <Compile Include="Contact.cs" />
+    <Compile Include="UnitTestDataManager.cs" />
+    <Compile Include="UnitTest\Contact.cs" />
     <Compile Include="SalesForceLoginException.cs" />
     <Compile Include="SoqlApi.cs" />
-    <Compile Include="Attribute\FieldType.cs" />
     <Compile Include="CompositeApi.cs" />
     <Compile Include="HttpManager.cs" />
     <Compile Include="JsonFactory.cs" />
@@ -78,7 +78,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BulkApi.cs" />
     <Compile Include="SoqlCreator.cs" />
-    <Compile Include="TempTest.cs" />
+    <Compile Include="UnitTest\SoqlApiTest.cs" />
+    <Compile Include="UnitTest\TestSetup.cs" />
+    <Compile Include="UnitTest\UnitTestDataManagerTest.cs" />
     <Compile Include="UtilSalesForce.cs" />
     <Compile Include="UtilXml.cs" />
     <Compile Include="VsProject.cs" />

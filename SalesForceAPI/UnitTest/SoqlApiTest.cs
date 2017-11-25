@@ -1,29 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using SalesForceAPI.Apex;
 
-namespace SalesForceAPI
+namespace SalesForceAPI.UnitTest
 {
     [TestFixture]
-    public class TempTest
+    public class SoqlApiTest
     {
-        [SetUp]
-        public void Init()
-        {
-            ConnectionUtil.Session = new ApexSharp().SalesForceUrl("https://login.salesforce.com/")
-                .AndSalesForceApiVersion(40)
-                .WithUserId("apexsharp@jayonsoftware.com")
-                .AndPassword("1v0EGMfR0NTkbmyQ2Jk4082PA")
-                .AndToken("LUTAPwQstOZj9ESx7ghiLB1Ww")
-                .CacheLocation(@"C:\DevSharp\ApexSharp\PrivateDemo\")
-                .SaveConfigAt(@"C:\DevSharp\ApexSharp\PrivateDemo\config.json")
-                .CreateSession();
-        }
-
         [Test]
         public void CrudTest()
         {

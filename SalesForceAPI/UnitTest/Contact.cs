@@ -1,7 +1,7 @@
 ﻿using System;
 using SalesForceAPI.ApexApi;
 
-namespace SalesForceAPI
+namespace SalesForceAPI.UnitTest
 {
     public class Contact : SObject
     {
