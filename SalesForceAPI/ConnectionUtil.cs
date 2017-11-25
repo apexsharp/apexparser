@@ -65,6 +65,7 @@ namespace SalesForceAPI
             config = GetNewConnection(config);
 
             string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+            Directory.CreateDirectory(Path.GetDirectoryName(config.ConfigLocation.FullName));
             File.WriteAllText(config.ConfigLocation.FullName, json);
 
             return config;
