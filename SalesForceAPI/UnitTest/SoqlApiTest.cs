@@ -16,15 +16,11 @@ namespace SalesForceAPI.UnitTest
             Console.WriteLine(newId);
 
             List<Contact> contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :contactNew.Email && LastName = :contactNew.LastName LIMIT 1", contactNew.Email, contactNew.LastName);
-            Console.WriteLine(contacts.Count);
+            Console.WriteLine(contacts[0].Id);
 
-            foreach (var contact in contacts)
-            {
-                SoqlApi.Delete(contact);
-            }
 
-            contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :contactNew.Email && LastName = :contactNew.LastName LIMIT 1", contactNew.Email, contactNew.LastName);
-            Console.WriteLine(contacts.Count);
+            Contact contact = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :contactNew.Email && LastName = :contactNew.LastName LIMIT 1", contactNew.Email, contactNew.LastName);
+            Console.WriteLine(contact.Id);
         }
     }
 }
