@@ -20,7 +20,7 @@ namespace SalesForceAPI
         {
             if (Session == null)
             {
-                throw new SalesForceNoFileFoundException("Cofnig is Null");
+                throw new SalesForceNoFileFoundException("Config is Null");
             }
             if (Session.SessionCreationDateTime <= DateTimeOffset.Now.ToUnixTimeSeconds())
             {

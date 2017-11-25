@@ -19,8 +19,8 @@ namespace SalesForceAPI.UnitTest
                 .WithUserId("apexsharp@jayonsoftware.com")
                 .AndPassword("1v0EGMfR0NTkbmyQ2Jk4082PA")
                 .AndToken("LUTAPwQstOZj9ESx7ghiLB1Ww")
-                .CacheLocation(@"{0}..\..\..\PrivateDemo\")
-                .SaveConfigAt(@"{0}..\..\..\PrivateDemo\config.json")
+                .CacheLocation(@"{0}\..\..\..\PrivateDemo\")
+                .SaveConfigAt(@"{0}\..\..\..\PrivateDemo\config.json")
                 .CreateSession();
 
             UnitTestDataManager.UnitTestDataManagerOn();
