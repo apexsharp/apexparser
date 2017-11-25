@@ -40,10 +40,10 @@ namespace SalesForceAPI
 
         public void CreateOfflineSymbolTable(string sObjectName, string dirPath)
         {
-    
+
 
             HttpManager httpManager = new HttpManager();
-            var replyTask = httpManager.Get(ConnectionUtil.ConnectionDetail, "/data/v40.0/sobjects/");
+            var replyTask = httpManager.Get(ConnectionUtil.GetConnectionDetail(), "/data/v40.0/sobjects/");
             replyTask.Wait();
 
             File.WriteAllText(dirPath + @"\objectList.json", replyTask.Result);
@@ -82,7 +82,7 @@ namespace SalesForceAPI
         private List<string> GetObjectData(Sobject sobject, string dirPath)
         {
             HttpManager httpManager = new HttpManager();
-            var replyTaskObject = httpManager.Get(ConnectionUtil.ConnectionDetail, "/data/v40.0/sobjects/" + sobject.name + "/describe");
+            var replyTaskObject = httpManager.Get(ConnectionUtil.GetConnectionDetail(), "/data/v40.0/sobjects/" + sobject.name + "/describe");
             replyTaskObject.Wait();
 
             File.WriteAllText(dirPath + @"\SObjectJson\" + sobject.name + ".json", replyTaskObject.Result);
@@ -91,7 +91,7 @@ namespace SalesForceAPI
 
             List<string> objectToDownloadList = CreateSalesForceClasses(sObjectDetail, dirPath);
 
-         //   ConnectionUtil.AddCShaprFile("SObjects", sObjectDetail.name + ".cs");
+            //   ConnectionUtil.AddCShaprFile("SObjects", sObjectDetail.name + ".cs");
 
             return objectToDownloadList;
         }
@@ -106,7 +106,7 @@ namespace SalesForceAPI
             sb.AppendLine("{");
             sb.AppendLine("using Apex.System;");
             sb.AppendLine("using SalesForceAPI.ApexApi;");
-            
+
             sb.AppendLine("\tpublic class " + objectDetail.name + " : SObject");
             sb.AppendLine("\t{");
 

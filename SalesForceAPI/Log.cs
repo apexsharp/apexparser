@@ -5,20 +5,20 @@ using Serilog;
 namespace SalesForceAPI
 {
 
-    public static class Log
+    public static class LogOld
     {
         public static void LogMsg(string logMessage, object obj)
         {
-            SerilogLog.LogInfo(logMessage, obj);
+            SerilogLogInternal.LogInfo(logMessage, obj);
         }
 
         public static void LogMsg(string logMessage)
         {
-            SerilogLog.LogInfo(logMessage);
+            SerilogLogInternal.LogInfo(logMessage);
         }
     }
 
-    public static class SerilogLog
+    public static class SerilogLogInternal
     {
         public static void LogInfo(string logMessage)
         {

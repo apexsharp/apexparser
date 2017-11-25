@@ -7,11 +7,6 @@ namespace Apex.ApexSharp
 
     public class Soql
     {
-        public static List<T> QueryNew<T>(string soql)
-        {
-            return new List<T>();
-        }
-
         public static List<T> Query<T>(string soql, object dynamicInput)
         {
 
@@ -20,7 +15,6 @@ namespace Apex.ApexSharp
 
         public static List<T> Query<T>(string soql)
         {
-
             return ConvertList(SoqlApi.Query<T>(soql));
         }
 
