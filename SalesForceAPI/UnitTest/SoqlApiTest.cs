@@ -16,13 +16,17 @@ namespace SalesForceAPI.UnitTest
             Id newId = SoqlApi.Insert(contactNew).Id;
 
             List<Contact> contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id=:ontactNew.Id", contactNew.Id);
-            //   Assert.AreEqual(newId, contacts[0].Id);
+            Assert.AreEqual(newId, contacts[0].Id);
 
             Contact contact = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id=:ontactNew.Id LIMIT 1", contactNew.Id);
-            //  Assert.AreEqual(newId, contact.Id);
+            Assert.AreEqual(newId, contact.Id);
 
-            SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id=:ontactNew.Id LIMIT 1");
-            // Assert.AreEqual(newId, contact.Id);
+            contact = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact LIMIT 1");
+            Console.WriteLine(contact);
+
+
+
+
         }
     }
 }
