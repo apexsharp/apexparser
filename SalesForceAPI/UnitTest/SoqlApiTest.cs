@@ -11,6 +11,7 @@ namespace SalesForceAPI.UnitTest
         [Test]
         public void CrudTest()
         {
+
             Contact contactNew = new Contact() { LastName = "Jay", Email = "jay@jayjayjay.com" };
             Id newId = SoqlApi.Insert(contactNew).Id;
 
