@@ -39,7 +39,7 @@ namespace SalesForceAPI
 
         public string BulkRequest<T>(int checkIntervel)
         {
-            Db db = new Db();
+
 
             SoqlCreator soql = new SoqlCreator();
             string query = soql.GetSoql<T>();
@@ -72,7 +72,7 @@ namespace SalesForceAPI
                 waitTask.Wait();
                 var json = waitTask.Result;
                 batchJobReply = JsonConvert.DeserializeObject<BatchJobReply>(json,
-                    new JsonSerializerSettings { NullValueHandling = Db.JsonNullValue });
+                    new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
                 if (batchJobReply.state != "Completed")
                 {
@@ -140,7 +140,7 @@ namespace SalesForceAPI
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {
-                NullValueHandling = Db.JsonNullValue,
+                NullValueHandling = NullValueHandling.Ignore,
             };
 
             //serializerSettings.Converters.Add(new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-ddTHH:mm:ssZ" });

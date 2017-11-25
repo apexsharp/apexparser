@@ -74,7 +74,6 @@
     <Compile Include="Model\RestApi\RecordReadList.cs" />
     <Compile Include="Model\RestApi\SObjectDescribe.cs" />
     <Compile Include="Model\RestApi\SObjectDetail.cs" />
-    <Compile Include="Db.cs" />
     <Compile Include="ConnectionUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BulkApi.cs" />

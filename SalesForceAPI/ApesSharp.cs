@@ -24,39 +24,6 @@ namespace SalesForceAPI
         }
 
 
-        public int GetSalesForceRecordCount<T>()
-        {
-            Db db = new Db();
-            var asyncWait = db.Count<T>();
-            try
-            {
-                asyncWait.Wait();
-                return asyncWait.Result;
-            }
-            catch (AggregateException e)
-            {
-                Console.WriteLine(e);
-            }
-            // ToDo : Exception
-            return 0;
-        }
-
-        private int _limitNumber, _skipNumer = 0;
-
-
-
-
-
-        public T GetRecordById<T>(string id)
-        {
-            Db db = new Db();
-
-            var asyncWait = db.GetSingleRecordByIdAsync<T>(id);
-            asyncWait.Wait();
-
-            return asyncWait.Result;
-        }
-
 
         //public T CreateOrUpdateRecord<T>(ConnectionDetail connection, T data) where T : BaseObject
         //{
