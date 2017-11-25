@@ -150,6 +150,7 @@
     <Compile Include="ApexParserMasterTest.cs" />
     <Compile Include="CSharpParserTests.cs" />
     <Compile Include="TestFixtureBase.cs" />
+    <Compile Include="Toolbox\ApiPlaygroundTests.cs" />
     <Compile Include="Toolbox\GenericExpressionHelperTests.cs" />
     <Compile Include="GitHubHelper.cs" />
     <Compile Include="Parser\ApexRegressionTests.cs" />
