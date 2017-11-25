@@ -14,7 +14,14 @@ namespace SalesForceAPI
         [SetUp]
         public void Init()
         {
-            ConnectionUtil.Session = ConnectionUtil.LoadSession(@"C:\DevSharp\ApexSharp\PrivateDemo\config.json");
+            ConnectionUtil.Session = new ApexSharp().SalesForceUrl("https://login.salesforce.com/")
+                .AndSalesForceApiVersion(40)
+                .WithUserId("apexsharp@jayonsoftware.com")
+                .AndPassword("1v0EGMfR0NTkbmyQ2Jk4082PA")
+                .AndToken("LUTAPwQstOZj9ESx7ghiLB1Ww")
+                .CacheLocation(@"C:\DevSharp\ApexSharp\PrivateDemo\")
+                .SaveConfigAt(@"C:\DevSharp\ApexSharp\PrivateDemo\config.json")
+                .CreateSession();
         }
 
         [Test]

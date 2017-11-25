@@ -47,24 +47,24 @@ namespace SalesForceAPI
         public string Department { set; get; }
         public string AssistantName { set; get; }
         public string LeadSource { set; get; }
-        public DateTime Birthdate { set; get; }
+        public DateTime? Birthdate = null;
         public string Description { set; get; }
         public string OwnerId { set; get; }
 
-        public DateTime CreatedDate { set; get; }
+        public DateTime? CreatedDate = null;
         public string CreatedById { set; get; }
 
-        public DateTime LastModifiedDate { set; get; }
+        public DateTime? LastModifiedDate { set; get; }
         public string LastModifiedById { set; get; }
 
-        public DateTime SystemModstamp { set; get; }
-        public DateTime LastActivityDate { set; get; }
-        public DateTime LastCURequestDate { set; get; }
-        public DateTime LastCUUpdateDate { set; get; }
-        public DateTime LastViewedDate { set; get; }
-        public DateTime LastReferencedDate { set; get; }
+        public DateTime? SystemModstamp = null;
+        public DateTime? LastActivityDate = null;
+        public DateTime? LastCURequestDate = null;
+        public DateTime? LastCUUpdateDate = null;
+        public DateTime? LastViewedDate = null;
+        public DateTime? LastReferencedDate = null;
         public string EmailBouncedReason { set; get; }
-        public DateTime EmailBouncedDate { set; get; }
+        public DateTime? EmailBouncedDate = null;
         public bool? IsEmailBounced { set; get; }
         public string PhotoUrl { set; get; }
         public string Jigsaw { set; get; }

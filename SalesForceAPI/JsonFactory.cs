@@ -35,6 +35,7 @@ namespace SalesForceAPI
             jObject.Remove("LastViewedDate");
             jObject.Remove("LastReferencedDate");
             jObject.Remove("IsEmailBounced");
+            jObject.Remove("Birthdate");
 
             requestJson = jObject.ToString();
 
