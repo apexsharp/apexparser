@@ -2,7 +2,7 @@
 
 namespace SalesForceAPI.UnitTest
 {
-    [TestFixture, Ignore("TODO: file access violation")]
+    [TestFixture]
     public class UnitTestDataManagerTest
     {
         [Test]

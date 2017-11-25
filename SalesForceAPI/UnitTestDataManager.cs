@@ -10,6 +10,9 @@ namespace SalesForceAPI
     {
         private static bool _unitTestDataManagerEnabled;
 
+        private static string _idFileName = Path.Combine(Path.GetTempPath(),
+            "ApexSharp.UnitTestDataManager.id.txt");
+
         public static void UnitTestDataManagerOn()
         {
             _unitTestDataManagerEnabled = true;
@@ -29,7 +32,7 @@ namespace SalesForceAPI
             {
                 List<string> idList = new List<string>();
 
-                FileInfo dataFile = new FileInfo("id.txt");
+                FileInfo dataFile = new FileInfo(_idFileName);
 
                 if (dataFile.Exists)
                 {
@@ -47,7 +50,7 @@ namespace SalesForceAPI
             {
                 List<string> idList = new List<string>();
 
-                FileInfo dataFile = new FileInfo("id.txt");
+                FileInfo dataFile = new FileInfo(_idFileName);
                 if (dataFile.Exists)
                 {
                     idList = File.ReadAllLines(dataFile.FullName).ToList();
@@ -61,7 +64,7 @@ namespace SalesForceAPI
         {
             Log.Logger.Information("Cleaning All Values");
 
-            FileInfo dataFile = new FileInfo("id.txt");
+            FileInfo dataFile = new FileInfo(_idFileName);
             if (dataFile.Exists)
             {
                 var idList = File.ReadAllLines(dataFile.FullName).ToList();
@@ -74,7 +77,7 @@ namespace SalesForceAPI
         public static int IdCount()
         {
             List<string> idList = new List<string>();
-            FileInfo dataFile = new FileInfo("id.txt");
+            FileInfo dataFile = new FileInfo(_idFileName);
             if (dataFile.Exists)
             {
                 idList = File.ReadAllLines(dataFile.FullName).ToList();
