@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using SalesForceAPI.ApexApi;
@@ -9,19 +10,34 @@ namespace SalesForceAPI
 {
     public class SoqlApi
     {
-        public static List<T> Query<T>() where T : SObject
+        public static SoqlQuery<T> Query<T>() where T : SObject
         {
-            SoqlCreator soqlCreator = new SoqlCreator();
+            // prepare query text
+            var soqlCreator = new SoqlCreator();
             var soql = soqlCreator.GetSoql<T>();
 
-            Db db = new Db();
-            return db.Query<T>(soql);
+            // prepare query result
+            var lasyResult = new Lazy<List<T>>(() =>
+            {
+                Db db = new Db();
+                return db.Query<T>(soql);
+            });
+
+            // return as polymorphic query instance
+            return new SoqlQuery<T>(lasyResult, soql);
         }
 
-        public static List<T> Query<T>(string soql, params object[] param)
+        public static SoqlQuery<T> Query<T>(string soql, params object[] parameters)
         {
-            var newSoql = ConvertSoql(soql, param);
-            return Query<T>(newSoql);
+            // prepare query result
+            var newSoql = ConvertSoql(soql, parameters);
+            var lasyResult = new Lazy<List<T>>(() =>
+            {
+                return PerformQuery<T>(newSoql);
+            });
+
+            // return as polymorphic query instance
+            return new SoqlQuery<T>(lasyResult, soql, newSoql, parameters);
         }
 
         public static string ConvertSoql(string soql, params object[] param)
@@ -48,7 +64,7 @@ namespace SalesForceAPI
             return soql;
         }
 
-        public static List<T> Query<T>(string query)
+        private static List<T> PerformQuery<T>(string query)
         {
             Log.ForContext<SoqlApi>().Debug("SOQL Query {query}", query);
 

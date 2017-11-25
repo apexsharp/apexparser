@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Apex.Schema;
+using SalesForceAPI;
 using SalesForceAPI.Apex;
 
 namespace Apex.System
@@ -131,6 +132,17 @@ namespace Apex.System
         public void Sort()
         {
             throw new global::System.NotImplementedException("List.Sort");
+        }
+
+        public static implicit operator List<T>(SoqlQuery<T> query)
+        {
+            var result = new List<T>();
+            foreach (var row in query.QueryResult.Value)
+            {
+                result.Add(row);
+            }
+
+            return result;
         }
     }
 }
