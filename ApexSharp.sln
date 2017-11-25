@@ -21,6 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexParser", "ApexParser\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParserTest", "ApexParserTest\ApexParserTest.csproj", "{CF5E395C-086F-4D21-B2B2-7595E348A557}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3593D027-EDA2-4C54-BCAF-0E59687E167D}"
+	ProjectSection(SolutionItems) = preProject
+		PrivateDemo\empty.txt = PrivateDemo\empty.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

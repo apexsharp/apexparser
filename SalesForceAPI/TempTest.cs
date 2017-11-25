@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +15,16 @@ namespace SalesForceAPI
         [SetUp]
         public void Init()
         {
+            // Note: paths can be absolute or relative to the current assembly.
+            // Project location is specified in the project settings "Build" tab.
+            // Current assembly location is represented by the "{0}" macro.
             ConnectionUtil.Session = new ApexSharp().SalesForceUrl("https://login.salesforce.com/")
                 .AndSalesForceApiVersion(40)
                 .WithUserId("apexsharp@jayonsoftware.com")
                 .AndPassword("1v0EGMfR0NTkbmyQ2Jk4082PA")
                 .AndToken("LUTAPwQstOZj9ESx7ghiLB1Ww")
-                .CacheLocation(@"C:\DevSharp\ApexSharp\PrivateDemo\")
-                .SaveConfigAt(@"C:\DevSharp\ApexSharp\PrivateDemo\config.json")
+                .CacheLocation(@"{0}\..\..\..\PrivateDemo\")
+                .SaveConfigAt(@"{0}\..\..\..\PrivateDemo\config.json")
                 .CreateSession();
         }
 
@@ -41,6 +45,33 @@ namespace SalesForceAPI
 
             contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :contactNew.Email && LastName = :contactNew.LastName LIMIT 1", contactNew.Email, contactNew.LastName);
             Console.WriteLine(contacts.Count);
+        }
+
+        [Test]
+        public void PolymorphicQueryResultDemo()
+        {
+            // create new contact
+            var contactNew = new Contact() { LastName = "Jay", Email = "jay@jay.com" };
+            var newId = SoqlApi.Insert(contactNew).Id;
+            Console.WriteLine(newId);
+
+            // multiple records
+            List<Contact> contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :email", "jay@jay.com");
+            Assert.AreEqual(1, contacts.Count);
+            Console.WriteLine("Count = {0}", contacts.Count);
+
+            // single record
+            Contact contact = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :email", "jay@jay.com");
+            Assert.True(contact != null);
+            Console.WriteLine(contact.Email);
+
+            // query text
+            string queryText = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :email", "jay@jay.com");
+            Assert.False(string.IsNullOrWhiteSpace(queryText));
+            Console.WriteLine("SOQL query text: {0}", queryText);
+
+            // delete record
+            SoqlApi.Delete(contact);
         }
     }
 }

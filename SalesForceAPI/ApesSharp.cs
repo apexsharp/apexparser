@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Newtonsoft.Json;
 using SalesForceAPI.ApexApi;
 using SalesForceAPI.Model.BulkApi;
@@ -94,7 +95,7 @@ namespace SalesForceAPI
 
         public BulkInsertReply BulkInsert<T>(System.Collections.Generic.List<T> dataList) where T : SObject
         {
-            // ToDo limit to 200 Exception 
+            // ToDo limit to 200 Exception
             BulkInsertRequest<T> request = new BulkInsertRequest<T> { Records = new T[dataList.Count] };
             request.Records = dataList.ToArray();
 
@@ -148,12 +149,20 @@ namespace SalesForceAPI
 
         public ApexSharp CacheLocation(string dirLocation)
         {
+            // set up cache path relative to the calling assembly location
+            var callingAssembly = Assembly.GetCallingAssembly();
+            dirLocation = string.Format(dirLocation, Path.GetDirectoryName(callingAssembly.Location));
+
             _apexSharpConfigSettings.CatchLocation = new DirectoryInfo(dirLocation);
             return this;
         }
 
         public ApexSharp SaveConfigAt(string configFileLocation)
         {
+            // set up config file path relative to the calling assembly location
+            var callingAssembly = Assembly.GetCallingAssembly();
+            configFileLocation = string.Format(configFileLocation, Path.GetDirectoryName(callingAssembly.Location));
+
             _apexSharpConfigSettings.ConfigLocation = new FileInfo(configFileLocation);
             return this;
         }
