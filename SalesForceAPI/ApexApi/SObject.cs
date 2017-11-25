@@ -6,8 +6,6 @@ namespace SalesForceAPI.ApexApi
     {
         public Id Id { get; set; }
 
-        public static string Soql = "SELECT ID";
-
         public void AddError(object msg)
         {
             throw new global::System.NotImplementedException("SObject.AddError");
