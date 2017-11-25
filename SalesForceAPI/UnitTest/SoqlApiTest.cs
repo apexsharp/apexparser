@@ -11,7 +11,6 @@ namespace SalesForceAPI.UnitTest
         [Test]
         public void CrudTest()
         {
-            Console.WriteLine(ConnectionUtil.GetSession().RestSessionId);
 
             Contact contactNew = new Contact() { LastName = "Jay", Email = "jay@jayjayjay.com" };
             Id newId = SoqlApi.Insert(contactNew).Id;
@@ -21,6 +20,13 @@ namespace SalesForceAPI.UnitTest
 
             Contact contact = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id=:ontactNew.Id LIMIT 1", contactNew.Id);
             Assert.AreEqual(newId, contact.Id);
+
+            contact = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact LIMIT 1");
+            Console.WriteLine(contact);
+
+
+
+
         }
     }
 }

@@ -48,3 +48,4 @@ packages/
 /*.bak
 /PrivateDemo
 /Demo
+SalesForceAPI/UnitTest/SoqlApiTest.cs

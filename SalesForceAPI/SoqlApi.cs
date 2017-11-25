@@ -19,8 +19,7 @@ namespace SalesForceAPI
             // prepare query result
             var lasyResult = new Lazy<List<T>>(() =>
             {
-                Db db = new Db();
-                return db.Query<T>(soql);
+                return PerformQuery<T>(soql);
             });
 
             // return as polymorphic query instance
