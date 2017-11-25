@@ -11,20 +11,17 @@ namespace SalesForceAPI.UnitTest
         [Test]
         public void CrudTest()
         {
-            Contact contactNew = new Contact() { LastName = "Jay", Email = "jay@jay.com" };
+
+            Console.WriteLine(ConnectionUtil.GetSession().RestSessionId);
+
+            Contact contactNew = new Contact() { LastName = "Jay", Email = "jay@jayjayjay.com" };
             Id newId = SoqlApi.Insert(contactNew).Id;
-            Console.WriteLine(newId);
 
-            List<Contact> contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :contactNew.Email && LastName = :contactNew.LastName LIMIT 1", contactNew.Email, contactNew.LastName);
-            Console.WriteLine(contacts.Count);
+            List<Contact> contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id=:ontactNew.Id", contactNew.Id);
+            Assert.AreEqual(newId, contacts[0].Id);
 
-            foreach (var contact in contacts)
-            {
-                SoqlApi.Delete(contact);
-            }
-
-            contacts = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE EMail = :contactNew.Email && LastName = :contactNew.LastName LIMIT 1", contactNew.Email, contactNew.LastName);
-            Console.WriteLine(contacts.Count);
+            Contact contact = SoqlApi.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id=:ontactNew.Id LIMIT 1", contactNew.Id);
+            Assert.AreEqual(newId, contact.Id);
         }
     }
 }
