@@ -56,9 +56,9 @@ namespace ApexParserTest.Toolbox
                 command.Execute();
             }
 
-            public static PolymorphicQueryResult<T> Query<T>(string soql, params object[] arguments) where T : new()
+            public static PolymorphicQuery<T> Query<T>(string soql, params object[] arguments) where T : new()
             {
-                return new PolymorphicQueryResult<T>(soql, arguments);
+                return new PolymorphicQuery<T>(soql, arguments);
             }
         }
 
@@ -70,9 +70,9 @@ namespace ApexParserTest.Toolbox
             Soql.Query("select id from Customer where email = :email and name = :name and age > :age", "jay@jayonsoftware.com", "jay", 20);
         }
 
-        public class PolymorphicQueryResult<T> where T : new()
+        public class PolymorphicQuery<T> where T : new()
         {
-            public PolymorphicQueryResult(string query, params object[] parameters)
+            public PolymorphicQuery(string query, params object[] parameters)
             {
                 Parameters = parameters;
                 OriginalQuery = query;
@@ -91,17 +91,22 @@ namespace ApexParserTest.Toolbox
 
             public List<T> QueryResult { get; }
 
-            public static implicit operator string(PolymorphicQueryResult<T> query) => query.OriginalQuery;
+            public static implicit operator string(PolymorphicQuery<T> query) => query.OriginalQuery;
 
-            public static implicit operator List<T>(PolymorphicQueryResult<T> query) => query.QueryResult;
+            public static implicit operator List<T>(PolymorphicQuery<T> query) => query.QueryResult;
 
-            public static implicit operator T(PolymorphicQueryResult<T> query) => query.QueryResult.FirstOrDefault();
+            public static implicit operator T(PolymorphicQuery<T> query) => query.QueryResult.FirstOrDefault();
         }
 
         public class Customer
         {
             public string Name => "Jay";
             public string Email => "jay@jayonsoftware.com";
+        }
+
+        private static class Database
+        {
+            public static string GetQueryLocator(string query) => query;
         }
 
         [Test]
@@ -122,6 +127,11 @@ namespace ApexParserTest.Toolbox
             string query = Soql.Query<Customer>("select * from Customer where email = :email and name = :name and age > :age", "jay@jayonsoftware.com", "jay", 20);
             Assert.NotNull(query);
             Assert.AreEqual("select * from Customer where email = :email and name = :name and age > :age", query);
+
+            // Database.getQueryLocator(query)
+            var result = Database.GetQueryLocator(Soql.Query<Customer>("select * from Customer where email = :email and name = :name and age > :age", "jay@jayonsoftware.com", "jay", 20));
+            Assert.NotNull(result);
+            Assert.AreEqual("select * from Customer where email = :email and name = :name and age > :age", result);
         }
     }
 }
