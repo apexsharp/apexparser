@@ -403,7 +403,7 @@ namespace ApexSharpDemo.ApexCode
             public object answer(fflib_InvocationOnMock invocation)
             {
                 actualInvocation = invocation;
-                string argument = (String)invocation.getArgument(1);
+                string argument = (string)invocation.getArgument(1);
                 System.assertNotEquals(null, argument, " the argument should have some value");
                 argument = argument.replace("Hi", "Bye");
                 return argument;

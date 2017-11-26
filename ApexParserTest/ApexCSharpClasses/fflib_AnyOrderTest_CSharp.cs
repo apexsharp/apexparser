@@ -49,14 +49,14 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("fred");
 
             // Then
-            ((fflib_MyList.IList)mocks.verify(mockList, mocks.never())).add((String)fflib_Match.allOf(fflib_Match.eq("bob"), fflib_Match.stringContains("re")));
-            ((fflib_MyList.IList)mocks.verify(mockList)).add((String)fflib_Match.allOf(fflib_Match.eq("fred"), fflib_Match.stringContains("re")));
-            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((String)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("fred")));
-            ((fflib_MyList.IList)mocks.verify(mockList)).add((String)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("jack")));
-            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((String)fflib_Match.noneOf(fflib_Match.eq("jack"), fflib_Match.eq("tim")));
-            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((String)fflib_Match.noneOf(fflib_Match.anyOf(fflib_Match.eq("jack"), fflib_Match.eq("jill")),
+            ((fflib_MyList.IList)mocks.verify(mockList, mocks.never())).add((string)fflib_Match.allOf(fflib_Match.eq("bob"), fflib_Match.stringContains("re")));
+            ((fflib_MyList.IList)mocks.verify(mockList)).add((string)fflib_Match.allOf(fflib_Match.eq("fred"), fflib_Match.stringContains("re")));
+            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((string)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("fred")));
+            ((fflib_MyList.IList)mocks.verify(mockList)).add((string)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("jack")));
+            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((string)fflib_Match.noneOf(fflib_Match.eq("jack"), fflib_Match.eq("tim")));
+            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((string)fflib_Match.noneOf(fflib_Match.anyOf(fflib_Match.eq("jack"), fflib_Match.eq("jill")),
 				fflib_Match.allOf(fflib_Match.eq("tim"), fflib_Match.stringContains("i"))));
-            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((String)fflib_Match.isNot(fflib_Match.eq("jack")));
+            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).add((string)fflib_Match.isNot(fflib_Match.eq("jack")));
         }
 
         [Test]
@@ -74,8 +74,8 @@ namespace ApexSharpDemo.ApexCode
             mockList.get(5);
 
             // Then
-            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(3))).get((Integer)fflib_Match.matches(new isOdd()));
-            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).get((Integer)fflib_Match.matches(new isEven()));
+            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(3))).get((int)fflib_Match.matches(new isOdd()));
+            ((fflib_MyList.IList)mocks.verify(mockList, mocks.times(2))).get((int)fflib_Match.matches(new isEven()));
         }
 
         [Test]
@@ -305,7 +305,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception exc)
             {
                 string exceptionMessage = exc.getMessage();
-                string expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<String>{"2", "3"})+ fflib_MyList.getStubClassName()+ ".add(String). "+ customAssertMessage + ".";
+                string expectedMessage = string.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<string>{"2", "3"})+ fflib_MyList.getStubClassName()+ ".add(String). "+ customAssertMessage + ".";
                 System.assertEquals(expectedMessage, exceptionMessage,
 				"The exception was caught, but the message was not as expected. "+
 				"Expected: ["+ expectedMessage + "],  Actual: ["+ exceptionMessage + "].");
@@ -1057,7 +1057,7 @@ namespace ApexSharpDemo.ApexCode
          */
         private static void assertFailMessage(string exceptionMessage, int expectedInvocations, int actualsInvocations)
         {
-            string expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<String>{String.valueOf(expectedInvocations), String.valueOf(actualsInvocations)});
+            string expectedMessage = string.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<string>{string.valueOf(expectedInvocations), string.valueOf(actualsInvocations)});
             System.assert(exceptionMessage.contains(expectedMessage),
 			"The exception was caught, but the message was not as expected. "+
 			"Expected: ["+ expectedMessage + "],  Actual: ["+ exceptionMessage + "].");
@@ -1070,7 +1070,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 1: false;
+                return arg instanceof int ? Math.mod((int)arg, 2)== 1: false;
             }
         }
 
@@ -1078,7 +1078,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 0: false;
+                return arg instanceof int ? Math.mod((int)arg, 2)== 0: false;
             }
         }
     }

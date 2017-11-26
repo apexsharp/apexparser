@@ -87,14 +87,14 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("fred");
 
             // Then
-            ((fflib_MyList.IList)mocks.verify(mockList, 0)).add((String)fflib_Match.allOf(fflib_Match.eq("bob"), fflib_Match.stringContains("re")));
-            ((fflib_MyList.IList)mocks.verify(mockList)).add((String)fflib_Match.allOf(fflib_Match.eq("fred"), fflib_Match.stringContains("re")));
-            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((String)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("fred")));
-            ((fflib_MyList.IList)mocks.verify(mockList, 1)).add((String)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("jack")));
-            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((String)fflib_Match.noneOf(fflib_Match.eq("jack"), fflib_Match.eq("tim")));
-            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((String)fflib_Match.noneOf(fflib_Match.anyOf(fflib_Match.eq("jack"), fflib_Match.eq("jill")),
+            ((fflib_MyList.IList)mocks.verify(mockList, 0)).add((string)fflib_Match.allOf(fflib_Match.eq("bob"), fflib_Match.stringContains("re")));
+            ((fflib_MyList.IList)mocks.verify(mockList)).add((string)fflib_Match.allOf(fflib_Match.eq("fred"), fflib_Match.stringContains("re")));
+            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((string)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("fred")));
+            ((fflib_MyList.IList)mocks.verify(mockList, 1)).add((string)fflib_Match.anyOf(fflib_Match.eq("bob"), fflib_Match.eq("jack")));
+            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((string)fflib_Match.noneOf(fflib_Match.eq("jack"), fflib_Match.eq("tim")));
+            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((string)fflib_Match.noneOf(fflib_Match.anyOf(fflib_Match.eq("jack"), fflib_Match.eq("jill")),
 				fflib_Match.allOf(fflib_Match.eq("tim"), fflib_Match.stringContains("i"))));
-            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((String)fflib_Match.isNot(fflib_Match.eq("jack")));
+            ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((string)fflib_Match.isNot(fflib_Match.eq("jack")));
         }
 
         [Test]
@@ -104,8 +104,8 @@ namespace ApexSharpDemo.ApexCode
             fflib_ApexMocks mocks = new fflib_ApexMocks();
             fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
             mocks.startStubbing();
-            mocks.when(mockList.get((Integer)fflib_Match.matches(new isOdd()))).thenReturn("Odd");
-            mocks.when(mockList.get((Integer)fflib_Match.matches(new isEven()))).thenReturn("Even");
+            mocks.when(mockList.get((int)fflib_Match.matches(new isOdd()))).thenReturn("Odd");
+            mocks.when(mockList.get((int)fflib_Match.matches(new isEven()))).thenReturn("Even");
             mocks.stopStubbing();
 
             // When
@@ -138,8 +138,8 @@ namespace ApexSharpDemo.ApexCode
             mockList.get(5);
 
             // Then
-            ((fflib_MyList.IList)mocks.verify(mockList, 3)).get((Integer)fflib_Match.matches(new isOdd()));
-            ((fflib_MyList.IList)mocks.verify(mockList, 2)).get((Integer)fflib_Match.matches(new isEven()));
+            ((fflib_MyList.IList)mocks.verify(mockList, 3)).get((int)fflib_Match.matches(new isOdd()));
+            ((fflib_MyList.IList)mocks.verify(mockList, 2)).get((int)fflib_Match.matches(new isEven()));
         }
 
         [Test]
@@ -396,15 +396,15 @@ namespace ApexSharpDemo.ApexCode
 
             // When
             mockList.add("bob");
-            mockList.add(new String[]{"bob"});
-            mockList.add((String)null);
-            mockList.add((String[])null);
+            mockList.add(new string[]{"bob"});
+            mockList.add((string)null);
+            mockList.add((string[])null);
 
             // Then
             ((fflib_MyList.IList)mocks.verify(mockList)).add("bob");
-            ((fflib_MyList.IList)mocks.verify(mockList)).add(new String[]{"bob"});
-            ((fflib_MyList.IList)mocks.verify(mockList)).add((String)null);
-            ((fflib_MyList.IList)mocks.verify(mockList)).add((String[])null);
+            ((fflib_MyList.IList)mocks.verify(mockList)).add(new string[]{"bob"});
+            ((fflib_MyList.IList)mocks.verify(mockList)).add((string)null);
+            ((fflib_MyList.IList)mocks.verify(mockList)).add((string[])null);
         }
 
         [Test]
@@ -814,7 +814,7 @@ namespace ApexSharpDemo.ApexCode
             // Given
             // When
             MY_MOCKS.startStubbing();
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.stopStubbing();
 
             // Then
@@ -829,7 +829,7 @@ namespace ApexSharpDemo.ApexCode
             // Given
             // When
             MY_MOCKS.startStubbing();
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.stopStubbing();
 
             // Then
@@ -892,7 +892,7 @@ namespace ApexSharpDemo.ApexCode
             MY_MOCKS.startStubbing();
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).
 			thenThrowMulti(new List<Exception>{first, second, third}).
-			thenReturnMulti(new List<String>{"One", "Two", "Three"});
+			thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.stopStubbing();
 
             // Then
@@ -917,7 +917,7 @@ namespace ApexSharpDemo.ApexCode
             // When
             MY_MOCKS.startStubbing();
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).
-			thenReturnMulti(new List<String>{"One", "Two", "Three"}).
+			thenReturnMulti(new List<string>{"One", "Two", "Three"}).
 			thenThrowMulti(new List<Exception>{first, second, third});
             MY_MOCKS.stopStubbing();
 
@@ -953,7 +953,7 @@ namespace ApexSharpDemo.ApexCode
             // Given
             // When
             MY_MOCKS.startStubbing();
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturn("Two");
             MY_MOCKS.stopStubbing();
 
@@ -968,8 +968,8 @@ namespace ApexSharpDemo.ApexCode
             // Given
             // When
             MY_MOCKS.startStubbing();
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"Four", "Five", "Six"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"Four", "Five", "Six"});
             MY_MOCKS.stopStubbing();
 
             // Then
@@ -987,7 +987,7 @@ namespace ApexSharpDemo.ApexCode
             // When
             MY_MOCKS.startStubbing();
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturn("Two");
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.stopStubbing();
 
             // Then
@@ -1006,7 +1006,7 @@ namespace ApexSharpDemo.ApexCode
 
             // When
             MY_MOCKS.startStubbing();
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenThrow(first);
             MY_MOCKS.stopStubbing();
 
@@ -1025,7 +1025,7 @@ namespace ApexSharpDemo.ApexCode
 
             // When
             MY_MOCKS.startStubbing();
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenThrowMulti(new List<Exception>{first, second, third});
             MY_MOCKS.stopStubbing();
 
@@ -1123,7 +1123,7 @@ namespace ApexSharpDemo.ApexCode
             // When
             MY_MOCKS.startStubbing();
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenThrowMulti(new List<Exception>{first, second, third});
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"Four", "Five", "Six"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"Four", "Five", "Six"});
             MY_MOCKS.stopStubbing();
 
             // Then
@@ -1143,7 +1143,7 @@ namespace ApexSharpDemo.ApexCode
             // When
             MY_MOCKS.startStubbing();
             MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenThrow(first);
-            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<String>{"One", "Two", "Three"});
+            MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<string>{"One", "Two", "Three"});
             MY_MOCKS.stopStubbing();
 
             // Then
@@ -1365,7 +1365,7 @@ namespace ApexSharpDemo.ApexCode
             try
             {
                 MY_MOCKS.startStubbing();
-                MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<Object>());
+                MY_MOCKS.when(MY_MOCK_LIST.get(1)).thenReturnMulti(new List<object>());
                 MY_MOCKS.stopStubbing();
                 System.assert(false, "an exception was expected");
             }
@@ -1515,7 +1515,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 1: false;
+                return arg instanceof int ? Math.mod((int)arg, 2)== 1: false;
             }
         }
 
@@ -1523,7 +1523,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof Integer ? Math.mod((Integer)arg, 2)== 0: false;
+                return arg instanceof int ? Math.mod((int)arg, 2)== 0: false;
             }
         }
     }

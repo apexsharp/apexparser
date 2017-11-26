@@ -1066,7 +1066,6 @@ namespace ApexParserTest.Visitors
                     }
                 }");
 
-            // note that new Map<String, String> is not yet converted
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
@@ -1081,7 +1080,7 @@ namespace ApexParserTest.Visitors
 
                         public Map<string, string> SomeMethod()
                         {
-                            return new Map<String, String>();
+                            return new Map<string, string>();
                         }
                     }
                 }");

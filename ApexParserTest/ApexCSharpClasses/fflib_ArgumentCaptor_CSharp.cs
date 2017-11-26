@@ -40,7 +40,7 @@ namespace ApexSharpDemo.ApexCode
     [WithSharing]
     public class fflib_ArgumentCaptor
     {
-        protected List<object> argumentsCaptured = new List<Object>();
+        protected List<object> argumentsCaptured = new List<object>();
 
         /**
          *	Factory method to create a new fflib_ArgumentCaptor.

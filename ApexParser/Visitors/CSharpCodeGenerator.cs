@@ -416,6 +416,17 @@ namespace ApexParser.Visitors
             Append("Soql.Query<{0}>(\"{1}\"{2})", tableName, queryText, paramList);
         }
 
+        protected override void AppendExpressionPart(string part)
+        {
+            // replace Apex types with C# types
+            foreach (var r in CSharpTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))
+            {
+                part = r.Regex.Replace(part, r.Value);
+            }
+
+            base.AppendExpressionPart(part);
+        }
+
         private static Dictionary<string, string> CSharpTypes { get; } =
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
@@ -436,6 +447,10 @@ namespace ApexParser.Visitors
                 { ApexKeywords.String, "string" },
                 { ApexKeywords.Void, "void" },
             };
+
+        private static Dictionary<Regex, string> CSharpTypeRegex { get; } =
+            CSharpTypes.ToDictionary(p => new Regex($"\\b{p.Key}\\b",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled), p => p.Value);
 
         public override string NormalizeTypeName(string identifier) =>
             CSharpTypes.TryGetValue(identifier, out var result) ? result : identifier;
