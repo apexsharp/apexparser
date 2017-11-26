@@ -56,7 +56,6 @@
     <Compile Include="CompositeApi.cs" />
     <Compile Include="HttpManager.cs" />
     <Compile Include="JsonFactory.cs" />
-    <Compile Include="Log.cs" />
     <Compile Include="ModelGen.cs" />
     <Compile Include="Model\API\SalesForceField.cs" />
     <Compile Include="Model\API\SalesForceObject.cs" />
@@ -78,8 +77,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BulkApi.cs" />
     <Compile Include="SoqlCreator.cs" />
+    <Compile Include="UnitTest\OneTimeSetUp.cs" />
+    <Compile Include="UnitTest\Setup.cs" />
     <Compile Include="UnitTest\SoqlApiTest.cs" />
-    <Compile Include="UnitTest\TestSetup.cs" />
     <Compile Include="UnitTest\UnitTestDataManagerTest.cs" />
     <Compile Include="UtilSalesForce.cs" />
     <Compile Include="UtilXml.cs" />
