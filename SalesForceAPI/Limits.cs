@@ -1,36 +1,38 @@
-using SalesForceAPI.Model;
+using Newtonsoft.Json;
 using SalesForceAPI.Model.RestApi;
 
 namespace SalesForceAPI
 {
     public class Limits
     {
-        public int GetDailyApiLimit(LimitType limitType)
+        public static int GetDailyApiLimit(LimitType limitType)
         {
             switch (limitType)
             {
                 case LimitType.DailyApiRequests:
-                    return GetLimits().DailyApiRequests.Max;
+                    return GetApiLimits().DailyApiRequests.Max;
             }
             return 0;
         }
 
-        public int GetRemainingApiLimit(LimitType limitType)
+        public static int GetRemainingApiLimit(LimitType limitType)
         {
             switch (limitType)
             {
                 case LimitType.DailyApiRequests:
-                    return GetLimits().DailyApiRequests.Remaining;
+                    return GetApiLimits().DailyApiRequests.Remaining;
             }
             return 0;
         }
 
 
-        public SalesForceApiLimits GetLimits()
+        public static SalesForceApiLimits GetApiLimits()
         {
-
-
-            return null;
+            HttpManager httpManager = new HttpManager();
+            var json = httpManager.Get(@"limits/");
+            SalesForceApiLimits apiLimits = JsonConvert.DeserializeObject<SalesForceApiLimits>(json,
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return apiLimits;
         }
     }
 }

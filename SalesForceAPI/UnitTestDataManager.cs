@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Serilog;
 
 namespace SalesForceAPI
 {
@@ -28,7 +26,6 @@ namespace SalesForceAPI
 
         public static void AddId(string id)
         {
-            Console.WriteLine(id);
             if (_unitTestDataManagerEnabled)
             {
                 List<string> idList = new List<string>();
@@ -63,8 +60,6 @@ namespace SalesForceAPI
 
         public static void RemoveAllIds()
         {
-            Log.Logger.Information("Cleaning All Values");
-
             FileInfo dataFile = new FileInfo(IdFileName);
             if (dataFile.Exists)
             {

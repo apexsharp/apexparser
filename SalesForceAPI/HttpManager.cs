@@ -11,7 +11,6 @@ namespace SalesForceAPI
     {
         public string Get(string uriFunction)
         {
-
             HttpRequestMessage request = new HttpRequestMessage
             {
                 RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
@@ -79,16 +78,12 @@ namespace SalesForceAPI
             HttpClient httpClient = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            //  Log.ForContext<SalesForceLogin>().Verbose("Outgoing Request {@request}", request);
+            Log.ForContext<HttpManager>().Verbose("Outgoing Request {@request}", request);
             HttpResponseMessage responseMessage = httpClient.SendAsync(request).Result;
-            //  Log.ForContext<SalesForceLogin>().Verbose("Incoming Response {@response}", responseMessage);
+            Log.ForContext<HttpManager>().Verbose("Incoming Response {@responseMessage}", responseMessage);
 
             string jsonData = responseMessage.Content.ReadAsStringAsync().Result;
-
-            Console.WriteLine(jsonData);
-
-            Console.WriteLine(responseMessage.StatusCode);
-
+            Log.ForContext<HttpManager>().Verbose("Incoming Data {@jsonData}", jsonData);
 
             switch (responseMessage.StatusCode)
             {

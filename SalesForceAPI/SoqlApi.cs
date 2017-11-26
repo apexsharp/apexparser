@@ -85,6 +85,9 @@ namespace SalesForceAPI
             jsonData = httpManager.Post($"sobjects/{objectName}/", jsonData);
             RecordCreateResponse recordCreateResponse = JsonConvert.DeserializeObject<RecordCreateResponse>(jsonData);
             obj.Id = recordCreateResponse.id;
+
+            UnitTestDataManager.AddId(obj.Id.ToString());
+
             return obj;
         }
 
@@ -100,9 +103,11 @@ namespace SalesForceAPI
         public static void Delete<T>(T obj) where T : SObject
         {
             var objectName = typeof(T).Name;
-            Log.ForContext<SoqlApi>().Debug("Deleting {objectName} {Id}", objectName, obj.Id);
+            Log.ForContext<SoqlApi>().Information("Deleting {$objectName} {$Id}", objectName, obj.Id);
+
             HttpManager httpManager = new HttpManager();
             httpManager.Del($"sobjects/{objectName}/{obj.Id}");
+            UnitTestDataManager.RemoveId(obj.Id.ToString());
         }
     }
 }
