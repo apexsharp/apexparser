@@ -20,13 +20,13 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Fred");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList)).add((string)argument.capture());
             System.assertEquals("Fred", (string)argument.getValue(), "the argument captured is not as expected");
         }
@@ -36,7 +36,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             //When
             TestInnerClass testValue = new TestInnerClass();
@@ -45,7 +45,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.set(1, testValue);
 
             //Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(TestInnerClass.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(TestInnerClass));
             ((fflib_MyList.IList)mocks.verify(mockList)).set(fflib_Match.anyInteger(),  argument.capture());
             object capturedArg = argument.getValue();
             System.assertNotEquals(null, capturedArg, "CapturedArg should not be null");
@@ -60,7 +60,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Fred");
@@ -70,7 +70,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.addMore("Barney");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList)).add((string)argument.capture());
             System.assertEquals("Fred", (string)argument.getValue(), "the argument captured is not as expected");
             System.assertEquals(1, argument.getAllValues().size(), "the argument captured should be only one");
@@ -81,7 +81,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             List<string> stringList = new List<string>{"3"};
 
             // When
@@ -90,7 +90,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.clear();
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList)).add((string)argument.capture());
             ((fflib_MyList.IList)mocks.verify(mockList)).add((List<string>)argument.capture());
             System.assertEquals(stringList, (List<string>)argument.getValue(), "the argument captured is not as expected");
@@ -104,13 +104,13 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Fred", "Barney", "Wilma", "Betty");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList)).add((string)fflib_Match.eq("Fred"),
 				(string)fflib_Match.eq("Barney"),
 				(string)argument.capture(),
@@ -124,14 +124,14 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Barney");
             mockList.add("Fred");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((string)argument.capture());
             System.assertEquals("Fred", (string)argument.getValue(), "the argument captured is not as expected");
         }
@@ -141,7 +141,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Fred");
@@ -150,7 +150,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("Betty");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList, 4)).add((string)argument.capture());
             List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(4, argsCaptured.size(), "expected 4 argument to be captured");
@@ -165,7 +165,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Fred");
@@ -173,7 +173,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.get2(3, "pebble");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList, 2)).add((string)argument.capture());
             ((fflib_MyList.IList)mocks.verify(mockList)).get2((int)fflib_Match.eq(3),
 				(string)argument.capture());
@@ -189,13 +189,13 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Fred", "Barney", "Wilma", "Betty");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList)).add((string)fflib_Match.eq("Fred"),
 				(string)argument.capture(),
 				(string)argument.capture(),
@@ -211,7 +211,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("3");
@@ -229,14 +229,14 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Same", "Same", "First call", "First call");
             mockList.add("Same", "Same", "Second call", "Second call");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList)).add(fflib_Match.eqString("Same"),
 			fflib_Match.eqString("Same"),
 			(string)argument.capture(),
@@ -249,14 +249,14 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Same", "Same", "First call", "First call");
             mockList.add("Same", "Same", "Second call", "Second call");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList)).add((string)fflib_Match.allOf(fflib_Match.eqString("Same"),
 				fflib_Match.eqString("Same"),
 				argument.capture()),
@@ -279,14 +279,14 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
             mockList.add("Fred");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((string)argument.capture());
             System.assertEquals("Fred", (string)argument.getValue(), "the argument captured is not as expected");
         }
@@ -296,7 +296,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             //When
@@ -306,7 +306,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.set(1, testValue);
 
             //Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(TestInnerClass.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(TestInnerClass));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).set(fflib_Match.anyInteger(),  argument.capture());
             object capturedArg = argument.getValue();
             System.assertNotEquals(null, capturedArg, "CapturedArg should not be null");
@@ -321,7 +321,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
@@ -332,7 +332,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.addMore("Barney");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((string)argument.capture());
             System.assertEquals("Fred", (string)argument.getValue(), "the argument captured is not as expected");
             System.assertEquals(1, argument.getAllValues().size(), "the argument captured should be only one");
@@ -343,7 +343,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
             List<string> stringList = new List<string>{"3"};
 
@@ -353,7 +353,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.clear();
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((string)argument.capture());
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((List<string>)argument.capture());
             System.assertEquals(stringList, (List<string>)argument.getValue(), "the argument captured is not as expected");
@@ -367,14 +367,14 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
             mockList.add("Fred", "Barney", "Wilma", "Betty");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((string)fflib_Match.eq("Fred"),
 				(string)fflib_Match.eq("Barney"),
 				(string)argument.capture(),
@@ -388,7 +388,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
@@ -396,7 +396,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("Fred");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(2))).add((string)argument.capture());
             System.assertEquals("Fred", (string)argument.getValue(), "the argument captured is not as expected");
         }
@@ -406,7 +406,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
@@ -416,7 +416,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("Betty");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(4))).add((string)argument.capture());
             List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(4, argsCaptured.size(), "expected 4 argument to be captured");
@@ -431,7 +431,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
@@ -440,7 +440,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.get2(3, "pebble");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(2))).add((string)argument.capture());
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).get2((int)fflib_Match.eq(3),
 				(string)argument.capture());
@@ -456,14 +456,14 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
             mockList.add("Fred", "Barney", "Wilma", "Betty");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((string)fflib_Match.eq("Fred"),
 				(string)argument.capture(),
 				(string)argument.capture(),
@@ -479,7 +479,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
@@ -498,7 +498,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
@@ -506,7 +506,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("Same", "Same", "Second call", "Second call");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add(fflib_Match.eqString("Same"),
 			fflib_Match.eqString("Same"),
 			(string)argument.capture(),
@@ -519,7 +519,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_InOrder inOrder1 = new fflib_InOrder(mocks, new List<object>{mockList});
 
             // When
@@ -527,7 +527,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("Same", "Same", "Second call", "Second call");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).add((string)fflib_Match.allOf(fflib_Match.eqString("Same"),
 				fflib_Match.eqString("Same"),
 				argument.capture()),
@@ -550,7 +550,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("Fred");
@@ -561,7 +561,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("Betty");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(string.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(string));
             ((fflib_MyList.IList)mocks.verify(mockList, 6)).add((string)argument.capture());
             List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(6, argsCaptured.size(), "expected 6 arguments to be captured");

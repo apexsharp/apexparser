@@ -25,7 +25,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -42,7 +42,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -64,7 +64,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.get(1);
@@ -83,7 +83,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -98,7 +98,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.get(0);
@@ -113,7 +113,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.set(0, "bob");
@@ -128,7 +128,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // Then
             ((fflib_MyList.IList)mocks.verify(mockList, mocks.never())).add("bob");
@@ -139,7 +139,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -157,7 +157,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -173,7 +173,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob1");
@@ -189,7 +189,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -213,7 +213,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -237,7 +237,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -261,7 +261,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -288,7 +288,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -320,7 +320,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -337,7 +337,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -356,7 +356,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -383,7 +383,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -398,7 +398,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -415,7 +415,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -444,7 +444,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -462,7 +462,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -480,7 +480,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -511,7 +511,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -527,7 +527,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -543,7 +543,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -574,7 +574,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -590,7 +590,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -607,7 +607,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("rob");
@@ -633,7 +633,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -648,7 +648,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -667,7 +667,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("fred", "fred", "fred", "fred");
@@ -697,7 +697,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -718,7 +718,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -745,7 +745,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -762,7 +762,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -788,7 +788,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -821,7 +821,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -854,7 +854,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob1");
@@ -870,7 +870,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("fred", "fred", "fred", "fred");
@@ -886,7 +886,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -909,7 +909,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -936,7 +936,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -953,7 +953,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -972,7 +972,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -999,7 +999,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -1014,7 +1014,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");
@@ -1031,7 +1031,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
 
             // When
             mockList.add("bob");

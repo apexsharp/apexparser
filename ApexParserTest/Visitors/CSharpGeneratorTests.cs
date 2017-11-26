@@ -1085,5 +1085,35 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void SomeDotClassGotReplacedWithTypeofSome()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    public Datetime SomeMethod() {
+                        Type type = Sample.class;
+                        AnotherMethod(String.class);
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Sample
+                    {
+                        public DateTime SomeMethod()
+                        {
+                            Type type = typeof(Sample);
+                            AnotherMethod(typeof(string));
+                        }
+                    }
+                }");
+        }
     }
 }

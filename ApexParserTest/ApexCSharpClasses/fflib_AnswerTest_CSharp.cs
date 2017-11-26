@@ -22,7 +22,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.ExceptionForAnswer());
             mocks.stopStubbing();
@@ -47,7 +47,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.BasicAnswer());
             mocks.stopStubbing();
@@ -67,7 +67,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get(3)).thenReturn("ted");
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.BasicAnswer());
@@ -91,7 +91,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get(3)).thenAnswer(new fflib_AnswerTest.FirstAnswer());
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.SecondAnswer());
@@ -110,7 +110,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.BasicAnswer());
             mocks.stopStubbing();
@@ -128,7 +128,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.ProcessArgumentAnswer());
             mocks.stopStubbing();
@@ -145,7 +145,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.ProcessArgumentAnswer());
             mocks.stopStubbing();
@@ -166,7 +166,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(fflib_Match.anyInteger(), fflib_Match.anyString())).thenAnswer(new fflib_AnswerTest.ProcessArgumentAnswer());
             mocks.stopStubbing();
@@ -183,7 +183,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.ExceptionForArgumentsOutOfBound());
             mocks.stopStubbing();
@@ -197,7 +197,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.get2(0, "Hi hi Hello Hi hi")).thenAnswer(new fflib_AnswerTest.ExceptionForNegativeArgumentIndex());
             mocks.stopStubbing();
@@ -211,7 +211,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             mocks.when(mockList.isEmpty()).thenAnswer(new fflib_AnswerTest.ArgumentListEmptyForMethodWithNoArgument());
             mocks.stopStubbing();
@@ -225,7 +225,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             ((fflib_MyList)mocks.doAnswer(new fflib_AnswerTest.BasicAnswer(), mockList)).addMore("Hi hi Hello Hi hi");
             mocks.stopStubbing();
@@ -245,7 +245,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             mocks.startStubbing();
             ((fflib_MyList)mocks.doAnswer(new fflib_AnswerTest.FirstAnswer(), mockList)).get(3);
             ((fflib_MyList)mocks.doAnswer(new fflib_AnswerTest.BasicAnswer(), mockList)).addMore("Hi hi Hello Hi hi");
@@ -272,7 +272,7 @@ namespace ApexSharpDemo.ApexCode
         {
             // Given
             fflib_ApexMocks mocks = new fflib_ApexMocks();
-            fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
+            fflib_MyList mockList = (fflib_MyList)mocks.mock(typeof(fflib_MyList));
             fflib_AnswerTest.FirstAnswer answer1 = new fflib_AnswerTest.FirstAnswer();
             fflib_AnswerTest.SecondAnswer answer2 = new fflib_AnswerTest.SecondAnswer();
             System.assertEquals(null, answer1.getMessage(), "the answer message should be null at this stage");
