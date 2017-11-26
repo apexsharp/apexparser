@@ -59,6 +59,7 @@
         '\''};
             this.LeftBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
     "?<range>:)\\s*(?<range>[^;]+);\n";
+            this.LeftBox.AutoIndentExistingLines = false;
             this.LeftBox.AutoScrollMinSize = new System.Drawing.Size(387, 112);
             this.LeftBox.BackBrush = null;
             this.LeftBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
@@ -67,7 +68,6 @@
             this.LeftBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.LeftBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.LeftBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeftBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.LeftBox.IsReplaceMode = false;
             this.LeftBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.LeftBox.LeftBracket = '(';
@@ -139,6 +139,7 @@
             this.RightBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RightBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.RightBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.RightBox.IsReplaceMode = false;
             this.RightBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.RightBox.LeftBracket = '(';

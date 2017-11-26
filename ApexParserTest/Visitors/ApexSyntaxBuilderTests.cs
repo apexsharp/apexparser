@@ -273,6 +273,13 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void TypeofXIsConvertedToXDotClass()
+        {
+            Check("class A { void T() { Type x = typeof(A); } }", "class A { void T() { Type x = A.class; } }");
+            Check("class A { void T() { Type x = typeof(List<string>); } }", "class A { void T() { Type x = List<string>.class; } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();

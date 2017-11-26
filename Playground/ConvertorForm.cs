@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Sprache;
 
 namespace Playground
 {
@@ -23,7 +24,17 @@ namespace Playground
             DirectionBox.SelectedIndex == 0 ?
                 new Func<string, string>(ToCSharp) : ToApex;
 
-        private string ToCSharp(string s) => ApexParser.ApexParser.ConvertApexToCSharp(s);
+        private string ToCSharp(string s)
+        {
+            try
+            {
+                return ApexParser.ApexParser.ConvertApexToCSharp(s);
+            }
+            catch (ParseException ex)
+            {
+                return string.Empty;
+            }
+        }
 
         private string ToApex(string s) => ApexParser.CSharpHelper.ToApex(s).FirstOrDefault();
 
@@ -31,7 +42,11 @@ namespace Playground
 
         private void DoConvert()
         {
-            RightBox.Text = Convert(LeftBox.Text);
+            var result = Convert(LeftBox.Text);
+            if (!string.IsNullOrWhiteSpace(result))
+            {
+                RightBox.Text = result;
+            }
         }
     }
 }
