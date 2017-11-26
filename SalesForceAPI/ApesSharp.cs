@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using Newtonsoft.Json;
 using SalesForceAPI.ApexApi;
 using SalesForceAPI.Model.BulkApi;
-using Serilog;
+using System.IO;
+using System.Reflection;
 
 namespace SalesForceAPI
 {
@@ -13,14 +10,9 @@ namespace SalesForceAPI
     {
         private readonly ApexSharpConfig _apexSharpConfigSettings = new ApexSharpConfig();
 
-
-
-
-        public void CreateOfflineClasses(string sObjectName)
+        public static void CreateOfflineClasses(string sObjectName)
         {
-            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            ModelGen modelGen = new ModelGen();
-            modelGen.CreateOfflineSymbolTable(sObjectName, path);
+            throw new NotImplementedException();
         }
 
 

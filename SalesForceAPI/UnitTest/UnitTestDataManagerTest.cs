@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.IO;
+using NUnit.Framework;
 
 namespace SalesForceAPI.UnitTest
 {
@@ -6,7 +8,7 @@ namespace SalesForceAPI.UnitTest
     public class UnitTestDataManagerTest
     {
         [Test]
-        public void AddIdTest()
+        public void AddIdTest123()
         {
             UnitTestDataManager.AddId("123");
             Assert.AreEqual(1, UnitTestDataManager.IdCount());

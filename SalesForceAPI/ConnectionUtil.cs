@@ -1,14 +1,11 @@
-﻿using Microsoft.Build.Evaluation;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SalesForceAPI.Model.RestApi;
+using Serilog;
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using Serilog;
 
 namespace SalesForceAPI
 {
@@ -18,23 +15,26 @@ namespace SalesForceAPI
 
         public static ApexSharpConfig GetSession()
         {
-            if (Session == null)
-            {
-                throw new SalesForceNoFileFoundException("Config is Null");
-            }
-            if (Session.SessionCreationDateTime <= DateTimeOffset.Now.ToUnixTimeSeconds())
-            {
-                Log.ForContext<ConnectionUtil>().Information("Session Expired, Creating a New Session");
-
-                Session = CreateSession(Session);
-            }
-            return Session;
+            return GetSession(null);
         }
 
-
-
-        public static ApexSharpConfig LoadSession(string configFileLocation)
+        public static ApexSharpConfig GetSession(string configFileLocation)
         {
+            if (configFileLocation == null)
+            {
+                if (Session == null)
+                {
+                    throw new SalesForceNoFileFoundException("No Session Exists Create One");
+                }
+
+                if (Session.SessionCreationDateTime <= DateTimeOffset.Now.ToUnixTimeSeconds())
+                {
+                    Log.ForContext<ConnectionUtil>().Information("Session Expired, Creating a New Session");
+                    Session = CreateSession(Session);
+                }
+                return Session;
+            }
+
             FileInfo loadFileInfo = new FileInfo(configFileLocation);
             if (loadFileInfo.Exists)
             {
@@ -47,16 +47,11 @@ namespace SalesForceAPI
                     Session = CreateSession(Session);
                     return Session;
                 }
-                else
-                {
-                    Log.ForContext<ConnectionUtil>().Information("Session info found in file {configFileLocation}", configFileLocation);
-                    return Session;
-                }
+
+                Log.ForContext<ConnectionUtil>().Information("Found Session On {configFileLocation}", configFileLocation);
+                return Session;
             }
-            else
-            {
-                throw new SalesForceNoFileFoundException(loadFileInfo.FullName);
-            }
+            throw new SalesForceNoFileFoundException(loadFileInfo.FullName);
         }
 
         public static ApexSharpConfig CreateSession(ApexSharpConfig config)
