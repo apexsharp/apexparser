@@ -10,6 +10,7 @@ namespace SalesForceAPI.UnitTest
         [Test]
         public void AddIdTest123()
         {
+            UnitTestDataManager.RemoveAllIds();
             UnitTestDataManager.AddId("123");
             Assert.AreEqual(1, UnitTestDataManager.IdCount());
         }

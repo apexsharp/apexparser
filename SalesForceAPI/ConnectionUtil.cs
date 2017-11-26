@@ -126,10 +126,10 @@ namespace SalesForceAPI
             switch (responseMessage.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    Log.ForContext<ConnectionUtil>().Information(xml, "Login Success");
+                    Log.ForContext<ConnectionUtil>().Information("Login Success {xml}", xml);
                     return xml;
                 default:
-                    Log.ForContext<ConnectionUtil>().Error(xml, "Login Fail");
+                    Log.ForContext<ConnectionUtil>().Error("Login Fail {xml}", xml);
                     return xml;
             }
         }

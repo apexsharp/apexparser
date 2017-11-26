@@ -9,7 +9,9 @@ namespace SalesForceAPI.UnitTest
         public static void Init()
         {
             // Always Initialize your settings before using it.
-            Setup.Init();
+            var status = Setup.Init();
+            Assert.IsTrue(status);
+
             UnitTestDataManager.UnitTestDataManagerOn();
         }
 
