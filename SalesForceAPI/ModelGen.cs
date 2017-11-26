@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Colorful;
 using Newtonsoft.Json;
-using SalesForceAPI.Model;
 using SalesForceAPI.Model.RestApi;
+using Serilog;
+using Console = Colorful.Console;
 
 namespace SalesForceAPI
 {
@@ -18,8 +19,18 @@ namespace SalesForceAPI
     }
     public class ModelGen
     {
+        readonly HashSet<string> _objectsToGet = new HashSet<string>();
+        readonly HashSet<string> _objectsWeGot = new HashSet<string>();
+
+        private List<Sobject> _sObjectListJson = new List<Sobject>();
+
         public List<Sobject> GetAllObjects()
         {
+            if (_sObjectListJson.Any())
+            {
+                return _sObjectListJson;
+            }
+
             string dirPath = ConnectionUtil.GetSession().CatchLocation.FullName;
 
             //HttpManager httpManager = new HttpManager();
@@ -28,7 +39,7 @@ namespace SalesForceAPI
 
             var json = File.ReadAllText(dirPath + @"\objectList.json");
             SObjectDescribe sObjectList = JsonConvert.DeserializeObject<SObjectDescribe>(json);
-            List<Sobject> allSobjects = sObjectList.sobjects.ToList();
+            _sObjectListJson = sObjectList.sobjects.ToList();
 
             //var customObjectCount = allSobjects.Where(x => x.custom).ToList();
             //var customSetting = allSobjects.Where(x => x.customSetting).ToList();
@@ -38,54 +49,57 @@ namespace SalesForceAPI
             //System.Console.WriteLine(customSetting.Count());
             //System.Console.WriteLine(objectCount.Count());
 
-            return allSobjects;
+            return _sObjectListJson;
         }
+
         public List<SObjectCode> CreateOfflineSymbolTable(string nameSpace, params string[] objectNameList)
         {
+
             List<SObjectCode> codeList = new List<SObjectCode>();
+
             var allSobjects = GetAllObjects();
 
-            List<Sobject> objectsToGet = new List<Sobject>();
+            // Double check if the object exists, if not error
             foreach (var objectToRead in objectNameList)
             {
-                if (allSobjects.FirstOrDefault(x => x.name == objectToRead) != null)
+                if (allSobjects.Any(x => x.name == objectToRead))
                 {
-                    objectsToGet.Add(allSobjects.FirstOrDefault(x => x.name == objectToRead));
+                    _objectsToGet.Add(allSobjects.First(x => x.name == objectToRead).name);
+                }
+                else
+                {
+                    Log.ForContext<ModelGen>().Error("Object {@name} Not Found", objectToRead);
                 }
             }
 
-            while (objectsToGet.Count(x => x.downloaded == false) > 0)
+            while (_objectsToGet.Count > 0)
             {
-                Sobject objectToDownload = objectsToGet.FirstOrDefault(x => x.downloaded == false);
-
+                var objectToDownload = _objectsToGet.First();
                 HttpManager httpManager = new HttpManager();
-                var objectDetailjson = httpManager.Get($"sobjects/{objectToDownload.name}/describe");
+                var objectDetailjson = httpManager.Get($"sobjects/{objectToDownload}/describe");
 
                 SObjectDetail sObjectDetail = JsonConvert.DeserializeObject<SObjectDetail>(objectDetailjson);
 
                 string dirPath = ConnectionUtil.GetSession().CatchLocation.FullName;
                 objectDetailjson = JsonConvert.SerializeObject(sObjectDetail, Formatting.Indented);
-                File.WriteAllText(dirPath + $"\\{objectToDownload.name}.json", objectDetailjson);
+                File.WriteAllText(dirPath + $"\\{objectToDownload}.json", objectDetailjson);
 
 
+                _objectsWeGot.Add(objectToDownload);
                 var sobjectcode = new SObjectCode
                 {
-                    ClassName = $"{objectToDownload.name}.cs",
+                    ClassName = $"{objectToDownload}.cs",
                     Code = CreateSalesForceClasses(sObjectDetail, nameSpace)
                 };
+                _objectsToGet.Remove(objectToDownload);
 
                 codeList.Add(sobjectcode);
-
-                objectToDownload.downloaded = true;
             }
             return codeList;
         }
 
-
         private string CreateSalesForceClasses(SObjectDetail objectDetail, string nameSpace)
         {
-            List<string> objectsToDownload = new List<string>();
-
             var sb = new StringBuilder();
 
             sb.AppendLine("namespace " + nameSpace);
@@ -113,8 +127,17 @@ namespace SalesForceAPI
                     {
                         sb.AppendLine($"\t\tpublic {objectField.referenceTo[0]} {objectField.relationshipName} {setGet}");
 
-                        objectsToDownload.AddRange(objectField.referenceTo);
-
+                        foreach (var refferenceObject in objectField.referenceTo)
+                        {
+                            if (_objectsWeGot.Contains(refferenceObject))
+                            {
+                                // Don't add if we have downloaded this object
+                            }
+                            else
+                            {
+                                _objectsToGet.Add(refferenceObject);
+                            }
+                        }
                     }
                 }
                 else if (objectField.type != "id")
@@ -125,10 +148,6 @@ namespace SalesForceAPI
 
             sb.AppendLine("\t}");
             sb.AppendLine("}");
-
-            var objectsNeedToDownload = objectsToDownload.Distinct().ToList();
-
-            Debugger.Break();
 
             return sb.ToString();
 
@@ -169,7 +188,5 @@ namespace SalesForceAPI
             {"double","double" },
             {"int","int" }
         };
-
-
     }
 }

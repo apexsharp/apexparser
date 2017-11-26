@@ -19,6 +19,13 @@ namespace ApexSharpDemo.ApexCode
         }
 
         [Test]
+        public static void CountTest()
+        {
+            Assert.AreEqual(5, Demo.GetContacts().Count);
+        }
+
+
+        [Test]
         public static void UpdatePhoneTestValidEmail()
         {
             //Demo.UpdatePhone("jay@jay.com", "555-1212");
