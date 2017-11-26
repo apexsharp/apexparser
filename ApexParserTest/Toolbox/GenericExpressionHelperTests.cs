@@ -250,5 +250,25 @@ namespace ApexParserTest.Toolbox
             csharp = GenericExpressionHelper.ConvertStringValueofToString(text);
             Assert.AreEqual("string.valueOf(method())", csharp);
         }
+
+        [Test]
+        public void DateTimeNowAndDateTodayAreConverted()
+        {
+            var text = "Datetime.now()";
+            var csharp = GenericExpressionHelper.ConvertApexDateTimeNowToCSharp(text);
+            Assert.AreEqual("DateTime.Now", csharp);
+
+            text = "Date.today()";
+            csharp = GenericExpressionHelper.ConvertApexDateTodayToCSharp(text);
+            Assert.AreEqual("DateTime.Today", csharp);
+
+            text = "DateTime.Now";
+            var apex = GenericExpressionHelper.ConvertCSharpDateTimeNowToApex(text);
+            Assert.AreEqual("Datetime.now()", apex);
+
+            text = "DateTime.Today";
+            apex = GenericExpressionHelper.ConvertCSharpDateTimeTodayToApex(text);
+            Assert.AreEqual("Date.today()", apex);
+        }
     }
 }

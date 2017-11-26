@@ -280,6 +280,13 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void DateTimeNowAndDateTimeTodayAreConverted()
+        {
+            Check("class A { void T() { System.debug(DateTime.Now); } }", "class A { void T() { System.debug(Datetime.now()); } }");
+            Check("class A { void T() { System.debug(DateTime.Today); } }", "class A { void T() { System.debug(Date.today()); } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();

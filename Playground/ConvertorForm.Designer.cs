@@ -60,7 +60,7 @@
             this.LeftBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
     "?<range>:)\\s*(?<range>[^;]+);\n";
             this.LeftBox.AutoIndentExistingLines = false;
-            this.LeftBox.AutoScrollMinSize = new System.Drawing.Size(387, 112);
+            this.LeftBox.AutoScrollMinSize = new System.Drawing.Size(779, 770);
             this.LeftBox.BackBrush = null;
             this.LeftBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
             this.LeftBox.CharHeight = 14;
@@ -68,6 +68,7 @@
             this.LeftBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.LeftBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.LeftBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.LeftBox.IsReplaceMode = false;
             this.LeftBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.LeftBox.LeftBracket = '(';
@@ -79,11 +80,9 @@
             this.LeftBox.RightBracket2 = '}';
             this.LeftBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.LeftBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("LeftBox.ServiceColors")));
-            this.LeftBox.Size = new System.Drawing.Size(368, 487);
+            this.LeftBox.Size = new System.Drawing.Size(445, 550);
             this.LeftBox.TabIndex = 0;
-            this.LeftBox.Text = "public with sharing class ClassOne\r\n{\r\n     public void CallClassTwo()\r\n     {\r\n " +
-    "         ClassTwo classTwo = new ClassTwo();\r\n          System.debug(\'Test\');\r\n " +
-    "    }\r\n}";
+            this.LeftBox.Text = resources.GetString("LeftBox.Text");
             this.LeftBox.Zoom = 100;
             this.LeftBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.LeftBox_TextChangedDelayed);
             // 
@@ -112,8 +111,8 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.Controls.Add(this.RightBox);
-            this.SplitContainer.Size = new System.Drawing.Size(750, 487);
-            this.SplitContainer.SplitterDistance = 368;
+            this.SplitContainer.Size = new System.Drawing.Size(908, 550);
+            this.SplitContainer.SplitterDistance = 445;
             this.SplitContainer.TabIndex = 2;
             // 
             // RightBox
@@ -139,7 +138,6 @@
             this.RightBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RightBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.RightBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.RightBox.IsReplaceMode = false;
             this.RightBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.RightBox.LeftBracket = '(';
@@ -147,11 +145,12 @@
             this.RightBox.Location = new System.Drawing.Point(0, 0);
             this.RightBox.Name = "RightBox";
             this.RightBox.Paddings = new System.Windows.Forms.Padding(0);
+            this.RightBox.ReadOnly = true;
             this.RightBox.RightBracket = ')';
             this.RightBox.RightBracket2 = '}';
             this.RightBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.RightBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("RightBox.ServiceColors")));
-            this.RightBox.Size = new System.Drawing.Size(378, 487);
+            this.RightBox.Size = new System.Drawing.Size(459, 550);
             this.RightBox.TabIndex = 0;
             this.RightBox.Zoom = 100;
             // 
@@ -161,7 +160,7 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(750, 41);
+            this.TopPanel.Size = new System.Drawing.Size(908, 41);
             this.TopPanel.TabIndex = 3;
             this.TopPanel.Visible = false;
             // 
@@ -169,11 +168,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 528);
+            this.ClientSize = new System.Drawing.Size(908, 591);
             this.Controls.Add(this.SplitContainer);
             this.Controls.Add(this.TopPanel);
             this.Name = "ConvertorForm";
             this.Text = "Convertor playground";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.LeftBox)).EndInit();
             this.SplitContainer.Panel1.ResumeLayout(false);
             this.SplitContainer.Panel2.ResumeLayout(false);

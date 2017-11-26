@@ -135,6 +135,63 @@
         CgAAAAAAAAAAjQABAAH4/////P///woAAAAAAAAAAKQAAQAB9/////z///8KAAAAAAAAAACWAAEACw==
 </value>
   </data>
+  <data name="LeftBox.Text" xml:space="preserve">
+    <value>public class Demo
+{
+    public Contact contact { get; set; }
+
+    public Demo()
+    {
+        contact = new Contact();
+    }
+
+    public PageReference Save()
+    {
+        try
+        {
+            insert contact;
+        }
+        catch (DMLException e)
+        {
+            ApexPages.AddMessages(e);
+        }
+
+        return null;
+    }
+
+    public static String UpdatePhone(String email, String newPhone)
+    {
+        List&lt;Contact&gt; contacts = GetContactByEMail(email);
+        if (contacts.IsEmpty())
+        {
+            return 'Not Found';
+        }
+        else
+        {
+            contacts[0].Phone = newPhone;
+            UpdateContacts(contacts);
+            return 'Phone Number Updated';
+        }
+    }
+
+    private static List&lt;Contact&gt; GetContactByEMail(String email, integer x)
+    {
+        List&lt;Contact&gt; contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = :email];
+        return contacts;
+    }
+
+    public static List&lt;Contact&gt; GetContacts()
+    {
+        List&lt;Contact&gt; contacts = [SELECT Id, Email, Phone FROM Contact];
+        return contacts;
+    }
+
+    private static void UpdateContacts(List&lt;Contact&gt; contacts)
+    {
+        update contacts;
+    }
+}</value>
+  </data>
   <data name="RightBox.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdGYXN0Q29sb3JlZFRleHRCb3gsIFZlcnNpb249Mi4xNi4yMS4w

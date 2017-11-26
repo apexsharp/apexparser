@@ -108,5 +108,41 @@ namespace ApexParser.Toolbox
             // replace string.valueOf(x) with x.ToString()
             return ApexStringValueofRegex.Replace(expression, m => $"{WrapValue(m.Groups["Value"].Value)}.ToString()");
         }
+
+        private static Regex ApexDateTimeNowRegex { get; } = new Regex(@"\bDateTime\s*\.\s*now\s*\(\s*\)",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertApexDateTimeNowToCSharp(string expression)
+        {
+            // replace Datetime.now() with DateTime.Now
+            return ApexDateTimeNowRegex.Replace(expression, "DateTime.Now");
+        }
+
+        private static Regex ApexDateTodayRegex { get; } = new Regex(@"\bDate\s*\.\s*today\s*\(\s*\)",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertApexDateTodayToCSharp(string expression)
+        {
+            // replace Date.today() with DateTime.Today
+            return ApexDateTodayRegex.Replace(expression, "DateTime.Today");
+        }
+
+        private static Regex CSharpDateTimeNowRegex { get; } = new Regex(@"\bDateTime\s*\.\s*Now",
+            RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertCSharpDateTimeNowToApex(string expression)
+        {
+            // replace DateTime.Now with Datetime.now()
+            return CSharpDateTimeNowRegex.Replace(expression, "Datetime.now()");
+        }
+
+        private static Regex CSharpDateTimeTodayRegex { get; } = new Regex(@"\bDateTime\s*\.\s*Today",
+            RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertCSharpDateTimeTodayToApex(string expression)
+        {
+            // replace DateTime.Today with Date.today()
+            return CSharpDateTimeTodayRegex.Replace(expression, "Date.today()");
+        }
     }
 }
