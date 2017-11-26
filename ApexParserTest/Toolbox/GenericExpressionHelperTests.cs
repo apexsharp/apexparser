@@ -195,5 +195,60 @@ namespace ApexParserTest.Toolbox
             apex = GenericExpressionHelper.ConvertSoqlStatementsToApex(text);
             Assert.AreEqual("delete contact;", apex);
         }
+
+        [Test]
+        public void SomeDotClassIsConvertedToTypeofClass()
+        {
+            var text = "string.class";
+            var csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(string)", csharp);
+
+            text = "mock(MyLittleClass.class)";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("mock(typeof(MyLittleClass))", csharp);
+
+            // not supported by regex-based expression helper
+            text = "Map<string, string>.class)";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("Map<string, string>.class)", csharp);
+        }
+
+        [Test]
+        public void TypeofSomeIsConvertedToSomeDotClass()
+        {
+            var text = "typeof(string)";
+            var apex = GenericExpressionHelper.ConvertTypeofExpressionsToApex(text);
+            Assert.AreEqual("string.class", apex);
+
+            text = "mock(typeof(MyLittleClass))";
+            apex = GenericExpressionHelper.ConvertTypeofExpressionsToApex(text);
+            Assert.AreEqual("mock(MyLittleClass.class)", apex);
+
+            // backward conversion is supported
+            text = "typeof(Map<string, string>)";
+            apex = GenericExpressionHelper.ConvertTypeofExpressionsToApex(text);
+            Assert.AreEqual("Map<string, string>.class", apex);
+        }
+
+        [Test]
+        public void StringValueofSomethingIsConvertedToSomethingToString()
+        {
+            var text = "string.valueOf(1)";
+            var csharp = GenericExpressionHelper.ConvertStringValueofToString(text);
+            Assert.AreEqual("1.ToString()", csharp);
+
+            text = "string.valueOf(something)";
+            csharp = GenericExpressionHelper.ConvertStringValueofToString(text);
+            Assert.AreEqual("something.ToString()", csharp);
+
+            text = "string.valueOf(something+1)";
+            csharp = GenericExpressionHelper.ConvertStringValueofToString(text);
+            Assert.AreEqual("(something+1).ToString()", csharp);
+
+            // not supported by regex-based expression helper
+            text = "string.valueOf(method())";
+            csharp = GenericExpressionHelper.ConvertStringValueofToString(text);
+            Assert.AreEqual("string.valueOf(method())", csharp);
+        }
     }
 }

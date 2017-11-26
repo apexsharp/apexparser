@@ -416,13 +416,11 @@ namespace ApexParser.Visitors
             Append("Soql.Query<{0}>(\"{1}\"{2})", tableName, queryText, paramList);
         }
 
-        private static Regex ApexTypeofRegex { get; } = new Regex(@"\b(?<Type>\w[\w\d]*)\b\s*\.\s*class",
-            RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
         protected override void AppendExpressionPart(string part)
         {
-            // replace string.class with typeof(string)
-            part = ApexTypeofRegex.Replace(part, m => $"typeof({m.Groups["Type"].Value})");
+            // replace string.class => typeof(string), string.valueOf(x) => x.ToString()
+            part = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(part);
+            part = GenericExpressionHelper.ConvertStringValueofToString(part);
 
             // replace Apex types with C# types
             foreach (var r in CSharpTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))

@@ -89,7 +89,7 @@ namespace ApexSharpDemo.ApexCode
 
         public static string extractTypeName(object mockInstance)
         {
-            return string.valueOf(mockInstance).split(":").get(0);
+            return mockInstance.ToString().split(":").get(0);
         }
 
         /**

@@ -76,5 +76,37 @@ namespace ApexParser.Toolbox
             return CShaspSoqlInsertUpdateDeleteRegex.Replace(expression,
                 x => x.Groups["Operation"].Value.ToLower() + " " + x.Groups["Expression"].Value);
         }
+
+        private static Regex ApexTypeofRegex { get; } = new Regex(@"\b(?<Type>\w[\w\d]*)\b\s*\.\s*class",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertTypeofExpressionsToCSharp(string expression)
+        {
+            // replace string.class with typeof(string)
+            return ApexTypeofRegex.Replace(expression, m => $"typeof({m.Groups["Type"].Value})");
+        }
+
+        private static Regex CSharpTypeofRegex { get; } = new Regex(@"\btypeof\s*\(\s*(?<Type>[^()]*)\s*\)",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertTypeofExpressionsToApex(string expression)
+        {
+            // replace typeof(string) with string.class
+            return CSharpTypeofRegex.Replace(expression, m => $"{m.Groups["Type"].Value}.class");
+        }
+
+        private static Regex ApexStringValueofRegex { get; } = new Regex(@"\bstring\s*\.\s*valueOf\s*\((?<Value>[^()]*)\)",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        private static Regex HasSymbolsRegex { get; } = new Regex(@"[\s+\-*/%\$\,\;]");
+
+        public static string ConvertStringValueofToString(string expression)
+        {
+            string WrapValue(string value) =>
+                HasSymbolsRegex.IsMatch(value) ? $"({value})" : value;
+
+            // replace string.valueOf(x) with x.ToString()
+            return ApexStringValueofRegex.Replace(expression, m => $"{WrapValue(m.Groups["Value"].Value)}.ToString()");
+        }
     }
 }

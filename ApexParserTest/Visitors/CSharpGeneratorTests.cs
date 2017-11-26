@@ -1115,5 +1115,35 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void StringValueOfXIsReplacedWithXToString()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    public Datetime SomeMethod() {
+                        String x = string.valueOf(123);
+                        String y = String.valueOf(10 + 20);
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Sample
+                    {
+                        public DateTime SomeMethod()
+                        {
+                            string x = 123.ToString();
+                            string y = (10 + 20).ToString();
+                        }
+                    }
+                }");
+        }
     }
 }
