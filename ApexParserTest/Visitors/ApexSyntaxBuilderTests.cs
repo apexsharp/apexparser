@@ -273,6 +273,20 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void TypeofXIsConvertedToXDotClass()
+        {
+            Check("class A { void T() { Type x = typeof(A); } }", "class A { void T() { Type x = A.class; } }");
+            Check("class A { void T() { Type x = typeof(List<string>); } }", "class A { void T() { Type x = List<string>.class; } }");
+        }
+
+        [Test]
+        public void DateTimeNowAndDateTimeTodayAreConverted()
+        {
+            Check("class A { void T() { System.debug(DateTime.Now); } }", "class A { void T() { System.debug(Datetime.now()); } }");
+            Check("class A { void T() { System.debug(DateTime.Today); } }", "class A { void T() { System.debug(Date.today()); } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();

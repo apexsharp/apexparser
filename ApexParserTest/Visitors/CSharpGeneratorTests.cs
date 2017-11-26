@@ -1066,7 +1066,6 @@ namespace ApexParserTest.Visitors
                     }
                 }");
 
-            // note that new Map<String, String> is not yet converted
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
@@ -1081,7 +1080,71 @@ namespace ApexParserTest.Visitors
 
                         public Map<string, string> SomeMethod()
                         {
-                            return new Map<String, String>();
+                            return new Map<string, string>();
+                        }
+                    }
+                }");
+        }
+
+        [Test]
+        public void SomeDotClassGotReplacedWithTypeofSome()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    public Datetime SomeMethod() {
+                        Type type = Sample.class;
+                        AnotherMethod(String.class);
+                        return Datetime.now();
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Sample
+                    {
+                        public DateTime SomeMethod()
+                        {
+                            Type type = typeof(Sample);
+                            AnotherMethod(typeof(string));
+                            return DateTime.Now;
+                        }
+                    }
+                }");
+        }
+
+        [Test]
+        public void StringValueOfXIsReplacedWithXToString()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    public Date SomeMethod() {
+                        String x = string.valueOf(123);
+                        String y = String.valueOf(10 + 20);
+                        return Date.today();
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Sample
+                    {
+                        public DateTime SomeMethod()
+                        {
+                            string x = 123.ToString();
+                            string y = (10 + 20).ToString();
+                            return DateTime.Today;
                         }
                     }
                 }");

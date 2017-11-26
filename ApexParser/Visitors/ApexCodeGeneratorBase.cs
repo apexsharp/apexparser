@@ -378,10 +378,12 @@ namespace ApexParser.Visitors
                 }
                 else
                 {
-                    Append("{0}", part);
+                    AppendExpressionPart(part);
                 }
             }
         }
+
+        protected virtual void AppendExpressionPart(string part) => Append("{0}", part);
 
         protected virtual void AppendStringLiteral(string literal) => Append("{0}", literal);
 
