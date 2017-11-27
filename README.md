@@ -1,6 +1,7 @@
 ### A C# to APEX Converter AND a APEX to C# Converter
 
 [![appveyor](https://ci.appveyor.com/api/projects/status/github/jayonsoftware/apexsharp?svg=true)](https://ci.appveyor.com/project/jayonsoftware/apexsharp)
+[![tests](https://img.shields.io/appveyor/tests/jayonsoftware/apexsharp.svg)](https://ci.appveyor.com/project/jayonsoftware/apexsharp/build/tests)
 [![codecov](https://codecov.io/gh/yallie/apexsharp/branch/master/graph/badge.svg)](https://codecov.io/gh/yallie/apexsharp)
 
 ![Logo](apexsharpLogo.jpg)
