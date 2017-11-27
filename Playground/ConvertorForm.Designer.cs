@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConvertorForm));
             this.LeftBox = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.DirectionBox = new System.Windows.Forms.ComboBox();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.RightBox = new FastColoredTextBoxNS.FastColoredTextBox();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.ConversionButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LeftBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
@@ -80,28 +80,16 @@
             this.LeftBox.RightBracket2 = '}';
             this.LeftBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.LeftBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("LeftBox.ServiceColors")));
-            this.LeftBox.Size = new System.Drawing.Size(445, 550);
+            this.LeftBox.Size = new System.Drawing.Size(445, 542);
             this.LeftBox.TabIndex = 0;
             this.LeftBox.Text = resources.GetString("LeftBox.Text");
             this.LeftBox.Zoom = 100;
             this.LeftBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.LeftBox_TextChangedDelayed);
             // 
-            // DirectionBox
-            // 
-            this.DirectionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DirectionBox.FormattingEnabled = true;
-            this.DirectionBox.Items.AddRange(new object[] {
-            "Apex → C#",
-            "C# → Apex"});
-            this.DirectionBox.Location = new System.Drawing.Point(12, 12);
-            this.DirectionBox.Name = "DirectionBox";
-            this.DirectionBox.Size = new System.Drawing.Size(250, 21);
-            this.DirectionBox.TabIndex = 1;
-            // 
             // SplitContainer
             // 
             this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainer.Location = new System.Drawing.Point(0, 41);
+            this.SplitContainer.Location = new System.Drawing.Point(0, 49);
             this.SplitContainer.Name = "SplitContainer";
             // 
             // SplitContainer.Panel1
@@ -111,7 +99,7 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.Controls.Add(this.RightBox);
-            this.SplitContainer.Size = new System.Drawing.Size(908, 550);
+            this.SplitContainer.Size = new System.Drawing.Size(908, 542);
             this.SplitContainer.SplitterDistance = 445;
             this.SplitContainer.TabIndex = 2;
             // 
@@ -150,19 +138,28 @@
             this.RightBox.RightBracket2 = '}';
             this.RightBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.RightBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("RightBox.ServiceColors")));
-            this.RightBox.Size = new System.Drawing.Size(459, 550);
+            this.RightBox.Size = new System.Drawing.Size(459, 542);
             this.RightBox.TabIndex = 0;
             this.RightBox.Zoom = 100;
             // 
             // TopPanel
             // 
-            this.TopPanel.Controls.Add(this.DirectionBox);
+            this.TopPanel.Controls.Add(this.ConversionButton);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(908, 41);
+            this.TopPanel.Size = new System.Drawing.Size(908, 49);
             this.TopPanel.TabIndex = 3;
-            this.TopPanel.Visible = false;
+            // 
+            // ConversionButton
+            // 
+            this.ConversionButton.Location = new System.Drawing.Point(12, 12);
+            this.ConversionButton.Name = "ConversionButton";
+            this.ConversionButton.Size = new System.Drawing.Size(226, 23);
+            this.ConversionButton.TabIndex = 2;
+            this.ConversionButton.Text = "Conversion: Apex → C# (click to swap)";
+            this.ConversionButton.UseVisualStyleBackColor = true;
+            this.ConversionButton.Click += new System.EventHandler(this.ConversionButton_Click);
             // 
             // ConvertorForm
             // 
@@ -188,10 +185,10 @@
         #endregion
 
         private FastColoredTextBoxNS.FastColoredTextBox LeftBox;
-        private System.Windows.Forms.ComboBox DirectionBox;
         private System.Windows.Forms.SplitContainer SplitContainer;
         private FastColoredTextBoxNS.FastColoredTextBox RightBox;
         private System.Windows.Forms.Panel TopPanel;
+        private System.Windows.Forms.Button ConversionButton;
     }
 }
 

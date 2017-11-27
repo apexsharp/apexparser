@@ -16,13 +16,11 @@ namespace Playground
         public ConvertorForm()
         {
             InitializeComponent();
-            DirectionBox.SelectedIndex = 0;
+            Convert = ToCSharp;
             DoConvert();
         }
 
-        private Func<string, string> Convert =>
-            DirectionBox.SelectedIndex == 0 ?
-                new Func<string, string>(ToCSharp) : ToApex;
+        private Func<string, string> Convert { get; set; }
 
         private string ToCSharp(string s)
         {
@@ -47,6 +45,23 @@ namespace Playground
             {
                 RightBox.Text = result;
             }
+        }
+
+        private void ConversionButton_Click(object sender, EventArgs e)
+        {
+            if (Convert == ToCSharp)
+            {
+                Convert = ToApex;
+                ConversionButton.Text = "Conversion: C# → Apex (click to swap)";
+            }
+            else
+            {
+                Convert = ToCSharp;
+                ConversionButton.Text = "Conversion: Apex → C# (click to swap)";
+            }
+
+            LeftBox.Text = RightBox.Text;
+            DoConvert();
         }
     }
 }
