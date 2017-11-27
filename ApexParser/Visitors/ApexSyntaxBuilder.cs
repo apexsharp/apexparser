@@ -43,6 +43,7 @@ using ApexUpdateStatementSyntax = ApexParser.MetaClass.UpdateStatementSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
 using ApexWhileStatementSyntax = ApexParser.MetaClass.WhileStatementSyntax;
+using IAnnotatedSyntax = ApexParser.MetaClass.IAnnotatedSyntax;
 
 namespace ApexParser.Visitors
 {
@@ -113,7 +114,7 @@ namespace ApexParser.Visitors
             LastClassMember = classDeclaration;
         }
 
-        private void AddAnnotationOrModifier(ApexMemberDeclarationSyntax member, object converted)
+        private void AddAnnotationOrModifier(IAnnotatedSyntax member, object converted)
         {
             if (converted is ApexAnnotationSyntax annotation)
             {
@@ -185,6 +186,10 @@ namespace ApexParser.Visitors
             }
 
             // modifiers
+            else if (node.Identifier == "Global")
+            {
+                return ApexKeywords.Global;
+            }
             else if (node.Identifier == "WithSharing")
             {
                 return $"{ApexKeywords.With} {ApexKeywords.Sharing}";
@@ -221,6 +226,28 @@ namespace ApexParser.Visitors
             else if (node.Identifier == "WebService")
             {
                 return ApexKeywords.WebService;
+            }
+
+            return node;
+        }
+
+        private object ConvertFieldAnnotation(ApexAnnotationSyntax node)
+        {
+            // modifiers
+            if (node.Identifier == "Transient")
+            {
+                return ApexKeywords.Transient;
+            }
+
+            return node;
+        }
+
+        private object ConvertParameterAnnotation(ApexAnnotationSyntax node)
+        {
+            // modifiers
+            if (node.Identifier == "Final")
+            {
+                return ApexKeywords.Final;
             }
 
             return node;
@@ -383,7 +410,15 @@ namespace ApexParser.Visitors
 
         public override void VisitParameter(ParameterSyntax node)
         {
-            LastParameter = new ApexParameterSyntax(ConvertType(node.Type), node.Identifier.ValueText);
+            var param = new ApexParameterSyntax(ConvertType(node.Type), node.Identifier.ValueText);
+
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(param, ConvertParameterAnnotation(LastAnnotation));
+            }
+
+            LastParameter = param;
         }
 
         private ApexTypeSyntax ConvertType(TypeSyntax type)
@@ -403,6 +438,12 @@ namespace ApexParser.Visitors
                 Type = ConvertType(node.Declaration.Type),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
+
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(field, ConvertFieldAnnotation(LastAnnotation));
+            }
 
             if (node.Declaration != null)
             {

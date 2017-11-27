@@ -289,15 +289,17 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ApexClassAttributesAreConvertedToModifiers()
         {
+            Check("[Global] public class X {}", "public global class X {}");
             Check("[WithSharing] public class X {}", "public with sharing class X {}");
             Check("[WithoutSharing] public class X {}", "public without sharing class X {}");
         }
 
         [Test]
-        public void ApexMethodAttributesAreConvertedToModifiers()
+        public void ApexMethodAndFieldAttributesAreConvertedToModifiers()
         {
             Check("public class X { [WebService] public void Y() { } }", "public class X { public webservice void Y() { } }");
-            Check("public class X { void Y() { } }", "public class X { void Y() { } }");
+            Check("public class X { [Transient] private int counter = 10; }", "public class X { private transient int counter = 10; }");
+            Check("public class X { static void Z([Final] int y) { } }", "public class X { static void Z(final int y) { } }");
         }
 
         [Test]
