@@ -167,7 +167,7 @@ namespace ApexParser.Parser
         public const string Upsert = "upsert";
         public const string Using = "using";
         public const string Virtual = "virtual";
-        public const string Webservice = "webservice";
+        ////public const string Webservice = "webservice";
         ////public const string When = "when"; // reserved for future use
         public const string Where = "where";
         public const string While = "while";

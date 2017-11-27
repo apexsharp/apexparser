@@ -95,7 +95,7 @@ namespace ApexParser.Visitors
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
                 attr.Accept(this);
-                classDeclaration.Annotations.Add(ConvertClassAnnotation(LastAnnotation));
+                AddAnnotationOrModifier(classDeclaration, ConvertClassAnnotation(LastAnnotation));
             }
 
             foreach (var member in node.Members.EmptyIfNull())
@@ -111,6 +111,18 @@ namespace ApexParser.Visitors
             classDeclaration.InnerComments = LastComments.ToList();
             LastComments.Clear();
             LastClassMember = classDeclaration;
+        }
+
+        private void AddAnnotationOrModifier(ApexMemberDeclarationSyntax member, object converted)
+        {
+            if (converted is ApexAnnotationSyntax annotation)
+            {
+                member.Annotations.Add(annotation);
+            }
+            else if (converted is string modifier)
+            {
+                member.Modifiers.Add(modifier);
+            }
         }
 
         public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
@@ -129,7 +141,7 @@ namespace ApexParser.Visitors
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
                 attr.Accept(this);
-                interfaceDeclaration.Annotations.Add(ConvertClassAnnotation(LastAnnotation));
+                AddAnnotationOrModifier(interfaceDeclaration, ConvertClassAnnotation(LastAnnotation));
             }
 
             foreach (var member in node.Members.EmptyIfNull())
@@ -160,8 +172,9 @@ namespace ApexParser.Visitors
         private List<ApexTypeSyntax> ConvertBaseTypes(params BaseTypeSyntax[] csharpTypes) =>
             csharpTypes.EmptyIfNull().Select(ConvertBaseType).Where(t => t != null).ToList();
 
-        private ApexAnnotationSyntax ConvertClassAnnotation(ApexAnnotationSyntax node)
+        private object ConvertClassAnnotation(ApexAnnotationSyntax node)
         {
+            // annotations
             if (node.Identifier == "TestFixture")
             {
                 return new ApexAnnotationSyntax
@@ -171,11 +184,22 @@ namespace ApexParser.Visitors
                 };
             }
 
+            // modifiers
+            else if (node.Identifier == "WithSharing")
+            {
+                return $"{ApexKeywords.With} {ApexKeywords.Sharing}";
+            }
+            else if (node.Identifier == "WithoutSharing")
+            {
+                return $"{ApexKeywords.Without} {ApexKeywords.Sharing}";
+            }
+
             return node;
         }
 
-        private ApexAnnotationSyntax ConvertMethodAnnotation(ApexAnnotationSyntax node)
+        private object ConvertMethodAnnotation(ApexAnnotationSyntax node)
         {
+            // annotations
             if (node.Identifier == "Test")
             {
                 return new ApexAnnotationSyntax
@@ -191,6 +215,12 @@ namespace ApexParser.Visitors
                     Identifier = ApexKeywords.TestSetup,
                     Parameters = node.Parameters,
                 };
+            }
+
+            // modifiers
+            else if (node.Identifier == "WebService")
+            {
+                return ApexKeywords.WebService;
             }
 
             return node;
@@ -251,7 +281,7 @@ namespace ApexParser.Visitors
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
                 attr.Accept(this);
-                method.Annotations.Add(ConvertMethodAnnotation(LastAnnotation));
+                AddAnnotationOrModifier(method, ConvertMethodAnnotation(LastAnnotation));
             }
 
             foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())
@@ -292,7 +322,7 @@ namespace ApexParser.Visitors
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
                 attr.Accept(this);
-                method.Annotations.Add(ConvertMethodAnnotation(LastAnnotation));
+                AddAnnotationOrModifier(method, ConvertMethodAnnotation(LastAnnotation));
             }
 
             foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())

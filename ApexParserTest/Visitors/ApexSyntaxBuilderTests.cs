@@ -287,6 +287,20 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void ApexClassAttributesAreConvertedToModifiers()
+        {
+            Check("[WithSharing] public class X {}", "public with sharing class X {}");
+            Check("[WithoutSharing] public class X {}", "public without sharing class X {}");
+        }
+
+        [Test]
+        public void ApexMethodAttributesAreConvertedToModifiers()
+        {
+            Check("public class X { [WebService] public void Y() { } }", "public class X { public webservice void Y() { } }");
+            Check("public class X { void Y() { } }", "public class X { void Y() { } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();
