@@ -1,6 +1,6 @@
 namespace Apex.System
 {
-    public class Set<T>
+    public class Set<T> : global::System.Collections.Generic.HashSet<T>
     {
         public Set()
         {

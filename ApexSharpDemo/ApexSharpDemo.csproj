@@ -247,6 +247,7 @@
     <Compile Include="ApexCode\ClassNoApex.cs" />
     <Compile Include="ApexCode\ClassRest.cs" />
     <Compile Include="ApexCode\ClassUnitTest.cs" />
+    <Compile Include="ApexCode\Collection.cs" />
     <Compile Include="ApexCode\Comments.cs" />
     <Compile Include="ApexCode\Demo.cs" />
     <Compile Include="ApexCode\DemoTest.cs" />

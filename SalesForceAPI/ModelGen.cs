@@ -33,9 +33,9 @@ namespace SalesForceAPI
 
             string dirPath = ConnectionUtil.GetSession().CatchLocation.FullName;
 
-            //HttpManager httpManager = new HttpManager();
-            //var requestJson = httpManager.Get($"sobjects/");
-            //File.WriteAllText(dirPath + @"\objectList.json", requestJson);
+            HttpManager httpManager = new HttpManager();
+            var requestJson = httpManager.Get($"sobjects/");
+            File.WriteAllText(dirPath + @"\objectList.json", requestJson);
 
             var json = File.ReadAllText(dirPath + @"\objectList.json");
             SObjectDescribe sObjectList = JsonConvert.DeserializeObject<SObjectDescribe>(json);
