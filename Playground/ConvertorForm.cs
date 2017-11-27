@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,14 @@ namespace Playground
 
             LeftBox.Text = RightBox.Text;
             DoConvert();
+        }
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                LeftBox.Text = File.ReadAllText(OpenFileDialog.FileName);
+            }
         }
     }
 }
