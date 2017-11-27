@@ -154,6 +154,48 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual("email", args[1]);
         }
 
+        private string[] GetFields(string soqlQuery) => GenericExpressionHelper.GetSoqlFields(soqlQuery);
+
+        [Test]
+        public void GetSoqlFieldsForInvalidInputDoesntThrowExpressions()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                Assert.True(GetFields(null).IsNullOrEmpty());
+                Assert.True(GetFields(string.Empty).IsNullOrEmpty());
+                Assert.True(GetFields("Hello World").IsNullOrEmpty());
+            });
+        }
+
+        [Test]
+        public void GetSoqlFieldsForValidSoqlQueriesReturnsArrayOfFieldNamesBetweenSelectAndFrom()
+        {
+            var fields = GetFields(@"SELECT Id, Email,
+                Phone
+                FROM
+                Contact WHERE Email = :email");
+            Assert.NotNull(fields);
+            Assert.AreEqual(3, fields.Length);
+            Assert.AreEqual("Id", fields[0]);
+            Assert.AreEqual("Email", fields[1]);
+            Assert.AreEqual("Phone", fields[2]);
+
+            fields = GetFields("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id or Email = :email");
+            Assert.NotNull(fields);
+            Assert.AreEqual(2, fields.Length);
+            Assert.AreEqual("Id", fields[0]);
+            Assert.AreEqual("Email", fields[1]);
+
+            fields = GetFields("SELECT A,b,something, 123, c from COntacts");
+            Assert.NotNull(fields);
+            Assert.AreEqual(5, fields.Length);
+            Assert.AreEqual("A", fields[0]);
+            Assert.AreEqual("b", fields[1]);
+            Assert.AreEqual("something", fields[2]);
+            Assert.AreEqual("123", fields[3]);
+            Assert.AreEqual("c", fields[4]);
+        }
+
         [Test]
         public void GetSoqlExpressionReturnsApexSoqlExpressionBody()
         {

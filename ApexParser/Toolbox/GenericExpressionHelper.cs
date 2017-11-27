@@ -43,6 +43,17 @@ namespace ApexParser.Toolbox
             return string.Empty;
         }
 
+        private static Regex SoqlFieldsRegex { get; } =
+            new Regex(@"^select \s+ ((?<Field>[^\,\s]*) \s* \, \s*)* (?<Field>[^\,\s]*) \s* from",
+                RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
+
+        public static string[] GetSoqlFields(string soqlQuery)
+        {
+            return SoqlFieldsRegex.Match(soqlQuery ?? string.Empty)
+                .Groups["Field"].Captures.OfType<Capture>().Select(c => c.Value)
+                .Where(f => !string.IsNullOrWhiteSpace(f)).ToArray();
+        }
+
         private static Regex SoqlParameterRegex { get; } =
             new Regex(@"\:\s*(?<Parameter>\w[\w\d\.]*)", RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 

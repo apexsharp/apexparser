@@ -1,9 +1,31 @@
+using System;
+using SalesForceAPI;
+using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
+
 namespace Apex.System
 {
     public class Map<T, K> : global::System.Collections.Generic.SortedDictionary<T, K>
     {
         public Map()
         {
+        }
+
+        public Map(SoqlQuery<K> soqlQuery)
+        {
+            // make sure that Map<T, K> is Map<Id, SObject>
+            if (!typeof(SObject).IsAssignableFrom(typeof(K)) ||
+                !typeof(Id).IsAssignableFrom(typeof(T)))
+            {
+                throw new NotSupportedException("Only Map<Id, SObject> can be initialized via SOQL query data.");
+            }
+
+            foreach (object row in soqlQuery.QueryResult.Value)
+            {
+                var sobj = (SObject)row;
+                object key = sobj.Id;
+                this[(T)key] = (K)row;
+            }
         }
 
         public Map(List<K> objectList)

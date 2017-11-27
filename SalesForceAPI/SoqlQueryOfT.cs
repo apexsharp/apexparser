@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Toolbox;
 
 namespace SalesForceAPI
 {
@@ -14,6 +15,7 @@ namespace SalesForceAPI
             OriginalQuery = originalQuery;
             PreparedQuery = preparedQuery ?? originalQuery;
             Parameters = parameters;
+            Fields = GenericExpressionHelper.GetSoqlFields(originalQuery);
         }
 
         public string OriginalQuery { get; }
@@ -21,6 +23,8 @@ namespace SalesForceAPI
         public string PreparedQuery { get; }
 
         public object[] Parameters { get; }
+
+        public string[] Fields { get; }
 
         public Lazy<List<T>> QueryResult { get; }
 
