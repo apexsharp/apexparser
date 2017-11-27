@@ -25,6 +25,8 @@ namespace SalesForceAPI.UnitTest
             var workingDir = new FileInfo(Assembly.GetCallingAssembly().Location).Directory;
             var configJson = Path.Combine(workingDir.FullName, "config.json");
 
+            Log.ForContext<Setup>().Debug("Json Location {configJson}", configJson);
+
             try
             {
                 ConnectionUtil.Session = ConnectionUtil.GetSession(configJson);

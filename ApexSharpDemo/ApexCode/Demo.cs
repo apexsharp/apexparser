@@ -6,18 +6,18 @@ namespace ApexSharpDemo.ApexCode
 
     public class Demo
     {
-        public Contact contact { get; set; }
+        public Contact SalesForceContact { get; set; }
 
         public Demo()
         {
-            contact = new Contact();
+            SalesForceContact = new Contact();
         }
 
         public PageReference Save()
         {
             try
             {
-                Soql.Insert(contact);
+                Soql.Insert(SalesForceContact);
             }
             catch (DmlException e)
             {
@@ -50,7 +50,7 @@ namespace ApexSharpDemo.ApexCode
 
         public static List<Contact> GetContacts()
         {
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact");
+            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact LIMIT 5");
             return contacts;
         }
 

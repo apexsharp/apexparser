@@ -3,7 +3,6 @@ using Serilog;
 using System.IO;
 using System.Reflection;
 
-
 namespace ApexSharpDemo
 {
     public class Setup

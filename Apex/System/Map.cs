@@ -6,6 +6,11 @@ namespace Apex.System
         {
         }
 
+        public Map(List<K> objectList)
+        {
+
+        }
+
         public Map(List<object> param1)
         {
             throw new global::System.NotImplementedException("Map");
@@ -41,9 +46,9 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Map.Equals");
         }
 
-        public string Get(object key)
+        public K get(T key)
         {
-            throw new global::System.NotImplementedException("Map.Get");
+            return default(K);
         }
 
         //public Schema.SObjectType GetSObjectType() { throw new global::System.NotImplementedException("Map.GetSObjectType"); }
@@ -57,9 +62,9 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Map.IsEmpty");
         }
 
-        public Set<String> KeySet()
+        public Set<T> keySet()
         {
-            throw new global::System.NotImplementedException("Map.KeySet");
+            return new Set<T>();
         }
 
         public string Put(object key, object value)
