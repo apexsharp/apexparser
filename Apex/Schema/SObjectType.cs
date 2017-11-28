@@ -1,5 +1,4 @@
 using Apex.System;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.Schema
@@ -16,12 +15,12 @@ namespace Apex.Schema
             throw new global::System.NotImplementedException("SObjectType.NewSObject");
         }
 
-        public SObject NewSObject(Id id)
+        public SObject NewSObject(ID id)
         {
             throw new global::System.NotImplementedException("SObjectType.NewSObject");
         }
 
-        public SObject NewSObject(Id recordTypeId, bool loadDefaultValues)
+        public SObject NewSObject(ID recordTypeId, bool loadDefaultValues)
         {
             throw new global::System.NotImplementedException("SObjectType.NewSObject");
         }

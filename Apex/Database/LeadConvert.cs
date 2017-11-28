@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Database
 {
@@ -10,12 +10,12 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvert");
         }
 
-        public Id GetAccountId()
+        public ID GetAccountId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetAccountId");
         }
 
-        public Id GetContactId()
+        public ID GetContactId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetContactId");
         }
@@ -25,7 +25,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvert.GetConvertedStatus");
         }
 
-        public Id GetLeadId()
+        public ID GetLeadId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetLeadId");
         }
@@ -35,7 +35,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvert.GetOpportunityName");
         }
 
-        public Id GetOwnerId()
+        public ID GetOwnerId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetOwnerId");
         }
@@ -55,12 +55,12 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvert.IsSendNotificationEmail");
         }
 
-        public void SetAccountId(Id param1)
+        public void SetAccountId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetAccountId");
         }
 
-        public void SetContactId(Id param1)
+        public void SetContactId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetContactId");
         }
@@ -75,7 +75,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvert.SetDoNotCreateOpportunity");
         }
 
-        public void SetLeadId(Id param1)
+        public void SetLeadId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetLeadId");
         }
@@ -90,7 +90,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvert.SetOverwriteLeadSource");
         }
 
-        public void SetOwnerId(Id param1)
+        public void SetOwnerId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetOwnerId");
         }

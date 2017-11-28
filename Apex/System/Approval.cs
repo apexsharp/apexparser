@@ -1,22 +1,21 @@
 using Apex.Approval;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
     public class Approval
     {
-        public static bool IsLocked(Id id)
+        public static bool IsLocked(ID id)
         {
             throw new global::System.NotImplementedException("Approval.IsLocked");
         }
 
-        public static Map<Id, Boolean> IsLocked(List<Id> ids)
+        public static Map<ID, Boolean> IsLocked(List<ID> ids)
         {
             throw new global::System.NotImplementedException("Approval.IsLocked");
         }
 
-        public static Map<Id, Boolean> IsLocked(List<SObject> sobjects)
+        public static Map<ID, Boolean> IsLocked(List<SObject> sobjects)
         {
             throw new global::System.NotImplementedException("Approval.IsLocked");
         }
@@ -26,22 +25,22 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Approval.IsLocked");
         }
 
-        public static LockResult Lock(Id id)
+        public static LockResult Lock(ID id)
         {
             throw new global::System.NotImplementedException("Approval.Lock");
         }
 
-        public static LockResult Lock(Id id, bool allOrNothing)
+        public static LockResult Lock(ID id, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Approval.Lock");
         }
 
-        public static List<LockResult> Lock(List<Id> ids)
+        public static List<LockResult> Lock(List<ID> ids)
         {
             throw new global::System.NotImplementedException("Approval.Lock");
         }
 
-        public static List<LockResult> Lock(List<Id> ids, bool allOrNothing)
+        public static List<LockResult> Lock(List<ID> ids, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Approval.Lock");
         }
@@ -66,22 +65,22 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Approval.Lock");
         }
 
-        public static UnlockResult Unlock(Id id)
+        public static UnlockResult Unlock(ID id)
         {
             throw new global::System.NotImplementedException("Approval.Unlock");
         }
 
-        public static UnlockResult Unlock(Id id, bool allOrNothing)
+        public static UnlockResult Unlock(ID id, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Approval.Unlock");
         }
 
-        public static List<UnlockResult> Unlock(List<Id> ids)
+        public static List<UnlockResult> Unlock(List<ID> ids)
         {
             throw new global::System.NotImplementedException("Approval.Unlock");
         }
 
-        public static List<UnlockResult> Unlock(List<Id> ids, bool allOrNothing)
+        public static List<UnlockResult> Unlock(List<ID> ids, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Approval.Unlock");
         }

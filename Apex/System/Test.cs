@@ -1,4 +1,4 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -19,17 +19,17 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Test.CreateStub");
         }
 
-        public static List<Id> EnqueueBatchJobs(int n)
+        public static List<ID> EnqueueBatchJobs(int n)
         {
             throw new global::System.NotImplementedException("Test.EnqueueBatchJobs");
         }
 
-        public static List<Id> GetFlexQueueOrder()
+        public static List<ID> GetFlexQueueOrder()
         {
             throw new global::System.NotImplementedException("Test.GetFlexQueueOrder");
         }
 
-        public static Id GetStandardPricebookId()
+        public static ID GetStandardPricebookId()
         {
             throw new global::System.NotImplementedException("Test.GetStandardPricebookId");
         }
@@ -46,13 +46,13 @@ namespace Apex.System
         }
 
         //public static List<SObject> LoadData(Schema.SObjectType sobjectType,string staticResourceName){throw new global::System.NotImplementedException("Test.LoadData");}
-        //public static QuickAction.SendEmailQuickActionDefaults NewSendEmailQuickActionDefaults(Id contextId,Id replyToId){throw new global::System.NotImplementedException("Test.NewSendEmailQuickActionDefaults");}
+        //public static QuickAction.SendEmailQuickActionDefaults NewSendEmailQuickActionDefaults(ID contextId,ID replyToId){throw new global::System.NotImplementedException("Test.NewSendEmailQuickActionDefaults");}
         public static void SetContinuationResponse(string label, HttpResponse response)
         {
             throw new global::System.NotImplementedException("Test.SetContinuationResponse");
         }
 
-        public static void SetCreatedDate(Id id, DateTime dt)
+        public static void SetCreatedDate(ID id, DateTime dt)
         {
             throw new global::System.NotImplementedException("Test.SetCreatedDate");
         }
@@ -94,7 +94,7 @@ namespace Apex.System
 
         //public static void TestInstall(InstallHandler script,Version version){throw new global::System.NotImplementedException("Test.TestInstall");}
         //public static void TestInstall(InstallHandler script,Version version,bool isPush){throw new global::System.NotImplementedException("Test.TestInstall");}
-        public static void TestSandboxPostCopyScript(SandboxPostCopy script, Id organizationId, Id sandboxId,
+        public static void TestSandboxPostCopyScript(SandboxPostCopy script, ID organizationId, ID sandboxId,
             string sandboxName)
         {
             throw new global::System.NotImplementedException("Test.TestSandboxPostCopyScript");

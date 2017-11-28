@@ -1,4 +1,4 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -9,12 +9,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("BusinessHours");
         }
 
-        public static DateTime Add(Id businessHoursId, DateTime startDate, long interval)
+        public static DateTime Add(ID businessHoursId, DateTime startDate, long interval)
         {
             throw new global::System.NotImplementedException("BusinessHours.Add");
         }
 
-        public static DateTime AddGmt(Id businessHoursId, DateTime startDate, long interval)
+        public static DateTime AddGmt(ID businessHoursId, DateTime startDate, long interval)
         {
             throw new global::System.NotImplementedException("BusinessHours.AddGmt");
         }
@@ -34,7 +34,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("BusinessHours.IsWithin");
         }
 
-        public static DateTime NextStartDate(Id businessHoursId, DateTime targetDate)
+        public static DateTime NextStartDate(ID businessHoursId, DateTime targetDate)
         {
             throw new global::System.NotImplementedException("BusinessHours.NextStartDate");
         }

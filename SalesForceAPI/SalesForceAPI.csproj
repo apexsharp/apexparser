@@ -57,8 +57,6 @@
     <Compile Include="HttpManager.cs" />
     <Compile Include="JsonFactory.cs" />
     <Compile Include="ModelGen.cs" />
-    <Compile Include="Model\API\SalesForceField.cs" />
-    <Compile Include="Model\API\SalesForceObject.cs" />
     <Compile Include="Attribute\ObjectNameAttribute.cs" />
     <Compile Include="Model\BulkApi\Attributes.cs" />
     <Compile Include="Model\BulkApi\JobInfoReply.cs" />

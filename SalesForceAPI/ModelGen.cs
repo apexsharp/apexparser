@@ -167,7 +167,7 @@ namespace SalesForceAPI
         public static Dictionary<string, string> FieldDictionary = new Dictionary<string, string>()
         {
             {"address", "Address" },
-            {"id","Id" },
+            {"id","ID" },
             {"string","string" },
             {"picklist","string" },
             {"email","string" },

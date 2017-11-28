@@ -1,5 +1,5 @@
 using Apex.Messaging;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -36,12 +36,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Messaging.SendEmail");
         }
 
-        public static List<SendEmailResult> SendEmailMessage(List<Id> emailMessagesIds)
+        public static List<SendEmailResult> SendEmailMessage(List<ID> emailMessagesIds)
         {
             throw new global::System.NotImplementedException("Messaging.SendEmailMessage");
         }
 
-        public static List<SendEmailResult> SendEmailMessage(List<Id> emailMessagesIds, bool allOrNothing)
+        public static List<SendEmailResult> SendEmailMessage(List<ID> emailMessagesIds, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Messaging.SendEmailMessage");
         }

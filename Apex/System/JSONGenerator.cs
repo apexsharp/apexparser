@@ -1,4 +1,4 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -79,12 +79,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("JSONGenerator.WriteFieldName");
         }
 
-        public void WriteId(Id id)
+        public void WriteId(ID id)
         {
             throw new global::System.NotImplementedException("JSONGenerator.WriteId");
         }
 
-        public void WriteIdField(string fieldName, Id id)
+        public void WriteIdField(string fieldName, ID id)
         {
             throw new global::System.NotImplementedException("JSONGenerator.WriteIdField");
         }

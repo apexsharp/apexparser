@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Applauncher
 {
@@ -15,17 +15,17 @@ namespace Apex.Applauncher
             throw new global::System.NotImplementedException("AppMenu.Clone");
         }
 
-        public static void SetAppVisibility(Id appMenuItemId, bool isVisible)
+        public static void SetAppVisibility(ID appMenuItemId, bool isVisible)
         {
             throw new global::System.NotImplementedException("AppMenu.SetAppVisibility");
         }
 
-        public static void SetOrgSortOrder(List<Id> applicationIds)
+        public static void SetOrgSortOrder(List<ID> applicationIds)
         {
             throw new global::System.NotImplementedException("AppMenu.SetOrgSortOrder");
         }
 
-        public static void SetUserSortOrder(List<Id> applicationIds)
+        public static void SetUserSortOrder(List<ID> applicationIds)
         {
             throw new global::System.NotImplementedException("AppMenu.SetUserSortOrder");
         }

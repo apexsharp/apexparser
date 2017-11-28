@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using Apex.Schema;
 using SalesForceAPI;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -94,7 +94,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("List.Equals");
         }
 
-        public Id Get(int index)
+        public ID Get(int index)
         {
             throw new global::System.NotImplementedException("List.Get");
         }

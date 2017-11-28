@@ -1,4 +1,3 @@
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.System
@@ -15,7 +14,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Answers.Clone");
         }
 
-        public static List<Id> FindSimilar(SObject question)
+        public static List<ID> FindSimilar(SObject question)
         {
             throw new global::System.NotImplementedException("Answers.FindSimilar");
         }

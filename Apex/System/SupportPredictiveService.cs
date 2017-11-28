@@ -1,4 +1,4 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -14,7 +14,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("SupportPredictiveService.Clone");
         }
 
-        public static List<Id> FindSimilarCases(string caseId)
+        public static List<ID> FindSimilarCases(string caseId)
         {
             throw new global::System.NotImplementedException("SupportPredictiveService.FindSimilarCases");
         }

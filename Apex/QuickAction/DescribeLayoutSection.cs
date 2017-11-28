@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.QuickAction
 {
@@ -20,7 +20,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetLayoutRows");
         }
 
-        public Id GetParentLayoutId()
+        public ID GetParentLayoutId()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetParentLayoutId");
         }

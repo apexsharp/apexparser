@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Approval
 {
@@ -20,7 +20,7 @@ namespace Apex.Approval
             throw new global::System.NotImplementedException("ProcessWorkitemRequest.GetComments");
         }
 
-        public List<Id> GetNextApproverIds()
+        public List<ID> GetNextApproverIds()
         {
             throw new global::System.NotImplementedException("ProcessWorkitemRequest.GetNextApproverIds");
         }
@@ -40,7 +40,7 @@ namespace Apex.Approval
             throw new global::System.NotImplementedException("ProcessWorkitemRequest.SetComments");
         }
 
-        public void SetNextApproverIds(List<Id> param1)
+        public void SetNextApproverIds(List<ID> param1)
         {
             throw new global::System.NotImplementedException("ProcessWorkitemRequest.SetNextApproverIds");
         }

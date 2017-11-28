@@ -1,4 +1,3 @@
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.System
@@ -95,7 +94,7 @@ namespace Apex.System
             global::System.Console.WriteLine(o);
         }
 
-        public static Id EnqueueJob(object queueable)
+        public static ID EnqueueJob(object queueable)
         {
             throw new global::System.NotImplementedException("System.EnqueueJob");
         }
@@ -131,7 +130,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("System.IsScheduled");
         }
 
-        public static void MovePassword(Id targetUserId, Id sourceUserId)
+        public static void MovePassword(ID targetUserId, ID sourceUserId)
         {
             throw new global::System.NotImplementedException("System.MovePassword");
         }
@@ -141,7 +140,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("System.Now");
         }
 
-        public static List<Id> Process(List<Id> workitemIds, string action, string commments, string nextApprover)
+        public static List<ID> Process(List<ID> workitemIds, string action, string commments, string nextApprover)
         {
             throw new global::System.NotImplementedException("System.Process");
         }
@@ -156,7 +155,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("System.RequestVersion");
         }
 
-        public static ResetPasswordResult ResetPassword(Id userId, bool sendUserEmail)
+        public static ResetPasswordResult ResetPassword(ID userId, bool sendUserEmail)
         {
             throw new global::System.NotImplementedException("System.ResetPassword");
         }
@@ -201,12 +200,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("System.SetPackageIntegerValue");
         }
 
-        public static void SetPassword(Id userId, string password)
+        public static void SetPassword(ID userId, string password)
         {
             throw new global::System.NotImplementedException("System.SetPassword");
         }
 
-        public static List<Id> Submit(List<Id> ids, string commments, string nextApprover)
+        public static List<ID> Submit(List<ID> ids, string commments, string nextApprover)
         {
             throw new global::System.NotImplementedException("System.Submit");
         }

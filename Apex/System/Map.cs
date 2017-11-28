@@ -1,6 +1,5 @@
 using System;
 using SalesForceAPI;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.System
@@ -13,11 +12,11 @@ namespace Apex.System
 
         public Map(SoqlQuery<K> soqlQuery)
         {
-            // make sure that Map<T, K> is Map<Id, SObject>
+            // make sure that Map<T, K> is Map<ID, SObject>
             if (!typeof(SObject).IsAssignableFrom(typeof(K)) ||
-                !typeof(Id).IsAssignableFrom(typeof(T)))
+                !typeof(ID).IsAssignableFrom(typeof(T)))
             {
-                throw new NotSupportedException("Only Map<Id, SObject> can be initialized via SOQL query data.");
+                throw new NotSupportedException("Only Map<ID, SObject> can be initialized via SOQL query data.");
             }
 
             foreach (object row in soqlQuery.QueryResult.Value)

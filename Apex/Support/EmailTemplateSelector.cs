@@ -1,11 +1,11 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Support
 {
     public class EmailTemplateSelector
     {
-        public Id GetDefaultEmailTemplateId(Id param1)
+        public ID GetDefaultEmailTemplateId(ID param1)
         {
             throw new global::System.NotImplementedException("EmailTemplateSelector.GetDefaultEmailTemplateId");
         }

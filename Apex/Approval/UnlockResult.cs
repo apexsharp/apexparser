@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Approval
 {
@@ -10,7 +10,7 @@ namespace Apex.Approval
             throw new global::System.NotImplementedException("UnlockResult.GetErrors");
         }
 
-        public Id GetId()
+        public ID GetId()
         {
             throw new global::System.NotImplementedException("UnlockResult.GetId");
         }

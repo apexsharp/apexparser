@@ -1,4 +1,3 @@
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.System
@@ -15,22 +14,22 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Ideas.Clone");
         }
 
-        public static List<Id> FindSimilar(SObject idea)
+        public static List<ID> FindSimilar(SObject idea)
         {
             throw new global::System.NotImplementedException("Ideas.FindSimilar");
         }
 
-        public static List<Id> GetAllRecentReplies(string userId, string communityId)
+        public static List<ID> GetAllRecentReplies(string userId, string communityId)
         {
             throw new global::System.NotImplementedException("Ideas.GetAllRecentReplies");
         }
 
-        public static List<Id> GetReadRecentReplies(string userId, string communityId)
+        public static List<ID> GetReadRecentReplies(string userId, string communityId)
         {
             throw new global::System.NotImplementedException("Ideas.GetReadRecentReplies");
         }
 
-        public static List<Id> GetUnreadRecentReplies(string userId, string communityId)
+        public static List<ID> GetUnreadRecentReplies(string userId, string communityId)
         {
             throw new global::System.NotImplementedException("Ideas.GetUnreadRecentReplies");
         }

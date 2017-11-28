@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Messaging
 {
@@ -65,7 +65,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("SingleEmailMessage.GetOptOutPolicy");
         }
 
-        public Id GetOrgWideEmailAddressId()
+        public ID GetOrgWideEmailAddressId()
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.GetOrgWideEmailAddressId");
         }
@@ -100,12 +100,12 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("SingleEmailMessage.GetSubject");
         }
 
-        public Id GetTargetObjectId()
+        public ID GetTargetObjectId()
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.GetTargetObjectId");
         }
 
-        public Id GetTemplateId()
+        public ID GetTemplateId()
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.GetTemplateId");
         }
@@ -120,7 +120,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("SingleEmailMessage.GetUseSignature");
         }
 
-        public Id GetWhatId()
+        public ID GetWhatId()
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.GetWhatId");
         }
@@ -195,7 +195,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("SingleEmailMessage.SetOptOutPolicy");
         }
 
-        public void SetOrgWideEmailAddressId(Id param1)
+        public void SetOrgWideEmailAddressId(ID param1)
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.SetOrgWideEmailAddressId");
         }
@@ -230,12 +230,12 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("SingleEmailMessage.SetSubject");
         }
 
-        public void SetTargetObjectId(Id param1)
+        public void SetTargetObjectId(ID param1)
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.SetTargetObjectId");
         }
 
-        public void SetTemplateId(Id param1)
+        public void SetTemplateId(ID param1)
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.SetTemplateId");
         }
@@ -260,7 +260,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("SingleEmailMessage.SetUseSignature");
         }
 
-        public void SetWhatId(Id param1)
+        public void SetWhatId(ID param1)
         {
             throw new global::System.NotImplementedException("SingleEmailMessage.SetWhatId");
         }

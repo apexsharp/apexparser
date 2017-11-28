@@ -1,4 +1,4 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -9,7 +9,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("QueueableContextImpl.Clone");
         }
 
-        public Id GetJobId()
+        public ID GetJobId()
         {
             throw new global::System.NotImplementedException("QueueableContextImpl.GetJobId");
         }

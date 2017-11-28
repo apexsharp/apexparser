@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Predictive
 {
@@ -10,7 +10,7 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("SimilarRecord.Clone");
         }
 
-        public Id GetRecordId()
+        public ID GetRecordId()
         {
             throw new global::System.NotImplementedException("SimilarRecord.GetRecordId");
         }

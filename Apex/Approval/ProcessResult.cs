@@ -1,11 +1,11 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Approval
 {
     public class ProcessResult
     {
-        public List<Id> GetActorIds()
+        public List<ID> GetActorIds()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetActorIds");
         }
@@ -30,7 +30,7 @@ namespace Apex.Approval
             throw new global::System.NotImplementedException("ProcessResult.GetInstanceStatus");
         }
 
-        public List<Id> GetNewWorkitemIds()
+        public List<ID> GetNewWorkitemIds()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetNewWorkitemIds");
         }

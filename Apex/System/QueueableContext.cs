@@ -1,10 +1,10 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
     public class QueueableContext
     {
-        public Id GetJobId()
+        public ID GetJobId()
         {
             throw new global::System.NotImplementedException("QueueableContext.GetJobId");
         }

@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Database
 {
@@ -10,7 +10,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("UndeleteResult.GetErrors");
         }
 
-        public Id GetId()
+        public ID GetId()
         {
             throw new global::System.NotImplementedException("UndeleteResult.GetId");
         }

@@ -5,7 +5,7 @@ namespace SalesForceAPI.UnitTest
 {
     public class Contact : SObject
     {
-        public static string SOQL = "SELECT Id, Email, Phone FROM Contact'";
+        public static string SOQL = "SELECT ID, Email, Phone FROM Contact'";
 
         public bool IsDeleted { set; get; }
         public string MasterRecordId { set; get; }

@@ -1,5 +1,4 @@
 using Apex.System;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.UserProvisioning
@@ -48,7 +47,7 @@ namespace Apex.UserProvisioning
         }
 
         //public List<UserProvisioningRequest> GetPerBatchUPR(){throw new global::System.NotImplementedException("PluginBatchable.GetPerBatchUPR");}
-        public Map<Id, SObject> GetUprToNewUplMap()
+        public Map<ID, SObject> GetUprToNewUplMap()
         {
             throw new global::System.NotImplementedException("PluginBatchable.GetUprToNewUplMap");
         }

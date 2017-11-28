@@ -1,4 +1,3 @@
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.System
@@ -25,43 +24,43 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Site.Clone");
         }
 
-        public static Id CreateExternalUser(SObject user, string accountId)
+        public static ID CreateExternalUser(SObject user, string accountId)
         {
             throw new global::System.NotImplementedException("Site.CreateExternalUser");
         }
 
-        public static Id CreateExternalUser(SObject user, string accountId, string password)
+        public static ID CreateExternalUser(SObject user, string accountId, string password)
         {
             throw new global::System.NotImplementedException("Site.CreateExternalUser");
         }
 
-        public static Id CreateExternalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
+        public static ID CreateExternalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
         {
             throw new global::System.NotImplementedException("Site.CreateExternalUser");
         }
 
-        public static Id CreatePersonAccountPortalUser(SObject user, string ownerId, string password)
+        public static ID CreatePersonAccountPortalUser(SObject user, string ownerId, string password)
         {
             throw new global::System.NotImplementedException("Site.CreatePersonAccountPortalUser");
         }
 
-        public static Id CreatePersonAccountPortalUser(SObject user, string ownerId, string recordTypeId,
+        public static ID CreatePersonAccountPortalUser(SObject user, string ownerId, string recordTypeId,
             string password)
         {
             throw new global::System.NotImplementedException("Site.CreatePersonAccountPortalUser");
         }
 
-        public static Id CreatePortalUser(SObject user, string accountId)
+        public static ID CreatePortalUser(SObject user, string accountId)
         {
             throw new global::System.NotImplementedException("Site.CreatePortalUser");
         }
 
-        public static Id CreatePortalUser(SObject user, string accountId, string password)
+        public static ID CreatePortalUser(SObject user, string accountId, string password)
         {
             throw new global::System.NotImplementedException("Site.CreatePortalUser");
         }
 
-        public static Id CreatePortalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
+        public static ID CreatePortalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
         {
             throw new global::System.NotImplementedException("Site.CreatePortalUser");
         }
@@ -76,7 +75,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Site.GetAdminEmail");
         }
 
-        public static Id GetAdminId()
+        public static ID GetAdminId()
         {
             throw new global::System.NotImplementedException("Site.GetAdminId");
         }
@@ -166,7 +165,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Site.GetPrefix");
         }
 
-        public static Id GetSiteId()
+        public static ID GetSiteId()
         {
             throw new global::System.NotImplementedException("Site.GetSiteId");
         }

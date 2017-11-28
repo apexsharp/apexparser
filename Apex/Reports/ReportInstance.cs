@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Reports
 {
@@ -15,17 +15,17 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportInstance.GetCompletionDate");
         }
 
-        public Id GetId()
+        public ID GetId()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetId");
         }
 
-        public Id GetOwnerId()
+        public ID GetOwnerId()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetOwnerId");
         }
 
-        public Id GetReportId()
+        public ID GetReportId()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetReportId");
         }

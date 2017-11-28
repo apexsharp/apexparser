@@ -1,5 +1,4 @@
 using Apex.System;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.QuickAction
@@ -11,7 +10,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("QuickActionRequest");
         }
 
-        public Id GetContextId()
+        public ID GetContextId()
         {
             throw new global::System.NotImplementedException("QuickActionRequest.GetContextId");
         }
@@ -26,7 +25,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("QuickActionRequest.GetRecord");
         }
 
-        public void SetContextId(Id param1)
+        public void SetContextId(ID param1)
         {
             throw new global::System.NotImplementedException("QuickActionRequest.SetContextId");
         }

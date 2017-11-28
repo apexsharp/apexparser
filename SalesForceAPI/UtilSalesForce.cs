@@ -6,7 +6,7 @@ namespace SalesForceAPI
 {
     public class UtilSalesForce
     {
-        // Check to see if the value passed is a Salesforce Id        
+        // Check to see if the value passed is a Salesforce ID        
         public static bool IsSalesforceId(string id)
         {
             Regex regex = new Regex(@"[a-zA-Z0-9]{18}");

@@ -1,5 +1,4 @@
 using Apex.System;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.QuickAction
@@ -21,7 +20,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetActionType");
         }
 
-        public Id GetContextId()
+        public ID GetContextId()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetContextId");
         }
@@ -31,7 +30,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetFromAddressList");
         }
 
-        public Id GetInReplyToId()
+        public ID GetInReplyToId()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetInReplyToId");
         }
@@ -51,7 +50,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.SetInsertTemplateBody");
         }
 
-        public void SetTemplateId(Id templateId)
+        public void SetTemplateId(ID templateId)
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.SetTemplateId");
         }

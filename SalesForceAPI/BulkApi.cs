@@ -171,18 +171,18 @@ namespace SalesForceAPI
             foreach (var reccord in reccords)
             {
                 var recordObject = (JObject)reccord;
-                Console.WriteLine(recordObject["Id"]);
+                Console.WriteLine(recordObject["ID"]);
 
                 SalesForceAPI.Model.BulkApi.Attributes attribute =
                     new SalesForceAPI.Model.BulkApi.Attributes
                     {
                         type = typeof(T).Name,
-                        referenceId = recordObject["Id"].ToString()
+                        referenceId = recordObject["ID"].ToString()
                     };
                 var attributeObject = JObject.FromObject(attribute);
                 recordObject.Add(new JProperty("attributes", attributeObject));
 
-                recordObject.Remove("Id");
+                recordObject.Remove("ID");
             }
 
 

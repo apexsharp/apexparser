@@ -1,4 +1,4 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -54,7 +54,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("JSONParser.GetDoubleValue");
         }
 
-        public Id GetIdValue()
+        public ID GetIdValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetIdValue");
         }

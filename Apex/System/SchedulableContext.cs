@@ -1,10 +1,10 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
     public class SchedulableContext
     {
-        public Id GetTriggerId()
+        public ID GetTriggerId()
         {
             throw new global::System.NotImplementedException("SchedulableContext.GetTriggerId");
         }

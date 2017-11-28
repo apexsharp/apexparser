@@ -1,15 +1,15 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
     public class SandboxContext
     {
-        public Id OrganizationId()
+        public ID OrganizationId()
         {
             throw new global::System.NotImplementedException("SandboxContext.OrganizationId");
         }
 
-        public Id SandboxId()
+        public ID SandboxId()
         {
             throw new global::System.NotImplementedException("SandboxContext.SandboxId");
         }

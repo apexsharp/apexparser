@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Database
 {
@@ -10,12 +10,12 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("BatchableContextImpl.Clone");
         }
 
-        public Id GetChildJobId()
+        public ID GetChildJobId()
         {
             throw new global::System.NotImplementedException("BatchableContextImpl.GetChildJobId");
         }
 
-        public Id GetJobId()
+        public ID GetJobId()
         {
             throw new global::System.NotImplementedException("BatchableContextImpl.GetJobId");
         }

@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Schema
 {
@@ -10,7 +10,7 @@ namespace Apex.Schema
             throw new global::System.NotImplementedException("RecordTypeInfo.GetName");
         }
 
-        public Id GetRecordTypeId()
+        public ID GetRecordTypeId()
         {
             throw new global::System.NotImplementedException("RecordTypeInfo.GetRecordTypeId");
         }

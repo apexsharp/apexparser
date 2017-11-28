@@ -1,10 +1,8 @@
-using SalesForceAPI.Apex;
-
 namespace SalesForceAPI.ApexApi
 {
     public abstract class SObject
     {
-        public Id Id { get; set; }
+        public ID Id { get; set; }
 
         public void AddError(object msg)
         {
@@ -71,7 +69,7 @@ namespace SalesForceAPI.ApexApi
         //    throw new global::System.NotImplementedException("SObject.GetAll");
         // }
 
-        public Id GetCloneSourceId()
+        public ID GetCloneSourceId()
         {
             throw new global::System.NotImplementedException("SObject.GetCloneSourceId");
         }

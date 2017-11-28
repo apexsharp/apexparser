@@ -1,5 +1,4 @@
 using Apex.Database;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.System
@@ -26,12 +25,12 @@ namespace Apex.System
 
         public class BatchableContext
         {
-            public Id GetChildJobId()
+            public ID GetChildJobId()
             {
                 throw new global::System.NotImplementedException("BatchableContext.GetChildJobId");
             }
 
-            public Id GetJobId()
+            public ID GetJobId()
             {
                 throw new global::System.NotImplementedException("BatchableContext.GetJobId");
             }
@@ -72,22 +71,22 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Database.CountQuery");
         }
 
-        public static DeleteResult Delete(Id id)
+        public static DeleteResult Delete(ID id)
         {
             throw new global::System.NotImplementedException("Database.Delete");
         }
 
-        public static DeleteResult Delete(Id id, bool allOrNothing)
+        public static DeleteResult Delete(ID id, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Database.Delete");
         }
 
-        public static List<DeleteResult> Delete(List<Id> ids)
+        public static List<DeleteResult> Delete(List<ID> ids)
         {
             throw new global::System.NotImplementedException("Database.Delete");
         }
 
-        public static List<DeleteResult> Delete(List<Id> ids, bool allOrNothing)
+        public static List<DeleteResult> Delete(List<ID> ids, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Database.Delete");
         }
@@ -142,7 +141,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Database.DeleteImmediate");
         }
 
-        public static List<EmptyRecycleBinResult> EmptyRecycleBin(List<Id> ids)
+        public static List<EmptyRecycleBinResult> EmptyRecycleBin(List<ID> ids)
         {
             throw new global::System.NotImplementedException("Database.EmptyRecycleBin");
         }
@@ -272,22 +271,22 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Database.InsertImmediate");
         }
 
-        public static MergeResult Merge(SObject master, Id duplicate)
+        public static MergeResult Merge(SObject master, ID duplicate)
         {
             throw new global::System.NotImplementedException("Database.Merge");
         }
 
-        public static MergeResult Merge(SObject master, Id duplicate, bool allOrNothing)
+        public static MergeResult Merge(SObject master, ID duplicate, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Database.Merge");
         }
 
-        public static List<MergeResult> Merge(SObject master, List<Id> duplicates)
+        public static List<MergeResult> Merge(SObject master, List<ID> duplicates)
         {
             throw new global::System.NotImplementedException("Database.Merge");
         }
 
-        public static List<MergeResult> Merge(SObject master, List<Id> duplicates, bool allOrNothing)
+        public static List<MergeResult> Merge(SObject master, List<ID> duplicates, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Database.Merge");
         }
@@ -319,22 +318,22 @@ namespace Apex.System
 
         //public static void Rollback(Savepoint savepoint){throw new global::System.NotImplementedException("Database.Rollback");}
         //public static Savepoint SetSavepoint(){throw new global::System.NotImplementedException("Database.SetSavepoint");}
-        public static UndeleteResult Undelete(Id id)
+        public static UndeleteResult Undelete(ID id)
         {
             throw new global::System.NotImplementedException("Database.Undelete");
         }
 
-        public static UndeleteResult Undelete(Id id, bool allOrNothing)
+        public static UndeleteResult Undelete(ID id, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Database.Undelete");
         }
 
-        public static List<UndeleteResult> Undelete(List<Id> ids)
+        public static List<UndeleteResult> Undelete(List<ID> ids)
         {
             throw new global::System.NotImplementedException("Database.Undelete");
         }
 
-        public static List<UndeleteResult> Undelete(List<Id> ids, bool allOrNothing)
+        public static List<UndeleteResult> Undelete(List<ID> ids, bool allOrNothing)
         {
             throw new global::System.NotImplementedException("Database.Undelete");
         }

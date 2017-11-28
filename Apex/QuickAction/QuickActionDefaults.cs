@@ -1,5 +1,4 @@
 using Apex.System;
-using SalesForceAPI.Apex;
 using SalesForceAPI.ApexApi;
 
 namespace Apex.QuickAction
@@ -21,7 +20,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("QuickActionDefaults.GetActionType");
         }
 
-        public Id GetContextId()
+        public ID GetContextId()
         {
             throw new global::System.NotImplementedException("QuickActionDefaults.GetContextId");
         }

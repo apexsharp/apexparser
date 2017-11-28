@@ -1,4 +1,4 @@
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -14,7 +14,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Cases.Clone");
         }
 
-        public static Id GetCaseIdFromEmailThreadId(string emailThreadId)
+        public static ID GetCaseIdFromEmailThreadId(string emailThreadId)
         {
             throw new global::System.NotImplementedException("Cases.GetCaseIdFromEmailThreadId");
         }

@@ -1,16 +1,16 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Database
 {
     public class LeadConvertResult
     {
-        public Id GetAccountId()
+        public ID GetAccountId()
         {
             throw new global::System.NotImplementedException("LeadConvertResult.GetAccountId");
         }
 
-        public Id GetContactId()
+        public ID GetContactId()
         {
             throw new global::System.NotImplementedException("LeadConvertResult.GetContactId");
         }
@@ -20,12 +20,12 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvertResult.GetErrors");
         }
 
-        public Id GetLeadId()
+        public ID GetLeadId()
         {
             throw new global::System.NotImplementedException("LeadConvertResult.GetLeadId");
         }
 
-        public Id GetOpportunityId()
+        public ID GetOpportunityId()
         {
             throw new global::System.NotImplementedException("LeadConvertResult.GetOpportunityId");
         }

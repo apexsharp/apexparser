@@ -1,5 +1,5 @@
 using Apex.QuickAction;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
@@ -36,13 +36,13 @@ namespace Apex.System
             throw new global::System.NotImplementedException("QuickAction.PerformQuickActions");
         }
 
-        public static QuickActionTemplateResult RetrieveQuickActionTemplate(string quickActionName, Id contextId)
+        public static QuickActionTemplateResult RetrieveQuickActionTemplate(string quickActionName, ID contextId)
         {
             throw new global::System.NotImplementedException("QuickAction.RetrieveQuickActionTemplate");
         }
 
         public static List<QuickActionTemplateResult> RetrieveQuickActionTemplates(List<string> quickActionNames,
-            Id contextId)
+            ID contextId)
         {
             throw new global::System.NotImplementedException("QuickAction.RetrieveQuickActionTemplates");
         }

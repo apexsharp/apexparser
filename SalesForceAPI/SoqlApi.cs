@@ -103,7 +103,7 @@ namespace SalesForceAPI
         public static void Delete<T>(T obj) where T : SObject
         {
             var objectName = typeof(T).Name;
-            Log.ForContext<SoqlApi>().Information("Deleting {$objectName} {$Id}", objectName, obj.Id);
+            Log.ForContext<SoqlApi>().Information("Deleting {$objectName} {$ID}", objectName, obj.Id);
 
             HttpManager httpManager = new HttpManager();
             httpManager.Del($"sobjects/{objectName}/{obj.Id}");

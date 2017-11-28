@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Schema
 {
@@ -42,7 +42,7 @@ namespace Apex.Schema
             throw new global::System.NotImplementedException("DescribeSObjectResult.GetRecordTypeInfos");
         }
 
-        public Map<Id, Schema.RecordTypeInfo> GetRecordTypeInfosById()
+        public Map<ID, Schema.RecordTypeInfo> GetRecordTypeInfosById()
         {
             throw new global::System.NotImplementedException("DescribeSObjectResult.GetRecordTypeInfosById");
         }

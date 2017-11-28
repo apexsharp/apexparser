@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Reports
 {
@@ -10,7 +10,7 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportMetadata");
         }
 
-        //public ReportMetadata(string name,string developerName,Id id,List<GroupingInfo> groupingsAcross,List<GroupingInfo> groupingsDown,List<string> aggregates,List<BucketField> buckets,List<string> detailColumns,string reportBooleanFilter,List<reports.ReportFilter> reportFilters,List<string> historicalSnapshotDates,ReportFormat reportFormat,ReportType reportType,string currencyCode,string scope,string division,List<SortColumn> sortBy,StandardDateFilter standardDateFilter,bool hasDetailRows,bool hasRecordCount,List<StandardFilter> standardFilters,string description,bool showSubtotals,bool showGrandTotal,TopRows topRows,Map<String,reports.ReportCsf> customSummaryFormula,List<CrossFilter> crossFilters){throw new global::System.NotImplementedException("ReportMetadata");}
+        //public ReportMetadata(string name,string developerName,ID id,List<GroupingInfo> groupingsAcross,List<GroupingInfo> groupingsDown,List<string> aggregates,List<BucketField> buckets,List<string> detailColumns,string reportBooleanFilter,List<reports.ReportFilter> reportFilters,List<string> historicalSnapshotDates,ReportFormat reportFormat,ReportType reportType,string currencyCode,string scope,string division,List<SortColumn> sortBy,StandardDateFilter standardDateFilter,bool hasDetailRows,bool hasRecordCount,List<StandardFilter> standardFilters,string description,bool showSubtotals,bool showGrandTotal,TopRows topRows,Map<String,reports.ReportCsf> customSummaryFormula,List<CrossFilter> crossFilters){throw new global::System.NotImplementedException("ReportMetadata");}
         public object Clone()
         {
             throw new global::System.NotImplementedException("ReportMetadata.Clone");
@@ -86,7 +86,7 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportMetadata.GetHistoricalSnapshotDates");
         }
 
-        public Id GetId()
+        public ID GetId()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetId");
         }
@@ -221,7 +221,7 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportMetadata.SetHistoricalSnapshotDates");
         }
 
-        public void SetId(Id id)
+        public void SetId(ID id)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetId");
         }

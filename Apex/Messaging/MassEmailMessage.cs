@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Messaging
 {
@@ -45,12 +45,12 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("MassEmailMessage.GetSubject");
         }
 
-        public List<Id> GetTargetObjectIds()
+        public List<ID> GetTargetObjectIds()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetTargetObjectIds");
         }
 
-        public Id GetTemplateId()
+        public ID GetTemplateId()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetTemplateId");
         }
@@ -60,7 +60,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("MassEmailMessage.GetUseSignature");
         }
 
-        public List<Id> GetWhatIds()
+        public List<ID> GetWhatIds()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetWhatIds");
         }
@@ -100,12 +100,12 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("MassEmailMessage.SetSubject");
         }
 
-        public void SetTargetObjectIds(List<Id> param1)
+        public void SetTargetObjectIds(List<ID> param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetTargetObjectIds");
         }
 
-        public void SetTemplateId(Id param1)
+        public void SetTemplateId(ID param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetTemplateId");
         }
@@ -115,7 +115,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("MassEmailMessage.SetUseSignature");
         }
 
-        public void SetWhatIds(List<Id> param1)
+        public void SetWhatIds(List<ID> param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetWhatIds");
         }

@@ -113,8 +113,8 @@ namespace Apex.ApexSharp.SharpToApex
         }
 
 
-        // List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1", new { contactNewId });
-        // List<Contact> contacts = [SELECT Id, Email, Name FROM Contact WHERE Id = :contactNewId LIMIT 1];
+        // List<Contact> contacts = Soql.Query<Contact>("SELECT ID, Email, Name FROM Contact WHERE ID = :contactNewId LIMIT 1", new { contactNewId });
+        // List<Contact> contacts = [SELECT ID, Email, Name FROM Contact WHERE ID = :contactNewId LIMIT 1];
         public static string SoqlSelect(string cSharpLine)
         {
             var left = cSharpLine.Substring(0, cSharpLine.IndexOf('='));

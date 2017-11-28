@@ -1,5 +1,5 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Wave
 {
@@ -15,7 +15,7 @@ namespace Apex.Wave
             throw new global::System.NotImplementedException("TrendedDatasetProcessor.GetLabel");
         }
 
-        public void ProcessTrendedDataset(Id param1, Id param2)
+        public void ProcessTrendedDataset(ID param1, ID param2)
         {
             throw new global::System.NotImplementedException("TrendedDatasetProcessor.ProcessTrendedDataset");
         }

@@ -237,6 +237,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSharpClasses\ClassAbstract.cs" />
+    <Compile Include="CSharpClasses\ClassEnum.cs" />
+    <Compile Include="CSharpClasses\ClassException.cs" />
+    <Compile Include="CSharpClasses\ClassGlobal.cs" />
+    <Compile Include="CSharpClasses\ClassInitialization.cs" />
+    <Compile Include="CSharpClasses\ClassInterface.cs" />
+    <Compile Include="CSharpClasses\ClassInternal.cs" />
+    <Compile Include="CSharpClasses\ClassNoApex.cs" />
+    <Compile Include="CSharpClasses\ClassRest.cs" />
+    <Compile Include="CSharpClasses\ClassRestTest.cs" />
+    <Compile Include="CSharpClasses\ClassUnitTest.cs" />
+    <Compile Include="CSharpClasses\ClassUnitTestRunAs.cs" />
+    <Compile Include="CSharpClasses\ClassUnitTestSeeAllData.cs" />
+    <Compile Include="CSharpClasses\ClassVirtual.cs" />
+    <Compile Include="CSharpClasses\ClassWebService.cs" />
+    <Compile Include="CSharpClasses\ClassWithOutSharing.cs" />
+    <Compile Include="CSharpClasses\ClassWithSharing.cs" />
+    <Compile Include="CSharpClasses\Collections.cs" />
+    <Compile Include="CSharpClasses\Comments.cs" />
+    <Compile Include="CSharpClasses\CustomMetaData.cs" />
+    <Compile Include="CSharpClasses\Demo.cs" />
+    <Compile Include="CSharpClasses\DemoTest.cs" />
+    <Compile Include="CSharpClasses\ExceptionDemo.cs" />
+    <Compile Include="CSharpClasses\ForIfWhile.cs" />
+    <Compile Include="CSharpClasses\GetSetDemo.cs" />
+    <Compile Include="CSharpClasses\IClassInterface.cs" />
+    <Compile Include="CSharpClasses\IClassInterfaceExt.cs" />
+    <Compile Include="CSharpClasses\JsonExample.cs" />
+    <Compile Include="CSharpClasses\Label.cs" />
+    <Compile Include="CSharpClasses\MethodAndConstructor.cs" />
+    <Compile Include="CSharpClasses\MethodComplex.cs" />
+    <Compile Include="CSharpClasses\PrimitiveTypes.cs" />
+    <Compile Include="CSharpClasses\PropertyAndField.cs" />
+    <Compile Include="CSharpClasses\SoqlDemo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="OneTimeSetUp.cs" />
     <Compile Include="NoApex\Console.cs" />
@@ -290,9 +324,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CSharpClasses\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ApexParser\ApexParser.csproj">
       <Project>{7f1c15e4-1b67-4f35-bf46-5b0506992a0f}</Project>

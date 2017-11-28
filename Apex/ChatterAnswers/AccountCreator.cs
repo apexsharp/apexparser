@@ -1,11 +1,11 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.ChatterAnswers
 {
     public class AccountCreator
     {
-        public string CreateAccount(string param1, string param2, Id param3)
+        public string CreateAccount(string param1, string param2, ID param3)
         {
             throw new global::System.NotImplementedException("AccountCreator.CreateAccount");
         }

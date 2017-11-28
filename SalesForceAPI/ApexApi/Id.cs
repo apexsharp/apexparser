@@ -1,11 +1,11 @@
-namespace SalesForceAPI.Apex
+namespace SalesForceAPI.ApexApi
 {
-    public class Id : System.IEquatable<Id>
+    public class ID : System.IEquatable<ID>
     {
         private string _id;
-        public static implicit operator Id(string v)
+        public static implicit operator ID(string v)
         {
-            var id = new Id { _id = v };
+            var id = new ID { _id = v };
             return id;
         }
 
@@ -16,36 +16,36 @@ namespace SalesForceAPI.Apex
 
         public void AddError(object msg)
         {
-            throw new global::System.NotImplementedException("Id.AddError");
+            throw new global::System.NotImplementedException("ID.AddError");
         }
 
         public void AddError(object msg, bool escape)
         {
-            throw new global::System.NotImplementedException("Id.AddError");
+            throw new global::System.NotImplementedException("ID.AddError");
         }
 
         public void AddError(string msg)
         {
-            throw new global::System.NotImplementedException("Id.AddError");
+            throw new global::System.NotImplementedException("ID.AddError");
         }
 
         public void AddError(string msg, bool escape)
         {
-            throw new global::System.NotImplementedException("Id.AddError");
+            throw new global::System.NotImplementedException("ID.AddError");
         }
 
-        //    public SObjectType GetSobjectType() { throw new global::System.NotImplementedException("Id.GetSobjectType"); }
-        public static Id ValueOf(string v)
+        //    public SObjectType GetSobjectType() { throw new global::System.NotImplementedException("ID.GetSobjectType"); }
+        public static ID ValueOf(string v)
         {
-            var id = new Id { _id = v };
+            var id = new ID { _id = v };
             return id;
         }
 
         public bool Equals(string o) => _id == o;
 
-        public bool Equals(Id other) => other != null && other._id == _id;
+        public bool Equals(ID other) => other != null && other._id == _id;
 
-        public override bool Equals(object obj) => Equals(obj as Id);
+        public override bool Equals(object obj) => Equals(obj as ID);
 
         public override int GetHashCode() => $"{_id}".GetHashCode();
     }

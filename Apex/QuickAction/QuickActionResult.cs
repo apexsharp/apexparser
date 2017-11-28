@@ -1,11 +1,11 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.QuickAction
 {
     public class QuickActionResult
     {
-        public Id GetContextId()
+        public ID GetContextId()
         {
             throw new global::System.NotImplementedException("QuickActionResult.GetContextId");
         }
@@ -15,7 +15,7 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("QuickActionResult.GetErrors");
         }
 
-        public List<Id> GetIds()
+        public List<ID> GetIds()
         {
             throw new global::System.NotImplementedException("QuickActionResult.GetIds");
         }

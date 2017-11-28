@@ -1,11 +1,11 @@
 using Apex.System;
-using SalesForceAPI.Apex;
+using SalesForceAPI.ApexApi;
 
 namespace Apex.Database
 {
     public class GetUpdatedResult
     {
-        public List<Id> GetIds()
+        public List<ID> GetIds()
         {
             throw new global::System.NotImplementedException("GetUpdatedResult.GetIds");
         }
