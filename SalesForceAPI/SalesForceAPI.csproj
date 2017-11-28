@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApesSharp.cs" />
-    <Compile Include="ApexApi\Id.cs" />
+    <Compile Include="ApexApi\ID.cs" />
     <Compile Include="ApexApi\SObject.cs" />
     <Compile Include="ApexSharpConfig.cs" />
     <Compile Include="AppSetting.cs" />
