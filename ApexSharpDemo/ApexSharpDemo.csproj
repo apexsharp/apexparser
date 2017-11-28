@@ -252,11 +252,46 @@
     <Compile Include="SObjects\UserRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApexClasses\ClassAbstract.apex" />
+    <None Include="ApexClasses\ClassEnum.apex" />
+    <None Include="ApexClasses\ClassException.apex" />
+    <None Include="ApexClasses\ClassGlobal.apex" />
+    <None Include="ApexClasses\ClassInitialization.apex" />
+    <None Include="ApexClasses\ClassInterface.apex" />
+    <None Include="ApexClasses\ClassInternal.apex" />
+    <None Include="ApexClasses\ClassNoApex.apex" />
+    <None Include="ApexClasses\ClassRest.apex" />
+    <None Include="ApexClasses\ClassRestTest.apex" />
+    <None Include="ApexClasses\ClassUnitTest.apex" />
+    <None Include="ApexClasses\ClassUnitTestRunAs.apex" />
+    <None Include="ApexClasses\ClassUnitTestSeeAllData.apex" />
+    <None Include="ApexClasses\ClassVirtual.apex" />
+    <None Include="ApexClasses\ClassWebService.apex" />
+    <None Include="ApexClasses\ClassWithOutSharing.apex" />
+    <None Include="ApexClasses\ClassWithSharing.apex" />
+    <None Include="ApexClasses\Collections.apex" />
+    <None Include="ApexClasses\Comments.apex" />
+    <None Include="ApexClasses\CustomMetaData.apex" />
+    <None Include="ApexClasses\Demo.apex" />
+    <None Include="ApexClasses\DemoTest.apex" />
+    <None Include="ApexClasses\ExceptionDemo.apex" />
+    <None Include="ApexClasses\ForIfWhile.apex" />
+    <None Include="ApexClasses\GetSetDemo.apex" />
+    <None Include="ApexClasses\IClassInterface.apex" />
+    <None Include="ApexClasses\IClassInterfaceExt.apex" />
+    <None Include="ApexClasses\JsonExample.apex" />
+    <None Include="ApexClasses\Label.apex" />
+    <None Include="ApexClasses\MethodAndConstructor.apex" />
+    <None Include="ApexClasses\MethodComplex.apex" />
+    <None Include="ApexClasses\PrimitiveTypes.apex" />
+    <None Include="ApexClasses\PropertyAndField.apex" />
+    <None Include="ApexClasses\Soql.apex" />
+    <None Include="ApexClasses\SoqlDemo.apex" />
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ApexCode\" />
+    <Folder Include="CSharpClasses\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApexParser\ApexParser.csproj">
