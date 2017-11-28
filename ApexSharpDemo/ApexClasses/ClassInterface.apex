@@ -1,6 +1,6 @@
 public class ClassInterface implements IClassInterface
 {
-    public Id GetId() {
+    public ID GetId() {
         return '';
     }
     public string GetName()

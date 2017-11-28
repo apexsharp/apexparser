@@ -23,8 +23,8 @@ public class GetSetDemo {
     Integer MyReadOnlyPropPrvt { get;}
     double MyReadWritePropPrvt {get; set;
     }
-    public String MyWriteOnlyProp {get; }
-    protected String MyWriteOnlyPropPrvt { set; get;
+    public string MyWriteOnlyProp {get; }
+    protected string MyWriteOnlyPropPrvt { set; get;
     }
 
     private string namePrvt;

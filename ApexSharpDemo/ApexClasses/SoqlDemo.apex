@@ -45,12 +45,19 @@ public class SoqlDemo {
     public static void InClauseTest() {
         Contact[] contactList = [SELECT Id, Email, Phone FROM Contact WHERE Email IN ('rose@edge.com', 'sean@edge.com')];
 
-        String[] emails = new String[]{
+        string[] emails = new String[]{
                 'rose@edge.com', 'sean@edge.com'
         };
         Contact[] contactListThree = [SELECT Id, Email, Phone FROM Contact WHERE Email IN :emails];
 
         Contact[] contactListOne = [SELECT Id, Email FROM Contact LIMIT 2];
         Contact[] contactListTwo = [SELECT Id FROM Contact WHERE Id IN :contactListOne];
+    }
+
+    public static void ForSoql()
+    {
+        for(Contact contactList : [SELECT Id, Name FROM Contact]) {
+
+        }
     }
 }

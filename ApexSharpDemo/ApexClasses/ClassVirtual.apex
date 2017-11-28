@@ -1,3 +1,0 @@
-public virtual class ClassVirtual
-{
-}

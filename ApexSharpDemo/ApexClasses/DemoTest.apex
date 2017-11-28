@@ -13,14 +13,14 @@ public class DemoTest
     public static void UpdatePhoneTestValidEmail()
     {
         Demo.UpdatePhone('jay@jay.com', '555-1212');
-        List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'];
+        List<Contact> contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'];
         System.AssertEquals(contacts[0].Phone, '555-1212');
     }
     @IsTest
     public static void UpdatePhoneTestNotValidEmail()
     {
         Demo.UpdatePhone('nojay@jay.com', '555-1212');
-        List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'];
+        List<Contact> contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'];
         System.AssertEquals(contacts.Size(), 0);
     }
 }

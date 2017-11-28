@@ -7,10 +7,10 @@ public class PropertyAndField
     public DateTime DateTimeInitialized = DateTime.Now();
     public List<DateTime> DateTimeList = new List<DateTime>();
     public DateTime[] DateTimeArray = new DateTime[5];
-    public String Name = 'jay';
-    public final String nameFinal = 'jay';
-    public static String NameStatic = 'jay';
-    public static final String NameStaticFinal = 'jay';
+    public string Name = 'jay';
+    public final string nameFinal = 'jay';
+    public static string NameStatic = 'jay';
+    public static final string NameStaticFinal = 'jay';
     
     public List<Contact> ContactList = [SELECT Id, Email FROM Contact];
 
@@ -21,7 +21,7 @@ public class PropertyAndField
         shouldRedirect =false;
     }
 
-    public String[] newStringArray = new String[] {'Hi'};
+    public string[] newStringArray = new string[] {'Hi'};
 
     public void MethodOne()
     {
@@ -30,7 +30,7 @@ public class PropertyAndField
         DateTime dateTimeInitilized = DateTime.Now();
         List<DateTime> dateTimeList = new List<DateTime>();
         DateTime[] dateTimeArrary = new DateTime[5];
-        String name;
+        string name;
         name = 'Jay';
     }
 }

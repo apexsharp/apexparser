@@ -12,35 +12,35 @@ public with sharing class Collections {
     public void ListExample()
     {
         List<Integer> myList = new List<Integer>();
-        myList.add(47);
+        myList.Add(47);
 
         Integer i = myList.get(0);
-        myList.set(0, 1);
-        myList.clear();
+        myList.Set(0, 1);
+        myList.Clear();
 
         List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('A','United States'));
-        options.add(new SelectOption('C','Canada'));
-        options.add(new SelectOption('A','Mexico'));
+        options.Add(new SelectOption('A','United States'));
+        options.Add(new SelectOption('C','Canada'));
+        options.Add(new SelectOption('A','Mexico'));
 
-        System.debug('Before sorting: ' + options);
-        options.sort();
-        System.debug('After sorting: ' + options);
+        System.Debug('Before sorting: ' + options);
+        options.Sort();
+        System.Debug('After sorting: ' + options);
     }
 
     public void SetExample()
     {
         Set<Integer> s = new Set<Integer>();
-        s.add(1);
-        s.remove(1);
+        s.Add(1);
+        s.Remove(1);
     }
 
     public void MapExample()
     {
         Map<Integer, String> m = new Map<Integer, String>();
-        m.put(1, 'First entry');
-        m.put(2, 'Second entry');
-        String value = m.get(2);
+        m.Put(1, 'First entry');
+        m.Out(2, 'Second entry');
+        string value = m.Get(2);
     }
 
     public void MapSoqlExample() {
@@ -48,7 +48,7 @@ public with sharing class Collections {
         // Map<Id, Contact> m = new Map<Id, Contact>(Soql.Query<Contact>("SELECT Id FROM Jay__c"));
         Map<Id, Contact> m = new Map<Id, Contact>([SELECT Id, Name FROM Contact LIMIT 10]);
 
-        for (Id idKey : m.KeySet())
+        for (ID idKey : m.KeySet())
         {
             Contact contact = m.Get(idKey);
         }

@@ -8,11 +8,11 @@ public class ExceptionDemo
         }
         catch (MathException e)
         {
-            System.debug(e.getMessage());
+            System.Debug(e.getMessage());
         }
         finally
         {
-            System.debug('Finally');
+            System.Debug('Finally');
         }
     }
 
