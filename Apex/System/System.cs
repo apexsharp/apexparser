@@ -3,8 +3,18 @@ using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
-    public class System
+    public class System : global::System.IDisposable
     {
+        public static System RunAs(SObject user)
+        {
+            return new System();
+        }
+
+        public void Dispose()
+        {
+
+        }
+
         public static void AbortJob(string jobId)
         {
             throw new global::System.NotImplementedException("System.AbortJob");
@@ -152,11 +162,6 @@ namespace Apex.System
         }
 
         public static void RunAs(Package.Version version)
-        {
-            throw new global::System.NotImplementedException("System.RunAs");
-        }
-
-        public static void RunAs(SObject user)
         {
             throw new global::System.NotImplementedException("System.RunAs");
         }

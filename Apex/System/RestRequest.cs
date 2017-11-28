@@ -2,6 +2,7 @@ namespace Apex.System
 {
     public class RestRequest
     {
+        public Blob RequestBody { set; get; }
         public RestRequest()
         {
             throw new global::System.NotImplementedException("RestRequest");

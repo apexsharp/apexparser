@@ -2,6 +2,22 @@ namespace Apex.System
 {
     public class DateTime
     {
+        public DateTime Now
+        {
+            get
+            {
+                return new DateTime();
+            }
+        }
+
+        public DateTime Today
+        {
+            get
+            {
+                return new DateTime();
+            }
+        }
+
         public DateTime AddDays(int days)
         {
             throw new global::System.NotImplementedException("DateTime.AddDays");
@@ -192,10 +208,6 @@ namespace Apex.System
             throw new global::System.NotImplementedException("DateTime.NewInstanceGmt");
         }
 
-        public static DateTime Now()
-        {
-            throw new global::System.NotImplementedException("DateTime.Now");
-        }
 
         public static DateTime Parse(string str)
         {

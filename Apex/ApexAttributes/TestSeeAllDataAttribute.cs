@@ -3,13 +3,13 @@
 namespace Apex.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.All)]
-    public class TestSeeAllDataAttribute : Attribute
+    public class TestSeeAllData : Attribute
     {
-        public TestSeeAllDataAttribute()
+        public TestSeeAllData(bool seeAllData)
         {
-            IsSharing = true;
+            SeeAllData = seeAllData;
         }
 
-        protected virtual bool IsSharing { get; }
+        protected virtual bool SeeAllData { get; }
     }
 }

@@ -237,29 +237,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApexCode\ClassAbstract.cs" />
-    <Compile Include="ApexCode\ClassEnum.cs" />
-    <Compile Include="ApexCode\ClassException.cs" />
-    <Compile Include="ApexCode\ClassGlobal.cs" />
-    <Compile Include="ApexCode\ClassInitialization.cs" />
-    <Compile Include="ApexCode\ClassInterface.cs" />
-    <Compile Include="ApexCode\ClassInternal.cs" />
-    <Compile Include="ApexCode\ClassNoApex.cs" />
-    <Compile Include="ApexCode\ClassRest.cs" />
-    <Compile Include="ApexCode\ClassUnitTest.cs" />
-    <Compile Include="ApexCode\Collection.cs" />
-    <Compile Include="ApexCode\Comments.cs" />
-    <Compile Include="ApexCode\Demo.cs" />
-    <Compile Include="ApexCode\DemoTest.cs" />
-    <Compile Include="ApexCode\IClassInterface.cs" />
-    <Compile Include="ApexCode\IClassInterfaceExt.cs" />
-    <Compile Include="ApexCode\JsonExample.cs" />
-    <Compile Include="ApexCode\ListAndArrayDemo.cs" />
-    <Compile Include="ApexCode\MethodAndConstructor.cs" />
-    <Compile Include="ApexCode\MethodComplex.cs" />
-    <Compile Include="ApexCode\PrimitiveTypes.cs" />
-    <Compile Include="ApexCode\PropertyAndField.cs" />
-    <Compile Include="ApexCode\SoqlDemo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="OneTimeSetUp.cs" />
     <Compile Include="NoApex\Console.cs" />
@@ -278,7 +255,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ApexCode\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApexParser\ApexParser.csproj">
       <Project>{7f1c15e4-1b67-4f35-bf46-5b0506992a0f}</Project>

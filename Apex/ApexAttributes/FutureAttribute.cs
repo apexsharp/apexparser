@@ -3,18 +3,21 @@
 namespace Apex.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class FutureAttribute : Attribute
+    public class Future : Attribute
     {
-        public FutureAttribute()
+        public Future()
         {
-            CallOut = false;
-        }
 
-        public FutureAttribute(bool callOut)
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Method)]
+    public class FutureCallOutTrue : Attribute
+    {
+
+        public FutureCallOutTrue()
         {
-            CallOut = callOut;
-        }
 
-        protected virtual bool CallOut { get; }
+        }
     }
 }
