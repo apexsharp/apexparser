@@ -287,7 +287,10 @@ namespace ApexParser.Visitors
             }
             else
             {
-                AppendIndentedLine("[{0}({1})]", attribute.Identifier, attribute.Parameters.Replace("\'", "\""));
+                // make sure parameters are comma-separated
+                var parameters = GenericExpressionHelper.ConvertApexAnnotationParametersToCSharp(attribute.Parameters);
+                parameters = parameters.Replace("\'", "\"");
+                AppendIndentedLine("[{0}({1})]", attribute.Identifier, parameters);
             }
         }
 

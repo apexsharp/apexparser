@@ -1258,5 +1258,34 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        // [Test] // doesn't work yet
+        public void AnnotationsWithMultipleParametersAreCommaSeparated()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    @InvocableMethod(label='Get Account Names' description='Returns the list of account names corresponding to the specified account IDs.')
+                    void SomeMethod() {
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+                    using SalesForceAPI.ApexApi;
+
+                    class Sample
+                    {
+                        [InvocableMethod(label=""Get Account Names"", description=""Returns the list of account names corresponding to the specified account IDs."")]
+                        void SomeMethod()
+                        {
+                        }
+                    }
+                }");
+        }
     }
 }

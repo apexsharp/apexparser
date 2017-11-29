@@ -335,5 +335,24 @@ namespace ApexParserTest.Toolbox
             csharp = Convert(text);
             Assert.AreEqual(@"int c = new Contact { ID = 'Hello', Stuff = [SELECT ID FROM DUAL] }, int y = 10", csharp);
         }
+
+        [Test]
+        public void ApexAnnotationParametersAreConvertedToCSharp()
+        {
+            string Convert(string x) =>
+                GenericExpressionHelper.ConvertApexAnnotationParametersToCSharp(x);
+
+            var text = "Property = 1";
+            var csharp = Convert(text);
+            Assert.AreEqual("Property = 1", csharp);
+
+            text = @"Email = 'some\'@example.com' Name = 'Hello'";
+            csharp = Convert(text);
+            Assert.AreEqual(@"Email = 'some\'@example.com', Name = 'Hello'", csharp);
+
+            text = @"ID = 'Hello' Date = Date.NewInstance(1,2,3) Name='y@e\mail.com'";
+            csharp = Convert(text);
+            Assert.AreEqual(@"ID = 'Hello', Date = Date.NewInstance(1,2,3), Name='y@e\mail.com'", csharp);
+        }
     }
 }

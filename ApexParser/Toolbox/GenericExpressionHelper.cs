@@ -176,5 +176,26 @@ namespace ApexParser.Toolbox
             return ApexConstructorInitializerRegex.Replace(expression,
                 m => $"new {m.Groups["ClassName"]} {{ {m.Groups["Body"]} }}");
         }
+
+        private static Regex ApexAnnotationParameterRegex { get; } =
+            new Regex(@"
+            (
+	            \s* (?<NameValuePair>  \w[\w\d_]* \s* \= \s* ( [^\,\(\'\s] | (\' (\\.|[^\'])*  \') | (\([^\)]*\)) )* ) \s*
+            )+",
+            RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertApexAnnotationParametersToCSharp(string parameters)
+        {
+            // replace "name1='value1' name2=value2" with "name1='value1', name2=value2"
+            var match = ApexAnnotationParameterRegex.Match(parameters);
+            if (match.Success)
+            {
+                return string.Join(", ",
+                    match.Groups["NameValuePair"].Captures
+                        .OfType<Capture>().Select(c => c.Value));
+            }
+
+            return parameters;
+        }
     }
 }
