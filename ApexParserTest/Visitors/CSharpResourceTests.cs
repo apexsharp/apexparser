@@ -19,12 +19,8 @@ namespace ApexParserTest.Visitors
             CompareLineByLine(ApexParser.ApexParser.ConvertApexToCSharp(apex), csharp);
 
         [Test]
-        public void SoqlDemoIsGeneratedInCSharp()
-        {
-            var soqlDemo = new ApexGrammar().ClassDeclaration.Parse(SoqlDemo);
-            var soqlCSharp = soqlDemo.ToCSharp();
-            Assert.NotNull(soqlCSharp);
-        }
+        public void SoqlDemoIsGeneratedInCSharp() =>
+            Check(SoqlDemo, SoqlDemoCS);
 
         [Test]
         public void ClassUnitTestIsGeneratedInCSharp() =>

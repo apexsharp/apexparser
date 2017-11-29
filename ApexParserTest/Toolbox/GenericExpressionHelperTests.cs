@@ -312,5 +312,28 @@ namespace ApexParserTest.Toolbox
             apex = GenericExpressionHelper.ConvertCSharpDateTimeTodayToApex(text);
             Assert.AreEqual("Date.today()", apex);
         }
+
+        [Test]
+        public void ApexConstructorInitializerIsConvertedToCSharp()
+        {
+            string Convert(string x) =>
+                GenericExpressionHelper.ConvertApexConstructorInitializerToCSharp(x);
+
+            var text = "new Something(Property = 1)";
+            var csharp = Convert(text);
+            Assert.AreEqual("new Something { Property = 1 }", csharp);
+
+            text = @"new MyClass (Email = 'some\'@example.com', Name = 'Hello')";
+            csharp = Convert(text);
+            Assert.AreEqual(@"new MyClass { Email = 'some\'@example.com', Name = 'Hello' }", csharp);
+
+            text = @"int c = new Contact(ID = 'Hello', Date = Date.NewInstance(1,2,3), Name='y@e\mail.com') + 2";
+            csharp = Convert(text);
+            Assert.AreEqual(@"int c = new Contact { ID = 'Hello', Date = Date.NewInstance(1,2,3), Name='y@e\mail.com' } + 2", csharp);
+
+            text = @"int c = new Contact(ID = 'Hello', Stuff = [SELECT ID FROM DUAL]), int y = 10";
+            csharp = Convert(text);
+            Assert.AreEqual(@"int c = new Contact { ID = 'Hello', Stuff = [SELECT ID FROM DUAL] }, int y = 10", csharp);
+        }
     }
 }

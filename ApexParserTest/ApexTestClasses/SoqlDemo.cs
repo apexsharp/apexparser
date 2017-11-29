@@ -6,39 +6,36 @@
     using SObjects;
     using SalesForceAPI.ApexApi;
 
-    /**
-    * A simple CRUD Example
-    */
-    public static class SoqlDemo
+    [WithSharing]
+    public class SoqlDemo
     {
+        /**
+         * A simple CRUD Example
+         */
         public static void CrudExample()
         {
-            Contact contactNew = new Contact() { LastName = "Jay", Email = "abc@abc.com" };
+            Contact contactNew = new Contact { LastName = "Jay", EMail = "abc@abc.com" };
             Soql.Insert(contactNew);
-
-            System.Debug(contactNew.Id);
-
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew });
-
-            foreach (Contact contact in contacts)
+            System.debug(contactNew.Id);
+            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            foreach (Contact c in contacts)
             {
-                System.Debug(contact.Email);
-                contact.Email = "new@new.com";
+                System.debug(c.Email);
+                c.Email = "new@new.com";
             }
+
             Soql.Update(contacts);
-
-
-            contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew });
-            foreach (Contact contact in contacts)
+            contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            foreach (Contact c in contacts)
             {
-                System.Debug(contact.Email);
+                System.debug(c.Email);
             }
-            Soql.Delete(contacts);
 
-            contacts = Soql.Query<Contact>("SELECT Id, Email, Name FROM Contact WHERE Id = :contactNew.Id LIMIT 1", new { contactNew });
-            if (contacts.IsEmpty())
+            Soql.Delete(contacts);
+            contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            if (contacts.isEmpty())
             {
-                System.Debug("Del Worked");
+                System.debug("Delete Worked");
             }
         }
     }

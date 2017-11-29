@@ -52,13 +52,13 @@ namespace ApexSharpDemo.ApexCode
         private static void makeRelationship_returnsObjectsWithRelationFieldSet()
         {
             //Given
-            Account acc = new Account(Id = fflib_IDGenerator.generate(Account.SObjectType),
+            Account acc = new Account { Id = fflib_IDGenerator.generate(Account.SObjectType),
 			Name = "AccName",
-			NumberOfEmployees = 7);
-            Contact contact1 = new Contact(Id = fflib_IDGenerator.generate(Contact.SObjectType),
-			DoNotCall = true);
-            Contact contact2 = new Contact(Id = fflib_IDGenerator.generate(Contact.SObjectType),
-			DoNotCall = false);
+			NumberOfEmployees = 7 };
+            Contact contact1 = new Contact { Id = fflib_IDGenerator.generate(Contact.SObjectType),
+			DoNotCall = true };
+            Contact contact2 = new Contact { Id = fflib_IDGenerator.generate(Contact.SObjectType),
+			DoNotCall = false };
 
             //When
             Account accWithRelationships = ((List<Account>)fflib_ApexMocksUtils.makeRelationship(List<Account>.class, new List<Account>{acc},

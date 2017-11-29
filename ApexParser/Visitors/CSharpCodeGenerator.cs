@@ -430,6 +430,16 @@ namespace ApexParser.Visitors
             AppendStatementWithOptionalIndent(node.Statement);
         }
 
+        public override void VisitExpression(ExpressionSyntax node)
+        {
+            // replace Apex-style constructor initializers:
+            // new Class(Prop1=Value1, Prop2=Value2) => new Class { Prop1=Value1, Prop2=Value2 }
+            var expr = GenericExpressionHelper.ConvertApexConstructorInitializerToCSharp(node.Expression);
+
+            // split into portions and process one by one
+            base.VisitExpression(new ExpressionSyntax(expr));
+        }
+
         protected override void AppendStringLiteral(string literal) =>
             Append("\"{0}\"", literal.Substring(1, literal.Length - 2));
 

@@ -155,5 +155,26 @@ namespace ApexParser.Toolbox
             // replace DateTime.Today with Date.today()
             return CSharpDateTimeTodayRegex.Replace(expression, "Date.today()");
         }
+
+        private static Regex ApexConstructorInitializerRegex { get; } =
+            new Regex(@"
+                \b new \s+ (?<ClassName>\w[\w\d_]*) \s*
+                \(
+                (?<Body>
+                    \s*
+	                (
+	                    (?<PropertyName>\w[\w\d_]*) \s* \= \s* (?<Value> ( [^\,\(\'] | (\' (\\.|[^\'])*  \') | (\([^\)]*\)) )* ) \s* \, \s*
+	                )*
+	                (?<PropertyName>\w[\w\d_]*) \s* \= \s* (?<Value> ( [^\,\(] | (\'[^\']\') | (\([^\)]*\)) )* ) \s*
+                )
+                \)",
+                RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertApexConstructorInitializerToCSharp(string expression)
+        {
+            // replace new MyVar(Name = 'X', Value = 10) with new MyVar { Name = 'X', Value = 10 }
+            return ApexConstructorInitializerRegex.Replace(expression,
+                m => $"new {m.Groups["ClassName"]} {{ {m.Groups["Body"]} }}");
+        }
     }
 }
