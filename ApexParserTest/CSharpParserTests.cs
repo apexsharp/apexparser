@@ -89,5 +89,39 @@ namespace ApexParserTest
                     private int x = 10;
                 }", apexClasses[1]);
         }
+
+        [Test]
+        public void CSharpHelperConvertsCSharpTextsToApexDictionary()
+        {
+            var csharp = @"
+                class Test1 { public Test1(int x) { } }
+                class Test2 : Test1 { private int x = 10; }
+                enum SomeEnum { None, Unknown, Default }";
+
+            var apexClasses = CSharpHelper.ConvertToApex(csharp);
+            Assert.AreEqual(3, apexClasses.Count);
+
+            CompareLineByLine(
+                @"class Test1
+                {
+                    public Test1(int x)
+                    {
+                    }
+                }", apexClasses["Test1"]);
+
+            CompareLineByLine(
+                @"class Test2 extends Test1
+                {
+                    private int x = 10;
+                }", apexClasses["Test2"]);
+
+            CompareLineByLine(
+                @"enum SomeEnum
+                {
+                    None,
+                    Unknown,
+                    Default
+                }", apexClasses["SomeEnum"]);
+        }
     }
 }

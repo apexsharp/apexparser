@@ -53,14 +53,14 @@ namespace ApexParser.Visitors
 
         public const string NoApexCommentSignature = ":NoApex ";
 
-        public static List<ApexBaseSyntax> GetApexSyntaxNodes(CSharpSyntaxNode node)
+        public static List<ApexMemberDeclarationSyntax> GetApexSyntaxNodes(CSharpSyntaxNode node)
         {
             var builder = new ApexSyntaxBuilder();
             node?.Accept(builder);
             return builder.ApexClasses;
         }
 
-        public List<ApexBaseSyntax> ApexClasses { get; set; } = new List<ApexBaseSyntax>();
+        public List<ApexMemberDeclarationSyntax> ApexClasses { get; set; } = new List<ApexMemberDeclarationSyntax>();
 
         public override void VisitCompilationUnit(CompilationUnitSyntax node)
         {
