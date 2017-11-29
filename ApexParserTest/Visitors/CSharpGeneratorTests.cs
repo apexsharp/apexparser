@@ -1229,5 +1229,34 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void GlobalModifierGeneratesPublicClassWithGlobalAttribute()
+        {
+            var apex = Apex.ParseClass(
+               @"global class Sample {
+                    global static void SomeMethod() {
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+                    using SalesForceAPI.ApexApi;
+
+                    [Global]
+                    public class Sample
+                    {
+                        [Global]
+                        public static void SomeMethod()
+                        {
+                        }
+                    }
+                }");
+        }
     }
 }

@@ -149,6 +149,9 @@ namespace ApexParser.Visitors
                 Annotations = (ownerNode?.Annotations).EmptyIfNull().ToList(),
             };
 
+            var isGlobal = false;
+            var isPublic = false;
+
             // convert unsupported modifiers into annotations
             foreach (var modifier in ownerNode.Modifiers)
             {
@@ -170,6 +173,7 @@ namespace ApexParser.Visitors
                 else if (modifier == ApexKeywords.Global)
                 {
                     result.Annotations.Add(new AnnotationSyntax("Global"));
+                    isGlobal = true;
                 }
                 else if (modifier.StartsWith(ApexKeywords.Without))
                 {
@@ -194,7 +198,17 @@ namespace ApexParser.Visitors
                 else
                 {
                     result.Modifiers.Add(modifier);
+                    if (modifier == ApexKeywords.Public)
+                    {
+                        isPublic = true;
+                    }
                 }
+            }
+
+            // enforce public modifier for the global symbols
+            if (isGlobal && !isPublic)
+            {
+                result.Modifiers.Insert(0, ApexKeywords.Public);
             }
 
             return result;
