@@ -1107,7 +1107,7 @@ namespace ApexParserTest.Visitors
                     public Datetime SomeMethod() {
                         Type type = Sample.class;
                         AnotherMethod(String.class);
-                        return Datetime.now();
+                        return Datetime.Now();
                     }
                 }");
 
@@ -1126,7 +1126,7 @@ namespace ApexParserTest.Visitors
                         {
                             Type type = typeof(Sample);
                             AnotherMethod(typeof(string));
-                            return DateTime.Now;
+                            return DateTime.Now();
                         }
                     }
                 }");
@@ -1140,7 +1140,7 @@ namespace ApexParserTest.Visitors
                     public Date SomeMethod() {
                         String x = string.valueOf(123);
                         String y = String.valueOf(10 + 20);
-                        return Date.today();
+                        return Date.Today();
                     }
                 }");
 
@@ -1155,11 +1155,11 @@ namespace ApexParserTest.Visitors
 
                     class Sample
                     {
-                        public DateTime SomeMethod()
+                        public Date SomeMethod()
                         {
                             string x = 123.ToString();
                             string y = (10 + 20).ToString();
-                            return DateTime.Today;
+                            return Date.Today();
                         }
                     }
                 }");

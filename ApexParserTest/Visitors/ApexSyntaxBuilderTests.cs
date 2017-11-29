@@ -279,9 +279,10 @@ namespace ApexParserTest.Visitors
             Check("class A { void T() { Type x = typeof(List<string>); } }", "class A { void T() { Type x = List<string>.class; } }");
         }
 
-        [Test]
+        // [Test]
         public void DateTimeNowAndDateTimeTodayAreConverted()
         {
+            // DateTime.Now/Today is not converted anymore, custom Date and DateTime classes are used instead
             Check("class A { void T() { System.debug(DateTime.Now); } }", "class A { void T() { System.debug(Datetime.now()); } }");
             Check("class A { void T() { System.debug(DateTime.Today); } }", "class A { void T() { System.debug(Date.today()); } }");
         }

@@ -4,9 +4,9 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using NUnit.Framework;
+    using Apex.NUnit.Framework;
 
-    [TestFixture]
+    [TestFixture, Explicit("Too slow to run every time")]
     public class DemoTest
     {
         [SetUp]

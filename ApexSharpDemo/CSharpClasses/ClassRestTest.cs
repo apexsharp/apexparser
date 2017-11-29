@@ -6,7 +6,7 @@ namespace ApexSharpDemo.CSharpClasses
     using SObjects;
     using Apex.NUnit.Framework;
 
-    [TestFixture, Ignore("Not implemented")]
+    [TestFixture, Explicit("Not implemented")]
     public class ClassRestTest
     {
         [Test]

@@ -505,8 +505,6 @@ namespace ApexParser.Visitors
             apexExpr = GenericExpressionHelper.ConvertSoqlQueriesToApex(apexExpr);
             apexExpr = GenericExpressionHelper.ConvertSoqlStatementsToApex(apexExpr);
             apexExpr = GenericExpressionHelper.ConvertTypeofExpressionsToApex(apexExpr);
-            apexExpr = GenericExpressionHelper.ConvertCSharpDateTimeNowToApex(apexExpr);
-            apexExpr = GenericExpressionHelper.ConvertCSharpDateTimeTodayToApex(apexExpr);
             apexExpr = apexExpr.Replace("\"", "'");
             return new ApexExpressionSyntax(apexExpr);
         }

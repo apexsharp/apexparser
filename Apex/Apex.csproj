@@ -741,6 +741,7 @@
     <Compile Include="Networkspulse\ApproveFeedItemActionControllerExtension.cs" />
     <Compile Include="Networkspulse\DeleteActionsControllerExtension.cs" />
     <Compile Include="Networkspulse\PulseApexActionsUtil.cs" />
+    <Compile Include="NUnit\ExplicitAttribute.cs" />
     <Compile Include="NUnit\IgnoreAttribute.cs" />
     <Compile Include="NUnit\SetUpAttribute.cs" />
     <Compile Include="NUnit\TestAttribute.cs" />

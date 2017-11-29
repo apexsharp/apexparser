@@ -422,8 +422,6 @@ namespace ApexParser.Visitors
             // replace string.class => typeof(string), string.valueOf(x) => x.ToString(), etc
             part = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(part);
             part = GenericExpressionHelper.ConvertStringValueofToString(part);
-            part = GenericExpressionHelper.ConvertApexDateTimeNowToCSharp(part);
-            part = GenericExpressionHelper.ConvertApexDateTodayToCSharp(part);
 
             // replace Apex types with C# types
             foreach (var r in CSharpTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))
@@ -440,8 +438,8 @@ namespace ApexParser.Visitors
                 { ApexKeywords.Boolean, "bool" },
                 { ApexKeywords.Byte, "byte" },
                 { ApexKeywords.Char, "char" },
-                { ApexKeywords.Datetime, nameof(DateTime) },
-                { ApexKeywords.Date, nameof(DateTime) },
+                { ApexKeywords.Datetime, "DateTime" },
+                { ApexKeywords.Date, "Date" },
                 { ApexKeywords.Decimal, "decimal" },
                 { ApexKeywords.Double, "double" },
                 { ApexKeywords.Exception, nameof(Exception) },
@@ -452,6 +450,7 @@ namespace ApexParser.Visitors
                 { ApexKeywords.Object, "object" },
                 { ApexKeywords.Short, "short" },
                 { ApexKeywords.String, "string" },
+                { ApexKeywords.Time, "Time" },
                 { ApexKeywords.Void, "void" },
             };
 
