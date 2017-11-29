@@ -13,7 +13,8 @@ namespace ApexSharpDemo.CSharpClasses
          */
         public static void CrudExample()
         {
-            Contact contactNew = new Contact(); // TODO: (LastName = "Jay", Email = "abc@abc.com");
+            Contact contactNew = new Contact();
+
             Soql.Insert(contactNew);
             System.Debug(contactNew.Id);
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
@@ -61,7 +62,7 @@ namespace ApexSharpDemo.CSharpClasses
         public static void InClauseTest()
         {
             Contact[] contactList = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email IN ('rose@edge.com', 'sean@edge.com')");
-            string[] emails = new string[]{"rose@edge.com", "sean@edge.com"};
+            string[] emails = new string[] { "rose@edge.com", "sean@edge.com" };
             Contact[] contactListThree = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email IN :emails", emails);
             Contact[] contactListOne = Soql.Query<Contact>("SELECT Id, Email FROM Contact LIMIT 2");
             Contact[] contactListTwo = Soql.Query<Contact>("SELECT Id FROM Contact WHERE Id IN :contactListOne", contactListOne);

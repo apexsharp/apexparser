@@ -7,7 +7,7 @@ namespace ApexSharpDemo.CSharpClasses
     using SalesForceAPI.ApexApi;
     using Apex.NUnit.Framework;
 
-    [TestFixture(SeeAllData = true)]
+    [TestFixture(SeeAllData=true)]
     public class ClassUnitTestSeeAllData
     {
     }
