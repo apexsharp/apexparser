@@ -7,7 +7,7 @@ namespace ApexSharpDemo.CSharpClasses
     using SalesForceAPI.ApexApi;
 
     [Global]
-    class ClassGlobal
+    public class ClassGlobal
     {
     }
 }

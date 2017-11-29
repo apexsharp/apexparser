@@ -2,9 +2,9 @@
 public class ClassUnitTestRunAs
 {
     @isTest
-    public static void RunAsExample()
+    static void RunAsExample()
     {
-        User newUser = new User();
+        User newUser = [SELECT Id FROM User LIMIT 1];
         System.RunAs(newUser)
         {
 

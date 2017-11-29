@@ -19,7 +19,7 @@ namespace ApexSharpDemo.CSharpClasses
             Soql.Insert(contactNew);
         }
 
-        [Test, Explicit]
+        [Test]
         public static void UpdatePhoneTestValidEmail()
         {
             Demo.UpdatePhone("jay@jay.com", "555-1212");

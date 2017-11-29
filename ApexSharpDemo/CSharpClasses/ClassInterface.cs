@@ -8,9 +8,9 @@ namespace ApexSharpDemo.CSharpClasses
 
     public class ClassInterface : IClassInterface
     {
-        public ID GetId()
+        public string GetName(string name)
         {
-            return "";
+            return name;
         }
 
         public string GetName()

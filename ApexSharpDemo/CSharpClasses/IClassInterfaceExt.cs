@@ -8,6 +8,6 @@ namespace ApexSharpDemo.CSharpClasses
 
     public interface IClassInterfaceExt
     {
-        ID GetId();
+        //    ID GetId();
     }
 }

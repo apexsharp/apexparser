@@ -6,7 +6,7 @@ namespace ApexSharpDemo.CSharpClasses
     using SObjects;
     using SalesForceAPI.ApexApi;
 
-    [RestResource(UrlMapping="/api/RestDemo")]
+    [RestResource(urlMapping="/api/RestDemo")]
     [Global]
     public class ClassRest
     {
@@ -40,26 +40,26 @@ namespace ApexSharpDemo.CSharpClasses
 
         [HttpGet]
         [Global]
-        static string Get()
+        public static string Get()
         {
             return "Jay";
         }
 
         [HttpPatch]
         [Global]
-        static void Patch()
+        public static void Patch()
         {
         }
 
         [HttpPut]
         [Global]
-        static void Put()
+        public static void Put()
         {
         }
 
         [HttpDelete]
         [Global]
-        static void DoDelete()
+        public static void DoDelete()
         {
         }
     }

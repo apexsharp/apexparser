@@ -11,9 +11,9 @@ namespace ApexSharpDemo.CSharpClasses
     public class ClassUnitTestRunAs
     {
         [Test]
-        public static void RunAsExample()
+        static void RunAsExample()
         {
-            User newUser = new User();
+            User newUser = Soql.Query<User>("SELECT Id FROM User LIMIT 1");
             using (System.RunAs(newUser))
             {
             }
