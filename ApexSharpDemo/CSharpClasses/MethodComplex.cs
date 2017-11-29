@@ -22,7 +22,7 @@ namespace ApexSharpDemo.CSharpClasses
 
         public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
         {
-            return Database.getQueryLocator(Soql.Query<Contact>("SELECT Id FROM Contact"));
+            return Database.GetQueryLocator(Soql.Query<Contact>("SELECT Id FROM Contact"));
         }
     }
 }

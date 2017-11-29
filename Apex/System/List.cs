@@ -94,7 +94,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("List.Equals");
         }
 
-        public ID Get(int index)
+        public T Get(int index)
         {
             throw new global::System.NotImplementedException("List.Get");
         }

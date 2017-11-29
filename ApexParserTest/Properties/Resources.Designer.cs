@@ -1344,7 +1344,7 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        private static readonly fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
         ///
-        ///        private static readonly fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(fflib_M [rest of string was truncated]&quot;;.
+        ///        private static readonly fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOCKS.mock(typeof( [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksTest_CSharp {
             get {

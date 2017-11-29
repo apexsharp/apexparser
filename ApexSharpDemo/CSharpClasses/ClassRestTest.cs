@@ -4,23 +4,23 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using NUnit.Framework;
+    using Apex.NUnit.Framework;
 
-    [TestFixture]
+    [TestFixture, Ignore("Not implemented")]
     public class ClassRestTest
     {
         [Test]
         public static void PostTest()
         {
-            RestContext.request = new RestRequest();
-            RestContext.response = new RestResponse();
+            RestContext.Request = new RestRequest();
+            RestContext.Response = new RestResponse();
             ClassRest.ContactDTO contact = new ClassRest.ContactDTO();
             contact.LastName = "LastName";
-            RestContext.Request.RequestBody = Blob.ValueOf(JSON.serialize(contact));
+            RestContext.Request.RequestBody = Blob.ValueOf(JSON.Serialize(contact));
             ClassRest.Post();
             System.AssertEquals(200, RestContext.Response.StatusCode);
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id FROM Contact WHERE LastName = 'LastName'");
-            System.AssertEquals(1, contacts.size());
+            System.AssertEquals(1, contacts.Size());
         }
     }
 }

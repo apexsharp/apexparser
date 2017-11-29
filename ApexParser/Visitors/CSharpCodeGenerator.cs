@@ -24,11 +24,12 @@ namespace ApexParser.Visitors
             "Apex.ApexSharp",
             "Apex.System",
             "SObjects",
+            "SalesForceAPI.ApexApi",
         };
 
         public List<string> UnitTestUsings { get; set; } = new List<string>
         {
-            "NUnit.Framework",
+            "Apex.NUnit.Framework",
         };
 
         public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4, string @namespace = null)

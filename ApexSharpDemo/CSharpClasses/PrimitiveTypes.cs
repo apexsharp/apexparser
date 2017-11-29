@@ -4,6 +4,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using SalesForceAPI.ApexApi;
 
     public class PrimitiveTypes
     {
@@ -11,11 +12,11 @@ namespace ApexSharpDemo.CSharpClasses
 
         public bool IsWinner = true;
 
-        public DateTime MyDate = DateTime.Today;
+        public Date MyDate = Date.Today();
 
-        public DateTime MyDateTime = DateTime.Now;
+        public DateTime MyDateTime = DateTime.Now();
 
-        public decimal MyDecimal = 12.4567;
+        public decimal MyDecimal = 12.4567m;
 
         public double d = 3.133433;
 

@@ -4,7 +4,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using NUnit.Framework;
+    using Apex.NUnit.Framework;
 
     [TestFixture]
     public class ClassUnitTest

@@ -1,10 +1,22 @@
 namespace Apex.System
 {
+    using SysDateTime = global::System.DateTime;
+
     public class Date
     {
+        internal SysDateTime date;
+
+        internal Date(SysDateTime dt) => date = dt;
+
+        internal Date(int year, int month, int day)
+        {
+            date = new SysDateTime(year, month, day);
+        }
+
         public Date AddDays(int days)
         {
-            throw new global::System.NotImplementedException("Date.AddDays");
+            ////throw new global::System.NotImplementedException("Date.AddDays");
+            return new Date(date.AddDays(days));
         }
 
         public void AddError(object msg)
@@ -29,22 +41,26 @@ namespace Apex.System
 
         public Date AddMonths(int months)
         {
-            throw new global::System.NotImplementedException("Date.AddMonths");
+            ////throw new global::System.NotImplementedException("Date.AddMonths");
+            return new Date(date.AddMonths(months));
         }
 
         public Date AddYears(int years)
         {
-            throw new global::System.NotImplementedException("Date.AddYears");
+            ////throw new global::System.NotImplementedException("Date.AddYears");
+            return new Date(date.AddYears(years));
         }
 
         public int Day()
         {
-            throw new global::System.NotImplementedException("Date.Day");
+            ////throw new global::System.NotImplementedException("Date.Day");
+            return date.Day;
         }
 
         public int DayOfYear()
         {
-            throw new global::System.NotImplementedException("Date.DayOfYear");
+            ////throw new global::System.NotImplementedException("Date.DayOfYear");
+            return date.DayOfYear;
         }
 
         public int DaysBetween(Date other)
@@ -74,7 +90,8 @@ namespace Apex.System
 
         public int Month()
         {
-            throw new global::System.NotImplementedException("Date.Month");
+            ////throw new global::System.NotImplementedException("Date.Month");
+            return date.Month;
         }
 
         public int MonthsBetween(Date other)
@@ -84,12 +101,14 @@ namespace Apex.System
 
         public static Date NewInstance(int year, int month, int day)
         {
-            throw new global::System.NotImplementedException("Date.NewInstance");
+            ////throw new global::System.NotImplementedException("Date.NewInstance");
+            return new Date(year, month, day);
         }
 
         public static Date Parse(string str)
         {
-            throw new global::System.NotImplementedException("Date.Parse");
+            ////throw new global::System.NotImplementedException("Date.Parse");
+            return new Date(SysDateTime.Parse(str));
         }
 
         public Date ToStartOfMonth()
@@ -104,7 +123,8 @@ namespace Apex.System
 
         public static Date Today()
         {
-            throw new global::System.NotImplementedException("Date.Today");
+            ////throw new global::System.NotImplementedException("Date.Today");
+            return new Date(SysDateTime.Today);
         }
 
         public static Date ValueOf(object o)
@@ -119,7 +139,8 @@ namespace Apex.System
 
         public int Year()
         {
-            throw new global::System.NotImplementedException("Date.Year");
+            ////throw new global::System.NotImplementedException("Date.Year");
+            return date.Year;
         }
     }
 }

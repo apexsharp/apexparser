@@ -26,7 +26,7 @@ namespace ApexSharpDemo.CSharpClasses
         {
         }
 
-        [FuturecallOut=true]
+        [Future(CallOut = true)]
         public static void FutureMethodWithCallOut()
         {
         }

@@ -4,6 +4,7 @@
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using SalesForceAPI.ApexApi;
 
     /**
     * A simple CRUD Example

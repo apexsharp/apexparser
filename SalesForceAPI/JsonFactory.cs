@@ -23,7 +23,7 @@ namespace SalesForceAPI
             var jObject = (JObject)JsonConvert.DeserializeObject(requestJson);
 
 
-            jObject.Remove("ID");
+            jObject.Remove("Id"); // type is "ID", field is "Id"
             jObject.Remove("OwnerId");
             jObject.Remove("IsDeleted");
             jObject.Remove("CreatedDate");
@@ -57,7 +57,7 @@ namespace SalesForceAPI
             var jObject = (JObject)JsonConvert.DeserializeObject(requestJson);
 
 
-            jObject.Remove("ID");
+            jObject.Remove("Id"); // type is "ID", field is "Id"
             jObject.Remove("Name");
             jObject.Remove("OwnerId");
             jObject.Remove("IsDeleted");

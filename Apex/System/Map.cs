@@ -67,7 +67,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Map.Equals");
         }
 
-        public K get(T key)
+        public K Get(T key)
         {
             return default(K);
         }
@@ -83,7 +83,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Map.IsEmpty");
         }
 
-        public Set<T> keySet()
+        public Set<T> KeySet()
         {
             return new Set<T>();
         }

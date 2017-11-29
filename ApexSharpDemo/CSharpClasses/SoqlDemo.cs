@@ -4,6 +4,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using SalesForceAPI.ApexApi;
 
     public class SoqlDemo
     {
@@ -12,7 +13,7 @@ namespace ApexSharpDemo.CSharpClasses
          */
         public static void CrudExample()
         {
-            Contact contactNew = new Contact(LastName = "Jay", Email = "abc@abc.com");
+            Contact contactNew = new Contact(); // TODO: (LastName = "Jay", Email = "abc@abc.com");
             Soql.Insert(contactNew);
             System.Debug(contactNew.Id);
             List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);

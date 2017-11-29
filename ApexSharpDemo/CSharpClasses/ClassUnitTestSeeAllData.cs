@@ -4,9 +4,9 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using NUnit.Framework;
+    using Apex.NUnit.Framework;
 
-    [TestFixtureSeeAllData=true]
+    [TestFixture(SeeAllData = true)]
     public class ClassUnitTestSeeAllData
     {
     }

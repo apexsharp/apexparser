@@ -4,6 +4,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using SalesForceAPI.ApexApi;
 
     /**
      * Copyright (c) 2014, FinancialForce.com, inc

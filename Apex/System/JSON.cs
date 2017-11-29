@@ -1,3 +1,5 @@
+using SysType = System.Type;
+
 namespace Apex.System
 {
     public class JSON
@@ -11,9 +13,15 @@ namespace Apex.System
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(o);
         }
+
         public static T Deserialize<T>(string jsonString)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonString);
+        }
+
+        public static object Deserialize(string jsonString, SysType type)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString, type);
         }
 
         public object Clone()
@@ -31,7 +39,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("JSON.CreateParser");
         }
 
- 
+
         public static object DeserializeStrict(string jsonString, Type apexType)
         {
             throw new global::System.NotImplementedException("JSON.DeserializeStrict");
@@ -42,7 +50,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("JSON.DeserializeUntyped");
         }
 
-      
+
 
         public static string Serialize(object o, bool suppressApexObjectNulls)
         {

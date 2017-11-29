@@ -100,6 +100,18 @@ namespace SalesForceAPI
             httpManager.Patch($"sobjects/{objectName}/{obj.Id}", jsonData);
         }
 
+        public static void Update<T>(IEnumerable<T> objects) where T : SObject
+        {
+            var objectName = typeof(T).Name;
+            var httpManager = new HttpManager();
+
+            foreach (var obj in objects)
+            {
+                var jsonData = JsonFactory.GetJsonUpdate(obj);
+                httpManager.Patch($"sobjects/{objectName}/{obj.Id}", jsonData);
+            }
+        }
+
         public static void Delete<T>(T obj) where T : SObject
         {
             var objectName = typeof(T).Name;
@@ -108,6 +120,20 @@ namespace SalesForceAPI
             HttpManager httpManager = new HttpManager();
             httpManager.Del($"sobjects/{objectName}/{obj.Id}");
             UnitTestDataManager.RemoveId(obj.Id.ToString());
+        }
+
+        public static void Delete<T>(IEnumerable<T> objects) where T : SObject
+        {
+            var objectName = typeof(T).Name;
+            var httpManager = new HttpManager();
+            var logger = Log.ForContext<SoqlApi>();
+
+            foreach (var obj in objects)
+            {
+                logger.Information("Deleting {$objectName} {$ID}", objectName, obj.Id);
+                httpManager.Del($"sobjects/{objectName}/{obj.Id}");
+                UnitTestDataManager.RemoveId(obj.Id.ToString());
+            }
         }
     }
 }

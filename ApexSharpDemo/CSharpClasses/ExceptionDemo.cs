@@ -15,9 +15,10 @@ namespace ApexSharpDemo.CSharpClasses
             }
             catch (MathException e)
             {
-                System.Debug(e.getMessage());
+                System.Debug(e.GetMessage());
             }
-            finally            {
+            finally
+            {
                 System.Debug("Finally");
             }
         }

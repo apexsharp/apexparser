@@ -741,6 +741,10 @@
     <Compile Include="Networkspulse\ApproveFeedItemActionControllerExtension.cs" />
     <Compile Include="Networkspulse\DeleteActionsControllerExtension.cs" />
     <Compile Include="Networkspulse\PulseApexActionsUtil.cs" />
+    <Compile Include="NUnit\IgnoreAttribute.cs" />
+    <Compile Include="NUnit\SetUpAttribute.cs" />
+    <Compile Include="NUnit\TestAttribute.cs" />
+    <Compile Include="NUnit\TestFixtureAttribute.cs" />
     <Compile Include="Package\Version.cs" />
     <Compile Include="Predictive\AnalysisException.cs" />
     <Compile Include="Predictive\BasePredictedFieldImpl.cs" />
@@ -1016,6 +1020,7 @@
     <Compile Include="System\StatusCode.cs" />
     <Compile Include="System\String.cs" />
     <Compile Include="System\StringException.cs" />
+    <Compile Include="System\StringExtensions.cs" />
     <Compile Include="System\StubProvider.cs" />
     <Compile Include="System\SupportPredictiveService.cs" />
     <Compile Include="System\System.cs" />

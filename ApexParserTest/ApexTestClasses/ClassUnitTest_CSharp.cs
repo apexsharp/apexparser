@@ -4,7 +4,8 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
-    using NUnit.Framework;
+    using SalesForceAPI.ApexApi;
+    using Apex.NUnit.Framework;
 
     [TestFixture]
     public class ClassUnitTest

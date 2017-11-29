@@ -4,6 +4,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using SalesForceAPI.ApexApi;
 
     [WithSharing]
     public class Collections
@@ -22,7 +23,7 @@ namespace ApexSharpDemo.CSharpClasses
         {
             List<int> myList = new List<int>();
             myList.Add(47);
-            int i = myList.get(0);
+            int i = myList.Get(0);
             myList.Set(0, 1);
             myList.Clear();
             List<SelectOption> options = new List<SelectOption>();
@@ -45,7 +46,7 @@ namespace ApexSharpDemo.CSharpClasses
         {
             Map<int, string> m = new Map<int, string>();
             m.Put(1, "First entry");
-            m.Out(2, "Second entry");
+            m.Put(2, "Second entry");
             string value = m.Get(2);
         }
 

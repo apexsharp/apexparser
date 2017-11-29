@@ -15,7 +15,7 @@ namespace ApexSharpDemo.CSharpClasses
 
         public DateTime DateTimeEmpty;
 
-        public DateTime DateTimeInitialized = DateTime.Now;
+        public DateTime DateTimeInitialized = DateTime.Now();
 
         public List<DateTime> DateTimeList = new List<DateTime>();
 
@@ -40,8 +40,8 @@ namespace ApexSharpDemo.CSharpClasses
         public void MethodOne()
         {
             DateTime dateTimeEmpty;
-            dateTimeEmpty = DateTime.Now;
-            DateTime dateTimeInitilized = DateTime.Now;
+            dateTimeEmpty = DateTime.Now();
+            DateTime dateTimeInitilized = DateTime.Now();
             List<DateTime> dateTimeList = new List<DateTime>();
             DateTime[] dateTimeArrary = new DateTime[5];
             string name;

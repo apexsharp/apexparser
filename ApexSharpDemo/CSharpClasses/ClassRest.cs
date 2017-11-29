@@ -5,7 +5,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.System;
     using SObjects;
 
-    [RestResourceurlMapping='/api/RestDemo']
+    [RestResource(UrlMapping="/api/RestDemo")]
     [Global]
     class ClassRest
     {
@@ -16,7 +16,7 @@ namespace ApexSharpDemo.CSharpClasses
 
         [HttpPost]
         [Global]
-        static void Post()
+        public static void Post()
         {
             try
             {

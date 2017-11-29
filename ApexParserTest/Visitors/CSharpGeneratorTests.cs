@@ -30,6 +30,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     class TestClass
                     {
@@ -59,7 +60,8 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
-                    using NUnit.Framework;
+                    using SalesForceAPI.ApexApi;
+                    using Apex.NUnit.Framework;
 
                     [TestFixture]
                     class TestClass
@@ -87,6 +89,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     enum TestEnum
                     {
@@ -123,7 +126,8 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
-                    using NUnit.Framework;
+                    using SalesForceAPI.ApexApi;
+                    using Apex.NUnit.Framework;
 
                     class TestClass
                     {
@@ -151,6 +155,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     // Test class
                     class TestClass
@@ -177,6 +182,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     /* Test class
                     with several lines
@@ -803,6 +809,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     public class MyDemo
                     {
@@ -850,6 +857,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     class SingleStaticInitializer
                     {
@@ -887,6 +895,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     class MultipleStaticInitializers
                     {
@@ -931,6 +940,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     // unsupported modifiers
                     [Global]
@@ -977,6 +987,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     // custom namespace
                     [Global]
@@ -1025,6 +1036,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     public class MyDemo
                     {
@@ -1073,6 +1085,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     class Sample
                     {
@@ -1105,6 +1118,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     class Sample
                     {
@@ -1137,6 +1151,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.System;
                     using SObjects;
+                    using SalesForceAPI.ApexApi;
 
                     class Sample
                     {

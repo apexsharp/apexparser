@@ -1,8 +1,11 @@
 using SalesForceAPI.ApexApi;
+using Action = System.Action;
+using IDisposable = System.IDisposable;
+using NUnitAssert = NUnit.Framework.Assert;
 
 namespace Apex.System
 {
-    public class System : global::System.IDisposable
+    public class System : IDisposable
     {
         public static System RunAs(SObject user)
         {
@@ -26,27 +29,32 @@ namespace Apex.System
 
         public static void Assert(bool condition, object msg)
         {
-            throw new global::System.NotImplementedException("System.Assert : Use NUnit Asserts");
+            ////throw new global::System.NotImplementedException("System.Assert : Use NUnit Asserts");
+            NUnitAssert.True(condition, "{0}", msg);
         }
 
         public static void AssertEquals(object expected, object actual)
         {
-            throw new global::System.NotImplementedException("System.AssertEquals : Use NUnit Asserts");
+            ////throw new global::System.NotImplementedException("System.AssertEquals : Use NUnit Asserts");
+            NUnitAssert.AreEqual(expected, actual);
         }
 
         public static void AssertEquals(object expected, object actual, object msg)
         {
-            throw new global::System.NotImplementedException("System.AssertEquals : Use NUnit Asserts");
+            ////throw new global::System.NotImplementedException("System.AssertEquals : Use NUnit Asserts");
+            NUnitAssert.AreEqual(expected, actual, "{0}", msg);
         }
 
         public static void AssertNotEquals(object expected, object actual)
         {
-            throw new global::System.NotImplementedException("System.AssertNotEquals : Use NUnit Asserts");
+            ////throw new global::System.NotImplementedException("System.AssertNotEquals : Use NUnit Asserts");
+            NUnitAssert.AreNotEqual(expected, actual);
         }
 
         public static void AssertNotEquals(object expected, object actual, object msg)
         {
-            throw new global::System.NotImplementedException("System.AssertNotEquals : Use NUnit Asserts");
+            ////throw new global::System.NotImplementedException("System.AssertNotEquals : Use NUnit Asserts");
+            NUnitAssert.AreNotEqual(expected, actual, "{0}", msg);
         }
 
         public static void ChangeProtection(string apiName, string typeApiName, string protection)
