@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Test = NUnit.Framework.TestAttribute;
 
-namespace Apex.NUnit.Framework
+namespace Apex.NUnit
 {
     public class TestAttribute : Test
     {

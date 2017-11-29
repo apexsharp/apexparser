@@ -1,5 +1,3 @@
-using NUnit.Framework;
-
 namespace ApexSharpDemo.CSharpClasses
 {
     using Apex.ApexAttributes;
@@ -7,7 +5,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.System;
     using SObjects;
     using SalesForceAPI.ApexApi;
-    using NUnit;
+    using Apex.NUnit.Framework;
 
     [TestFixture]
     public class DemoTest

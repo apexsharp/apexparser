@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Explicit = NUnit.Framework.ExplicitAttribute;
+﻿using Explicit = NUnit.Framework.ExplicitAttribute;
 
-namespace Apex.NUnit.Framework
+namespace Apex.NUnit
 {
     public class ExplicitAttribute : Explicit
     {
