@@ -11,7 +11,7 @@ namespace ApexSharpDemo.CSharpClasses
     public class ClassUnitTestRunAs
     {
         [Test]
-        static void RunAsExample()
+        public static void RunAsExample()
         {
             User newUser = new User();
             using (System.RunAs(newUser))

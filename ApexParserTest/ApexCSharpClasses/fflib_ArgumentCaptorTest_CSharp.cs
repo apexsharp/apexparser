@@ -5,7 +5,7 @@ namespace ApexSharpDemo.ApexCode
     using Apex.System;
     using SObjects;
     using SalesForceAPI.ApexApi;
-    using Apex.NUnit.Framework;
+    using Apex.NUnit;
 
     /*
      * Copyright (c) 2016-2017 FinancialForce.com, inc.  All rights reserved.

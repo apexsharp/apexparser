@@ -61,7 +61,7 @@ namespace ApexParserTest.Visitors
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
-                    using Apex.NUnit.Framework;
+                    using Apex.NUnit;
 
                     [TestFixture]
                     class TestClass
@@ -127,7 +127,7 @@ namespace ApexParserTest.Visitors
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
-                    using Apex.NUnit.Framework;
+                    using Apex.NUnit;
 
                     class TestClass
                     {

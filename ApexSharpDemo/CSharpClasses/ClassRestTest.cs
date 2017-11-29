@@ -10,7 +10,7 @@ namespace ApexSharpDemo.CSharpClasses
     [TestFixture]
     public class ClassRestTest
     {
-        [Test]
+        [Test, Explicit]
         public static void PostTest()
         {
             RestContext.Request = new RestRequest();
