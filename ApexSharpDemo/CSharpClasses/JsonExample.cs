@@ -14,7 +14,7 @@ namespace ApexSharpDemo.CSharpClasses
             contact.LastName = "Jay";
             contact.Email = "jay@jay.com";
             string jsonString = JSON.Serialize(contact);
-            Contact newContact = (Contact)JSON.Deserialize(jsonString, typeof(string));
+            Contact newContact = (Contact)JSON.Deserialize(jsonString, typeof(Contact));
         }
     }
 }

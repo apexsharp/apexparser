@@ -3,8 +3,7 @@ public class SoqlDemo {
  * A simple CRUD Example
  */
     public static void CrudExample() {
-        // Contact contactNew = new Contact(LastName = 'Jay', Email = 'abc@abc.com');
-        Contact contactNew = new Contact();
+        Contact contactNew = new Contact(LastName = 'Jay', Email = 'abc@abc.com');
         insert contactNew;
 
         System.Debug(contactNew.Id);
