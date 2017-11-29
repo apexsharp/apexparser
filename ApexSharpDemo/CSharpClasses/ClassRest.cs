@@ -6,7 +6,7 @@ namespace ApexSharpDemo.CSharpClasses
     using SObjects;
     using SalesForceAPI.ApexApi;
 
-    // [RestResource(urlMapping="/api/RestDemo")]
+    [RestResource(UrlMapping="/api/RestDemo")]
     [Global]
     public class ClassRest
     {

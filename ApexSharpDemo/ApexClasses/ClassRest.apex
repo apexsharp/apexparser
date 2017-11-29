@@ -1,4 +1,4 @@
-@RestResource(urlMapping='/api/RestDemo')
+@RestResource(UrlMapping='/api/RestDemo')
 global class ClassRest
 {
     public class ContactDTO {

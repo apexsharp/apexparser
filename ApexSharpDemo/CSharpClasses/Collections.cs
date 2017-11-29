@@ -46,7 +46,7 @@ namespace ApexSharpDemo.CSharpClasses
         {
             Map<int, string> m = new Map<int, string>();
             m.Put(1, "First entry");
-            m.Out(2, "Second entry");
+            m.Put(2, "Second entry");
             string value = m.Get(2);
         }
 
