@@ -4,6 +4,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using SalesForceAPI.ApexApi;
 
     [RestResource(UrlMapping="/api/RestDemo")]
     [Global]

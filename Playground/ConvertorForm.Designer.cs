@@ -34,9 +34,12 @@
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.RightBox = new FastColoredTextBoxNS.FastColoredTextBox();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.SaveRightButton = new System.Windows.Forms.Button();
+            this.SaveLeftButton = new System.Windows.Forms.Button();
             this.OpenButton = new System.Windows.Forms.Button();
             this.ConversionButton = new System.Windows.Forms.Button();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.LeftBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
@@ -45,9 +48,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.RightBox)).BeginInit();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // LeftBox
-            // 
+            //
             this.LeftBox.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -70,6 +73,7 @@
             this.LeftBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.LeftBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.LeftBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.LeftBox.IsReplaceMode = false;
             this.LeftBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.LeftBox.LeftBracket = '(';
@@ -86,26 +90,26 @@
             this.LeftBox.Text = resources.GetString("LeftBox.Text");
             this.LeftBox.Zoom = 100;
             this.LeftBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.LeftBox_TextChangedDelayed);
-            // 
+            //
             // SplitContainer
-            // 
+            //
             this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainer.Location = new System.Drawing.Point(0, 49);
             this.SplitContainer.Name = "SplitContainer";
-            // 
+            //
             // SplitContainer.Panel1
-            // 
+            //
             this.SplitContainer.Panel1.Controls.Add(this.LeftBox);
-            // 
+            //
             // SplitContainer.Panel2
-            // 
+            //
             this.SplitContainer.Panel2.Controls.Add(this.RightBox);
             this.SplitContainer.Size = new System.Drawing.Size(908, 542);
             this.SplitContainer.SplitterDistance = 445;
             this.SplitContainer.TabIndex = 2;
-            // 
+            //
             // RightBox
-            // 
+            //
             this.RightBox.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -127,7 +131,6 @@
             this.RightBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RightBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.RightBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.RightBox.IsReplaceMode = false;
             this.RightBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.RightBox.LeftBracket = '(';
@@ -143,9 +146,11 @@
             this.RightBox.Size = new System.Drawing.Size(459, 542);
             this.RightBox.TabIndex = 0;
             this.RightBox.Zoom = 100;
-            // 
+            //
             // TopPanel
-            // 
+            //
+            this.TopPanel.Controls.Add(this.SaveRightButton);
+            this.TopPanel.Controls.Add(this.SaveLeftButton);
             this.TopPanel.Controls.Add(this.OpenButton);
             this.TopPanel.Controls.Add(this.ConversionButton);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -153,9 +158,29 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(908, 49);
             this.TopPanel.TabIndex = 3;
-            // 
+            //
+            // SaveRightButton
+            //
+            this.SaveRightButton.Location = new System.Drawing.Point(449, 12);
+            this.SaveRightButton.Name = "SaveRightButton";
+            this.SaveRightButton.Size = new System.Drawing.Size(118, 23);
+            this.SaveRightButton.TabIndex = 3;
+            this.SaveRightButton.Text = "Save converted as...";
+            this.SaveRightButton.UseVisualStyleBackColor = true;
+            this.SaveRightButton.Click += new System.EventHandler(this.SaveRightButton_Click);
+            //
+            // SaveLeftButton
+            //
+            this.SaveLeftButton.Location = new System.Drawing.Point(325, 12);
+            this.SaveLeftButton.Name = "SaveLeftButton";
+            this.SaveLeftButton.Size = new System.Drawing.Size(118, 23);
+            this.SaveLeftButton.TabIndex = 3;
+            this.SaveLeftButton.Text = "Save source as...";
+            this.SaveLeftButton.UseVisualStyleBackColor = true;
+            this.SaveLeftButton.Click += new System.EventHandler(this.SaveLeftButton_Click);
+            //
             // OpenButton
-            // 
+            //
             this.OpenButton.Location = new System.Drawing.Point(244, 12);
             this.OpenButton.Name = "OpenButton";
             this.OpenButton.Size = new System.Drawing.Size(75, 23);
@@ -163,9 +188,9 @@
             this.OpenButton.Text = "Open";
             this.OpenButton.UseVisualStyleBackColor = true;
             this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
-            // 
+            //
             // ConversionButton
-            // 
+            //
             this.ConversionButton.Location = new System.Drawing.Point(12, 12);
             this.ConversionButton.Name = "ConversionButton";
             this.ConversionButton.Size = new System.Drawing.Size(226, 23);
@@ -173,14 +198,19 @@
             this.ConversionButton.Text = "Conversion: Apex → C# (click to swap)";
             this.ConversionButton.UseVisualStyleBackColor = true;
             this.ConversionButton.Click += new System.EventHandler(this.ConversionButton_Click);
-            // 
+            //
             // OpenFileDialog
-            // 
+            //
             this.OpenFileDialog.FileName = "Demo.cls";
-            this.OpenFileDialog.Filter = "Apex (*.cls)|*.cls|C# (*.cs)|*.cs|All files (*.*)|*.*";
-            // 
+            this.OpenFileDialog.Filter = "Apex (*.cls;*.apex)|*.cls;*.apex|C# (*.cs)|*.cs|All files (*.*)|*.*";
+            this.OpenFileDialog.RestoreDirectory = true;
+            //
+            // SaveFileDialog
+            //
+            this.SaveFileDialog.RestoreDirectory = true;
+            //
             // ConvertorForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 591);
@@ -209,6 +239,9 @@
         private System.Windows.Forms.Button ConversionButton;
         private System.Windows.Forms.Button OpenButton;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+        private System.Windows.Forms.Button SaveRightButton;
+        private System.Windows.Forms.Button SaveLeftButton;
+        private System.Windows.Forms.SaveFileDialog SaveFileDialog;
     }
 }
 

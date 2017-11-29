@@ -267,7 +267,14 @@ namespace ApexParser.Visitors
         public override void VisitAnnotation(AnnotationSyntax node)
         {
             var attribute = ConvertUnitTestAnnotation(node, CurrentMember);
-            AppendIndentedLine("[{0}{1}]", attribute.Identifier, attribute.Parameters);
+            if (string.IsNullOrWhiteSpace(attribute.Parameters))
+            {
+                AppendIndentedLine("[{0}]", attribute.Identifier);
+            }
+            else
+            {
+                AppendIndentedLine("[{0}({1})]", attribute.Identifier, attribute.Parameters.Replace("\'", "\""));
+            }
         }
 
         internal static AnnotationSyntax ConvertUnitTestAnnotation(AnnotationSyntax node, BaseSyntax parentNode)

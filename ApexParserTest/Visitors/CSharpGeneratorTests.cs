@@ -1164,5 +1164,36 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void AnnotationWithParametersIsConvertedProperly()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    @future(CallOut=true)
+                    @Some(Name='test')
+                    public Datetime SomeMethod() {
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+                    using SalesForceAPI.ApexApi;
+
+                    class Sample
+                    {
+                        [Future(CallOut=true)]
+                        [Some(Name=""test"")]
+                        public DateTime SomeMethod()
+                        {
+                        }
+                    }
+                }");
+        }
     }
 }

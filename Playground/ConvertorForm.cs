@@ -72,5 +72,21 @@ namespace Playground
                 LeftBox.Text = File.ReadAllText(OpenFileDialog.FileName);
             }
         }
+
+        private void SaveLeftButton_Click(object sender, EventArgs e)
+        {
+            if (SaveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(SaveFileDialog.FileName, LeftBox.Text);
+            }
+        }
+
+        private void SaveRightButton_Click(object sender, EventArgs e)
+        {
+            if (SaveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(SaveFileDialog.FileName, RightBox.Text);
+            }
+        }
     }
 }
