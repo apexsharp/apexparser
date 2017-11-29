@@ -29,7 +29,7 @@ namespace ApexParser.Visitors
 
         public List<string> UnitTestUsings { get; set; } = new List<string>
         {
-            "Apex.NUnit.Framework",
+            "Apex.NUnit",
         };
 
         public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4, string @namespace = null)
