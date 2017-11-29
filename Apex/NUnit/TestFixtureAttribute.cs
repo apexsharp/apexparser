@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestFixture = NUnit.Framework.TestFixtureAttribute;
 
-namespace Apex.NUnit.Framework
+namespace Apex.NUnit
 {
     public class TestFixtureAttribute : TestFixture
     {

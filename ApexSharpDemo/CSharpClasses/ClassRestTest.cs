@@ -5,9 +5,9 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.System;
     using SObjects;
     using SalesForceAPI.ApexApi;
-    using Apex.NUnit.Framework;
+    using Apex.NUnit;
 
-    [TestFixture, Explicit("Not implemented")]
+    [TestFixture]
     public class ClassRestTest
     {
         [Test]

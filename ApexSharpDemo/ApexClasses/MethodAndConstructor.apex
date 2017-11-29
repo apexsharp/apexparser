@@ -15,7 +15,7 @@ public abstract class MethodAndConstructor
     public static void FutureMethod()
     {
     }
-    @future(CallOut=true)
+    @future(callOut=true)
     public static void FutureMethodWithCallOut()
     {
     }

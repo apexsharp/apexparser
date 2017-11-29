@@ -6,7 +6,7 @@ public class PrimitiveTypes
     public Date MyDate = Date.Today();
     public DateTime MyDateTime = DateTime.Now();
 
-    public Decimal MyDecimal = 12.4567;
+    // public Decimal MyDecimal = 12.4567;
     public Double d=3.133433;
     public Id MyId = '006E0000004TquXIAS';
     public Integer MyInteger = 1;

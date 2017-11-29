@@ -87,6 +87,10 @@ namespace Apex.System
         {
             return new Set<T>();
         }
+        public string Out(object key, object value)
+        {
+            throw new global::System.NotImplementedException("Map.Put");
+        }
 
         public string Put(object key, object value)
         {
