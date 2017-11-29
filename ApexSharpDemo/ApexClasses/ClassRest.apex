@@ -1,4 +1,4 @@
-@RestResource(UrlMapping='/api/RestDemo')
+@RestResource(urlMapping='/api/RestDemo')
 global class ClassRest
 {
     public class ContactDTO {
@@ -6,7 +6,7 @@ global class ClassRest
     }
 
     @httpPost
-    global public static void Post() {
+    global static void Post() {
 
         try {
             ContactDTO contact = (ContactDTO) JSON.Deserialize(RestContext.Request.RequestBody.ToString(), ContactDTO.class);

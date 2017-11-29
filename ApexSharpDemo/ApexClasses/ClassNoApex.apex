@@ -1,10 +1,8 @@
 public class ClassNoApex {
-
-
     // Any methods in the NoApex name space will be commented out.
-    public static void MethodOne()
+    public static string MethodOne()
     {
-        System.Debug('Jay');
+        return 'Jay';
         //:NoApex NoApex.Console.WriteLine("Jay");
     }
 

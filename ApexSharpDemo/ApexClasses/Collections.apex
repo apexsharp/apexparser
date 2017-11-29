@@ -39,7 +39,7 @@ public with sharing class Collections {
     {
         Map<Integer, String> m = new Map<Integer, String>();
         m.Put(1, 'First entry');
-        m.Put(2, 'Second entry');
+        m.Out(2, 'Second entry');
         string value = m.Get(2);
     }
 
