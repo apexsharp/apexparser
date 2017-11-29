@@ -4,6 +4,7 @@ namespace ApexSharpDemo.CSharpClasses
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
+    using SalesForceAPI.ApexApi;
 
     public abstract class MethodAndConstructor
     {
@@ -26,7 +27,7 @@ namespace ApexSharpDemo.CSharpClasses
         {
         }
 
-        [Future(CallOut = true)]
+        [Future(CallOut=true)]
         public static void FutureMethodWithCallOut()
         {
         }

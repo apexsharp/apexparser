@@ -407,6 +407,15 @@ namespace ApexParser.Visitors
             AppendTrailingComments(node);
         }
 
+        public override void VisitRunAsStatement(RunAsStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("using (System.RunAs(");
+            node.Expression.Accept(this);
+            AppendLine("))");
+            AppendStatementWithOptionalIndent(node.Statement);
+        }
+
         protected override void AppendStringLiteral(string literal) =>
             Append("\"{0}\"", literal.Substring(1, literal.Length - 2));
 

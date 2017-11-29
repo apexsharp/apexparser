@@ -12,6 +12,6 @@ public with sharing class MethodComplex {
 
     public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
     {
-         return Database.getQueryLocator([SELECT Id FROM Contact]);
+         return Database.GetQueryLocator([SELECT Id FROM Contact]);
     }
 }

@@ -14,7 +14,7 @@ public with sharing class Collections {
         List<Integer> myList = new List<Integer>();
         myList.Add(47);
 
-        Integer i = myList.get(0);
+        Integer i = myList.Get(0);
         myList.Set(0, 1);
         myList.Clear();
 
@@ -39,7 +39,7 @@ public with sharing class Collections {
     {
         Map<Integer, String> m = new Map<Integer, String>();
         m.Put(1, 'First entry');
-        m.Out(2, 'Second entry');
+        m.Put(2, 'Second entry');
         string value = m.Get(2);
     }
 

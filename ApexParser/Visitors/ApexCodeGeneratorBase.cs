@@ -501,7 +501,7 @@ namespace ApexParser.Visitors
         public override void VisitFinally(FinallyClauseSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("finally");
+            AppendIndentedLine("finally");
             node.Block.Accept(this);
         }
 

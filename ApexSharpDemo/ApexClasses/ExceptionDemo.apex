@@ -8,7 +8,7 @@ public class ExceptionDemo
         }
         catch (MathException e)
         {
-            System.Debug(e.getMessage());
+            System.Debug(e.GetMessage());
         }
         finally
         {

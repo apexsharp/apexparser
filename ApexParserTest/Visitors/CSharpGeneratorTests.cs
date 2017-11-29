@@ -1195,5 +1195,39 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void RunAsStatementIsGeneratedAsUsingSystemRunAs()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    public void SomeMethod() {
+                        System.runAs(me) {
+                            System.debug('Hi there!');
+                        }
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexAttributes;
+                    using Apex.ApexSharp;
+                    using Apex.System;
+                    using SObjects;
+                    using SalesForceAPI.ApexApi;
+
+                    class Sample
+                    {
+                        public void SomeMethod()
+                        {
+                            using (System.RunAs(me))
+                            {
+                                System.debug(""Hi there!"");
+                            }
+                        }
+                    }
+                }");
+        }
     }
 }
