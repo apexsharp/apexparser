@@ -39,5 +39,4 @@ global class ClassRest
     @httpDelete
     global static void DoDelete() {
     }
-
 }

@@ -48,6 +48,7 @@
     <Compile Include="ApexApi\SObject.cs" />
     <Compile Include="ApexSharpConfig.cs" />
     <Compile Include="AppSetting.cs" />
+    <Compile Include="SoqlParser.cs" />
     <Compile Include="SoqlQueryOfT.cs" />
     <Compile Include="UnitTestDataManager.cs" />
     <Compile Include="UnitTest\Contact.cs" />

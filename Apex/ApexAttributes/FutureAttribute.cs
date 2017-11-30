@@ -5,6 +5,6 @@ namespace Apex.ApexAttributes
     [AttributeUsage(AttributeTargets.Method)]
     public class Future : Attribute
     {
-        public bool CallOut { get; set; }
+        public bool callout { get; set; }
     }
 }
