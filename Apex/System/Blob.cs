@@ -19,7 +19,7 @@ namespace Apex.System
 
         public static Blob ValueOf(string o)
         {
-            throw new global::System.NotImplementedException("Blob.ValueOf");
+            return new Blob();
         }
     }
 }

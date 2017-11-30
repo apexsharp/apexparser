@@ -5,7 +5,7 @@ namespace Apex.System
         public Blob RequestBody { set; get; }
         public RestRequest()
         {
-            throw new global::System.NotImplementedException("RestRequest");
+
         }
 
         public void AddHeader(string name, string value)

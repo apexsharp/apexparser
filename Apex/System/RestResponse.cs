@@ -8,7 +8,7 @@ namespace Apex.System
 
         public RestResponse()
         {
-            throw new global::System.NotImplementedException("RestResponse");
+
         }
 
         public void AddHeader(string name, string value)

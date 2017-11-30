@@ -246,7 +246,6 @@
     <Compile Include="CSharpClasses\ClassInternal.cs" />
     <Compile Include="CSharpClasses\ClassNoApex.cs" />
     <Compile Include="CSharpClasses\ClassRest.cs" />
-    <Compile Include="CSharpClasses\ClassRestTest.cs" />
     <Compile Include="CSharpClasses\ClassUnitTest.cs" />
     <Compile Include="CSharpClasses\ClassUnitTestRunAs.cs" />
     <Compile Include="CSharpClasses\ClassUnitTestSeeAllData.cs" />
@@ -255,7 +254,6 @@
     <Compile Include="CSharpClasses\Collections.cs" />
     <Compile Include="CSharpClasses\Comments.cs" />
     <Compile Include="CSharpClasses\Demo.cs" />
-    <Compile Include="CSharpClasses\DemoTest.cs" />
     <Compile Include="CSharpClasses\ExceptionDemo.cs" />
     <Compile Include="CSharpClasses\ForIfWhile.cs" />
     <Compile Include="CSharpClasses\GetSetDemo.cs" />
@@ -291,7 +289,6 @@
     <None Include="ApexClasses\ClassInternal.apex" />
     <None Include="ApexClasses\ClassNoApex.apex" />
     <None Include="ApexClasses\ClassRest.apex" />
-    <None Include="ApexClasses\ClassRestTest.apex" />
     <None Include="ApexClasses\ClassUnitTest.apex" />
     <None Include="ApexClasses\ClassUnitTestRunAs.apex" />
     <None Include="ApexClasses\ClassUnitTestSeeAllData.apex" />
@@ -300,7 +297,6 @@
     <None Include="ApexClasses\Collections.apex" />
     <None Include="ApexClasses\Comments.apex" />
     <None Include="ApexClasses\Demo.apex" />
-    <None Include="ApexClasses\DemoTest.apex" />
     <None Include="ApexClasses\ExceptionDemo.apex" />
     <None Include="ApexClasses\ForIfWhile.apex" />
     <None Include="ApexClasses\GetSetDemo.apex" />

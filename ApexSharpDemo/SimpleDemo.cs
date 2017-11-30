@@ -17,13 +17,6 @@ namespace ApexSharpDemo
             Console.ReadLine();
         }
 
-        public static void Dir()
-        {
-            string projectDirectoryName = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            Console.WriteLine(projectDirectoryName);
-
-        }
-
         public static void Demo()
         {
             // SoqlDemo is a CRUD C# code that we will convert APEX. This can be executed now.
