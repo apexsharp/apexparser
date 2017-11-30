@@ -1,26 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SalesForceAPI.Model.RestApi;
+using Serilog;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
-using SalesForceAPI.Model.RestApi;
-using Serilog;
-using Console = Colorful.Console;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SalesForceAPI
 {
 
     public class ModelGen
     {
-        readonly HashSet<string> _objectsToGet = new HashSet<string>();
-        readonly HashSet<string> _objectsWeGot = new HashSet<string>();
-
-        private List<Sobject> _sObjectListJson = new List<Sobject>();
-
-
         public List<string> GetAllObjectNames()
         {
             List<string> objectList = new List<string>();
@@ -33,7 +26,6 @@ namespace SalesForceAPI
 
             var json = File.ReadAllText(dirPath + @"\objectList.json");
             SObjectDescribe sObjectList = JsonConvert.DeserializeObject<SObjectDescribe>(json);
-            _sObjectListJson = sObjectList.sobjects.ToList();
             foreach (var sobject in sObjectList.sobjects)
             {
                 objectList.Add(sobject.name);
@@ -44,11 +36,8 @@ namespace SalesForceAPI
 
         public void CreateOfflineSymbolTable(DirectoryInfo sObjectLocation, string nameSpace, List<string> sobjectList)
         {
-
-            foreach (var sobject in sobjectList)
+            Parallel.ForEach(sobjectList, (sobject) =>
             {
-                System.Console.WriteLine(sobject);
-
                 HttpManager httpManager = new HttpManager();
                 var objectDetailjson = httpManager.Get($"sobjects/{sobject}/describe");
 
@@ -60,7 +49,9 @@ namespace SalesForceAPI
                 var sObjectClass = CreateSalesForceClasses(nameSpace, sObjectDetail);
                 var saveFileName = sObjectLocation.FullName + sobject + ".cs";
                 File.WriteAllText(saveFileName, sObjectClass);
-            }
+
+                Console.WriteLine("Processing {0} on thread {1}", sobject, Thread.CurrentThread.ManagedThreadId);
+            });
         }
 
         private string CreateSalesForceClasses(string nameSpace, SObjectDetail objectDetail)
@@ -108,11 +99,6 @@ namespace SalesForceAPI
 
         public List<Sobject> GetAllObjects()
         {
-            if (_sObjectListJson.Any())
-            {
-                return _sObjectListJson;
-            }
-
             string dirPath = ConnectionUtil.GetSession().CatchLocation.FullName;
 
             HttpManager httpManager = new HttpManager();
@@ -121,7 +107,7 @@ namespace SalesForceAPI
 
             var json = File.ReadAllText(dirPath + @"\objectList.json");
             SObjectDescribe sObjectList = JsonConvert.DeserializeObject<SObjectDescribe>(json);
-            _sObjectListJson = sObjectList.sobjects.ToList();
+            return sObjectList.sobjects.ToList();
 
             //var customObjectCount = allSobjects.Where(x => x.custom).ToList();
             //var customSetting = allSobjects.Where(x => x.customSetting).ToList();
@@ -130,63 +116,6 @@ namespace SalesForceAPI
             //System.Console.WriteLine(customObjectCount.Count());
             //System.Console.WriteLine(customSetting.Count());
             //System.Console.WriteLine(objectCount.Count());
-
-            return _sObjectListJson;
-        }
-
-        private string CreateSalesForceClassesOld(string nameSpace, SObjectDetail objectDetail)
-        {
-            var sb = new StringBuilder();
-
-            sb.AppendLine("namespace " + nameSpace);
-            sb.AppendLine("{");
-            sb.AppendLine("\tusing Apex.System;");
-            sb.AppendLine("\tusing SalesForceAPI.ApexApi;");
-            sb.AppendLine();
-            sb.AppendLine($"\tpublic class {objectDetail.name} : SObject");
-            sb.AppendLine("\t{");
-
-            var setGet = "{set;get;}";
-            foreach (var objectField in objectDetail.fields)
-            {
-                if ((objectField.type == "reference") && (objectField.name == "OwnerId") && (objectField.referenceTo.Length > 1))
-                {
-                    sb.AppendLine($"\t\tpublic string {objectField.name} {setGet}");
-
-                    sb.AppendLine($"\t\tpublic {objectField.referenceTo[1]} {objectField.relationshipName} {setGet}");
-                }
-                else if (objectField.type == "reference" && objectField.referenceTo.Length > 0)
-                {
-                    sb.AppendLine($"\t\tpublic string {objectField.name} {setGet}");
-
-                    if (objectField.relationshipName != null)
-                    {
-                        sb.AppendLine($"\t\tpublic {objectField.referenceTo[0]} {objectField.relationshipName} {setGet}");
-
-                        foreach (var refferenceObject in objectField.referenceTo)
-                        {
-                            if (_objectsWeGot.Contains(refferenceObject))
-                            {
-                                // Don't add if we have downloaded this object
-                            }
-                            else
-                            {
-                                _objectsToGet.Add(refferenceObject);
-                            }
-                        }
-                    }
-                }
-                else if (objectField.type != "id")
-                {
-                    sb.AppendLine($"\t\tpublic {GetField(objectField)} {objectField.name} {setGet}");
-                }
-            }
-
-            sb.AppendLine("\t}");
-            sb.AppendLine("}");
-
-            return sb.ToString();
-
         }
 
         private string GetField(Field salesForceField)
@@ -196,15 +125,8 @@ namespace SalesForceAPI
             {
                 return value;
             }
-            else
-            {
-                Console.WriteLine(
-                    $"Field Type: {salesForceField.type} Field Name : {salesForceField.name} Field Length: {salesForceField.length}",
-                    Color.Red);
-                return "NOT FOUND";
-            }
-
-
+            Log.Logger.Error($"Field Type: {salesForceField.type} Field Name : {salesForceField.name} Field Length: {salesForceField.length}");
+            return "NOT FOUND";
         }
 
         public static Dictionary<string, string> FieldDictionary = new Dictionary<string, string>()
