@@ -11,20 +11,19 @@ using System.Threading.Tasks;
 
 namespace SalesForceAPI
 {
-
     public class ModelGen
     {
         public List<string> GetAllObjectNames()
         {
             List<string> objectList = new List<string>();
 
-            string dirPath = ConnectionUtil.GetSession().CatchLocation.FullName;
-
             HttpManager httpManager = new HttpManager();
             var requestJson = httpManager.Get($"sobjects/");
-            File.WriteAllText(dirPath + @"\objectList.json", requestJson);
 
-            var json = File.ReadAllText(dirPath + @"\objectList.json");
+            var cacheLocation = Path.Combine(ConnectionUtil.GetSession().CatchLocation.FullName, "Cache");
+            File.WriteAllText(cacheLocation + "/objectList.json", requestJson);
+            var json = File.ReadAllText(cacheLocation + "/objectList.json");
+
             SObjectDescribe sObjectList = JsonConvert.DeserializeObject<SObjectDescribe>(json);
             foreach (var sobject in sObjectList.sobjects)
             {
@@ -34,7 +33,7 @@ namespace SalesForceAPI
             return objectList;
         }
 
-        public void CreateOfflineSymbolTable(DirectoryInfo sObjectLocation, string nameSpace, List<string> sobjectList)
+        public void CreateOfflineSymbolTable(string nameSpace, List<string> sobjectList)
         {
             Parallel.ForEach(sobjectList, (sobject) =>
             {
@@ -43,11 +42,15 @@ namespace SalesForceAPI
 
                 SObjectDetail sObjectDetail = JsonConvert.DeserializeObject<SObjectDetail>(objectDetailjson);
 
-                //objectDetailjson = JsonConvert.SerializeObject(sObjectDetail, Formatting.Indented);
-                //System.Console.WriteLine(objectDetailjson);
+                objectDetailjson = JsonConvert.SerializeObject(sObjectDetail, Formatting.Indented);
+                var cacheLocation = Path.Combine(ConnectionUtil.GetSession().CatchLocation.FullName, "Cache");
+                var jsonFileName = cacheLocation + "/" + sobject + ".json";
+                File.WriteAllText(jsonFileName, objectDetailjson);
 
                 var sObjectClass = CreateSalesForceClasses(nameSpace, sObjectDetail);
-                var saveFileName = sObjectLocation.FullName + sobject + ".cs";
+
+                var sobjectLocation = Path.Combine(ConnectionUtil.GetSession().CatchLocation.FullName, "SObjects");
+                var saveFileName = sobjectLocation + "/" + sobject + ".cs";
                 File.WriteAllText(saveFileName, sObjectClass);
 
                 Console.WriteLine("Processing {0} on thread {1}", sobject, Thread.CurrentThread.ManagedThreadId);

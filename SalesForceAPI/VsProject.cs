@@ -15,7 +15,7 @@ namespace SalesForceAPI
         {
             // string projectDirectoryName = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             // List<string> cShaprFileList = Directory.GetFileSystemEntries(projectDirectoryName, "*.csproj").ToList();
-            //   project = new Microsoft.Build.Evaluation.Project(visualStudioProjFile);
+            var project = new Microsoft.Build.Evaluation.Project();
         }
 
         private void AddDirectory(string dirName)

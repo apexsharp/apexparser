@@ -17,6 +17,7 @@ namespace SalesForceAPI
         public string RestSessionId { get; set; }
         public FileInfo ConfigLocation { get; set; }
         public DirectoryInfo CatchLocation { get; set; }
+        public DirectoryInfo SalesForceLocation { get; set; }
         public long SessionCreationDateTime { get; set; }
     }
 }

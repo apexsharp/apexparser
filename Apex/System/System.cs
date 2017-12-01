@@ -7,6 +7,10 @@ namespace Apex.System
 {
     public class System : IDisposable
     {
+        private System()
+        {
+
+        }
         public static System RunAs(SObject user)
         {
             return new System();

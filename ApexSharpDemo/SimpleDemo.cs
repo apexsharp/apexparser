@@ -28,13 +28,10 @@ namespace ApexSharpDemo
             // Always Initialize your settings when ever you are connecting to SF
             Setup.Init();
 
-            // Create Off line Classes
-            var sobjectLocation = new DirectoryInfo(@"C:\DevSharp\ApexSharp\PrivateDemo\SObjects\");
-
             try
             {
                 ModelGen modelGen = new ModelGen();
-                modelGen.CreateOfflineSymbolTable(sobjectLocation, "ApexSharpDemo.SObjects", modelGen.GetAllObjectNames());
+                modelGen.CreateOfflineSymbolTable("ApexSharpDemo.SObjects", modelGen.GetAllObjectNames());
             }
             catch (ApexSharpHttpException exp)
             {

@@ -7,14 +7,13 @@ namespace SalesForceAPI
     {
         private readonly ApexSharpConfig _apexSharpConfigSettings = new ApexSharpConfig();
 
-        public static void CreateOfflineClasses(string sObjectName)
-        {
-            throw new NotImplementedException();
-        }
-
         // Double Check For All These Values
         public ApexSharpConfig CreateSession()
         {
+            Directory.CreateDirectory(_apexSharpConfigSettings.CatchLocation.FullName + "CSharpClasses");
+            Directory.CreateDirectory(_apexSharpConfigSettings.CatchLocation.FullName + "NoApex");
+            Directory.CreateDirectory(_apexSharpConfigSettings.CatchLocation.FullName + "Cache");
+            Directory.CreateDirectory(_apexSharpConfigSettings.CatchLocation.FullName + "SObjects");
             return ConnectionUtil.CreateSession(_apexSharpConfigSettings);
         }
 
@@ -52,11 +51,18 @@ namespace SalesForceAPI
             return this;
         }
 
-        public ApexSharp CacheLocation(string dirLocation)
+        public ApexSharp VsProjectLocation(string dirLocation)
         {
             _apexSharpConfigSettings.CatchLocation = new DirectoryInfo(dirLocation);
             return this;
         }
+
+        public ApexSharp SalesForceLocation(string dirLocation)
+        {
+            _apexSharpConfigSettings.CatchLocation = new DirectoryInfo(dirLocation);
+            return this;
+        }
+
 
         public ApexSharp SaveConfigAt(string configFile)
         {

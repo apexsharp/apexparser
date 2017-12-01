@@ -12,6 +12,8 @@ namespace ApexSharpDemo.CSharpClasses
 
         public Demo()
         {
+            System.Debug("test");
+
             contact = new Contact();
         }
 
