@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Playground.Properties;
 
 namespace Playground
 {
@@ -16,7 +17,11 @@ namespace Playground
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConvertorForm());
+
+            var mainForm = Settings.Default.UseDemoForm ?
+                new DemoForm() as Form : new ConvertorForm();
+
+            Application.Run(mainForm);
         }
     }
 }
