@@ -180,7 +180,14 @@ namespace ApexParser.Toolbox
         private static Regex ApexAnnotationParameterRegex { get; } =
             new Regex(@"
             (
-	            \s* (?<NameValuePair>  \w[\w\d_]* \s* \= \s* ( [^\,\(\'\s] | (\' (\\.|[^\'])*  \') | (\([^\)]*\)) )* ) \s*
+                \s*
+                (?<NameValuePair>  \w[\w\d_]* \s* \= \s*
+                    (
+                        [\d][\d\.eE\-\+]* |
+                        [\w][\w\d_]* (\s* \( [^\)]* \) )? ( \s* \. \s* [\w][\w\d_]* (\s* \( [^\)]* \) )? )*  |
+                        (\' (\\.|[^\'])*  \')
+                    )
+                ) \s*
             )+",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 

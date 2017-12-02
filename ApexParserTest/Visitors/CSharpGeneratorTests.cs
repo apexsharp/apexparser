@@ -1259,7 +1259,7 @@ namespace ApexParserTest.Visitors
                 }");
         }
 
-        // [Test] // doesn't work yet
+        [Test]
         public void AnnotationsWithMultipleParametersAreCommaSeparated()
         {
             var apex = Apex.ParseClass(

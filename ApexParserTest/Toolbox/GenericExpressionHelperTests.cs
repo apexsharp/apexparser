@@ -353,6 +353,10 @@ namespace ApexParserTest.Toolbox
             text = @"ID = 'Hello' Date = Date.NewInstance(1,2,3) Name='y@e\mail.com'";
             csharp = Convert(text);
             Assert.AreEqual(@"ID = 'Hello', Date = Date.NewInstance(1,2,3), Name='y@e\mail.com'", csharp);
+
+            text = @"ID='Hello'Date=Date.NewInstance(1,2,3)TestAll=true Value=10.12e+11Name='y@e\mail.com'";
+            csharp = Convert(text);
+            Assert.AreEqual(@"ID='Hello', Date=Date.NewInstance(1,2,3), TestAll=true, Value=10.12e+11, Name='y@e\mail.com'", csharp);
         }
     }
 }
