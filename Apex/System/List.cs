@@ -27,15 +27,7 @@ namespace Apex.System
             get => list[index];
             set => list[index] = value;
         }
-        /// <summary>
-        /// Description for SomeMethod.</summary>
-        /// <param name="item"> Parameter description for s goes here.</param>
-        /// <seealso cref="System.String">
-        /// You can use the cref attribute on any tag to reference a type or member 
-        /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms633585
-        /// and the compiler will check that the reference exists. </seealso>
-        ///  From <see cref="!:https://msdn.microsoft.com/en-us/library/windows/desktop/ms633585(v=vs.85).aspx">this</see> MSDN-Link.
-        /// 
+
         public void Add(T item)
         {
             list.Add(item);
