@@ -131,16 +131,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApexAttributes\FinalAttribute.cs" />
-    <Compile Include="ApexAttributes\FutureAttribute.cs" />
-    <Compile Include="ApexAttributes\GlobalAttribute.cs" />
-    <Compile Include="ApexAttributes\HttpAttributes.cs" />
-    <Compile Include="ApexAttributes\RestResourceAttribute.cs" />
-    <Compile Include="ApexAttributes\TestSeeAllDataAttribute.cs" />
-    <Compile Include="ApexAttributes\TransientAttribute.cs" />
-    <Compile Include="ApexAttributes\WebServiceAttribute.cs" />
-    <Compile Include="ApexAttributes\WithoutSharingAttribute.cs" />
-    <Compile Include="ApexAttributes\WithSharingAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\FinalAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\FutureAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\GlobalAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\HttpAttributes.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\RestResourceAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\TestSeeAllDataAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\TransientAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\WebServiceAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\WithoutSharingAttribute.cs" />
+    <Compile Include="ApexSharp\ApexAttributes\WithSharingAttribute.cs" />
     <Compile Include="ApexPages\Action.cs" />
     <Compile Include="ApexPages\Component.cs" />
     <Compile Include="ApexPages\ComponentIteration.cs" />
@@ -736,11 +736,11 @@
     <Compile Include="Networkspulse\ApproveFeedItemActionControllerExtension.cs" />
     <Compile Include="Networkspulse\DeleteActionsControllerExtension.cs" />
     <Compile Include="Networkspulse\PulseApexActionsUtil.cs" />
-    <Compile Include="NUnit\ExplicitAttribute.cs" />
-    <Compile Include="NUnit\IgnoreAttribute.cs" />
-    <Compile Include="NUnit\SetUpAttribute.cs" />
-    <Compile Include="NUnit\TestAttribute.cs" />
-    <Compile Include="NUnit\TestFixtureAttribute.cs" />
+    <Compile Include="ApexSharp\NUnit\ExplicitAttribute.cs" />
+    <Compile Include="ApexSharp\NUnit\IgnoreAttribute.cs" />
+    <Compile Include="ApexSharp\NUnit\SetUpAttribute.cs" />
+    <Compile Include="ApexSharp\NUnit\TestAttribute.cs" />
+    <Compile Include="ApexSharp\NUnit\TestFixtureAttribute.cs" />
     <Compile Include="Package\Version.cs" />
     <Compile Include="Predictive\AnalysisException.cs" />
     <Compile Include="Predictive\BasePredictedFieldImpl.cs" />

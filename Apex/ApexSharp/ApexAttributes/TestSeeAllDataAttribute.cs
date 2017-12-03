@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Apex.ApexAttributes
+namespace Apex.ApexSharp.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.All)]
     public class TestSeeAllData : Attribute

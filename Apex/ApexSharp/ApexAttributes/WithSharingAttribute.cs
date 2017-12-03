@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Apex.ApexAttributes
+namespace Apex.ApexSharp.ApexAttributes
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class WithSharing : Attribute

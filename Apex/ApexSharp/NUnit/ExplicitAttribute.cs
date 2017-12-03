@@ -1,6 +1,6 @@
 ﻿using Explicit = NUnit.Framework.ExplicitAttribute;
 
-namespace Apex.NUnit
+namespace Apex.ApexSharp.NUnit
 {
     public class ExplicitAttribute : Explicit
     {

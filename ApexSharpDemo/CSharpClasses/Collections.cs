@@ -1,6 +1,7 @@
+using Apex.ApexSharp.ApexAttributes;
+
 namespace ApexSharpDemo.CSharpClasses
 {
-    using Apex.ApexAttributes;
     using Apex.ApexSharp;
     using Apex.System;
     using SObjects;
@@ -9,30 +10,30 @@ namespace ApexSharpDemo.CSharpClasses
     [WithSharing]
     public class Collections
     {
-        public List<string> StringList = new List<string>{"one", "two"};
+        public List<string> StringList = new List<string> { "one", "two" };
 
-        public int[] IntegerArray = new int[]{1, 2, 3};
+        public int[] IntegerArray = new int[] { 1, 2, 3 };
 
         public void ArrayDemo()
         {
-            List<string> stringListLocal = new List<string>{"one", "two"};
-            int[] integerArrayLocal = new int[]{1, 2, 3};
+            List<string> stringListLocal = new List<string> { "one", "two" };
+            int[] integerArrayLocal = new int[] { 1, 2, 3 };
         }
 
         public void ListExample()
         {
             List<int> myList = new List<int>();
-            myList.Add(47);
+            myList.Add(4);
             int i = myList.Get(0);
             myList.Set(0, 1);
             myList.Clear();
             List<SelectOption> options = new List<SelectOption>();
-            options.Add(new SelectOption("A","United States"));
-            options.Add(new SelectOption("C","Canada"));
-            options.Add(new SelectOption("A","Mexico"));
-            System.Debug("Before sorting: "+ options);
+            options.Add(new SelectOption("A", "United States"));
+            options.Add(new SelectOption("C", "Canada"));
+            options.Add(new SelectOption("A", "Mexico"));
+            System.Debug("Before sorting: " + options);
             options.Sort();
-            System.Debug("After sorting: "+ options);
+            System.Debug("After sorting: " + options);
         }
 
         public void SetExample()

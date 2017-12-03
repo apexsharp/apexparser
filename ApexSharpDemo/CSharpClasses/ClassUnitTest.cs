@@ -1,13 +1,6 @@
-namespace ApexSharpDemo.CSharpClasses
+using Apex.ApexSharp.NUnit;namespace ApexSharpDemo.CSharpClasses
 {
-    using Apex.ApexAttributes;
-    using Apex.ApexSharp;
-    using Apex.System;
-    using SObjects;
-    using SalesForceAPI.ApexApi;
-    using Apex.NUnit;
-
-    [TestFixture]
+    using Apex.ApexSharp;    using Apex.System;    using SObjects;    using SalesForceAPI.ApexApi;    [TestFixture]
     public class ClassUnitTest
     {
         [SetUp]

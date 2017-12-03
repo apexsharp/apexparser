@@ -1,6 +1,6 @@
 ﻿using Ignore = NUnit.Framework.IgnoreAttribute;
 
-namespace Apex.NUnit
+namespace Apex.ApexSharp.NUnit
 {
     public class IgnoreAttribute : Ignore
     {

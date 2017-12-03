@@ -1,22 +1,14 @@
 namespace ApexSharpDemo.CSharpClasses
 {
-    using Apex.ApexAttributes;
-    using Apex.ApexSharp;
-    using Apex.System;
-    using SObjects;
-    using SalesForceAPI.ApexApi;
-
     public class ClassNoApex
     {
-        // Any methods in the NoApex name space will be commented out.
-        public static string MethodOne()
+        // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
+        public static void MethodOne()
         {
-            return "Jay";
-
-            NoApex.Console.WriteLine("Jay");
+            NoApex.Serilog.LogInfo("Jay");
         }
 
-        // Method Name staring with NoApex will be uncommented in C#
+        // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
         public static void NoApexMethodTwo()
         {
             NoApex.Console.WriteLine("Jay");

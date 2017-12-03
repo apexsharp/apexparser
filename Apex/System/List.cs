@@ -1,39 +1,49 @@
+using Apex.Schema;
+using SalesForceAPI;
+using SalesForceAPI.ApexApi;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Apex.Schema;
-using SalesForceAPI;
-using SalesForceAPI.ApexApi;
 
 namespace Apex.System
 {
     public class List<T> : global::System.Collections.Generic.List<T>
     {
+        private global::System.Collections.Generic.List<T> list;
         public List()
         {
+            list = new global::System.Collections.Generic.List<T>();
         }
 
-        public List(int param1)
+        public List(int size)
         {
-            throw new global::System.NotImplementedException("List");
+            list = new global::System.Collections.Generic.List<T>(size);
         }
 
         public T this[int index]
         {
-            get => base[index];
-            set => base[index] = value;
+            get => list[index];
+            set => list[index] = value;
         }
-
+        /// <summary>
+        /// Description for SomeMethod.</summary>
+        /// <param name="item"> Parameter description for s goes here.</param>
+        /// <seealso cref="System.String">
+        /// You can use the cref attribute on any tag to reference a type or member 
+        /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms633585
+        /// and the compiler will check that the reference exists. </seealso>
+        ///  From <see cref="!:https://msdn.microsoft.com/en-us/library/windows/desktop/ms633585(v=vs.85).aspx">this</see> MSDN-Link.
+        /// 
         public void Add(T item)
         {
-            base.Add(item);
+            list.Add(item);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return base.GetEnumerator();
+            return list.GetEnumerator();
         }
 
         public void AddAll(List<T> elements)
@@ -46,7 +56,7 @@ namespace Apex.System
 
         public int Size()
         {
-            return base.Count;
+            return list.Count;
         }
 
         public void Add(int index, object element)
@@ -61,7 +71,7 @@ namespace Apex.System
 
         public void Clear()
         {
-            throw new global::System.NotImplementedException("List.Clear");
+            list.Clear();
         }
 
         public List<string> Clone()
@@ -96,7 +106,7 @@ namespace Apex.System
 
         public T Get(int index)
         {
-            throw new global::System.NotImplementedException("List.Get");
+            return list[index];
         }
 
         public SObjectType GetSObjectType()
@@ -111,7 +121,7 @@ namespace Apex.System
 
         public bool IsEmpty()
         {
-            return base.Count == 0;
+            return list.Count == 0;
         }
 
         public Iterable Iterator()
@@ -119,9 +129,11 @@ namespace Apex.System
             throw new global::System.NotImplementedException("List.Iterator");
         }
 
-        public string Remove(int index)
+        public T Remove(int index)
         {
-            throw new global::System.NotImplementedException("List.Remove");
+            var value = list[index];
+            list.RemoveAt(index);
+            return value;
         }
 
         public void Set(int index, object value)
@@ -131,7 +143,7 @@ namespace Apex.System
 
         public void Sort()
         {
-            throw new global::System.NotImplementedException("List.Sort");
+            list.Sort();
         }
 
         public static implicit operator List<T>(SoqlQuery<T> query)
