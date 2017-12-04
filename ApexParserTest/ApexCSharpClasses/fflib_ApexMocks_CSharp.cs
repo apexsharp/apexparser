@@ -304,7 +304,7 @@ namespace ApexSharpDemo.ApexCode
                     return null;
                 }
 
-                if (returnedValue instanceof Exception)
+                if (returnedValue is Exception)
                 {
                     throw ((Exception)returnedValue);
                 }

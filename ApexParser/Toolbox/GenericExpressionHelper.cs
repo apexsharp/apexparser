@@ -204,5 +204,21 @@ namespace ApexParser.Toolbox
 
             return parameters;
         }
+
+        private static Regex ApexInstanceOfTypeRegex { get; } = new Regex(@"\binstanceof\b",
+            RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertApexInstanceOfTypeExpressionToCSharp(string expression)
+        {
+            return ApexInstanceOfTypeRegex.Replace(expression, "is");
+        }
+
+        private static Regex CSharpIsTypeRegex { get; } = new Regex(@"\bis\b",
+            RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        public static string ConvertCSharpIsTypeExpressionToApex(string expression)
+        {
+            return CSharpIsTypeRegex.Replace(expression, "instanceof");
+        }
     }
 }

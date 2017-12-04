@@ -358,5 +358,26 @@ namespace ApexParserTest.Toolbox
             csharp = Convert(text);
             Assert.AreEqual(@"ID='Hello', Date=Date.NewInstance(1,2,3), TestAll=true, Value=10.12e+11, Name='y@e\mail.com'", csharp);
         }
+
+        [Test]
+        public void ApexInstanceOfConvertedToCSharpAndBackAgain()
+        {
+            string ToCSharp(string x) => GenericExpressionHelper.ConvertApexInstanceOfTypeExpressionToCSharp(x);
+            string ToApex(string x) => GenericExpressionHelper.ConvertCSharpIsTypeExpressionToApex(x);
+
+            var text = "Property instanceof int";
+            var csharp = ToCSharp(text);
+            Assert.AreEqual("Property is int", csharp);
+
+            var apex = ToApex(csharp);
+            Assert.AreEqual(text, apex);
+
+            text = @"int a = Value instanceof Map<string, string> ? 10 : 20";
+            csharp = ToCSharp(text);
+            Assert.AreEqual(@"int a = Value is Map<string, string> ? 10 : 20", csharp);
+
+            apex = ToApex(csharp);
+            Assert.AreEqual(text, apex);
+        }
     }
 }

@@ -1071,7 +1071,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof int ? Math.mod((int)arg, 2)== 1: false;
+                return arg is int ? Math.mod((int)arg, 2)== 1: false;
             }
         }
 
@@ -1079,7 +1079,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof int ? Math.mod((int)arg, 2)== 0: false;
+                return arg is int ? Math.mod((int)arg, 2)== 0: false;
             }
         }
     }

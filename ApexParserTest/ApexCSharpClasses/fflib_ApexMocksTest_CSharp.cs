@@ -461,7 +461,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception e)
             {
                 // Then
-                System.assert(e instanceof MyException);
+                System.assert(e is MyException);
                 System.assertEquals("Stubbed exception.", e.getMessage());
             }
         }
@@ -485,7 +485,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception e)
             {
                 // Then
-                System.assert(e instanceof MyException);
+                System.assert(e is MyException);
                 System.assertEquals("Stubbed exception.", e.getMessage());
             }
         }
@@ -510,7 +510,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception e)
             {
                 // Then
-                System.assert(e instanceof MyException);
+                System.assert(e is MyException);
                 System.assertEquals("clear stubbed exception.", e.getMessage());
             }
 
@@ -523,7 +523,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception e)
             {
                 // Then
-                System.assert(e instanceof MyException);
+                System.assert(e is MyException);
                 System.assertEquals("add stubbed exception.", e.getMessage());
             }
         }
@@ -547,7 +547,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception e)
             {
                 // Then
-                System.assert(e instanceof MyException);
+                System.assert(e is MyException);
                 System.assertEquals("clear stubbed exception.", e.getMessage());
             }
 
@@ -560,7 +560,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception e)
             {
                 // Then
-                System.assert(e instanceof MyException);
+                System.assert(e is MyException);
                 System.assertEquals("clear stubbed exception.", e.getMessage());
             }
         }
@@ -1516,7 +1516,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof int ? Math.mod((int)arg, 2)== 1: false;
+                return arg is int ? Math.mod((int)arg, 2)== 1: false;
             }
         }
 
@@ -1524,7 +1524,7 @@ namespace ApexSharpDemo.ApexCode
         {
             public bool matches(object arg)
             {
-                return arg instanceof int ? Math.mod((int)arg, 2)== 0: false;
+                return arg is int ? Math.mod((int)arg, 2)== 0: false;
             }
         }
     }

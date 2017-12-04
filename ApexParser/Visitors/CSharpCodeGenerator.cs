@@ -465,6 +465,7 @@ namespace ApexParser.Visitors
             // replace string.class => typeof(string), string.valueOf(x) => x.ToString(), etc
             part = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(part);
             part = GenericExpressionHelper.ConvertStringValueofToString(part);
+            part = GenericExpressionHelper.ConvertApexInstanceOfTypeExpressionToCSharp(part);
 
             // replace Apex types with C# types
             foreach (var r in CSharpTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))

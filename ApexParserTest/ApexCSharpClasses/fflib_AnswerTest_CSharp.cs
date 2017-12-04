@@ -58,7 +58,7 @@ namespace ApexSharpDemo.ApexCode
 
             // Then
             object methodCalled = actualInvocation.getMethod();
-            System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
+            System.assert(methodCalled is fflib_QualifiedMethod, "the object returned is not a method as expected");
             string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".get2(Integer, String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), " the method is no the one expected");
         }
@@ -81,7 +81,7 @@ namespace ApexSharpDemo.ApexCode
 
             // Then
             object methodCalled = actualInvocation.getMethod();
-            System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
+            System.assert(methodCalled is fflib_QualifiedMethod, "the object returned is not a method as expected");
             string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".get2(Integer, String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), " the method is no the one expected");
             System.assertEquals("ted", noAnswered, "the get method should have returned the stubbed string");
@@ -120,7 +120,7 @@ namespace ApexSharpDemo.ApexCode
             string mockCalled = mockList.get2(0, "Hi hi Hello Hi hi");
 
             // Then
-            System.assert(actualInvocation.getMock()instanceof fflib_MyList.IList, "the object returned is not a mock instance as expected");
+            System.assert(actualInvocation.getMock()is fflib_MyList.IList, "the object returned is not a mock instance as expected");
             System.assertEquals(mockList, actualInvocation.getMock(), "the mock returned should be the mockList used in the stubbing");
         }
 
@@ -236,7 +236,7 @@ namespace ApexSharpDemo.ApexCode
 
             // Then
             object methodCalled = actualInvocation.getMethod();
-            System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
+            System.assert(methodCalled is fflib_QualifiedMethod, "the object returned is not a method as expected");
             string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".addMore(String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(), "Unexpected method name: "+ methodCalled);
         }
@@ -260,7 +260,7 @@ namespace ApexSharpDemo.ApexCode
 
             // Then
             object methodCalled = actualInvocation.getMethod();
-            System.assert(methodCalled instanceof fflib_QualifiedMethod, "the object returned is not a method as expected");
+            System.assert(methodCalled is fflib_QualifiedMethod, "the object returned is not a method as expected");
             string expectedMethodSignature = fflib_MyList.getStubClassName()+ ".addMore(String)";
             System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod)methodCalled).toString(),
 			"the last method called should be the addMore, so should be the last to set the actualInvocation variable.");

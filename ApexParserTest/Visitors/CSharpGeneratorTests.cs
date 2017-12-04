@@ -1287,5 +1287,34 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void ApexInstanceOfIsConvertedToCSharpIs()
+        {
+            var apex = Apex.ParseClass(
+               @"class Sample {
+                    static void SomeMethod() {
+                        bool t = Sample instanceof SObject;
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
+                    using Apex.System;
+                    using ApexSharpApi.ApexApi;
+                    using SObjects;
+
+                    class Sample
+                    {
+                        static void SomeMethod()
+                        {
+                            bool t = Sample is SObject;
+                        }
+                    }
+                }");
+        }
     }
 }

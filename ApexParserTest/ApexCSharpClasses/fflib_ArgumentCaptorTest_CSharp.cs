@@ -50,7 +50,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)mocks.verify(mockList)).set(fflib_Match.anyInteger(),  argument.capture());
             object capturedArg = argument.getValue();
             System.assertNotEquals(null, capturedArg, "CapturedArg should not be null");
-            System.assert(capturedArg instanceof TestInnerClass, "CapturedArg should be SObject, instead was "+ capturedArg);
+            System.assert(capturedArg is TestInnerClass, "CapturedArg should be SObject, instead was "+ capturedArg);
             TestInnerClass testValueCaptured = (TestInnerClass)capturedArg;
             System.assertEquals(4, testValueCaptured.i, "the values inside the argument captured should be the same of the original one");
             System.assertEquals("5", testValueCaptured.s, "the values inside the argument captured should be the same of the original one");
@@ -311,7 +311,7 @@ namespace ApexSharpDemo.ApexCode
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.calls(1))).set(fflib_Match.anyInteger(),  argument.capture());
             object capturedArg = argument.getValue();
             System.assertNotEquals(null, capturedArg, "CapturedArg should not be null");
-            System.assert(capturedArg instanceof TestInnerClass, "CapturedArg should be SObject, instead was "+ capturedArg);
+            System.assert(capturedArg is TestInnerClass, "CapturedArg should be SObject, instead was "+ capturedArg);
             TestInnerClass testValueCaptured = (TestInnerClass)capturedArg;
             System.assertEquals(4, testValueCaptured.i, "the values inside the argument captured should be the same of the original one");
             System.assertEquals("5", testValueCaptured.s, "the values inside the argument captured should be the same of the original one");

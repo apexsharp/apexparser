@@ -311,6 +311,12 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void CSharpIsTypeExpressionIsConvertedToApexInstanceOfType()
+        {
+            Check("public class X { public void Y() { bool t = X is string; } } ", "public class X { public void Y() { bool t = X instanceof string; } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();
