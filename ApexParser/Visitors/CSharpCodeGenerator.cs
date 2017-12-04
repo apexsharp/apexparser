@@ -23,8 +23,8 @@ namespace ApexParser.Visitors
             "Apex.ApexSharp",
             "Apex.ApexSharp.ApexAttributes",
             "Apex.System",
+            "ApexSharpApi.ApexApi",
             "SObjects",
-            "SalesForceAPI.ApexApi",
         };
 
         public List<string> UnitTestUsings { get; set; } = new List<string>

@@ -3,8 +3,8 @@
     using Apex.ApexSharp;
     using Apex.ApexSharp.ApexAttributes;
     using Apex.System;
+    using ApexSharpApi.ApexApi;
     using SObjects;
-    using SalesForceAPI.ApexApi;
 
     [WithSharing]
     public class SoqlDemo
