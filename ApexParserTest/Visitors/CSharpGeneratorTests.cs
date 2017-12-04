@@ -26,8 +26,8 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -56,8 +56,8 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -85,8 +85,8 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -122,8 +122,8 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -151,8 +151,8 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -178,8 +178,8 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -805,8 +805,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -853,8 +853,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -891,8 +891,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -936,8 +936,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -983,8 +983,8 @@ namespace ApexParserTest.Visitors
             CompareLineByLine(apex.ToCSharp(@namespace: "MyNamespace"),
                 @"namespace MyNamespace
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1032,8 +1032,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1081,8 +1081,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1114,8 +1114,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1147,8 +1147,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1179,8 +1179,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1211,8 +1211,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1242,8 +1242,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;
@@ -1272,8 +1272,8 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
-                    using Apex.ApexAttributes;
                     using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
                     using SObjects;
                     using SalesForceAPI.ApexApi;

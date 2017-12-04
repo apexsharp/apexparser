@@ -20,8 +20,8 @@ namespace ApexParser.Visitors
 
         public List<string> Usings { get; set; } = new List<string>
         {
-            "Apex.ApexAttributes",
             "Apex.ApexSharp",
+            "Apex.ApexSharp.ApexAttributes",
             "Apex.System",
             "SObjects",
             "SalesForceAPI.ApexApi",

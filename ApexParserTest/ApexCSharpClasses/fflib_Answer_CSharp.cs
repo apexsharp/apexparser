@@ -1,7 +1,7 @@
 namespace ApexSharpDemo.ApexCode
 {
-    using Apex.ApexAttributes;
     using Apex.ApexSharp;
+    using Apex.ApexSharp.ApexAttributes;
     using Apex.System;
     using SObjects;
     using SalesForceAPI.ApexApi;
