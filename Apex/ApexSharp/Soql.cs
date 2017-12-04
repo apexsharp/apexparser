@@ -1,9 +1,10 @@
 ﻿using Apex.System;
+using ApexSharpApi;
 
 namespace Apex.ApexSharp
 {
-    using SalesForceAPI;
-    using SalesForceAPI.ApexApi;
+
+    using ApexSharpApi.ApexApi;
 
     public class Soql
     {

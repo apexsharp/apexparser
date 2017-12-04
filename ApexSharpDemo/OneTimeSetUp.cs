@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SalesForceAPI;
+
 
 namespace ApexSharpDemo
 {
@@ -11,13 +11,13 @@ namespace ApexSharpDemo
         {
             // Always Initialize your settings before using it.
             Setup.Init();
-            UnitTestDataManager.UnitTestDataManagerOn();
+            //   UnitTestDataManager.UnitTestDataManagerOn();
         }
 
         [OneTimeTearDown]
         public void Cleanup()
         {
-            UnitTestDataManager.UnitTestDataManagerOff();
+            //  UnitTestDataManager.UnitTestDataManagerOff();
         }
     }
 }

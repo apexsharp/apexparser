@@ -1,7 +1,8 @@
-﻿using SalesForceAPI;
-using Serilog;
+﻿using Serilog;
 using System.IO;
 using System.Reflection;
+
+using ApexSharpApi;
 
 namespace ApexSharpDemo
 {
@@ -45,7 +46,7 @@ namespace ApexSharpDemo
                 }
                 catch (SalesForceInvalidLoginException ex)
                 {
-                    Log.ForContext<SalesForceAPI.UnitTest.Setup>().Error(ex, "Invalid Login");
+                    Log.ForContext<Setup>().Error(ex, "Invalid Login");
                     return false;
                 }
             }

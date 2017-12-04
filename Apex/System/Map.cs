@@ -1,6 +1,6 @@
 using System;
-using SalesForceAPI;
-using SalesForceAPI.ApexApi;
+using ApexSharpApi;
+using ApexSharpApi.ApexApi;
 
 namespace Apex.System
 {

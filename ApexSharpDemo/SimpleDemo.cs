@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using SalesForceAPI;
+﻿using System;using System.Collections.Generic;using System.IO;using System.Linq;using ApexSharpApi;
 
 namespace ApexSharpDemo
 {
@@ -20,7 +16,7 @@ namespace ApexSharpDemo
             // SoqlDemo is a CRUD C# code that we will convert APEX. This can be executed now.
             // Take a look at the SoqlDemo.cs file in the /ApexCode Folder.  
             Setup.Init();
-            CSharpClasses.Demo.GetContacts();
+            //CSharpClasses.Demo.GetContacts();
         }
 
         public static void CreateOffLineClasses()

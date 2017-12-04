@@ -8,7 +8,7 @@ namespace ApexSharpDemo.NoApex
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.ColoredConsole()
+                .WriteTo.Console()
                 .CreateLogger();
 
             Log.Information(logMessage);
@@ -18,7 +18,7 @@ namespace ApexSharpDemo.NoApex
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.ColoredConsole()
+                .WriteTo.Console()
                 .CreateLogger();
 
             Log.Information(logMessage, obj);
@@ -28,7 +28,7 @@ namespace ApexSharpDemo.NoApex
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.ColoredConsole()
+                .WriteTo.Console()
                 .CreateLogger();
 
             Log.Debug(logMessage);
@@ -38,7 +38,7 @@ namespace ApexSharpDemo.NoApex
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.ColoredConsole()
+                .WriteTo.Console()
                 .CreateLogger();
 
             Log.Error(logMessage);
