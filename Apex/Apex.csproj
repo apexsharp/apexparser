@@ -1107,12 +1107,6 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SalesForceAPI\SalesForceAPI.csproj">
-      <Project>{a13785db-05bb-4842-957d-56d5b251d608}</Project>
-      <Name>SalesForceAPI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.3.0-beta1\analyzers\dotnet\cs\Analyzer.Utilities.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

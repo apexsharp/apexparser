@@ -321,10 +321,6 @@
       <Project>{269b0981-154b-4dde-9b0a-18685c38bd9b}</Project>
       <Name>Apex</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SalesForceAPI\SalesForceAPI.csproj">
-      <Project>{A13785DB-05BB-4842-957D-56D5B251D608}</Project>
-      <Name>SalesForceAPI</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
