@@ -26,7 +26,7 @@ namespace Playground
             {
                 return ApexParser.ApexParser.ConvertApexToCSharp(s);
             }
-            catch (ParseException ex)
+            catch (ParseException)
             {
                 return string.Empty;
             }
