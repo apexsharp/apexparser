@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApexParser\ApexParser.csproj" />
     <ProjectReference Include="..\ApexSharpApi\ApexSharpApi.csproj" />
     <ProjectReference Include="..\Apex\Apex.csproj" />
   </ItemGroup>
