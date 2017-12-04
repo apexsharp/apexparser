@@ -257,10 +257,56 @@ namespace ApexParser.Visitors
 
         public override void VisitAttribute(AttributeSyntax node)
         {
-            LastAnnotation = new ApexAnnotationSyntax
+            var annotation = new ApexAnnotationSyntax
             {
                 Identifier = node.Name.ToString(),
             };
+
+            if (node.ArgumentList != null)
+            {
+                node.ArgumentList.Accept(this);
+                if (!LastAttributeArgumentList.IsNullOrEmpty())
+                {
+                    annotation.Parameters = string.Join(" ", LastAttributeArgumentList);
+                    LastAttributeArgumentList = null;
+                }
+            }
+
+            LastAnnotation = annotation;
+        }
+
+        private List<string> LastAttributeArgumentList { get; set; }
+
+        public override void VisitAttributeArgumentList(AttributeArgumentListSyntax node)
+        {
+            LastAttributeArgumentList = new List<string>();
+            foreach (var arg in node.Arguments.EmptyIfNull())
+            {
+                arg.Accept(this);
+                if (!string.IsNullOrWhiteSpace(LastAttributeArgument))
+                {
+                    LastAttributeArgumentList.Add(LastAttributeArgument);
+                    LastAttributeArgument = null;
+                }
+            }
+        }
+
+        private string LastAttributeArgument { get; set; }
+
+        public override void VisitAttributeArgument(AttributeArgumentSyntax node)
+        {
+            var expr = new StringBuilder();
+            if (node.NameColon != null)
+            {
+                expr.AppendFormat("{0} = ", node.NameColon.Name);
+            }
+            else if (node.NameEquals != null)
+            {
+                expr.AppendFormat("{0} = ", node.NameEquals.Name);
+            }
+
+            expr.Append(ConvertExpression(node.Expression).Expression);
+            LastAttributeArgument = expr.ToString();
         }
 
         public override void VisitEnumDeclaration(EnumDeclarationSyntax node)

@@ -304,6 +304,13 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void ApexAnnotationWithArgumentsIsGenerated()
+        {
+            Check("public class X { [Future(callOut=true)] public void Y() {} } ", "public class X { @Future(callOut = true) public void Y() { } }");
+            Check("public class X { [Some(callOut=true, timeout=1000, description=\"Task\")] public void Y() {} } ", "public class X { @Some(callOut = true timeout = 1000 description = 'Task') public void Y() { } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();
