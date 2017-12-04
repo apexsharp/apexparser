@@ -1,7 +1,11 @@
-﻿using System;using System.Collections.Generic;using System.IO;using System.Linq;using ApexSharpApi;
-
-namespace ApexSharpDemo
+﻿namespace ApexSharpDemo
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using ApexSharpApi;
+
     public class SimpleDemo
     {
         public static void Main(string[] args)
@@ -42,10 +46,10 @@ namespace ApexSharpDemo
             foreach (var apexFile in apexFileList)
             {
                 var cSharpCode = File.ReadAllText(apexFile.FullName);
-                var cSharpFile = ApexParser.ApexParser.ConvertApexToCSharp(cSharpCode, "ApexSharpDemo.CSharpClasses");
+                //   var cSharpFile = ApexParser.ApexParser.ConvertApexToCSharp(cSharpCode, "ApexSharpDemo.CSharpClasses");
 
-                var cSharpFileName = Path.ChangeExtension(apexFile.Name, ".cs");
-                File.WriteAllText(@"\DevSharp\ApexSharp\ApexSharpDemo\CSharpClasses\" + cSharpFileName, cSharpFile);
+                // var cSharpFileName = Path.ChangeExtension(apexFile.Name, ".cs");
+                //   File.WriteAllText(@"\DevSharp\ApexSharp\ApexSharpDemo\CSharpClasses\" + cSharpFileName, cSharpFile);
             }
         }
     }
