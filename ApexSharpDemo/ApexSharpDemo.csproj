@@ -11,6 +11,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>ApexSharpDemo.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ApexParser\ApexParser.csproj" />
     <ProjectReference Include="..\ApexSharpApi\ApexSharpApi.csproj" />

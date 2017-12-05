@@ -21,7 +21,7 @@ namespace PrivateDemo
                 public class Class1
                     {
                         public int x {get;set;}
-                        public void Demo() 
+                        public void Demo()
                         {
                             var demo = $""SELECT ID, Email, Name FROM Contact WHERE ID = { x } LIMIT 1"";
                         }

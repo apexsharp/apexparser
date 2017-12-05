@@ -25,7 +25,7 @@ namespace PrivateDemo.CSharpClasses
                 InsertContact(contact);
                 RestContext.Response.StatusCode = 200;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 RestContext.Response.StatusCode = 500;
             }
