@@ -53,7 +53,7 @@ namespace ApexSharpApi
                 var saveFileName = sobjectLocation + "/" + sobject + ".cs";
                 File.WriteAllText(saveFileName, sObjectClass);
 
-                Console.WriteLine("Processing {0} on thread {1}", sobject, Thread.CurrentThread.ManagedThreadId);
+                Log.ForContext<ModelGen>().Debug("Created {sobject}", sobject);
             });
         }
 

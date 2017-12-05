@@ -12,6 +12,7 @@ namespace ApexSharpApi
         {
             DirectoryInfo vsProjectLocation = new DirectoryInfo(_apexSharpConfigSettings.VsProjectLocation);
             Console.WriteLine(vsProjectLocation.Exists);
+
             DirectoryInfo salesForceLocation = new DirectoryInfo(_apexSharpConfigSettings.SalesForceLocation);
             Console.WriteLine(salesForceLocation.Exists);
 
