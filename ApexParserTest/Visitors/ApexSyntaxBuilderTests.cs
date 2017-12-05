@@ -317,6 +317,13 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void UsingSystemRunAsTranslatesToApexRunAsStatement()
+        {
+            Check("class T { void F() { using (System.RunAs(0)) System.Debug(\"Yo!\"); } }", "class T { void F() { System.runAs(0) System.Debug('Yo!'); } }");
+            Check("class T { void F() { using (System.RunAs(me)) { System.Debug(123); } } }", "class T { void F() { System.runAs(me) { System.Debug(123); } } }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();

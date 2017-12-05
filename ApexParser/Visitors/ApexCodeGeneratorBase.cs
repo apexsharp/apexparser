@@ -410,7 +410,7 @@ namespace ApexParser.Visitors
             if (node.Expression != null)
             {
                 Append(" = ");
-                node.Expression.Accept(this);
+                node.Expression?.Accept(this);
             }
         }
 
@@ -432,7 +432,7 @@ namespace ApexParser.Visitors
         {
             AppendLeadingComments(node);
             AppendIndented("if (");
-            node.Expression.Accept(this);
+            node.Expression?.Accept(this);
             AppendLine(")");
 
             if (node.ThenStatement != null)
@@ -586,7 +586,7 @@ namespace ApexParser.Visitors
                     Append(" {0} : ", node.Identifier);
                 }
 
-                node.Expression.Accept(this);
+                node.Expression?.Accept(this);
                 Append(")");
             }
 
@@ -600,7 +600,7 @@ namespace ApexParser.Visitors
             AppendIndentedLine("do");
             AppendStatementWithOptionalIndent(node.Statement);
             AppendIndented("while (");
-            node.Expression.Accept(this);
+            node.Expression?.Accept(this);
             Append(");");
             AppendTrailingComments(node);
         }
@@ -609,7 +609,7 @@ namespace ApexParser.Visitors
         {
             AppendLeadingComments(node);
             AppendIndented("while (");
-            node.Expression.Accept(this);
+            node.Expression?.Accept(this);
             AppendLine(")");
             AppendStatementWithOptionalIndent(node.Statement);
         }
@@ -618,7 +618,7 @@ namespace ApexParser.Visitors
         {
             AppendLeadingComments(node);
             AppendIndented("System.runAs(");
-            node.Expression.Accept(this);
+            node.Expression?.Accept(this);
             AppendLine(")");
             AppendStatementWithOptionalIndent(node.Statement);
         }
@@ -679,7 +679,7 @@ namespace ApexParser.Visitors
         {
             AppendLeadingComments(node);
             AppendIndented("insert ");
-            node.Expression.Accept(this);
+            node.Expression?.Accept(this);
             Append(";");
             AppendTrailingComments(node);
         }
@@ -688,7 +688,7 @@ namespace ApexParser.Visitors
         {
             AppendLeadingComments(node);
             AppendIndented("update ");
-            node.Expression.Accept(this);
+            node.Expression?.Accept(this);
             Append(";");
             AppendTrailingComments(node);
         }
@@ -697,7 +697,7 @@ namespace ApexParser.Visitors
         {
             AppendLeadingComments(node);
             AppendIndented("delete ");
-            node.Expression.Accept(this);
+            node.Expression?.Accept(this);
             Append(";");
             AppendTrailingComments(node);
         }

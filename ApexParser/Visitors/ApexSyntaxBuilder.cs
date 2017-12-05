@@ -787,5 +787,35 @@ namespace ApexParser.Visitors
                 Block = LastBlock,
             };
         }
+
+        public override void VisitUsingStatement(UsingStatementSyntax node)
+        {
+            bool Equals(ExpressionSyntax left, string right) =>
+                StringComparer.InvariantCultureIgnoreCase.Compare(left.ToString(), right) == 0;
+
+            if (node.Expression is InvocationExpressionSyntax runAs)
+            {
+                if (Equals(runAs.Expression, "System.RunAs"))
+                {
+                    var argument = runAs.ArgumentList?.Arguments.EmptyIfNull().FirstOrDefault()?.Expression;
+                    var runAsNode = new ApexRunAsStatementSyntax
+                    {
+                        Expression = ConvertExpression(argument),
+                    };
+
+                    if (node.Statement != null)
+                    {
+                        node.Statement.Accept(this);
+                        runAsNode.Statement = LastStatement;
+                    }
+
+                    LastStatement = runAsNode;
+                    return;
+                }
+            }
+
+            // or perhaps better throw NotSupportedException?
+            base.VisitUsingStatement(node);
+        }
     }
 }
