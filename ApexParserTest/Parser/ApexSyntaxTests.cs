@@ -15,7 +15,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void DescendantNodesAndSelfForClassEnumReturnsDescendantNodesAndSelf()
         {
-            var syntax = ApexParser.ApexParser.GetApexAst(ClassEnum);
+            var syntax = ApexParser.ApexSharpParser.GetApexAst(ClassEnum);
             var nodes = syntax.DescendantNodesAndSelf().ToArray();
             Assert.AreEqual(4, nodes.Length);
             Assert.IsInstanceOf<EnumDeclarationSyntax>(nodes[0]);
@@ -27,7 +27,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void DescendantNodesForClassEnumReturnsDescendantNodesWithoutSelf()
         {
-            var syntax = ApexParser.ApexParser.GetApexAst(ClassEnum);
+            var syntax = ApexParser.ApexSharpParser.GetApexAst(ClassEnum);
             var nodes = syntax.DescendantNodes().ToArray();
             Assert.AreEqual(3, nodes.Length);
             Assert.IsInstanceOf<EnumMemberDeclarationSyntax>(nodes[0]);
@@ -38,7 +38,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void DescendantNodesAndSelfForClassInterfaceReturnsDescendantNodesAndSelf()
         {
-            var syntax = ApexParser.ApexParser.GetApexAst(ClassInterface);
+            var syntax = ApexParser.ApexSharpParser.GetApexAst(ClassInterface);
             var nodes = syntax.DescendantNodesAndSelf().ToArray();
             Assert.AreEqual(12, nodes.Length);
             Assert.IsInstanceOf<ClassDeclarationSyntax>(nodes[0]);
@@ -58,7 +58,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void DescendantNodesForClassInterfaceReturnsDescendantNodesWithoutSelf()
         {
-            var syntax = ApexParser.ApexParser.GetApexAst(ClassInterface);
+            var syntax = ApexParser.ApexSharpParser.GetApexAst(ClassInterface);
             var nodes = syntax.DescendantNodes().ToArray();
             Assert.AreEqual(11, nodes.Length);
             Assert.IsInstanceOf<TypeSyntax>(nodes[0]);
@@ -77,7 +77,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void DescendantNodesAndSelfForClassInterfaceWithFilterReturnsDescendantNodesAndSelf()
         {
-            var syntax = ApexParser.ApexParser.GetApexAst(ClassInterface);
+            var syntax = ApexParser.ApexSharpParser.GetApexAst(ClassInterface);
             var nodes = syntax.DescendantNodesAndSelf(x => !(x is BlockSyntax)).ToArray();
             Assert.AreEqual(8, nodes.Length);
             Assert.IsInstanceOf<ClassDeclarationSyntax>(nodes[0]);
@@ -93,7 +93,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void DescendantNodesAndSelfForClassTwoReturnsDescendantNodesAndSelf()
         {
-            var syntax = ApexParser.ApexParser.GetApexAst(ClassTwo);
+            var syntax = ApexParser.ApexSharpParser.GetApexAst(ClassTwo);
             var nodes = syntax.DescendantNodesAndSelf().ToArray();
             Assert.AreEqual(10, nodes.Length);
             Assert.IsInstanceOf<ClassDeclarationSyntax>(nodes[0]);
@@ -111,7 +111,7 @@ namespace ApexParserTest.Parser
         [Test]
         public void CanLocateSpecificNodesInSoqlDemo2SyntaxTree()
         {
-            var syntax = ApexParser.ApexParser.GetApexAst(SoqlDemo2);
+            var syntax = ApexParser.ApexSharpParser.GetApexAst(SoqlDemo2);
             var nodes = syntax.DescendantNodesAndSelf().ToArray();
 
             var deleteWorked = nodes.OfType<StatementSyntax>().FirstOrDefault(n => n.Body == "System.debug('Delete Worked')");

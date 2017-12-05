@@ -13,7 +13,7 @@ namespace ApexParserTest.Visitors
     public class ApexResourceTests : TestFixtureBase
     {
         private void Check(string source, string expected) =>
-            CompareLineByLine(ApexParser.ApexParser.IndentApex(source), expected);
+            CompareLineByLine(ApexParser.ApexSharpParser.IndentApex(source), expected);
 
         [Test]
         public void ClassOneIsFormattedUsingNewApexFormatter() =>

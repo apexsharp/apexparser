@@ -23,12 +23,12 @@ namespace ApexParserTest.Visitors
 
             var nodeToApex = node.ToApex();
             Assert.AreEqual(nows(expected), nows(nodeToApex));
-            CompareLineByLine(nodeToApex, ApexParser.ApexParser.IndentApex(expected));
+            CompareLineByLine(nodeToApex, ApexParser.ApexSharpParser.IndentApex(expected));
         }
 
         protected void Check(string csharpUnit, params string[] apexClasses)
         {
-            var csharpNode = CSharpHelper.ParseText(csharpUnit);
+            var csharpNode = ApexSharpParser.ParseText(csharpUnit);
             var apexNodes = ApexSyntaxBuilder.GetApexSyntaxNodes(csharpNode);
             Assert.Multiple(() =>
             {
@@ -52,7 +52,7 @@ namespace ApexParserTest.Visitors
         public void EmptyClassIsGenerated()
         {
             var csharp = "class Test {}";
-            var cs = CSharpHelper.ParseText(csharp);
+            var cs = ApexSharpParser.ParseText(csharp);
             var apex = ApexSyntaxBuilder.GetApexSyntaxNodes(cs);
             Assert.NotNull(apex);
             Assert.AreEqual(1, apex.Count);
@@ -407,7 +407,7 @@ namespace ApexParserTest.Visitors
                     }
                 }";
 
-            var apexClasses = CSharpHelper.ToApex(csharpCode);
+            var apexClasses = ApexSharpParser.ToApex(csharpCode);
             Assert.AreEqual(1, apexClasses.Length);
             CompareLineByLine(apexClasses[0],
                 @"public class Demo
@@ -514,7 +514,7 @@ namespace ApexParserTest.Visitors
                     }
                 }";
 
-            var apexClasses = CSharpHelper.ToApex(csharpCode);
+            var apexClasses = ApexSharpParser.ToApex(csharpCode);
             Assert.AreEqual(1, apexClasses.Length);
             CompareLineByLine(apexClasses[0],
                 @"@IsTest

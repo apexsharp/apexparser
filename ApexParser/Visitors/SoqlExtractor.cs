@@ -16,7 +16,7 @@ namespace ApexParser.Visitors
 
         public static string[] ExtractAllQueries(string apexCode)
         {
-            var apexAst = ApexParser.GetApexAst(apexCode);
+            var apexAst = ApexParser.ApexSharpParser.GetApexAst(apexCode);
             var visitor = new SoqlExtractor();
             apexAst.Accept(visitor);
             return visitor.SoqlQueries.ToArray();

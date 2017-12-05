@@ -24,7 +24,7 @@ namespace Playground
         {
             try
             {
-                return ApexParser.ApexParser.ConvertApexToCSharp(s);
+                return ApexParser.ApexSharpParser.ConvertApexToCSharp(s);
             }
             catch (ParseException)
             {
@@ -32,7 +32,7 @@ namespace Playground
             }
         }
 
-        private string ToApex(string s) => ApexParser.CSharpHelper.ToApex(s).FirstOrDefault();
+        private string ToApex(string s) => ApexParser.ApexSharpParser.ToApex(s).FirstOrDefault();
 
         private bool ConvertLeftToRight { get; set; } = true;
 

@@ -16,7 +16,7 @@ namespace ApexParserTest
         [Test]
         public void CSharpHelperParsesTheCSharpCodeAndReturnsTheSyntaxTree()
         {
-            var unit = CSharpHelper.ParseText(
+            var unit = ApexSharpParser.ParseText(
                 @"using System;
                 using System.Collections;
                 using System.Linq.Think;
@@ -36,14 +36,14 @@ namespace ApexParserTest
 
             Assert.NotNull(unit);
 
-            var txt = CSharpHelper.ToCSharp(unit);
+            var txt = ApexSharpParser.ToCSharp(unit);
             Assert.NotNull(txt);
         }
 
         [Test]
         public void SampleWalkerDisplaysTheSyntaxTreeStructure()
         {
-            var unit = CSharpHelper.ParseText(
+            var unit = ApexSharpParser.ParseText(
                 @"using System;
                 using System.Collections;
                 using System.Linq.Think;
@@ -72,7 +72,7 @@ namespace ApexParserTest
         public void CSharpHelperConvertsCSharpTextsToApex()
         {
             var csharp = "class Test1 { public Test1(int x) { } } class Test2 : Test1 { private int x = 10; }";
-            var apexClasses = CSharpHelper.ToApex(csharp);
+            var apexClasses = ApexSharpParser.ToApex(csharp);
             Assert.AreEqual(2, apexClasses.Length);
 
             CompareLineByLine(
@@ -98,7 +98,7 @@ namespace ApexParserTest
                 class Test2 : Test1 { private int x = 10; }
                 enum SomeEnum { None, Unknown, Default }";
 
-            var apexClasses = CSharpHelper.ConvertToApex(csharp);
+            var apexClasses = ApexSharpParser.ConvertToApex(csharp);
             Assert.AreEqual(3, apexClasses.Count);
 
             CompareLineByLine(
