@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;namespace ApexSharpApi.Model.BulkApi
+﻿using System.Xml.Serialization;
+
+namespace ApexSharpApi.Model.BulkApi
 {
     /// <remarks/>
     [System.SerializableAttribute()]

@@ -5,7 +5,6 @@
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
-    using ApexParser;
     using ApexSharpApi;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
@@ -100,10 +99,10 @@
             {
                 Console.WriteLine(apexFile.Name);
                 var cSharpCode = File.ReadAllText(apexFile.FullName);
-                var cSharpFile = ApexParser.ApexSharpParser.ConvertApexToCSharp(cSharpCode, "PrivateDemo.CSharpClasses");
+                //  var cSharpFile = ApexParser.ApexParser.ConvertApexToCSharp(cSharpCode, "PrivateDemo.CSharpClasses");
 
                 var cSharpFileName = Path.ChangeExtension(apexFile.Name, ".cs");
-                File.WriteAllText(@"C:\DevSharp\ApexSharp\PrivateDemo\CSharpClasses\" + cSharpFileName, cSharpFile);
+                //   File.WriteAllText(@"C:\DevSharp\ApexSharp\PrivateDemo\CSharpClasses\" + cSharpFileName, cSharpFile);
             }
         }
 
@@ -116,7 +115,7 @@
             foreach (var cSharpFile in cSharpFileList)
             {
                 var cSharpCode = File.ReadAllText(cSharpFile.FullName);
-                var apexFilesDictionary = ApexSharpParser.ConvertToApex(cSharpCode);
+                //    var apexFilesDictionary = ConvertToApex(cSharpCode);
 
                 var cSharpFileName = Path.ChangeExtension(cSharpFile.Name, ".apex");
 

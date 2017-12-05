@@ -10,6 +10,7 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <NoWarn />
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +33,12 @@
     <Folder Include="CSharpClasses\" />
     <Folder Include="NoApex\" />
     <Folder Include="SObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ApexParser">
+      <HintPath>..\ApexParser\bin\Debug\ApexParser.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

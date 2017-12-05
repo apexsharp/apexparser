@@ -2,11 +2,10 @@ namespace PrivateDemo.CSharpClasses
 {
     using Apex.ApexSharp;
     using Apex.ApexSharp.ApexAttributes;
+    using Apex.ApexSharp.NUnit;
     using Apex.System;
     using ApexSharpApi.ApexApi;
     using SObjects;
-    //  using Apex.NUnit;
-    using Apex.ApexSharp.NUnit;
 
     [TestFixture]
     [WithSharing]
@@ -25,7 +24,6 @@ namespace PrivateDemo.CSharpClasses
             System.Debug(classInterface.GetName());
             System.Debug(new ClassInternal.InternalClassOne());
             System.Debug(new ClassInternal.InternalClassTwo());
-
             System.Debug(new ClassUnitTestSeeAllData());
             System.Debug(new ClassWithOutSharing());
             System.Debug(new ClassWithSharing());

@@ -37,9 +37,10 @@ namespace ApexSharpDemo
                 {
                     ConnectionUtil.Session = new ApexSharp().SalesForceUrl("https://login.salesforce.com/")
                         .AndSalesForceApiVersion(40)
-                        .WithUserId("apexsharp@jayonsoftware.com")
-                        .AndPassword("1v0EGMfR0NTkbmyQ2Jk4082PA")
-                        .AndToken("LUTAPwQstOZj9ESx7ghiLB1Ww")
+                        .WithUserId("SF User ID")
+                        .AndPassword("SF Password")
+                        .AndToken("SF Token")
+                        .SalesForceLocation("Location of your SF IDE /src Folder")
                         .VsProjectLocation(workingDir.FullName)
                         .SaveConfigAt(configJson)
                         .CreateSession();
