@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ApexParser;
 using Sprache;
 
 namespace Playground
@@ -27,7 +28,7 @@ namespace Playground
         {
             try
             {
-                return ApexParser.ApexSharpParser.ConvertApexToCSharp(s);
+                return ApexSharpParser.ConvertApexToCSharp(s);
             }
             catch (ParseException)
             {
@@ -35,7 +36,7 @@ namespace Playground
             }
         }
 
-        private string ToApex(string s) => ApexParser.ApexSharpParser.ToApex(s).FirstOrDefault();
+        private string ToApex(string s) => ApexSharpParser.ToApex(s).FirstOrDefault();
 
         private void LeftBox_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e) => DoConvert();
 
