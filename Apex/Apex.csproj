@@ -7,7 +7,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <NoWarn />
+    <NoWarn>0114,0108</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
