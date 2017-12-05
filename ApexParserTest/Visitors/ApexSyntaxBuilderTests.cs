@@ -23,7 +23,7 @@ namespace ApexParserTest.Visitors
 
             var nodeToApex = node.ToApex();
             Assert.AreEqual(nows(expected), nows(nodeToApex));
-            CompareLineByLine(nodeToApex, ApexParser.ApexSharpParser.IndentApex(expected));
+            CompareLineByLine(nodeToApex, ApexSharpParser.IndentApex(expected));
         }
 
         protected void Check(string csharpUnit, params string[] apexClasses)

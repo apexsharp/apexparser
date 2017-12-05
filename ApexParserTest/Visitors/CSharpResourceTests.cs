@@ -16,7 +16,7 @@ namespace ApexParserTest.Visitors
     public class CSharpResourceTests : TestFixtureBase
     {
         private void Check(string apex, string csharp) =>
-            CompareLineByLine(ApexParser.ApexSharpParser.ConvertApexToCSharp(apex), csharp);
+            CompareLineByLine(ApexSharpParser.ConvertApexToCSharp(apex), csharp);
 
         [Test]
         public void SoqlDemoIsGeneratedInCSharp() =>

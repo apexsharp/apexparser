@@ -2,10 +2,10 @@ namespace ApexSharpDemo.ApexCode
 {
     using Apex.ApexSharp;
     using Apex.ApexSharp.ApexAttributes;
+    using Apex.ApexSharp.NUnit;
     using Apex.System;
     using ApexSharpApi.ApexApi;
     using SObjects;
-    using Apex.NUnit;
 
     /**
      * Copyright (c) 2014, FinancialForce.com, inc

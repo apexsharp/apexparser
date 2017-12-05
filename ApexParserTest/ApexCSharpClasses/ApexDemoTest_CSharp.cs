@@ -2,10 +2,10 @@
 {
     using Apex.ApexSharp;
     using Apex.ApexSharp.ApexAttributes;
+    using Apex.ApexSharp.NUnit;
     using Apex.System;
     using ApexSharpApi.ApexApi;
     using SObjects;
-    using Apex.NUnit;
 
     [TestFixture]
     public class DemoTest

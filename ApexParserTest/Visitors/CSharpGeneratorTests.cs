@@ -58,10 +58,10 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.NUnit;
                     using Apex.System;
                     using ApexSharpApi.ApexApi;
                     using SObjects;
-                    using Apex.NUnit;
 
                     [TestFixture]
                     class TestClass
@@ -124,10 +124,10 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.NUnit;
                     using Apex.System;
                     using ApexSharpApi.ApexApi;
                     using SObjects;
-                    using Apex.NUnit;
 
                     class TestClass
                     {

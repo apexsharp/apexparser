@@ -29,7 +29,7 @@ namespace ApexParser.Visitors
 
         public List<string> UnitTestUsings { get; set; } = new List<string>
         {
-            "Apex.NUnit",
+            "Apex.ApexSharp.NUnit",
         };
 
         public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4, string @namespace = null)
@@ -92,7 +92,7 @@ namespace ApexParser.Visitors
             {
                 if (IsTopLevelDeclaration)
                 {
-                    foreach (var ns in GetUsings(node as ClassDeclarationSyntax).AsSmart())
+                    foreach (var ns in GetUsings(node as ClassDeclarationSyntax).OrderBy(s => s).AsSmart())
                     {
                         AppendIndentedLine("using {0};", ns.Value);
                         if (ns.IsLast)
