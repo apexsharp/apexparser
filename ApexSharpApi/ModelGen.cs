@@ -33,8 +33,9 @@ namespace ApexSharpApi
             return objectList;
         }
 
-        public void CreateOfflineSymbolTable(string nameSpace, List<string> sobjectList)
+        public void CreateOfflineSymbolTable(List<string> sobjectList)
         {
+            var nameSpace = ConnectionUtil.GetSession().VsProjectName + ".SObjects";
             Parallel.ForEach(sobjectList, (sobject) =>
             {
                 HttpManager httpManager = new HttpManager();

@@ -37,7 +37,7 @@
             try
             {
                 ModelGen modelGen = new ModelGen();
-                modelGen.CreateOfflineSymbolTable("ApexSharpDemo.SObjects", modelGen.GetAllObjectNames());
+                modelGen.CreateOfflineSymbolTable(modelGen.GetAllObjectNames());
             }
             catch (ApexSharpHttpException exp)
             {

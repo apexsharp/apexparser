@@ -73,7 +73,11 @@ namespace ApexSharpApi
             return this;
         }
 
-
+        public ApexSharp SetVsProjectName(string projectName)
+        {
+            _apexSharpConfigSettings.VsProjectName = projectName;
+            return this;
+        }
         public ApexSharp SaveConfigAt(string configFile)
         {
             _apexSharpConfigSettings.ConfigLocation = configFile;

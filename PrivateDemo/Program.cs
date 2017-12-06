@@ -71,38 +71,9 @@
             }
         }
 
-        public static void ConvertToCSharp()
-        {
-            List<FileInfo> apexFileList = new DirectoryInfo(@"C:\DevSharp\SalesForceApexSharp\src\classes\").GetFiles("*.cls").ToList();
-
-            foreach (var apexFile in apexFileList)
-            {
-                Console.WriteLine(apexFile.Name);
-                var cSharpCode = File.ReadAllText(apexFile.FullName);
-                //  var cSharpFile = ApexParser.ApexParser.ConvertApexToCSharp(cSharpCode, "PrivateDemo.CSharpClasses");
-
-                var cSharpFileName = Path.ChangeExtension(apexFile.Name, ".cs");
-                //   File.WriteAllText(@"C:\DevSharp\ApexSharp\PrivateDemo\CSharpClasses\" + cSharpFileName, cSharpFile);
-            }
-        }
 
 
-        public static void ConvertToApex()
-        {
-            List<FileInfo> apexFileList = new DirectoryInfo(@"C:\DevSharp\ApexSharp\ApexSharpDemo\ApexClasses\").GetFiles("*.apex").ToList();
-            List<FileInfo> cSharpFileList = new DirectoryInfo(@"C:\DevSharp\ApexSharp\ApexSharpDemo\CSharpClasses\").GetFiles("*.cs").ToList();
-
-            foreach (var cSharpFile in cSharpFileList)
-            {
-                var cSharpCode = File.ReadAllText(cSharpFile.FullName);
-                //    var apexFilesDictionary = ConvertToApex(cSharpCode);
-
-                var cSharpFileName = Path.ChangeExtension(cSharpFile.Name, ".apex");
-
-                Console.ReadLine();
-                //File.WriteAllText(@"C:\DevSharp\ApexSharp\ApexSharpDemo\CSharpClasses\" + cSharpFileName, cSharpFile);
-            }
-        }
+ 
 
     }
 }

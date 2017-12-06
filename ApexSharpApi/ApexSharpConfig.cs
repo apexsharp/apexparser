@@ -17,5 +17,6 @@ namespace ApexSharpApi
         public string VsProjectLocation { get; set; }
         public string SalesForceLocation { get; set; }
         public long SessionCreationDateTime { get; set; }
+        public string VsProjectName { get; set; }
     }
 }
