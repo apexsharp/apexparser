@@ -90,7 +90,8 @@ namespace Apex.System
 
         public string Put(object key, object value)
         {
-            throw new global::System.NotImplementedException("Map.Put");
+            //throw new global::System.NotImplementedException("Map.Put");
+            return "";
         }
 
         public void PutAll(List<T> entries)
