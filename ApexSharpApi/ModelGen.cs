@@ -36,6 +36,7 @@ namespace ApexSharpApi
         public void CreateOfflineSymbolTable(List<string> sobjectList)
         {
             var nameSpace = ConnectionUtil.GetSession().VsProjectName + ".SObjects";
+
             Parallel.ForEach(sobjectList, (sobject) =>
             {
                 HttpManager httpManager = new HttpManager();
@@ -51,10 +52,10 @@ namespace ApexSharpApi
                 var sObjectClass = CreateSalesForceClasses(nameSpace, sObjectDetail);
 
                 var sobjectLocation = Path.Combine(ConnectionUtil.GetSession().VsProjectLocation, "SObjects");
-                var saveFileName = sobjectLocation + "/" + sobject + ".cs";
+                var saveFileName = sobjectLocation + "\\" + sobject + ".cs";
                 File.WriteAllText(saveFileName, sObjectClass);
 
-                Log.ForContext<ModelGen>().Debug("Created {sobject}", sobject);
+                Log.ForContext<ModelGen>().Debug("Saved {sobject}", saveFileName);
             });
         }
 
