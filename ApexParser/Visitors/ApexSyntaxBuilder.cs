@@ -74,37 +74,30 @@ namespace ApexParser.Visitors
 
         private class Comments
         {
-            public static Comments FromNode(CSharpSyntaxNode node)
+            private static bool Filter(SyntaxTrivia t) =>
+                t.Kind() == SyntaxKind.SingleLineCommentTrivia ||
+                    t.Kind() == SyntaxKind.MultiLineCommentTrivia;
+
+            private static string ExtractText(SyntaxTrivia t)
             {
-                bool Filter(SyntaxTrivia t) =>
-                    t.Kind() == SyntaxKind.SingleLineCommentTrivia ||
-                        t.Kind() == SyntaxKind.MultiLineCommentTrivia;
-
-                string ExtractText(SyntaxTrivia t)
+                if (t.Kind() == SyntaxKind.SingleLineCommentTrivia)
                 {
-                    if (t.Kind() == SyntaxKind.SingleLineCommentTrivia)
-                    {
-                        return t.ToString().Trim().Substring(2);
-                    }
-
-                    // multi-line comments
-                    var text = t.ToString().Trim();
-                    return text.Substring(2, text.Length - 4);
+                    return t.ToString().Trim().Substring(2);
                 }
 
-                List<string> ToList(SyntaxTriviaList trivias) =>
-                    trivias.Where(Filter).Select(ExtractText).ToList();
-
-                return new Comments
-                {
-                    LeadingComments = ToList(node.GetLeadingTrivia()),
-                    TrailingComments = ToList(node.GetTrailingTrivia()),
-                };
+                // multi-line comments
+                var text = t.ToString().Trim();
+                return text.Substring(2, text.Length - 4);
             }
 
-            public List<string> LeadingComments { get; private set; }
+            private static List<string> ToList(SyntaxTriviaList trivias) =>
+                trivias.Where(Filter).Select(ExtractText).ToList();
 
-            public List<string> TrailingComments { get; private set; }
+            public static List<string> Leading(CSharpSyntaxNode node) =>
+                ToList(node.GetLeadingTrivia());
+
+            public static List<string> Trailing(CSharpSyntaxNode node) =>
+                ToList(node.GetTrailingTrivia());
         }
 
         private ApexMemberDeclarationSyntax LastClassMember { get; set; }
@@ -120,8 +113,6 @@ namespace ApexParser.Visitors
                 interfaces = baseTypes.Skip(1).ToArray();
             }
 
-            var comments = Comments.FromNode(node);
-
             // create the class
             var classDeclaration = new ApexClassDeclarationSyntax
             {
@@ -129,8 +120,8 @@ namespace ApexParser.Visitors
                 BaseType = ConvertBaseType(baseType),
                 Interfaces = ConvertBaseTypes(interfaces),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
-                LeadingComments = comments.LeadingComments,
-                TrailingComments = comments.TrailingComments,
+                LeadingComments = Comments.Leading(node),
+                TrailingComments = Comments.Trailing(node),
             };
 
             foreach (var attr in node.AttributeLists.EmptyIfNull())
