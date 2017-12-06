@@ -46,3 +46,4 @@ packages/
 # Others
 *.json
 /*.bak
+.sfdx

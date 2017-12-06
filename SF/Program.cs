@@ -15,6 +15,7 @@ namespace SF
             LinkedList<string> linked = new LinkedList<string>();
             LinkedListNode<string> node = linked.AddLast(">Top of History");
 
+            int cursorLeft = 0; ;
             Console.Write(buffer);
             do
             {
@@ -24,6 +25,15 @@ namespace SF
 
                 switch (consoleKey.Key)
                 {
+                    case ConsoleKey.LeftArrow:
+                        {
+                            Console.Clear();
+                            Console.Write(buffer);
+
+                            cursorLeft = cursorLeft - 1;
+                            Console.SetCursorPosition(cursorLeft, 0);
+                            break;
+                        }
                     case ConsoleKey.Q: 
                         {
                             buffer = "";
@@ -127,6 +137,7 @@ namespace SF
                         }
                     default:
                         {
+                            cursorLeft = Console.CursorLeft;
                             buffer = buffer + consoleKey.KeyChar;
                             break;
                         }
