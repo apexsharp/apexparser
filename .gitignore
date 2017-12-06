@@ -44,7 +44,7 @@ packages/
 
 
 # Others
-*.json
+config.json
 /*.bak
 .sfdx
 /JaysWork
