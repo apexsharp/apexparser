@@ -31,11 +31,4 @@
     <ProjectReference Include="..\Apex\Apex.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Cache\" />
-    <Folder Include="CSharpClasses\" />
-    <Folder Include="NoApex\" />
-    <Folder Include="SObjects\" />
-  </ItemGroup>
-
 </Project>
