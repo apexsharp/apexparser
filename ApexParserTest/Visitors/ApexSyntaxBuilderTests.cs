@@ -324,6 +324,32 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void ClassLeadingAndTrailingCommentsAreConvertedToApex()
+        {
+            Check(@"// this is a comment
+            /* this is another
+             * multi-line comment */
+            class T
+            {
+               void F()
+               {
+                    Soql.Insert(tmp);
+               }
+            } // trailing test
+            // another trailing test",
+            @"// this is a comment
+            /* this is another
+             * multi-line comment */
+            class T
+            {
+                void F()
+                {
+                    insert tmp;
+                }
+            } // trailing test");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();

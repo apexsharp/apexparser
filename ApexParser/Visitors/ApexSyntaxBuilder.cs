@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ApexParser.Parser;
 using ApexParser.Toolbox;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ApexAccessorDeclarationSyntax = ApexParser.MetaClass.AccessorDeclarationSyntax;
@@ -71,6 +72,41 @@ namespace ApexParser.Visitors
             }
         }
 
+        private class Comments
+        {
+            public static Comments FromNode(CSharpSyntaxNode node)
+            {
+                bool Filter(SyntaxTrivia t) =>
+                    t.Kind() == SyntaxKind.SingleLineCommentTrivia ||
+                        t.Kind() == SyntaxKind.MultiLineCommentTrivia;
+
+                string ExtractText(SyntaxTrivia t)
+                {
+                    if (t.Kind() == SyntaxKind.SingleLineCommentTrivia)
+                    {
+                        return t.ToString().Trim().Substring(2);
+                    }
+
+                    // multi-line comments
+                    var text = t.ToString().Trim();
+                    return text.Substring(2, text.Length - 4);
+                }
+
+                List<string> ToList(SyntaxTriviaList trivias) =>
+                    trivias.Where(Filter).Select(ExtractText).ToList();
+
+                return new Comments
+                {
+                    LeadingComments = ToList(node.GetLeadingTrivia()),
+                    TrailingComments = ToList(node.GetTrailingTrivia()),
+                };
+            }
+
+            public List<string> LeadingComments { get; private set; }
+
+            public List<string> TrailingComments { get; private set; }
+        }
+
         private ApexMemberDeclarationSyntax LastClassMember { get; set; }
 
         public override void VisitClassDeclaration(ClassDeclarationSyntax node)
@@ -84,6 +120,8 @@ namespace ApexParser.Visitors
                 interfaces = baseTypes.Skip(1).ToArray();
             }
 
+            var comments = Comments.FromNode(node);
+
             // create the class
             var classDeclaration = new ApexClassDeclarationSyntax
             {
@@ -91,6 +129,8 @@ namespace ApexParser.Visitors
                 BaseType = ConvertBaseType(baseType),
                 Interfaces = ConvertBaseTypes(interfaces),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                LeadingComments = comments.LeadingComments,
+                TrailingComments = comments.TrailingComments,
             };
 
             foreach (var attr in node.AttributeLists.EmptyIfNull())
