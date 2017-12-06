@@ -5,7 +5,6 @@
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
-    using ApexSharpApi;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -28,28 +27,9 @@
             Console.ReadKey();
         }
 
-        public static void OffLineSymbolTable()
-        {
-            Setup.Init();
-            try
-            {
-                ModelGen modelGen = new ModelGen();
-                modelGen.CreateOfflineSymbolTable("PrivateDemo.SObjects", modelGen.GetAllObjectNames());
-            }
-            catch (ApexSharpHttpException exp)
-            {
-                Console.WriteLine(exp.Message);
-            }
-        }
-
-        public static string GetString()
-        {
-            return "using System";
-        }
-
         public static void Rosyln()
         {
-            SyntaxTree sourceTree = CSharpSyntaxTree.ParseText(GetString());
+            SyntaxTree sourceTree = CSharpSyntaxTree.ParseText("");
 
             var compilation = CSharpCompilation.Create("HelloWorld")
                 .AddReferences(
