@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Apex\Apex.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SObjects\" />
+  </ItemGroup>
+
 </Project>

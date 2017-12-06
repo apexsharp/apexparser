@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27019.1
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{76248AF8-2153-4AC3-A013-C403352FAF43}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,11 +18,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Pl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexSharpApi", "ApexSharpApi\ApexSharpApi.csproj", "{251906F7-C47A-43A6-B7B7-AA9ABDD7CAB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apex", "Apex\Apex.csproj", "{E89B11BB-588D-4551-9334-03E0C5B7AFDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apex", "Apex\Apex.csproj", "{E89B11BB-588D-4551-9334-03E0C5B7AFDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexSharpDemo", "ApexSharpDemo\ApexSharpDemo.csproj", "{987E7780-B335-464E-BF8C-5024CDBB7E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexSharpDemo", "ApexSharpDemo\ApexSharpDemo.csproj", "{987E7780-B335-464E-BF8C-5024CDBB7E0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateDemo", "PrivateDemo\PrivateDemo.csproj", "{2C43EE4A-E7D6-46FC-A6A3-1DFA4748268F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivateDemo", "PrivateDemo\PrivateDemo.csproj", "{2C43EE4A-E7D6-46FC-A6A3-1DFA4748268F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SF", "SF\SF.csproj", "{72A6D44C-62C7-48BD-A362-F22F202BD60D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{2C43EE4A-E7D6-46FC-A6A3-1DFA4748268F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C43EE4A-E7D6-46FC-A6A3-1DFA4748268F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C43EE4A-E7D6-46FC-A6A3-1DFA4748268F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72A6D44C-62C7-48BD-A362-F22F202BD60D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72A6D44C-62C7-48BD-A362-F22F202BD60D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72A6D44C-62C7-48BD-A362-F22F202BD60D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72A6D44C-62C7-48BD-A362-F22F202BD60D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
