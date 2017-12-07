@@ -142,5 +142,17 @@ namespace ApexParserTest.Visitors
         [Test]
         public void PrimitiveTypesRoundtrip() =>
             Check(PrimitiveTypes_Original, PrimitiveTypes_Formatted, PrimitiveTypes_CSharp);
+
+        [Test]
+        public void PropertyAndFieldRoundtrip() =>
+            Check(PropertyAndField_Original, PropertyAndField_Formatted, PropertyAndField_CSharp);
+
+        [Test]
+        public void RunAllRoundtrip() =>
+            Check(RunAll_Original, RunAll_Formatted, RunAll_CSharp);
+
+        [Test]
+        public void SoqlDemoRoundtrip() =>
+            Check(SoqlDemo_Original, SoqlDemo_Formatted, SoqlDemo_CSharp);
     }
 }

@@ -587,6 +587,13 @@ namespace ApexParser.Visitors
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
+            // readonly modifier converted to final
+            var index = field.Modifiers.IndexOf("readonly");
+            if (index >= 0)
+            {
+                field.Modifiers[index] = ApexKeywords.Final;
+            }
+
             NoApexComments.Clear();
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
