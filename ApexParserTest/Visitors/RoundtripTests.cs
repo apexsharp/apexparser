@@ -106,5 +106,9 @@ namespace ApexParserTest.Visitors
         [Test]
         public void DemoTestRoundtrip() =>
             Check(DemoTest_Original, DemoTest_Formatted, DemoTest_CSharp);
+
+        [Test]
+        public void ExceptionDemoRoundtrip() =>
+            Check(ExceptionDemo_Original, ExceptionDemo_Formatted, ExceptionDemo_CSharp);
     }
 }

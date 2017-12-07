@@ -716,6 +716,20 @@ namespace ApexParser.Visitors
             AppendTrailingComments(node);
         }
 
+        public override void VisitThrowStatement(ThrowStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("throw");
+            if (node.Expression != null)
+            {
+                Append(" ");
+                node.Expression.Accept(this);
+            }
+
+            Append(";");
+            AppendTrailingComments(node);
+        }
+
         public override void VisitAccessor(AccessorDeclarationSyntax node)
         {
             AppendIndent();

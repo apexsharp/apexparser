@@ -70,6 +70,8 @@ namespace ApexParser.Visitors
         // Temporary method
         public virtual void VisitStatement(StatementSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitThrowStatement(ThrowStatementSyntax node) => DefaultVisit(node);
+
         public virtual void VisitTryStatement(TryStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitType(TypeSyntax node) => DefaultVisit(node);

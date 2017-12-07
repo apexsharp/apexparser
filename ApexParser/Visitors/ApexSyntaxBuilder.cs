@@ -38,6 +38,7 @@ using ApexReturnStatementSyntax = ApexParser.MetaClass.ReturnStatementSyntax;
 using ApexRunAsStatementSyntax = ApexParser.MetaClass.RunAsStatementSyntax;
 using ApexStatementSyntax = ApexParser.MetaClass.StatementSyntax;
 using ApexSyntaxType = ApexParser.MetaClass.SyntaxType;
+using ApexThrowStatementSyntax = ApexParser.MetaClass.ThrowStatementSyntax;
 using ApexTryStatementSyntax = ApexParser.MetaClass.TryStatementSyntax;
 using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexUpdateStatementSyntax = ApexParser.MetaClass.UpdateStatementSyntax;
@@ -762,6 +763,14 @@ namespace ApexParser.Visitors
         public override void VisitReturnStatement(ReturnStatementSyntax node)
         {
             LastStatement = new ApexReturnStatementSyntax
+            {
+                Expression = ConvertExpression(node.Expression),
+            };
+        }
+
+        public override void VisitThrowStatement(ThrowStatementSyntax node)
+        {
+            LastStatement = new ApexThrowStatementSyntax
             {
                 Expression = ConvertExpression(node.Expression),
             };

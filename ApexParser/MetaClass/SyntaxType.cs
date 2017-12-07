@@ -32,6 +32,7 @@
         ReturnStatement,
         RunAsStatement,
         Statement,
+        ThrowStatement,
         TryStatement,
         Type,
         UpdateStatement,

@@ -324,6 +324,13 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void ThrowStatementIsGenerated()
+        {
+            Check("class T { void F() { throw new Exception(); } }", "class T { void F() { throw new Exception(); } }");
+            Check("class T { void F() { throw; } }", "class T { void F() { throw; } }");
+        }
+
+        [Test]
         public void ClassLeadingAndTrailingCommentsAreConvertedToApex()
         {
             Check(@"// this is a comment

@@ -1189,5 +1189,29 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void ThrowStatementIsGenerated()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test {
+                    public void T() {
+                        // constructor expression
+                        throw new Exception('One');
+                        throw; // no expression
+                    }
+                }");
+
+            Check(apex,
+                @"class Test
+                {
+                    public void T()
+                    {
+                        // constructor expression
+                        throw new Exception('One');
+                        throw; // no expression
+                    }
+                }");
+        }
     }
 }

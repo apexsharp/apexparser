@@ -1148,7 +1148,7 @@ namespace ApexParserTest.Parser
             block = pd.Setter.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("throw", block.Statements[0].Body);
+            Assert.IsInstanceOf<ThrowStatementSyntax>(block.Statements[0]);
             Assert.AreEqual(1, pd.Annotations.Count);
             Assert.AreEqual("required", pd.Annotations[0].Identifier);
 
@@ -1571,6 +1571,18 @@ namespace ApexParserTest.Parser
         }
 
         [Test]
+        public void ThrowStatementIsParsed()
+        {
+            var thr = Apex.ThrowStatement.Parse(" throw new NotImplementedException('Oops');");
+            Assert.NotNull(thr);
+            Assert.AreEqual("new NotImplementedException('Oops')", thr.Expression.Expression);
+
+            thr = Apex.ThrowStatement.Parse(" throw;");
+            Assert.NotNull(thr);
+            Assert.IsNull(thr.Expression);
+        }
+
+        [Test]
         public void StatementRuleParsesStatementsOfAnyKind()
         {
             var stmt = Apex.Statement.Parse("if (false) return 'yes'; else return 'no';");
@@ -1706,6 +1718,11 @@ namespace ApexParserTest.Parser
             var upd = stmt as UpdateStatementSyntax;
             Assert.NotNull(upd);
             Assert.AreEqual("items", upd.Expression.Expression);
+
+            stmt = Apex.Statement.Parse(" throw new NotImplementedException('Oops');");
+            var thr = stmt as ThrowStatementSyntax;
+            Assert.NotNull(thr);
+            Assert.AreEqual("new NotImplementedException('Oops')", thr.Expression.Expression);
         }
 
         [Test]
