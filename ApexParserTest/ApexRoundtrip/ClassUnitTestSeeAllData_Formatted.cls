@@ -1,4 +1,4 @@
-@isTest(SeeAllData=true)
+@IsTest(SeeAllData=true)
 public class ClassUnitTestSeeAllData
 {
 }

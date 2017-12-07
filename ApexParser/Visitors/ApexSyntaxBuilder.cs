@@ -76,7 +76,9 @@ namespace ApexParser.Visitors
         {
             private static bool Filter(SyntaxTrivia t) =>
                 t.Kind() == SyntaxKind.SingleLineCommentTrivia ||
-                    t.Kind() == SyntaxKind.MultiLineCommentTrivia;
+                t.Kind() == SyntaxKind.SingleLineDocumentationCommentTrivia ||
+                t.Kind() == SyntaxKind.MultiLineCommentTrivia ||
+                t.Kind() == SyntaxKind.MultiLineDocumentationCommentTrivia;
 
             private static string ExtractText(SyntaxTrivia t)
             {
@@ -84,10 +86,18 @@ namespace ApexParser.Visitors
                 {
                     return t.ToString().Trim().Substring(2);
                 }
-
-                // multi-line comments
-                var text = t.ToString().Trim();
-                return text.Substring(2, text.Length - 4);
+                else if (t.Kind() == SyntaxKind.MultiLineDocumentationCommentTrivia)
+                {
+                    // C# strips the starting sequence /** for these kinds of comments
+                    var text = "*" + Environment.NewLine + t.ToString().Trim();
+                    return text.Substring(0, text.Length - 4);
+                }
+                else
+                {
+                    // multi-line comments
+                    var text = t.ToString().Trim();
+                    return text.Substring(2, text.Length - 4);
+                }
             }
 
             private static List<string> ToList(SyntaxTriviaList trivias) =>
@@ -597,6 +607,14 @@ namespace ApexParser.Visitors
 
         private ApexStatementSyntax LastStatement { get; set; }
 
+        public override void VisitLocalDeclarationStatement(LocalDeclarationStatementSyntax node)
+        {
+            node.Declaration.Accept(this);
+            LastStatement = LastVariableDeclaration;
+            LastStatement.LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList();
+            LastStatement.TrailingComments = Comments.Trailing(node);
+        }
+
         private ApexVariableDeclarationSyntax LastVariableDeclaration { get; set; }
 
         public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
@@ -612,7 +630,7 @@ namespace ApexParser.Visitors
                 variable.Variables.Add(LastVariableDeclarator);
             }
 
-            LastStatement = LastVariableDeclaration = variable;
+            LastVariableDeclaration = variable;
         }
 
         private ApexVariableDeclaratorSyntax LastVariableDeclarator { get; set; }

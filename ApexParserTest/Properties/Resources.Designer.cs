@@ -285,7 +285,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -310,7 +310,8 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to // sample abstract class
         ///public abstract class ClassAbstract
         ///{
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string ClassAbstract_Formatted {
             get {
@@ -345,7 +346,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -408,7 +409,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -462,7 +463,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -529,7 +530,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -548,7 +549,7 @@ namespace ApexParserTest.Properties {
         ///
         ///        public static Map&lt;string, string&gt; colorMap = new Map&lt;string, string&gt;();
         ///
-        ///        stati [rest of string was truncated]&quot;;.
+        ///        s [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassInitialization_CSharp {
             get {
@@ -557,21 +558,25 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class ClassInitialization {
-        ///
+        ///   Looks up a localized string similar to public class ClassInitialization
+        ///{
         ///    public List&lt;Contact&gt; contactList;
-        ///    public ClassInitialization() {
+        ///
+        ///    public ClassInitialization()
+        ///    {
         ///        contactList = [SELECT ID FROM Contact LIMIT 1];
         ///    }
         ///
         ///    public static Map&lt;String, String&gt; colorMap = new Map&lt;String, String&gt;();
         ///
-        ///    static {
+        ///    static
+        ///    {
         ///        colorMap.Put(&apos;red&apos;, &apos;255, 0, 0&apos;);
         ///        colorMap.Put(&apos;cyan&apos;, &apos;0, 255, 255&apos;);
         ///        colorMap.Put(&apos;magenta&apos;, &apos;255, 0, 255&apos;);
         ///    }
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string ClassInitialization_Formatted {
             get {
@@ -621,7 +626,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -653,12 +658,12 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to public class ClassInterface implements IClassInterface
         ///{
-        ///    public string GetName(string name)
+        ///    public String GetName(String name)
         ///    {
         ///        return name;
         ///    }
         ///
-        ///    public string GetName()
+        ///    public String GetName()
         ///    {
         ///        return &apos;Jay&apos;;
         ///    }
@@ -708,7 +713,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -730,8 +735,7 @@ namespace ApexParserTest.Properties {
         ///        {
         ///        }
         ///    }
-        ///}
-        ///.
+        ///}        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassInternal_CSharp {
             get {
@@ -743,6 +747,7 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to public class ClassInternal
         ///{
         ///    InternalClassOne classOne = new InternalClassOne();
+        ///
         ///    ClassInternal.InternalClassTwo classTwo = new ClassInternal.InternalClassTwo();
         ///
         ///    public class InternalClassOne
@@ -782,7 +787,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -795,10 +800,10 @@ namespace ApexParserTest.Properties {
         ///        // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
         ///        public static void MethodOne()
         ///        {
-        ///               NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///            NoApex.Serilog.LogInfo(&quot;Jay&quot;);
         ///        }
         ///
-        ///        // Any method in NoApex name space will be commented out in Apex and uncomme [rest of string was truncated]&quot;;.
+        ///        // Any method in NoApex name space will be commented out in Apex and uncomm [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassNoApex_CSharp {
             get {
@@ -807,20 +812,21 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class ClassNoApex {
+        ///   Looks up a localized string similar to public class ClassNoApex
+        ///{
         ///    // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
         ///    public static void MethodOne()
         ///    {
-        ///        //:NoApex    NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///        //:NoApex NoApex.Serilog.LogInfo(&quot;Jay&quot;);
         ///    }
-        ///
         ///
         ///    // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
         ///    //:NoApex public static void NoApexMethodTwo()
         ///    //:NoApex {
-        ///    //:NoApex      NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    //:NoApex     NoApex.Serilog.LogInfo(&quot;Jay&quot;);
         ///    //:NoApex }
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string ClassNoApex_Formatted {
             get {
@@ -833,14 +839,14 @@ namespace ApexParserTest.Properties {
         ///    // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
         ///    public static void MethodOne()
         ///    {
-        ///        //:NoApex    NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///        //:NoApex NoApex.Serilog.LogInfo(&quot;Jay&quot;);
         ///    }
         ///
         ///
         ///    // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
         ///    //:NoApex public static void NoApexMethodTwo()
         ///    //:NoApex {
-        ///    //:NoApex      NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    //:NoApex     NoApex.Serilog.LogInfo(&quot;Jay&quot;);
         ///    //:NoApex }
         ///}.
         /// </summary>
@@ -914,7 +920,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -937,7 +943,7 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            try
         ///            {
-        ///           [rest of string was truncated]&quot;;.
+        ///       [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassRest_CSharp {
             get {
@@ -949,19 +955,23 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to @RestResource(urlMapping=&apos;/api/RestDemo&apos;)
         ///global class ClassRest
         ///{
-        ///    public class ContactDTO {
-        ///        public String LastName {get;set;}
+        ///    public class ContactDTO
+        ///    {
+        ///        public String LastName { get; set; }
         ///    }
         ///
-        ///    @httpPost
-        ///    global static void Post() {
-        ///
-        ///        try {
-        ///            ContactDTO contact = (ContactDTO) JSON.Deserialize(RestContext.Request.RequestBody.ToString(), ContactDTO.class);
+        ///    @HttpPost
+        ///    global static void Post()
+        ///    {
+        ///        try
+        ///        {
+        ///            ContactDTO contact = (ContactDTO)JSON.Deserialize(RestContext.Request.RequestBody.ToString(), ContactDTO.class);
         ///            InsertContact(contact);
         ///            RestContext.Response.StatusCode = 200;
-        ///        } catch (Exception e) {
-        ///            RestContext.Response.StatusCode = [rest of string was truncated]&quot;;.
+        ///        }
+        ///        catch (Exception e)
+        ///        {
+        ///         [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassRest_Formatted {
             get {
@@ -994,7 +1004,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1011,7 +1021,7 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            RestContext.Request = new RestRequest();
         ///            RestContext.Response = new RestResponse();
-        ///            ClassRest.ContactDTO contact = new ClassRest.Contac [rest of string was truncated]&quot;;.
+        ///            ClassRest.ContactDTO contact = new ClassRest.Co [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassRestTest_CSharp {
             get {
@@ -1020,23 +1030,20 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to @isTest
-        ///public class ClassRestTest {
-        ///    @isTest
-        ///    public static void PostTest() {
-        ///
+        ///   Looks up a localized string similar to @IsTest
+        ///public class ClassRestTest
+        ///{
+        ///    @IsTest
+        ///    public static void PostTest()
+        ///    {
         ///        RestContext.Request = new RestRequest();
         ///        RestContext.Response = new RestResponse();
-        ///
         ///        ClassRest.ContactDTO contact = new ClassRest.ContactDTO();
         ///        contact.LastName = &apos;LastName&apos;;
-        ///
         ///        RestContext.Request.RequestBody = Blob.ValueOf(JSON.Serialize(contact));
         ///        ClassRest.Post();
-        ///
         ///        System.AssertEquals(200, RestContext.Response.StatusCode);
-        ///
-        ///        List&lt;Contact&gt; cont [rest of string was truncated]&quot;;.
+        ///        List&lt;Contact&gt; contacts [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassRestTest_Formatted {
             get {
@@ -1138,6 +1145,42 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to @IsTest
+        ///public class ClassUnitTest
+        ///{
+        ///    @TestSetup
+        ///    public static void Setup()
+        ///    {
+        ///        System.Debug(&apos;One Time Setup Got Called&apos;);
+        ///    }
+        ///
+        ///    @IsTest
+        ///    public static void Assert()
+        ///    {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///
+        ///    public static testMethod void AssertTestMethod()
+        ///    {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///
+        ///    @IsTest
+        ///    public static void AssertEquals()
+        ///    {
+        ///        System.AssertEquals(5, 5, &apos;Assert Equal&apos;);
+        ///    }
+        ///
+        ///    @IsTest
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassUnitTest_Converted {
+            get {
+                return ResourceManager.GetString("ClassUnitTest_Converted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
@@ -1168,7 +1211,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1189,7 +1232,7 @@ namespace ApexParserTest.Properties {
         ///        [Test]
         ///        public static void Assert()
         ///        {
-        ///            System.Assert(true, &quot;Assert Tr [rest of string was truncated]&quot;;.
+        ///            System.Assert(true, &quot;Asser [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassUnitTest_CSharp1 {
             get {
@@ -1198,26 +1241,33 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to @isTest
-        ///public class ClassUnitTest {
+        ///   Looks up a localized string similar to @IsTest
+        ///public class ClassUnitTest
+        ///{
         ///    @TestSetup
-        ///    public static void Setup() {
+        ///    public static void Setup()
+        ///    {
         ///        System.Debug(&apos;One Time Setup Got Called&apos;);
         ///    }
         ///
-        ///    @isTest
-        ///    public static void Assert() {
-        ///        System.Assert(true, &apos;Assert True&apos;);
-        ///    }
-        ///    public static testMethod void AssertTestMethod() {
+        ///    @IsTest
+        ///    public static void Assert()
+        ///    {
         ///        System.Assert(true, &apos;Assert True&apos;);
         ///    }
         ///
-        ///    @isTest
-        ///    public static void AssertEquals() {
+        ///    public static testMethod void AssertTestMethod()
+        ///    {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///
+        ///    @IsTest
+        ///    public static void AssertEquals()
+        ///    {
         ///        System.AssertEquals(5, 5, &apos;Assert Equal&apos;);
         ///    }
-        ///    public static testMethod void Asser [rest of string was truncated]&quot;;.
+        ///
+        ///    public sta [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassUnitTest_Formatted {
             get {
@@ -1274,7 +1324,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1352,7 +1402,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1476,7 +1526,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1531,7 +1581,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1575,7 +1625,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1593,7 +1643,7 @@ namespace ApexParserTest.Properties {
         ///        public void ArrayDemo()
         ///        {
         ///            List&lt;string&gt; stringListLocal = new List&lt;string&gt;{&quot;one&quot;, &quot;two&quot;};
-        ///            int[] i [rest of string was truncated]&quot;;.
+        ///            int [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Collections_CSharp {
             get {
@@ -1690,7 +1740,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1857,7 +1907,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -1880,7 +1930,7 @@ namespace ApexParserTest.Properties {
         ///            {
         ///                Soql.Insert(contact);
         ///            }
-        ///            catch (DmlException e [rest of string was truncated]&quot;;.
+        ///            catch (DmlExcepti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Demo_CSharp {
             get {
@@ -1992,7 +2042,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -2013,7 +2063,7 @@ namespace ApexParserTest.Properties {
         ///        /**
         ///         * Set the contact for the page using the lastName parameter, if there is one
         ///         */
-        ///        //  public DemoCon [rest of string was truncated]&quot;;.
+        ///        //  public Dem [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoController_CSharp {
             get {
@@ -2068,7 +2118,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -2086,7 +2136,7 @@ namespace ApexParserTest.Properties {
         ///            //  	Contact contact = new Contact(LastName=&apos;Smith&apos;);
         ///            //  	insert contact;
         ///            //  	Test.setCurrentPage(Page.DemoPage);
-        ///             [rest of string was truncated]&quot;;.
+        ///         [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoControllerTests_CSharp {
             get {
@@ -2141,7 +2191,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -2160,7 +2210,7 @@ namespace ApexParserTest.Properties {
         ///            contactNew.LastName = &quot;Jay&quot;;
         ///            contactNew.Email = &quot;jay@jay.com&quot;;
         ///            Soql.Insert(contactNew);
-        ///     [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoTest_CSharp {
             get {
@@ -2250,7 +2300,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -2272,7 +2322,7 @@ namespace ApexParserTest.Properties {
         ///            }
         ///            finally
         ///            {
-        ///              [rest of string was truncated]&quot;;.
+        ///          [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ExceptionDemo_CSharp {
             get {
@@ -3380,7 +3430,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -3401,7 +3451,7 @@ namespace ApexParserTest.Properties {
         ///            {
         ///                modelColor = &quot;Silver&quot;;
         ///            }
-        ///     [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ForIfWhile_CSharp {
             get {
@@ -3617,7 +3667,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -3640,8 +3690,7 @@ namespace ApexParserTest.Properties {
         ///            set
         ///            {
         ///                propPrvt = value;
-        ///            }
-        ///  [rest of string was truncated]&quot;;.
+        ///             [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GetSetDemo_CSharp {
             get {
@@ -3724,7 +3773,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -3781,7 +3830,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -3844,7 +3893,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -3860,7 +3909,7 @@ namespace ApexParserTest.Properties {
         ///            contact.LastName = &quot;Jay&quot;;
         ///            contact.Email = &quot;jay@jay.com&quot;;
         ///            string jsonString = JSON.Serialize(contact);
-        ///            Contact newContact = (Contact)JSON.Deseria [rest of string was truncated]&quot;;.
+        ///            Contact newContact = (Contact)JSON.Des [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string JsonExample_CSharp {
             get {
@@ -3964,7 +4013,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -3989,7 +4038,7 @@ namespace ApexParserTest.Properties {
         ///        }
         ///
         ///        [Future]
-        ///        pub [rest of string was truncated]&quot;;.
+        ///        [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MethodAndConstructor_CSharp {
             get {
@@ -4076,7 +4125,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -4096,8 +4145,7 @@ namespace ApexParserTest.Properties {
         ///
         ///            for (int i = 0; i&lt;10; i++)
         ///            {
-        ///            }
-        /// [rest of string was truncated]&quot;;.
+        ///            [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MethodComplex_CSharp {
             get {
@@ -4179,7 +4227,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -4200,7 +4248,7 @@ namespace ApexParserTest.Properties {
         ///        // public Decimal MyDecimal = 12.4567;
         ///        public double d = 3.133433;
         ///
-        ///         [rest of string was truncated]&quot;;.
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PrimitiveTypes_CSharp {
             get {
@@ -4281,7 +4329,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -4299,7 +4347,7 @@ namespace ApexParserTest.Properties {
         ///
         ///        public DateTime DateTimeEmpty;
         ///
-        ///        public DateTime DateTimeInitialized = DateTime.Now [rest of string was truncated]&quot;;.
+        ///        public DateTime DateTimeInitialized = DateTime [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PropertyAndField_CSharp {
             get {
@@ -4409,7 +4457,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -4428,7 +4476,7 @@ namespace ApexParserTest.Properties {
         ///            System.Debug(ClassEnum.America);
         ///            System.Debug(new ClassException());
         ///            System.Debug(new ClassGlobal());
-        ///            Clas [rest of string was truncated]&quot;;.
+        ///             [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunAll_CSharp {
             get {
@@ -4508,7 +4556,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
@@ -4526,7 +4574,7 @@ namespace ApexParserTest.Properties {
         ///            // Contact contactNew = new Contact(LastName = &apos;Jay&apos;, Email = &apos;abc@abc.com&apos;);
         ///            Contact contactNew = new Contact();
         ///            Soql.Insert(contactNew);
-        ///      [rest of string was truncated]&quot;;.
+        ///  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemo_CSharp {
             get {

@@ -4,7 +4,7 @@ public class ClassUnitTest
     @TestSetup
     public static void Setup()
     {
-        System.Debug('One Time Setup Got Called');
+        System.Debug('One time Setup Got Called');
     }
 
     @IsTest
@@ -13,7 +13,8 @@ public class ClassUnitTest
         System.Assert(true, 'Assert True');
     }
 
-    public static testMethod void AssertTestMethod()
+    @IsTest
+    public static void AssertTestMethod()
     {
         System.Assert(true, 'Assert True');
     }
@@ -24,7 +25,8 @@ public class ClassUnitTest
         System.AssertEquals(5, 5, 'Assert Equal');
     }
 
-    public static testMethod void AssertEqualsTestMethod()
+    @IsTest
+    public static void AssertEqualsTestMethod()
     {
         System.AssertEquals(5, 5, 'Assert Equal');
     }
@@ -35,7 +37,8 @@ public class ClassUnitTest
         System.AssertNotEquals(5, 0, 'Assert Not Equal');
     }
 
-    public static testMethod void AssertNotTestMethod()
+    @IsTest
+    public static void AssertNotTestMethod()
     {
         System.AssertNotEquals(5, 0, 'Assert Not Equal');
     }

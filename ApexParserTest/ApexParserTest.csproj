@@ -325,6 +325,7 @@
     <None Include="ApexRoundtrip\ClassUnitTestRunAs_Original.cls" />
     <None Include="ApexRoundtrip\ClassUnitTestSeeAllData_Formatted.cls" />
     <None Include="ApexRoundtrip\ClassUnitTestSeeAllData_Original.cls" />
+    <None Include="ApexRoundtrip\ClassUnitTest_Converted.cls" />
     <None Include="ApexRoundtrip\ClassUnitTest_Formatted.cls" />
     <None Include="ApexRoundtrip\ClassUnitTest_Original.cls" />
     <None Include="ApexRoundtrip\ClassWithOutSharing_Formatted.cls" />
