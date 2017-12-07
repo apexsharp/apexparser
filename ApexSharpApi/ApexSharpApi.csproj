@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ApexParser\ApexParser.csproj" />
+  </ItemGroup>
+
 </Project>

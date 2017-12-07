@@ -1,11 +1,75 @@
-﻿using System;
+﻿using ApexParser;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ApexSharpApi
 {
     public class ApexSharp
     {
+        public static void ValidateDir(DirectoryInfo dirInfo)
+        {
+            if (dirInfo.Exists == false) { throw new DirectoryNotFoundException(); }
+        }
+
+        public static void ConvertToCSharp(string apexDir, string cSharpDir)
+        {
+            var apexDirInfo = new DirectoryInfo(apexDir);
+            ValidateDir(apexDirInfo);
+            var cSharpDirInfo = new DirectoryInfo(cSharpDir);
+            ValidateDir(cSharpDirInfo);
+
+            FileInfo[] apexFileList = apexDirInfo.GetFiles("*.cls");
+
+            foreach (var apexFile in apexFileList)
+            {
+                Console.WriteLine($"Convertiong {apexFile}");
+
+                // Read and Convert to C#, Make sure to pass the name of the namespace.
+                var cSharpCode = File.ReadAllText(apexFile.FullName);
+                var nameSpace = ConnectionUtil.GetSession().VsProjectName + ".CSharpClasses";
+                var cSharpFile = ApexSharpParser.ConvertApexToCSharp(cSharpCode, nameSpace);
+
+                // Save the converted C# File
+                var cSharpFileName = Path.ChangeExtension(apexFile.Name, ".cs");
+                var cSharpFileSave = Path.Combine(cSharpDirInfo.FullName, cSharpFileName);
+
+                Console.WriteLine($"Saving {cSharpFileSave}");
+
+                File.WriteAllText(cSharpFileSave, cSharpFile);
+            }
+
+        }
+
+        public static void ConvertToApex(string cSharpDir, string apexDir)
+        {
+            var apexDirInfo = new DirectoryInfo(apexDir);
+            ValidateDir(apexDirInfo);
+            var cSharpDirInfo = new DirectoryInfo(cSharpDir);
+            ValidateDir(cSharpDirInfo);
+
+            FileInfo[] cSharpFileList = cSharpDirInfo.GetFiles("*.cs");
+            
+            foreach (var cSharpFile in cSharpFileList)
+            {
+                var cSharpCode = File.ReadAllText(cSharpFile.FullName);
+
+                foreach (var colleciton in ApexSharpParser.ConvertToApex(cSharpCode))
+                {
+                    var cSharpFileName = Path.ChangeExtension(colleciton.Key, ".cls");
+
+                    var apexFile = Path.Combine(apexDirInfo.FullName, cSharpFileName);
+
+                    Console.WriteLine(apexFile);
+
+                    File.WriteAllText(apexFile, colleciton.Value);
+                }
+            }
+        }
+
         private readonly ApexSharpConfig _apexSharpConfigSettings = new ApexSharpConfig();
+
+        public static object ApexParser { get; private set; }
 
         // Double Check For All These Values
         public ApexSharpConfig CreateSession()
