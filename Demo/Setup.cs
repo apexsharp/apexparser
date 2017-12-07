@@ -1,7 +1,6 @@
 ﻿namespace Demo
 {
     using System;
-    using System.IO;
     using ApexSharpApi;
     using Serilog;
 
