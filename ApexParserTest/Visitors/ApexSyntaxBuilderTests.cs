@@ -102,8 +102,8 @@ namespace ApexParserTest.Visitors
         {
             Check("interface A { }", "interface A { }");
             Check("public interface B { int x { get; } }", "public interface B { Integer x { get; } }");
-            Check("interface C : IDisposable { }", "interface C implements IDisposable { }");
-            Check("public class D : B { interface C : IDisposable { } }", "public class D extends B { interface C implements IDisposable { } }");
+            Check("interface C : IDisposable { }", "interface C extends IDisposable { }");
+            Check("public class D : B { interface C : IDisposable { } }", "public class D extends B { interface C extends IDisposable { } }");
             Check("interface E { } interface F { }", "interface E { }", "interface F { }");
         }
 

@@ -110,5 +110,37 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ExceptionDemoRoundtrip() =>
             Check(ExceptionDemo_Original, ExceptionDemo_Formatted, ExceptionDemo_CSharp);
+
+        [Test]
+        public void ForIfWhileRoundtrip() =>
+            Check(ForIfWhile_Original, ForIfWhile_Formatted, ForIfWhile_CSharp);
+
+        [Test]
+        public void GetSetDemoRoundtrip() =>
+            Check(GetSetDemo_Original, GetSetDemo_Formatted, GetSetDemo_CSharp);
+
+        [Test]
+        public void IClassInterfaceRoundtrip() =>
+            Check(IClassInterface_Original, IClassInterface_Formatted, IClassInterface_CSharp);
+
+        [Test]
+        public void IClassInterfaceExtRoundtrip() =>
+            Check(IClassInterfaceExt_Original, IClassInterfaceExt_Formatted, IClassInterfaceExt_CSharp);
+
+        [Test]
+        public void JsonExampleRoundtrip() =>
+            Check(JsonExample_Original, JsonExample_Formatted, JsonExample_CSharp);
+
+        [Test]
+        public void MethodAndConstructorRoundtrip() =>
+            Check(MethodAndConstructor_Original, MethodAndConstructor_Formatted, MethodAndConstructor_CSharp);
+
+        [Test]
+        public void MethodComplexRoundtrip() =>
+            Check(MethodComplex_Original, MethodComplex_Formatted, MethodComplex_CSharp);
+
+        [Test]
+        public void PrimitiveTypesRoundtrip() =>
+            Check(PrimitiveTypes_Original, PrimitiveTypes_Formatted, PrimitiveTypes_CSharp);
     }
 }

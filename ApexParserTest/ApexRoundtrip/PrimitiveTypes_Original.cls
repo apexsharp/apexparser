@@ -4,7 +4,7 @@ public class PrimitiveTypes
     public Boolean IsWinner = true;
 
     public Date MyDate = Date.Today();
-    public DateTime MyDateTime = DateTime.Now();
+    public Datetime MyDateTime = Datetime.Now();
 
     // public Decimal MyDecimal = 12.4567;
     public Double d=3.133433;

@@ -101,7 +101,7 @@ namespace ApexParser.Visitors
                 }
             }
 
-            private static List<string> ToList(SyntaxTriviaList trivias) =>
+            public static List<string> ToList(SyntaxTriviaList trivias) =>
                 trivias.Where(Filter).Select(ExtractText).ToList();
 
             public static List<string> Leading(CSharpSyntaxNode node) =>
@@ -158,7 +158,8 @@ namespace ApexParser.Visitors
                 }
             }
 
-            classDeclaration.InnerComments = NoApexComments.ToList();
+            classDeclaration.InnerComments = NoApexComments.Concat(
+                Comments.ToList(node.CloseBraceToken.LeadingTrivia)).ToList();
             NoApexComments.Clear();
             LastClassMember = classDeclaration;
         }
@@ -197,7 +198,7 @@ namespace ApexParser.Visitors
             var interfaceDeclaration = new ApexInterfaceDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
-                Interfaces = ConvertBaseTypes(interfaces),
+                BaseType = ConvertBaseType(interfaces.FirstOrDefault()),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
@@ -217,7 +218,8 @@ namespace ApexParser.Visitors
                 }
             }
 
-            interfaceDeclaration.InnerComments = NoApexComments.ToList();
+            interfaceDeclaration.InnerComments = NoApexComments.Concat(
+                Comments.ToList(node.CloseBraceToken.LeadingTrivia)).ToList();
             NoApexComments.Clear();
             LastClassMember = interfaceDeclaration;
         }
@@ -389,7 +391,8 @@ namespace ApexParser.Visitors
                 enumeration.Members.Add(LastEnumMember);
             }
 
-            enumeration.InnerComments = NoApexComments.ToList();
+            enumeration.InnerComments = NoApexComments.Concat(
+                Comments.ToList(node.CloseBraceToken.LeadingTrivia)).ToList();
             NoApexComments.Clear();
             LastClassMember = enumeration;
         }
@@ -578,10 +581,13 @@ namespace ApexParser.Visitors
         {
             var field = new ApexFieldDeclarationSyntax
             {
+                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
+                TrailingComments = Comments.Trailing(node),
                 Type = ConvertType(node.Declaration.Type),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
             };
 
+            NoApexComments.Clear();
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
                 attr.Accept(this);

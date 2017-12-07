@@ -1,55 +1,75 @@
-public class GetSetDemo {
-    public double MyReadWritePropPublic { get; set; }
+public class GetSetDemo
+{
+    public Double MyReadWritePropPublic { get; set; }
+
     private Integer propPrvt;
-    public Integer prop {
-        get {
+
+    public Integer prop
+    {
+        get
+        {
             return propPrvt;
         }
-        set {
+        set
+        {
             propPrvt = value;
         }
     }
-    public Integer MyReadOnlyProp {
-        get;
-    }
+
+    public Integer MyReadOnlyProp { get; }
 
     private static Integer myStaticPropPrvt;
-    public static Integer MyStaticProp {
-        get {
+
+    public static Integer MyStaticProp
+    {
+        get
+        {
             return myStaticPropPrvt;
         }
     }
 
-    Integer MyReadOnlyPropPrvt { get;}
-    double MyReadWritePropPrvt {get; set;
-    }
-    public string MyWriteOnlyProp {get; }
-    protected string MyWriteOnlyPropPrvt { set; get;
-    }
+    Integer MyReadOnlyPropPrvt { get; }
 
-    private string namePrvt;
+    Double MyReadWritePropPrvt { get; set; }
 
-    public string getName {
-        get {
+    public String MyWriteOnlyProp { get; }
+
+    protected String MyWriteOnlyPropPrvt { get; set; }
+
+    private String namePrvt;
+
+    public String getName
+    {
+        get
+        {
             return namePrvt;
         }
-        private set {
+        private set
+        {
             namePrvt = value;
         }
     }
-    public string Stubbing {
-        private get {
+
+    public String Stubbing
+    {
+        private get
+        {
             return namePrvt;
         }
-        set {
+        set
+        {
             namePrvt = value;
         }
     }
-    public string DoThrowWhenException {
-        get {
+
+    public String DoThrowWhenException
+    {
+        get
+        {
             return namePrvt;
         }
-        set {
+        set
+        {
             namePrvt = value;
         }
     }
