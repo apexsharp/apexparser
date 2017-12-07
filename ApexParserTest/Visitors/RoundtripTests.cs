@@ -53,5 +53,9 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ClassNoApexRoundtrip() =>
             Check(ClassNoApex_Original, ClassNoApex_Formatted, ClassNoApex_CSharp);
+
+        [Test]
+        public void ClassRestRoundtrip() =>
+            Check(ClassRest_Original, ClassRest_Formatted, ClassRest_CSharp);
     }
 }

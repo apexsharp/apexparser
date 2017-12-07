@@ -160,7 +160,14 @@ namespace ApexParser.Visitors
             }
             else if (converted is string modifier)
             {
-                member.Modifiers.Add(modifier);
+                if (modifier == ApexKeywords.Global)
+                {
+                    member.Modifiers.Insert(0, modifier);
+                }
+                else
+                {
+                    member.Modifiers.Add(modifier);
+                }
             }
 
             // public and global modifiers shouldn't be mixed
@@ -271,6 +278,10 @@ namespace ApexParser.Visitors
             {
                 return ApexKeywords.WebService;
             }
+            else if (node.Identifier == "Global")
+            {
+                return ApexKeywords.Global;
+            }
 
             return node;
         }
@@ -342,11 +353,11 @@ namespace ApexParser.Visitors
             var expr = new StringBuilder();
             if (node.NameColon != null)
             {
-                expr.AppendFormat("{0} = ", node.NameColon.Name);
+                expr.AppendFormat("{0}=", node.NameColon.Name);
             }
             else if (node.NameEquals != null)
             {
-                expr.AppendFormat("{0} = ", node.NameEquals.Name);
+                expr.AppendFormat("{0}=", node.NameEquals.Name);
             }
 
             expr.Append(ConvertExpression(node.Expression).Expression);
