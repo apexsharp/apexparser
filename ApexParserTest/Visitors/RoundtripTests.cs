@@ -45,5 +45,13 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ClassInterfaceRoundtrip() =>
             Check(ClassInterface_Original, ClassInterface_Formatted, ClassInterface_CSharp);
+
+        [Test]
+        public void ClassInternalRoundtrip() =>
+            Check(ClassInternal_Original, ClassInternal_Formatted, ClassInternal_CSharp);
+
+        [Test]
+        public void ClassNoApexRoundtrip() =>
+            Check(ClassNoApex_Original, ClassNoApex_Formatted, ClassNoApex_CSharp);
     }
 }

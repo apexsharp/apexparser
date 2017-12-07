@@ -147,8 +147,8 @@ namespace ApexParser.Visitors
                 }
             }
 
-            classDeclaration.InnerComments = LastComments.ToList();
-            LastComments.Clear();
+            classDeclaration.InnerComments = NoApexComments.ToList();
+            NoApexComments.Clear();
             LastClassMember = classDeclaration;
         }
 
@@ -199,8 +199,8 @@ namespace ApexParser.Visitors
                 }
             }
 
-            interfaceDeclaration.InnerComments = LastComments.ToList();
-            LastComments.Clear();
+            interfaceDeclaration.InnerComments = NoApexComments.ToList();
+            NoApexComments.Clear();
             LastClassMember = interfaceDeclaration;
         }
 
@@ -367,8 +367,8 @@ namespace ApexParser.Visitors
                 enumeration.Members.Add(LastEnumMember);
             }
 
-            enumeration.InnerComments = LastComments.ToList();
-            LastComments.Clear();
+            enumeration.InnerComments = NoApexComments.ToList();
+            NoApexComments.Clear();
             LastClassMember = enumeration;
         }
 
@@ -378,23 +378,24 @@ namespace ApexParser.Visitors
         {
             LastEnumMember = new ApexEnumMemberDeclarationSyntax
             {
-                LeadingComments = LastComments.ToList(),
+                LeadingComments = NoApexComments.ToList(),
                 Identifier = node.Identifier.ValueText,
             };
 
-            LastComments.Clear();
+            NoApexComments.Clear();
         }
 
         public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
         {
             var method = new ApexConstructorDeclarationSyntax
             {
-                LeadingComments = LastComments.ToList(),
+                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
                 Identifier = node.Identifier.ValueText,
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                TrailingComments = Comments.Trailing(node),
             };
 
-            LastComments.Clear();
+            NoApexComments.Clear();
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
                 attr.Accept(this);
@@ -411,6 +412,12 @@ namespace ApexParser.Visitors
             {
                 node.Body.Accept(this);
                 method.Body = LastBlock;
+
+                if (!method.TrailingComments.IsNullOrEmpty())
+                {
+                    method.Body.TrailingComments = method.TrailingComments.ToList();
+                    method.TrailingComments.Clear();
+                }
             }
 
             if (method.Modifiers.All(m => m != "static"))
@@ -431,26 +438,28 @@ namespace ApexParser.Visitors
             }
         }
 
-        private List<string> LastComments { get; set; } = new List<string>();
+        private List<string> NoApexComments { get; set; } = new List<string>();
 
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
             // skip methods starting with the signature
             if (node.Identifier.ValueText.StartsWith(NoApexSignature))
             {
-                LastComments = CommentOutNoApexCode(node.ToString() + Environment.NewLine);
+                NoApexComments = NoApexComments.Concat(Comments.Leading(node))
+                    .Concat(CommentOutNoApexCode(node.ToString())).ToList();
                 return;
             }
 
             var method = new ApexMethodDeclarationSyntax
             {
-                LeadingComments = LastComments.ToList(),
+                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
                 Identifier = node.Identifier.ValueText,
                 ReturnType = ConvertType(node.ReturnType),
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                TrailingComments = Comments.Trailing(node),
             };
 
-            LastComments.Clear();
+            NoApexComments.Clear();
             foreach (var attr in node.AttributeLists.EmptyIfNull())
             {
                 attr.Accept(this);
@@ -467,6 +476,12 @@ namespace ApexParser.Visitors
             {
                 node.Body.Accept(this);
                 method.Body = LastBlock;
+
+                if (!method.TrailingComments.IsNullOrEmpty())
+                {
+                    method.Body.TrailingComments = method.TrailingComments.ToList();
+                    method.TrailingComments.Clear();
+                }
             }
 
             LastClassMember = method;
@@ -474,7 +489,7 @@ namespace ApexParser.Visitors
 
         internal List<string> CommentOutNoApexCode(string code)
         {
-            var lines = code.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+            var lines = code.Trim().Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
             int CalcIndent(string line) =>
                 line.Length - line.TrimStart().Length;
 
@@ -670,6 +685,8 @@ namespace ApexParser.Visitors
                 }
             }
 
+            block.InnerComments = NoApexComments.ToList();
+            NoApexComments.Clear();
             LastStatement = LastBlock = block;
         }
 
@@ -697,9 +714,18 @@ namespace ApexParser.Visitors
 
         public override void VisitExpressionStatement(ExpressionStatementSyntax node)
         {
+            // skip stateements starting with the signature
+            if (node.ToString().StartsWith(NoApexSignature))
+            {
+                NoApexComments = CommentOutNoApexCode(node.ToString() + Environment.NewLine);
+                return;
+            }
+
             // also handles SOQL insert/update/delete statements
             LastStatement = new ApexStatementSyntax
             {
+                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
+                TrailingComments = Comments.Trailing(node),
                 Body = ConvertExpression(node.Expression).Expression,
             };
         }

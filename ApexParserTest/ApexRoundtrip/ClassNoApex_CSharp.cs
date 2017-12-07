@@ -11,13 +11,13 @@ namespace ApexSharpDemo.ApexCode
         // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
         public static void MethodOne()
         {
-               NoApex.Serilog.LogInfo("Jay");
+            NoApex.Serilog.LogInfo("Jay");
         }
 
         // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
         public static void NoApexMethodTwo()
         {
-             NoApex.Serilog.LogInfo("Jay");
+            NoApex.Serilog.LogInfo("Jay");
         }
     }
 }

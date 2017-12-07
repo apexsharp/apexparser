@@ -350,6 +350,27 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void MethodLeadingAndTrailingCommentsAreConvertedToApex()
+        {
+            Check(@"class T
+            {
+               // leading
+               void F()
+               {
+                    Soql.Insert(tmp);
+               } // trailing test
+            }",
+            @"class T
+            {
+                // leading
+                void F()
+                {
+                    insert tmp;
+                } // trailing test
+            }");
+        }
+
+        [Test]
         public void CommentOutNoApexCode()
         {
             var builder = new ApexSyntaxBuilder();
@@ -558,7 +579,6 @@ namespace ApexParserTest.Visitors
                     //:NoApex {
                     //:NoApex     new ApexSharp().Connect(""C:\\DevSharp\\connect.json"");
                     //:NoApex }
-                    //:NoApex
                     @TestSetup
                     public static void Setup()
                     {
