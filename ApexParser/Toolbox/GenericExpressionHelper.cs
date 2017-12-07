@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ApexParser.Parser;
 
 namespace ApexParser.Toolbox
 {
@@ -219,6 +220,67 @@ namespace ApexParser.Toolbox
         public static string ConvertCSharpIsTypeExpressionToApex(string expression)
         {
             return CSharpIsTypeRegex.Replace(expression, "instanceof");
+        }
+
+        private static Dictionary<string, string> CSharpTypes { get; } =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { ApexKeywords.Boolean, "bool" },
+                { ApexKeywords.Byte, "byte" },
+                { ApexKeywords.Char, "char" },
+                { ApexKeywords.Datetime, "DateTime" },
+                { ApexKeywords.Date, "Date" },
+                { ApexKeywords.Decimal, "decimal" },
+                { ApexKeywords.Double, "double" },
+                { ApexKeywords.Exception, nameof(Exception) },
+                { ApexKeywords.Float, "float" },
+                { ApexKeywords.Int, "int" },
+                { ApexKeywords.Integer, "int" },
+                { ApexKeywords.Long, "long" },
+                { ApexKeywords.Object, "object" },
+                { ApexKeywords.Short, "short" },
+                { ApexKeywords.String, "string" },
+                { ApexKeywords.Time, "Time" },
+                { ApexKeywords.Void, "void" },
+            };
+
+        private static Dictionary<string, string> ApexTypes { get; } =
+            CSharpTypes.Where(p => p.Key != ApexKeywords.Int).ToDictionary(p => p.Value, p => p.Key);
+
+        private static Dictionary<Regex, string> CSharpTypeRegex { get; } =
+            CSharpTypes.ToDictionary(p => new Regex($"\\b{p.Key}\\b",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled), p => p.Value);
+
+        private static Dictionary<Regex, string> ApexTypeRegex { get; } =
+            ApexTypes.ToDictionary(p => new Regex($"\\b{p.Key}\\b",
+                RegexOptions.Compiled), p => p.Value);
+
+        public static string ConvertApexTypeToCSharp(string identifier) =>
+            CSharpTypes.TryGetValue(identifier, out var result) ? result : identifier;
+
+        public static string ConvertCSharpTypeToApex(string identifier) =>
+            ApexTypes.TryGetValue(identifier, out var result) ? result : identifier;
+
+        public static string ConvertApexTypesToCSharp(string expression)
+        {
+            // replace Apex types with C# types
+            foreach (var r in CSharpTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))
+            {
+                expression = r.Regex.Replace(expression, r.Value);
+            }
+
+            return expression;
+        }
+
+        public static string ConvertCSharpTypesToApex(string expression)
+        {
+            // replace C# types with Apex types
+            foreach (var r in ApexTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))
+            {
+                expression = r.Regex.Replace(expression, r.Value);
+            }
+
+            return expression;
         }
     }
 }

@@ -9,6 +9,8 @@ using NUnit.Framework;
 
 namespace ApexParserTest.Visitors
 {
+    using Apex = ApexParser.Parser.Apex;
+
     [TestFixture]
     public class ApexGeneratorTests : TestFixtureBase
     {
@@ -20,7 +22,7 @@ namespace ApexParserTest.Visitors
         {
             var cd = new ClassDeclarationSyntax
             {
-                Identifier = "TestClass"
+                Identifier = "TestClass",
             };
 
             Check(cd,
@@ -35,7 +37,7 @@ namespace ApexParserTest.Visitors
             var cd = new ClassDeclarationSyntax
             {
                 LeadingComments = new List<string> { " Test class" },
-                Identifier = "TestClass"
+                Identifier = "TestClass",
             };
 
             Check(cd,
@@ -50,10 +52,13 @@ namespace ApexParserTest.Visitors
         {
             var cd = new ClassDeclarationSyntax
             {
-                LeadingComments = new List<string> { @" Test class
+                LeadingComments = new List<string>
+                {
+                    @" Test class
                     with several lines
-                    of comments " },
-                Identifier = "TestClass"
+                    of comments ",
+                },
+                Identifier = "TestClass",
             };
 
             Check(cd,
@@ -99,8 +104,8 @@ namespace ApexParserTest.Visitors
             {
                 TypeParameters = new List<TypeSyntax>
                 {
-                    new TypeSyntax("Custom", "Class")
-                }
+                    new TypeSyntax("Custom", "Class"),
+                },
             };
 
             Assert.AreEqual("List<Custom.Class>", apexList.ToApex());
@@ -118,7 +123,7 @@ namespace ApexParserTest.Visitors
                 {
                     new AnnotationSyntax
                     {
-                        Identifier = "TestAttribute"
+                        Identifier = "TestAttribute",
                     },
                 },
                 Modifiers = new List<string> { "public", "static" },
@@ -127,7 +132,7 @@ namespace ApexParserTest.Visitors
                 Parameters = new List<ParameterSyntax>
                 {
                     new ParameterSyntax("int", "x"),
-                    new ParameterSyntax("int", "y")
+                    new ParameterSyntax("int", "y"),
                 },
                 Body = new BlockSyntax(),
             };
@@ -148,7 +153,7 @@ namespace ApexParserTest.Visitors
                 {
                     new AnnotationSyntax
                     {
-                        Identifier = "DefaultConstructor"
+                        Identifier = "DefaultConstructor",
                     },
                 },
                 Modifiers = new List<string> { "public" },
@@ -157,7 +162,7 @@ namespace ApexParserTest.Visitors
                 Parameters = new List<ParameterSyntax>
                 {
                     new ParameterSyntax("int", "x"),
-                    new ParameterSyntax("int", "y")
+                    new ParameterSyntax("int", "y"),
                 },
                 Body = new BlockSyntax(),
             };
@@ -182,7 +187,7 @@ namespace ApexParserTest.Visitors
             var ifStatement = new IfStatementSyntax
             {
                 Expression = new ExpressionSyntax("true"),
-                ThenStatement = new BreakStatementSyntax()
+                ThenStatement = new BreakStatementSyntax(),
             };
 
             Check(ifStatement,
@@ -198,7 +203,7 @@ namespace ApexParserTest.Visitors
                 LeadingComments = new List<string>
                 {
                     " this is the first leading comment",
-                    " this is the second leading comment"
+                    " this is the second leading comment",
                 },
                 Expression = new ExpressionSyntax("true"),
                 ThenStatement = new StatementSyntax("hello()").WithTrailingComment(" hello"),
@@ -226,8 +231,8 @@ namespace ApexParserTest.Visitors
                 {
                     Expression = new ExpressionSyntax("false"),
                     ThenStatement = new StatementSyntax("goodbye()").WithTrailingComment("and everywhere"),
-                    ElseStatement = new BreakStatementSyntax().WithTrailingComment("down")
-                }
+                    ElseStatement = new BreakStatementSyntax().WithTrailingComment("down"),
+                },
             };
 
             Check(ifStatement,
@@ -245,7 +250,7 @@ namespace ApexParserTest.Visitors
         {
             var forStatement = new ForStatementSyntax
             {
-                Statement = new BreakStatementSyntax()
+                Statement = new BreakStatementSyntax(),
             };
 
             Check(forStatement,
@@ -264,14 +269,14 @@ namespace ApexParserTest.Visitors
                     new VariableDeclaratorSyntax
                     {
                         Identifier = "alice",
-                        Expression = new ExpressionSyntax("'alice@wonderland.net'")
+                        Expression = new ExpressionSyntax("'alice@wonderland.net'"),
                     },
                     new VariableDeclaratorSyntax
                     {
                         Identifier = "bob",
-                        Expression = new ExpressionSyntax("'bob@microsoft.com'")
-                    }
-                }
+                        Expression = new ExpressionSyntax("'bob@microsoft.com'"),
+                    },
+                },
             };
 
             Check(decl, @"CustomerDto.User alice = 'alice@wonderland.net', bob = 'bob@microsoft.com';");
@@ -283,7 +288,7 @@ namespace ApexParserTest.Visitors
             var block = new BlockSyntax
             {
                 new StatementSyntax("CallSomeMethod()"),
-                new BreakStatementSyntax()
+                new BreakStatementSyntax(),
             };
 
             Check(block,
@@ -306,19 +311,19 @@ namespace ApexParserTest.Visitors
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "i",
-                            Expression = new ExpressionSyntax("0")
+                            Expression = new ExpressionSyntax("0"),
                         },
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "j",
-                            Expression = new ExpressionSyntax("100")
-                        }
-                    }
+                            Expression = new ExpressionSyntax("100"),
+                        },
+                    },
                 },
                 Statement = new BlockSyntax
                 {
-                    new BreakStatementSyntax()
-                }
+                    new BreakStatementSyntax(),
+                },
             };
 
             Check(forStatement,
@@ -336,8 +341,8 @@ namespace ApexParserTest.Visitors
                 Condition = new ExpressionSyntax("i < 10"),
                 Statement = new BlockSyntax
                 {
-                    new BreakStatementSyntax()
-                }
+                    new BreakStatementSyntax(),
+                },
             };
 
             Check(forStatement,
@@ -355,12 +360,12 @@ namespace ApexParserTest.Visitors
                 Incrementors = new List<ExpressionSyntax>
                 {
                     new ExpressionSyntax("i++"),
-                    new ExpressionSyntax("j *= 2")
+                    new ExpressionSyntax("j *= 2"),
                 },
                 Statement = new BlockSyntax
                 {
-                    new BreakStatementSyntax()
-                }
+                    new BreakStatementSyntax(),
+                },
             };
 
             Check(forStatement,
@@ -383,25 +388,25 @@ namespace ApexParserTest.Visitors
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "i",
-                            Expression = new ExpressionSyntax("0")
+                            Expression = new ExpressionSyntax("0"),
                         },
                         new VariableDeclaratorSyntax
                         {
                             Identifier = "j",
-                            Expression = new ExpressionSyntax("1")
-                        }
-                    }
+                            Expression = new ExpressionSyntax("1"),
+                        },
+                    },
                 },
                 Condition = new ExpressionSyntax("j < 1000"),
                 Incrementors = new List<ExpressionSyntax>
                 {
                     new ExpressionSyntax("i++"),
-                    new ExpressionSyntax("j *= 2")
+                    new ExpressionSyntax("j *= 2"),
                 },
                 Statement = new BlockSyntax
                 {
-                    new BreakStatementSyntax()
-                }
+                    new BreakStatementSyntax(),
+                },
             };
 
             Check(forStatement,
@@ -419,7 +424,7 @@ namespace ApexParserTest.Visitors
                 Type = new TypeSyntax("Contact"),
                 Identifier = "c",
                 Expression = new ExpressionSyntax("contacts"),
-                Statement = new BlockSyntax()
+                Statement = new BlockSyntax(),
             };
 
             Check(forEachStatement,
@@ -436,8 +441,8 @@ namespace ApexParserTest.Visitors
                 Expression = new ExpressionSyntax("contacts.IsEmpty()"),
                 Statement = new BlockSyntax
                 {
-                    new BreakStatementSyntax()
-                }
+                    new BreakStatementSyntax(),
+                },
             };
 
             Check(doStatement,
@@ -454,7 +459,7 @@ namespace ApexParserTest.Visitors
             var doStatement = new DoStatementSyntax
             {
                 Expression = new ExpressionSyntax("true"),
-                Statement = new BreakStatementSyntax()
+                Statement = new BreakStatementSyntax(),
             };
 
             Check(doStatement,
@@ -471,8 +476,8 @@ namespace ApexParserTest.Visitors
                 Expression = new ExpressionSyntax("contacts.IsEmpty()"),
                 Statement = new BlockSyntax
                 {
-                    new BreakStatementSyntax()
-                }
+                    new BreakStatementSyntax(),
+                },
             };
 
             Check(whileStatement,
@@ -490,8 +495,8 @@ namespace ApexParserTest.Visitors
                 Expression = new ExpressionSyntax("getCurrentUser()"),
                 Statement = new BlockSyntax
                 {
-                    new BreakStatementSyntax()
-                }
+                    new BreakStatementSyntax(),
+                },
             };
 
             Check(runAsStatement,
@@ -506,7 +511,7 @@ namespace ApexParserTest.Visitors
         {
             var insertStatement = new InsertStatementSyntax
             {
-                Expression = new ExpressionSyntax("contactNew")
+                Expression = new ExpressionSyntax("contactNew"),
             };
 
             Check(insertStatement, @"insert contactNew;");
@@ -529,7 +534,7 @@ namespace ApexParserTest.Visitors
         {
             var updateStatement = new UpdateStatementSyntax
             {
-                Expression = new ExpressionSyntax("contacts")
+                Expression = new ExpressionSyntax("contacts"),
             };
 
             Check(updateStatement, @"update contacts;");
@@ -540,7 +545,7 @@ namespace ApexParserTest.Visitors
         {
             var deleteStatement = new DeleteStatementSyntax
             {
-                Expression = new ExpressionSyntax("contactOld")
+                Expression = new ExpressionSyntax("contactOld"),
             };
 
             Check(deleteStatement, @"delete contactOld;");
@@ -552,7 +557,7 @@ namespace ApexParserTest.Visitors
             var acc = new AccessorDeclarationSyntax
             {
                 IsGetter = true,
-                Modifiers = new List<string> { "public" }
+                Modifiers = new List<string> { "public" },
             };
 
             Check(acc, "public get;");
@@ -564,7 +569,7 @@ namespace ApexParserTest.Visitors
             var acc = new AccessorDeclarationSyntax
             {
                 IsGetter = false,
-                Modifiers = new List<string> { "private" }
+                Modifiers = new List<string> { "private" },
             };
 
             Check(acc, "private set;");
@@ -628,9 +633,9 @@ namespace ApexParserTest.Visitors
                     },
                     new AccessorDeclarationSyntax
                     {
-                        IsGetter = true
-                    }
-                }
+                        IsGetter = true,
+                    },
+                },
             };
 
             Check(prop, "public string Name { get; set; }");
@@ -649,14 +654,14 @@ namespace ApexParserTest.Visitors
                     new AccessorDeclarationSyntax
                     {
                         IsGetter = true,
-                        Modifiers = new List<string>{ "public" },
+                        Modifiers = new List<string> { "public" },
                     },
                     new AccessorDeclarationSyntax
                     {
                         IsGetter = false,
-                        Modifiers = new List<string>{ "private" },
-                    }
-                }
+                        Modifiers = new List<string> { "private" },
+                    },
+                },
             };
 
             Check(prop, "protected int Age { public get; private set; }");
@@ -682,8 +687,8 @@ namespace ApexParserTest.Visitors
                     new AccessorDeclarationSyntax
                     {
                         IsGetter = false,
-                    }
-                }
+                    },
+                },
             };
 
             Check(prop,

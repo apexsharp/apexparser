@@ -99,7 +99,7 @@ namespace ApexSharpApi
             HttpRequestMessage request = new HttpRequestMessage
             {
                 RequestUri = new Uri(_connectionDetail.RestUrl + "/data/v37.0/composite/tree/" + objectName),
-                Method = HttpMethod.Post
+                Method = HttpMethod.Post,
             };
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.Add("Authorization", _connectionDetail.RestSessionId);
@@ -176,7 +176,7 @@ namespace ApexSharpApi
                     new Attributes
                     {
                         type = typeof(T).Name,
-                        referenceId = recordObject["ID"].ToString()
+                        referenceId = recordObject["ID"].ToString(),
                     };
                 var attributeObject = JObject.FromObject(attribute);
                 recordObject.Add(new JProperty("attributes", attributeObject));
@@ -193,7 +193,7 @@ namespace ApexSharpApi
             HttpRequestMessage request = new HttpRequestMessage
             {
                 RequestUri = new Uri(_connectionDetail.RestUrl + url),
-                Method = HttpMethod.Post
+                Method = HttpMethod.Post,
             };
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.Add("X-SFDC-Session", _connectionDetail.SessionId);
@@ -228,7 +228,7 @@ namespace ApexSharpApi
             HttpRequestMessage request = new HttpRequestMessage
             {
                 RequestUri = new Uri(_connectionDetail.RestUrl + url),
-                Method = HttpMethod.Get
+                Method = HttpMethod.Get,
             };
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.Add("X-SFDC-Session", _connectionDetail.SessionId);

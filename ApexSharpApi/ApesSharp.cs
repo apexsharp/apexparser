@@ -1,7 +1,7 @@
-﻿using ApexParser;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using ApexParser;
 
 namespace ApexSharpApi
 {
@@ -49,7 +49,7 @@ namespace ApexSharpApi
             ValidateDir(cSharpDirInfo);
 
             FileInfo[] cSharpFileList = cSharpDirInfo.GetFiles("*.cs");
-            
+
             foreach (var cSharpFile in cSharpFileList)
             {
                 var cSharpCode = File.ReadAllText(cSharpFile.FullName);
