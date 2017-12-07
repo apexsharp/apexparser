@@ -21,7 +21,7 @@ public class Demo
         return null;
     }
 
-    public static string UpdatePhone(string email, string newPhone)
+    public static String UpdatePhone(String email, String newPhone)
     {
         List<Contact> contacts = GetContactByEMail(email);
         if (contacts.IsEmpty())
@@ -36,7 +36,7 @@ public class Demo
         }
     }
 
-    public static List<Contact> GetContactByEMail(string email)
+    public static List<Contact> GetContactByEMail(String email)
     {
         List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = :email];
         return contacts;

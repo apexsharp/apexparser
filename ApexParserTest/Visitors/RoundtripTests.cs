@@ -94,5 +94,17 @@ namespace ApexParserTest.Visitors
         [Test]
         public void CommentsRoundtrip() =>
             Check(Comments_Original, Comments_Formatted, Comments_CSharp);
+
+        [Test]
+        public void DemoRoundtrip() =>
+            Check(Demo_Original, Demo_Formatted, Demo_CSharp);
+
+        [Test]
+        public void DemoControllerRoundtrip() =>
+            Check(DemoController_Original, DemoController_Formatted, DemoController_CSharp);
+
+        [Test]
+        public void DemoTestRoundtrip() =>
+            Check(DemoTest_Original, DemoTest_Formatted, DemoTest_CSharp);
     }
 }
