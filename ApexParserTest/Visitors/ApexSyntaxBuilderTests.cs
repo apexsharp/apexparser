@@ -101,7 +101,7 @@ namespace ApexParserTest.Visitors
         public void InterfaceIsGenerated()
         {
             Check("interface A { }", "interface A { }");
-            Check("public interface B { int x { get; } }", "public interface B { int x { get; } }");
+            Check("public interface B { int x { get; } }", "public interface B { Integer x { get; } }");
             Check("interface C : IDisposable { }", "interface C implements IDisposable { }");
             Check("public class D : B { interface C : IDisposable { } }", "public class D extends B { interface C implements IDisposable { } }");
             Check("interface E { } interface F { }", "interface E { }", "interface F { }");
@@ -119,38 +119,38 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ConstructorParametersAreGenerated()
         {
-            Check("class T {T(int x){}}", "class T {T(int x){}}");
-            Check("class Sample {Sample(int x, Customer y){}}", "class Sample {Sample(int x, Customer y){}}");
+            Check("class T {T(int x){}}", "class T {T(Integer x){}}");
+            Check("class Sample {Sample(int x, Customer y){}}", "class Sample {Sample(Integer x, Customer y){}}");
         }
 
         [Test]
         public void ClassWithMethodIsGenerated()
         {
             Check("class A { void X(){} }", "class A { void X(){} }");
-            Check("class B { public int T(int R){} }", "class B { public int T(int R){} }");
-            Check("class A { void X(){} int Y(){} }", "class A { void X(){} int Y(){} }");
+            Check("class B { public int T(int R){} }", "class B { public Integer T(Integer R){} }");
+            Check("class A { void X(){} int Y(){} }", "class A { void X(){} Integer Y(){} }");
         }
 
         [Test]
         public void ClassWithFieldIsGenerated()
         {
-            Check("class X { int Y; }", "class X { int Y; }");
-            Check("class X { public int Y, Z; }", "class X { public int Y, Z; }");
-            Check("class Test { public int Y = 10, Z = 20 + 30; }", "class Test { public int Y = 10, Z = 20 + 30; }");
+            Check("class X { int Y; }", "class X { Integer Y; }");
+            Check("class X { public int Y, Z; }", "class X { public Integer Y, Z; }");
+            Check("class Test { public int Y = 10, Z = 20 + 30; }", "class Test { public Integer Y = 10, Z = 20 + 30; }");
         }
 
         [Test]
         public void ClassWithPropertyIsGenerated()
         {
-            Check("class X { int Y { get; } }", "class X { int Y { get; } }");
-            Check("class Test { public int Name { get; set; } }", "class Test { public int Name { get; set; } }");
+            Check("class X { int Y { get; } }", "class X { Integer Y { get; } }");
+            Check("class Test { public int Name { get; set; } }", "class Test { public Integer Name { get; set; } }");
         }
 
         [Test]
         public void VariableDeclarationIsGenerated()
         {
-            Check("class T { void Z() { int x; } }", "class T { void Z() { int x; } }");
-            Check("class T { void Z() { int x = 10; } }", "class T { void Z() { int x = 10; } }");
+            Check("class T { void Z() { int x; } }", "class T { void Z() { Integer x; } }");
+            Check("class T { void Z() { int x = 10; } }", "class T { void Z() { Integer x = 10; } }");
             Check("class T { void Z() { MyString a = \"yes\"; } }", "class T { void Z() { MyString a = 'yes'; } }");
 
             // TODO: convert built-in types
@@ -164,7 +164,7 @@ namespace ApexParserTest.Visitors
         public void NestedBlockStatementIsGenerated()
         {
             Check("class T { void Z() { {} } }", "class T { void Z() { {} } }");
-            Check("class T { void Z() { int x; { int y; } int z; } }", "class T { void Z() { int x; { int y; } int z; } }");
+            Check("class T { void Z() { int x; { int y; } int z; } }", "class T { void Z() { Integer x; { Integer y; } Integer z; } }");
         }
 
         [Test]
@@ -180,9 +180,9 @@ namespace ApexParserTest.Visitors
         [Test]
         public void IfStatementIsGenerated()
         {
-            Check("class A { void T() { if (true) int x; } }", "class A { void T() { if (true) int x; } }");
-            Check("class A { void T() { if (true) { } else int y; } }", "class A { void T() { if (true) { } else int y; } }");
-            Check("class A { void T() { if (true) { } else if (false) int y; } }", "class A { void T() { if (true) { } else if (false) int y; } }");
+            Check("class A { void T() { if (true) int x; } }", "class A { void T() { if (true) Integer x; } }");
+            Check("class A { void T() { if (true) { } else int y; } }", "class A { void T() { if (true) { } else Integer y; } }");
+            Check("class A { void T() { if (true) { } else if (false) int y; } }", "class A { void T() { if (true) { } else if (false) Integer y; } }");
         }
 
         [Test]
@@ -265,18 +265,18 @@ namespace ApexParserTest.Visitors
         public void ForStatementIsGenerated()
         {
             Check("class A { void T() { for (;;) { break; } } }", "class A { void T() { for (;;) { break; } } }");
-            Check("class A { void T() { for (int x = 0;;) continue; } }", "class A { void T() { for (int x = 0;;) continue; } }");
-            Check("class A { void T() { for (int x = 0, y = 10;;) continue; } }", "class A { void T() { for (int x = 0, y = 10;;) continue; } }");
+            Check("class A { void T() { for (int x = 0;;) continue; } }", "class A { void T() { for (Integer x = 0;;) continue; } }");
+            Check("class A { void T() { for (int x = 0, y = 10;;) continue; } }", "class A { void T() { for (Integer x = 0, y = 10;;) continue; } }");
             Check("class A { void T() { for (;i<10;) continue; } }", "class A { void T() { for (;i<10;) continue; } }");
             Check("class A { void T() { for (;;i++) continue; } }", "class A { void T() { for (;;i++) continue; } }");
-            Check("class A { void T() { for (int i = 0;i < 10;i++,j--) continue; } }", "class A { void T() { for (int i = 0;i < 10;i++,j--) continue; } }");
+            Check("class A { void T() { for (int i = 0;i < 10;i++,j--) continue; } }", "class A { void T() { for (Integer i = 0;i < 10;i++,j--) continue; } }");
         }
 
         [Test]
         public void TypeofXIsConvertedToXDotClass()
         {
             Check("class A { void T() { Type x = typeof(A); } }", "class A { void T() { Type x = A.class; } }");
-            Check("class A { void T() { Type x = typeof(List<string>); } }", "class A { void T() { Type x = List<string>.class; } }");
+            Check("class A { void T() { Type x = typeof(List<string>); } }", "class A { void T() { Type x = List<String>.class; } }");
         }
 
         // [Test]
@@ -290,7 +290,7 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ApexClassAttributesAreConvertedToModifiers()
         {
-            Check("[Global] public class X {}", "public global class X {}");
+            Check("[Global] public class X {}", "global class X {}");
             Check("[WithSharing] public class X {}", "public with sharing class X {}");
             Check("[WithoutSharing] public class X {}", "public without sharing class X {}");
         }
@@ -299,8 +299,8 @@ namespace ApexParserTest.Visitors
         public void ApexMethodAndFieldAttributesAreConvertedToModifiers()
         {
             Check("public class X { [WebService] public void Y() { } }", "public class X { public webservice void Y() { } }");
-            Check("public class X { [Transient] private int counter = 10; }", "public class X { private transient int counter = 10; }");
-            Check("public class X { static void Z([Final] int y) { } }", "public class X { static void Z(final int y) { } }");
+            Check("public class X { [Transient] private int counter = 10; }", "public class X { private transient Integer counter = 10; }");
+            Check("public class X { static void Z([Final] int y) { } }", "public class X { static void Z(final Integer y) { } }");
         }
 
         [Test]
@@ -313,7 +313,7 @@ namespace ApexParserTest.Visitors
         [Test]
         public void CSharpIsTypeExpressionIsConvertedToApexInstanceOfType()
         {
-            Check("public class X { public void Y() { bool t = X is string; } } ", "public class X { public void Y() { bool t = X instanceof string; } }");
+            Check("public class X { public void Y() { bool t = X is string; } } ", "public class X { public void Y() { Boolean t = X instanceof String; } }");
         }
 
         [Test]
@@ -466,7 +466,7 @@ namespace ApexParserTest.Visitors
                         return null;
                     }
 
-                    public static string UpdatePhone(string email, string newPhone)
+                    public static String UpdatePhone(String email, String newPhone)
                     {
                         List<Contact> contacts = GetContactByEMail(email);
                         if (contacts.IsEmpty())
@@ -481,7 +481,7 @@ namespace ApexParserTest.Visitors
                         }
                     }
 
-                    public static List<Contact> GetContactByEMail(string email)
+                    public static List<Contact> GetContactByEMail(String email)
                     {
                         List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = :email];
                         return contacts;

@@ -1,11 +1,11 @@
 public class ClassInterface implements IClassInterface
 {
-    public string GetName(string name)
+    public String GetName(String name)
     {
         return name;
     }
 
-    public string GetName()
+    public String GetName()
     {
         return 'Jay';
     }

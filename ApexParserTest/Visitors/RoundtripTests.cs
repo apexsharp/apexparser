@@ -33,5 +33,17 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ClassExceptionRoundtrip() =>
             Check(ClassException_Original, ClassException_Formatted, ClassException_CSharp);
+
+        [Test]
+        public void ClassGlobalRoundtrip() =>
+            Check(ClassGlobal_Original, ClassGlobal_Formatted, ClassGlobal_CSharp);
+
+        [Test]
+        public void ClassInitializationRoundtrip() =>
+            Check(ClassInitialization_Original, ClassInitialization_Formatted, ClassInitialization_CSharp);
+
+        [Test]
+        public void ClassInterfaceRoundtrip() =>
+            Check(ClassInterface_Original, ClassInterface_Formatted, ClassInterface_CSharp);
     }
 }

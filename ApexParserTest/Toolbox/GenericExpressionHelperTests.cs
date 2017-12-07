@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApexParser.Parser;
 using ApexParser.Toolbox;
 using ApexParser.Visitors;
 using NUnit.Framework;
@@ -378,6 +379,35 @@ namespace ApexParserTest.Toolbox
 
             apex = ToApex(csharp);
             Assert.AreEqual(text, apex);
+        }
+
+        [Test]
+        public void ConvertTypeNames()
+        {
+            string ToCSharp(string type) => GenericExpressionHelper.ConvertApexTypeToCSharp(type);
+            string ToApex(string type) => GenericExpressionHelper.ConvertCSharpTypeToApex(type);
+
+            Assert.AreEqual("bool", ToCSharp(ApexKeywords.Boolean));
+            Assert.AreEqual("bool", ToCSharp("boolean"));
+            Assert.AreEqual("bool", ToCSharp("BOOLEAN"));
+            Assert.AreEqual("string", ToCSharp(ApexKeywords.String));
+            Assert.AreEqual("string", ToCSharp("string"));
+            Assert.AreEqual("int", ToCSharp(ApexKeywords.Integer));
+
+            Assert.AreEqual(ApexKeywords.Integer, ToApex("int"));
+            Assert.AreEqual(ApexKeywords.String, ToApex("string"));
+            Assert.AreEqual(ApexKeywords.Datetime, ToApex("DateTime"));
+            Assert.AreEqual(ApexKeywords.Time, ToApex("Time"));
+        }
+
+        [Test]
+        public void ConvertTypesInExpressions()
+        {
+            string ToCSharp(string expr) => GenericExpressionHelper.ConvertApexTypesToCSharp(expr);
+            string ToApex(string expr) => GenericExpressionHelper.ConvertCSharpTypesToApex(expr);
+
+            Assert.AreEqual("Map<string, string>", ToCSharp("Map<String, String>"));
+            Assert.AreEqual("Map<String, String>", ToApex("Map<string, string>"));
         }
     }
 }

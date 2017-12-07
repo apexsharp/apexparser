@@ -106,19 +106,26 @@ namespace ApexParser.Visitors
         {
             // get base types
             var baseTypes = (node.BaseList?.Types ?? Enumerable.Empty<BaseTypeSyntax>()).ToList();
-            var baseType = baseTypes.FirstOrDefault();
-            var interfaces = new BaseTypeSyntax[0];
+            var baseType = ConvertBaseType(baseTypes.FirstOrDefault());
+            var interfaces = new List<ApexTypeSyntax>();
             if (baseTypes.Count > 1)
             {
-                interfaces = baseTypes.Skip(1).ToArray();
+                interfaces = ConvertBaseTypes(baseTypes.Skip(1).ToList());
+            }
+
+            // assume that types starting with the capital 'I' are interfaces
+            if (baseType?.Identifier?.StartsWith("I") ?? false)
+            {
+                interfaces.Insert(0, baseType);
+                baseType = null;
             }
 
             // create the class
             var classDeclaration = new ApexClassDeclarationSyntax
             {
                 Identifier = node.Identifier.ValueText,
-                BaseType = ConvertBaseType(baseType),
-                Interfaces = ConvertBaseTypes(interfaces),
+                BaseType = baseType,
+                Interfaces = interfaces,
                 Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
                 LeadingComments = Comments.Leading(node),
                 TrailingComments = Comments.Trailing(node),
@@ -154,6 +161,12 @@ namespace ApexParser.Visitors
             else if (converted is string modifier)
             {
                 member.Modifiers.Add(modifier);
+            }
+
+            // public and global modifiers shouldn't be mixed
+            if (member.Modifiers.Any(m => m == ApexKeywords.Global))
+            {
+                member.Modifiers.RemoveAll(m => m == ApexKeywords.Public);
             }
         }
 
@@ -201,7 +214,7 @@ namespace ApexParser.Visitors
             return null;
         }
 
-        private List<ApexTypeSyntax> ConvertBaseTypes(params BaseTypeSyntax[] csharpTypes) =>
+        private List<ApexTypeSyntax> ConvertBaseTypes(IEnumerable<BaseTypeSyntax> csharpTypes) =>
             csharpTypes.EmptyIfNull().Select(ConvertBaseType).Where(t => t != null).ToList();
 
         private object ConvertClassAnnotation(ApexAnnotationSyntax node)
@@ -400,7 +413,22 @@ namespace ApexParser.Visitors
                 method.Body = LastBlock;
             }
 
-            LastClassMember = method;
+            if (method.Modifiers.All(m => m != "static"))
+            {
+                LastClassMember = method;
+            }
+            else
+            {
+                // static constructors are converted to the class initializers
+                LastClassMember = new ApexClassInitializerSyntax
+                {
+                    Modifiers = method.Modifiers,
+                    Annotations = method.Annotations,
+                    Body = method.Body,
+                    LeadingComments = method.LeadingComments,
+                    TrailingComments = method.TrailingComments,
+                };
+            }
         }
 
         private List<string> LastComments { get; set; } = new List<string>();
@@ -502,7 +530,8 @@ namespace ApexParser.Visitors
         {
             if (type != null)
             {
-                return new ApexTypeSyntax(type.ToString());
+                var apexType = GenericExpressionHelper.ConvertCSharpTypesToApex(type.ToString());
+                return new ApexTypeSyntax(apexType);
             }
 
             return null;
@@ -583,6 +612,7 @@ namespace ApexParser.Visitors
             apexExpr = GenericExpressionHelper.ConvertSoqlStatementsToApex(apexExpr);
             apexExpr = GenericExpressionHelper.ConvertTypeofExpressionsToApex(apexExpr);
             apexExpr = GenericExpressionHelper.ConvertCSharpIsTypeExpressionToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertCSharpTypesToApex(apexExpr);
             apexExpr = apexExpr.Replace("\"", "'");
             return new ApexExpressionSyntax(apexExpr);
         }

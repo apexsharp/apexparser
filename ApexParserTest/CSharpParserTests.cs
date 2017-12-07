@@ -78,7 +78,7 @@ namespace ApexParserTest
             CompareLineByLine(
                 @"class Test1
                 {
-                    public Test1(int x)
+                    public Test1(Integer x)
                     {
                     }
                 }", apexClasses[0]);
@@ -86,7 +86,7 @@ namespace ApexParserTest
             CompareLineByLine(
                 @"class Test2 extends Test1
                 {
-                    private int x = 10;
+                    private Integer x = 10;
                 }", apexClasses[1]);
         }
 
@@ -104,7 +104,7 @@ namespace ApexParserTest
             CompareLineByLine(
                 @"class Test1
                 {
-                    public Test1(int x)
+                    public Test1(Integer x)
                     {
                     }
                 }", apexClasses["Test1"]);
@@ -112,7 +112,7 @@ namespace ApexParserTest
             CompareLineByLine(
                 @"class Test2 extends Test1
                 {
-                    private int x = 10;
+                    private Integer x = 10;
                 }", apexClasses["Test2"]);
 
             CompareLineByLine(

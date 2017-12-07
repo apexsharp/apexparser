@@ -466,43 +466,12 @@ namespace ApexParser.Visitors
             part = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(part);
             part = GenericExpressionHelper.ConvertStringValueofToString(part);
             part = GenericExpressionHelper.ConvertApexInstanceOfTypeExpressionToCSharp(part);
-
-            // replace Apex types with C# types
-            foreach (var r in CSharpTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))
-            {
-                part = r.Regex.Replace(part, r.Value);
-            }
+            part = GenericExpressionHelper.ConvertApexTypesToCSharp(part);
 
             base.AppendExpressionPart(part);
         }
 
-        private static Dictionary<string, string> CSharpTypes { get; } =
-            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                { ApexKeywords.Boolean, "bool" },
-                { ApexKeywords.Byte, "byte" },
-                { ApexKeywords.Char, "char" },
-                { ApexKeywords.Datetime, "DateTime" },
-                { ApexKeywords.Date, "Date" },
-                { ApexKeywords.Decimal, "decimal" },
-                { ApexKeywords.Double, "double" },
-                { ApexKeywords.Exception, nameof(Exception) },
-                { ApexKeywords.Float, "float" },
-                { ApexKeywords.Int, "int" },
-                { ApexKeywords.Integer, "int" },
-                { ApexKeywords.Long, "long" },
-                { ApexKeywords.Object, "object" },
-                { ApexKeywords.Short, "short" },
-                { ApexKeywords.String, "string" },
-                { ApexKeywords.Time, "Time" },
-                { ApexKeywords.Void, "void" },
-            };
-
-        private static Dictionary<Regex, string> CSharpTypeRegex { get; } =
-            CSharpTypes.ToDictionary(p => new Regex($"\\b{p.Key}\\b",
-                RegexOptions.IgnoreCase | RegexOptions.Compiled), p => p.Value);
-
         public override string NormalizeTypeName(string identifier) =>
-            CSharpTypes.TryGetValue(identifier, out var result) ? result : identifier;
+            GenericExpressionHelper.ConvertApexTypeToCSharp(identifier);
     }
 }
