@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ClassAbstract" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassAbstract.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassEnum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassEnum.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassException" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassException.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassGlobal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassGlobal.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInterface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassInterface.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInternal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassInternal.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassOne" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassOne.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassOne_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassOne_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassRest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassRest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassTwo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassTwo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassTwo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassTwo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassUnitTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTestRunAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassUnitTestRunAs.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ClassUnitTestSeeAllData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassUnitTestSeeAllData.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassVirtual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassVirtual.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithComments" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassWithComments.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithComments_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassWithComments_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithOutSharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassWithOutSharing.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithSharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassWithSharing.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="CommentFail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\CommentFail.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Comments" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\Comments.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="CustomerDto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\CustomerDto.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="CustomerDto_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\CustomerDto_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DataAccessDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\DataAccessDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Demo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\Demo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Demo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\Demo2.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ExceptionDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ExceptionDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ApplicationTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ApplicationTest.apex;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ForIfWhile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ForIfWhile.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ForIfWhile2.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ForIfWhile3.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="FormatDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\FormatDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="FormatDemo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\FormatDemo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="GetSetDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\GetSetDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\IClassInterface.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterfaceExt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\IClassInterfaceExt.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JsonExample" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\JsonExample.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ListAndArrayDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ListAndArrayDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="MethodAndConstructor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\MethodAndConstructor.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PrimitiveTypes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\PrimitiveTypes.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PropertyAndField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\PropertyAndField.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PropertyAndField2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\PropertyAndField2.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PropertyAndField3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\PropertyAndField3.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="RunAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\RunAll.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="SoqlDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\SoqlDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SoqlDemoCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\SoqlDemo.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SoqlDemo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\SoqlDemo2.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fflib_Answer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_Answer.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_Answer_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_Answer_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_Answer_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_Answer_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnswerTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnswerTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnswerTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnswerTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnswerTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnswerTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnyOrder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnyOrder.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnyOrder_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnyOrder_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnyOrder_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnyOrder_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnyOrderTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnyOrderTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnyOrderTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnyOrderTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_AnyOrderTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_AnyOrderTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocks.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocks_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocks_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocks_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocks_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksConfig.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksConfig_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksConfig_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksConfig_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksConfig_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksUtils" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksUtils.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksUtils_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksUtils_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksUtils_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksUtils_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksUtilsTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksUtilsTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksUtilsTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksUtilsTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ApexMocksUtilsTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ApexMocksUtilsTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptor.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptor_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptor_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptor_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptor_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptorTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptorTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptorTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptorTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_ArgumentCaptorTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_ArgumentCaptorTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IDGenerator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IDGenerator.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IDGenerator_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IDGenerator_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IDGenerator_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IDGenerator_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IDGeneratorTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IDGeneratorTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IDGeneratorTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IDGeneratorTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IDGeneratorTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IDGeneratorTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IMatcher" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IMatcher.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IMatcher_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IMatcher_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="fflib_IMatcher_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\fflib_IMatcher_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ApexDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\ApexDemo.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ApexDemoTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\ApexDemoTest.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ApexDemoTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\ApexDemoTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ApexDemo_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\ApexDemo_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ApexDemoTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\ApexDemoTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ApexDemo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\ApexDemo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ClassUnitTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassUnitTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+</root>
