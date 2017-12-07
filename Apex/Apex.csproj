@@ -16,6 +16,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\Disabled.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ApexSharpApi\ApexSharpApi.csproj" />
   </ItemGroup>

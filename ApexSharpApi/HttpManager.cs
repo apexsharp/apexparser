@@ -1,4 +1,11 @@
-using System;using System.Net;using System.Net.Http;using System.Net.Http.Headers;using System.Text;using Serilog;namespace ApexSharpApi
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using Serilog;
+
+namespace ApexSharpApi
 {
     public class HttpManager
     {
@@ -8,7 +15,7 @@ using System;using System.Net;using System.Net.Http;using System.Net.Http.Hea
             {
                 RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
                                      ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
-                Method = HttpMethod.Get
+                Method = HttpMethod.Get,
             };
             return Http(request);
         }
@@ -21,7 +28,7 @@ using System;using System.Net;using System.Net.Http;using System.Net.Http.Hea
                 RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
                                      ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
                 Method = HttpMethod.Post,
-                Content = new StringContent(json, Encoding.UTF8, "application/json")
+                Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
             return Http(request);
         }
@@ -33,7 +40,7 @@ using System;using System.Net;using System.Net.Http;using System.Net.Http.Hea
                 RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
                                      ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
                 Method = new HttpMethod("PATCH"),
-                Content = new StringContent(json, Encoding.UTF8, "application/json")
+                Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
             return Http(request);
         }
@@ -44,7 +51,7 @@ using System;using System.Net;using System.Net.Http;using System.Net.Http.Hea
             {
                 RequestUri = new Uri(ConnectionUtil.GetSession().RestUrl + "/data/v" +
                          ConnectionUtil.GetSession().SalesForceApiVersion + ".0/" + uriFunction),
-                Method = HttpMethod.Delete
+                Method = HttpMethod.Delete,
             };
             return Http(request);
         }

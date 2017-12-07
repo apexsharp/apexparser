@@ -7,6 +7,7 @@ namespace ApexSharpApi.Model.BulkApi
     [XmlRoot("jobInfo", Namespace = "http://www.force.com/2009/06/asyncapi/dataload")]
     public partial class JobInfoRequest
     {
+#pragma warning disable 0169
         private int apexProcessingTimeField;
 
         private int apiActiveProcessingTimeField;
@@ -77,5 +78,6 @@ namespace ApexSharpApi.Model.BulkApi
             get { return this.contentTypeField; }
             set { this.contentTypeField = value; }
         }
+#pragma warning restore 0169
     }
 }

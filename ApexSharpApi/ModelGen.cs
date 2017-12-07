@@ -159,7 +159,7 @@ namespace ApexSharpApi
             {"int","int" },
             {"anyType", "object" },
             {"base64", "string" },
-            {"complexvalue", "string" }
+            {"complexvalue", "string" },
         };
     }
 }

@@ -113,7 +113,7 @@ namespace ApexSharpApi
             {
                 RequestUri = new Uri(url),
                 Method = HttpMethod.Post,
-                Content = new StringContent(json, Encoding.UTF8, "text/xml")
+                Content = new StringContent(json, Encoding.UTF8, "text/xml"),
             };
             request.Headers.Add("SOAPAction", "''");
 

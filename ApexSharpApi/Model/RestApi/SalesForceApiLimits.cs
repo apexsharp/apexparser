@@ -24,7 +24,7 @@
         Hourlytimebasedworkflow,
         Massemail,
         Singleemail,
-        Streamingapiconcurrentclients
+        Streamingapiconcurrentclients,
     }
 
     public class SalesForceApiLimits
