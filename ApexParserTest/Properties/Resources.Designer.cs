@@ -273,7 +273,8 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public abstract class ClassAbstract
+        ///   Looks up a localized string similar to // sample abstract class
+        ///public abstract class ClassAbstract
         ///{
         ///}.
         /// </summary>
@@ -284,17 +285,114 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    // sample abstract class
+        ///    public abstract class ClassAbstract
+        ///    {
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassAbstract_CSharp {
+            get {
+                return ResourceManager.GetString("ClassAbstract_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to // sample abstract class
+        ///public abstract class ClassAbstract
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassAbstract_Formatted {
+            get {
+                return ResourceManager.GetString("ClassAbstract_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to // sample abstract class
+        ///public abstract class ClassAbstract
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassAbstract_Original {
+            get {
+                return ResourceManager.GetString("ClassAbstract_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public enum ClassEnum
         ///{
         ///    America,
         ///    Canada,
         ///    Russia
-        ///}
-        ///.
+        ///}.
         /// </summary>
         internal static string ClassEnum {
             get {
                 return ResourceManager.GetString("ClassEnum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public enum ClassEnum
+        ///    {
+        ///        America,
+        ///        Canada,
+        ///        Russia
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassEnum_CSharp {
+            get {
+                return ResourceManager.GetString("ClassEnum_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public enum ClassEnum
+        ///{
+        ///    America,
+        ///    Canada,
+        ///    Russia
+        ///}.
+        /// </summary>
+        internal static string ClassEnum_Formatted {
+            get {
+                return ResourceManager.GetString("ClassEnum_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public enum ClassEnum
+        ///{
+        ///    America,
+        ///    Canada,
+        ///    Russia
+        ///}.
+        /// </summary>
+        internal static string ClassEnum_Original {
+            get {
+                return ResourceManager.GetString("ClassEnum_Original", resourceCulture);
             }
         }
         
@@ -310,6 +408,49 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ClassException : Exception
+        ///    {
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassException_CSharp {
+            get {
+                return ResourceManager.GetString("ClassException_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassException extends Exception
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassException_Formatted {
+            get {
+                return ResourceManager.GetString("ClassException_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassException extends Exception
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassException_Original {
+            get {
+                return ResourceManager.GetString("ClassException_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to global class ClassGlobal
         ///{
         ///}.
@@ -317,6 +458,147 @@ namespace ApexParserTest.Properties {
         internal static string ClassGlobal {
             get {
                 return ResourceManager.GetString("ClassGlobal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [Global]
+        ///    public class ClassGlobal
+        ///    {
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassGlobal_CSharp {
+            get {
+                return ResourceManager.GetString("ClassGlobal_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to global class ClassGlobal
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassGlobal_Formatted {
+            get {
+                return ResourceManager.GetString("ClassGlobal_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to global class ClassGlobal
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassGlobal_Original {
+            get {
+                return ResourceManager.GetString("ClassGlobal_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInitialization {
+        ///
+        ///    public List&lt;Contact&gt; contactList;
+        ///    public ClassInitialization() {
+        ///        contactList = [SELECT ID FROM Contact LIMIT 1];
+        ///    }
+        ///
+        ///    public static Map&lt;String, String&gt; colorMap = new Map&lt;String, String&gt;();
+        ///
+        ///    static {
+        ///        colorMap.Put(&apos;red&apos;, &apos;255, 0, 0&apos;);
+        ///        colorMap.Put(&apos;cyan&apos;, &apos;0, 255, 255&apos;);
+        ///        colorMap.Put(&apos;magenta&apos;, &apos;255, 0, 255&apos;);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInitialization {
+            get {
+                return ResourceManager.GetString("ClassInitialization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ClassInitialization
+        ///    {
+        ///        public List&lt;Contact&gt; contactList;
+        ///
+        ///        public ClassInitialization()
+        ///        {
+        ///            contactList = Soql.Query&lt;Contact&gt;(&quot;SELECT ID FROM Contact LIMIT 1&quot;);
+        ///        }
+        ///
+        ///        public static Map&lt;string, string&gt; colorMap = new Map&lt;string, string&gt;();
+        ///
+        ///        stati [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassInitialization_CSharp {
+            get {
+                return ResourceManager.GetString("ClassInitialization_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInitialization {
+        ///
+        ///    public List&lt;Contact&gt; contactList;
+        ///    public ClassInitialization() {
+        ///        contactList = [SELECT ID FROM Contact LIMIT 1];
+        ///    }
+        ///
+        ///    public static Map&lt;String, String&gt; colorMap = new Map&lt;String, String&gt;();
+        ///
+        ///    static {
+        ///        colorMap.Put(&apos;red&apos;, &apos;255, 0, 0&apos;);
+        ///        colorMap.Put(&apos;cyan&apos;, &apos;0, 255, 255&apos;);
+        ///        colorMap.Put(&apos;magenta&apos;, &apos;255, 0, 255&apos;);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInitialization_Formatted {
+            get {
+                return ResourceManager.GetString("ClassInitialization_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInitialization {
+        ///
+        ///    public List&lt;Contact&gt; contactList;
+        ///    public ClassInitialization() {
+        ///        contactList = [SELECT ID FROM Contact LIMIT 1];
+        ///    }
+        ///
+        ///    public static Map&lt;String, String&gt; colorMap = new Map&lt;String, String&gt;();
+        ///
+        ///    static {
+        ///        colorMap.Put(&apos;red&apos;, &apos;255, 0, 0&apos;);
+        ///        colorMap.Put(&apos;cyan&apos;, &apos;0, 255, 255&apos;);
+        ///        colorMap.Put(&apos;magenta&apos;, &apos;255, 0, 255&apos;);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInitialization_Original {
+            get {
+                return ResourceManager.GetString("ClassInitialization_Original", resourceCulture);
             }
         }
         
@@ -339,6 +621,76 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ClassInterface : IClassInterface
+        ///    {
+        ///        public string GetName(string name)
+        ///        {
+        ///            return name;
+        ///        }
+        ///
+        ///        public string GetName()
+        ///        {
+        ///            return &quot;Jay&quot;;
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassInterface_CSharp {
+            get {
+                return ResourceManager.GetString("ClassInterface_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInterface implements IClassInterface
+        ///{
+        ///    public string GetName(string name)
+        ///    {
+        ///        return name;
+        ///    }
+        ///
+        ///    public string GetName()
+        ///    {
+        ///        return &apos;Jay&apos;;
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInterface_Formatted {
+            get {
+                return ResourceManager.GetString("ClassInterface_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInterface implements IClassInterface
+        ///{
+        ///    public string GetName(string name)
+        ///    {
+        ///        return name;
+        ///    }
+        ///
+        ///    public string GetName()
+        ///    {
+        ///        return &apos;Jay&apos;;
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInterface_Original {
+            get {
+                return ResourceManager.GetString("ClassInterface_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassInternal
         ///{
         ///    public class InternalClassOne
@@ -352,6 +704,149 @@ namespace ApexParserTest.Properties {
         internal static string ClassInternal {
             get {
                 return ResourceManager.GetString("ClassInternal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ClassInternal
+        ///    {
+        ///        InternalClassOne classOne = new InternalClassOne();
+        ///
+        ///        ClassInternal.InternalClassTwo classTwo = new ClassInternal.InternalClassTwo();
+        ///
+        ///        public class InternalClassOne
+        ///        {
+        ///        }
+        ///
+        ///        public class InternalClassTwo
+        ///        {
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassInternal_CSharp {
+            get {
+                return ResourceManager.GetString("ClassInternal_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInternal
+        ///{
+        ///    InternalClassOne classOne = new InternalClassOne();
+        ///    ClassInternal.InternalClassTwo classTwo = new ClassInternal.InternalClassTwo();
+        ///
+        ///    public class InternalClassOne
+        ///    {
+        ///    }
+        ///
+        ///    public class InternalClassTwo
+        ///    {
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInternal_Formatted {
+            get {
+                return ResourceManager.GetString("ClassInternal_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassInternal
+        ///{
+        ///    InternalClassOne classOne = new InternalClassOne();
+        ///    ClassInternal.InternalClassTwo classTwo = new ClassInternal.InternalClassTwo();
+        ///
+        ///    public class InternalClassOne
+        ///    {
+        ///    }
+        ///
+        ///    public class InternalClassTwo
+        ///    {
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassInternal_Original {
+            get {
+                return ResourceManager.GetString("ClassInternal_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ClassNoApex
+        ///    {
+        ///        // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///        public static void MethodOne()
+        ///        {
+        ///               NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///        }
+        ///
+        ///        // Any method in NoApex name space will be commented out in Apex and uncomme [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassNoApex_CSharp {
+            get {
+                return ResourceManager.GetString("ClassNoApex_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassNoApex {
+        ///    // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///    public static void MethodOne()
+        ///    {
+        ///        //:NoApex    NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    }
+        ///
+        ///
+        ///    // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///    //:NoApex public static void NoApexMethodTwo()
+        ///    //:NoApex {
+        ///    //:NoApex      NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    //:NoApex }
+        ///}.
+        /// </summary>
+        internal static string ClassNoApex_Formatted {
+            get {
+                return ResourceManager.GetString("ClassNoApex_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassNoApex {
+        ///    // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///    public static void MethodOne()
+        ///    {
+        ///        //:NoApex    NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    }
+        ///
+        ///
+        ///    // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///    //:NoApex public static void NoApexMethodTwo()
+        ///    //:NoApex {
+        ///    //:NoApex      NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    //:NoApex }
+        ///}.
+        /// </summary>
+        internal static string ClassNoApex_Original {
+            get {
+                return ResourceManager.GetString("ClassNoApex_Original", resourceCulture);
             }
         }
         
@@ -415,6 +910,162 @@ namespace ApexParserTest.Properties {
         internal static string ClassRest {
             get {
                 return ResourceManager.GetString("ClassRest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [RestResource(urlMapping=&quot;/api/RestDemo&quot;)]
+        ///    [Global]
+        ///    public class ClassRest
+        ///    {
+        ///        public class ContactDTO
+        ///        {
+        ///            public string LastName { get; set; }
+        ///        }
+        ///
+        ///        [HttpPost]
+        ///        [Global]
+        ///        public static void Post()
+        ///        {
+        ///            try
+        ///            {
+        ///           [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassRest_CSharp {
+            get {
+                return ResourceManager.GetString("ClassRest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @RestResource(urlMapping=&apos;/api/RestDemo&apos;)
+        ///global class ClassRest
+        ///{
+        ///    public class ContactDTO {
+        ///        public String LastName {get;set;}
+        ///    }
+        ///
+        ///    @httpPost
+        ///    global static void Post() {
+        ///
+        ///        try {
+        ///            ContactDTO contact = (ContactDTO) JSON.Deserialize(RestContext.Request.RequestBody.ToString(), ContactDTO.class);
+        ///            InsertContact(contact);
+        ///            RestContext.Response.StatusCode = 200;
+        ///        } catch (Exception e) {
+        ///            RestContext.Response.StatusCode = [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassRest_Formatted {
+            get {
+                return ResourceManager.GetString("ClassRest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @RestResource(urlMapping=&apos;/api/RestDemo&apos;)
+        ///global class ClassRest
+        ///{
+        ///    public class ContactDTO {
+        ///        public String LastName {get;set;}
+        ///    }
+        ///
+        ///    @httpPost
+        ///    global static void Post() {
+        ///
+        ///        try {
+        ///            ContactDTO contact = (ContactDTO) JSON.Deserialize(RestContext.Request.RequestBody.ToString(), ContactDTO.class);
+        ///            InsertContact(contact);
+        ///            RestContext.Response.StatusCode = 200;
+        ///        } catch (Exception e) {
+        ///            RestContext.Response.StatusCode = [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassRest_Original {
+            get {
+                return ResourceManager.GetString("ClassRest_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.ApexSharp.NUnit;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [TestFixture]
+        ///    public class ClassRestTest
+        ///    {
+        ///        [Test]
+        ///        public static void PostTest()
+        ///        {
+        ///            RestContext.Request = new RestRequest();
+        ///            RestContext.Response = new RestResponse();
+        ///            ClassRest.ContactDTO contact = new ClassRest.Contac [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassRestTest_CSharp {
+            get {
+                return ResourceManager.GetString("ClassRestTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public class ClassRestTest {
+        ///    @isTest
+        ///    public static void PostTest() {
+        ///
+        ///        RestContext.Request = new RestRequest();
+        ///        RestContext.Response = new RestResponse();
+        ///
+        ///        ClassRest.ContactDTO contact = new ClassRest.ContactDTO();
+        ///        contact.LastName = &apos;LastName&apos;;
+        ///
+        ///        RestContext.Request.RequestBody = Blob.ValueOf(JSON.Serialize(contact));
+        ///        ClassRest.Post();
+        ///
+        ///        System.AssertEquals(200, RestContext.Response.StatusCode);
+        ///
+        ///        List&lt;Contact&gt; cont [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassRestTest_Formatted {
+            get {
+                return ResourceManager.GetString("ClassRestTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public class ClassRestTest {
+        ///    @isTest
+        ///    public static void PostTest() {
+        ///
+        ///        RestContext.Request = new RestRequest();
+        ///        RestContext.Response = new RestResponse();
+        ///
+        ///        ClassRest.ContactDTO contact = new ClassRest.ContactDTO();
+        ///        contact.LastName = &apos;LastName&apos;;
+        ///
+        ///        RestContext.Request.RequestBody = Blob.ValueOf(JSON.Serialize(contact));
+        ///        ClassRest.Post();
+        ///
+        ///        System.AssertEquals(200, RestContext.Response.StatusCode);
+        ///
+        ///        List&lt;Contact&gt; cont [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassRestTest_Original {
+            get {
+                return ResourceManager.GetString("ClassRestTest_Original", resourceCulture);
             }
         }
         
@@ -517,6 +1168,92 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.ApexSharp.NUnit;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [TestFixture]
+        ///    public class ClassUnitTest
+        ///    {
+        ///        [SetUp]
+        ///        public static void Setup()
+        ///        {
+        ///            System.Debug(&quot;One Time Setup Got Called&quot;);
+        ///        }
+        ///
+        ///        [Test]
+        ///        public static void Assert()
+        ///        {
+        ///            System.Assert(true, &quot;Assert Tr [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassUnitTest_CSharp1 {
+            get {
+                return ResourceManager.GetString("ClassUnitTest_CSharp1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public class ClassUnitTest {
+        ///    @TestSetup
+        ///    public static void Setup() {
+        ///        System.Debug(&apos;One Time Setup Got Called&apos;);
+        ///    }
+        ///
+        ///    @isTest
+        ///    public static void Assert() {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///    public static testMethod void AssertTestMethod() {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///
+        ///    @isTest
+        ///    public static void AssertEquals() {
+        ///        System.AssertEquals(5, 5, &apos;Assert Equal&apos;);
+        ///    }
+        ///    public static testMethod void Asser [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassUnitTest_Formatted {
+            get {
+                return ResourceManager.GetString("ClassUnitTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public class ClassUnitTest {
+        ///    @TestSetup
+        ///    public static void Setup() {
+        ///        System.Debug(&apos;One Time Setup Got Called&apos;);
+        ///    }
+        ///
+        ///    @isTest
+        ///    public static void Assert() {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///    public static testMethod void AssertTestMethod() {
+        ///        System.Assert(true, &apos;Assert True&apos;);
+        ///    }
+        ///
+        ///    @isTest
+        ///    public static void AssertEquals() {
+        ///        System.AssertEquals(5, 5, &apos;Assert Equal&apos;);
+        ///    }
+        ///    public static testMethod void Asser [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassUnitTest_Original {
+            get {
+                return ResourceManager.GetString("ClassUnitTest_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @isTest
         ///public class ClassUnitTestRunAs
         ///{
@@ -537,6 +1274,72 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ClassUnitTestRunAs
+        ///    {
+        ///        static void RunAsExample()
+        ///        {
+        ///            User newUser = Soql.Query&lt;User&gt;(&quot;SELECT Id FROM User LIMIT 1&quot;);
+        ///            using (System.RunAs(newUser))
+        ///            {
+        ///            }
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassUnitTestRunAs_CSharp {
+            get {
+                return ResourceManager.GetString("ClassUnitTestRunAs_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassUnitTestRunAs
+        ///{
+        ///    static void RunAsExample()
+        ///    {
+        ///        User newUser = [SELECT Id FROM User LIMIT 1];
+        ///        System.RunAs(newUser)
+        ///        {
+        ///
+        ///        }
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassUnitTestRunAs_Formatted {
+            get {
+                return ResourceManager.GetString("ClassUnitTestRunAs_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassUnitTestRunAs
+        ///{
+        ///    static void RunAsExample()
+        ///    {
+        ///        User newUser = [SELECT Id FROM User LIMIT 1];
+        ///        System.RunAs(newUser)
+        ///        {
+        ///
+        ///        }
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ClassUnitTestRunAs_Original {
+            get {
+                return ResourceManager.GetString("ClassUnitTestRunAs_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @isTest(SeeAllData=true)
         ///public class ClassUnitTestSeeAllData
         ///{
@@ -545,6 +1348,53 @@ namespace ApexParserTest.Properties {
         internal static string ClassUnitTestSeeAllData {
             get {
                 return ResourceManager.GetString("ClassUnitTestSeeAllData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.ApexSharp.NUnit;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [TestFixture(SeeAllData=true)]
+        ///    public class ClassUnitTestSeeAllData
+        ///    {
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassUnitTestSeeAllData_CSharp {
+            get {
+                return ResourceManager.GetString("ClassUnitTestSeeAllData_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest(SeeAllData=true)
+        ///public class ClassUnitTestSeeAllData
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassUnitTestSeeAllData_Formatted {
+            get {
+                return ResourceManager.GetString("ClassUnitTestSeeAllData_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest(SeeAllData=true)
+        ///public class ClassUnitTestSeeAllData
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassUnitTestSeeAllData_Original {
+            get {
+                return ResourceManager.GetString("ClassUnitTestSeeAllData_Original", resourceCulture);
             }
         }
         
@@ -626,6 +1476,50 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [WithoutSharing]
+        ///    public class ClassWithOutSharing
+        ///    {
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassWithOutSharing_CSharp {
+            get {
+                return ResourceManager.GetString("ClassWithOutSharing_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public without sharing class ClassWithOutSharing
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassWithOutSharing_Formatted {
+            get {
+                return ResourceManager.GetString("ClassWithOutSharing_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public without sharing class ClassWithOutSharing
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassWithOutSharing_Original {
+            get {
+                return ResourceManager.GetString("ClassWithOutSharing_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassWithSharing
         ///{
         ///}.
@@ -633,6 +1527,127 @@ namespace ApexParserTest.Properties {
         internal static string ClassWithSharing {
             get {
                 return ResourceManager.GetString("ClassWithSharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [WithSharing]
+        ///    public class ClassWithSharing
+        ///    {
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string ClassWithSharing_CSharp {
+            get {
+                return ResourceManager.GetString("ClassWithSharing_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class ClassWithSharing
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassWithSharing_Formatted {
+            get {
+                return ResourceManager.GetString("ClassWithSharing_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class ClassWithSharing
+        ///{
+        ///}.
+        /// </summary>
+        internal static string ClassWithSharing_Original {
+            get {
+                return ResourceManager.GetString("ClassWithSharing_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [WithSharing]
+        ///    public class Collections
+        ///    {
+        ///        public List&lt;string&gt; StringList = new List&lt;string&gt;{&quot;one&quot;, &quot;two&quot;};
+        ///
+        ///        public int[] IntegerArray = new int[]{1, 2, 3};
+        ///
+        ///        public void ArrayDemo()
+        ///        {
+        ///            List&lt;string&gt; stringListLocal = new List&lt;string&gt;{&quot;one&quot;, &quot;two&quot;};
+        ///            int[] i [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Collections_CSharp {
+            get {
+                return ResourceManager.GetString("Collections_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class Collections {
+        ///
+        ///    public List&lt;String&gt; StringList = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
+        ///    public Integer[] IntegerArray = new Integer[]{1, 2, 3};
+        ///
+        ///    public void ArrayDemo() {
+        ///        List&lt;String&gt; stringListLocal = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
+        ///        Integer[] integerArrayLocal = new Integer[]{1, 2, 3};
+        ///    }
+        ///
+        ///
+        ///    public void ListExample()
+        ///    {
+        ///        List&lt;Integer&gt; myList = new List&lt;Integer&gt;();
+        ///        myList.Add(47);
+        ///
+        ///        Integer i = myList.Get(0);        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Collections_Formatted {
+            get {
+                return ResourceManager.GetString("Collections_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class Collections {
+        ///
+        ///    public List&lt;String&gt; StringList = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
+        ///    public Integer[] IntegerArray = new Integer[]{1, 2, 3};
+        ///
+        ///    public void ArrayDemo() {
+        ///        List&lt;String&gt; stringListLocal = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
+        ///        Integer[] integerArrayLocal = new Integer[]{1, 2, 3};
+        ///    }
+        ///
+        ///
+        ///    public void ListExample()
+        ///    {
+        ///        List&lt;Integer&gt; myList = new List&lt;Integer&gt;();
+        ///        myList.Add(47);
+        ///
+        ///        Integer i = myList.Get(0);        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Collections_Original {
+            get {
+                return ResourceManager.GetString("Collections_Original", resourceCulture);
             }
         }
         
@@ -671,6 +1686,82 @@ namespace ApexParserTest.Properties {
         internal static string Comments {
             get {
                 return ResourceManager.GetString("Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    /**
+        ///     * This comment belongs to the Class Syntax
+        ///     */
+        ///    [WithSharing]
+        ///    public class Comments
+        ///    {
+        ///        // This comment belongs to the Method Syntax
+        ///        public static void DemoMethod()
+        ///        {
+        ///            int demoValue = 5; // Side Line Comment
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string Comments_CSharp {
+            get {
+                return ResourceManager.GetString("Comments_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * This comment belongs to the Class Syntax
+        /// */
+        ///public with sharing class Comments
+        ////**
+        ///  * This comment belongs to the Class Syntax
+        ///  */
+        ///// This comment belongs to the open bracket syntax
+        ///{
+        ///
+        ///    // This comment belongs to the Method Syntax
+        ///    public static void DemoMethod() {
+        ///        Integer demoValue = 5; // Side Line Comment
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string Comments_Formatted {
+            get {
+                return ResourceManager.GetString("Comments_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * This comment belongs to the Class Syntax
+        /// */
+        ///public with sharing class Comments
+        ////**
+        ///  * This comment belongs to the Class Syntax
+        ///  */
+        ///// This comment belongs to the open bracket syntax
+        ///{
+        ///
+        ///    // This comment belongs to the Method Syntax
+        ///    public static void DemoMethod() {
+        ///        Integer demoValue = 5; // Side Line Comment
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string Comments_Original {
+            get {
+                return ResourceManager.GetString("Comments_Original", resourceCulture);
             }
         }
         
@@ -766,6 +1857,108 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class Demo
+        ///    {
+        ///        public Contact contact { get; set; }
+        ///
+        ///        public Demo()
+        ///        {
+        ///            contact = new Contact();
+        ///        }
+        ///
+        ///        public PageReference Save()
+        ///        {
+        ///            try
+        ///            {
+        ///                Soql.Insert(contact);
+        ///            }
+        ///            catch (DmlException e [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Demo_CSharp {
+            get {
+                return ResourceManager.GetString("Demo_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class Demo
+        ///{
+        ///    public Contact contact { get; set; }
+        ///
+        ///    public Demo()
+        ///    {
+        ///        contact = new Contact();
+        ///    }
+        ///
+        ///    public PageReference Save()
+        ///    {
+        ///        try
+        ///        {
+        ///            insert contact;
+        ///        }
+        ///        catch (DmlException e)
+        ///        {
+        ///            ApexPages.AddMessages(e);
+        ///        }
+        ///
+        ///        return null;
+        ///    }
+        ///
+        ///    public static string UpdatePhone(string email, string newPhone)
+        ///    {
+        ///        List&lt;Contact&gt; contacts = GetContactByEMail(email);
+        ///        if  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Demo_Formatted {
+            get {
+                return ResourceManager.GetString("Demo_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class Demo
+        ///{
+        ///    public Contact contact { get; set; }
+        ///
+        ///    public Demo()
+        ///    {
+        ///        contact = new Contact();
+        ///    }
+        ///
+        ///    public PageReference Save()
+        ///    {
+        ///        try
+        ///        {
+        ///            insert contact;
+        ///        }
+        ///        catch (DmlException e)
+        ///        {
+        ///            ApexPages.AddMessages(e);
+        ///        }
+        ///
+        ///        return null;
+        ///    }
+        ///
+        ///    public static string UpdatePhone(string email, string newPhone)
+        ///    {
+        ///        List&lt;Contact&gt; contacts = GetContactByEMail(email);
+        ///        if  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Demo_Original {
+            get {
+                return ResourceManager.GetString("Demo_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class Demo2
         ///{
         ///    public void MethodOne(int x)
@@ -799,6 +1992,233 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [WithSharing]
+        ///    public class DemoController
+        ///    {
+        ///        /**
+        ///         * An empty constructor for the testing
+        ///         */
+        ///        public DemoController()
+        ///        {
+        ///        }
+        ///
+        ///        /**
+        ///         * Set the contact for the page using the lastName parameter, if there is one
+        ///         */
+        ///        //  public DemoCon [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoController_CSharp {
+            get {
+                return ResourceManager.GetString("DemoController_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class DemoController {
+        ///    /**
+        ///     * An empty constructor for the testing
+        ///     */
+        ///    public DemoController() {}
+        ///
+        ///    /**
+        ///     * Set the contact for the page using the lastName parameter, if there is one
+        ///     */
+        ///  //  public DemoController(ApexPages.StandardController controller) {
+        ///        // Get the last name from the url
+        /////        String lastName = ApexPages.currentPage().getParameters().get(&apos;lastName&apos;);
+        ///
+        /////        if (lastName != null) {
+        ///            // Query the object        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoController_Formatted {
+            get {
+                return ResourceManager.GetString("DemoController_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class DemoController {
+        ///    /**
+        ///     * An empty constructor for the testing
+        ///     */
+        ///    public DemoController() {}
+        ///
+        ///    /**
+        ///     * Set the contact for the page using the lastName parameter, if there is one
+        ///     */
+        ///  //  public DemoController(ApexPages.StandardController controller) {
+        ///        // Get the last name from the url
+        /////        String lastName = ApexPages.currentPage().getParameters().get(&apos;lastName&apos;);
+        ///
+        /////        if (lastName != null) {
+        ///            // Query the object        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoController_Original {
+            get {
+                return ResourceManager.GetString("DemoController_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.ApexSharp.NUnit;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [TestFixture]
+        ///    public class DemoControllerTests
+        ///    {
+        ///        [Test]
+        ///        static void testConstructor()
+        ///        {
+        ///            //  	Contact contact = new Contact(LastName=&apos;Smith&apos;);
+        ///            //  	insert contact;
+        ///            //  	Test.setCurrentPage(Page.DemoPage);
+        ///             [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoControllerTests_CSharp {
+            get {
+                return ResourceManager.GetString("DemoControllerTests_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///@isTest
+        ///public class DemoControllerTests {
+        ///    @isTest static void testConstructor() {
+        ///  //  	Contact contact = new Contact(LastName=&apos;Smith&apos;);
+        ///  //  	insert contact;
+        ///
+        ///  //  	Test.setCurrentPage(Page.DemoPage);
+        ///    //	ApexPages.currentPage().getParameters().put(&apos;lastName&apos;, &apos;Smith&apos;);
+        ///
+        ///  //  	DemoController demo = new DemoController(new ApexPages.StandardController(contact));
+        ///    //	System.assertEquals(contact.Id, ApexPages.currentPage().getParameters().get(&apos;id&apos;));
+        ///    }
+        ///
+        ///    @isTest static void [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoControllerTests_Formatted {
+            get {
+                return ResourceManager.GetString("DemoControllerTests_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///@isTest
+        ///public class DemoControllerTests {
+        ///    @isTest static void testConstructor() {
+        ///  //  	Contact contact = new Contact(LastName=&apos;Smith&apos;);
+        ///  //  	insert contact;
+        ///
+        ///  //  	Test.setCurrentPage(Page.DemoPage);
+        ///    //	ApexPages.currentPage().getParameters().put(&apos;lastName&apos;, &apos;Smith&apos;);
+        ///
+        ///  //  	DemoController demo = new DemoController(new ApexPages.StandardController(contact));
+        ///    //	System.assertEquals(contact.Id, ApexPages.currentPage().getParameters().get(&apos;id&apos;));
+        ///    }
+        ///
+        ///    @isTest static void [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoControllerTests_Original {
+            get {
+                return ResourceManager.GetString("DemoControllerTests_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.ApexSharp.NUnit;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [TestFixture]
+        ///    public class DemoTest
+        ///    {
+        ///        [SetUp]
+        ///        public static void Setup()
+        ///        {
+        ///            Contact contactNew = new Contact();
+        ///            contactNew.LastName = &quot;Jay&quot;;
+        ///            contactNew.Email = &quot;jay@jay.com&quot;;
+        ///            Soql.Insert(contactNew);
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoTest_CSharp {
+            get {
+                return ResourceManager.GetString("DemoTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @IsTest
+        ///public class DemoTest
+        ///{
+        ///    @TestSetup
+        ///    public static void Setup()
+        ///    {
+        ///        Contact contactNew = new Contact();
+        ///        contactNew.LastName = &apos;Jay&apos;;
+        ///        contactNew.Email = &apos;jay@jay.com&apos;;
+        ///        insert contactNew;
+        ///    }
+        ///    @IsTest
+        ///    public static void UpdatePhoneTestValidEmail()
+        ///    {
+        ///        Demo.UpdatePhone(&apos;jay@jay.com&apos;, &apos;555-1212&apos;);
+        ///        List&lt;Contact&gt; contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = &apos;jay@jay.com&apos;];
+        ///        System.AssertEquals(conta [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoTest_Formatted {
+            get {
+                return ResourceManager.GetString("DemoTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @IsTest
+        ///public class DemoTest
+        ///{
+        ///    @TestSetup
+        ///    public static void Setup()
+        ///    {
+        ///        Contact contactNew = new Contact();
+        ///        contactNew.LastName = &apos;Jay&apos;;
+        ///        contactNew.Email = &apos;jay@jay.com&apos;;
+        ///        insert contactNew;
+        ///    }
+        ///    @IsTest
+        ///    public static void UpdatePhoneTestValidEmail()
+        ///    {
+        ///        Demo.UpdatePhone(&apos;jay@jay.com&apos;, &apos;555-1212&apos;);
+        ///        List&lt;Contact&gt; contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = &apos;jay@jay.com&apos;];
+        ///        System.AssertEquals(conta [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DemoTest_Original {
+            get {
+                return ResourceManager.GetString("DemoTest_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class ExceptionDemo
         ///{
         ///    public static void CatchDemo()
@@ -826,6 +2246,99 @@ namespace ApexParserTest.Properties {
         internal static string ExceptionDemo {
             get {
                 return ResourceManager.GetString("ExceptionDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ExceptionDemo
+        ///    {
+        ///        public static void CatchDemo()
+        ///        {
+        ///            try
+        ///            {
+        ///                ThrowDemo();
+        ///            }
+        ///            catch (MathException e)
+        ///            {
+        ///                System.Debug(e.GetMessage());
+        ///            }
+        ///            finally
+        ///            {
+        ///              [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ExceptionDemo_CSharp {
+            get {
+                return ResourceManager.GetString("ExceptionDemo_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ExceptionDemo
+        ///{
+        ///    public static void CatchDemo()
+        ///    {
+        ///        try
+        ///        {
+        ///            ThrowDemo();
+        ///        }
+        ///        catch (MathException e)
+        ///        {
+        ///            System.Debug(e.GetMessage());
+        ///        }
+        ///        finally
+        ///        {
+        ///            System.Debug(&apos;Finally&apos;);
+        ///        }
+        ///    }
+        ///
+        ///    public static void ThrowDemo()
+        ///    {
+        ///        throw new MathException(&apos;something bad happened!&apos;);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ExceptionDemo_Formatted {
+            get {
+                return ResourceManager.GetString("ExceptionDemo_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ExceptionDemo
+        ///{
+        ///    public static void CatchDemo()
+        ///    {
+        ///        try
+        ///        {
+        ///            ThrowDemo();
+        ///        }
+        ///        catch (MathException e)
+        ///        {
+        ///            System.Debug(e.GetMessage());
+        ///        }
+        ///        finally
+        ///        {
+        ///            System.Debug(&apos;Finally&apos;);
+        ///        }
+        ///    }
+        ///
+        ///    public static void ThrowDemo()
+        ///    {
+        ///        throw new MathException(&apos;something bad happened!&apos;);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string ExceptionDemo_Original {
+            get {
+                return ResourceManager.GetString("ExceptionDemo_Original", resourceCulture);
             }
         }
         
@@ -1867,6 +3380,90 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ForIfWhile
+        ///    {
+        ///        public void MethodIfClean(int place)
+        ///        {
+        ///            string modelColor;
+        ///            if (place == 1)
+        ///            {
+        ///                modelColor = &quot;Gold&quot;;
+        ///            }
+        ///            else if (place == 2)
+        ///            {
+        ///                modelColor = &quot;Silver&quot;;
+        ///            }
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile_CSharp {
+            get {
+                return ResourceManager.GetString("ForIfWhile_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile {
+        ///    public void MethodIfClean(Integer place) {
+        ///        String modelColor;
+        ///
+        ///        if (place == 1) {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        } else if (place == 2) {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        } else if (place == 3) {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        } else {
+        ///            modelColor = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional() {
+        ///        for (Integer i = 0; i &lt; 10; i++) {
+        ///            System.Debug (i + 1) ;
+        ///        }
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile_Formatted {
+            get {
+                return ResourceManager.GetString("ForIfWhile_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile {
+        ///    public void MethodIfClean(Integer place) {
+        ///        String modelColor;
+        ///
+        ///        if (place == 1) {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        } else if (place == 2) {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        } else if (place == 3) {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        } else {
+        ///            modelColor = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional() {
+        ///        for (Integer i = 0; i &lt; 10; i++) {
+        ///            System.Debug (i + 1) ;
+        ///        }
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile_Original {
+            get {
+                return ResourceManager.GetString("ForIfWhile_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class ForIfWhile
         ///{
         ///    public void MethodIfClean(Integer place)
@@ -2020,6 +3617,101 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class GetSetDemo
+        ///    {
+        ///        public double MyReadWritePropPublic { get; set; }
+        ///
+        ///        private int propPrvt;
+        ///
+        ///        public int prop
+        ///        {
+        ///            get
+        ///            {
+        ///                return propPrvt;
+        ///            }
+        ///            set
+        ///            {
+        ///                propPrvt = value;
+        ///            }
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GetSetDemo_CSharp {
+            get {
+                return ResourceManager.GetString("GetSetDemo_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class GetSetDemo {
+        ///    public double MyReadWritePropPublic { get; set; }
+        ///    private Integer propPrvt;
+        ///    public Integer prop {
+        ///        get {
+        ///            return propPrvt;
+        ///        }
+        ///        set {
+        ///            propPrvt = value;
+        ///        }
+        ///    }
+        ///    public Integer MyReadOnlyProp {
+        ///        get;
+        ///    }
+        ///
+        ///    private static Integer myStaticPropPrvt;
+        ///    public static Integer MyStaticProp {
+        ///        get {
+        ///            return myStaticPropPrvt;
+        ///        }
+        ///    }
+        ///
+        ///    Integer MyReadOnlyPropPrvt  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GetSetDemo_Formatted {
+            get {
+                return ResourceManager.GetString("GetSetDemo_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class GetSetDemo {
+        ///    public double MyReadWritePropPublic { get; set; }
+        ///    private Integer propPrvt;
+        ///    public Integer prop {
+        ///        get {
+        ///            return propPrvt;
+        ///        }
+        ///        set {
+        ///            propPrvt = value;
+        ///        }
+        ///    }
+        ///    public Integer MyReadOnlyProp {
+        ///        get;
+        ///    }
+        ///
+        ///    private static Integer myStaticPropPrvt;
+        ///    public static Integer MyStaticProp {
+        ///        get {
+        ///            return myStaticPropPrvt;
+        ///        }
+        ///    }
+        ///
+        ///    Integer MyReadOnlyPropPrvt  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GetSetDemo_Original {
+            get {
+                return ResourceManager.GetString("GetSetDemo_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public interface IClassInterface extends IClassInterfaceExt {
         ///    string GetName();
         ///}
@@ -2032,6 +3724,52 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public interface IClassInterface : IClassInterfaceExt
+        ///    {
+        ///        string GetName();
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string IClassInterface_CSharp {
+            get {
+                return ResourceManager.GetString("IClassInterface_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public interface IClassInterface extends IClassInterfaceExt {
+        ///    string GetName();
+        ///}
+        ///.
+        /// </summary>
+        internal static string IClassInterface_Formatted {
+            get {
+                return ResourceManager.GetString("IClassInterface_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public interface IClassInterface extends IClassInterfaceExt {
+        ///    string GetName();
+        ///}
+        ///.
+        /// </summary>
+        internal static string IClassInterface_Original {
+            get {
+                return ResourceManager.GetString("IClassInterface_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public interface IClassInterfaceExt {
         ///    Id GetId();
         ///}.
@@ -2039,6 +3777,50 @@ namespace ApexParserTest.Properties {
         internal static string IClassInterfaceExt {
             get {
                 return ResourceManager.GetString("IClassInterfaceExt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public interface IClassInterfaceExt
+        ///    {
+        ///        //    ID GetId();
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string IClassInterfaceExt_CSharp {
+            get {
+                return ResourceManager.GetString("IClassInterfaceExt_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public interface IClassInterfaceExt {
+        /////    ID GetId();
+        ///}.
+        /// </summary>
+        internal static string IClassInterfaceExt_Formatted {
+            get {
+                return ResourceManager.GetString("IClassInterfaceExt_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public interface IClassInterfaceExt {
+        /////    ID GetId();
+        ///}.
+        /// </summary>
+        internal static string IClassInterfaceExt_Original {
+            get {
+                return ResourceManager.GetString("IClassInterfaceExt_Original", resourceCulture);
             }
         }
         
@@ -2058,6 +3840,71 @@ namespace ApexParserTest.Properties {
         internal static string JsonExample {
             get {
                 return ResourceManager.GetString("JsonExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class JsonExample
+        ///    {
+        ///        public void JsonExampleMethod()
+        ///        {
+        ///            Contact contact = new Contact();
+        ///            contact.LastName = &quot;Jay&quot;;
+        ///            contact.Email = &quot;jay@jay.com&quot;;
+        ///            string jsonString = JSON.Serialize(contact);
+        ///            Contact newContact = (Contact)JSON.Deseria [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string JsonExample_CSharp {
+            get {
+                return ResourceManager.GetString("JsonExample_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class JsonExample
+        ///{
+        ///    public void JsonExampleMethod()
+        ///    {
+        ///        Contact contact = new Contact();
+        ///        contact.LastName = &apos;Jay&apos;;
+        ///        contact.Email = &apos;jay@jay.com&apos;;
+        ///
+        ///        String jsonString = JSON.Serialize(contact);
+        ///        Contact newContact = (Contact)JSON.Deserialize(jsonString, String.class);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string JsonExample_Formatted {
+            get {
+                return ResourceManager.GetString("JsonExample_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class JsonExample
+        ///{
+        ///    public void JsonExampleMethod()
+        ///    {
+        ///        Contact contact = new Contact();
+        ///        contact.LastName = &apos;Jay&apos;;
+        ///        contact.Email = &apos;jay@jay.com&apos;;
+        ///
+        ///        String jsonString = JSON.Serialize(contact);
+        ///        Contact newContact = (Contact)JSON.Deserialize(jsonString, String.class);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string JsonExample_Original {
+            get {
+                return ResourceManager.GetString("JsonExample_Original", resourceCulture);
             }
         }
         
@@ -2117,6 +3964,198 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public abstract class MethodAndConstructor
+        ///    {
+        ///        public abstract void MethodThree();
+        ///
+        ///        MethodAndConstructor()
+        ///        {
+        ///        }
+        ///
+        ///        public MethodAndConstructor(string demo)
+        ///        {
+        ///        }
+        ///
+        ///        public virtual void VirtualMethod()
+        ///        {
+        ///        }
+        ///
+        ///        [Future]
+        ///        pub [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MethodAndConstructor_CSharp {
+            get {
+                return ResourceManager.GetString("MethodAndConstructor_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public abstract class MethodAndConstructor
+        ///{
+        ///    public abstract void MethodThree();
+        ///
+        ///    MethodAndConstructor()
+        ///    {
+        ///    }
+        ///    public MethodAndConstructor(string demo)
+        ///    {
+        ///    }
+        ///    public virtual void VirtualMethod()
+        ///    {
+        ///    }
+        ///    @future
+        ///    public static void FutureMethod()
+        ///    {
+        ///    }
+        ///
+        ///    @future(callout=true)
+        ///    public static void FutureMethodWithCallOut()
+        ///    {
+        ///    }
+        ///    void StringVoid()
+        ///    {
+        ///    }
+        ///
+        ///    private void StringPrivateVoid()
+        ///    {
+        ///
+        ///    }
+        ///    public vo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MethodAndConstructor_Formatted {
+            get {
+                return ResourceManager.GetString("MethodAndConstructor_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public abstract class MethodAndConstructor
+        ///{
+        ///    public abstract void MethodThree();
+        ///
+        ///    MethodAndConstructor()
+        ///    {
+        ///    }
+        ///    public MethodAndConstructor(string demo)
+        ///    {
+        ///    }
+        ///    public virtual void VirtualMethod()
+        ///    {
+        ///    }
+        ///    @future
+        ///    public static void FutureMethod()
+        ///    {
+        ///    }
+        ///
+        ///    @future(callout=true)
+        ///    public static void FutureMethodWithCallOut()
+        ///    {
+        ///    }
+        ///    void StringVoid()
+        ///    {
+        ///    }
+        ///
+        ///    private void StringPrivateVoid()
+        ///    {
+        ///
+        ///    }
+        ///    public vo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MethodAndConstructor_Original {
+            get {
+                return ResourceManager.GetString("MethodAndConstructor_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [WithSharing]
+        ///    public class MethodComplex
+        ///    {
+        ///        public static void MethodOne()
+        ///        {
+        ///            foreach (Account a in Soql.Query&lt;Account&gt;(&quot;SELECT Id FROM Account&quot;))
+        ///            {
+        ///                System.Debug(a.Id);
+        ///            }
+        ///
+        ///            for (int i = 0; i&lt;10; i++)
+        ///            {
+        ///            }
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MethodComplex_CSharp {
+            get {
+                return ResourceManager.GetString("MethodComplex_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class MethodComplex {
+        ///    public static void MethodOne() {
+        ///
+        ///        for (Account a : [SELECT Id FROM Account]) {
+        ///            System.Debug(a.Id);
+        ///        }
+        ///
+        ///        for (Integer i=0;i&lt;10;i++) {
+        ///
+        ///        }
+        ///    }
+        ///
+        ///    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
+        ///    {
+        ///         return Database.GetQueryLocator([SELECT Id FROM Contact]);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string MethodComplex_Formatted {
+            get {
+                return ResourceManager.GetString("MethodComplex_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public with sharing class MethodComplex {
+        ///    public static void MethodOne() {
+        ///
+        ///        for (Account a : [SELECT Id FROM Account]) {
+        ///            System.Debug(a.Id);
+        ///        }
+        ///
+        ///        for (Integer i=0;i&lt;10;i++) {
+        ///
+        ///        }
+        ///    }
+        ///
+        ///    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
+        ///    {
+        ///         return Database.GetQueryLocator([SELECT Id FROM Contact]);
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string MethodComplex_Original {
+            get {
+                return ResourceManager.GetString("MethodComplex_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class PrimitiveTypes
         ///{
         ///    public Blob MyBlob = Blob.ValueOf(&apos;Jay&apos;);
@@ -2140,6 +4179,86 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class PrimitiveTypes
+        ///    {
+        ///        public Blob MyBlob = Blob.ValueOf(&quot;Jay&quot;);
+        ///
+        ///        public bool IsWinner = true;
+        ///
+        ///        public Date MyDate = Date.Today();
+        ///
+        ///        public DateTime MyDateTime = DateTime.Now();
+        ///
+        ///        // public Decimal MyDecimal = 12.4567;
+        ///        public double d = 3.133433;
+        ///
+        ///         [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PrimitiveTypes_CSharp {
+            get {
+                return ResourceManager.GetString("PrimitiveTypes_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class PrimitiveTypes
+        ///{
+        ///    public Blob MyBlob = Blob.ValueOf(&apos;Jay&apos;);
+        ///    public Boolean IsWinner = true;
+        ///
+        ///    public Date MyDate = Date.Today();
+        ///    public DateTime MyDateTime = DateTime.Now();
+        ///
+        ///    // public Decimal MyDecimal = 12.4567;
+        ///    public Double d=3.133433;
+        ///    public Id MyId = &apos;006E0000004TquXIAS&apos;;
+        ///    public Integer MyInteger = 1;
+        ///    public Long MyLong = 23432424242L;
+        ///    public Time MyTime = Time.NewInstance(1, 2, 3, 4);
+        ///    public String MyString = &apos;Jay&apos;;
+        ///
+        ///    public st [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PrimitiveTypes_Formatted {
+            get {
+                return ResourceManager.GetString("PrimitiveTypes_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class PrimitiveTypes
+        ///{
+        ///    public Blob MyBlob = Blob.ValueOf(&apos;Jay&apos;);
+        ///    public Boolean IsWinner = true;
+        ///
+        ///    public Date MyDate = Date.Today();
+        ///    public DateTime MyDateTime = DateTime.Now();
+        ///
+        ///    // public Decimal MyDecimal = 12.4567;
+        ///    public Double d=3.133433;
+        ///    public Id MyId = &apos;006E0000004TquXIAS&apos;;
+        ///    public Integer MyInteger = 1;
+        ///    public Long MyLong = 23432424242L;
+        ///    public Time MyTime = Time.NewInstance(1, 2, 3, 4);
+        ///    public String MyString = &apos;Jay&apos;;
+        ///
+        ///    public st [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PrimitiveTypes_Original {
+            get {
+                return ResourceManager.GetString("PrimitiveTypes_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to // ClassDeclaration
         ///public with sharing class PropertyAndField
         ///{
@@ -2158,6 +4277,73 @@ namespace ApexParserTest.Properties {
         internal static string PropertyAndField {
             get {
                 return ResourceManager.GetString("PropertyAndField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class PropertyAndField
+        ///    {
+        ///        public DateTime DateTimeGetSet { get; set; }
+        ///
+        ///        public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///
+        ///        public DateTime[] DateTimeGetSetArray { get; set; }
+        ///
+        ///        public DateTime DateTimeEmpty;
+        ///
+        ///        public DateTime DateTimeInitialized = DateTime.Now [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PropertyAndField_CSharp {
+            get {
+                return ResourceManager.GetString("PropertyAndField_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class PropertyAndField
+        ///{
+        ///    public DateTime DateTimeGetSet { get; set; }
+        ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///    public DateTime[] DateTimeGetSetArray { get; set; }
+        ///    public DateTime DateTimeEmpty;
+        ///    public DateTime DateTimeInitialized = DateTime.Now();
+        ///    public List&lt;DateTime&gt; DateTimeList = new List&lt;DateTime&gt;();
+        ///    public DateTime[] DateTimeArray = new DateTime[5];
+        ///    public string Name = &apos;jay&apos;;
+        ///    public final string nameFinal = &apos;jay&apos;;
+        ///    public stati [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PropertyAndField_Formatted {
+            get {
+                return ResourceManager.GetString("PropertyAndField_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class PropertyAndField
+        ///{
+        ///    public DateTime DateTimeGetSet { get; set; }
+        ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///    public DateTime[] DateTimeGetSetArray { get; set; }
+        ///    public DateTime DateTimeEmpty;
+        ///    public DateTime DateTimeInitialized = DateTime.Now();
+        ///    public List&lt;DateTime&gt; DateTimeList = new List&lt;DateTime&gt;();
+        ///    public DateTime[] DateTimeArray = new DateTime[5];
+        ///    public string Name = &apos;jay&apos;;
+        ///    public final string nameFinal = &apos;jay&apos;;
+        ///    public stati [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PropertyAndField_Original {
+            get {
+                return ResourceManager.GetString("PropertyAndField_Original", resourceCulture);
             }
         }
         
@@ -2223,6 +4409,80 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.ApexSharp.NUnit;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    [TestFixture]
+        ///    [WithSharing]
+        ///    public class RunAll
+        ///    {
+        ///        [Test]
+        ///        public static void TestClassess()
+        ///        {
+        ///            System.Debug(ClassEnum.America);
+        ///            System.Debug(new ClassException());
+        ///            System.Debug(new ClassGlobal());
+        ///            Clas [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RunAll_CSharp {
+            get {
+                return ResourceManager.GetString("RunAll_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public with sharing class RunAll
+        ///{
+        ///    @isTest
+        ///    public static void TestClassess() {
+        ///        System.Debug(ClassEnum.America);
+        ///        System.Debug(new ClassException());
+        ///        System.Debug(new ClassGlobal());
+        ///
+        ///        ClassInitialization newClassInitialization = new ClassInitialization();
+        ///        System.Debug(ClassInitialization.colorMap);
+        ///        System.Debug(newClassInitialization.contactList);
+        ///
+        ///        ClassInterface classInterface = new ClassInterface();
+        ///        System.Debug(cl [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RunAll_Formatted {
+            get {
+                return ResourceManager.GetString("RunAll_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest
+        ///public with sharing class RunAll
+        ///{
+        ///    @isTest
+        ///    public static void TestClassess() {
+        ///        System.Debug(ClassEnum.America);
+        ///        System.Debug(new ClassException());
+        ///        System.Debug(new ClassGlobal());
+        ///
+        ///        ClassInitialization newClassInitialization = new ClassInitialization();
+        ///        System.Debug(ClassInitialization.colorMap);
+        ///        System.Debug(newClassInitialization.contactList);
+        ///
+        ///        ClassInterface classInterface = new ClassInterface();
+        ///        System.Debug(cl [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RunAll_Original {
+            get {
+                return ResourceManager.GetString("RunAll_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public with sharing class SoqlDemo {
         ///    /**
         ///     * A simple CRUD Example
@@ -2244,6 +4504,81 @@ namespace ApexParserTest.Properties {
         internal static string SoqlDemo {
             get {
                 return ResourceManager.GetString("SoqlDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace Demo.CSharpClasses
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class SoqlDemo
+        ///    {
+        ///        /**
+        ///         * A simple CRUD Example
+        ///         */
+        ///        public static void CrudExample()
+        ///        {
+        ///            // Contact contactNew = new Contact(LastName = &apos;Jay&apos;, Email = &apos;abc@abc.com&apos;);
+        ///            Contact contactNew = new Contact();
+        ///            Soql.Insert(contactNew);
+        ///      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SoqlDemo_CSharp {
+            get {
+                return ResourceManager.GetString("SoqlDemo_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class SoqlDemo {
+        ////**
+        /// * A simple CRUD Example
+        /// */
+        ///    public static void CrudExample() {
+        ///        // Contact contactNew = new Contact(LastName = &apos;Jay&apos;, Email = &apos;abc@abc.com&apos;);
+        ///        Contact contactNew = new Contact();
+        ///        insert contactNew;
+        ///
+        ///        System.Debug(contactNew.Id);
+        ///
+        ///        List&lt;Contact&gt; contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
+        ///        for (Contact c : contacts) {
+        ///            System.Debug(c.Email);
+        ///            c.Email = &apos;new@new.com&apos;;
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SoqlDemo_Formatted {
+            get {
+                return ResourceManager.GetString("SoqlDemo_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class SoqlDemo {
+        ////**
+        /// * A simple CRUD Example
+        /// */
+        ///    public static void CrudExample() {
+        ///        // Contact contactNew = new Contact(LastName = &apos;Jay&apos;, Email = &apos;abc@abc.com&apos;);
+        ///        Contact contactNew = new Contact();
+        ///        insert contactNew;
+        ///
+        ///        System.Debug(contactNew.Id);
+        ///
+        ///        List&lt;Contact&gt; contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
+        ///        for (Contact c : contacts) {
+        ///            System.Debug(c.Email);
+        ///            c.Email = &apos;new@new.com&apos;;
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SoqlDemo_Original {
+            get {
+                return ResourceManager.GetString("SoqlDemo_Original", resourceCulture);
             }
         }
         

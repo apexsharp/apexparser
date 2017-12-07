@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -405,5 +405,305 @@
   </data>
   <data name="ClassUnitTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexTestClasses\ClassUnitTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInitialization" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexTestClasses\ClassInitialization.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassAbstract_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassAbstract_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassAbstract_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassAbstract_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassAbstract_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassAbstract_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassEnum_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassEnum_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassEnum_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassEnum_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassEnum_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassEnum_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassException_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassException_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassException_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassException_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassException_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassException_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassGlobal_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassGlobal_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassGlobal_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassGlobal_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassGlobal_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassGlobal_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInitialization_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInitialization_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInitialization_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInitialization_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInitialization_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInitialization_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInterface_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInterface_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInterface_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInterface_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInterface_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInterface_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInternal_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInternal_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInternal_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInternal_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassInternal_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassInternal_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassNoApex_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassNoApex_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassNoApex_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassNoApex_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassNoApex_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassNoApex_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassRestTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassRestTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassRestTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassRestTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassRestTest_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassRestTest_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassRest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassRest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassRest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassRest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassRest_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassRest_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTestRunAs_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTestRunAs_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTestRunAs_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTestRunAs_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTestRunAs_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTestRunAs_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTestSeeAllData_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTestSeeAllData_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTestSeeAllData_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTestSeeAllData_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTestSeeAllData_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTestSeeAllData_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTest_CSharp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassUnitTest_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassUnitTest_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithOutSharing_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassWithOutSharing_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithOutSharing_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassWithOutSharing_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithOutSharing_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassWithOutSharing_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithSharing_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassWithSharing_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithSharing_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassWithSharing_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassWithSharing_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassWithSharing_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Collections_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Collections_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Collections_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Collections_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Collections_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Collections_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Comments_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Comments_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Comments_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Comments_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Comments_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Comments_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoControllerTests_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoControllerTests_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoControllerTests_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoControllerTests_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoControllerTests_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoControllerTests_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoController_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoController_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoController_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoController_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoController_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoController_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoTest_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoTest_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoTest_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoTest_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DemoTest_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\DemoTest_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Demo_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Demo_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Demo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Demo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Demo_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\Demo_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ExceptionDemo_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ExceptionDemo_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ExceptionDemo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ExceptionDemo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ExceptionDemo_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ExceptionDemo_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ForIfWhile_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ForIfWhile_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ForIfWhile_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="GetSetDemo_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\GetSetDemo_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="GetSetDemo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\GetSetDemo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="GetSetDemo_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\GetSetDemo_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterfaceExt_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\IClassInterfaceExt_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterfaceExt_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\IClassInterfaceExt_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterfaceExt_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\IClassInterfaceExt_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterface_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\IClassInterface_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterface_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\IClassInterface_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="IClassInterface_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\IClassInterface_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JsonExample_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\JsonExample_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JsonExample_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\JsonExample_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JsonExample_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\JsonExample_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="MethodAndConstructor_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\MethodAndConstructor_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="MethodAndConstructor_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\MethodAndConstructor_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="MethodAndConstructor_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\MethodAndConstructor_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="MethodComplex_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\MethodComplex_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="MethodComplex_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\MethodComplex_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="MethodComplex_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\MethodComplex_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PrimitiveTypes_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\PrimitiveTypes_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PrimitiveTypes_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\PrimitiveTypes_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PrimitiveTypes_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\PrimitiveTypes_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PropertyAndField_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\PropertyAndField_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PropertyAndField_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\PropertyAndField_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="PropertyAndField_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\PropertyAndField_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="RunAll_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\RunAll_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="RunAll_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\RunAll_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="RunAll_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\RunAll_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="SoqlDemo_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\SoqlDemo_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="SoqlDemo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\SoqlDemo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="SoqlDemo_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\SoqlDemo_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
 </root>
