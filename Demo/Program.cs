@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using ApexParser;
     using ApexSharpApi;
 
     public class Program
@@ -13,7 +12,7 @@
             Setup.Init();
 
             // CreateOffLineClasses();
-            ApexSharpParser.ConvertToCSharp(@"C:\DevSharp\ApexSharp\SalesForce\src\classes", @"C:\DevSharp\ApexSharp\Demo\CSharpClasses\", "Demo.CSharpClasses");
+            //ApexSharpParser.ConvertToCSharp(@"C:\DevSharp\ApexSharp\SalesForce\src\classes", @"C:\DevSharp\ApexSharp\Demo\CSharpClasses\", "Demo.CSharpClasses");
 
             // CSharpClasses.RunAll.TestClassess();
 

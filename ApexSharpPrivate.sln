@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{76248AF8-215
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{B151F261-9868-49EA-844E-5F3FB11E6D73}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexSharpApi", "ApexSharpApi\ApexSharpApi.csproj", "{251906F7-C47A-43A6-B7B7-AA9ABDD7CAB8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apex", "Apex\Apex.csproj", "{E89B11BB-588D-4551-9334-03E0C5B7AFDA}"
@@ -22,18 +20,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JaysWork", "JaysWork\JaysWork.csproj", "{40944DC3-311F-4BA0-931E-7E5D1D1F1FA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexParser", "ApexParser\ApexParser.csproj", "{32937D1C-1811-4F9C-9535-4A3CCE7F0AF2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B151F261-9868-49EA-844E-5F3FB11E6D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B151F261-9868-49EA-844E-5F3FB11E6D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B151F261-9868-49EA-844E-5F3FB11E6D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B151F261-9868-49EA-844E-5F3FB11E6D73}.Release|Any CPU.Build.0 = Release|Any CPU
 		{251906F7-C47A-43A6-B7B7-AA9ABDD7CAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{251906F7-C47A-43A6-B7B7-AA9ABDD7CAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{251906F7-C47A-43A6-B7B7-AA9ABDD7CAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,13 +43,8 @@ Global
 		{67182113-DB10-4706-B14B-7DF870BF2015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67182113-DB10-4706-B14B-7DF870BF2015}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40944DC3-311F-4BA0-931E-7E5D1D1F1FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40944DC3-311F-4BA0-931E-7E5D1D1F1FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40944DC3-311F-4BA0-931E-7E5D1D1F1FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40944DC3-311F-4BA0-931E-7E5D1D1F1FA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32937D1C-1811-4F9C-9535-4A3CCE7F0AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32937D1C-1811-4F9C-9535-4A3CCE7F0AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32937D1C-1811-4F9C-9535-4A3CCE7F0AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32937D1C-1811-4F9C-9535-4A3CCE7F0AF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
