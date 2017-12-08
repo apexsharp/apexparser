@@ -26,8 +26,4 @@
     <CodeAnalysisRuleSet>..\Disabled.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ApexParser\ApexParser.csproj" />
-  </ItemGroup>
-
 </Project>
