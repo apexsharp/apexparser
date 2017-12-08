@@ -236,6 +236,7 @@ namespace ApexParser.Parser
                 .Or(RunAsStatement)
                 .Or(TryCatchFinallyStatement)
                 .Or(ReturnStatement)
+                .Or(ThrowStatement)
                 .Or(InsertStatement)
                 .Or(UpdateStatement)
                 .Or(DeleteStatement)
@@ -494,6 +495,14 @@ namespace ApexParser.Parser
         protected internal virtual Parser<ReturnStatementSyntax> ReturnStatement =>
             from expression in KeywordExpressionStatement(ApexKeywords.Return)
             select new ReturnStatementSyntax
+            {
+                Expression = expression == null ? null : new ExpressionSyntax(expression),
+            };
+
+        // examples: throw new Exception(); throw;
+        protected internal virtual Parser<ThrowStatementSyntax> ThrowStatement =>
+            from expression in KeywordExpressionStatement(ApexKeywords.Throw)
+            select new ThrowStatementSyntax
             {
                 Expression = expression == null ? null : new ExpressionSyntax(expression),
             };

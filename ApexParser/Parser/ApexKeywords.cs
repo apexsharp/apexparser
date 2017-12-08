@@ -205,7 +205,7 @@ namespace ApexParser.Parser
         public static string Set => "set"; // "set" seems to be a valid method name
         public static string SetType => "Set"; // Set<...> is a built-in generic type
         public static string Sort => "sort"; // seems to be valid method name
-        public static string Time => "time"; // built-in type
+        public static string Time => "Time"; // built-in type
         public static string Today => "today"; // System.today() method
         public static string Transient => "transient"; // variable modifier
         public static string Void => "void";

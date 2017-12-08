@@ -102,8 +102,8 @@ namespace ApexParserTest.Visitors
         {
             Check("interface A { }", "interface A { }");
             Check("public interface B { int x { get; } }", "public interface B { Integer x { get; } }");
-            Check("interface C : IDisposable { }", "interface C implements IDisposable { }");
-            Check("public class D : B { interface C : IDisposable { } }", "public class D extends B { interface C implements IDisposable { } }");
+            Check("interface C : IDisposable { }", "interface C extends IDisposable { }");
+            Check("public class D : B { interface C : IDisposable { } }", "public class D extends B { interface C extends IDisposable { } }");
             Check("interface E { } interface F { }", "interface E { }", "interface F { }");
         }
 
@@ -321,6 +321,13 @@ namespace ApexParserTest.Visitors
         {
             Check("class T { void F() { using (System.RunAs(0)) System.Debug(\"Yo!\"); } }", "class T { void F() { System.runAs(0) System.Debug('Yo!'); } }");
             Check("class T { void F() { using (System.RunAs(me)) { System.Debug(123); } } }", "class T { void F() { System.runAs(me) { System.Debug(123); } } }");
+        }
+
+        [Test]
+        public void ThrowStatementIsGenerated()
+        {
+            Check("class T { void F() { throw new Exception(); } }", "class T { void F() { throw new Exception(); } }");
+            Check("class T { void F() { throw; } }", "class T { void F() { throw; } }");
         }
 
         [Test]

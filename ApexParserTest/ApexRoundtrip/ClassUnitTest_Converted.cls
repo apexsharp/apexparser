@@ -4,7 +4,7 @@ public class ClassUnitTest
     @TestSetup
     public static void Setup()
     {
-        System.Debug('One time Setup Got Called');
+        System.Debug('One Time Setup Got Called');
     }
 
     @IsTest

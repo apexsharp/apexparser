@@ -36,6 +36,11 @@ namespace ApexSharpDemo.ApexCode
 
         public bool shouldRedirect { get; set; }
 
+        // not supported yet, see issue #8
+        // {
+        //     shouldRedirect = false;
+        // }
+        //
         public string[] newStringArray = new string[]{"Hi"};
 
         public void MethodOne()
