@@ -3,6 +3,7 @@
     using System;
     using ApexSharpApi;
     using Serilog;
+    using System.IO;
 
     class Setup
     {
@@ -24,7 +25,7 @@
             try
             {
                 // See if we have an existing connection
-                ConnectionUtil.Session = ConnectionUtil.GetSession(@"C:\DevSharp\ApexSharp\config.json");
+                ConnectionUtil.Session = ConnectionUtil.GetSession(GetSolutionFolder() + "config.json");
             }
             catch (SalesForceNoFileFoundException)
             {
@@ -36,10 +37,10 @@
                         .WithUserId("You SF Id")
                         .AndPassword("You SF Password")
                         .AndToken("Token")
-                        .SalesForceLocation(@"C:\DevSharp\ApexSharp\SalesForce\src\")
-                        .VsProjectLocation(@"C:\DevSharp\ApexSharp\Demo")
+                        .SalesForceLocation(Path.Combine(Setup.GetSolutionFolder(), @"SalesForce\src\"))
+                        .VsProjectLocation(GetProjectFolder())
                         .SetVsProjectName("Demo")
-                        .SaveConfigAt(@"C:\DevSharp\ApexSharp\config.json")
+                        .SaveConfigAt(GetSolutionFolder() + "config.json")
                         .CreateSession();
                 }
                 catch (SalesForceInvalidLoginException ex)
@@ -50,6 +51,21 @@
             }
 
             return true;
+        }
+
+        // Assuming this code is running in VS, Get the Dir location of the Solution. 
+        public static string GetSolutionFolder()
+        {
+            DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            var parentDir = currentDir.Parent;
+            return parentDir.FullName;
+        }
+
+        // Assuming this code is running in VS, Get the Dir location of the Project. 
+        public static string GetProjectFolder()
+        {
+            DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            return currentDir.FullName;
         }
     }
 }
