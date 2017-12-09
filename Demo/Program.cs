@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using ApexSharpApi;
+    using ApexParser;
 
     public class Program
     {
@@ -11,12 +12,12 @@
             // Always Initialize your settings when ever you are connecting to SF
             Setup.Init();
 
-            // CreateOffLineClasses();
-            //ApexSharpParser.ConvertToCSharp(@"C:\DevSharp\ApexSharp\SalesForce\src\classes", @"C:\DevSharp\ApexSharp\Demo\CSharpClasses\", "Demo.CSharpClasses");
+            CreateOffLineClasses();
+            ApexSharpParser.ConvertToCSharp(@"C:\DevSharp\ApexSharp\SalesForce\src\classes", @"C:\DevSharp\ApexSharp\Demo\CSharpClasses\", "Demo.CSharpClasses");
 
             // CSharpClasses.RunAll.TestClassess();
 
-            // ApexSharp.ConvertToCSharp(@"C:\DevSharp\ApexSharp\Demo\CSharpClasses\", @"C:\DevSharp\ApexSharp\SalesForce\src\classes");
+            ApexSharpParser.ConvertToApex(@"C:\DevSharp\ApexSharp\Demo\CSharpClasses\", @"C:\DevSharp\ApexSharp\SalesForce\src\classes");
             Console.WriteLine("Done");
             Console.ReadLine();
         }
