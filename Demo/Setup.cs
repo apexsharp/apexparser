@@ -37,9 +37,8 @@
                         .WithUserId("You SF Id")
                         .AndPassword("You SF Password")
                         .AndToken("Token")
-                        .SalesForceLocation(Path.Combine(Setup.GetSolutionFolder(), @"SalesForce\src\"))
+                        .SalesForceLocation(Path.Combine(GetSolutionFolder(), @"SalesForce\src\"))
                         .VsProjectLocation(GetProjectFolder())
-                        .SetVsProjectName("Demo")
                         .SaveConfigAt(GetSolutionFolder() + "config.json")
                         .CreateSession();
                 }
