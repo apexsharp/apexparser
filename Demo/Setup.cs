@@ -25,7 +25,7 @@
             try
             {
                 // See if we have an existing connection
-                ConnectionUtil.Session = ConnectionUtil.GetSession(GetSolutionFolder() + "config.json");
+                ConnectionUtil.Session = ConnectionUtil.GetSession(GetSolutionFolder() + @"\config.json");
             }
             catch (SalesForceNoFileFoundException)
             {
@@ -39,7 +39,7 @@
                         .AndToken("Token")
                         .SalesForceLocation(Path.Combine(GetSolutionFolder(), @"SalesForce\src\"))
                         .VsProjectLocation(GetProjectFolder())
-                        .SaveConfigAt(GetSolutionFolder() + "config.json")
+                        .SaveConfigAt(GetSolutionFolder() + @"\config.json")
                         .CreateSession();
                 }
                 catch (SalesForceInvalidLoginException ex)

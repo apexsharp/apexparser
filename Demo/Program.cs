@@ -17,20 +17,20 @@
             Console.WriteLine(Limits.GetApiLimits().DailyApiRequests.Remaining);
 
             // Create Offline classes for SObjects
-            CreateOffLineClasses();
+            //CreateOffLineClasses();
 
-            // Location of your APEX and C# Files that we will be converting
-            var apexLocation = Path.Combine(Setup.GetSolutionFolder(), @"SalesForce\src\classes");
-            var cSharpLocation = Path.Combine(Setup.GetProjectFolder(), @"CSharpClasses\");
+            //// Location of your APEX and C# Files that we will be converting
+            //var apexLocation = Path.Combine(Setup.GetSolutionFolder(), @"SalesForce\src\classes");
+            //var cSharpLocation = Path.Combine(Setup.GetProjectFolder(), @"CSharpClasses\");
 
-            // Convert APEX to C#
-            ApexSharpParser.ConvertToCSharp(apexLocation, cSharpLocation, "Demo.CSharpClasses");
+            //// Convert APEX to C#
+            //ApexSharpParser.ConvertToCSharp(apexLocation, cSharpLocation, "Demo.CSharpClasses");
 
-            // Run a Class.
-            CSharpClasses.RunAll.TestClassess();
+            //// Run a Class.
+            //CSharpClasses.RunAll.TestClassess();
 
-            // Convert C# to APEX
-            ApexSharpParser.ConvertToApex(cSharpLocation, apexLocation);
+            //// Convert C# to APEX
+            //ApexSharpParser.ConvertToApex(cSharpLocation, apexLocation);
 
             // Keep Track of the API Limits
             Console.WriteLine(Limits.GetApiLimits().DailyApiRequests.Remaining);
