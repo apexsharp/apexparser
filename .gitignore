@@ -48,3 +48,4 @@ config.json
 /*.bak
 .sfdx
 /JaysWork
+ApexSharpPrivate.sln
