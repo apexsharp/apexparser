@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexSharpApi", "ApexSharpAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{A1BAB9FE-8C18-4CD2-985C-A3D92129DF85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexTest", "ApexTest\ApexTest.csproj", "{DC26F7F5-EB8C-41D9-B4CE-E6A77D23B3B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A1BAB9FE-8C18-4CD2-985C-A3D92129DF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1BAB9FE-8C18-4CD2-985C-A3D92129DF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1BAB9FE-8C18-4CD2-985C-A3D92129DF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC26F7F5-EB8C-41D9-B4CE-E6A77D23B3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC26F7F5-EB8C-41D9-B4CE-E6A77D23B3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC26F7F5-EB8C-41D9-B4CE-E6A77D23B3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC26F7F5-EB8C-41D9-B4CE-E6A77D23B3B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
