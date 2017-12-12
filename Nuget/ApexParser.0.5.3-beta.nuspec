@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>ApexParser</id>
-        <version>0.5.0-beta</version>
+        <version>0.5.3-beta</version>
         <title>ApexParser</title>
         <authors>ApexSharp.com</authors>
         <owners>ApexSharp.com</owners>
@@ -11,7 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A Roslyn-like parser for the Salesforce programming language APEX</description>
         <summary>A Roslyn-like parser for the Salesforce programming language APEX</summary>
-        <releaseNotes>Initial beta release. Use at your own risk.</releaseNotes>
+        <releaseNotes>Beta release. Use at your own risk.</releaseNotes>
         <copyright>© 2017 ApexSharp.com</copyright>
         <language>en-US</language>
         <tags>Apex, Parser, Roslyn</tags>
