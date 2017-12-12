@@ -24,12 +24,12 @@ namespace Apex.Wave
             throw new global::System.NotImplementedException("WaveQueryException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("WaveQueryException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("WaveQueryException.GetTypeName");
         }

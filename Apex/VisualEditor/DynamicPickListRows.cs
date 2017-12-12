@@ -19,47 +19,47 @@ namespace Apex.VisualEditor
             throw new global::System.NotImplementedException("DynamicPickListRows");
         }
 
-        public void AddAllRows(List<VisualEditor.DataRow> rows)
+        public void addAllRows(List<VisualEditor.DataRow> rows)
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.AddAllRows");
         }
 
-        public void AddRow(VisualEditor.DataRow row)
+        public void addRow(VisualEditor.DataRow row)
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.AddRow");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.Clone");
         }
 
-        public bool ContainsAllRows()
+        public bool containsAllRows()
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.ContainsAllRows");
         }
 
-        public VisualEditor.DataRow Get(int i)
+        public VisualEditor.DataRow get(int i)
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.Get");
         }
 
-        public List<VisualEditor.DataRow> GetDataRows()
+        public List<VisualEditor.DataRow> getDataRows()
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.GetDataRows");
         }
 
-        public void SetContainsAllRows(bool containsAllRows)
+        public void setContainsAllRows(bool containsAllRows)
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.SetContainsAllRows");
         }
 
-        public int Size()
+        public int size()
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.Size");
         }
 
-        public void Sort()
+        public void sort()
         {
             throw new global::System.NotImplementedException("DynamicPickListRows.Sort");
         }

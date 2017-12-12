@@ -2,22 +2,22 @@ namespace Apex.System
 {
     public class RoundingMode
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("RoundingMode.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("RoundingMode.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("RoundingMode.Ordinal");
         }
 
-        public static List<RoundingMode> Values()
+        public static List<RoundingMode> values()
         {
             throw new global::System.NotImplementedException("RoundingMode.Values");
         }

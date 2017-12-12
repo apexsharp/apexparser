@@ -4,22 +4,22 @@ namespace Apex.Predictive
 {
     public class SimilarResult
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SimilarResult.Clone");
         }
 
-        public List<SimilarRecord> GetSimilarRecords()
+        public List<SimilarRecord> getSimilarRecords()
         {
             throw new global::System.NotImplementedException("SimilarResult.GetSimilarRecords");
         }
 
-        public List<string> GetWarnings()
+        public List<string> getWarnings()
         {
             throw new global::System.NotImplementedException("SimilarResult.GetWarnings");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("SimilarResult.ToString");
         }

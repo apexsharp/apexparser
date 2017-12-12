@@ -4,12 +4,12 @@ namespace Apex.Search
 {
     public class SearchResults
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SearchResults.Clone");
         }
 
-        public List<Search.SearchResult> Get(string sObjectType)
+        public List<Search.SearchResult> get(string sObjectType)
         {
             throw new global::System.NotImplementedException("SearchResults.Get");
         }

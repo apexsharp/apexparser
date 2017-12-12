@@ -7,17 +7,17 @@ namespace Apex.Wavetemplate
             throw new global::System.NotImplementedException("Test");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Test.Clone");
         }
 
-        public static Answers GetDefaultAnswersForApexTesting(string templateDevName)
+        public static Answers getDefaultAnswersForApexTesting(string templateDevName)
         {
             throw new global::System.NotImplementedException("Test.GetDefaultAnswersForApexTesting");
         }
 
-        public static WaveTemplateInfo GetWaveTemplateInfoForApexTesting(string templateDevName)
+        public static WaveTemplateInfo getWaveTemplateInfoForApexTesting(string templateDevName)
         {
             throw new global::System.NotImplementedException("Test.GetWaveTemplateInfoForApexTesting");
         }

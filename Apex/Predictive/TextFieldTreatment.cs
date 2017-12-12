@@ -12,27 +12,27 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("TextFieldTreatment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("TextFieldTreatment.Clone");
         }
 
-        public string GetBin()
+        public string getBin()
         {
             throw new global::System.NotImplementedException("TextFieldTreatment.GetBin");
         }
 
-        public FieldTreatmentType GetType()
+        public FieldTreatmentType getType()
         {
             throw new global::System.NotImplementedException("TextFieldTreatment.GetType");
         }
 
-        public void SetBin(string bin)
+        public void setBin(string bin)
         {
             throw new global::System.NotImplementedException("TextFieldTreatment.SetBin");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("TextFieldTreatment.ToString");
         }

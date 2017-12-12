@@ -9,17 +9,17 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Answers");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Answers.Clone");
         }
 
-        public static List<ID> FindSimilar(SObject question)
+        public static List<ID> findSimilar(SObject question)
         {
             throw new global::System.NotImplementedException("Answers.FindSimilar");
         }
 
-        public static void SetBestReply(string questionId, string bestReplyId)
+        public static void setBestReply(string questionId, string bestReplyId)
         {
             throw new global::System.NotImplementedException("Answers.SetBestReply");
         }

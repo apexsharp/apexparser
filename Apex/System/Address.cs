@@ -7,57 +7,57 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Address");
         }
 
-        public string GetCity()
+        public string getCity()
         {
             throw new global::System.NotImplementedException("Address.GetCity");
         }
 
-        public string GetCountry()
+        public string getCountry()
         {
             throw new global::System.NotImplementedException("Address.GetCountry");
         }
 
-        public string GetCountryCode()
+        public string getCountryCode()
         {
             throw new global::System.NotImplementedException("Address.GetCountryCode");
         }
 
-        public double GetDistance(Location other, string unit)
+        public double getDistance(Location other, string unit)
         {
             throw new global::System.NotImplementedException("Address.GetDistance");
         }
 
-        public string GetGeocodeAccuracy()
+        public string getGeocodeAccuracy()
         {
             throw new global::System.NotImplementedException("Address.GetGeocodeAccuracy");
         }
 
-        public double GetLatitude()
+        public double getLatitude()
         {
             throw new global::System.NotImplementedException("Address.GetLatitude");
         }
 
-        public double GetLongitude()
+        public double getLongitude()
         {
             throw new global::System.NotImplementedException("Address.GetLongitude");
         }
 
-        public string GetPostalCode()
+        public string getPostalCode()
         {
             throw new global::System.NotImplementedException("Address.GetPostalCode");
         }
 
-        public string GetState()
+        public string getState()
         {
             throw new global::System.NotImplementedException("Address.GetState");
         }
 
-        public string GetStateCode()
+        public string getStateCode()
         {
             throw new global::System.NotImplementedException("Address.GetStateCode");
         }
 
-        public string GetStreet()
+        public string getStreet()
         {
             throw new global::System.NotImplementedException("Address.GetStreet");
         }

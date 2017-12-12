@@ -4,12 +4,12 @@ namespace Apex.Messaging
 {
     public class SendEmailResult
     {
-        public List<SendEmailError> GetErrors()
+        public List<SendEmailError> getErrors()
         {
             throw new global::System.NotImplementedException("SendEmailResult.GetErrors");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("SendEmailResult.IsSuccess");
         }

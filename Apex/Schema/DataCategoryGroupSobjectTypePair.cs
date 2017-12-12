@@ -7,24 +7,24 @@ namespace Apex.Schema
             throw new global::System.NotImplementedException("DataCategoryGroupSobjectTypePair");
         }
 
-        public string GetDataCategoryGroupName()
+        public string getDataCategoryGroupName()
         {
             throw new global::System.NotImplementedException(
                 "DataCategoryGroupSobjectTypePair.GetDataCategoryGroupName");
         }
 
-        public string GetSobject()
+        public string getSobject()
         {
             throw new global::System.NotImplementedException("DataCategoryGroupSobjectTypePair.GetSobject");
         }
 
-        public void SetDataCategoryGroupName(string param1)
+        public void setDataCategoryGroupName(string param1)
         {
             throw new global::System.NotImplementedException(
                 "DataCategoryGroupSobjectTypePair.SetDataCategoryGroupName");
         }
 
-        public void SetSobject(string param1)
+        public void setSobject(string param1)
         {
             throw new global::System.NotImplementedException("DataCategoryGroupSobjectTypePair.SetSobject");
         }

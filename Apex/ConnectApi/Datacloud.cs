@@ -2,52 +2,52 @@ namespace Apex.ConnectApi
 {
     public class Datacloud
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Datacloud.Clone");
         }
 
-        public static DatacloudCompanies GetCompaniesFromOrder(string orderId)
+        public static DatacloudCompanies getCompaniesFromOrder(string orderId)
         {
             throw new global::System.NotImplementedException("Datacloud.GetCompaniesFromOrder");
         }
 
-        public static DatacloudCompanies GetCompaniesFromOrder(string orderId, int pageParam, int pageSize)
+        public static DatacloudCompanies getCompaniesFromOrder(string orderId, int pageParam, int pageSize)
         {
             throw new global::System.NotImplementedException("Datacloud.GetCompaniesFromOrder");
         }
 
-        public static DatacloudCompany GetCompany(string companyId)
+        public static DatacloudCompany getCompany(string companyId)
         {
             throw new global::System.NotImplementedException("Datacloud.GetCompany");
         }
 
-        public static DatacloudContact GetContact(string contactId)
+        public static DatacloudContact getContact(string contactId)
         {
             throw new global::System.NotImplementedException("Datacloud.GetContact");
         }
 
-        public static DatacloudContacts GetContactsFromOrder(string orderId)
+        public static DatacloudContacts getContactsFromOrder(string orderId)
         {
             throw new global::System.NotImplementedException("Datacloud.GetContactsFromOrder");
         }
 
-        public static DatacloudContacts GetContactsFromOrder(string orderId, int pageParam, int pageSize)
+        public static DatacloudContacts getContactsFromOrder(string orderId, int pageParam, int pageSize)
         {
             throw new global::System.NotImplementedException("Datacloud.GetContactsFromOrder");
         }
 
-        public static DatacloudOrder GetOrder(string orderId)
+        public static DatacloudOrder getOrder(string orderId)
         {
             throw new global::System.NotImplementedException("Datacloud.GetOrder");
         }
 
-        public static DatacloudPurchaseUsage GetUsage(string userId)
+        public static DatacloudPurchaseUsage getUsage(string userId)
         {
             throw new global::System.NotImplementedException("Datacloud.GetUsage");
         }
 
-        public static DatacloudOrder PostOrder(DatacloudOrderInput orderInput)
+        public static DatacloudOrder postOrder(DatacloudOrderInput orderInput)
         {
             throw new global::System.NotImplementedException("Datacloud.PostOrder");
         }

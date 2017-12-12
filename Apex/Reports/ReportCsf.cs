@@ -13,117 +13,117 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportCsf");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportCsf.Clone");
         }
 
-        public string GetAcrossGroup()
+        public string getAcrossGroup()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetAcrossGroup");
         }
 
-        public CsfGroupType GetAcrossGroupType()
+        public CsfGroupType getAcrossGroupType()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetAcrossGroupType");
         }
 
-        public int GetDecimalPlaces()
+        public int getDecimalPlaces()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetDecimalPlaces");
         }
 
-        public string GetDescription()
+        public string getDescription()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetDescription");
         }
 
-        public string GetDownGroup()
+        public string getDownGroup()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetDownGroup");
         }
 
-        public CsfGroupType GetDownGroupType()
+        public CsfGroupType getDownGroupType()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetDownGroupType");
         }
 
-        public string GetFormula()
+        public string getFormula()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetFormula");
         }
 
-        public FormulaType GetFormulaType()
+        public FormulaType getFormulaType()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetFormulaType");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("ReportCsf.GetLabel");
         }
 
-        public void SetAcrossGroup(string acrossGroup)
+        public void setAcrossGroup(string acrossGroup)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetAcrossGroup");
         }
 
-        public void SetAcrossGroupType(string value)
+        public void setAcrossGroupType(string value)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetAcrossGroupType");
         }
 
-        public void SetAcrossGroupType(CsfGroupType acrossGroupType)
+        public void setAcrossGroupType(CsfGroupType acrossGroupType)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetAcrossGroupType");
         }
 
-        public void SetDecimalPlaces(int decimalPlaces)
+        public void setDecimalPlaces(int decimalPlaces)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetDecimalPlaces");
         }
 
-        public void SetDescription(string description)
+        public void setDescription(string description)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetDescription");
         }
 
-        public void SetDownGroup(string downGroup)
+        public void setDownGroup(string downGroup)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetDownGroup");
         }
 
-        public void SetDownGroupType(string value)
+        public void setDownGroupType(string value)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetDownGroupType");
         }
 
-        public void SetDownGroupType(CsfGroupType downGroupType)
+        public void setDownGroupType(CsfGroupType downGroupType)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetDownGroupType");
         }
 
-        public void SetFormula(string formula)
+        public void setFormula(string formula)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetFormula");
         }
 
-        public void SetFormulaType(string value)
+        public void setFormulaType(string value)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetFormulaType");
         }
 
-        public void SetFormulaType(FormulaType formulaType)
+        public void setFormulaType(FormulaType formulaType)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetFormulaType");
         }
 
-        public void SetLabel(string label)
+        public void setLabel(string label)
         {
             throw new global::System.NotImplementedException("ReportCsf.SetLabel");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportCsf.ToString");
         }

@@ -7,32 +7,32 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Cookie");
         }
 
-        public string GetDomain()
+        public string getDomain()
         {
             throw new global::System.NotImplementedException("Cookie.GetDomain");
         }
 
-        public int GetMaxAge()
+        public int getMaxAge()
         {
             throw new global::System.NotImplementedException("Cookie.GetMaxAge");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("Cookie.GetName");
         }
 
-        public string GetPath()
+        public string getPath()
         {
             throw new global::System.NotImplementedException("Cookie.GetPath");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("Cookie.GetValue");
         }
 
-        public bool IsSecure()
+        public bool isSecure()
         {
             throw new global::System.NotImplementedException("Cookie.IsSecure");
         }

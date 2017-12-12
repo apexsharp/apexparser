@@ -2,22 +2,22 @@ namespace Apex.QuickAction
 {
     public class FieldLayoutComponent
     {
-        public int GetDisplayLines()
+        public int getDisplayLines()
         {
             throw new global::System.NotImplementedException("FieldLayoutComponent.GetDisplayLines");
         }
 
-        public int GetTabOrder()
+        public int getTabOrder()
         {
             throw new global::System.NotImplementedException("FieldLayoutComponent.GetTabOrder");
         }
 
-        public string GetType()
+        public string getType()
         {
             throw new global::System.NotImplementedException("FieldLayoutComponent.GetType");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("FieldLayoutComponent.GetValue");
         }

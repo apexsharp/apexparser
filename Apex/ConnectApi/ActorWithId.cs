@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class ActorWithId
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ActorWithId.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ActorWithId.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("ActorWithId.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ActorWithId.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ActorWithId.ToString");
         }

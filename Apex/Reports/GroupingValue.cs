@@ -4,32 +4,32 @@ namespace Apex.Reports
 {
     public class GroupingValue
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("GroupingValue.Clone");
         }
 
-        public List<GroupingValue> GetGroupings()
+        public List<GroupingValue> getGroupings()
         {
             throw new global::System.NotImplementedException("GroupingValue.GetGroupings");
         }
 
-        public string GetKey()
+        public string getKey()
         {
             throw new global::System.NotImplementedException("GroupingValue.GetKey");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("GroupingValue.GetLabel");
         }
 
-        public object GetValue()
+        public object getValue()
         {
             throw new global::System.NotImplementedException("GroupingValue.GetValue");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("GroupingValue.ToString");
         }

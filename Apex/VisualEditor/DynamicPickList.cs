@@ -7,27 +7,27 @@ namespace Apex.VisualEditor
             throw new global::System.NotImplementedException("DynamicPickList");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DynamicPickList.Clone");
         }
 
-        public VisualEditor.DataRow GetDefaultValue()
+        public VisualEditor.DataRow getDefaultValue()
         {
             throw new global::System.NotImplementedException("DynamicPickList.GetDefaultValue");
         }
 
-        public string GetLabel(object attributeValue)
+        public string getLabel(object attributeValue)
         {
             throw new global::System.NotImplementedException("DynamicPickList.GetLabel");
         }
 
-        public VisualEditor.DynamicPickListRows GetValues()
+        public VisualEditor.DynamicPickListRows getValues()
         {
             throw new global::System.NotImplementedException("DynamicPickList.GetValues");
         }
 
-        public bool IsValid(object attributeValue)
+        public bool isValid(object attributeValue)
         {
             throw new global::System.NotImplementedException("DynamicPickList.IsValid");
         }

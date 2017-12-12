@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class PlatformActionStatus
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("PlatformActionStatus.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("PlatformActionStatus.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("PlatformActionStatus.Ordinal");
         }
 
-        public static List<PlatformActionStatus> Values()
+        public static List<PlatformActionStatus> values()
         {
             throw new global::System.NotImplementedException("PlatformActionStatus.Values");
         }

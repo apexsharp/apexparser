@@ -1,4 +1,4 @@
-﻿using Test = NUnit.Framework.TestAttribute;
+using Test = NUnit.Framework.TestAttribute;
 
 namespace Apex.ApexSharp.NUnit
 {

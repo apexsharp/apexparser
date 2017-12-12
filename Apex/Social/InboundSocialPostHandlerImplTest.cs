@@ -7,7 +7,7 @@ namespace Apex.Social
             throw new global::System.NotImplementedException("InboundSocialPostHandlerImplTest");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("InboundSocialPostHandlerImplTest.Clone");
         }

@@ -7,37 +7,37 @@ namespace Apex.System
             throw new global::System.NotImplementedException("EncodingUtil");
         }
 
-        public static Blob Base64Decode(string s)
+        public static Blob base64Decode(string s)
         {
             throw new global::System.NotImplementedException("EncodingUtil.Base64Decode");
         }
 
-        public static string Base64Encode(Blob s)
+        public static string base64Encode(Blob s)
         {
             throw new global::System.NotImplementedException("EncodingUtil.Base64Encode");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("EncodingUtil.Clone");
         }
 
-        public static Blob ConvertFromHex(string input)
+        public static Blob convertFromHex(string input)
         {
             throw new global::System.NotImplementedException("EncodingUtil.ConvertFromHex");
         }
 
-        public static string ConvertToHex(Blob s)
+        public static string convertToHex(Blob s)
         {
             throw new global::System.NotImplementedException("EncodingUtil.ConvertToHex");
         }
 
-        public static string UrlDecode(string s, string enc)
+        public static string urlDecode(string s, string enc)
         {
             throw new global::System.NotImplementedException("EncodingUtil.UrlDecode");
         }
 
-        public static string UrlEncode(string s, string enc)
+        public static string urlEncode(string s, string enc)
         {
             throw new global::System.NotImplementedException("EncodingUtil.UrlEncode");
         }

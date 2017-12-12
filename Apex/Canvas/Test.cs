@@ -9,18 +9,18 @@ namespace Apex.Canvas
             throw new global::System.NotImplementedException("Test");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Test.Clone");
         }
 
-        public static Canvas.RenderContext MockRenderContext(Map<String, String> appContextTestValues,
+        public static Canvas.RenderContext mockRenderContext(Map<String, String> appContextTestValues,
             Map<String, String> envContextTestValues)
         {
             throw new global::System.NotImplementedException("Test.MockRenderContext");
         }
 
-        public static void TestCanvasLifecycle(Canvas.CanvasLifecycleHandler handler,
+        public static void testCanvasLifecycle(Canvas.CanvasLifecycleHandler handler,
             Canvas.RenderContext mockRenderContext)
         {
             throw new global::System.NotImplementedException("Test.TestCanvasLifecycle");

@@ -10,7 +10,7 @@ namespace Apex.TxnSecurity
             throw new global::System.NotImplementedException("Event");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Event.Clone");
         }

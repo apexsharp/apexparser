@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ContentHubExternalItemSharingType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ContentHubExternalItemSharingType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ContentHubExternalItemSharingType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ContentHubExternalItemSharingType.Ordinal");
         }
 
-        public static List<ContentHubExternalItemSharingType> Values()
+        public static List<ContentHubExternalItemSharingType> values()
         {
             throw new global::System.NotImplementedException("ContentHubExternalItemSharingType.Values");
         }

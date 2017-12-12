@@ -9,213 +9,213 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Site");
         }
 
-        public static PageReference ChangePassword(string newPassword, string verifyNewPassword)
+        public static PageReference changePassword(string newPassword, string verifyNewPassword)
         {
             throw new global::System.NotImplementedException("Site.ChangePassword");
         }
 
-        public static PageReference ChangePassword(string newPassword, string verifyNewPassword, string oldPassword)
+        public static PageReference changePassword(string newPassword, string verifyNewPassword, string oldPassword)
         {
             throw new global::System.NotImplementedException("Site.ChangePassword");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Site.Clone");
         }
 
-        public static ID CreateExternalUser(SObject user, string accountId)
+        public static ID createExternalUser(SObject user, string accountId)
         {
             throw new global::System.NotImplementedException("Site.CreateExternalUser");
         }
 
-        public static ID CreateExternalUser(SObject user, string accountId, string password)
+        public static ID createExternalUser(SObject user, string accountId, string password)
         {
             throw new global::System.NotImplementedException("Site.CreateExternalUser");
         }
 
-        public static ID CreateExternalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
+        public static ID createExternalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
         {
             throw new global::System.NotImplementedException("Site.CreateExternalUser");
         }
 
-        public static ID CreatePersonAccountPortalUser(SObject user, string ownerId, string password)
+        public static ID createPersonAccountPortalUser(SObject user, string ownerId, string password)
         {
             throw new global::System.NotImplementedException("Site.CreatePersonAccountPortalUser");
         }
 
-        public static ID CreatePersonAccountPortalUser(SObject user, string ownerId, string recordTypeId,
+        public static ID createPersonAccountPortalUser(SObject user, string ownerId, string recordTypeId,
             string password)
         {
             throw new global::System.NotImplementedException("Site.CreatePersonAccountPortalUser");
         }
 
-        public static ID CreatePortalUser(SObject user, string accountId)
+        public static ID createPortalUser(SObject user, string accountId)
         {
             throw new global::System.NotImplementedException("Site.CreatePortalUser");
         }
 
-        public static ID CreatePortalUser(SObject user, string accountId, string password)
+        public static ID createPortalUser(SObject user, string accountId, string password)
         {
             throw new global::System.NotImplementedException("Site.CreatePortalUser");
         }
 
-        public static ID CreatePortalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
+        public static ID createPortalUser(SObject user, string accountId, string password, bool sendEmailConfirmation)
         {
             throw new global::System.NotImplementedException("Site.CreatePortalUser");
         }
 
-        public static bool ForgotPassword(string username)
+        public static bool forgotPassword(string username)
         {
             throw new global::System.NotImplementedException("Site.ForgotPassword");
         }
 
-        public static string GetAdminEmail()
+        public static string getAdminEmail()
         {
             throw new global::System.NotImplementedException("Site.GetAdminEmail");
         }
 
-        public static ID GetAdminId()
+        public static ID getAdminId()
         {
             throw new global::System.NotImplementedException("Site.GetAdminId");
         }
 
-        public static string GetAnalyticsTrackingCode()
+        public static string getAnalyticsTrackingCode()
         {
             throw new global::System.NotImplementedException("Site.GetAnalyticsTrackingCode");
         }
 
-        public static string GetBaseCustomUrl()
+        public static string getBaseCustomUrl()
         {
             throw new global::System.NotImplementedException("Site.GetBaseCustomUrl");
         }
 
-        public static string GetBaseInsecureUrl()
+        public static string getBaseInsecureUrl()
         {
             throw new global::System.NotImplementedException("Site.GetBaseInsecureUrl");
         }
 
-        public static string GetBaseRequestUrl()
+        public static string getBaseRequestUrl()
         {
             throw new global::System.NotImplementedException("Site.GetBaseRequestUrl");
         }
 
-        public static string GetBaseSecureUrl()
+        public static string getBaseSecureUrl()
         {
             throw new global::System.NotImplementedException("Site.GetBaseSecureUrl");
         }
 
-        public static string GetBaseUrl()
+        public static string getBaseUrl()
         {
             throw new global::System.NotImplementedException("Site.GetBaseUrl");
         }
 
-        public static string GetCurrentSiteUrl()
+        public static string getCurrentSiteUrl()
         {
             throw new global::System.NotImplementedException("Site.GetCurrentSiteUrl");
         }
 
-        public static string GetCustomWebAddress()
+        public static string getCustomWebAddress()
         {
             throw new global::System.NotImplementedException("Site.GetCustomWebAddress");
         }
 
-        public static string GetDomain()
+        public static string getDomain()
         {
             throw new global::System.NotImplementedException("Site.GetDomain");
         }
 
-        public static string GetErrorDescription()
+        public static string getErrorDescription()
         {
             throw new global::System.NotImplementedException("Site.GetErrorDescription");
         }
 
-        public static string GetErrorMessage()
+        public static string getErrorMessage()
         {
             throw new global::System.NotImplementedException("Site.GetErrorMessage");
         }
 
-        public static string GetMasterLabel()
+        public static string getMasterLabel()
         {
             throw new global::System.NotImplementedException("Site.GetMasterLabel");
         }
 
-        public static string GetName()
+        public static string getName()
         {
             throw new global::System.NotImplementedException("Site.GetName");
         }
 
-        public static string GetOriginalUrl()
+        public static string getOriginalUrl()
         {
             throw new global::System.NotImplementedException("Site.GetOriginalUrl");
         }
 
-        public static string GetPasswordPolicyStatement()
+        public static string getPasswordPolicyStatement()
         {
             throw new global::System.NotImplementedException("Site.GetPasswordPolicyStatement");
         }
 
-        public static string GetPathPrefix()
+        public static string getPathPrefix()
         {
             throw new global::System.NotImplementedException("Site.GetPathPrefix");
         }
 
-        public static string GetPrefix()
+        public static string getPrefix()
         {
             throw new global::System.NotImplementedException("Site.GetPrefix");
         }
 
-        public static ID GetSiteId()
+        public static ID getSiteId()
         {
             throw new global::System.NotImplementedException("Site.GetSiteId");
         }
 
-        public static string GetSiteType()
+        public static string getSiteType()
         {
             throw new global::System.NotImplementedException("Site.GetSiteType");
         }
 
-        public static string GetSiteTypeLabel()
+        public static string getSiteTypeLabel()
         {
             throw new global::System.NotImplementedException("Site.GetSiteTypeLabel");
         }
 
-        public static PageReference GetTemplate()
+        public static PageReference getTemplate()
         {
             throw new global::System.NotImplementedException("Site.GetTemplate");
         }
 
-        public static bool IsLoginEnabled()
+        public static bool isLoginEnabled()
         {
             throw new global::System.NotImplementedException("Site.IsLoginEnabled");
         }
 
-        public static bool IsPasswordExpired()
+        public static bool isPasswordExpired()
         {
             throw new global::System.NotImplementedException("Site.IsPasswordExpired");
         }
 
-        public static bool IsRegistrationEnabled()
+        public static bool isRegistrationEnabled()
         {
             throw new global::System.NotImplementedException("Site.IsRegistrationEnabled");
         }
 
-        public static bool IsValidUsername(string username)
+        public static bool isValidUsername(string username)
         {
             throw new global::System.NotImplementedException("Site.IsValidUsername");
         }
 
-        public static PageReference Login(string username, string password, string startUrl)
+        public static PageReference login(string username, string password, string startUrl)
         {
             throw new global::System.NotImplementedException("Site.Login");
         }
 
-        public static void SetPortalUserAsAuthProvider(SObject user, string accountId)
+        public static void setPortalUserAsAuthProvider(SObject user, string accountId)
         {
             throw new global::System.NotImplementedException("Site.SetPortalUserAsAuthProvider");
         }
 
-        public static void ValidatePassword(SObject user, string password, string confirmPassword)
+        public static void validatePassword(SObject user, string password, string confirmPassword)
         {
             throw new global::System.NotImplementedException("Site.ValidatePassword");
         }

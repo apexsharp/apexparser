@@ -5,12 +5,12 @@ namespace Apex.Database
 {
     public class DeletedRecord
     {
-        public Date GetDeletedDate()
+        public Date getDeletedDate()
         {
             throw new global::System.NotImplementedException("DeletedRecord.GetDeletedDate");
         }
 
-        public ID GetId()
+        public ID getId()
         {
             throw new global::System.NotImplementedException("DeletedRecord.GetId");
         }

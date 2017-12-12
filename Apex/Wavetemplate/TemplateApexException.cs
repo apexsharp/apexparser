@@ -24,12 +24,12 @@ namespace Apex.Wavetemplate
             throw new global::System.NotImplementedException("TemplateApexException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("TemplateApexException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("TemplateApexException.GetTypeName");
         }

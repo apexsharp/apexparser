@@ -2,142 +2,142 @@ namespace Apex.System
 {
     public class Matcher
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Matcher.Clone");
         }
 
-        public int End()
+        public int end()
         {
             throw new global::System.NotImplementedException("Matcher.End");
         }
 
-        public int End(int grp)
+        public int end(int grp)
         {
             throw new global::System.NotImplementedException("Matcher.End");
         }
 
-        public bool Find()
+        public bool find()
         {
             throw new global::System.NotImplementedException("Matcher.Find");
         }
 
-        public bool Find(int start)
+        public bool find(int start)
         {
             throw new global::System.NotImplementedException("Matcher.Find");
         }
 
-        public string Group()
+        public string group()
         {
             throw new global::System.NotImplementedException("Matcher.Group");
         }
 
-        public string Group(int start)
+        public string group(int start)
         {
             throw new global::System.NotImplementedException("Matcher.Group");
         }
 
-        public int GroupCount()
+        public int groupCount()
         {
             throw new global::System.NotImplementedException("Matcher.GroupCount");
         }
 
-        public bool HasAnchoringBounds()
+        public bool hasAnchoringBounds()
         {
             throw new global::System.NotImplementedException("Matcher.HasAnchoringBounds");
         }
 
-        public bool HasTransparentBounds()
+        public bool hasTransparentBounds()
         {
             throw new global::System.NotImplementedException("Matcher.HasTransparentBounds");
         }
 
-        public bool HitEnd()
+        public bool hitEnd()
         {
             throw new global::System.NotImplementedException("Matcher.HitEnd");
         }
 
-        public bool LookingAt()
+        public bool lookingAt()
         {
             throw new global::System.NotImplementedException("Matcher.LookingAt");
         }
 
-        public bool Matches()
+        public bool matches()
         {
             throw new global::System.NotImplementedException("Matcher.Matches");
         }
 
-        public Pattern Pattern()
+        public Pattern pattern()
         {
             throw new global::System.NotImplementedException("Matcher.Pattern");
         }
 
-        public static string QuoteReplacement(string s)
+        public static string quoteReplacement(string s)
         {
             throw new global::System.NotImplementedException("Matcher.QuoteReplacement");
         }
 
-        public Matcher Region(int start, int ending)
+        public Matcher region(int start, int ending)
         {
             throw new global::System.NotImplementedException("Matcher.Region");
         }
 
-        public int RegionEnd()
+        public int regionEnd()
         {
             throw new global::System.NotImplementedException("Matcher.RegionEnd");
         }
 
-        public int RegionStart()
+        public int regionStart()
         {
             throw new global::System.NotImplementedException("Matcher.RegionStart");
         }
 
-        public string ReplaceAll(string replacement)
+        public string replaceAll(string replacement)
         {
             throw new global::System.NotImplementedException("Matcher.ReplaceAll");
         }
 
-        public string ReplaceFirst(string replacement)
+        public string replaceFirst(string replacement)
         {
             throw new global::System.NotImplementedException("Matcher.ReplaceFirst");
         }
 
-        public bool RequireEnd()
+        public bool requireEnd()
         {
             throw new global::System.NotImplementedException("Matcher.RequireEnd");
         }
 
-        public Matcher Reset()
+        public Matcher reset()
         {
             throw new global::System.NotImplementedException("Matcher.Reset");
         }
 
-        public Matcher Reset(string input)
+        public Matcher reset(string input)
         {
             throw new global::System.NotImplementedException("Matcher.Reset");
         }
 
-        public int Start()
+        public int start()
         {
             throw new global::System.NotImplementedException("Matcher.Start");
         }
 
-        public int Start(int grp)
+        public int start(int grp)
         {
             throw new global::System.NotImplementedException("Matcher.Start");
         }
 
-        public Matcher UseAnchoringBounds(bool b)
+        public Matcher useAnchoringBounds(bool b)
         {
             throw new global::System.NotImplementedException("Matcher.UseAnchoringBounds");
         }
 
-        public Matcher UsePattern(Pattern p)
+        public Matcher usePattern(Pattern p)
         {
             throw new global::System.NotImplementedException("Matcher.UsePattern");
         }
 
-        public Matcher UseTransparentBounds(bool b)
+        public Matcher useTransparentBounds(bool b)
         {
             throw new global::System.NotImplementedException("Matcher.UseTransparentBounds");
         }

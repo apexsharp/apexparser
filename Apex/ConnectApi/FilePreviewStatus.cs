@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class FilePreviewStatus
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FilePreviewStatus.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FilePreviewStatus.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FilePreviewStatus.Ordinal");
         }
 
-        public static List<FilePreviewStatus> Values()
+        public static List<FilePreviewStatus> values()
         {
             throw new global::System.NotImplementedException("FilePreviewStatus.Values");
         }

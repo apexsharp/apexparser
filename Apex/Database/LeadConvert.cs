@@ -10,92 +10,92 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("LeadConvert");
         }
 
-        public ID GetAccountId()
+        public ID getAccountId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetAccountId");
         }
 
-        public ID GetContactId()
+        public ID getContactId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetContactId");
         }
 
-        public string GetConvertedStatus()
+        public string getConvertedStatus()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetConvertedStatus");
         }
 
-        public ID GetLeadId()
+        public ID getLeadId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetLeadId");
         }
 
-        public string GetOpportunityName()
+        public string getOpportunityName()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetOpportunityName");
         }
 
-        public ID GetOwnerId()
+        public ID getOwnerId()
         {
             throw new global::System.NotImplementedException("LeadConvert.GetOwnerId");
         }
 
-        public bool IsDoNotCreateOpportunity()
+        public bool isDoNotCreateOpportunity()
         {
             throw new global::System.NotImplementedException("LeadConvert.IsDoNotCreateOpportunity");
         }
 
-        public bool IsOverwriteLeadSource()
+        public bool isOverwriteLeadSource()
         {
             throw new global::System.NotImplementedException("LeadConvert.IsOverwriteLeadSource");
         }
 
-        public bool IsSendNotificationEmail()
+        public bool isSendNotificationEmail()
         {
             throw new global::System.NotImplementedException("LeadConvert.IsSendNotificationEmail");
         }
 
-        public void SetAccountId(ID param1)
+        public void setAccountId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetAccountId");
         }
 
-        public void SetContactId(ID param1)
+        public void setContactId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetContactId");
         }
 
-        public void SetConvertedStatus(string param1)
+        public void setConvertedStatus(string param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetConvertedStatus");
         }
 
-        public void SetDoNotCreateOpportunity(bool param1)
+        public void setDoNotCreateOpportunity(bool param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetDoNotCreateOpportunity");
         }
 
-        public void SetLeadId(ID param1)
+        public void setLeadId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetLeadId");
         }
 
-        public void SetOpportunityName(string param1)
+        public void setOpportunityName(string param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetOpportunityName");
         }
 
-        public void SetOverwriteLeadSource(bool param1)
+        public void setOverwriteLeadSource(bool param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetOverwriteLeadSource");
         }
 
-        public void SetOwnerId(ID param1)
+        public void setOwnerId(ID param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetOwnerId");
         }
 
-        public void SetSendNotificationEmail(bool param1)
+        public void setSendNotificationEmail(bool param1)
         {
             throw new global::System.NotImplementedException("LeadConvert.SetSendNotificationEmail");
         }

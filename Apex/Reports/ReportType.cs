@@ -12,32 +12,32 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportType");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportType.Clone");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("ReportType.GetLabel");
         }
 
-        public string GetType()
+        public string getType()
         {
             throw new global::System.NotImplementedException("ReportType.GetType");
         }
 
-        public void SetLabel(string label)
+        public void setLabel(string label)
         {
             throw new global::System.NotImplementedException("ReportType.SetLabel");
         }
 
-        public void SetType(string type)
+        public void setType(string type)
         {
             throw new global::System.NotImplementedException("ReportType.SetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportType.ToString");
         }

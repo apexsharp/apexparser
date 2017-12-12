@@ -4,17 +4,17 @@ namespace Apex.Reports
 {
     public class Dimension
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Dimension.Clone");
         }
 
-        public List<GroupingValue> GetGroupings()
+        public List<GroupingValue> getGroupings()
         {
             throw new global::System.NotImplementedException("Dimension.GetGroupings");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("Dimension.ToString");
         }

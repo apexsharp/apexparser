@@ -7,12 +7,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Http");
         }
 
-        public HttpResponse Send(object request)
+        public HttpResponse send(object request)
         {
             throw new global::System.NotImplementedException("Http.Send");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("Http.ToString");
         }

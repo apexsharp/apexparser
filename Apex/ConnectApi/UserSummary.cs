@@ -7,27 +7,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("UserSummary");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("UserSummary.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("UserSummary.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("UserSummary.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("UserSummary.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("UserSummary.ToString");
         }

@@ -9,12 +9,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Cases");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Cases.Clone");
         }
 
-        public static ID GetCaseIdFromEmailThreadId(string emailThreadId)
+        public static ID getCaseIdFromEmailThreadId(string emailThreadId)
         {
             throw new global::System.NotImplementedException("Cases.GetCaseIdFromEmailThreadId");
         }

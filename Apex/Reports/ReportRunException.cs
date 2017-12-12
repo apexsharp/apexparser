@@ -19,12 +19,12 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportRunException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportRunException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("ReportRunException.GetTypeName");
         }

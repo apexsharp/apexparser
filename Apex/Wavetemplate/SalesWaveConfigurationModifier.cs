@@ -7,7 +7,7 @@ namespace Apex.Wavetemplate
             throw new global::System.NotImplementedException("SalesWaveConfigurationModifier");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SalesWaveConfigurationModifier.Clone");
         }

@@ -7,7 +7,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("EmailHeader");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("EmailHeader.Clone");
         }

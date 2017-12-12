@@ -7,27 +7,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("FilesCapability");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("FilesCapability.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FilesCapability.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("FilesCapability.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FilesCapability.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("FilesCapability.ToString");
         }

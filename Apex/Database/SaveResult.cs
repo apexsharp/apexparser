@@ -5,17 +5,17 @@ namespace Apex.Database
 {
     public class SaveResult
     {
-        public List<Database.Error> GetErrors()
+        public List<Database.Error> getErrors()
         {
             throw new global::System.NotImplementedException("SaveResult.GetErrors");
         }
 
-        public ID GetId()
+        public ID getId()
         {
             throw new global::System.NotImplementedException("SaveResult.GetId");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("SaveResult.IsSuccess");
         }

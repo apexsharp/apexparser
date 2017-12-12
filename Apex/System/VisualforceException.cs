@@ -22,37 +22,37 @@ namespace Apex.System
             throw new global::System.NotImplementedException("VisualforceException");
         }
 
-        public Exception GetCause()
+        public Exception getCause()
         {
             throw new global::System.NotImplementedException("VisualforceException.GetCause");
         }
 
-        public int GetLineNumber()
+        public int getLineNumber()
         {
             throw new global::System.NotImplementedException("VisualforceException.GetLineNumber");
         }
 
-        public string GetMessage()
+        public string getMessage()
         {
             throw new global::System.NotImplementedException("VisualforceException.GetMessage");
         }
 
-        public string GetStackTraceString()
+        public string getStackTraceString()
         {
             throw new global::System.NotImplementedException("VisualforceException.GetStackTraceString");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("VisualforceException.GetTypeName");
         }
 
-        public void InitCause(Exception cause)
+        public void initCause(Exception cause)
         {
             throw new global::System.NotImplementedException("VisualforceException.InitCause");
         }
 
-        public void SetMessage(string message)
+        public void setMessage(string message)
         {
             throw new global::System.NotImplementedException("VisualforceException.SetMessage");
         }

@@ -4,22 +4,22 @@ namespace Apex.LiveAgent
 {
     public class LiveChatRoutingResultType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResultType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResultType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResultType.Ordinal");
         }
 
-        public static List<LiveAgent.LiveChatRoutingResultType> Values()
+        public static List<LiveAgent.LiveChatRoutingResultType> values()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResultType.Values");
         }

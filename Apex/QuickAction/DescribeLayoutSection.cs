@@ -5,42 +5,42 @@ namespace Apex.QuickAction
 {
     public class DescribeLayoutSection
     {
-        public int GetColumns()
+        public int getColumns()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetColumns");
         }
 
-        public string GetHeading()
+        public string getHeading()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetHeading");
         }
 
-        public List<DescribeLayoutRow> GetLayoutRows()
+        public List<DescribeLayoutRow> getLayoutRows()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetLayoutRows");
         }
 
-        public ID GetParentLayoutId()
+        public ID getParentLayoutId()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetParentLayoutId");
         }
 
-        public int GetRows()
+        public int getRows()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetRows");
         }
 
-        public string GetTabOrder()
+        public string getTabOrder()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.GetTabOrder");
         }
 
-        public bool IsUseCollapsibleSection()
+        public bool isUseCollapsibleSection()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.IsUseCollapsibleSection");
         }
 
-        public bool IsUseHeading()
+        public bool isUseHeading()
         {
             throw new global::System.NotImplementedException("DescribeLayoutSection.IsUseHeading");
         }

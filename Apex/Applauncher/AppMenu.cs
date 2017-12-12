@@ -11,22 +11,22 @@ namespace Apex.Applauncher
             throw new global::System.NotImplementedException("AppMenu");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AppMenu.Clone");
         }
 
-        public static void SetAppVisibility(ID appMenuItemId, bool isVisible)
+        public static void setAppVisibility(ID appMenuItemId, bool isVisible)
         {
             throw new global::System.NotImplementedException("AppMenu.SetAppVisibility");
         }
 
-        public static void SetOrgSortOrder(List<ID> applicationIds)
+        public static void setOrgSortOrder(List<ID> applicationIds)
         {
             throw new global::System.NotImplementedException("AppMenu.SetOrgSortOrder");
         }
 
-        public static void SetUserSortOrder(List<ID> applicationIds)
+        public static void setUserSortOrder(List<ID> applicationIds)
         {
             throw new global::System.NotImplementedException("AppMenu.SetUserSortOrder");
         }

@@ -2,22 +2,22 @@ namespace Apex.System
 {
     public class JSONToken
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("JSONToken.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("JSONToken.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("JSONToken.Ordinal");
         }
 
-        public static List<JSONToken> Values()
+        public static List<JSONToken> values()
         {
             throw new global::System.NotImplementedException("JSONToken.Values");
         }

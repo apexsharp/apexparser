@@ -4,42 +4,42 @@ namespace Apex.Canvas
 {
     public class EnvironmentContext
     {
-        public void AddEntityField(string param1)
+        public void addEntityField(string param1)
         {
             throw new global::System.NotImplementedException("EnvironmentContext.AddEntityField");
         }
 
-        public void AddEntityFields(Set<String> param1)
+        public void addEntityFields(Set<String> param1)
         {
             throw new global::System.NotImplementedException("EnvironmentContext.AddEntityFields");
         }
 
-        public string GetDisplayLocation()
+        public string getDisplayLocation()
         {
             throw new global::System.NotImplementedException("EnvironmentContext.GetDisplayLocation");
         }
 
-        public List<string> GetEntityFields()
+        public List<string> getEntityFields()
         {
             throw new global::System.NotImplementedException("EnvironmentContext.GetEntityFields");
         }
 
-        public string GetLocationUrl()
+        public string getLocationUrl()
         {
             throw new global::System.NotImplementedException("EnvironmentContext.GetLocationUrl");
         }
 
-        public string GetParametersAsJSON()
+        public string getParametersAsJSON()
         {
             throw new global::System.NotImplementedException("EnvironmentContext.GetParametersAsJSON");
         }
 
-        public string GetSublocation()
+        public string getSublocation()
         {
             throw new global::System.NotImplementedException("EnvironmentContext.GetSublocation");
         }
 
-        public void SetParametersAsJSON(string param1)
+        public void setParametersAsJSON(string param1)
         {
             throw new global::System.NotImplementedException("EnvironmentContext.SetParametersAsJSON");
         }

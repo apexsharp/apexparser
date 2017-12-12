@@ -7,27 +7,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("InlineImageSegment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("InlineImageSegment.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("InlineImageSegment.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("InlineImageSegment.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("InlineImageSegment.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("InlineImageSegment.ToString");
         }

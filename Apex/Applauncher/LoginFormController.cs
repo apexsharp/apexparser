@@ -2,7 +2,7 @@ namespace Apex.Applauncher
 {
     public class LoginFormController
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LoginFormController.Clone");
         }

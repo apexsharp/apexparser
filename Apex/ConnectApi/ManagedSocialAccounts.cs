@@ -7,27 +7,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("ManagedSocialAccounts");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ManagedSocialAccounts.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ManagedSocialAccounts.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("ManagedSocialAccounts.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ManagedSocialAccounts.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ManagedSocialAccounts.ToString");
         }

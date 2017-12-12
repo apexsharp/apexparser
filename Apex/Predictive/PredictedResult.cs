@@ -4,22 +4,22 @@ namespace Apex.Predictive
 {
     public class PredictedResult
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("PredictedResult.Clone");
         }
 
-        public Map<String, PredictedField> GetPredictedFields()
+        public Map<String, PredictedField> getPredictedFields()
         {
             throw new global::System.NotImplementedException("PredictedResult.GetPredictedFields");
         }
 
-        public List<string> GetWarnings()
+        public List<string> getWarnings()
         {
             throw new global::System.NotImplementedException("PredictedResult.GetWarnings");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("PredictedResult.ToString");
         }

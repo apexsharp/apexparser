@@ -5,27 +5,27 @@ namespace Apex.Schema
 {
     public class RecordTypeInfo
     {
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("RecordTypeInfo.GetName");
         }
 
-        public ID GetRecordTypeId()
+        public ID getRecordTypeId()
         {
             throw new global::System.NotImplementedException("RecordTypeInfo.GetRecordTypeId");
         }
 
-        public bool IsAvailable()
+        public bool isAvailable()
         {
             throw new global::System.NotImplementedException("RecordTypeInfo.IsAvailable");
         }
 
-        public bool IsDefaultRecordTypeMapping()
+        public bool isDefaultRecordTypeMapping()
         {
             throw new global::System.NotImplementedException("RecordTypeInfo.IsDefaultRecordTypeMapping");
         }
 
-        public bool IsMaster()
+        public bool isMaster()
         {
             throw new global::System.NotImplementedException("RecordTypeInfo.IsMaster");
         }

@@ -1,4 +1,4 @@
-﻿using Explicit = NUnit.Framework.ExplicitAttribute;
+using Explicit = NUnit.Framework.ExplicitAttribute;
 
 namespace Apex.ApexSharp.NUnit
 {

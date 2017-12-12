@@ -2,22 +2,22 @@ namespace Apex.Predictive
 {
     public class DoublePredictedField
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DoublePredictedField.Clone");
         }
 
-        public double GetPointEstimate()
+        public double getPointEstimate()
         {
             throw new global::System.NotImplementedException("DoublePredictedField.GetPointEstimate");
         }
 
-        public PredictedFieldType GetType()
+        public PredictedFieldType getType()
         {
             throw new global::System.NotImplementedException("DoublePredictedField.GetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("DoublePredictedField.ToString");
         }

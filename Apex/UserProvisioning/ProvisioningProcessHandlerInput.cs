@@ -8,58 +8,58 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.Clone");
         }
 
-        public string GetNamedCredDevName()
+        public string getNamedCredDevName()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.GetNamedCredDevName");
         }
 
-        public string GetReconFilter()
+        public string getReconFilter()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.GetReconFilter");
         }
 
-        public string GetReconOffset()
+        public string getReconOffset()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.GetReconOffset");
         }
 
-        public string GetUserId()
+        public string getUserId()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.GetUserId");
         }
 
-        public string GetUserProvisioningRequestId()
+        public string getUserProvisioningRequestId()
         {
             throw new global::System.NotImplementedException(
                 "ProvisioningProcessHandlerInput.GetUserProvisioningRequestId");
         }
 
-        public void SetNamedCredDevName(string namedCredDevName)
+        public void setNamedCredDevName(string namedCredDevName)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.SetNamedCredDevName");
         }
 
-        public void SetReconFilter(string reconFilter)
+        public void setReconFilter(string reconFilter)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.SetReconFilter");
         }
 
-        public void SetReconOffset(string reconOffset)
+        public void setReconOffset(string reconOffset)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.SetReconOffset");
         }
 
-        public void SetUserId(string userId)
+        public void setUserId(string userId)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerInput.SetUserId");
         }
 
-        public void SetUserProvisioningRequestId(string userProvisioningRequestId)
+        public void setUserProvisioningRequestId(string userProvisioningRequestId)
         {
             throw new global::System.NotImplementedException(
                 "ProvisioningProcessHandlerInput.SetUserProvisioningRequestId");

@@ -2,27 +2,27 @@ namespace Apex.Reports
 {
     public class ReportDescribeResult
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportDescribeResult.Clone");
         }
 
-        public ReportExtendedMetadata GetReportExtendedMetadata()
+        public ReportExtendedMetadata getReportExtendedMetadata()
         {
             throw new global::System.NotImplementedException("ReportDescribeResult.GetReportExtendedMetadata");
         }
 
-        public ReportMetadata GetReportMetadata()
+        public ReportMetadata getReportMetadata()
         {
             throw new global::System.NotImplementedException("ReportDescribeResult.GetReportMetadata");
         }
 
-        public ReportTypeMetadata GetReportTypeMetadata()
+        public ReportTypeMetadata getReportTypeMetadata()
         {
             throw new global::System.NotImplementedException("ReportDescribeResult.GetReportTypeMetadata");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportDescribeResult.ToString");
         }

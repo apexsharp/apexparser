@@ -2,12 +2,12 @@ namespace Apex.ApexPages
 {
     public class ComponentIteration
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ComponentIteration.Clone");
         }
 
-        public ApexPages.Component GetComponentById(string id)
+        public ApexPages.Component getComponentById(string id)
         {
             throw new global::System.NotImplementedException("ComponentIteration.GetComponentById");
         }

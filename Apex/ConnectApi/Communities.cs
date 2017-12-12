@@ -2,22 +2,22 @@ namespace Apex.ConnectApi
 {
     public class Communities
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Communities.Clone");
         }
 
-        public static CommunityPage GetCommunities()
+        public static CommunityPage getCommunities()
         {
             throw new global::System.NotImplementedException("Communities.GetCommunities");
         }
 
-        public static CommunityPage GetCommunities(CommunityStatus status)
+        public static CommunityPage getCommunities(CommunityStatus status)
         {
             throw new global::System.NotImplementedException("Communities.GetCommunities");
         }
 
-        public static Community GetCommunity(string communityId)
+        public static Community getCommunity(string communityId)
         {
             throw new global::System.NotImplementedException("Communities.GetCommunity");
         }

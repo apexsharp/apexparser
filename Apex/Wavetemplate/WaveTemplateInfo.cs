@@ -4,22 +4,22 @@ namespace Apex.Wavetemplate
 {
     public class WaveTemplateInfo
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("WaveTemplateInfo.Clone");
         }
 
-        public ReleaseInfo GetReleaseInfo()
+        public ReleaseInfo getReleaseInfo()
         {
             throw new global::System.NotImplementedException("WaveTemplateInfo.GetReleaseInfo");
         }
 
-        public UI GetUI()
+        public UI getUI()
         {
             throw new global::System.NotImplementedException("WaveTemplateInfo.GetUI");
         }
 
-        public Map<String, VariableDefinition> GetVariables()
+        public Map<String, VariableDefinition> getVariables()
         {
             throw new global::System.NotImplementedException("WaveTemplateInfo.GetVariables");
         }

@@ -7,27 +7,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("RecordSnapshotAttachment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("RecordSnapshotAttachment.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("RecordSnapshotAttachment.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("RecordSnapshotAttachment.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("RecordSnapshotAttachment.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("RecordSnapshotAttachment.ToString");
         }

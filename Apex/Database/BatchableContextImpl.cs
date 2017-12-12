@@ -5,17 +5,17 @@ namespace Apex.Database
 {
     public class BatchableContextImpl
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BatchableContextImpl.Clone");
         }
 
-        public ID GetChildJobId()
+        public ID getChildJobId()
         {
             throw new global::System.NotImplementedException("BatchableContextImpl.GetChildJobId");
         }
 
-        public ID GetJobId()
+        public ID getJobId()
         {
             throw new global::System.NotImplementedException("BatchableContextImpl.GetJobId");
         }

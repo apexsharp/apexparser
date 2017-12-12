@@ -10,32 +10,32 @@ namespace Apex.QuickAction
             throw new global::System.NotImplementedException("QuickActionRequest");
         }
 
-        public ID GetContextId()
+        public ID getContextId()
         {
             throw new global::System.NotImplementedException("QuickActionRequest.GetContextId");
         }
 
-        public string GetQuickActionName()
+        public string getQuickActionName()
         {
             throw new global::System.NotImplementedException("QuickActionRequest.GetQuickActionName");
         }
 
-        public SObject GetRecord()
+        public SObject getRecord()
         {
             throw new global::System.NotImplementedException("QuickActionRequest.GetRecord");
         }
 
-        public void SetContextId(ID param1)
+        public void setContextId(ID param1)
         {
             throw new global::System.NotImplementedException("QuickActionRequest.SetContextId");
         }
 
-        public void SetQuickActionName(string param1)
+        public void setQuickActionName(string param1)
         {
             throw new global::System.NotImplementedException("QuickActionRequest.SetQuickActionName");
         }
 
-        public void SetRecord(SObject param1)
+        public void setRecord(SObject param1)
         {
             throw new global::System.NotImplementedException("QuickActionRequest.SetRecord");
         }

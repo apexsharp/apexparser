@@ -2,12 +2,12 @@ namespace Apex.Canvas
 {
     public class RenderContext
     {
-        public Canvas.ApplicationContext GetApplicationContext()
+        public Canvas.ApplicationContext getApplicationContext()
         {
             throw new global::System.NotImplementedException("RenderContext.GetApplicationContext");
         }
 
-        public Canvas.EnvironmentContext GetEnvironmentContext()
+        public Canvas.EnvironmentContext getEnvironmentContext()
         {
             throw new global::System.NotImplementedException("RenderContext.GetEnvironmentContext");
         }

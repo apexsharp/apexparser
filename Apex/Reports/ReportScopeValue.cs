@@ -2,27 +2,27 @@ namespace Apex.Reports
 {
     public class ReportScopeValue
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportScopeValue.Clone");
         }
 
-        public bool GetAllowsDivision()
+        public bool getAllowsDivision()
         {
             throw new global::System.NotImplementedException("ReportScopeValue.GetAllowsDivision");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("ReportScopeValue.GetLabel");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("ReportScopeValue.GetValue");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportScopeValue.ToString");
         }

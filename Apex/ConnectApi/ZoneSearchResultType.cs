@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ZoneSearchResultType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ZoneSearchResultType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ZoneSearchResultType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ZoneSearchResultType.Ordinal");
         }
 
-        public static List<ZoneSearchResultType> Values()
+        public static List<ZoneSearchResultType> values()
         {
             throw new global::System.NotImplementedException("ZoneSearchResultType.Values");
         }

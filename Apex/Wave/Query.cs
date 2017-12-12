@@ -7,12 +7,12 @@ namespace Apex.Wave
             throw new global::System.NotImplementedException("Query");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Query.Clone");
         }
 
-        public static string Execute(string saql)
+        public static string execute(string saql)
         {
             throw new global::System.NotImplementedException("Query.Execute");
         }

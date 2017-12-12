@@ -10,42 +10,42 @@ namespace Apex.ApexPages
             throw new global::System.NotImplementedException("StandardController");
         }
 
-        public void AddFields(List<string> fieldNames)
+        public void addFields(List<string> fieldNames)
         {
             throw new global::System.NotImplementedException("StandardController.AddFields");
         }
 
-        public System.PageReference Cancel()
+        public System.PageReference cancel()
         {
             throw new global::System.NotImplementedException("StandardController.Cancel");
         }
 
-        public System.PageReference Delete()
+        public System.PageReference delete()
         {
             throw new global::System.NotImplementedException("StandardController.Delete");
         }
 
-        public System.PageReference Edit()
+        public System.PageReference edit()
         {
             throw new global::System.NotImplementedException("StandardController.Edit");
         }
 
-        public string GetId()
+        public string getId()
         {
             throw new global::System.NotImplementedException("StandardController.GetId");
         }
 
-        public SObject GetRecord()
+        public SObject getRecord()
         {
             throw new global::System.NotImplementedException("StandardController.GetRecord");
         }
 
-        public System.PageReference Save()
+        public System.PageReference save()
         {
             throw new global::System.NotImplementedException("StandardController.Save");
         }
 
-        public System.PageReference View()
+        public System.PageReference view()
         {
             throw new global::System.NotImplementedException("StandardController.View");
         }

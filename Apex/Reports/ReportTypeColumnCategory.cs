@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class ReportTypeColumnCategory
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportTypeColumnCategory.Clone");
         }
 
-        public Map<String, ReportTypeColumn> GetColumns()
+        public Map<String, ReportTypeColumn> getColumns()
         {
             throw new global::System.NotImplementedException("ReportTypeColumnCategory.GetColumns");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("ReportTypeColumnCategory.GetLabel");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportTypeColumnCategory.ToString");
         }

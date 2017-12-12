@@ -24,12 +24,12 @@ namespace Apex.Databinding
             throw new global::System.NotImplementedException("ObjectMappingException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ObjectMappingException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("ObjectMappingException.GetTypeName");
         }

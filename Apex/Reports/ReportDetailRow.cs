@@ -4,17 +4,17 @@ namespace Apex.Reports
 {
     public class ReportDetailRow
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportDetailRow.Clone");
         }
 
-        public List<ReportDataCell> GetDataCells()
+        public List<ReportDataCell> getDataCells()
         {
             throw new global::System.NotImplementedException("ReportDetailRow.GetDataCells");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportDetailRow.ToString");
         }

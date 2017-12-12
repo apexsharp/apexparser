@@ -5,17 +5,17 @@ namespace Apex.Database
 {
     public class QueryLocatorIterator
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("QueryLocatorIterator.Clone");
         }
 
-        public bool HasNext()
+        public bool hasNext()
         {
             throw new global::System.NotImplementedException("QueryLocatorIterator.HasNext");
         }
 
-        public SObject Next()
+        public SObject next()
         {
             throw new global::System.NotImplementedException("QueryLocatorIterator.Next");
         }

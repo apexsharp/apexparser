@@ -7,22 +7,22 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("ScheduledRecommendationInput");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ScheduledRecommendationInput.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ScheduledRecommendationInput.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ScheduledRecommendationInput.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ScheduledRecommendationInput.ToString");
         }

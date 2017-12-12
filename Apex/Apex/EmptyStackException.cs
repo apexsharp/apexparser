@@ -24,12 +24,12 @@ namespace Apex.Apex
             throw new global::System.NotImplementedException("EmptyStackException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("EmptyStackException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("EmptyStackException.GetTypeName");
         }

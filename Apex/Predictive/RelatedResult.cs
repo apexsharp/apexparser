@@ -14,32 +14,32 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("RelatedResult");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("RelatedResult.Clone");
         }
 
-        public List<RelatedField> GetRelatedFields()
+        public List<RelatedField> getRelatedFields()
         {
             throw new global::System.NotImplementedException("RelatedResult.GetRelatedFields");
         }
 
-        public List<string> GetWarnings()
+        public List<string> getWarnings()
         {
             throw new global::System.NotImplementedException("RelatedResult.GetWarnings");
         }
 
-        public void SetRelatedFields(List<RelatedField> relatedFields)
+        public void setRelatedFields(List<RelatedField> relatedFields)
         {
             throw new global::System.NotImplementedException("RelatedResult.SetRelatedFields");
         }
 
-        public void SetWarnings(List<string> warnings)
+        public void setWarnings(List<string> warnings)
         {
             throw new global::System.NotImplementedException("RelatedResult.SetWarnings");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("RelatedResult.ToString");
         }

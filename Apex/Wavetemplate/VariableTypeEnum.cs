@@ -4,22 +4,22 @@ namespace Apex.Wavetemplate
 {
     public class VariableTypeEnum
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("VariableTypeEnum.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("VariableTypeEnum.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("VariableTypeEnum.Ordinal");
         }
 
-        public static List<VariableTypeEnum> Values()
+        public static List<VariableTypeEnum> values()
         {
             throw new global::System.NotImplementedException("VariableTypeEnum.Values");
         }

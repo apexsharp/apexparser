@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class TopicSort
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("TopicSort.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("TopicSort.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("TopicSort.Ordinal");
         }
 
-        public static List<TopicSort> Values()
+        public static List<TopicSort> values()
         {
             throw new global::System.NotImplementedException("TopicSort.Values");
         }

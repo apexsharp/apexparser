@@ -2,7 +2,7 @@ namespace Apex.Workflow
 {
     public class Context
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Context.Clone");
         }

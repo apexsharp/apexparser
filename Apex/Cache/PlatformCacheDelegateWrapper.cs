@@ -2,7 +2,7 @@ namespace Apex.Cache
 {
     public class PlatformCacheDelegateWrapper
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("PlatformCacheDelegateWrapper.Clone");
         }

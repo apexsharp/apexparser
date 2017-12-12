@@ -2,12 +2,12 @@ namespace Apex.QuickAction
 {
     public class DescribeQuickActionDefaultValue
     {
-        public string GetDefaultValue()
+        public string getDefaultValue()
         {
             throw new global::System.NotImplementedException("DescribeQuickActionDefaultValue.GetDefaultValue");
         }
 
-        public string GetField()
+        public string getField()
         {
             throw new global::System.NotImplementedException("DescribeQuickActionDefaultValue.GetField");
         }

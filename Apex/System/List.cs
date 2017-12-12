@@ -27,17 +27,17 @@ namespace Apex.System
             set => list[index] = value;
         }
 
-        public void Add(T item)
+        public void add(T item)
         {
             list.Add(item);
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<T> getEnumerator()
         {
             return list.GetEnumerator();
         }
 
-        public void AddAll(List<T> elements)
+        public void addAll(List<T> elements)
         {
             foreach (var element in elements)
             {
@@ -45,94 +45,94 @@ namespace Apex.System
             }
         }
 
-        public int Size()
+        public int size()
         {
             return list.Count;
         }
 
-        public void Add(int index, object element)
+        public void add(int index, object element)
         {
             throw new global::System.NotImplementedException("List.Add");
         }
 
-        public void AddAll(Set<T> elements)
+        public void addAll(Set<T> elements)
         {
             throw new global::System.NotImplementedException("List.AddAll");
         }
 
-        public void Clear()
+        public void clear()
         {
             list.Clear();
         }
 
-        public List<string> Clone()
+        public List<string> clone()
         {
             throw new global::System.NotImplementedException("List.Clone");
         }
 
-        public List<string> DeepClone()
+        public List<string> deepClone()
         {
             throw new global::System.NotImplementedException("List.DeepClone");
         }
 
-        public List<string> DeepClone(bool preserveId)
+        public List<string> deepClone(bool preserveId)
         {
             throw new global::System.NotImplementedException("List.DeepClone");
         }
 
-        public List<string> DeepClone(bool preserveId, bool preserveReadOnlyTimestamps)
+        public List<string> deepClone(bool preserveId, bool preserveReadOnlyTimestamps)
         {
             throw new global::System.NotImplementedException("List.DeepClone");
         }
 
-        public List<string> DeepClone(bool preserveId, bool preserveReadOnlyTimestamps, bool preserveAutoNumbers)
+        public List<string> deepClone(bool preserveId, bool preserveReadOnlyTimestamps, bool preserveAutoNumbers)
         {
             throw new global::System.NotImplementedException("List.DeepClone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("List.Equals");
         }
 
-        public T Get(int index)
+        public T get(int index)
         {
             return list[index];
         }
 
-        public SObjectType GetSObjectType()
+        public SObjectType getSObjectType()
         {
             throw new global::System.NotImplementedException("List.GetSObjectType");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("List.HashCode");
         }
 
-        public bool IsEmpty()
+        public bool isEmpty()
         {
             return list.Count == 0;
         }
 
-        public Iterable Iterator()
+        public Iterable iterator()
         {
             throw new global::System.NotImplementedException("List.Iterator");
         }
 
-        public T Remove(int index)
+        public T remove(int index)
         {
             var value = list[index];
             list.RemoveAt(index);
             return value;
         }
 
-        public void Set(int index, object value)
+        public void set(int index, object value)
         {
             throw new global::System.NotImplementedException("List.Set");
         }
 
-        public void Sort()
+        public void sort()
         {
             list.Sort();
         }

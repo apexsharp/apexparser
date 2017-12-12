@@ -4,32 +4,32 @@ namespace Apex.QuickAction
 {
     public class DescribeLayoutItem
     {
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("DescribeLayoutItem.GetLabel");
         }
 
-        public List<DescribeLayoutComponent> GetLayoutComponents()
+        public List<DescribeLayoutComponent> getLayoutComponents()
         {
             throw new global::System.NotImplementedException("DescribeLayoutItem.GetLayoutComponents");
         }
 
-        public bool IsEditableForNew()
+        public bool isEditableForNew()
         {
             throw new global::System.NotImplementedException("DescribeLayoutItem.IsEditableForNew");
         }
 
-        public bool IsEditableForUpdate()
+        public bool isEditableForUpdate()
         {
             throw new global::System.NotImplementedException("DescribeLayoutItem.IsEditableForUpdate");
         }
 
-        public bool IsPlaceholder()
+        public bool isPlaceholder()
         {
             throw new global::System.NotImplementedException("DescribeLayoutItem.IsPlaceholder");
         }
 
-        public bool IsRequired()
+        public bool isRequired()
         {
             throw new global::System.NotImplementedException("DescribeLayoutItem.IsRequired");
         }

@@ -1,5 +1,3 @@
-
-
 namespace Apex.Apex
 {
     public class Stack<T>
@@ -11,23 +9,23 @@ namespace Apex.Apex
             _Stack = new global::System.Collections.Generic.Stack<T>();
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Stack.Clone");
         }
 
-        public bool Empty()
+        public bool empty()
         {
             _Stack.Clear();
             return true;
         }
 
-        public T Peek()
+        public T peek()
         {
             return _Stack.Peek();
         }
 
-        public T Pop()
+        public T pop()
         {
             if (_Stack.Count == 0) throw new EmptyStackException();
             else
@@ -36,7 +34,7 @@ namespace Apex.Apex
             }
         }
 
-        public void Push(T item)
+        public void push(T item)
         {
             _Stack.Push(item);
         }

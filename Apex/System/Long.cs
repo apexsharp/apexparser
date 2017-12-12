@@ -2,37 +2,37 @@ namespace Apex.System
 {
     public class Long
     {
-        public void AddError(object msg)
+        public void addError(object msg)
         {
             throw new global::System.NotImplementedException("Long.AddError");
         }
 
-        public void AddError(object msg, bool escape)
+        public void addError(object msg, bool escape)
         {
             throw new global::System.NotImplementedException("Long.AddError");
         }
 
-        public void AddError(string msg)
+        public void addError(string msg)
         {
             throw new global::System.NotImplementedException("Long.AddError");
         }
 
-        public void AddError(string msg, bool escape)
+        public void addError(string msg, bool escape)
         {
             throw new global::System.NotImplementedException("Long.AddError");
         }
 
-        public string Format()
+        public string format()
         {
             throw new global::System.NotImplementedException("Long.Format");
         }
 
-        public int IntValue()
+        public int intValue()
         {
             throw new global::System.NotImplementedException("Long.IntValue");
         }
 
-        public static long ValueOf(string str)
+        public static long valueOf(string str)
         {
             throw new global::System.NotImplementedException("Long.ValueOf");
         }

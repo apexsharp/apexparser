@@ -22,12 +22,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("UnsupportedOperationException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("UnsupportedOperationException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("UnsupportedOperationException.GetTypeName");
         }

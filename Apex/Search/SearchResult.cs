@@ -5,22 +5,22 @@ namespace Apex.Search
 {
     public class SearchResult
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SearchResult.Clone");
         }
 
-        public SObject GetSObject()
+        public SObject getSObject()
         {
             throw new global::System.NotImplementedException("SearchResult.GetSObject");
         }
 
-        public string GetSnippet()
+        public string getSnippet()
         {
             throw new global::System.NotImplementedException("SearchResult.GetSnippet");
         }
 
-        public string GetSnippet(string field)
+        public string getSnippet(string field)
         {
             throw new global::System.NotImplementedException("SearchResult.GetSnippet");
         }

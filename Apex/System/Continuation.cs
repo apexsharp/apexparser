@@ -7,27 +7,27 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Continuation");
         }
 
-        public string AddHttpRequest(HttpRequest request)
+        public string addHttpRequest(HttpRequest request)
         {
             throw new global::System.NotImplementedException("Continuation.AddHttpRequest");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Continuation.Clone");
         }
 
-        public Map<String, HttpRequest> GetRequests()
+        public Map<String, HttpRequest> getRequests()
         {
             throw new global::System.NotImplementedException("Continuation.GetRequests");
         }
 
-        public static HttpResponse GetResponse(string label)
+        public static HttpResponse getResponse(string label)
         {
             throw new global::System.NotImplementedException("Continuation.GetResponse");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("Continuation.ToString");
         }

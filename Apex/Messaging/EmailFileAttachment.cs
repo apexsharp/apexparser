@@ -9,42 +9,42 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("EmailFileAttachment");
         }
 
-        public Blob GetBody()
+        public Blob getBody()
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.GetBody");
         }
 
-        public string GetContentType()
+        public string getContentType()
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.GetContentType");
         }
 
-        public string GetFileName()
+        public string getFileName()
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.GetFileName");
         }
 
-        public bool GetInline()
+        public bool getInline()
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.GetInline");
         }
 
-        public void SetBody(Blob param1)
+        public void setBody(Blob param1)
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.SetBody");
         }
 
-        public void SetContentType(string param1)
+        public void setContentType(string param1)
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.SetContentType");
         }
 
-        public void SetFileName(string param1)
+        public void setFileName(string param1)
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.SetFileName");
         }
 
-        public void SetInline(bool param1)
+        public void setInline(bool param1)
         {
             throw new global::System.NotImplementedException("EmailFileAttachment.SetInline");
         }

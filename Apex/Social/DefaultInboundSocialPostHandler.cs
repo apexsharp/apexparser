@@ -4,18 +4,18 @@ namespace Apex.Social
 {
     public class DefaultInboundSocialPostHandler
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DefaultInboundSocialPostHandler.Clone");
         }
 
         //public SObject CreatePersonaParent(SocialPersona persona){throw new global::System.NotImplementedException("DefaultInboundSocialPostHandler.CreatePersonaParent");}
-        public string GetDefaultAccountId()
+        public string getDefaultAccountId()
         {
             throw new global::System.NotImplementedException("DefaultInboundSocialPostHandler.GetDefaultAccountId");
         }
 
-        public int GetMaxNumberOfDaysClosedToReopenCase()
+        public int getMaxNumberOfDaysClosedToReopenCase()
         {
             throw new global::System.NotImplementedException(
                 "DefaultInboundSocialPostHandler.GetMaxNumberOfDaysClosedToReopenCase");
@@ -23,7 +23,7 @@ namespace Apex.Social
 
         //public string GetPersonaFirstName(SocialPersona persona){throw new global::System.NotImplementedException("DefaultInboundSocialPostHandler.GetPersonaFirstName");}
         //public string GetPersonaLastName(SocialPersona persona){throw new global::System.NotImplementedException("DefaultInboundSocialPostHandler.GetPersonaLastName");}
-        public Set<String> GetPostTagsThatCreateCase()
+        public Set<String> getPostTagsThatCreateCase()
         {
             throw new global::System.NotImplementedException(
                 "DefaultInboundSocialPostHandler.GetPostTagsThatCreateCase");

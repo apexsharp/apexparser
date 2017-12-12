@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class CsfGroupType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("CsfGroupType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("CsfGroupType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("CsfGroupType.Ordinal");
         }
 
-        public static List<CsfGroupType> Values()
+        public static List<CsfGroupType> values()
         {
             throw new global::System.NotImplementedException("CsfGroupType.Values");
         }

@@ -4,22 +4,22 @@ namespace Apex.Predictive
 {
     public class DatePredictedField
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DatePredictedField.Clone");
         }
 
-        public Date GetPointEstimate()
+        public Date getPointEstimate()
         {
             throw new global::System.NotImplementedException("DatePredictedField.GetPointEstimate");
         }
 
-        public PredictedFieldType GetType()
+        public PredictedFieldType getType()
         {
             throw new global::System.NotImplementedException("DatePredictedField.GetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("DatePredictedField.ToString");
         }

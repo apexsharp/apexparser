@@ -7,17 +7,17 @@ namespace Apex.Social
             throw new global::System.NotImplementedException("InboundSocialPostResult");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("InboundSocialPostResult.Clone");
         }
 
-        public void SetMessage(string message)
+        public void setMessage(string message)
         {
             throw new global::System.NotImplementedException("InboundSocialPostResult.SetMessage");
         }
 
-        public void SetSuccess(bool success)
+        public void setSuccess(bool success)
         {
             throw new global::System.NotImplementedException("InboundSocialPostResult.SetSuccess");
         }

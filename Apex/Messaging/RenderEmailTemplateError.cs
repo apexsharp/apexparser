@@ -7,22 +7,22 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("RenderEmailTemplateError");
         }
 
-        public string GetFieldName()
+        public string getFieldName()
         {
             throw new global::System.NotImplementedException("RenderEmailTemplateError.GetFieldName");
         }
 
-        public string GetMessage()
+        public string getMessage()
         {
             throw new global::System.NotImplementedException("RenderEmailTemplateError.GetMessage");
         }
 
-        public int GetOffset()
+        public int getOffset()
         {
             throw new global::System.NotImplementedException("RenderEmailTemplateError.GetOffset");
         }
 
-        public System.StatusCode GetStatusCode()
+        public System.StatusCode getStatusCode()
         {
             throw new global::System.NotImplementedException("RenderEmailTemplateError.GetStatusCode");
         }

@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class BannerStyle
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("BannerStyle.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("BannerStyle.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("BannerStyle.Ordinal");
         }
 
-        public static List<BannerStyle> Values()
+        public static List<BannerStyle> values()
         {
             throw new global::System.NotImplementedException("BannerStyle.Values");
         }

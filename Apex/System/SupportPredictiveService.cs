@@ -9,12 +9,12 @@ namespace Apex.System
             throw new global::System.NotImplementedException("SupportPredictiveService");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SupportPredictiveService.Clone");
         }
 
-        public static List<ID> FindSimilarCases(string caseId)
+        public static List<ID> findSimilarCases(string caseId)
         {
             throw new global::System.NotImplementedException("SupportPredictiveService.FindSimilarCases");
         }

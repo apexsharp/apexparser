@@ -4,23 +4,23 @@ namespace Apex.Reports
 {
     public class StandardDateFilterDurationGroup
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDurationGroup.Clone");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDurationGroup.GetLabel");
         }
 
-        public List<StandardDateFilterDuration> GetStandardDateFilterDurations()
+        public List<StandardDateFilterDuration> getStandardDateFilterDurations()
         {
             throw new global::System.NotImplementedException(
                 "StandardDateFilterDurationGroup.GetStandardDateFilterDurations");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDurationGroup.ToString");
         }

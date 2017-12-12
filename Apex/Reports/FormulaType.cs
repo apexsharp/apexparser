@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class FormulaType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FormulaType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FormulaType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FormulaType.Ordinal");
         }
 
-        public static List<FormulaType> Values()
+        public static List<FormulaType> values()
         {
             throw new global::System.NotImplementedException("FormulaType.Values");
         }

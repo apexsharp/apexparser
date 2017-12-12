@@ -10,22 +10,22 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("MergeRequest");
         }
 
-        public SObject GetMasterRecord()
+        public SObject getMasterRecord()
         {
             throw new global::System.NotImplementedException("MergeRequest.GetMasterRecord");
         }
 
-        public List<string> GetRecordToMergeIds()
+        public List<string> getRecordToMergeIds()
         {
             throw new global::System.NotImplementedException("MergeRequest.GetRecordToMergeIds");
         }
 
-        public void SetMasterRecord(SObject param1)
+        public void setMasterRecord(SObject param1)
         {
             throw new global::System.NotImplementedException("MergeRequest.SetMasterRecord");
         }
 
-        public void SetRecordToMergeIds(List<string> param1)
+        public void setRecordToMergeIds(List<string> param1)
         {
             throw new global::System.NotImplementedException("MergeRequest.SetRecordToMergeIds");
         }

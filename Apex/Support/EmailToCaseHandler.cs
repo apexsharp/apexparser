@@ -7,7 +7,7 @@ namespace Apex.Support
             throw new global::System.NotImplementedException("EmailToCaseHandler");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("EmailToCaseHandler.Clone");
         }

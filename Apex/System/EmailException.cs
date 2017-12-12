@@ -22,73 +22,73 @@ namespace Apex.System
             throw new global::System.NotImplementedException("EmailException");
         }
 
-        public Exception GetCause()
+        public Exception getCause()
         {
             throw new global::System.NotImplementedException("EmailException.GetCause");
         }
 
-        public List<string> GetDmlFieldNames(int index)
+        public List<string> getDmlFieldNames(int index)
         {
             throw new global::System.NotImplementedException("EmailException.GetDmlFieldNames");
         }
 
         //public List<Schema.SObjectField> GetDmlFields(int index){throw new global::System.NotImplementedException("EmailException.GetDmlFields");}
-        public string GetDmlId(int index)
+        public string getDmlId(int index)
         {
             throw new global::System.NotImplementedException("EmailException.GetDmlId");
         }
 
-        public int GetDmlIndex(int index)
+        public int getDmlIndex(int index)
         {
             throw new global::System.NotImplementedException("EmailException.GetDmlIndex");
         }
 
-        public string GetDmlMessage(int index)
+        public string getDmlMessage(int index)
         {
             throw new global::System.NotImplementedException("EmailException.GetDmlMessage");
         }
 
-        public string GetDmlStatusCode(int index)
+        public string getDmlStatusCode(int index)
         {
             throw new global::System.NotImplementedException("EmailException.GetDmlStatusCode");
         }
 
-        public StatusCode GetDmlType(int index)
+        public StatusCode getDmlType(int index)
         {
             throw new global::System.NotImplementedException("EmailException.GetDmlType");
         }
 
-        public int GetLineNumber()
+        public int getLineNumber()
         {
             throw new global::System.NotImplementedException("EmailException.GetLineNumber");
         }
 
-        public string GetMessage()
+        public string getMessage()
         {
             throw new global::System.NotImplementedException("EmailException.GetMessage");
         }
 
-        public int GetNumDml()
+        public int getNumDml()
         {
             throw new global::System.NotImplementedException("EmailException.GetNumDml");
         }
 
-        public string GetStackTraceString()
+        public string getStackTraceString()
         {
             throw new global::System.NotImplementedException("EmailException.GetStackTraceString");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("EmailException.GetTypeName");
         }
 
-        public void InitCause(Exception cause)
+        public void initCause(Exception cause)
         {
             throw new global::System.NotImplementedException("EmailException.InitCause");
         }
 
-        public void SetMessage(string message)
+        public void setMessage(string message)
         {
             throw new global::System.NotImplementedException("EmailException.SetMessage");
         }

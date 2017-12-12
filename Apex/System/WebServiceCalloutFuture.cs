@@ -7,7 +7,7 @@ namespace Apex.System
             throw new global::System.NotImplementedException("WebServiceCalloutFuture");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("WebServiceCalloutFuture.Clone");
         }

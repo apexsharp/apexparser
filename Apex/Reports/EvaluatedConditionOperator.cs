@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class EvaluatedConditionOperator
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("EvaluatedConditionOperator.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("EvaluatedConditionOperator.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("EvaluatedConditionOperator.Ordinal");
         }
 
-        public static List<EvaluatedConditionOperator> Values()
+        public static List<EvaluatedConditionOperator> values()
         {
             throw new global::System.NotImplementedException("EvaluatedConditionOperator.Values");
         }

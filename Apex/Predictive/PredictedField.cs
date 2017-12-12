@@ -2,7 +2,7 @@ namespace Apex.Predictive
 {
     public class PredictedField
     {
-        public PredictedFieldType GetType()
+        public PredictedFieldType getType()
         {
             throw new global::System.NotImplementedException("PredictedField.GetType");
         }

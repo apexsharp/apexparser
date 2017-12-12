@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class GroupMembershipRequestStatus
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("GroupMembershipRequestStatus.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("GroupMembershipRequestStatus.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("GroupMembershipRequestStatus.Ordinal");
         }
 
-        public static List<GroupMembershipRequestStatus> Values()
+        public static List<GroupMembershipRequestStatus> values()
         {
             throw new global::System.NotImplementedException("GroupMembershipRequestStatus.Values");
         }

@@ -5,22 +5,22 @@ namespace Apex.Database
 {
     public class UpsertResult
     {
-        public List<Database.Error> GetErrors()
+        public List<Database.Error> getErrors()
         {
             throw new global::System.NotImplementedException("UpsertResult.GetErrors");
         }
 
-        public ID GetId()
+        public ID getId()
         {
             throw new global::System.NotImplementedException("UpsertResult.GetId");
         }
 
-        public bool IsCreated()
+        public bool isCreated()
         {
             throw new global::System.NotImplementedException("UpsertResult.IsCreated");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("UpsertResult.IsSuccess");
         }

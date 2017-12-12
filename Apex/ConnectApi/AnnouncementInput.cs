@@ -7,22 +7,22 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("AnnouncementInput");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AnnouncementInput.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("AnnouncementInput.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("AnnouncementInput.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("AnnouncementInput.ToString");
         }

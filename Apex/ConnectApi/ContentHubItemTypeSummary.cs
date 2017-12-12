@@ -7,27 +7,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("ContentHubItemTypeSummary");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ContentHubItemTypeSummary.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ContentHubItemTypeSummary.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("ContentHubItemTypeSummary.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ContentHubItemTypeSummary.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ContentHubItemTypeSummary.ToString");
         }

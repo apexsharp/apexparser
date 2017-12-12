@@ -4,32 +4,32 @@ namespace Apex.Reports
 {
     public class StandardFilterInfoPicklist
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("StandardFilterInfoPicklist.Clone");
         }
 
-        public string GetDefaultValue()
+        public string getDefaultValue()
         {
             throw new global::System.NotImplementedException("StandardFilterInfoPicklist.GetDefaultValue");
         }
 
-        public List<FilterValue> GetFilterValues()
+        public List<FilterValue> getFilterValues()
         {
             throw new global::System.NotImplementedException("StandardFilterInfoPicklist.GetFilterValues");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("StandardFilterInfoPicklist.GetLabel");
         }
 
-        public StandardFilterType GetType()
+        public StandardFilterType getType()
         {
             throw new global::System.NotImplementedException("StandardFilterInfoPicklist.GetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("StandardFilterInfoPicklist.ToString");
         }

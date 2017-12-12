@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class RecommendedObjectType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("RecommendedObjectType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("RecommendedObjectType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("RecommendedObjectType.Ordinal");
         }
 
-        public static List<RecommendedObjectType> Values()
+        public static List<RecommendedObjectType> values()
         {
             throw new global::System.NotImplementedException("RecommendedObjectType.Values");
         }

@@ -10,69 +10,69 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("ProvisioningBatchable");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.Clone");
         }
 
         //public void Execute(Database.BatchableContext BC,List<UserProvisioningRequest> scope){throw new global::System.NotImplementedException("ProvisioningBatchable.Execute");}
-        public void Finish(Database.BatchableContext BC)
+        public void finish(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.Finish");
         }
 
-        public Map<String, object> FlowInputPreprocessing(Map<String, object> myMap)
+        public Map<String, object> flowInputPreprocessing(Map<String, object> myMap)
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.FlowInputPreprocessing");
         }
 
-        public void FlowPostProcessing(UserProvisioning.ProvisioningProcessHandlerOutput provOutput, SObject thisUPR)
+        public void flowPostProcessing(UserProvisioning.ProvisioningProcessHandlerOutput provOutput, SObject thisUPR)
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.FlowPostProcessing");
         }
 
-        public string GetEventPrefix()
+        public string getEventPrefix()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.GetEventPrefix");
         }
 
-        public string GetFlowName()
+        public string getFlowName()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.GetFlowName");
         }
 
-        public string GetFlowNamespace()
+        public string getFlowNamespace()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.GetFlowNamespace");
         }
 
-        public List<SObject> GetPerBatchUPL()
+        public List<SObject> getPerBatchUPL()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.GetPerBatchUPL");
         }
 
         //public List<UserProvisioningRequest> GetPerBatchUPR(){throw new global::System.NotImplementedException("ProvisioningBatchable.GetPerBatchUPR");}
-        public Map<ID, SObject> GetUprToNewUplMap()
+        public Map<ID, SObject> getUprToNewUplMap()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.GetUprToNewUplMap");
         }
 
-        public bool HasFlow()
+        public bool hasFlow()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.HasFlow");
         }
 
-        public bool HasFlowOrApex()
+        public bool hasFlowOrApex()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.HasFlowOrApex");
         }
 
-        public void PostBatchProcessing()
+        public void postBatchProcessing()
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.PostBatchProcessing");
         }
 
-        public Database.QueryLocator Start(Database.BatchableContext BC)
+        public Database.QueryLocator start(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("ProvisioningBatchable.Start");
         }

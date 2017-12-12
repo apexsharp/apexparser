@@ -2,22 +2,22 @@ namespace Apex.System
 {
     public class Blob
     {
-        public int Size()
+        public int size()
         {
             throw new global::System.NotImplementedException("Blob.Size");
         }
 
-        public static Blob ToPdf(string o)
+        public static Blob toPdf(string o)
         {
             throw new global::System.NotImplementedException("Blob.ToPdf");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("Blob.ToString");
         }
 
-        public static Blob ValueOf(string o)
+        public static Blob valueOf(string o)
         {
             return new Blob();
         }

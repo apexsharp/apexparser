@@ -2,47 +2,47 @@ namespace Apex.QuickAction
 {
     public class VisualforcePage
     {
-        public int GetDisplayLines()
+        public int getDisplayLines()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetDisplayLines");
         }
 
-        public bool GetShowLabel()
+        public bool getShowLabel()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetShowLabel");
         }
 
-        public bool GetShowScrollbars()
+        public bool getShowScrollbars()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetShowScrollbars");
         }
 
-        public string GetSuggestedHeight()
+        public string getSuggestedHeight()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetSuggestedHeight");
         }
 
-        public string GetSuggestedWidth()
+        public string getSuggestedWidth()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetSuggestedWidth");
         }
 
-        public int GetTabOrder()
+        public int getTabOrder()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetTabOrder");
         }
 
-        public string GetType()
+        public string getType()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetType");
         }
 
-        public string GetUrl()
+        public string getUrl()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetUrl");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("VisualforcePage.GetValue");
         }

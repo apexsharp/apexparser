@@ -7,27 +7,27 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("FlowProvisionBase");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("FlowProvisionBase.Clone");
         }
 
-        public string GetFlowName()
+        public string getFlowName()
         {
             throw new global::System.NotImplementedException("FlowProvisionBase.GetFlowName");
         }
 
-        public string GetFlowNamespace()
+        public string getFlowNamespace()
         {
             throw new global::System.NotImplementedException("FlowProvisionBase.GetFlowNamespace");
         }
 
-        public bool HasFlow()
+        public bool hasFlow()
         {
             throw new global::System.NotImplementedException("FlowProvisionBase.HasFlow");
         }
 
-        public bool HasFlowOrApex()
+        public bool hasFlowOrApex()
         {
             throw new global::System.NotImplementedException("FlowProvisionBase.HasFlowOrApex");
         }

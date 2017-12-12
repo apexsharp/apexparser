@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class GroupArchiveStatus
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("GroupArchiveStatus.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("GroupArchiveStatus.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("GroupArchiveStatus.Ordinal");
         }
 
-        public static List<GroupArchiveStatus> Values()
+        public static List<GroupArchiveStatus> values()
         {
             throw new global::System.NotImplementedException("GroupArchiveStatus.Values");
         }

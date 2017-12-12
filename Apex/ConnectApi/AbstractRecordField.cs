@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class AbstractRecordField
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AbstractRecordField.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("AbstractRecordField.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("AbstractRecordField.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("AbstractRecordField.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("AbstractRecordField.ToString");
         }

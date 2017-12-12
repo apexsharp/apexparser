@@ -7,7 +7,7 @@ namespace Apex.Networkspulse
             throw new global::System.NotImplementedException("PulseApexActionsUtil");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("PulseApexActionsUtil.Clone");
         }

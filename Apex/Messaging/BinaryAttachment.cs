@@ -7,7 +7,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("BinaryAttachment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BinaryAttachment.Clone");
         }

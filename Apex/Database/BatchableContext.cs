@@ -5,12 +5,12 @@ namespace Apex.Database
 {
     public class BatchableContext
     {
-        public ID GetChildJobId()
+        public ID getChildJobId()
         {
             throw new global::System.NotImplementedException("BatchableContext.GetChildJobId");
         }
 
-        public ID GetJobId()
+        public ID getJobId()
         {
             throw new global::System.NotImplementedException("BatchableContext.GetJobId");
         }

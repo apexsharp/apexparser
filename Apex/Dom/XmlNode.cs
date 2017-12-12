@@ -4,127 +4,127 @@ namespace Apex.Dom
 {
     public class XmlNode
     {
-        public XmlNode AddChildElement(string name, string namespaceApex, string prefix)
+        public XmlNode addChildElement(string name, string namespaceApex, string prefix)
         {
             throw new global::System.NotImplementedException("XmlNode.AddChildElement");
         }
 
-        public XmlNode AddCommentNode(string text)
+        public XmlNode addCommentNode(string text)
         {
             throw new global::System.NotImplementedException("XmlNode.AddCommentNode");
         }
 
-        public XmlNode AddTextNode(string text)
+        public XmlNode addTextNode(string text)
         {
             throw new global::System.NotImplementedException("XmlNode.AddTextNode");
         }
 
-        public string GetAttribute(string key, string keyNamespace)
+        public string getAttribute(string key, string keyNamespace)
         {
             throw new global::System.NotImplementedException("XmlNode.GetAttribute");
         }
 
-        public int GetAttributeCount()
+        public int getAttributeCount()
         {
             throw new global::System.NotImplementedException("XmlNode.GetAttributeCount");
         }
 
-        public string GetAttributeKeyAt(int index)
+        public string getAttributeKeyAt(int index)
         {
             throw new global::System.NotImplementedException("XmlNode.GetAttributeKeyAt");
         }
 
-        public string GetAttributeKeyNsAt(int index)
+        public string getAttributeKeyNsAt(int index)
         {
             throw new global::System.NotImplementedException("XmlNode.GetAttributeKeyNsAt");
         }
 
-        public string GetAttributeValue(string key, string keyNamespace)
+        public string getAttributeValue(string key, string keyNamespace)
         {
             throw new global::System.NotImplementedException("XmlNode.GetAttributeValue");
         }
 
-        public string GetAttributeValueNs(string key, string keyNamespace)
+        public string getAttributeValueNs(string key, string keyNamespace)
         {
             throw new global::System.NotImplementedException("XmlNode.GetAttributeValueNs");
         }
 
-        public XmlNode GetChildElement(string name, string namespaceApex)
+        public XmlNode getChildElement(string name, string namespaceApex)
         {
             throw new global::System.NotImplementedException("XmlNode.GetChildElement");
         }
 
-        public List<XmlNode> GetChildElements()
+        public List<XmlNode> getChildElements()
         {
             throw new global::System.NotImplementedException("XmlNode.GetChildElements");
         }
 
-        public List<XmlNode> GetChildren()
+        public List<XmlNode> getChildren()
         {
             throw new global::System.NotImplementedException("XmlNode.GetChildren");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("XmlNode.GetName");
         }
 
-        public string GetNamespace()
+        public string getNamespace()
         {
             throw new global::System.NotImplementedException("XmlNode.GetNamespace");
         }
 
-        public string GetNamespaceFor(string prefix)
+        public string getNamespaceFor(string prefix)
         {
             throw new global::System.NotImplementedException("XmlNode.GetNamespaceFor");
         }
 
-        public Dom.XmlNodeType GetNodeType()
+        public Dom.XmlNodeType getNodeType()
         {
             throw new global::System.NotImplementedException("XmlNode.GetNodeType");
         }
 
-        public XmlNode GetParent()
+        public XmlNode getParent()
         {
             throw new global::System.NotImplementedException("XmlNode.GetParent");
         }
 
-        public string GetPrefixFor(string namespaceApex)
+        public string getPrefixFor(string namespaceApex)
         {
             throw new global::System.NotImplementedException("XmlNode.GetPrefixFor");
         }
 
-        public string GetText()
+        public string getText()
         {
             throw new global::System.NotImplementedException("XmlNode.GetText");
         }
 
-        public XmlNode InsertBefore(object newChild, object refChild)
+        public XmlNode insertBefore(object newChild, object refChild)
         {
             throw new global::System.NotImplementedException("XmlNode.InsertBefore");
         }
 
-        public bool RemoveAttribute(string key, string keyNamespace)
+        public bool removeAttribute(string key, string keyNamespace)
         {
             throw new global::System.NotImplementedException("XmlNode.RemoveAttribute");
         }
 
-        public bool RemoveChild(object child)
+        public bool removeChild(object child)
         {
             throw new global::System.NotImplementedException("XmlNode.RemoveChild");
         }
 
-        public void SetAttribute(string key, string value)
+        public void setAttribute(string key, string value)
         {
             throw new global::System.NotImplementedException("XmlNode.SetAttribute");
         }
 
-        public void SetAttributeNs(string key, string value, string keyNamespace, string valueNamespace)
+        public void setAttributeNs(string key, string value, string keyNamespace, string valueNamespace)
         {
             throw new global::System.NotImplementedException("XmlNode.SetAttributeNs");
         }
 
-        public void SetNamespace(string prefix, string namespaceApex)
+        public void setNamespace(string prefix, string namespaceApex)
         {
             throw new global::System.NotImplementedException("XmlNode.SetNamespace");
         }

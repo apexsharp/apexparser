@@ -7,72 +7,72 @@ namespace Apex.System
             throw new global::System.NotImplementedException("HttpResponse");
         }
 
-        public string GetBody()
+        public string getBody()
         {
             throw new global::System.NotImplementedException("HttpResponse.GetBody");
         }
 
-        public Blob GetBodyAsBlob()
+        public Blob getBodyAsBlob()
         {
             throw new global::System.NotImplementedException("HttpResponse.GetBodyAsBlob");
         }
 
-        public Dom.Document GetBodyDocument()
+        public Dom.Document getBodyDocument()
         {
             throw new global::System.NotImplementedException("HttpResponse.GetBodyDocument");
         }
 
-        public string GetHeader(string key)
+        public string getHeader(string key)
         {
             throw new global::System.NotImplementedException("HttpResponse.GetHeader");
         }
 
-        public List<string> GetHeaderKeys()
+        public List<string> getHeaderKeys()
         {
             throw new global::System.NotImplementedException("HttpResponse.GetHeaderKeys");
         }
 
-        public string GetStatus()
+        public string getStatus()
         {
             throw new global::System.NotImplementedException("HttpResponse.GetStatus");
         }
 
-        public int GetStatusCode()
+        public int getStatusCode()
         {
             throw new global::System.NotImplementedException("HttpResponse.GetStatusCode");
         }
 
-        public XmlStreamReader GetXmlStreamReader()
+        public XmlStreamReader getXmlStreamReader()
         {
             throw new global::System.NotImplementedException("HttpResponse.GetXmlStreamReader");
         }
 
-        public void SetBody(string body)
+        public void setBody(string body)
         {
             throw new global::System.NotImplementedException("HttpResponse.SetBody");
         }
 
-        public void SetBodyAsBlob(Blob body)
+        public void setBodyAsBlob(Blob body)
         {
             throw new global::System.NotImplementedException("HttpResponse.SetBodyAsBlob");
         }
 
-        public void SetHeader(string key, string value)
+        public void setHeader(string key, string value)
         {
             throw new global::System.NotImplementedException("HttpResponse.SetHeader");
         }
 
-        public void SetStatus(string status)
+        public void setStatus(string status)
         {
             throw new global::System.NotImplementedException("HttpResponse.SetStatus");
         }
 
-        public void SetStatusCode(int statusCode)
+        public void setStatusCode(int statusCode)
         {
             throw new global::System.NotImplementedException("HttpResponse.SetStatusCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("HttpResponse.ToString");
         }

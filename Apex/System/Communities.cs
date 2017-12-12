@@ -7,37 +7,37 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Communities");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Communities.Clone");
         }
 
-        public static PageReference CommunitiesLanding()
+        public static PageReference communitiesLanding()
         {
             throw new global::System.NotImplementedException("Communities.CommunitiesLanding");
         }
 
-        public static PageReference CommunitiesLanding(string startUrl)
+        public static PageReference communitiesLanding(string startUrl)
         {
             throw new global::System.NotImplementedException("Communities.CommunitiesLanding");
         }
 
-        public static PageReference ForwardToAuthPage(string startUrl)
+        public static PageReference forwardToAuthPage(string startUrl)
         {
             throw new global::System.NotImplementedException("Communities.ForwardToAuthPage");
         }
 
-        public static string GetCSS()
+        public static string getCSS()
         {
             throw new global::System.NotImplementedException("Communities.GetCSS");
         }
 
-        public static PageReference InternalLogin(string startUrl)
+        public static PageReference internalLogin(string startUrl)
         {
             throw new global::System.NotImplementedException("Communities.InternalLogin");
         }
 
-        public static PageReference Login(string username, string password, string startUrl)
+        public static PageReference login(string username, string password, string startUrl)
         {
             throw new global::System.NotImplementedException("Communities.Login");
         }

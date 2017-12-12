@@ -2,22 +2,22 @@ namespace Apex.Wavetemplate
 {
     public class Variable
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Variable.Clone");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("Variable.GetName");
         }
 
-        public string GetVisibility()
+        public string getVisibility()
         {
             throw new global::System.NotImplementedException("Variable.GetVisibility");
         }
 
-        public void SetVisibility(VisibilityEnum visibility)
+        public void setVisibility(VisibilityEnum visibility)
         {
             throw new global::System.NotImplementedException("Variable.SetVisibility");
         }

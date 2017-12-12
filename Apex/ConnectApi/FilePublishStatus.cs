@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class FilePublishStatus
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FilePublishStatus.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FilePublishStatus.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FilePublishStatus.Ordinal");
         }
 
-        public static List<FilePublishStatus> Values()
+        public static List<FilePublishStatus> values()
         {
             throw new global::System.NotImplementedException("FilePublishStatus.Values");
         }

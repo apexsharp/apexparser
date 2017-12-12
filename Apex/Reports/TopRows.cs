@@ -12,37 +12,37 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("TopRows");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("TopRows.Clone");
         }
 
-        public ColumnSortOrder GetDirection()
+        public ColumnSortOrder getDirection()
         {
             throw new global::System.NotImplementedException("TopRows.GetDirection");
         }
 
-        public int GetRowLimit()
+        public int getRowLimit()
         {
             throw new global::System.NotImplementedException("TopRows.GetRowLimit");
         }
 
-        public void SetDirection(string value)
+        public void setDirection(string value)
         {
             throw new global::System.NotImplementedException("TopRows.SetDirection");
         }
 
-        public void SetDirection(ColumnSortOrder direction)
+        public void setDirection(ColumnSortOrder direction)
         {
             throw new global::System.NotImplementedException("TopRows.SetDirection");
         }
 
-        public void SetRowLimit(int rowLimit)
+        public void setRowLimit(int rowLimit)
         {
             throw new global::System.NotImplementedException("TopRows.SetRowLimit");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("TopRows.ToString");
         }

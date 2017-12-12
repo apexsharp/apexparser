@@ -13,62 +13,62 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("GroupingInfo");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("GroupingInfo.Clone");
         }
 
-        public DateGranularity GetDateGranularity()
+        public DateGranularity getDateGranularity()
         {
             throw new global::System.NotImplementedException("GroupingInfo.GetDateGranularity");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("GroupingInfo.GetName");
         }
 
-        public string GetSortAggregate()
+        public string getSortAggregate()
         {
             throw new global::System.NotImplementedException("GroupingInfo.GetSortAggregate");
         }
 
-        public ColumnSortOrder GetSortOrder()
+        public ColumnSortOrder getSortOrder()
         {
             throw new global::System.NotImplementedException("GroupingInfo.GetSortOrder");
         }
 
-        public void SetDateGranularity(string value)
+        public void setDateGranularity(string value)
         {
             throw new global::System.NotImplementedException("GroupingInfo.SetDateGranularity");
         }
 
-        public void SetDateGranularity(DateGranularity dateGranularity)
+        public void setDateGranularity(DateGranularity dateGranularity)
         {
             throw new global::System.NotImplementedException("GroupingInfo.SetDateGranularity");
         }
 
-        public void SetName(string name)
+        public void setName(string name)
         {
             throw new global::System.NotImplementedException("GroupingInfo.SetName");
         }
 
-        public void SetSortAggregate(string sortAggregate)
+        public void setSortAggregate(string sortAggregate)
         {
             throw new global::System.NotImplementedException("GroupingInfo.SetSortAggregate");
         }
 
-        public void SetSortOrder(string value)
+        public void setSortOrder(string value)
         {
             throw new global::System.NotImplementedException("GroupingInfo.SetSortOrder");
         }
 
-        public void SetSortOrder(ColumnSortOrder sortOrder)
+        public void setSortOrder(ColumnSortOrder sortOrder)
         {
             throw new global::System.NotImplementedException("GroupingInfo.SetSortOrder");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("GroupingInfo.ToString");
         }

@@ -7,7 +7,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("InboundEnvelope");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("InboundEnvelope.Clone");
         }

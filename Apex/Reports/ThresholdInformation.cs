@@ -9,12 +9,12 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ThresholdInformation");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ThresholdInformation.Clone");
         }
 
-        public List<EvaluatedCondition> GetEvaluatedConditions()
+        public List<EvaluatedCondition> getEvaluatedConditions()
         {
             throw new global::System.NotImplementedException("ThresholdInformation.GetEvaluatedConditions");
         }

@@ -7,17 +7,17 @@ namespace Apex.LiveAgent
             throw new global::System.NotImplementedException("LiveChatRoutingRoute");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingRoute.Clone");
         }
 
-        public string GetChatKey()
+        public string getChatKey()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingRoute.GetChatKey");
         }
 
-        public string GetUserId()
+        public string getUserId()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingRoute.GetUserId");
         }

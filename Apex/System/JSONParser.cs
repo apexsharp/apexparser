@@ -4,112 +4,112 @@ namespace Apex.System
 {
     public class JSONParser
     {
-        public void ClearCurrentToken()
+        public void clearCurrentToken()
         {
             throw new global::System.NotImplementedException("JSONParser.ClearCurrentToken");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("JSONParser.Clone");
         }
 
-        public Blob GetBlobValue()
+        public Blob getBlobValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetBlobValue");
         }
 
-        public bool GetBooleanValue()
+        public bool getBooleanValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetBooleanValue");
         }
 
-        public string GetCurrentName()
+        public string getCurrentName()
         {
             throw new global::System.NotImplementedException("JSONParser.GetCurrentName");
         }
 
-        public JSONToken GetCurrentToken()
+        public JSONToken getCurrentToken()
         {
             throw new global::System.NotImplementedException("JSONParser.GetCurrentToken");
         }
 
-        public DateTime GetDateTimeValue()
+        public DateTime getDateTimeValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetDateTimeValue");
         }
 
-        public Date GetDateValue()
+        public Date getDateValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetDateValue");
         }
 
-        public decimal GetDecimalValue()
+        public decimal getDecimalValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetDecimalValue");
         }
 
-        public double GetDoubleValue()
+        public double getDoubleValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetDoubleValue");
         }
 
-        public ID GetIdValue()
+        public ID getIdValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetIdValue");
         }
 
-        public int GetIntegerValue()
+        public int getIntegerValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetIntegerValue");
         }
 
-        public JSONToken GetLastClearedToken()
+        public JSONToken getLastClearedToken()
         {
             throw new global::System.NotImplementedException("JSONParser.GetLastClearedToken");
         }
 
-        public long GetLongValue()
+        public long getLongValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetLongValue");
         }
 
-        public string GetText()
+        public string getText()
         {
             throw new global::System.NotImplementedException("JSONParser.GetText");
         }
 
-        public Time GetTimeValue()
+        public Time getTimeValue()
         {
             throw new global::System.NotImplementedException("JSONParser.GetTimeValue");
         }
 
-        public bool HasCurrentToken()
+        public bool hasCurrentToken()
         {
             throw new global::System.NotImplementedException("JSONParser.HasCurrentToken");
         }
 
-        public JSONToken NextToken()
+        public JSONToken nextToken()
         {
             throw new global::System.NotImplementedException("JSONParser.NextToken");
         }
 
-        public JSONToken NextValue()
+        public JSONToken nextValue()
         {
             throw new global::System.NotImplementedException("JSONParser.NextValue");
         }
 
-        public object ReadValueAs(Type apexType)
+        public object readValueAs(Type apexType)
         {
             throw new global::System.NotImplementedException("JSONParser.ReadValueAs");
         }
 
-        public object ReadValueAsStrict(Type apexType)
+        public object readValueAsStrict(Type apexType)
         {
             throw new global::System.NotImplementedException("JSONParser.ReadValueAsStrict");
         }
 
-        public void SkipChildren()
+        public void skipChildren()
         {
             throw new global::System.NotImplementedException("JSONParser.SkipChildren");
         }

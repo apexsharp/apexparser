@@ -7,7 +7,7 @@ namespace Apex.VisualEditor
             throw new global::System.NotImplementedException("DesignTimePageContext");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DesignTimePageContext.Clone");
         }

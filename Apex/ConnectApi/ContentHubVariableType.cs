@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ContentHubVariableType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ContentHubVariableType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ContentHubVariableType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ContentHubVariableType.Ordinal");
         }
 
-        public static List<ContentHubVariableType> Values()
+        public static List<ContentHubVariableType> values()
         {
             throw new global::System.NotImplementedException("ContentHubVariableType.Values");
         }

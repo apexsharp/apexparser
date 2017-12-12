@@ -2,27 +2,27 @@ namespace Apex.Schema
 {
     public class FieldSetMember
     {
-        public bool GetDbRequired()
+        public bool getDbRequired()
         {
             throw new global::System.NotImplementedException("FieldSetMember.GetDbRequired");
         }
 
-        public string GetFieldPath()
+        public string getFieldPath()
         {
             throw new global::System.NotImplementedException("FieldSetMember.GetFieldPath");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("FieldSetMember.GetLabel");
         }
 
-        public bool GetRequired()
+        public bool getRequired()
         {
             throw new global::System.NotImplementedException("FieldSetMember.GetRequired");
         }
 
-        public Schema.DisplayType GetType()
+        public Schema.DisplayType getType()
         {
             throw new global::System.NotImplementedException("FieldSetMember.GetType");
         }

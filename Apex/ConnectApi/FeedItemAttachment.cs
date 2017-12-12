@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class FeedItemAttachment
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("FeedItemAttachment.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FeedItemAttachment.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("FeedItemAttachment.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FeedItemAttachment.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("FeedItemAttachment.ToString");
         }

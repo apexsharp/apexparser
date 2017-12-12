@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class FeedFilter
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FeedFilter.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FeedFilter.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FeedFilter.Ordinal");
         }
 
-        public static List<FeedFilter> Values()
+        public static List<FeedFilter> values()
         {
             throw new global::System.NotImplementedException("FeedFilter.Values");
         }

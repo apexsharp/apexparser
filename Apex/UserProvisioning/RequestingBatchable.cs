@@ -10,18 +10,18 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("RequestingBatchable");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("RequestingBatchable.Clone");
         }
 
         //public void Execute(Database.BatchableContext BC,List<UserProvisioningRequest> scope){throw new global::System.NotImplementedException("RequestingBatchable.Execute");}
-        public void Finish(Database.BatchableContext BC)
+        public void finish(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("RequestingBatchable.Finish");
         }
 
-        public Database.QueryLocator Start(Database.BatchableContext BC)
+        public Database.QueryLocator start(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("RequestingBatchable.Start");
         }

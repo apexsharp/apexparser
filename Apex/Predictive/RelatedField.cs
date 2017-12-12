@@ -12,42 +12,42 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("RelatedField");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("RelatedField.Clone");
         }
 
-        public string GetFieldName()
+        public string getFieldName()
         {
             throw new global::System.NotImplementedException("RelatedField.GetFieldName");
         }
 
-        public Reason GetReason()
+        public Reason getReason()
         {
             throw new global::System.NotImplementedException("RelatedField.GetReason");
         }
 
-        public double GetScore()
+        public double getScore()
         {
             throw new global::System.NotImplementedException("RelatedField.GetScore");
         }
 
-        public void SetFieldName(string fieldName)
+        public void setFieldName(string fieldName)
         {
             throw new global::System.NotImplementedException("RelatedField.SetFieldName");
         }
 
-        public void SetReason(Reason reason)
+        public void setReason(Reason reason)
         {
             throw new global::System.NotImplementedException("RelatedField.SetReason");
         }
 
-        public void SetScore(double score)
+        public void setScore(double score)
         {
             throw new global::System.NotImplementedException("RelatedField.SetScore");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("RelatedField.ToString");
         }

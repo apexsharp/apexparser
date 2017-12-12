@@ -14,107 +14,107 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.Clone");
         }
 
-        public string GetDetails()
+        public string getDetails()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetDetails");
         }
 
-        public string GetExternalEmail()
+        public string getExternalEmail()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetExternalEmail");
         }
 
-        public string GetExternalFirstName()
+        public string getExternalFirstName()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetExternalFirstName");
         }
 
-        public string GetExternalLastName()
+        public string getExternalLastName()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetExternalLastName");
         }
 
-        public string GetExternalUserId()
+        public string getExternalUserId()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetExternalUserId");
         }
 
-        public string GetExternalUsername()
+        public string getExternalUsername()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetExternalUsername");
         }
 
-        public string GetNextReconOffset()
+        public string getNextReconOffset()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetNextReconOffset");
         }
 
-        public string GetReconState()
+        public string getReconState()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetReconState");
         }
 
-        public string GetStatus()
+        public string getStatus()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetStatus");
         }
 
-        public string GetUPAStatus()
+        public string getUPAStatus()
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.GetUPAStatus");
         }
 
-        public void SetDetails(string details)
+        public void setDetails(string details)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetDetails");
         }
 
-        public void SetExternalEmail(string externalEmail)
+        public void setExternalEmail(string externalEmail)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetExternalEmail");
         }
 
-        public void SetExternalFirstName(string externalFirstName)
+        public void setExternalFirstName(string externalFirstName)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetExternalFirstName");
         }
 
-        public void SetExternalLastName(string externalLastName)
+        public void setExternalLastName(string externalLastName)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetExternalLastName");
         }
 
-        public void SetExternalUserId(string externalUserId)
+        public void setExternalUserId(string externalUserId)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetExternalUserId");
         }
 
-        public void SetExternalUsername(string externalUsername)
+        public void setExternalUsername(string externalUsername)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetExternalUsername");
         }
 
-        public void SetNextReconOffset(string nextReconOffset)
+        public void setNextReconOffset(string nextReconOffset)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetNextReconOffset");
         }
 
-        public void SetReconState(string reconState)
+        public void setReconState(string reconState)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetReconState");
         }
 
-        public void SetStatus(string status)
+        public void setStatus(string status)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetStatus");
         }
 
-        public void SetUPAStatus(string UPAStatus)
+        public void setUPAStatus(string UPAStatus)
         {
             throw new global::System.NotImplementedException("ProvisioningProcessHandlerOutput.SetUPAStatus");
         }

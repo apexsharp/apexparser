@@ -12,37 +12,37 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("SortColumn");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SortColumn.Clone");
         }
 
-        public string GetSortColumn()
+        public string getSortColumn()
         {
             throw new global::System.NotImplementedException("SortColumn.GetSortColumn");
         }
 
-        public ColumnSortOrder GetSortOrder()
+        public ColumnSortOrder getSortOrder()
         {
             throw new global::System.NotImplementedException("SortColumn.GetSortOrder");
         }
 
-        public void SetSortColumn(string sortColumn)
+        public void setSortColumn(string sortColumn)
         {
             throw new global::System.NotImplementedException("SortColumn.SetSortColumn");
         }
 
-        public void SetSortOrder(string value)
+        public void setSortOrder(string value)
         {
             throw new global::System.NotImplementedException("SortColumn.SetSortOrder");
         }
 
-        public void SetSortOrder(ColumnSortOrder sortOrder)
+        public void setSortOrder(ColumnSortOrder sortOrder)
         {
             throw new global::System.NotImplementedException("SortColumn.SetSortOrder");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("SortColumn.ToString");
         }

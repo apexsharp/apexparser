@@ -10,22 +10,22 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("DeletingBatchable");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DeletingBatchable.Clone");
         }
 
-        public void Execute(Database.BatchableContext BC, List<SObject> scope)
+        public void execute(Database.BatchableContext BC, List<SObject> scope)
         {
             throw new global::System.NotImplementedException("DeletingBatchable.Execute");
         }
 
-        public void Finish(Database.BatchableContext BC)
+        public void finish(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("DeletingBatchable.Finish");
         }
 
-        public Database.QueryLocator Start(Database.BatchableContext BC)
+        public Database.QueryLocator start(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("DeletingBatchable.Start");
         }

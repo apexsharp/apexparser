@@ -12,27 +12,27 @@ namespace Apex.VisualEditor
             throw new global::System.NotImplementedException("DataRow");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DataRow.Clone");
         }
 
-        public int CompareTo(VisualEditor.DataRow o)
+        public int compareTo(VisualEditor.DataRow o)
         {
             throw new global::System.NotImplementedException("DataRow.CompareTo");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("DataRow.GetLabel");
         }
 
-        public object GetValue()
+        public object getValue()
         {
             throw new global::System.NotImplementedException("DataRow.GetValue");
         }
 
-        public bool IsSelected()
+        public bool isSelected()
         {
             throw new global::System.NotImplementedException("DataRow.IsSelected");
         }

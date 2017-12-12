@@ -5,17 +5,17 @@ namespace Apex.Database
 {
     public class DeleteResult
     {
-        public List<Database.Error> GetErrors()
+        public List<Database.Error> getErrors()
         {
             throw new global::System.NotImplementedException("DeleteResult.GetErrors");
         }
 
-        public ID GetId()
+        public ID getId()
         {
             throw new global::System.NotImplementedException("DeleteResult.GetId");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("DeleteResult.IsSuccess");
         }

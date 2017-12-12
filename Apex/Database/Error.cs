@@ -4,17 +4,17 @@ namespace Apex.Database
 {
     public class Error
     {
-        public List<string> GetFields()
+        public List<string> getFields()
         {
             throw new global::System.NotImplementedException("Error.GetFields");
         }
 
-        public string GetMessage()
+        public string getMessage()
         {
             throw new global::System.NotImplementedException("Error.GetMessage");
         }
 
-        public System.StatusCode GetStatusCode()
+        public System.StatusCode getStatusCode()
         {
             throw new global::System.NotImplementedException("Error.GetStatusCode");
         }

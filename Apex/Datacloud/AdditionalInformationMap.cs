@@ -2,12 +2,12 @@ namespace Apex.Datacloud
 {
     public class AdditionalInformationMap
     {
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("AdditionalInformationMap.GetName");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("AdditionalInformationMap.GetValue");
         }

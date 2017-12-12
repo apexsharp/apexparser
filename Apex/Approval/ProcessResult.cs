@@ -5,37 +5,37 @@ namespace Apex.Approval
 {
     public class ProcessResult
     {
-        public List<ID> GetActorIds()
+        public List<ID> getActorIds()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetActorIds");
         }
 
-        public string GetEntityId()
+        public string getEntityId()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetEntityId");
         }
 
-        public List<Database.Error> GetErrors()
+        public List<Database.Error> getErrors()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetErrors");
         }
 
-        public string GetInstanceId()
+        public string getInstanceId()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetInstanceId");
         }
 
-        public string GetInstanceStatus()
+        public string getInstanceStatus()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetInstanceStatus");
         }
 
-        public List<ID> GetNewWorkitemIds()
+        public List<ID> getNewWorkitemIds()
         {
             throw new global::System.NotImplementedException("ProcessResult.GetNewWorkitemIds");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("ProcessResult.IsSuccess");
         }

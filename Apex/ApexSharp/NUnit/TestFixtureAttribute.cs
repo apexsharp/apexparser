@@ -1,4 +1,4 @@
-﻿using TestFixture = NUnit.Framework.TestFixtureAttribute;
+using TestFixture = NUnit.Framework.TestFixtureAttribute;
 
 namespace Apex.ApexSharp.NUnit
 {

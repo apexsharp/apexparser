@@ -2,37 +2,37 @@ namespace Apex.Reports
 {
     public class AggregateColumn
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AggregateColumn.Clone");
         }
 
-        public string GetAcrossGroupingContext()
+        public string getAcrossGroupingContext()
         {
             throw new global::System.NotImplementedException("AggregateColumn.GetAcrossGroupingContext");
         }
 
-        public Reports.ColumnDataType GetDataType()
+        public Reports.ColumnDataType getDataType()
         {
             throw new global::System.NotImplementedException("AggregateColumn.GetDataType");
         }
 
-        public string GetDownGroupingContext()
+        public string getDownGroupingContext()
         {
             throw new global::System.NotImplementedException("AggregateColumn.GetDownGroupingContext");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("AggregateColumn.GetLabel");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("AggregateColumn.GetName");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("AggregateColumn.ToString");
         }

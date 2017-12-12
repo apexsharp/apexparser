@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class ColumnDataType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ColumnDataType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ColumnDataType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ColumnDataType.Ordinal");
         }
 
-        public static List<ColumnDataType> Values()
+        public static List<ColumnDataType> values()
         {
             throw new global::System.NotImplementedException("ColumnDataType.Values");
         }

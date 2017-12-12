@@ -2,7 +2,7 @@ namespace Apex.Datacloud
 {
     public class FieldDifferenceType
     {
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("FieldDifferenceType.GetName");
         }

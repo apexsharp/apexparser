@@ -7,27 +7,27 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("UserProvisioningPlugin");
         }
 
-        public Process.PluginDescribeResult BuildDescribeCall()
+        public Process.PluginDescribeResult buildDescribeCall()
         {
             throw new global::System.NotImplementedException("UserProvisioningPlugin.BuildDescribeCall");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("UserProvisioningPlugin.Clone");
         }
 
-        public Process.PluginDescribeResult Describe()
+        public Process.PluginDescribeResult describe()
         {
             throw new global::System.NotImplementedException("UserProvisioningPlugin.Describe");
         }
 
-        public string GetPluginClassName()
+        public string getPluginClassName()
         {
             throw new global::System.NotImplementedException("UserProvisioningPlugin.GetPluginClassName");
         }
 
-        public Process.PluginResult Invoke(Process.PluginRequest param1)
+        public Process.PluginResult invoke(Process.PluginRequest param1)
         {
             throw new global::System.NotImplementedException("UserProvisioningPlugin.Invoke");
         }

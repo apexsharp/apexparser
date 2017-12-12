@@ -19,22 +19,22 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("BatchInput");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BatchInput.Clone");
         }
 
-        public List<BinaryInput> GetBinaries()
+        public List<BinaryInput> getBinaries()
         {
             throw new global::System.NotImplementedException("BatchInput.GetBinaries");
         }
 
-        public object GetInput()
+        public object getInput()
         {
             throw new global::System.NotImplementedException("BatchInput.GetInput");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("BatchInput.ToString");
         }

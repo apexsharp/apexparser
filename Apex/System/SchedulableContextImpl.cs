@@ -2,7 +2,7 @@ namespace Apex.System
 {
     public class SchedulableContextImpl
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SchedulableContextImpl.Clone");
         }

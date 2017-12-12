@@ -9,32 +9,32 @@ namespace Apex.System
             throw new global::System.NotImplementedException("BusinessHours");
         }
 
-        public static DateTime Add(ID businessHoursId, DateTime startDate, long interval)
+        public static DateTime add(ID businessHoursId, DateTime startDate, long interval)
         {
             throw new global::System.NotImplementedException("BusinessHours.Add");
         }
 
-        public static DateTime AddGmt(ID businessHoursId, DateTime startDate, long interval)
+        public static DateTime addGmt(ID businessHoursId, DateTime startDate, long interval)
         {
             throw new global::System.NotImplementedException("BusinessHours.AddGmt");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BusinessHours.Clone");
         }
 
-        public static long Diff(string businessHoursId, DateTime startDate, DateTime endDate)
+        public static long diff(string businessHoursId, DateTime startDate, DateTime endDate)
         {
             throw new global::System.NotImplementedException("BusinessHours.Diff");
         }
 
-        public static bool IsWithin(string businessHoursId, DateTime targetDate)
+        public static bool isWithin(string businessHoursId, DateTime targetDate)
         {
             throw new global::System.NotImplementedException("BusinessHours.IsWithin");
         }
 
-        public static DateTime NextStartDate(ID businessHoursId, DateTime targetDate)
+        public static DateTime nextStartDate(ID businessHoursId, DateTime targetDate)
         {
             throw new global::System.NotImplementedException("BusinessHours.NextStartDate");
         }

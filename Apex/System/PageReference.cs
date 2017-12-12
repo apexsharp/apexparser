@@ -14,57 +14,57 @@ namespace Apex.System
             throw new global::System.NotImplementedException("PageReference");
         }
 
-        public string GetAnchor()
+        public string getAnchor()
         {
             throw new global::System.NotImplementedException("PageReference.GetAnchor");
         }
 
-        public Blob GetContent()
+        public Blob getContent()
         {
             throw new global::System.NotImplementedException("PageReference.GetContent");
         }
 
-        public Blob GetContentAsPDF()
+        public Blob getContentAsPDF()
         {
             throw new global::System.NotImplementedException("PageReference.GetContentAsPDF");
         }
 
-        public Map<String, Cookie> GetCookies()
+        public Map<String, Cookie> getCookies()
         {
             throw new global::System.NotImplementedException("PageReference.GetCookies");
         }
 
-        public Map<String, String> GetHeaders()
+        public Map<String, String> getHeaders()
         {
             throw new global::System.NotImplementedException("PageReference.GetHeaders");
         }
 
-        public Map<String, String> GetParameters()
+        public Map<String, String> getParameters()
         {
             throw new global::System.NotImplementedException("PageReference.GetParameters");
         }
 
-        public bool GetRedirect()
+        public bool getRedirect()
         {
             throw new global::System.NotImplementedException("PageReference.GetRedirect");
         }
 
-        public string GetUrl()
+        public string getUrl()
         {
             throw new global::System.NotImplementedException("PageReference.GetUrl");
         }
 
-        public PageReference SetAnchor(string anchor)
+        public PageReference setAnchor(string anchor)
         {
             throw new global::System.NotImplementedException("PageReference.SetAnchor");
         }
 
-        public void SetCookies(List<Cookie> cookies)
+        public void setCookies(List<Cookie> cookies)
         {
             throw new global::System.NotImplementedException("PageReference.SetCookies");
         }
 
-        public PageReference SetRedirect(bool redirect)
+        public PageReference setRedirect(bool redirect)
         {
             throw new global::System.NotImplementedException("PageReference.SetRedirect");
         }

@@ -4,22 +4,22 @@ namespace Apex.Predictive
 {
     public class ItemPresenceReason
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ItemPresenceReason.Clone");
         }
 
-        public List<string> GetItems()
+        public List<string> getItems()
         {
             throw new global::System.NotImplementedException("ItemPresenceReason.GetItems");
         }
 
-        public ReasonType GetType()
+        public ReasonType getType()
         {
             throw new global::System.NotImplementedException("ItemPresenceReason.GetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ItemPresenceReason.ToString");
         }

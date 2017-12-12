@@ -24,17 +24,17 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("InvalidFilterException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("InvalidFilterException.Clone");
         }
 
-        public List<string> GetFilterErrors()
+        public List<string> getFilterErrors()
         {
             throw new global::System.NotImplementedException("InvalidFilterException.GetFilterErrors");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("InvalidFilterException.GetTypeName");
         }

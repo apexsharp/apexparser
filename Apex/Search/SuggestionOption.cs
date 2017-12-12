@@ -7,12 +7,12 @@ namespace Apex.Search
             throw new global::System.NotImplementedException("SuggestionOption");
         }
 
-        public void SetFilter(object filter)
+        public void setFilter(object filter)
         {
             throw new global::System.NotImplementedException("SuggestionOption.SetFilter");
         }
 
-        public void SetLimit(int limit)
+        public void setLimit(int limit)
         {
             throw new global::System.NotImplementedException("SuggestionOption.SetLimit");
         }

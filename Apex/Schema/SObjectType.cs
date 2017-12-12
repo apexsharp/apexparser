@@ -5,22 +5,22 @@ namespace Apex.Schema
 {
     public class SObjectType
     {
-        public Schema.DescribeSObjectResult GetDescribe()
+        public Schema.DescribeSObjectResult getDescribe()
         {
             throw new global::System.NotImplementedException("SObjectType.GetDescribe");
         }
 
-        public SObject NewSObject()
+        public SObject newSObject()
         {
             throw new global::System.NotImplementedException("SObjectType.NewSObject");
         }
 
-        public SObject NewSObject(ID id)
+        public SObject newSObject(ID id)
         {
             throw new global::System.NotImplementedException("SObjectType.NewSObject");
         }
 
-        public SObject NewSObject(ID recordTypeId, bool loadDefaultValues)
+        public SObject newSObject(ID recordTypeId, bool loadDefaultValues)
         {
             throw new global::System.NotImplementedException("SObjectType.NewSObject");
         }

@@ -10,42 +10,42 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("LinkingBatchable");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LinkingBatchable.Clone");
         }
 
-        public void Execute(Database.BatchableContext BC, List<SObject> scope)
+        public void execute(Database.BatchableContext BC, List<SObject> scope)
         {
             throw new global::System.NotImplementedException("LinkingBatchable.Execute");
         }
 
-        public void Finish(Database.BatchableContext BC)
+        public void finish(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("LinkingBatchable.Finish");
         }
 
-        public string GetFlowName()
+        public string getFlowName()
         {
             throw new global::System.NotImplementedException("LinkingBatchable.GetFlowName");
         }
 
-        public string GetFlowNamespace()
+        public string getFlowNamespace()
         {
             throw new global::System.NotImplementedException("LinkingBatchable.GetFlowNamespace");
         }
 
-        public bool HasFlow()
+        public bool hasFlow()
         {
             throw new global::System.NotImplementedException("LinkingBatchable.HasFlow");
         }
 
-        public bool HasFlowOrApex()
+        public bool hasFlowOrApex()
         {
             throw new global::System.NotImplementedException("LinkingBatchable.HasFlowOrApex");
         }
 
-        public Database.QueryLocator Start(Database.BatchableContext BC)
+        public Database.QueryLocator start(Database.BatchableContext BC)
         {
             throw new global::System.NotImplementedException("LinkingBatchable.Start");
         }

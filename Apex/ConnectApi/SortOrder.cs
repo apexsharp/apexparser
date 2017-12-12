@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class SortOrder
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("SortOrder.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("SortOrder.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("SortOrder.Ordinal");
         }
 
-        public static List<SortOrder> Values()
+        public static List<SortOrder> values()
         {
             throw new global::System.NotImplementedException("SortOrder.Values");
         }

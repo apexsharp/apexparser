@@ -7,297 +7,297 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Math");
         }
 
-        public static decimal Abs(decimal x)
+        public static decimal abs(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Abs");
         }
 
-        public static double Abs(double x)
+        public static double abs(double x)
         {
             throw new global::System.NotImplementedException("Math.Abs");
         }
 
-        public static int Abs(int x)
+        public static int abs(int x)
         {
             throw new global::System.NotImplementedException("Math.Abs");
         }
 
-        public static long Abs(long x)
+        public static long abs(long x)
         {
             throw new global::System.NotImplementedException("Math.Abs");
         }
 
-        public static decimal Acos(decimal x)
+        public static decimal acos(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Acos");
         }
 
-        public static double Acos(double x)
+        public static double acos(double x)
         {
             throw new global::System.NotImplementedException("Math.Acos");
         }
 
-        public static decimal Asin(decimal x)
+        public static decimal asin(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Asin");
         }
 
-        public static double Asin(double x)
+        public static double asin(double x)
         {
             throw new global::System.NotImplementedException("Math.Asin");
         }
 
-        public static decimal Atan(decimal x)
+        public static decimal atan(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Atan");
         }
 
-        public static double Atan(double x)
+        public static double atan(double x)
         {
             throw new global::System.NotImplementedException("Math.Atan");
         }
 
-        public static decimal Atan2(decimal x, decimal y)
+        public static decimal atan2(decimal x, decimal y)
         {
             throw new global::System.NotImplementedException("Math.Atan2");
         }
 
-        public static double Atan2(double x, double y)
+        public static double atan2(double x, double y)
         {
             throw new global::System.NotImplementedException("Math.Atan2");
         }
 
-        public static decimal Cbrt(decimal x)
+        public static decimal cbrt(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Cbrt");
         }
 
-        public static double Cbrt(double x)
+        public static double cbrt(double x)
         {
             throw new global::System.NotImplementedException("Math.Cbrt");
         }
 
-        public static decimal Ceil(decimal x)
+        public static decimal ceil(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Ceil");
         }
 
-        public static double Ceil(double x)
+        public static double ceil(double x)
         {
             throw new global::System.NotImplementedException("Math.Ceil");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Math.Clone");
         }
 
-        public static decimal Cos(decimal x)
+        public static decimal cos(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Cos");
         }
 
-        public static double Cos(double x)
+        public static double cos(double x)
         {
             throw new global::System.NotImplementedException("Math.Cos");
         }
 
-        public static decimal Cosh(decimal x)
+        public static decimal cosh(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Cosh");
         }
 
-        public static double Cosh(double x)
+        public static double cosh(double x)
         {
             throw new global::System.NotImplementedException("Math.Cosh");
         }
 
-        public static decimal Exp(decimal x)
+        public static decimal exp(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Exp");
         }
 
-        public static double Exp(double x)
+        public static double exp(double x)
         {
             throw new global::System.NotImplementedException("Math.Exp");
         }
 
-        public static decimal Floor(decimal x)
+        public static decimal floor(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Floor");
         }
 
-        public static double Floor(double x)
+        public static double floor(double x)
         {
             throw new global::System.NotImplementedException("Math.Floor");
         }
 
-        public static decimal Log(decimal x)
+        public static decimal log(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Log");
         }
 
-        public static double Log(double x)
+        public static double log(double x)
         {
             throw new global::System.NotImplementedException("Math.Log");
         }
 
-        public static decimal Log10(decimal x)
+        public static decimal log10(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Log10");
         }
 
-        public static double Log10(double x)
+        public static double log10(double x)
         {
             throw new global::System.NotImplementedException("Math.Log10");
         }
 
-        public static decimal Max(decimal x, decimal y)
+        public static decimal max(decimal x, decimal y)
         {
             throw new global::System.NotImplementedException("Math.Max");
         }
 
-        public static double Max(double x, double y)
+        public static double max(double x, double y)
         {
             throw new global::System.NotImplementedException("Math.Max");
         }
 
-        public static int Max(int x, int y)
+        public static int max(int x, int y)
         {
             throw new global::System.NotImplementedException("Math.Max");
         }
 
-        public static long Max(long x, long y)
+        public static long max(long x, long y)
         {
             throw new global::System.NotImplementedException("Math.Max");
         }
 
-        public static decimal Min(decimal x, decimal y)
+        public static decimal min(decimal x, decimal y)
         {
             throw new global::System.NotImplementedException("Math.Min");
         }
 
-        public static double Min(double x, double y)
+        public static double min(double x, double y)
         {
             throw new global::System.NotImplementedException("Math.Min");
         }
 
-        public static int Min(int x, int y)
+        public static int min(int x, int y)
         {
             throw new global::System.NotImplementedException("Math.Min");
         }
 
-        public static long Min(long x, long y)
+        public static long min(long x, long y)
         {
             throw new global::System.NotImplementedException("Math.Min");
         }
 
-        public static int Mod(int x, int y)
+        public static int mod(int x, int y)
         {
             throw new global::System.NotImplementedException("Math.Mod");
         }
 
-        public static long Mod(long x, long y)
+        public static long mod(long x, long y)
         {
             throw new global::System.NotImplementedException("Math.Mod");
         }
 
-        public static double Pow(double baseApex, double exp)
+        public static double pow(double baseApex, double exp)
         {
             throw new global::System.NotImplementedException("Math.Pow");
         }
 
-        public static double Random()
+        public static double random()
         {
             throw new global::System.NotImplementedException("Math.Random");
         }
 
-        public static decimal Rint(decimal x)
+        public static decimal rint(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Rint");
         }
 
-        public static double Rint(double x)
+        public static double rint(double x)
         {
             throw new global::System.NotImplementedException("Math.Rint");
         }
 
-        public static int Round(decimal x)
+        public static int round(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Round");
         }
 
-        public static int Round(double x)
+        public static int round(double x)
         {
             throw new global::System.NotImplementedException("Math.Round");
         }
 
-        public static long RoundToLong(decimal x)
+        public static long roundToLong(decimal x)
         {
             throw new global::System.NotImplementedException("Math.RoundToLong");
         }
 
-        public static long RoundToLong(double x)
+        public static long roundToLong(double x)
         {
             throw new global::System.NotImplementedException("Math.RoundToLong");
         }
 
-        public static decimal Signum(decimal x)
+        public static decimal signum(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Signum");
         }
 
-        public static double Signum(double x)
+        public static double signum(double x)
         {
             throw new global::System.NotImplementedException("Math.Signum");
         }
 
-        public static decimal Sin(decimal x)
+        public static decimal sin(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Sin");
         }
 
-        public static double Sin(double x)
+        public static double sin(double x)
         {
             throw new global::System.NotImplementedException("Math.Sin");
         }
 
-        public static decimal Sinh(decimal x)
+        public static decimal sinh(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Sinh");
         }
 
-        public static double Sinh(double x)
+        public static double sinh(double x)
         {
             throw new global::System.NotImplementedException("Math.Sinh");
         }
 
-        public static decimal Sqrt(decimal x)
+        public static decimal sqrt(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Sqrt");
         }
 
-        public static double Sqrt(double x)
+        public static double sqrt(double x)
         {
             throw new global::System.NotImplementedException("Math.Sqrt");
         }
 
-        public static decimal Tan(decimal x)
+        public static decimal tan(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Tan");
         }
 
-        public static double Tan(double x)
+        public static double tan(double x)
         {
             throw new global::System.NotImplementedException("Math.Tan");
         }
 
-        public static decimal Tanh(decimal x)
+        public static decimal tanh(decimal x)
         {
             throw new global::System.NotImplementedException("Math.Tanh");
         }
 
-        public static double Tanh(double x)
+        public static double tanh(double x)
         {
             throw new global::System.NotImplementedException("Math.Tanh");
         }

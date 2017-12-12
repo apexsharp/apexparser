@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class WorkflowProcessStatus
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("WorkflowProcessStatus.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("WorkflowProcessStatus.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("WorkflowProcessStatus.Ordinal");
         }
 
-        public static List<WorkflowProcessStatus> Values()
+        public static List<WorkflowProcessStatus> values()
         {
             throw new global::System.NotImplementedException("WorkflowProcessStatus.Values");
         }

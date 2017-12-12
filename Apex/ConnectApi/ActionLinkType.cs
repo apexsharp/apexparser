@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ActionLinkType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ActionLinkType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ActionLinkType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ActionLinkType.Ordinal");
         }
 
-        public static List<ActionLinkType> Values()
+        public static List<ActionLinkType> values()
         {
             throw new global::System.NotImplementedException("ActionLinkType.Values");
         }

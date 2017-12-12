@@ -7,7 +7,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("AssignmentRuleHeader");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AssignmentRuleHeader.Clone");
         }

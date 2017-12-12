@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class DateGranularity
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("DateGranularity.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("DateGranularity.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("DateGranularity.Ordinal");
         }
 
-        public static List<DateGranularity> Values()
+        public static List<DateGranularity> values()
         {
             throw new global::System.NotImplementedException("DateGranularity.Values");
         }

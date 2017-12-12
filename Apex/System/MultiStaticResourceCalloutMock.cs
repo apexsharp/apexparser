@@ -7,32 +7,32 @@ namespace Apex.System
             throw new global::System.NotImplementedException("MultiStaticResourceCalloutMock");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("MultiStaticResourceCalloutMock.Clone");
         }
 
-        public HttpResponse Respond(HttpRequest request)
+        public HttpResponse respond(HttpRequest request)
         {
             throw new global::System.NotImplementedException("MultiStaticResourceCalloutMock.Respond");
         }
 
-        public void SetHeader(string key, string val)
+        public void setHeader(string key, string val)
         {
             throw new global::System.NotImplementedException("MultiStaticResourceCalloutMock.SetHeader");
         }
 
-        public void SetStaticResource(string url, string staticResourceName)
+        public void setStaticResource(string url, string staticResourceName)
         {
             throw new global::System.NotImplementedException("MultiStaticResourceCalloutMock.SetStaticResource");
         }
 
-        public void SetStatus(string status)
+        public void setStatus(string status)
         {
             throw new global::System.NotImplementedException("MultiStaticResourceCalloutMock.SetStatus");
         }
 
-        public void SetStatusCode(int code)
+        public void setStatusCode(int code)
         {
             throw new global::System.NotImplementedException("MultiStaticResourceCalloutMock.SetStatusCode");
         }

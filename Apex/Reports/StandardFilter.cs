@@ -12,32 +12,32 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("StandardFilter");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("StandardFilter.Clone");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("StandardFilter.GetName");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("StandardFilter.GetValue");
         }
 
-        public void SetName(string name)
+        public void setName(string name)
         {
             throw new global::System.NotImplementedException("StandardFilter.SetName");
         }
 
-        public void SetValue(string value)
+        public void setValue(string value)
         {
             throw new global::System.NotImplementedException("StandardFilter.SetValue");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("StandardFilter.ToString");
         }

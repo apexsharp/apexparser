@@ -2,7 +2,7 @@ namespace Apex.Applauncher
 {
     public class CommunityLogoController
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("CommunityLogoController.Clone");
         }

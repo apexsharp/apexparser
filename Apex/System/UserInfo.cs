@@ -7,107 +7,107 @@ namespace Apex.System
             throw new global::System.NotImplementedException("UserInfo");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("UserInfo.Clone");
         }
 
-        public static string GetDefaultCurrency()
+        public static string getDefaultCurrency()
         {
             throw new global::System.NotImplementedException("UserInfo.GetDefaultCurrency");
         }
 
-        public static string GetFirstName()
+        public static string getFirstName()
         {
             throw new global::System.NotImplementedException("UserInfo.GetFirstName");
         }
 
-        public static string GetLanguage()
+        public static string getLanguage()
         {
             throw new global::System.NotImplementedException("UserInfo.GetLanguage");
         }
 
-        public static string GetLastName()
+        public static string getLastName()
         {
             throw new global::System.NotImplementedException("UserInfo.GetLastName");
         }
 
-        public static string GetLocale()
+        public static string getLocale()
         {
             throw new global::System.NotImplementedException("UserInfo.GetLocale");
         }
 
-        public static string GetName()
+        public static string getName()
         {
             throw new global::System.NotImplementedException("UserInfo.GetName");
         }
 
-        public static string GetOrganizationId()
+        public static string getOrganizationId()
         {
             throw new global::System.NotImplementedException("UserInfo.GetOrganizationId");
         }
 
-        public static string GetOrganizationName()
+        public static string getOrganizationName()
         {
             throw new global::System.NotImplementedException("UserInfo.GetOrganizationName");
         }
 
-        public static string GetProfileId()
+        public static string getProfileId()
         {
             throw new global::System.NotImplementedException("UserInfo.GetProfileId");
         }
 
-        public static string GetSessionId()
+        public static string getSessionId()
         {
             throw new global::System.NotImplementedException("UserInfo.GetSessionId");
         }
 
-        public static TimeZone GetTimeZone()
+        public static TimeZone getTimeZone()
         {
             throw new global::System.NotImplementedException("UserInfo.GetTimeZone");
         }
 
-        public static string GetUiTheme()
+        public static string getUiTheme()
         {
             throw new global::System.NotImplementedException("UserInfo.GetUiTheme");
         }
 
-        public static string GetUiThemeDisplayed()
+        public static string getUiThemeDisplayed()
         {
             throw new global::System.NotImplementedException("UserInfo.GetUiThemeDisplayed");
         }
 
-        public static string GetUserEmail()
+        public static string getUserEmail()
         {
             throw new global::System.NotImplementedException("UserInfo.GetUserEmail");
         }
 
-        public static string GetUserId()
+        public static string getUserId()
         {
             throw new global::System.NotImplementedException("UserInfo.GetUserId");
         }
 
-        public static string GetUserName()
+        public static string getUserName()
         {
             throw new global::System.NotImplementedException("UserInfo.GetUserName");
         }
 
-        public static string GetUserRoleId()
+        public static string getUserRoleId()
         {
             throw new global::System.NotImplementedException("UserInfo.GetUserRoleId");
         }
 
-        public static string GetUserType()
+        public static string getUserType()
         {
             throw new global::System.NotImplementedException("UserInfo.GetUserType");
         }
 
-        public static bool IsCurrentUserLicensed(string namespacePrefix)
+        public static bool isCurrentUserLicensed(string namespacePrefix)
         {
             throw new global::System.NotImplementedException("UserInfo.IsCurrentUserLicensed");
         }
 
-        public static bool IsMultiCurrencyOrganization()
+        public static bool isMultiCurrencyOrganization()
         {
             throw new global::System.NotImplementedException("UserInfo.IsMultiCurrencyOrganization");
         }

@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class MentionCompletionType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("MentionCompletionType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("MentionCompletionType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("MentionCompletionType.Ordinal");
         }
 
-        public static List<MentionCompletionType> Values()
+        public static List<MentionCompletionType> values()
         {
             throw new global::System.NotImplementedException("MentionCompletionType.Values");
         }

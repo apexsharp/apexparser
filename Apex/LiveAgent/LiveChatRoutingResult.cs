@@ -2,22 +2,22 @@ namespace Apex.LiveAgent
 {
     public class LiveChatRoutingResult
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResult.Clone");
         }
 
-        public string GetChatKey()
+        public string getChatKey()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResult.GetChatKey");
         }
 
-        public LiveAgent.LiveChatRoutingResultType GetResult()
+        public LiveAgent.LiveChatRoutingResultType getResult()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResult.GetResult");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingResult.IsSuccess");
         }

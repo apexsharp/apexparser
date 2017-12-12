@@ -9,92 +9,92 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Test");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Test.Clone");
         }
 
-        public static object CreateStub(Type parentType, StubProvider stubProvider)
+        public static object createStub(Type parentType, StubProvider stubProvider)
         {
             throw new global::System.NotImplementedException("Test.CreateStub");
         }
 
-        public static List<ID> EnqueueBatchJobs(int n)
+        public static List<ID> enqueueBatchJobs(int n)
         {
             throw new global::System.NotImplementedException("Test.EnqueueBatchJobs");
         }
 
-        public static List<ID> GetFlexQueueOrder()
+        public static List<ID> getFlexQueueOrder()
         {
             throw new global::System.NotImplementedException("Test.GetFlexQueueOrder");
         }
 
-        public static ID GetStandardPricebookId()
+        public static ID getStandardPricebookId()
         {
             throw new global::System.NotImplementedException("Test.GetStandardPricebookId");
         }
 
-        public static object InvokeContinuationMethod(object controller, Continuation continuation)
+        public static object invokeContinuationMethod(object controller, Continuation continuation)
         {
             throw new global::System.NotImplementedException("Test.InvokeContinuationMethod");
         }
 
         //public static Apex.page InvokePage(PageReference p){throw new global::System.NotImplementedException("Test.InvokePage");}
-        public static bool IsRunningTest()
+        public static bool isRunningTest()
         {
             throw new global::System.NotImplementedException("Test.IsRunningTest");
         }
 
         //public static List<SObject> LoadData(Schema.SObjectType sobjectType,string staticResourceName){throw new global::System.NotImplementedException("Test.LoadData");}
         //public static QuickAction.SendEmailQuickActionDefaults NewSendEmailQuickActionDefaults(ID contextId,ID replyToId){throw new global::System.NotImplementedException("Test.NewSendEmailQuickActionDefaults");}
-        public static void SetContinuationResponse(string label, HttpResponse response)
+        public static void setContinuationResponse(string label, HttpResponse response)
         {
             throw new global::System.NotImplementedException("Test.SetContinuationResponse");
         }
 
-        public static void SetCreatedDate(ID id, DateTime dt)
+        public static void setCreatedDate(ID id, DateTime dt)
         {
             throw new global::System.NotImplementedException("Test.SetCreatedDate");
         }
 
-        public static void SetCurrentPage(object pageReference)
+        public static void setCurrentPage(object pageReference)
         {
             throw new global::System.NotImplementedException("Test.SetCurrentPage");
         }
 
-        public static void SetCurrentPageReference(object pageReference)
+        public static void setCurrentPageReference(object pageReference)
         {
             throw new global::System.NotImplementedException("Test.SetCurrentPageReference");
         }
 
-        public static void SetFixedSearchResults(List<string> searchResultsIds)
+        public static void setFixedSearchResults(List<string> searchResultsIds)
         {
             throw new global::System.NotImplementedException("Test.SetFixedSearchResults");
         }
 
-        public static void SetMock(global::System.Type interfaceType, object mock)
+        public static void setMock(global::System.Type interfaceType, object mock)
         {
             throw new global::System.NotImplementedException("Test.SetMock");
         }
 
-        public static void SetReadOnlyApplicationMode(bool readOnlyApplicationMode)
+        public static void setReadOnlyApplicationMode(bool readOnlyApplicationMode)
         {
             throw new global::System.NotImplementedException("Test.SetReadOnlyApplicationMode");
         }
 
-        public static void StartTest()
+        public static void startTest()
         {
             throw new global::System.NotImplementedException("Test.StartTest");
         }
 
-        public static void StopTest()
+        public static void stopTest()
         {
             throw new global::System.NotImplementedException("Test.StopTest");
         }
 
         //public static void TestInstall(InstallHandler script,Version version){throw new global::System.NotImplementedException("Test.TestInstall");}
         //public static void TestInstall(InstallHandler script,Version version,bool isPush){throw new global::System.NotImplementedException("Test.TestInstall");}
-        public static void TestSandboxPostCopyScript(SandboxPostCopy script, ID organizationId, ID sandboxId,
+        public static void testSandboxPostCopyScript(SandboxPostCopy script, ID organizationId, ID sandboxId,
             string sandboxName)
         {
             throw new global::System.NotImplementedException("Test.TestSandboxPostCopyScript");

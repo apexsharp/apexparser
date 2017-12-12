@@ -7,12 +7,12 @@ namespace Apex.Wavetemplate
             throw new global::System.NotImplementedException("ServiceWaveConfigurationModifier");
         }
 
-        public void BeforeAppUpdate(WaveTemplateInfo template, string previousAppVersion, Answers answers)
+        public void beforeAppUpdate(WaveTemplateInfo template, string previousAppVersion, Answers answers)
         {
             throw new global::System.NotImplementedException("ServiceWaveConfigurationModifier.BeforeAppUpdate");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ServiceWaveConfigurationModifier.Clone");
         }

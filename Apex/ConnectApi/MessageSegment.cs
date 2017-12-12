@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class MessageSegment
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("MessageSegment.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("MessageSegment.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("MessageSegment.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("MessageSegment.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("MessageSegment.ToString");
         }

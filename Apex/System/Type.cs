@@ -2,42 +2,42 @@ namespace Apex.System
 {
     public class Type
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Type.Clone");
         }
 
-        public bool Equals(object o)
+        public bool equals(object o)
         {
             throw new global::System.NotImplementedException("Type.Equals");
         }
 
-        public static Type ForName(string clsName)
+        public static Type forName(string clsName)
         {
             throw new global::System.NotImplementedException("Type.ForName");
         }
 
-        public static Type ForName(string namespaceApex, string clsName)
+        public static Type forName(string namespaceApex, string clsName)
         {
             throw new global::System.NotImplementedException("Type.ForName");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("Type.GetName");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("Type.HashCode");
         }
 
-        public object NewInstance()
+        public object newInstance()
         {
             throw new global::System.NotImplementedException("Type.NewInstance");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("Type.ToString");
         }

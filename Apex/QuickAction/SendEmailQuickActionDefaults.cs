@@ -5,52 +5,52 @@ namespace Apex.QuickAction
 {
     public class SendEmailQuickActionDefaults
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.Clone");
         }
 
-        public string GetActionName()
+        public string getActionName()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetActionName");
         }
 
-        public string GetActionType()
+        public string getActionType()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetActionType");
         }
 
-        public ID GetContextId()
+        public ID getContextId()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetContextId");
         }
 
-        public List<string> GetFromAddressList()
+        public List<string> getFromAddressList()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetFromAddressList");
         }
 
-        public ID GetInReplyToId()
+        public ID getInReplyToId()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetInReplyToId");
         }
 
-        public SObject GetTargetSObject()
+        public SObject getTargetSObject()
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.GetTargetSObject");
         }
 
-        public void SetIgnoreTemplateSubject(bool ignoreSubject)
+        public void setIgnoreTemplateSubject(bool ignoreSubject)
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.SetIgnoreTemplateSubject");
         }
 
-        public void SetInsertTemplateBody(bool insertBody)
+        public void setInsertTemplateBody(bool insertBody)
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.SetInsertTemplateBody");
         }
 
-        public void SetTemplateId(ID templateId)
+        public void setTemplateId(ID templateId)
         {
             throw new global::System.NotImplementedException("SendEmailQuickActionDefaults.SetTemplateId");
         }

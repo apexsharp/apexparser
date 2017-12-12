@@ -7,17 +7,17 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("PresenceFlagFieldTreatment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("PresenceFlagFieldTreatment.Clone");
         }
 
-        public FieldTreatmentType GetType()
+        public FieldTreatmentType getType()
         {
             throw new global::System.NotImplementedException("PresenceFlagFieldTreatment.GetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("PresenceFlagFieldTreatment.ToString");
         }

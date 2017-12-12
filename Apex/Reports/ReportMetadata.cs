@@ -11,287 +11,287 @@ namespace Apex.Reports
         }
 
         //public ReportMetadata(string name,string developerName,ID id,List<GroupingInfo> groupingsAcross,List<GroupingInfo> groupingsDown,List<string> aggregates,List<BucketField> buckets,List<string> detailColumns,string reportBooleanFilter,List<reports.ReportFilter> reportFilters,List<string> historicalSnapshotDates,ReportFormat reportFormat,ReportType reportType,string currencyCode,string scope,string division,List<SortColumn> sortBy,StandardDateFilter standardDateFilter,bool hasDetailRows,bool hasRecordCount,List<StandardFilter> standardFilters,string description,bool showSubtotals,bool showGrandTotal,TopRows topRows,Map<String,reports.ReportCsf> customSummaryFormula,List<CrossFilter> crossFilters){throw new global::System.NotImplementedException("ReportMetadata");}
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportMetadata.Clone");
         }
 
-        public List<string> GetAggregates()
+        public List<string> getAggregates()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetAggregates");
         }
 
-        public List<BucketField> GetBuckets()
+        public List<BucketField> getBuckets()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetBuckets");
         }
 
-        public List<CrossFilter> GetCrossFilters()
+        public List<CrossFilter> getCrossFilters()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetCrossFilters");
         }
 
-        public string GetCurrencyCode()
+        public string getCurrencyCode()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetCurrencyCode");
         }
 
-        public Map<String, ReportCsf> GetCustomSummaryFormula()
+        public Map<String, ReportCsf> getCustomSummaryFormula()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetCustomSummaryFormula");
         }
 
-        public string GetDescription()
+        public string getDescription()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetDescription");
         }
 
-        public List<string> GetDetailColumns()
+        public List<string> getDetailColumns()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetDetailColumns");
         }
 
-        public string GetDeveloperName()
+        public string getDeveloperName()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetDeveloperName");
         }
 
-        public string GetDivision()
+        public string getDivision()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetDivision");
         }
 
-        public List<GroupingInfo> GetGroupingsAcross()
+        public List<GroupingInfo> getGroupingsAcross()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetGroupingsAcross");
         }
 
-        public List<GroupingInfo> GetGroupingsDown()
+        public List<GroupingInfo> getGroupingsDown()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetGroupingsDown");
         }
 
-        public bool GetHasDetailRows()
+        public bool getHasDetailRows()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetHasDetailRows");
         }
 
-        public bool GetHasRecordCount()
+        public bool getHasRecordCount()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetHasRecordCount");
         }
 
-        public List<string> GetHistoricalSnapshotDates()
+        public List<string> getHistoricalSnapshotDates()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetHistoricalSnapshotDates");
         }
 
-        public ID GetId()
+        public ID getId()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetId");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetName");
         }
 
-        public string GetReportBooleanFilter()
+        public string getReportBooleanFilter()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetReportBooleanFilter");
         }
 
-        public List<ReportFilter> GetReportFilters()
+        public List<ReportFilter> getReportFilters()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetReportFilters");
         }
 
-        public ReportFormat GetReportFormat()
+        public ReportFormat getReportFormat()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetReportFormat");
         }
 
-        public ReportType GetReportType()
+        public ReportType getReportType()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetReportType");
         }
 
-        public string GetScope()
+        public string getScope()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetScope");
         }
 
-        public bool GetShowGrandTotal()
+        public bool getShowGrandTotal()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetShowGrandTotal");
         }
 
-        public bool GetShowSubtotals()
+        public bool getShowSubtotals()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetShowSubtotals");
         }
 
-        public List<SortColumn> GetSortBy()
+        public List<SortColumn> getSortBy()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetSortBy");
         }
 
-        public StandardDateFilter GetStandardDateFilter()
+        public StandardDateFilter getStandardDateFilter()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetStandardDateFilter");
         }
 
-        public List<StandardFilter> GetStandardFilters()
+        public List<StandardFilter> getStandardFilters()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetStandardFilters");
         }
 
-        public TopRows GetTopRows()
+        public TopRows getTopRows()
         {
             throw new global::System.NotImplementedException("ReportMetadata.GetTopRows");
         }
 
-        public void SetAggregates(List<string> aggregates)
+        public void setAggregates(List<string> aggregates)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetAggregates");
         }
 
-        public void SetBuckets(List<BucketField> buckets)
+        public void setBuckets(List<BucketField> buckets)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetBuckets");
         }
 
-        public void SetCrossFilters(List<CrossFilter> crossFilters)
+        public void setCrossFilters(List<CrossFilter> crossFilters)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetCrossFilters");
         }
 
-        public void SetCurrencyCode(string currencyCode)
+        public void setCurrencyCode(string currencyCode)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetCurrencyCode");
         }
 
-        public void SetCustomSummaryFormula(Map<String, ReportCsf> customSummaryFormula)
+        public void setCustomSummaryFormula(Map<String, ReportCsf> customSummaryFormula)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetCustomSummaryFormula");
         }
 
-        public void SetDescription(string description)
+        public void setDescription(string description)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetDescription");
         }
 
-        public void SetDetailColumns(List<string> detailColumns)
+        public void setDetailColumns(List<string> detailColumns)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetDetailColumns");
         }
 
-        public void SetDeveloperName(string developerName)
+        public void setDeveloperName(string developerName)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetDeveloperName");
         }
 
-        public void SetDivision(string division)
+        public void setDivision(string division)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetDivision");
         }
 
-        public void SetGroupingsAcross(List<GroupingInfo> groupingsAcross)
+        public void setGroupingsAcross(List<GroupingInfo> groupingsAcross)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetGroupingsAcross");
         }
 
-        public void SetGroupingsDown(List<GroupingInfo> groupingsDown)
+        public void setGroupingsDown(List<GroupingInfo> groupingsDown)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetGroupingsDown");
         }
 
-        public void SetHasDetailRows(bool hasDetailRows)
+        public void setHasDetailRows(bool hasDetailRows)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetHasDetailRows");
         }
 
-        public void SetHasRecordCount(bool hasRecordCount)
+        public void setHasRecordCount(bool hasRecordCount)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetHasRecordCount");
         }
 
-        public void SetHistoricalSnapshotDates(List<string> historicalSnapshotDates)
+        public void setHistoricalSnapshotDates(List<string> historicalSnapshotDates)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetHistoricalSnapshotDates");
         }
 
-        public void SetId(ID id)
+        public void setId(ID id)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetId");
         }
 
-        public void SetName(string name)
+        public void setName(string name)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetName");
         }
 
-        public void SetReportBooleanFilter(string reportBooleanFilter)
+        public void setReportBooleanFilter(string reportBooleanFilter)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetReportBooleanFilter");
         }
 
-        public void SetReportFilters(List<ReportFilter> reportFilters)
+        public void setReportFilters(List<ReportFilter> reportFilters)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetReportFilters");
         }
 
-        public void SetReportFormat(string value)
+        public void setReportFormat(string value)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetReportFormat");
         }
 
-        public void SetReportFormat(ReportFormat reportFormat)
+        public void setReportFormat(ReportFormat reportFormat)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetReportFormat");
         }
 
-        public void SetReportType(ReportType reportType)
+        public void setReportType(ReportType reportType)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetReportType");
         }
 
-        public void SetScope(string scope)
+        public void setScope(string scope)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetScope");
         }
 
-        public void SetShowGrandTotal(bool showGrandTotal)
+        public void setShowGrandTotal(bool showGrandTotal)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetShowGrandTotal");
         }
 
-        public void SetShowSubtotals(bool showSubtotals)
+        public void setShowSubtotals(bool showSubtotals)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetShowSubtotals");
         }
 
-        public void SetSortBy(List<SortColumn> sortBy)
+        public void setSortBy(List<SortColumn> sortBy)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetSortBy");
         }
 
-        public void SetStandardDateFilter(StandardDateFilter standardDateFilter)
+        public void setStandardDateFilter(StandardDateFilter standardDateFilter)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetStandardDateFilter");
         }
 
-        public void SetStandardFilters(List<StandardFilter> standardFilters)
+        public void setStandardFilters(List<StandardFilter> standardFilters)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetStandardFilters");
         }
 
-        public void SetTopRows(TopRows topRows)
+        public void setTopRows(TopRows topRows)
         {
             throw new global::System.NotImplementedException("ReportMetadata.SetTopRows");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportMetadata.ToString");
         }

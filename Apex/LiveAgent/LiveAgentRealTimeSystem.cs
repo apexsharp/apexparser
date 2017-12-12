@@ -9,23 +9,23 @@ namespace Apex.LiveAgent
             throw new global::System.NotImplementedException("LiveAgentRealTimeSystem");
         }
 
-        public static void CancelChatRequests(List<string> requests)
+        public static void cancelChatRequests(List<string> requests)
         {
             throw new global::System.NotImplementedException("LiveAgentRealTimeSystem.CancelChatRequests");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LiveAgentRealTimeSystem.Clone");
         }
 
-        public static List<LiveAgent.LiveChatRoutingResult> RouteChatRequests(
+        public static List<LiveAgent.LiveChatRoutingResult> routeChatRequests(
             List<LiveAgent.LiveChatRoutingRoute> routes)
         {
             throw new global::System.NotImplementedException("LiveAgentRealTimeSystem.RouteChatRequests");
         }
 
-        public static void SetButtonStatus(string liveChatButtonId, bool online)
+        public static void setButtonStatus(string liveChatButtonId, bool online)
         {
             throw new global::System.NotImplementedException("LiveAgentRealTimeSystem.SetButtonStatus");
         }

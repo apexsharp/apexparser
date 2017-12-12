@@ -2,37 +2,37 @@ namespace Apex.System
 {
     public class Integer
     {
-        public void AddError(object msg)
+        public void addError(object msg)
         {
             throw new global::System.NotImplementedException("Integer.AddError");
         }
 
-        public void AddError(object msg, bool escape)
+        public void addError(object msg, bool escape)
         {
             throw new global::System.NotImplementedException("Integer.AddError");
         }
 
-        public void AddError(string msg)
+        public void addError(string msg)
         {
             throw new global::System.NotImplementedException("Integer.AddError");
         }
 
-        public void AddError(string msg, bool escape)
+        public void addError(string msg, bool escape)
         {
             throw new global::System.NotImplementedException("Integer.AddError");
         }
 
-        public string Format()
+        public string format()
         {
             throw new global::System.NotImplementedException("Integer.Format");
         }
 
-        public static int ValueOf(object o)
+        public static int valueOf(object o)
         {
             throw new global::System.NotImplementedException("Integer.ValueOf");
         }
 
-        public static int ValueOf(string i)
+        public static int valueOf(string i)
         {
             throw new global::System.NotImplementedException("Integer.ValueOf");
         }

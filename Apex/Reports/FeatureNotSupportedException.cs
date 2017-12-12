@@ -19,12 +19,12 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("FeatureNotSupportedException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("FeatureNotSupportedException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("FeatureNotSupportedException.GetTypeName");
         }

@@ -4,32 +4,32 @@ namespace Apex.Wavetemplate
 {
     public class VariableType
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("VariableType.Clone");
         }
 
-        public string GetDataType()
+        public string getDataType()
         {
             throw new global::System.NotImplementedException("VariableType.GetDataType");
         }
 
-        public List<object> GetEnums()
+        public List<object> getEnums()
         {
             throw new global::System.NotImplementedException("VariableType.GetEnums");
         }
 
-        public VariableType GetItemsType()
+        public VariableType getItemsType()
         {
             throw new global::System.NotImplementedException("VariableType.GetItemsType");
         }
 
-        public VariableTypeEnum GetType()
+        public VariableTypeEnum getType()
         {
             throw new global::System.NotImplementedException("VariableType.GetType");
         }
 
-        public void SetEnums(List<object> enums)
+        public void setEnums(List<object> enums)
         {
             throw new global::System.NotImplementedException("VariableType.SetEnums");
         }

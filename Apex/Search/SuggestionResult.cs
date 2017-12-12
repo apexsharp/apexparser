@@ -5,12 +5,12 @@ namespace Apex.Search
 {
     public class SuggestionResult
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SuggestionResult.Clone");
         }
 
-        public SObject GetSObject()
+        public SObject getSObject()
         {
             throw new global::System.NotImplementedException("SuggestionResult.GetSObject");
         }

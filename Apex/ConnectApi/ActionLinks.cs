@@ -2,38 +2,38 @@ namespace Apex.ConnectApi
 {
     public class ActionLinks
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ActionLinks.Clone");
         }
 
-        public static ActionLinkGroupDefinition CreateActionLinkGroupDefinition(string communityId,
+        public static ActionLinkGroupDefinition createActionLinkGroupDefinition(string communityId,
             ActionLinkGroupDefinitionInput actionLinkGroup)
         {
             throw new global::System.NotImplementedException("ActionLinks.CreateActionLinkGroupDefinition");
         }
 
-        public static void DeleteActionLinkGroupDefinition(string communityId, string actionLinkGroupId)
+        public static void deleteActionLinkGroupDefinition(string communityId, string actionLinkGroupId)
         {
             throw new global::System.NotImplementedException("ActionLinks.DeleteActionLinkGroupDefinition");
         }
 
-        public static PlatformAction GetActionLink(string communityId, string actionLinkId)
+        public static PlatformAction getActionLink(string communityId, string actionLinkId)
         {
             throw new global::System.NotImplementedException("ActionLinks.GetActionLink");
         }
 
-        public static ActionLinkDiagnosticInfo GetActionLinkDiagnosticInfo(string communityId, string actionLinkId)
+        public static ActionLinkDiagnosticInfo getActionLinkDiagnosticInfo(string communityId, string actionLinkId)
         {
             throw new global::System.NotImplementedException("ActionLinks.GetActionLinkDiagnosticInfo");
         }
 
-        public static PlatformActionGroup GetActionLinkGroup(string communityId, string actionLinkGroupId)
+        public static PlatformActionGroup getActionLinkGroup(string communityId, string actionLinkGroupId)
         {
             throw new global::System.NotImplementedException("ActionLinks.GetActionLinkGroup");
         }
 
-        public static ActionLinkGroupDefinition GetActionLinkGroupDefinition(string communityId,
+        public static ActionLinkGroupDefinition getActionLinkGroupDefinition(string communityId,
             string actionLinkGroupId)
         {
             throw new global::System.NotImplementedException("ActionLinks.GetActionLinkGroupDefinition");

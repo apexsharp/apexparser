@@ -2,22 +2,22 @@ namespace Apex.System
 {
     public class LoggingLevel
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("LoggingLevel.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("LoggingLevel.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("LoggingLevel.Ordinal");
         }
 
-        public static List<LoggingLevel> Values()
+        public static List<LoggingLevel> values()
         {
             throw new global::System.NotImplementedException("LoggingLevel.Values");
         }

@@ -4,37 +4,37 @@ namespace Apex.Reports
 {
     public class ReportTypeColumn
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportTypeColumn.Clone");
         }
 
-        public ColumnDataType GetDataType()
+        public ColumnDataType getDataType()
         {
             throw new global::System.NotImplementedException("ReportTypeColumn.GetDataType");
         }
 
-        public List<FilterValue> GetFilterValues()
+        public List<FilterValue> getFilterValues()
         {
             throw new global::System.NotImplementedException("ReportTypeColumn.GetFilterValues");
         }
 
-        public bool GetFilterable()
+        public bool getFilterable()
         {
             throw new global::System.NotImplementedException("ReportTypeColumn.GetFilterable");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("ReportTypeColumn.GetLabel");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("ReportTypeColumn.GetName");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportTypeColumn.ToString");
         }

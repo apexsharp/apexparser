@@ -2,22 +2,22 @@ namespace Apex.System
 {
     public class SetupScope
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("SetupScope.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("SetupScope.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("SetupScope.Ordinal");
         }
 
-        public static List<SetupScope> Values()
+        public static List<SetupScope> values()
         {
             throw new global::System.NotImplementedException("SetupScope.Values");
         }

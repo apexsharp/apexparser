@@ -10,62 +10,62 @@ namespace Apex.Approval
             throw new global::System.NotImplementedException("ProcessSubmitRequest");
         }
 
-        public string GetComments()
+        public string getComments()
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.GetComments");
         }
 
-        public List<ID> GetNextApproverIds()
+        public List<ID> getNextApproverIds()
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.GetNextApproverIds");
         }
 
-        public string GetObjectId()
+        public string getObjectId()
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.GetObjectId");
         }
 
-        public string GetProcessDefinitionNameOrId()
+        public string getProcessDefinitionNameOrId()
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.GetProcessDefinitionNameOrId");
         }
 
-        public bool GetSkipEntryCriteria()
+        public bool getSkipEntryCriteria()
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.GetSkipEntryCriteria");
         }
 
-        public string GetSubmitterId()
+        public string getSubmitterId()
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.GetSubmitterId");
         }
 
-        public void SetComments(string param1)
+        public void setComments(string param1)
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.SetComments");
         }
 
-        public void SetNextApproverIds(List<ID> param1)
+        public void setNextApproverIds(List<ID> param1)
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.SetNextApproverIds");
         }
 
-        public void SetObjectId(string param1)
+        public void setObjectId(string param1)
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.SetObjectId");
         }
 
-        public void SetProcessDefinitionNameOrId(string param1)
+        public void setProcessDefinitionNameOrId(string param1)
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.SetProcessDefinitionNameOrId");
         }
 
-        public void SetSkipEntryCriteria(bool param1)
+        public void setSkipEntryCriteria(bool param1)
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.SetSkipEntryCriteria");
         }
 
-        public void SetSubmitterId(string param1)
+        public void setSubmitterId(string param1)
         {
             throw new global::System.NotImplementedException("ProcessSubmitRequest.SetSubmitterId");
         }

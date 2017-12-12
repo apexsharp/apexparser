@@ -4,27 +4,27 @@ namespace Apex.Reports
 {
     public class ReportFactWithDetails
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportFactWithDetails.Clone");
         }
 
-        public List<SummaryValue> GetAggregates()
+        public List<SummaryValue> getAggregates()
         {
             throw new global::System.NotImplementedException("ReportFactWithDetails.GetAggregates");
         }
 
-        public string GetKey()
+        public string getKey()
         {
             throw new global::System.NotImplementedException("ReportFactWithDetails.GetKey");
         }
 
-        public List<ReportDetailRow> GetRows()
+        public List<ReportDetailRow> getRows()
         {
             throw new global::System.NotImplementedException("ReportFactWithDetails.GetRows");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportFactWithDetails.ToString");
         }

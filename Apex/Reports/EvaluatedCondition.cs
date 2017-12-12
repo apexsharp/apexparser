@@ -8,42 +8,42 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("EvaluatedCondition");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.Clone");
         }
 
-        public string GetAggregateLabel()
+        public string getAggregateLabel()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.GetAggregateLabel");
         }
 
-        public string GetAggregateName()
+        public string getAggregateName()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.GetAggregateName");
         }
 
-        public double GetCompareTo()
+        public double getCompareTo()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.GetCompareTo");
         }
 
-        public string GetDisplayCompareTo()
+        public string getDisplayCompareTo()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.GetDisplayCompareTo");
         }
 
-        public string GetDisplayValue()
+        public string getDisplayValue()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.GetDisplayValue");
         }
 
-        public EvaluatedConditionOperator GetOperator()
+        public EvaluatedConditionOperator getOperator()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.GetOperator");
         }
 
-        public double GetValue()
+        public double getValue()
         {
             throw new global::System.NotImplementedException("EvaluatedCondition.GetValue");
         }

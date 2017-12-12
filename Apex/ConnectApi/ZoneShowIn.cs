@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ZoneShowIn
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ZoneShowIn.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ZoneShowIn.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ZoneShowIn.Ordinal");
         }
 
-        public static List<ZoneShowIn> Values()
+        public static List<ZoneShowIn> values()
         {
             throw new global::System.NotImplementedException("ZoneShowIn.Values");
         }

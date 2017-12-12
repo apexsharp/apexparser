@@ -2,7 +2,7 @@ namespace Apex.ChatterAnswers
 {
     public class SCCChangePasswordController
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SCCChangePasswordController.Clone");
         }

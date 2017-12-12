@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class RelatedFeedPostType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("RelatedFeedPostType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("RelatedFeedPostType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("RelatedFeedPostType.Ordinal");
         }
 
-        public static List<RelatedFeedPostType> Values()
+        public static List<RelatedFeedPostType> values()
         {
             throw new global::System.NotImplementedException("RelatedFeedPostType.Values");
         }

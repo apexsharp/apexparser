@@ -7,7 +7,7 @@ namespace Apex.UserProvisioning
             throw new global::System.NotImplementedException("ConnectorTestUtil");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ConnectorTestUtil.Clone");
         }

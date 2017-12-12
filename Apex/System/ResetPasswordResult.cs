@@ -2,7 +2,7 @@ namespace Apex.System
 {
     public class ResetPasswordResult
     {
-        public string GetPassword()
+        public string getPassword()
         {
             throw new global::System.NotImplementedException("ResetPasswordResult.GetPassword");
         }

@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class AbstractRepositoryFolder
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AbstractRepositoryFolder.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("AbstractRepositoryFolder.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("AbstractRepositoryFolder.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("AbstractRepositoryFolder.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("AbstractRepositoryFolder.ToString");
         }

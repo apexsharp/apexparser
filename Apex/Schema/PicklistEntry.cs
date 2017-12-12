@@ -2,22 +2,22 @@ namespace Apex.Schema
 {
     public class PicklistEntry
     {
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("PicklistEntry.GetLabel");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("PicklistEntry.GetValue");
         }
 
-        public bool IsActive()
+        public bool isActive()
         {
             throw new global::System.NotImplementedException("PicklistEntry.IsActive");
         }
 
-        public bool IsDefaultValue()
+        public bool isDefaultValue()
         {
             throw new global::System.NotImplementedException("PicklistEntry.IsDefaultValue");
         }

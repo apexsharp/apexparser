@@ -7,7 +7,7 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("EmailToSalesforceHandler");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("EmailToSalesforceHandler.Clone");
         }

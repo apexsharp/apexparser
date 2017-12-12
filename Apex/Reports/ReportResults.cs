@@ -4,47 +4,47 @@ namespace Apex.Reports
 {
     public class ReportResults
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportResults.Clone");
         }
 
-        public bool GetAllData()
+        public bool getAllData()
         {
             throw new global::System.NotImplementedException("ReportResults.GetAllData");
         }
 
-        public Map<String, ReportFact> GetFactMap()
+        public Map<String, ReportFact> getFactMap()
         {
             throw new global::System.NotImplementedException("ReportResults.GetFactMap");
         }
 
-        public Dimension GetGroupingsAcross()
+        public Dimension getGroupingsAcross()
         {
             throw new global::System.NotImplementedException("ReportResults.GetGroupingsAcross");
         }
 
-        public Dimension GetGroupingsDown()
+        public Dimension getGroupingsDown()
         {
             throw new global::System.NotImplementedException("ReportResults.GetGroupingsDown");
         }
 
-        public bool GetHasDetailRows()
+        public bool getHasDetailRows()
         {
             throw new global::System.NotImplementedException("ReportResults.GetHasDetailRows");
         }
 
-        public ReportExtendedMetadata GetReportExtendedMetadata()
+        public ReportExtendedMetadata getReportExtendedMetadata()
         {
             throw new global::System.NotImplementedException("ReportResults.GetReportExtendedMetadata");
         }
 
-        public ReportMetadata GetReportMetadata()
+        public ReportMetadata getReportMetadata()
         {
             throw new global::System.NotImplementedException("ReportResults.GetReportMetadata");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportResults.ToString");
         }

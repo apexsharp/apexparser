@@ -2,7 +2,7 @@ namespace Apex.Applauncher
 {
     public class AccountSettingsController
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AccountSettingsController.Clone");
         }

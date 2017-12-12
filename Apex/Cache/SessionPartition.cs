@@ -9,122 +9,122 @@ namespace Apex.Cache
             throw new global::System.NotImplementedException("SessionPartition");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SessionPartition.Clone");
         }
 
-        public bool Contains(string key)
+        public bool contains(string key)
         {
             throw new global::System.NotImplementedException("SessionPartition.Contains");
         }
 
-        public static string CreateFullyQualifiedKey(string namespaceApex, string partition, string key)
+        public static string createFullyQualifiedKey(string namespaceApex, string partition, string key)
         {
             throw new global::System.NotImplementedException("SessionPartition.CreateFullyQualifiedKey");
         }
 
-        public static string CreateFullyQualifiedPartition(string namespaceApex, string partition)
+        public static string createFullyQualifiedPartition(string namespaceApex, string partition)
         {
             throw new global::System.NotImplementedException("SessionPartition.CreateFullyQualifiedPartition");
         }
 
-        public object Get(string key)
+        public object get(string key)
         {
             throw new global::System.NotImplementedException("SessionPartition.Get");
         }
 
-        public long GetAvgGetTime()
+        public long getAvgGetTime()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetAvgGetTime");
         }
 
-        public long GetAvgValueSize()
+        public long getAvgValueSize()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetAvgValueSize");
         }
 
-        public double GetCapacity()
+        public double getCapacity()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetCapacity");
         }
 
-        public Set<String> GetKeys()
+        public Set<String> getKeys()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetKeys");
         }
 
-        public long GetMaxGetTime()
+        public long getMaxGetTime()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetMaxGetTime");
         }
 
-        public long GetMaxValueSize()
+        public long getMaxValueSize()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetMaxValueSize");
         }
 
-        public double GetMissRate()
+        public double getMissRate()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetMissRate");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetName");
         }
 
-        public long GetNumKeys()
+        public long getNumKeys()
         {
             throw new global::System.NotImplementedException("SessionPartition.GetNumKeys");
         }
 
-        public bool IsAvailable()
+        public bool isAvailable()
         {
             throw new global::System.NotImplementedException("SessionPartition.IsAvailable");
         }
 
-        public void Put(string key, object value)
+        public void put(string key, object value)
         {
             throw new global::System.NotImplementedException("SessionPartition.Put");
         }
 
-        public void Put(string key, object value, int ttlSecs)
+        public void put(string key, object value, int ttlSecs)
         {
             throw new global::System.NotImplementedException("SessionPartition.Put");
         }
 
-        public void Put(string key, object value, int ttlSecs, Cache.Visibility visibility, bool immutable)
+        public void put(string key, object value, int ttlSecs, Cache.Visibility visibility, bool immutable)
         {
             throw new global::System.NotImplementedException("SessionPartition.Put");
         }
 
-        public void Put(string key, object value, Cache.Visibility visibility)
+        public void put(string key, object value, Cache.Visibility visibility)
         {
             throw new global::System.NotImplementedException("SessionPartition.Put");
         }
 
-        public bool Remove(string key)
+        public bool remove(string key)
         {
             throw new global::System.NotImplementedException("SessionPartition.Remove");
         }
 
-        public static void ValidateKey(bool isDefault, string key)
+        public static void validateKey(bool isDefault, string key)
         {
             throw new global::System.NotImplementedException("SessionPartition.ValidateKey");
         }
 
-        public static void ValidateKeyValue(bool isDefault, string key, object value)
+        public static void validateKeyValue(bool isDefault, string key, object value)
         {
             throw new global::System.NotImplementedException("SessionPartition.ValidateKeyValue");
         }
 
-        public static void ValidateKeys(bool isDefault, List<string> keys)
+        public static void validateKeys(bool isDefault, List<string> keys)
         {
             throw new global::System.NotImplementedException("SessionPartition.ValidateKeys");
         }
 
-        public static void ValidatePartitionName(string name)
+        public static void validatePartitionName(string name)
         {
             throw new global::System.NotImplementedException("SessionPartition.ValidatePartitionName");
         }

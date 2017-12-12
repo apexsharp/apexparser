@@ -4,12 +4,12 @@ namespace Apex.Wavetemplate
 {
     public class UI
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("UI.Clone");
         }
 
-        public List<UIPage> GetPages()
+        public List<UIPage> getPages()
         {
             throw new global::System.NotImplementedException("UI.GetPages");
         }

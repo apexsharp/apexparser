@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class GroupEmailFrequency
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("GroupEmailFrequency.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("GroupEmailFrequency.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("GroupEmailFrequency.Ordinal");
         }
 
-        public static List<GroupEmailFrequency> Values()
+        public static List<GroupEmailFrequency> values()
         {
             throw new global::System.NotImplementedException("GroupEmailFrequency.Values");
         }

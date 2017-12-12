@@ -7,32 +7,32 @@ namespace Apex.System
             throw new global::System.NotImplementedException("StaticResourceCalloutMock");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("StaticResourceCalloutMock.Clone");
         }
 
-        public HttpResponse Respond(HttpRequest request)
+        public HttpResponse respond(HttpRequest request)
         {
             throw new global::System.NotImplementedException("StaticResourceCalloutMock.Respond");
         }
 
-        public void SetHeader(string key, string val)
+        public void setHeader(string key, string val)
         {
             throw new global::System.NotImplementedException("StaticResourceCalloutMock.SetHeader");
         }
 
-        public void SetStaticResource(string staticResourceName)
+        public void setStaticResource(string staticResourceName)
         {
             throw new global::System.NotImplementedException("StaticResourceCalloutMock.SetStaticResource");
         }
 
-        public void SetStatus(string status)
+        public void setStatus(string status)
         {
             throw new global::System.NotImplementedException("StaticResourceCalloutMock.SetStatus");
         }
 
-        public void SetStatusCode(int code)
+        public void setStatusCode(int code)
         {
             throw new global::System.NotImplementedException("StaticResourceCalloutMock.SetStatusCode");
         }

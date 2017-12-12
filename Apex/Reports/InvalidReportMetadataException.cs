@@ -24,17 +24,17 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("InvalidReportMetadataException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("InvalidReportMetadataException.Clone");
         }
 
-        public List<string> GetReportMetadataErrors()
+        public List<string> getReportMetadataErrors()
         {
             throw new global::System.NotImplementedException("InvalidReportMetadataException.GetReportMetadataErrors");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("InvalidReportMetadataException.GetTypeName");
         }

@@ -4,22 +4,22 @@ namespace Apex.Canvas
 {
     public class ContextTypeEnum
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ContextTypeEnum.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ContextTypeEnum.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ContextTypeEnum.Ordinal");
         }
 
-        public static List<Canvas.ContextTypeEnum> Values()
+        public static List<Canvas.ContextTypeEnum> values()
         {
             throw new global::System.NotImplementedException("ContextTypeEnum.Values");
         }

@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class UserType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("UserType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("UserType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("UserType.Ordinal");
         }
 
-        public static List<UserType> Values()
+        public static List<UserType> values()
         {
             throw new global::System.NotImplementedException("UserType.Values");
         }

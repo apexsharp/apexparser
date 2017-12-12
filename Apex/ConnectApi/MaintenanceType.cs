@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class MaintenanceType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("MaintenanceType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("MaintenanceType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("MaintenanceType.Ordinal");
         }
 
-        public static List<MaintenanceType> Values()
+        public static List<MaintenanceType> values()
         {
             throw new global::System.NotImplementedException("MaintenanceType.Values");
         }

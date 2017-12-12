@@ -7,38 +7,38 @@ namespace Apex.Search
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter");
         }
 
-        public void AddArticleType(string articleType)
+        public void addArticleType(string articleType)
         {
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.AddArticleType");
         }
 
-        public void AddDataCategory(string dataCategoryGroupName, string dataCategoryName)
+        public void addDataCategory(string dataCategoryGroupName, string dataCategoryName)
         {
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.AddDataCategory");
         }
 
-        public void AddTopic(string topic)
+        public void addTopic(string topic)
         {
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.AddTopic");
         }
 
-        public void SetChannel(string channelName)
+        public void setChannel(string channelName)
         {
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.SetChannel");
         }
 
         //public void SetDataCategories(Map<T,K> dataCategoryFilters){throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.SetDataCategories");}
-        public void SetLanguage(string localeCode)
+        public void setLanguage(string localeCode)
         {
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.SetLanguage");
         }
 
-        public void SetPublishStatus(string publishStatus)
+        public void setPublishStatus(string publishStatus)
         {
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.SetPublishStatus");
         }
 
-        public void SetValidationStatus(string validationStatus)
+        public void setValidationStatus(string validationStatus)
         {
             throw new global::System.NotImplementedException("KnowledgeSuggestionFilter.SetValidationStatus");
         }

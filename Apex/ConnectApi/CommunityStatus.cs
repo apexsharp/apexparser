@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class CommunityStatus
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("CommunityStatus.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("CommunityStatus.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("CommunityStatus.Ordinal");
         }
 
-        public static List<CommunityStatus> Values()
+        public static List<CommunityStatus> values()
         {
             throw new global::System.NotImplementedException("CommunityStatus.Values");
         }

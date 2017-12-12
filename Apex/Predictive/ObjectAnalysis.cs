@@ -4,37 +4,37 @@ namespace Apex.Predictive
 {
     public class ObjectAnalysis
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ObjectAnalysis.Clone");
         }
 
-        public SimilarResult FindSimilar(Row target, string fieldName)
+        public SimilarResult findSimilar(Row target, string fieldName)
         {
             throw new global::System.NotImplementedException("ObjectAnalysis.FindSimilar");
         }
 
-        public string GetObjectName()
+        public string getObjectName()
         {
             throw new global::System.NotImplementedException("ObjectAnalysis.GetObjectName");
         }
 
-        public ObjectRefreshStatus GetRefreshStatus()
+        public ObjectRefreshStatus getRefreshStatus()
         {
             throw new global::System.NotImplementedException("ObjectAnalysis.GetRefreshStatus");
         }
 
-        public PredictedResult Predict(Row fixedApex, List<string> predict)
+        public PredictedResult predict(Row fixedApex, List<string> predict)
         {
             throw new global::System.NotImplementedException("ObjectAnalysis.Predict");
         }
 
-        public void Refresh(ObjectTreatment objectTreatment)
+        public void refresh(ObjectTreatment objectTreatment)
         {
             throw new global::System.NotImplementedException("ObjectAnalysis.Refresh");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ObjectAnalysis.ToString");
         }

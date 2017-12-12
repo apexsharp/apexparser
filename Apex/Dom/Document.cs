@@ -7,22 +7,22 @@ namespace Apex.Dom
             throw new global::System.NotImplementedException("Document");
         }
 
-        public XmlNode CreateRootElement(string name, string namespaceApex, string prefix)
+        public XmlNode createRootElement(string name, string namespaceApex, string prefix)
         {
             throw new global::System.NotImplementedException("Document.CreateRootElement");
         }
 
-        public XmlNode GetRootElement()
+        public XmlNode getRootElement()
         {
             throw new global::System.NotImplementedException("Document.GetRootElement");
         }
 
-        public void Load(string xml)
+        public void load(string xml)
         {
             throw new global::System.NotImplementedException("Document.Load");
         }
 
-        public string ToXmlString()
+        public string toXmlString()
         {
             throw new global::System.NotImplementedException("Document.ToXmlString");
         }

@@ -5,17 +5,17 @@ namespace Apex.Approval
 {
     public class LockResult
     {
-        public List<Database.Error> GetErrors()
+        public List<Database.Error> getErrors()
         {
             throw new global::System.NotImplementedException("LockResult.GetErrors");
         }
 
-        public ID GetId()
+        public ID getId()
         {
             throw new global::System.NotImplementedException("LockResult.GetId");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("LockResult.IsSuccess");
         }

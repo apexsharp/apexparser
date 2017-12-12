@@ -4,17 +4,17 @@ namespace Apex.Schema
 {
     public class FilteredLookupInfo
     {
-        public List<string> GetControllingFields()
+        public List<string> getControllingFields()
         {
             throw new global::System.NotImplementedException("FilteredLookupInfo.GetControllingFields");
         }
 
-        public bool IsDependent()
+        public bool isDependent()
         {
             throw new global::System.NotImplementedException("FilteredLookupInfo.IsDependent");
         }
 
-        public bool IsOptionalFilter()
+        public bool isOptionalFilter()
         {
             throw new global::System.NotImplementedException("FilteredLookupInfo.IsOptionalFilter");
         }

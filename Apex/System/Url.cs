@@ -22,82 +22,82 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Url");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Url.Clone");
         }
 
-        public string GetAuthority()
+        public string getAuthority()
         {
             throw new global::System.NotImplementedException("Url.GetAuthority");
         }
 
-        public static Url GetCurrentRequestUrl()
+        public static Url getCurrentRequestUrl()
         {
             throw new global::System.NotImplementedException("Url.GetCurrentRequestUrl");
         }
 
-        public int GetDefaultPort()
+        public int getDefaultPort()
         {
             throw new global::System.NotImplementedException("Url.GetDefaultPort");
         }
 
-        public string GetFile()
+        public string getFile()
         {
             throw new global::System.NotImplementedException("Url.GetFile");
         }
 
-        public static string GetFileFieldURL(string objectId, string fieldName)
+        public static string getFileFieldURL(string objectId, string fieldName)
         {
             throw new global::System.NotImplementedException("Url.GetFileFieldURL");
         }
 
-        public string GetHost()
+        public string getHost()
         {
             throw new global::System.NotImplementedException("Url.GetHost");
         }
 
-        public string GetPath()
+        public string getPath()
         {
             throw new global::System.NotImplementedException("Url.GetPath");
         }
 
-        public int GetPort()
+        public int getPort()
         {
             throw new global::System.NotImplementedException("Url.GetPort");
         }
 
-        public string GetProtocol()
+        public string getProtocol()
         {
             throw new global::System.NotImplementedException("Url.GetProtocol");
         }
 
-        public string GetQuery()
+        public string getQuery()
         {
             throw new global::System.NotImplementedException("Url.GetQuery");
         }
 
-        public string GetRef()
+        public string getRef()
         {
             throw new global::System.NotImplementedException("Url.GetRef");
         }
 
-        public static Url GetSalesforceBaseUrl()
+        public static Url getSalesforceBaseUrl()
         {
             throw new global::System.NotImplementedException("Url.GetSalesforceBaseUrl");
         }
 
-        public string GetUserInfo()
+        public string getUserInfo()
         {
             throw new global::System.NotImplementedException("Url.GetUserInfo");
         }
 
-        public bool SameFile(Url other)
+        public bool sameFile(Url other)
         {
             throw new global::System.NotImplementedException("Url.SameFile");
         }
 
-        public string ToExternalForm()
+        public string toExternalForm()
         {
             throw new global::System.NotImplementedException("Url.ToExternalForm");
         }

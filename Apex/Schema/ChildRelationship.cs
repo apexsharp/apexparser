@@ -4,42 +4,42 @@ namespace Apex.Schema
 {
     public class ChildRelationship
     {
-        public Schema.SObjectType GetChildSObject()
+        public Schema.SObjectType getChildSObject()
         {
             throw new global::System.NotImplementedException("ChildRelationship.GetChildSObject");
         }
 
-        public Schema.SObjectField GetField()
+        public Schema.SObjectField getField()
         {
             throw new global::System.NotImplementedException("ChildRelationship.GetField");
         }
 
-        public string GetJunctionIdListName()
+        public string getJunctionIdListName()
         {
             throw new global::System.NotImplementedException("ChildRelationship.GetJunctionIdListName");
         }
 
-        public List<Schema.SObjectType> GetJunctionReferenceTo()
+        public List<Schema.SObjectType> getJunctionReferenceTo()
         {
             throw new global::System.NotImplementedException("ChildRelationship.GetJunctionReferenceTo");
         }
 
-        public string GetRelationshipName()
+        public string getRelationshipName()
         {
             throw new global::System.NotImplementedException("ChildRelationship.GetRelationshipName");
         }
 
-        public bool IsCascadeDelete()
+        public bool isCascadeDelete()
         {
             throw new global::System.NotImplementedException("ChildRelationship.IsCascadeDelete");
         }
 
-        public bool IsDeprecatedAndHidden()
+        public bool isDeprecatedAndHidden()
         {
             throw new global::System.NotImplementedException("ChildRelationship.IsDeprecatedAndHidden");
         }
 
-        public bool IsRestrictedDelete()
+        public bool isRestrictedDelete()
         {
             throw new global::System.NotImplementedException("ChildRelationship.IsRestrictedDelete");
         }

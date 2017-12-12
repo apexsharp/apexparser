@@ -5,22 +5,22 @@ namespace Apex.QuickAction
 {
     public class QuickActionTemplateResult
     {
-        public SObject GetDefaultValueFormulas()
+        public SObject getDefaultValueFormulas()
         {
             throw new global::System.NotImplementedException("QuickActionTemplateResult.GetDefaultValueFormulas");
         }
 
-        public SObject GetDefaultValues()
+        public SObject getDefaultValues()
         {
             throw new global::System.NotImplementedException("QuickActionTemplateResult.GetDefaultValues");
         }
 
-        public List<Database.Error> GetErrors()
+        public List<Database.Error> getErrors()
         {
             throw new global::System.NotImplementedException("QuickActionTemplateResult.GetErrors");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("QuickActionTemplateResult.IsSuccess");
         }

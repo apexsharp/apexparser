@@ -10,67 +10,67 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportManager");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportManager.Clone");
         }
 
-        public static ReportDescribeResult DescribeReport(ID reportId)
+        public static ReportDescribeResult describeReport(ID reportId)
         {
             throw new global::System.NotImplementedException("ReportManager.DescribeReport");
         }
 
-        public static Map<String, List<FilterOperator>> GetDatatypeFilterOperatorMap()
+        public static Map<String, List<FilterOperator>> getDatatypeFilterOperatorMap()
         {
             throw new global::System.NotImplementedException("ReportManager.GetDatatypeFilterOperatorMap");
         }
 
-        public static ReportInstance GetReportInstance(ID instanceId)
+        public static ReportInstance getReportInstance(ID instanceId)
         {
             throw new global::System.NotImplementedException("ReportManager.GetReportInstance");
         }
 
-        public static List<ReportInstance> GetReportInstances(ID reportId)
+        public static List<ReportInstance> getReportInstances(ID reportId)
         {
             throw new global::System.NotImplementedException("ReportManager.GetReportInstances");
         }
 
-        public static ReportInstance RunAsyncReport(ID reportId)
+        public static ReportInstance runAsyncReport(ID reportId)
         {
             throw new global::System.NotImplementedException("ReportManager.RunAsyncReport");
         }
 
-        public static ReportInstance RunAsyncReport(ID reportId, bool includeDetails)
+        public static ReportInstance runAsyncReport(ID reportId, bool includeDetails)
         {
             throw new global::System.NotImplementedException("ReportManager.RunAsyncReport");
         }
 
-        public static ReportInstance RunAsyncReport(ID reportId, ReportMetadata rmData)
+        public static ReportInstance runAsyncReport(ID reportId, ReportMetadata rmData)
         {
             throw new global::System.NotImplementedException("ReportManager.RunAsyncReport");
         }
 
-        public static ReportInstance RunAsyncReport(ID reportId, ReportMetadata rmData, bool includeDetails)
+        public static ReportInstance runAsyncReport(ID reportId, ReportMetadata rmData, bool includeDetails)
         {
             throw new global::System.NotImplementedException("ReportManager.RunAsyncReport");
         }
 
-        public static ReportResults RunReport(ID reportId)
+        public static ReportResults runReport(ID reportId)
         {
             throw new global::System.NotImplementedException("ReportManager.RunReport");
         }
 
-        public static ReportResults RunReport(ID reportId, bool includeDetails)
+        public static ReportResults runReport(ID reportId, bool includeDetails)
         {
             throw new global::System.NotImplementedException("ReportManager.RunReport");
         }
 
-        public static ReportResults RunReport(ID reportId, ReportMetadata rmData)
+        public static ReportResults runReport(ID reportId, ReportMetadata rmData)
         {
             throw new global::System.NotImplementedException("ReportManager.RunReport");
         }
 
-        public static ReportResults RunReport(ID reportId, ReportMetadata rmData, bool includeDetails)
+        public static ReportResults runReport(ID reportId, ReportMetadata rmData, bool includeDetails)
         {
             throw new global::System.NotImplementedException("ReportManager.RunReport");
         }

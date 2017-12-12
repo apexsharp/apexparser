@@ -2,32 +2,32 @@ namespace Apex.Reports
 {
     public class StandardDateFilterDuration
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDuration.Clone");
         }
 
-        public string GetEndDate()
+        public string getEndDate()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDuration.GetEndDate");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDuration.GetLabel");
         }
 
-        public string GetStartDate()
+        public string getStartDate()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDuration.GetStartDate");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDuration.GetValue");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("StandardDateFilterDuration.ToString");
         }

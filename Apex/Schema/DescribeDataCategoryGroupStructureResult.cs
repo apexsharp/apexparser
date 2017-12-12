@@ -4,27 +4,27 @@ namespace Apex.Schema
 {
     public class DescribeDataCategoryGroupStructureResult
     {
-        public string GetDescription()
+        public string getDescription()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupStructureResult.GetDescription");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupStructureResult.GetLabel");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupStructureResult.GetName");
         }
 
-        public string GetSobject()
+        public string getSobject()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupStructureResult.GetSobject");
         }
 
-        public List<Schema.DataCategory> GetTopCategories()
+        public List<Schema.DataCategory> getTopCategories()
         {
             throw new global::System.NotImplementedException(
                 "DescribeDataCategoryGroupStructureResult.GetTopCategories");

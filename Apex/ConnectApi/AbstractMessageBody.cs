@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class AbstractMessageBody
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("AbstractMessageBody.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("AbstractMessageBody.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("AbstractMessageBody.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("AbstractMessageBody.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("AbstractMessageBody.ToString");
         }

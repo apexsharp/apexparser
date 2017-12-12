@@ -4,22 +4,22 @@ namespace Apex.Predictive
 {
     public class PredictedFieldType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("PredictedFieldType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("PredictedFieldType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("PredictedFieldType.Ordinal");
         }
 
-        public static List<PredictedFieldType> Values()
+        public static List<PredictedFieldType> values()
         {
             throw new global::System.NotImplementedException("PredictedFieldType.Values");
         }

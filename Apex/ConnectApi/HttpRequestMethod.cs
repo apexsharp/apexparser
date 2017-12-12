@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class HttpRequestMethod
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("HttpRequestMethod.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("HttpRequestMethod.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("HttpRequestMethod.Ordinal");
         }
 
-        public static List<HttpRequestMethod> Values()
+        public static List<HttpRequestMethod> values()
         {
             throw new global::System.NotImplementedException("HttpRequestMethod.Values");
         }

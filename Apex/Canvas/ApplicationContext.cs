@@ -2,32 +2,32 @@ namespace Apex.Canvas
 {
     public class ApplicationContext
     {
-        public string GetCanvasUrl()
+        public string getCanvasUrl()
         {
             throw new global::System.NotImplementedException("ApplicationContext.GetCanvasUrl");
         }
 
-        public string GetDeveloperName()
+        public string getDeveloperName()
         {
             throw new global::System.NotImplementedException("ApplicationContext.GetDeveloperName");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("ApplicationContext.GetName");
         }
 
-        public string GetNamespace()
+        public string getNamespace()
         {
             throw new global::System.NotImplementedException("ApplicationContext.GetNamespace");
         }
 
-        public string GetVersion()
+        public string getVersion()
         {
             throw new global::System.NotImplementedException("ApplicationContext.GetVersion");
         }
 
-        public void SetCanvasUrlPath(string param1)
+        public void setCanvasUrlPath(string param1)
         {
             throw new global::System.NotImplementedException("ApplicationContext.SetCanvasUrlPath");
         }

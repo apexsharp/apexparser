@@ -9,97 +9,97 @@ namespace Apex.Cache
             throw new global::System.NotImplementedException("Session");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Session.Clone");
         }
 
-        public static bool Contains(string key)
+        public static bool contains(string key)
         {
             throw new global::System.NotImplementedException("Session.Contains");
         }
 
-        public static object Get(string key)
+        public static object get(string key)
         {
             throw new global::System.NotImplementedException("Session.Get");
         }
 
-        public static long GetAvgGetTime()
+        public static long getAvgGetTime()
         {
             throw new global::System.NotImplementedException("Session.GetAvgGetTime");
         }
 
-        public static long GetAvgValueSize()
+        public static long getAvgValueSize()
         {
             throw new global::System.NotImplementedException("Session.GetAvgValueSize");
         }
 
-        public static double GetCapacity()
+        public static double getCapacity()
         {
             throw new global::System.NotImplementedException("Session.GetCapacity");
         }
 
-        public static Set<String> GetKeys()
+        public static Set<String> getKeys()
         {
             throw new global::System.NotImplementedException("Session.GetKeys");
         }
 
-        public static long GetMaxGetTime()
+        public static long getMaxGetTime()
         {
             throw new global::System.NotImplementedException("Session.GetMaxGetTime");
         }
 
-        public static long GetMaxValueSize()
+        public static long getMaxValueSize()
         {
             throw new global::System.NotImplementedException("Session.GetMaxValueSize");
         }
 
-        public static double GetMissRate()
+        public static double getMissRate()
         {
             throw new global::System.NotImplementedException("Session.GetMissRate");
         }
 
-        public static string GetName()
+        public static string getName()
         {
             throw new global::System.NotImplementedException("Session.GetName");
         }
 
-        public static long GetNumKeys()
+        public static long getNumKeys()
         {
             throw new global::System.NotImplementedException("Session.GetNumKeys");
         }
 
-        public static Cache.SessionPartition GetPartition(string partitionName)
+        public static Cache.SessionPartition getPartition(string partitionName)
         {
             throw new global::System.NotImplementedException("Session.GetPartition");
         }
 
-        public static bool IsAvailable()
+        public static bool isAvailable()
         {
             throw new global::System.NotImplementedException("Session.IsAvailable");
         }
 
-        public static void Put(string key, object value)
+        public static void put(string key, object value)
         {
             throw new global::System.NotImplementedException("Session.Put");
         }
 
-        public static void Put(string key, object value, int ttlSecs)
+        public static void put(string key, object value, int ttlSecs)
         {
             throw new global::System.NotImplementedException("Session.Put");
         }
 
-        public static void Put(string key, object value, int ttlSecs, Cache.Visibility visibility, bool immutable)
+        public static void put(string key, object value, int ttlSecs, Cache.Visibility visibility, bool immutable)
         {
             throw new global::System.NotImplementedException("Session.Put");
         }
 
-        public static void Put(string key, object value, Cache.Visibility visibility)
+        public static void put(string key, object value, Cache.Visibility visibility)
         {
             throw new global::System.NotImplementedException("Session.Put");
         }
 
-        public static bool Remove(string key)
+        public static bool remove(string key)
         {
             throw new global::System.NotImplementedException("Session.Remove");
         }

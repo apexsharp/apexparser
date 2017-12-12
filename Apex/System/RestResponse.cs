@@ -11,12 +11,12 @@ namespace Apex.System
 
         }
 
-        public void AddHeader(string name, string value)
+        public void addHeader(string name, string value)
         {
             throw new global::System.NotImplementedException("RestResponse.AddHeader");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("RestResponse.Clone");
         }

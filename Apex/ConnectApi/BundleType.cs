@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class BundleType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("BundleType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("BundleType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("BundleType.Ordinal");
         }
 
-        public static List<BundleType> Values()
+        public static List<BundleType> values()
         {
             throw new global::System.NotImplementedException("BundleType.Values");
         }

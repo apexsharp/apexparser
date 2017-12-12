@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class SocialPostStatusType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("SocialPostStatusType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("SocialPostStatusType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("SocialPostStatusType.Ordinal");
         }
 
-        public static List<SocialPostStatusType> Values()
+        public static List<SocialPostStatusType> values()
         {
             throw new global::System.NotImplementedException("SocialPostStatusType.Values");
         }

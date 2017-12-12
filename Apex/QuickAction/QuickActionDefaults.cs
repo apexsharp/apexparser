@@ -5,27 +5,27 @@ namespace Apex.QuickAction
 {
     public class QuickActionDefaults
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("QuickActionDefaults.Clone");
         }
 
-        public string GetActionName()
+        public string getActionName()
         {
             throw new global::System.NotImplementedException("QuickActionDefaults.GetActionName");
         }
 
-        public string GetActionType()
+        public string getActionType()
         {
             throw new global::System.NotImplementedException("QuickActionDefaults.GetActionType");
         }
 
-        public ID GetContextId()
+        public ID getContextId()
         {
             throw new global::System.NotImplementedException("QuickActionDefaults.GetContextId");
         }
 
-        public SObject GetTargetSObject()
+        public SObject getTargetSObject()
         {
             throw new global::System.NotImplementedException("QuickActionDefaults.GetTargetSObject");
         }

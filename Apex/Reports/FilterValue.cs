@@ -2,22 +2,22 @@ namespace Apex.Reports
 {
     public class FilterValue
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("FilterValue.Clone");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("FilterValue.GetLabel");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("FilterValue.GetName");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("FilterValue.ToString");
         }

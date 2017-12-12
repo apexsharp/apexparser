@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class CommunityFlagVisibility
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("CommunityFlagVisibility.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("CommunityFlagVisibility.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("CommunityFlagVisibility.Ordinal");
         }
 
-        public static List<CommunityFlagVisibility> Values()
+        public static List<CommunityFlagVisibility> values()
         {
             throw new global::System.NotImplementedException("CommunityFlagVisibility.Values");
         }

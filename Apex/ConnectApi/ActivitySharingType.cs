@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ActivitySharingType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ActivitySharingType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ActivitySharingType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ActivitySharingType.Ordinal");
         }
 
-        public static List<ActivitySharingType> Values()
+        public static List<ActivitySharingType> values()
         {
             throw new global::System.NotImplementedException("ActivitySharingType.Values");
         }

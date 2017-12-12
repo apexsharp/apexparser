@@ -4,22 +4,22 @@ namespace Apex.Schema
 {
     public class SoapType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("SoapType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("SoapType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("SoapType.Ordinal");
         }
 
-        public static List<Schema.SoapType> Values()
+        public static List<Schema.SoapType> values()
         {
             throw new global::System.NotImplementedException("SoapType.Values");
         }

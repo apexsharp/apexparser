@@ -7,17 +7,17 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("NotificationActionContext");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("NotificationActionContext.Clone");
         }
 
-        public ReportInstance GetReportInstance()
+        public ReportInstance getReportInstance()
         {
             throw new global::System.NotImplementedException("NotificationActionContext.GetReportInstance");
         }
 
-        public ThresholdInformation GetThresholdInformation()
+        public ThresholdInformation getThresholdInformation()
         {
             throw new global::System.NotImplementedException("NotificationActionContext.GetThresholdInformation");
         }

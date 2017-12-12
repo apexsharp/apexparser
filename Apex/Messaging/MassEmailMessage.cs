@@ -10,112 +10,112 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("MassEmailMessage");
         }
 
-        public bool GetBccSender()
+        public bool getBccSender()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetBccSender");
         }
 
-        public string GetDescription()
+        public string getDescription()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetDescription");
         }
 
-        public string GetEmailPriority()
+        public string getEmailPriority()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetEmailPriority");
         }
 
-        public string GetReplyTo()
+        public string getReplyTo()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetReplyTo");
         }
 
-        public bool GetSaveAsActivity()
+        public bool getSaveAsActivity()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetSaveAsActivity");
         }
 
-        public string GetSenderDisplayName()
+        public string getSenderDisplayName()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetSenderDisplayName");
         }
 
-        public string GetSubject()
+        public string getSubject()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetSubject");
         }
 
-        public List<ID> GetTargetObjectIds()
+        public List<ID> getTargetObjectIds()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetTargetObjectIds");
         }
 
-        public ID GetTemplateId()
+        public ID getTemplateId()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetTemplateId");
         }
 
-        public bool GetUseSignature()
+        public bool getUseSignature()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetUseSignature");
         }
 
-        public List<ID> GetWhatIds()
+        public List<ID> getWhatIds()
         {
             throw new global::System.NotImplementedException("MassEmailMessage.GetWhatIds");
         }
 
-        public void SetBccSender(bool param1)
+        public void setBccSender(bool param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetBccSender");
         }
 
-        public void SetDescription(string param1)
+        public void setDescription(string param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetDescription");
         }
 
-        public void SetEmailPriority(string param1)
+        public void setEmailPriority(string param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetEmailPriority");
         }
 
-        public void SetReplyTo(string param1)
+        public void setReplyTo(string param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetReplyTo");
         }
 
-        public void SetSaveAsActivity(bool param1)
+        public void setSaveAsActivity(bool param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetSaveAsActivity");
         }
 
-        public void SetSenderDisplayName(string param1)
+        public void setSenderDisplayName(string param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetSenderDisplayName");
         }
 
-        public void SetSubject(string param1)
+        public void setSubject(string param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetSubject");
         }
 
-        public void SetTargetObjectIds(List<ID> param1)
+        public void setTargetObjectIds(List<ID> param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetTargetObjectIds");
         }
 
-        public void SetTemplateId(ID param1)
+        public void setTemplateId(ID param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetTemplateId");
         }
 
-        public void SetUseSignature(bool param1)
+        public void setUseSignature(bool param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetUseSignature");
         }
 
-        public void SetWhatIds(List<ID> param1)
+        public void setWhatIds(List<ID> param1)
         {
             throw new global::System.NotImplementedException("MassEmailMessage.SetWhatIds");
         }

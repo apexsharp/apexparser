@@ -9,22 +9,22 @@ namespace Apex.DataProtection
             throw new global::System.NotImplementedException("DbBackupPortalConnector");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DbBackupPortalConnector.Clone");
         }
 
-        public void GetInstanceList(List<string> instancesToFill)
+        public void getInstanceList(List<string> instancesToFill)
         {
             throw new global::System.NotImplementedException("DbBackupPortalConnector.GetInstanceList");
         }
 
-        public string GetRmanStats(List<string> instanceNames, string userMessage, long timeoutMilli)
+        public string getRmanStats(List<string> instanceNames, string userMessage, long timeoutMilli)
         {
             throw new global::System.NotImplementedException("DbBackupPortalConnector.GetRmanStats");
         }
 
-        public string GetRmanStats(List<string> instanceNames, string userMessage, long timeoutMilli,
+        public string getRmanStats(List<string> instanceNames, string userMessage, long timeoutMilli,
             string soapEndPoint)
         {
             throw new global::System.NotImplementedException("DbBackupPortalConnector.GetRmanStats");

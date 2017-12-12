@@ -9,17 +9,17 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("RenderEmailTemplateBodyResult");
         }
 
-        public List<RenderEmailTemplateError> GetErrors()
+        public List<RenderEmailTemplateError> getErrors()
         {
             throw new global::System.NotImplementedException("RenderEmailTemplateBodyResult.GetErrors");
         }
 
-        public string GetMergedBody()
+        public string getMergedBody()
         {
             throw new global::System.NotImplementedException("RenderEmailTemplateBodyResult.GetMergedBody");
         }
 
-        public bool GetSuccess()
+        public bool getSuccess()
         {
             throw new global::System.NotImplementedException("RenderEmailTemplateBodyResult.GetSuccess");
         }

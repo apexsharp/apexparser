@@ -9,99 +9,99 @@ namespace Apex.KbManagement
             throw new global::System.NotImplementedException("PublishingService");
         }
 
-        public static void ArchiveOnlineArticle(string articleId, DateTime scheduledDate)
+        public static void archiveOnlineArticle(string articleId, DateTime scheduledDate)
         {
             throw new global::System.NotImplementedException("PublishingService.ArchiveOnlineArticle");
         }
 
-        public static void AssignDraftArticleTask(string articleId, string assigneeId, string instructions,
+        public static void assignDraftArticleTask(string articleId, string assigneeId, string instructions,
             DateTime dueDate, bool sendEmailNotification)
         {
             throw new global::System.NotImplementedException("PublishingService.AssignDraftArticleTask");
         }
 
-        public static void AssignDraftTranslationTask(string translationVersionId, string assigneeId,
+        public static void assignDraftTranslationTask(string translationVersionId, string assigneeId,
             string instructions, DateTime dueDate, bool sendEmailNotification)
         {
             throw new global::System.NotImplementedException("PublishingService.AssignDraftTranslationTask");
         }
 
-        public static void CancelScheduledArchivingOfArticle(string articleId)
+        public static void cancelScheduledArchivingOfArticle(string articleId)
         {
             throw new global::System.NotImplementedException("PublishingService.CancelScheduledArchivingOfArticle");
         }
 
-        public static void CancelScheduledPublicationOfArticle(string articleId)
+        public static void cancelScheduledPublicationOfArticle(string articleId)
         {
             throw new global::System.NotImplementedException("PublishingService.CancelScheduledPublicationOfArticle");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("PublishingService.Clone");
         }
 
-        public static void CompleteTranslation(string articleVersionId)
+        public static void completeTranslation(string articleVersionId)
         {
             throw new global::System.NotImplementedException("PublishingService.CompleteTranslation");
         }
 
-        public static void DeleteArchivedArticle(string articleId)
+        public static void deleteArchivedArticle(string articleId)
         {
             throw new global::System.NotImplementedException("PublishingService.DeleteArchivedArticle");
         }
 
-        public static void DeleteArchivedArticleVersion(string articleId, int versionNumber)
+        public static void deleteArchivedArticleVersion(string articleId, int versionNumber)
         {
             throw new global::System.NotImplementedException("PublishingService.DeleteArchivedArticleVersion");
         }
 
-        public static void DeleteDraftArticle(string articleId)
+        public static void deleteDraftArticle(string articleId)
         {
             throw new global::System.NotImplementedException("PublishingService.DeleteDraftArticle");
         }
 
-        public static void DeleteDraftTranslation(string articleVersionId)
+        public static void deleteDraftTranslation(string articleVersionId)
         {
             throw new global::System.NotImplementedException("PublishingService.DeleteDraftTranslation");
         }
 
-        public static string EditArchivedArticle(string articleId)
+        public static string editArchivedArticle(string articleId)
         {
             throw new global::System.NotImplementedException("PublishingService.EditArchivedArticle");
         }
 
-        public static string EditOnlineArticle(string articleId, bool unpublish)
+        public static string editOnlineArticle(string articleId, bool unpublish)
         {
             throw new global::System.NotImplementedException("PublishingService.EditOnlineArticle");
         }
 
-        public static string EditPublishedTranslation(string articleId, string language, bool unpublish)
+        public static string editPublishedTranslation(string articleId, string language, bool unpublish)
         {
             throw new global::System.NotImplementedException("PublishingService.EditPublishedTranslation");
         }
 
-        public static void PublishArticle(string articleId, bool flagAsNew)
+        public static void publishArticle(string articleId, bool flagAsNew)
         {
             throw new global::System.NotImplementedException("PublishingService.PublishArticle");
         }
 
-        public static string RestoreOldVersion(string articleId, int versionNumber)
+        public static string restoreOldVersion(string articleId, int versionNumber)
         {
             throw new global::System.NotImplementedException("PublishingService.RestoreOldVersion");
         }
 
-        public static void ScheduleForPublication(string articleId, DateTime scheduledDate)
+        public static void scheduleForPublication(string articleId, DateTime scheduledDate)
         {
             throw new global::System.NotImplementedException("PublishingService.ScheduleForPublication");
         }
 
-        public static void SetTranslationToIncomplete(string articleVersionId)
+        public static void setTranslationToIncomplete(string articleVersionId)
         {
             throw new global::System.NotImplementedException("PublishingService.SetTranslationToIncomplete");
         }
 
-        public static string SubmitForTranslation(string articleId, string language, string assigneeId,
+        public static string submitForTranslation(string articleId, string language, string assigneeId,
             DateTime dueDate)
         {
             throw new global::System.NotImplementedException("PublishingService.SubmitForTranslation");

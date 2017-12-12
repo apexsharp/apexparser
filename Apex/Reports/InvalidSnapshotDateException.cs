@@ -24,17 +24,17 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("InvalidSnapshotDateException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("InvalidSnapshotDateException.Clone");
         }
 
-        public List<string> GetSnapshotDateErrors()
+        public List<string> getSnapshotDateErrors()
         {
             throw new global::System.NotImplementedException("InvalidSnapshotDateException.GetSnapshotDateErrors");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("InvalidSnapshotDateException.GetTypeName");
         }

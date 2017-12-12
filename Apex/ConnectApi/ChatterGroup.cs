@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class ChatterGroup
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ChatterGroup.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ChatterGroup.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("ChatterGroup.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ChatterGroup.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ChatterGroup.ToString");
         }

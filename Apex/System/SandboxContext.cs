@@ -4,17 +4,17 @@ namespace Apex.System
 {
     public class SandboxContext
     {
-        public ID OrganizationId()
+        public ID organizationId()
         {
             throw new global::System.NotImplementedException("SandboxContext.OrganizationId");
         }
 
-        public ID SandboxId()
+        public ID sandboxId()
         {
             throw new global::System.NotImplementedException("SandboxContext.SandboxId");
         }
 
-        public string SandboxName()
+        public string sandboxName()
         {
             throw new global::System.NotImplementedException("SandboxContext.SandboxName");
         }

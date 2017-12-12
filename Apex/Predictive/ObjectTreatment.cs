@@ -14,22 +14,22 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("ObjectTreatment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ObjectTreatment.Clone");
         }
 
-        public Map<String, FieldTreatment> GetFieldTreatments()
+        public Map<String, FieldTreatment> getFieldTreatments()
         {
             throw new global::System.NotImplementedException("ObjectTreatment.GetFieldTreatments");
         }
 
-        public void SetFieldTreatments(Map<String, FieldTreatment> fieldTreatments)
+        public void setFieldTreatments(Map<String, FieldTreatment> fieldTreatments)
         {
             throw new global::System.NotImplementedException("ObjectTreatment.SetFieldTreatments");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ObjectTreatment.ToString");
         }

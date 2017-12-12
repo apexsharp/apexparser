@@ -12,22 +12,22 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Version");
         }
 
-        public int CompareTo(Version other)
+        public int compareTo(Version other)
         {
             throw new global::System.NotImplementedException("Version.CompareTo");
         }
 
-        public int Major()
+        public int major()
         {
             throw new global::System.NotImplementedException("Version.Major");
         }
 
-        public int Minor()
+        public int minor()
         {
             throw new global::System.NotImplementedException("Version.Minor");
         }
 
-        public int Patch()
+        public int patch()
         {
             throw new global::System.NotImplementedException("Version.Patch");
         }

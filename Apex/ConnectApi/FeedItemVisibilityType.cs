@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class FeedItemVisibilityType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FeedItemVisibilityType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FeedItemVisibilityType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FeedItemVisibilityType.Ordinal");
         }
 
-        public static List<FeedItemVisibilityType> Values()
+        public static List<FeedItemVisibilityType> values()
         {
             throw new global::System.NotImplementedException("FeedItemVisibilityType.Values");
         }

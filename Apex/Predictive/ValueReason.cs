@@ -2,17 +2,17 @@ namespace Apex.Predictive
 {
     public class ValueReason
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ValueReason.Clone");
         }
 
-        public ReasonType GetType()
+        public ReasonType getType()
         {
             throw new global::System.NotImplementedException("ValueReason.GetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ValueReason.ToString");
         }

@@ -24,12 +24,12 @@ namespace Apex.Eventbus
             throw new global::System.NotImplementedException("RetryableException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("RetryableException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("RetryableException.GetTypeName");
         }

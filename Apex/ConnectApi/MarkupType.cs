@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class MarkupType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("MarkupType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("MarkupType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("MarkupType.Ordinal");
         }
 
-        public static List<MarkupType> Values()
+        public static List<MarkupType> values()
         {
             throw new global::System.NotImplementedException("MarkupType.Values");
         }

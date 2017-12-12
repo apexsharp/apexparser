@@ -2,27 +2,27 @@ namespace Apex.Schema
 {
     public class DescribeDataCategoryGroupResult
     {
-        public int GetCategoryCount()
+        public int getCategoryCount()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupResult.GetCategoryCount");
         }
 
-        public string GetDescription()
+        public string getDescription()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupResult.GetDescription");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupResult.GetLabel");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupResult.GetName");
         }
 
-        public string GetSobject()
+        public string getSobject()
         {
             throw new global::System.NotImplementedException("DescribeDataCategoryGroupResult.GetSobject");
         }

@@ -19,12 +19,12 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("MetadataException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("MetadataException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("MetadataException.GetTypeName");
         }

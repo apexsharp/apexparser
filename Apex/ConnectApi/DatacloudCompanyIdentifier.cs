@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class DatacloudCompanyIdentifier
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("DatacloudCompanyIdentifier.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("DatacloudCompanyIdentifier.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("DatacloudCompanyIdentifier.Ordinal");
         }
 
-        public static List<DatacloudCompanyIdentifier> Values()
+        public static List<DatacloudCompanyIdentifier> values()
         {
             throw new global::System.NotImplementedException("DatacloudCompanyIdentifier.Values");
         }

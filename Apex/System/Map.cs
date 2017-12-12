@@ -42,79 +42,79 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Map");
         }
 
-        public void Clear()
+        public void clear()
         {
             throw new global::System.NotImplementedException("Map.Clear");
         }
 
-        public Map<String, String> Clone()
+        public Map<String, String> clone()
         {
             throw new global::System.NotImplementedException("Map.Clone");
         }
 
-        public bool ContainsKey(object key)
+        public bool containsKey(object key)
         {
             throw new global::System.NotImplementedException("Map.ContainsKey");
         }
 
-        public Map<String, String> DeepClone()
+        public Map<String, String> deepClone()
         {
             throw new global::System.NotImplementedException("Map.DeepClone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("Map.Equals");
         }
 
-        public K Get(T key)
+        public K get(T key)
         {
             return default(K);
         }
 
         //public Schema.SObjectType GetSObjectType() { throw new global::System.NotImplementedException("Map.GetSObjectType"); }
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("Map.HashCode");
         }
 
-        public bool IsEmpty()
+        public bool isEmpty()
         {
             throw new global::System.NotImplementedException("Map.IsEmpty");
         }
 
-        public Set<T> KeySet()
+        public Set<T> keySet()
         {
             return new Set<T>();
         }
 
-        public string Put(object key, object value)
+        public string put(object key, object value)
         {
             //throw new global::System.NotImplementedException("Map.Put");
             return "";
         }
 
-        public void PutAll(List<T> entries)
+        public void putAll(List<T> entries)
         {
             throw new global::System.NotImplementedException("Map.PutAll");
         }
 
-        public void PutAll(Map<T, K> entries)
+        public void putAll(Map<T, K> entries)
         {
             throw new global::System.NotImplementedException("Map.PutAll");
         }
 
-        public string Remove(object key)
+        public string remove(object key)
         {
             throw new global::System.NotImplementedException("Map.Remove");
         }
 
-        public int Size()
+        public int size()
         {
             throw new global::System.NotImplementedException("Map.Size");
         }
 
-        public List<string> Values()
+        public List<string> values()
         {
             throw new global::System.NotImplementedException("Map.Values");
         }

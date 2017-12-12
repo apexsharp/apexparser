@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class ReportScopeInfo
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportScopeInfo.Clone");
         }
 
-        public string GetDefaultValue()
+        public string getDefaultValue()
         {
             throw new global::System.NotImplementedException("ReportScopeInfo.GetDefaultValue");
         }
 
-        public List<ReportScopeValue> GetValues()
+        public List<ReportScopeValue> getValues()
         {
             throw new global::System.NotImplementedException("ReportScopeInfo.GetValues");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportScopeInfo.ToString");
         }

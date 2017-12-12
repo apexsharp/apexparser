@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ContentHubDirectoryEntryType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ContentHubDirectoryEntryType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ContentHubDirectoryEntryType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ContentHubDirectoryEntryType.Ordinal");
         }
 
-        public static List<ContentHubDirectoryEntryType> Values()
+        public static List<ContentHubDirectoryEntryType> values()
         {
             throw new global::System.NotImplementedException("ContentHubDirectoryEntryType.Values");
         }

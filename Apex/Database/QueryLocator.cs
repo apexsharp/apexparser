@@ -5,17 +5,17 @@ namespace Apex.Database
 {
     public class QueryLocator
     {
-        public string GetQuery()
+        public string getQuery()
         {
             throw new global::System.NotImplementedException("QueryLocator.GetQuery");
         }
 
-        public Database.QueryLocatorIterator Iterator()
+        public Database.QueryLocatorIterator iterator()
         {
             throw new global::System.NotImplementedException("QueryLocator.Iterator");
         }
 
-        public List<SObject> Querymore(int num)
+        public List<SObject> querymore(int num)
         {
             throw new global::System.NotImplementedException("QueryLocator.Querymore");
         }

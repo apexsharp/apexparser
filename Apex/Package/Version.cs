@@ -2,22 +2,22 @@ namespace Apex.Package
 {
     public class Version
     {
-        public bool IsGreaterThan(Package.Version other)
+        public bool isGreaterThan(Package.Version other)
         {
             throw new global::System.NotImplementedException("Version.IsGreaterThan");
         }
 
-        public bool IsGreaterThanOrEqual(Package.Version other)
+        public bool isGreaterThanOrEqual(Package.Version other)
         {
             throw new global::System.NotImplementedException("Version.IsGreaterThanOrEqual");
         }
 
-        public bool IsLessThan(Package.Version other)
+        public bool isLessThan(Package.Version other)
         {
             throw new global::System.NotImplementedException("Version.IsLessThan");
         }
 
-        public bool IsLessThanOrEqual(Package.Version other)
+        public bool isLessThanOrEqual(Package.Version other)
         {
             throw new global::System.NotImplementedException("Version.IsLessThanOrEqual");
         }

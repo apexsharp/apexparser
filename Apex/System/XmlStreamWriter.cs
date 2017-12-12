@@ -7,77 +7,77 @@ namespace Apex.System
             throw new global::System.NotImplementedException("XmlStreamWriter");
         }
 
-        public void Close()
+        public void close()
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.Close");
         }
 
-        public string GetXmlString()
+        public string getXmlString()
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.GetXmlString");
         }
 
-        public void SetDefaultNamespace(string uri)
+        public void setDefaultNamespace(string uri)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.SetDefaultNamespace");
         }
 
-        public void WriteAttribute(string prefix, string namespaceURI, string localName, string value)
+        public void writeAttribute(string prefix, string namespaceURI, string localName, string value)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteAttribute");
         }
 
-        public void WriteCData(string data)
+        public void writeCData(string data)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteCData");
         }
 
-        public void WriteCharacters(string text)
+        public void writeCharacters(string text)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteCharacters");
         }
 
-        public void WriteComment(string data)
+        public void writeComment(string data)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteComment");
         }
 
-        public void WriteDefaultNamespace(string namesapceURI)
+        public void writeDefaultNamespace(string namesapceURI)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteDefaultNamespace");
         }
 
-        public void WriteEmptyElement(string prefix, string localName, string namesapceURI)
+        public void writeEmptyElement(string prefix, string localName, string namesapceURI)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteEmptyElement");
         }
 
-        public void WriteEndDocument()
+        public void writeEndDocument()
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteEndDocument");
         }
 
-        public void WriteEndElement()
+        public void writeEndElement()
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteEndElement");
         }
 
-        public void WriteNamespace(string prefix, string namesapceURI)
+        public void writeNamespace(string prefix, string namesapceURI)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteNamespace");
         }
 
-        public void WriteProcessingInstruction(string target, string data)
+        public void writeProcessingInstruction(string target, string data)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteProcessingInstruction");
         }
 
-        public void WriteStartDocument(string encoding, string version)
+        public void writeStartDocument(string encoding, string version)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteStartDocument");
         }
 
-        public void WriteStartElement(string prefix, string localName, string namesapceURI)
+        public void writeStartElement(string prefix, string localName, string namesapceURI)
         {
             throw new global::System.NotImplementedException("XmlStreamWriter.WriteStartElement");
         }

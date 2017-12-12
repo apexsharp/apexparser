@@ -19,12 +19,12 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("PredictiveException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("PredictiveException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("PredictiveException.GetTypeName");
         }

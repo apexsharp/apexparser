@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class DatacloudUserType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("DatacloudUserType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("DatacloudUserType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("DatacloudUserType.Ordinal");
         }
 
-        public static List<DatacloudUserType> Values()
+        public static List<DatacloudUserType> values()
         {
             throw new global::System.NotImplementedException("DatacloudUserType.Values");
         }

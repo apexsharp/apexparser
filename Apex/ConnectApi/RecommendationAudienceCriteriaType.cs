@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class RecommendationAudienceCriteriaType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("RecommendationAudienceCriteriaType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("RecommendationAudienceCriteriaType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("RecommendationAudienceCriteriaType.Ordinal");
         }
 
-        public static List<RecommendationAudienceCriteriaType> Values()
+        public static List<RecommendationAudienceCriteriaType> values()
         {
             throw new global::System.NotImplementedException("RecommendationAudienceCriteriaType.Values");
         }

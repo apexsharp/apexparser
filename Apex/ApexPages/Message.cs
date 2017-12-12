@@ -17,22 +17,22 @@ namespace Apex.ApexPages
             throw new global::System.NotImplementedException("Message");
         }
 
-        public string GetComponentLabel()
+        public string getComponentLabel()
         {
             throw new global::System.NotImplementedException("Message.GetComponentLabel");
         }
 
-        public string GetDetail()
+        public string getDetail()
         {
             throw new global::System.NotImplementedException("Message.GetDetail");
         }
 
-        public ApexPages.Severity GetSeverity()
+        public ApexPages.Severity getSeverity()
         {
             throw new global::System.NotImplementedException("Message.GetSeverity");
         }
 
-        public string GetSummary()
+        public string getSummary()
         {
             throw new global::System.NotImplementedException("Message.GetSummary");
         }

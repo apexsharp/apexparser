@@ -7,7 +7,7 @@ namespace Apex.Database
             throw new global::System.NotImplementedException("DMLOptions");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("DMLOptions.Clone");
         }

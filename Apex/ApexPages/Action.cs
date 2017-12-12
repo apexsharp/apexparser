@@ -7,17 +7,17 @@ namespace Apex.ApexPages
             throw new global::System.NotImplementedException("Action");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Action.Clone");
         }
 
-        public string GetExpression()
+        public string getExpression()
         {
             throw new global::System.NotImplementedException("Action.GetExpression");
         }
 
-        public System.PageReference Invoke()
+        public System.PageReference invoke()
         {
             throw new global::System.NotImplementedException("Action.Invoke");
         }

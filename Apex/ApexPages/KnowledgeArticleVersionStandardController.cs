@@ -10,38 +10,38 @@ namespace Apex.ApexPages
             throw new global::System.NotImplementedException("KnowledgeArticleVersionStandardController");
         }
 
-        public void AddFields(List<string> fieldNames)
+        public void addFields(List<string> fieldNames)
         {
             throw new global::System.NotImplementedException("KnowledgeArticleVersionStandardController.AddFields");
         }
 
-        public System.PageReference Cancel()
+        public System.PageReference cancel()
         {
             throw new global::System.NotImplementedException("KnowledgeArticleVersionStandardController.Cancel");
         }
 
-        public string GetId()
+        public string getId()
         {
             throw new global::System.NotImplementedException("KnowledgeArticleVersionStandardController.GetId");
         }
 
-        public SObject GetRecord()
+        public SObject getRecord()
         {
             throw new global::System.NotImplementedException("KnowledgeArticleVersionStandardController.GetRecord");
         }
 
-        public string GetSourceId()
+        public string getSourceId()
         {
             throw new global::System.NotImplementedException("KnowledgeArticleVersionStandardController.GetSourceId");
         }
 
-        public void SelectDataCategory(string categoryGroup, string category)
+        public void selectDataCategory(string categoryGroup, string category)
         {
             throw new global::System.NotImplementedException(
                 "KnowledgeArticleVersionStandardController.SelectDataCategory");
         }
 
-        public System.PageReference View()
+        public System.PageReference view()
         {
             throw new global::System.NotImplementedException("KnowledgeArticleVersionStandardController.View");
         }

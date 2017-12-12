@@ -1,4 +1,4 @@
-﻿using Ignore = NUnit.Framework.IgnoreAttribute;
+using Ignore = NUnit.Framework.IgnoreAttribute;
 
 namespace Apex.ApexSharp.NUnit
 {

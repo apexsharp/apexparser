@@ -2,22 +2,22 @@ namespace Apex.Reports
 {
     public class ReportCurrency
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportCurrency.Clone");
         }
 
-        public decimal GetAmount()
+        public decimal getAmount()
         {
             throw new global::System.NotImplementedException("ReportCurrency.GetAmount");
         }
 
-        public string GetCurrencyCode()
+        public string getCurrencyCode()
         {
             throw new global::System.NotImplementedException("ReportCurrency.GetCurrencyCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportCurrency.ToString");
         }

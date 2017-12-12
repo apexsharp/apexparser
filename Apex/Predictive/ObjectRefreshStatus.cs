@@ -4,52 +4,52 @@ namespace Apex.Predictive
 {
     public class ObjectRefreshStatus
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.Clone");
         }
 
-        public List<string> GetDebugInfo()
+        public List<string> getDebugInfo()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetDebugInfo");
         }
 
-        public DateTime GetEndTime()
+        public DateTime getEndTime()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetEndTime");
         }
 
-        public List<string> GetErrors()
+        public List<string> getErrors()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetErrors");
         }
 
-        public ObjectTreatment GetObjectTreatment()
+        public ObjectTreatment getObjectTreatment()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetObjectTreatment");
         }
 
-        public string GetRefreshId()
+        public string getRefreshId()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetRefreshId");
         }
 
-        public DateTime GetStartTime()
+        public DateTime getStartTime()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetStartTime");
         }
 
-        public ObjectRefreshState GetState()
+        public ObjectRefreshState getState()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetState");
         }
 
-        public List<string> GetWarnings()
+        public List<string> getWarnings()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.GetWarnings");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ObjectRefreshStatus.ToString");
         }

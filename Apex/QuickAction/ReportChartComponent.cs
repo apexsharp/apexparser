@@ -2,57 +2,57 @@ namespace Apex.QuickAction
 {
     public class ReportChartComponent
     {
-        public bool GetCacheData()
+        public bool getCacheData()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetCacheData");
         }
 
-        public string GetContextFilterableField()
+        public string getContextFilterableField()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetContextFilterableField");
         }
 
-        public int GetDisplayLines()
+        public int getDisplayLines()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetDisplayLines");
         }
 
-        public string GetError()
+        public string getError()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetError");
         }
 
-        public bool GetHideOnError()
+        public bool getHideOnError()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetHideOnError");
         }
 
-        public bool GetIncludeContext()
+        public bool getIncludeContext()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetIncludeContext");
         }
 
-        public bool GetShowTitle()
+        public bool getShowTitle()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetShowTitle");
         }
 
-        public string GetSize()
+        public string getSize()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetSize");
         }
 
-        public int GetTabOrder()
+        public int getTabOrder()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetTabOrder");
         }
 
-        public string GetType()
+        public string getType()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetType");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("ReportChartComponent.GetValue");
         }

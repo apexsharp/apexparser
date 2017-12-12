@@ -2,22 +2,22 @@ namespace Apex.QuickAction
 {
     public class Separator
     {
-        public int GetDisplayLines()
+        public int getDisplayLines()
         {
             throw new global::System.NotImplementedException("Separator.GetDisplayLines");
         }
 
-        public int GetTabOrder()
+        public int getTabOrder()
         {
             throw new global::System.NotImplementedException("Separator.GetTabOrder");
         }
 
-        public string GetType()
+        public string getType()
         {
             throw new global::System.NotImplementedException("Separator.GetType");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("Separator.GetValue");
         }

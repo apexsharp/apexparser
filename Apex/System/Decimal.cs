@@ -2,117 +2,117 @@ namespace Apex.System
 {
     public class Decimal
     {
-        public decimal Abs()
+        public decimal abs()
         {
             throw new global::System.NotImplementedException("Decimal.Abs");
         }
 
-        public void AddError(object msg)
+        public void addError(object msg)
         {
             throw new global::System.NotImplementedException("Decimal.AddError");
         }
 
-        public void AddError(object msg, bool escape)
+        public void addError(object msg, bool escape)
         {
             throw new global::System.NotImplementedException("Decimal.AddError");
         }
 
-        public void AddError(string msg)
+        public void addError(string msg)
         {
             throw new global::System.NotImplementedException("Decimal.AddError");
         }
 
-        public void AddError(string msg, bool escape)
+        public void addError(string msg, bool escape)
         {
             throw new global::System.NotImplementedException("Decimal.AddError");
         }
 
-        public decimal Divide(decimal divisor, int scale)
+        public decimal divide(decimal divisor, int scale)
         {
             throw new global::System.NotImplementedException("Decimal.Divide");
         }
 
-        public decimal Divide(decimal divisor, int scale, object roundingMode)
+        public decimal divide(decimal divisor, int scale, object roundingMode)
         {
             throw new global::System.NotImplementedException("Decimal.Divide");
         }
 
-        public double DoubleValue()
+        public double doubleValue()
         {
             throw new global::System.NotImplementedException("Decimal.DoubleValue");
         }
 
-        public string Format()
+        public string format()
         {
             throw new global::System.NotImplementedException("Decimal.Format");
         }
 
-        public int IntValue()
+        public int intValue()
         {
             throw new global::System.NotImplementedException("Decimal.IntValue");
         }
 
-        public long LongValue()
+        public long longValue()
         {
             throw new global::System.NotImplementedException("Decimal.LongValue");
         }
 
-        public decimal Pow(int exponent)
+        public decimal pow(int exponent)
         {
             throw new global::System.NotImplementedException("Decimal.Pow");
         }
 
-        public int Precision()
+        public int precision()
         {
             throw new global::System.NotImplementedException("Decimal.Precision");
         }
 
-        public long Round()
+        public long round()
         {
             throw new global::System.NotImplementedException("Decimal.Round");
         }
 
-        public long Round(RoundingMode roundingMode)
+        public long round(RoundingMode roundingMode)
         {
             throw new global::System.NotImplementedException("Decimal.Round");
         }
 
-        public int Scale()
+        public int scale()
         {
             throw new global::System.NotImplementedException("Decimal.Scale");
         }
 
-        public decimal SetScale(int scale)
+        public decimal setScale(int scale)
         {
             throw new global::System.NotImplementedException("Decimal.SetScale");
         }
 
-        public decimal SetScale(int scale, RoundingMode roundingMode)
+        public decimal setScale(int scale, RoundingMode roundingMode)
         {
             throw new global::System.NotImplementedException("Decimal.SetScale");
         }
 
-        public decimal StripTrailingZeros()
+        public decimal stripTrailingZeros()
         {
             throw new global::System.NotImplementedException("Decimal.StripTrailingZeros");
         }
 
-        public string ToPlainString()
+        public string toPlainString()
         {
             throw new global::System.NotImplementedException("Decimal.ToPlainString");
         }
 
-        public static decimal ValueOf(double dbl)
+        public static decimal valueOf(double dbl)
         {
             throw new global::System.NotImplementedException("Decimal.ValueOf");
         }
 
-        public static decimal ValueOf(long lng)
+        public static decimal valueOf(long lng)
         {
             throw new global::System.NotImplementedException("Decimal.ValueOf");
         }
 
-        public static decimal ValueOf(string str)
+        public static decimal valueOf(string str)
         {
             throw new global::System.NotImplementedException("Decimal.ValueOf");
         }

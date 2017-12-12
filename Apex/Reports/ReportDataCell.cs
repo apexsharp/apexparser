@@ -2,22 +2,22 @@ namespace Apex.Reports
 {
     public class ReportDataCell
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportDataCell.Clone");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("ReportDataCell.GetLabel");
         }
 
-        public object GetValue()
+        public object getValue()
         {
             throw new global::System.NotImplementedException("ReportDataCell.GetValue");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportDataCell.ToString");
         }

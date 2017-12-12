@@ -2,27 +2,27 @@ namespace Apex.System
 {
     public class Boolean
     {
-        public void AddError(object msg)
+        public void addError(object msg)
         {
             throw new global::System.NotImplementedException("Boolean.AddError");
         }
 
-        public void AddError(object msg, bool escape)
+        public void addError(object msg, bool escape)
         {
             throw new global::System.NotImplementedException("Boolean.AddError");
         }
 
-        public void AddError(string msg)
+        public void addError(string msg)
         {
             throw new global::System.NotImplementedException("Boolean.AddError");
         }
 
-        public void AddError(string msg, bool escape)
+        public void addError(string msg, bool escape)
         {
             throw new global::System.NotImplementedException("Boolean.AddError");
         }
 
-        public static bool ValueOf(object a)
+        public static bool valueOf(object a)
         {
             throw new global::System.NotImplementedException("Boolean.ValueOf");
         }

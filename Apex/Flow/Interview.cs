@@ -2,17 +2,17 @@ namespace Apex.Flow
 {
     public class Interview
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Interview.Clone");
         }
 
-        public object GetVariableValue(string variableName)
+        public object getVariableValue(string variableName)
         {
             throw new global::System.NotImplementedException("Interview.GetVariableValue");
         }
 
-        public void Start()
+        public void start()
         {
             throw new global::System.NotImplementedException("Interview.Start");
         }

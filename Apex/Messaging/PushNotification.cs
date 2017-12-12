@@ -14,22 +14,22 @@ namespace Apex.Messaging
             throw new global::System.NotImplementedException("PushNotification");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("PushNotification.Clone");
         }
 
-        public void Send(string application, Set<String> users)
+        public void send(string application, Set<String> users)
         {
             throw new global::System.NotImplementedException("PushNotification.Send");
         }
 
-        public void SetPayload(Map<String, object> payload)
+        public void setPayload(Map<String, object> payload)
         {
             throw new global::System.NotImplementedException("PushNotification.SetPayload");
         }
 
-        public void SetTtl(int ttl)
+        public void setTtl(int ttl)
         {
             throw new global::System.NotImplementedException("PushNotification.SetTtl");
         }

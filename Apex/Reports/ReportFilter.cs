@@ -12,42 +12,42 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("ReportFilter");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportFilter.Clone");
         }
 
-        public string GetColumn()
+        public string getColumn()
         {
             throw new global::System.NotImplementedException("ReportFilter.GetColumn");
         }
 
-        public string GetOperator()
+        public string getOperator()
         {
             throw new global::System.NotImplementedException("ReportFilter.GetOperator");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("ReportFilter.GetValue");
         }
 
-        public void SetColumn(string column)
+        public void setColumn(string column)
         {
             throw new global::System.NotImplementedException("ReportFilter.SetColumn");
         }
 
-        public void SetOperator(string operatorApex)
+        public void setOperator(string operatorApex)
         {
             throw new global::System.NotImplementedException("ReportFilter.SetOperator");
         }
 
-        public void SetValue(string value)
+        public void setValue(string value)
         {
             throw new global::System.NotImplementedException("ReportFilter.SetValue");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportFilter.ToString");
         }

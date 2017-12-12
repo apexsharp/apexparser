@@ -9,22 +9,22 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("Row");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Row.Clone");
         }
 
-        public Map<String, object> GetCells()
+        public Map<String, object> getCells()
         {
             throw new global::System.NotImplementedException("Row.GetCells");
         }
 
-        public void SetCells(Map<String, object> cells)
+        public void setCells(Map<String, object> cells)
         {
             throw new global::System.NotImplementedException("Row.SetCells");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("Row.ToString");
         }

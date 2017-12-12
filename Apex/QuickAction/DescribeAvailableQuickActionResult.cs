@@ -2,22 +2,22 @@ namespace Apex.QuickAction
 {
     public class DescribeAvailableQuickActionResult
     {
-        public string GetActionEnumOrId()
+        public string getActionEnumOrId()
         {
             throw new global::System.NotImplementedException("DescribeAvailableQuickActionResult.GetActionEnumOrId");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("DescribeAvailableQuickActionResult.GetLabel");
         }
 
-        public string GetName()
+        public string getName()
         {
             throw new global::System.NotImplementedException("DescribeAvailableQuickActionResult.GetName");
         }
 
-        public string GetType()
+        public string getType()
         {
             throw new global::System.NotImplementedException("DescribeAvailableQuickActionResult.GetType");
         }

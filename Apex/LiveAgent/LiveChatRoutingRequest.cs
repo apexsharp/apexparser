@@ -7,22 +7,22 @@ namespace Apex.LiveAgent
             throw new global::System.NotImplementedException("LiveChatRoutingRequest");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingRequest.Clone");
         }
 
-        public string GetChatKey()
+        public string getChatKey()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingRequest.GetChatKey");
         }
 
-        public string GetLiveChatButtonId()
+        public string getLiveChatButtonId()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingRequest.GetLiveChatButtonId");
         }
 
-        public string GetLiveChatTranscriptId()
+        public string getLiveChatTranscriptId()
         {
             throw new global::System.NotImplementedException("LiveChatRoutingRequest.GetLiveChatTranscriptId");
         }

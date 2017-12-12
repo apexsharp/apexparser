@@ -24,12 +24,12 @@ namespace Apex.Cache
             throw new global::System.NotImplementedException("ItemSizeLimitExceededException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ItemSizeLimitExceededException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("ItemSizeLimitExceededException.GetTypeName");
         }

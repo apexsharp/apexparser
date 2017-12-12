@@ -15,87 +15,87 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("BucketField");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BucketField.Clone");
         }
 
-        public BucketType GetBucketType()
+        public BucketType getBucketType()
         {
             throw new global::System.NotImplementedException("BucketField.GetBucketType");
         }
 
-        public string GetDevloperName()
+        public string getDevloperName()
         {
             throw new global::System.NotImplementedException("BucketField.GetDevloperName");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("BucketField.GetLabel");
         }
 
-        public bool GetNullTreatedAsZero()
+        public bool getNullTreatedAsZero()
         {
             throw new global::System.NotImplementedException("BucketField.GetNullTreatedAsZero");
         }
 
-        public string GetOtherBucketLabel()
+        public string getOtherBucketLabel()
         {
             throw new global::System.NotImplementedException("BucketField.GetOtherBucketLabel");
         }
 
-        public string GetSourceColumnName()
+        public string getSourceColumnName()
         {
             throw new global::System.NotImplementedException("BucketField.GetSourceColumnName");
         }
 
-        public List<BucketFieldValue> GetValues()
+        public List<BucketFieldValue> getValues()
         {
             throw new global::System.NotImplementedException("BucketField.GetValues");
         }
 
-        public void SetBucketType(string value)
+        public void setBucketType(string value)
         {
             throw new global::System.NotImplementedException("BucketField.SetBucketType");
         }
 
-        public void SetBucketType(BucketType bucketType)
+        public void setBucketType(BucketType bucketType)
         {
             throw new global::System.NotImplementedException("BucketField.SetBucketType");
         }
 
-        public void SetDevloperName(string devloperName)
+        public void setDevloperName(string devloperName)
         {
             throw new global::System.NotImplementedException("BucketField.SetDevloperName");
         }
 
-        public void SetLabel(string label)
+        public void setLabel(string label)
         {
             throw new global::System.NotImplementedException("BucketField.SetLabel");
         }
 
-        public void SetNullTreatedAsZero(bool nullTreatedAsZero)
+        public void setNullTreatedAsZero(bool nullTreatedAsZero)
         {
             throw new global::System.NotImplementedException("BucketField.SetNullTreatedAsZero");
         }
 
-        public void SetOtherBucketLabel(string otherBucketLabel)
+        public void setOtherBucketLabel(string otherBucketLabel)
         {
             throw new global::System.NotImplementedException("BucketField.SetOtherBucketLabel");
         }
 
-        public void SetSourceColumnName(string sourceColumnName)
+        public void setSourceColumnName(string sourceColumnName)
         {
             throw new global::System.NotImplementedException("BucketField.SetSourceColumnName");
         }
 
-        public void SetValues(List<BucketFieldValue> values)
+        public void setValues(List<BucketFieldValue> values)
         {
             throw new global::System.NotImplementedException("BucketField.SetValues");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("BucketField.ToString");
         }

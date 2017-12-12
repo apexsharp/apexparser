@@ -24,12 +24,12 @@ namespace Apex.Cache
             throw new global::System.NotImplementedException("SessionCacheNoSessionException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SessionCacheNoSessionException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("SessionCacheNoSessionException.GetTypeName");
         }

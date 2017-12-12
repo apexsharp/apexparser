@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class FeedSortOrder
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FeedSortOrder.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FeedSortOrder.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FeedSortOrder.Ordinal");
         }
 
-        public static List<FeedSortOrder> Values()
+        public static List<FeedSortOrder> values()
         {
             throw new global::System.NotImplementedException("FeedSortOrder.Values");
         }

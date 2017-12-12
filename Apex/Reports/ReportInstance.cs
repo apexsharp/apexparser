@@ -5,47 +5,47 @@ namespace Apex.Reports
 {
     public class ReportInstance
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ReportInstance.Clone");
         }
 
-        public DateTime GetCompletionDate()
+        public DateTime getCompletionDate()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetCompletionDate");
         }
 
-        public ID GetId()
+        public ID getId()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetId");
         }
 
-        public ID GetOwnerId()
+        public ID getOwnerId()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetOwnerId");
         }
 
-        public ID GetReportId()
+        public ID getReportId()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetReportId");
         }
 
-        public ReportResults GetReportResults()
+        public ReportResults getReportResults()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetReportResults");
         }
 
-        public DateTime GetRequestDate()
+        public DateTime getRequestDate()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetRequestDate");
         }
 
-        public string GetStatus()
+        public string getStatus()
         {
             throw new global::System.NotImplementedException("ReportInstance.GetStatus");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("ReportInstance.ToString");
         }

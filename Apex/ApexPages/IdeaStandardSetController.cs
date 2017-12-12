@@ -5,113 +5,113 @@ namespace Apex.ApexPages
 {
     public class IdeaStandardSetController
     {
-        public void AddFields(List<string> fieldNames)
+        public void addFields(List<string> fieldNames)
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.AddFields");
         }
 
-        public System.PageReference Cancel()
+        public System.PageReference cancel()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.Cancel");
         }
 
-        public void First()
+        public void first()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.First");
         }
 
-        public bool GetCompleteResult()
+        public bool getCompleteResult()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetCompleteResult");
         }
 
-        public string GetFilterId()
+        public string getFilterId()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetFilterId");
         }
 
-        public bool GetHasNext()
+        public bool getHasNext()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetHasNext");
         }
 
-        public bool GetHasPrevious()
+        public bool getHasPrevious()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetHasPrevious");
         }
 
         //public List<Idea> GetIdeaList(){throw new global::System.NotImplementedException("IdeaStandardSetController.GetIdeaList");}
-        public List<System.SelectOption> GetListViewOptions()
+        public List<System.SelectOption> getListViewOptions()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetListViewOptions");
         }
 
-        public int GetPageNumber()
+        public int getPageNumber()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetPageNumber");
         }
 
-        public int GetPageSize()
+        public int getPageSize()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetPageSize");
         }
 
-        public SObject GetRecord()
+        public SObject getRecord()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetRecord");
         }
 
-        public List<SObject> GetRecords()
+        public List<SObject> getRecords()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetRecords");
         }
 
-        public int GetResultSize()
+        public int getResultSize()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetResultSize");
         }
 
-        public List<SObject> GetSelected()
+        public List<SObject> getSelected()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.GetSelected");
         }
 
-        public void Last()
+        public void last()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.Last");
         }
 
-        public void Next()
+        public void next()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.Next");
         }
 
-        public void Previous()
+        public void previous()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.Previous");
         }
 
-        public System.PageReference Save()
+        public System.PageReference save()
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.Save");
         }
 
-        public void SetFilterId(string filterId)
+        public void setFilterId(string filterId)
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.SetFilterId");
         }
 
-        public void SetPageNumber(int pageNumber)
+        public void setPageNumber(int pageNumber)
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.SetPageNumber");
         }
 
-        public void SetPageSize(int pageSize)
+        public void setPageSize(int pageSize)
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.SetPageSize");
         }
 
-        public void SetSelected(List<SObject> selected)
+        public void setSelected(List<SObject> selected)
         {
             throw new global::System.NotImplementedException("IdeaStandardSetController.SetSelected");
         }

@@ -2,38 +2,38 @@ namespace Apex.System
 {
     public class Pattern
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("Pattern.Clone");
         }
 
-        public static Pattern Compile(string regex)
+        public static Pattern compile(string regex)
         {
             throw new global::System.NotImplementedException("Pattern.Compile");
         }
 
-        public Matcher Matcher(string input)
+        public Matcher matcher(string input)
         {
             throw new global::System.NotImplementedException("Pattern.Matcher");
         }
 
-        public static bool Matches(string regex, string input)
+        public static bool matches(string regex, string input)
         {
             throw new global::System.NotImplementedException("Pattern.Matches");
         }
 
         //public string Pattern(){throw new global::System.NotImplementedException("Pattern.Pattern");}
-        public static string Quote(string s)
+        public static string quote(string s)
         {
             throw new global::System.NotImplementedException("Pattern.Quote");
         }
 
-        public List<string> Split(string input)
+        public List<string> split(string input)
         {
             throw new global::System.NotImplementedException("Pattern.Split");
         }
 
-        public List<string> Split(string input, int n)
+        public List<string> split(string input, int n)
         {
             throw new global::System.NotImplementedException("Pattern.Split");
         }

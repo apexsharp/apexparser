@@ -7,7 +7,7 @@ namespace Apex.Process
             throw new global::System.NotImplementedException("SparkPlugParameter");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SparkPlugParameter.Clone");
         }

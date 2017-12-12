@@ -7,17 +7,17 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("CategoricalFieldTreatment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("CategoricalFieldTreatment.Clone");
         }
 
-        public FieldTreatmentType GetType()
+        public FieldTreatmentType getType()
         {
             throw new global::System.NotImplementedException("CategoricalFieldTreatment.GetType");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("CategoricalFieldTreatment.ToString");
         }

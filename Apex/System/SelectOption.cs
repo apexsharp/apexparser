@@ -12,42 +12,42 @@ namespace Apex.System
             throw new global::System.NotImplementedException("SelectOption");
         }
 
-        public bool GetDisabled()
+        public bool getDisabled()
         {
             throw new global::System.NotImplementedException("SelectOption.GetDisabled");
         }
 
-        public bool GetEscapeItem()
+        public bool getEscapeItem()
         {
             throw new global::System.NotImplementedException("SelectOption.GetEscapeItem");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("SelectOption.GetLabel");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("SelectOption.GetValue");
         }
 
-        public void SetDisabled(bool disabled)
+        public void setDisabled(bool disabled)
         {
             throw new global::System.NotImplementedException("SelectOption.SetDisabled");
         }
 
-        public void SetEscapeItem(bool disabled)
+        public void setEscapeItem(bool disabled)
         {
             throw new global::System.NotImplementedException("SelectOption.SetEscapeItem");
         }
 
-        public void SetLabel(string label)
+        public void setLabel(string label)
         {
             throw new global::System.NotImplementedException("SelectOption.SetLabel");
         }
 
-        public void SetValue(string value)
+        public void setValue(string value)
         {
             throw new global::System.NotImplementedException("SelectOption.SetValue");
         }

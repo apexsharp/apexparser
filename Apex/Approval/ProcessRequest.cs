@@ -5,22 +5,22 @@ namespace Apex.Approval
 {
     public class ProcessRequest
     {
-        public string GetComments()
+        public string getComments()
         {
             throw new global::System.NotImplementedException("ProcessRequest.GetComments");
         }
 
-        public List<ID> GetNextApproverIds()
+        public List<ID> getNextApproverIds()
         {
             throw new global::System.NotImplementedException("ProcessRequest.GetNextApproverIds");
         }
 
-        public void SetComments(string param1)
+        public void setComments(string param1)
         {
             throw new global::System.NotImplementedException("ProcessRequest.SetComments");
         }
 
-        public void SetNextApproverIds(List<ID> param1)
+        public void setNextApproverIds(List<ID> param1)
         {
             throw new global::System.NotImplementedException("ProcessRequest.SetNextApproverIds");
         }

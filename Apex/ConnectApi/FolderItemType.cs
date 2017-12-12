@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class FolderItemType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FolderItemType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FolderItemType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FolderItemType.Ordinal");
         }
 
-        public static List<FolderItemType> Values()
+        public static List<FolderItemType> values()
         {
             throw new global::System.NotImplementedException("FolderItemType.Values");
         }

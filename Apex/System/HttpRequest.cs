@@ -7,92 +7,92 @@ namespace Apex.System
             throw new global::System.NotImplementedException("HttpRequest");
         }
 
-        public string GetBody()
+        public string getBody()
         {
             throw new global::System.NotImplementedException("HttpRequest.GetBody");
         }
 
-        public Blob GetBodyAsBlob()
+        public Blob getBodyAsBlob()
         {
             throw new global::System.NotImplementedException("HttpRequest.GetBodyAsBlob");
         }
 
-        public Dom.Document GetBodyDocument()
+        public Dom.Document getBodyDocument()
         {
             throw new global::System.NotImplementedException("HttpRequest.GetBodyDocument");
         }
 
-        public bool GetCompressed()
+        public bool getCompressed()
         {
             throw new global::System.NotImplementedException("HttpRequest.GetCompressed");
         }
 
-        public string GetEndpoint()
+        public string getEndpoint()
         {
             throw new global::System.NotImplementedException("HttpRequest.GetEndpoint");
         }
 
-        public string GetHeader(string key)
+        public string getHeader(string key)
         {
             throw new global::System.NotImplementedException("HttpRequest.GetHeader");
         }
 
-        public string GetMethod()
+        public string getMethod()
         {
             throw new global::System.NotImplementedException("HttpRequest.GetMethod");
         }
 
-        public void SetBody(string body)
+        public void setBody(string body)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetBody");
         }
 
-        public void SetBodyAsBlob(Blob body)
+        public void setBodyAsBlob(Blob body)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetBodyAsBlob");
         }
 
-        public void SetBodyDocument(object body)
+        public void setBodyDocument(object body)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetBodyDocument");
         }
 
-        public void SetClientCertificate(string clientCert, string password)
+        public void setClientCertificate(string clientCert, string password)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetClientCertificate");
         }
 
-        public void SetClientCertificateName(string certDevName)
+        public void setClientCertificateName(string certDevName)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetClientCertificateName");
         }
 
-        public void SetCompressed(bool compressed)
+        public void setCompressed(bool compressed)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetCompressed");
         }
 
-        public void SetEndpoint(string endpoint)
+        public void setEndpoint(string endpoint)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetEndpoint");
         }
 
-        public void SetHeader(string key, string value)
+        public void setHeader(string key, string value)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetHeader");
         }
 
-        public void SetMethod(string method)
+        public void setMethod(string method)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetMethod");
         }
 
-        public void SetTimeout(int timeout)
+        public void setTimeout(int timeout)
         {
             throw new global::System.NotImplementedException("HttpRequest.SetTimeout");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("HttpRequest.ToString");
         }

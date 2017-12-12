@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class RecordFieldType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("RecordFieldType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("RecordFieldType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("RecordFieldType.Ordinal");
         }
 
-        public static List<RecordFieldType> Values()
+        public static List<RecordFieldType> values()
         {
             throw new global::System.NotImplementedException("RecordFieldType.Values");
         }

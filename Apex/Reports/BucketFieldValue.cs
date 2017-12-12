@@ -14,42 +14,42 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("BucketFieldValue");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BucketFieldValue.Clone");
         }
 
-        public string GetLabel()
+        public string getLabel()
         {
             throw new global::System.NotImplementedException("BucketFieldValue.GetLabel");
         }
 
-        public double GetRangeUpperBound()
+        public double getRangeUpperBound()
         {
             throw new global::System.NotImplementedException("BucketFieldValue.GetRangeUpperBound");
         }
 
-        public List<string> GetSourceDimensionValues()
+        public List<string> getSourceDimensionValues()
         {
             throw new global::System.NotImplementedException("BucketFieldValue.GetSourceDimensionValues");
         }
 
-        public void SetLabel(string label)
+        public void setLabel(string label)
         {
             throw new global::System.NotImplementedException("BucketFieldValue.SetLabel");
         }
 
-        public void SetRangeUpperBound(double rangeUpperBound)
+        public void setRangeUpperBound(double rangeUpperBound)
         {
             throw new global::System.NotImplementedException("BucketFieldValue.SetRangeUpperBound");
         }
 
-        public void SetSourceDimensionValues(List<string> sourceDimensionValues)
+        public void setSourceDimensionValues(List<string> sourceDimensionValues)
         {
             throw new global::System.NotImplementedException("BucketFieldValue.SetSourceDimensionValues");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("BucketFieldValue.ToString");
         }

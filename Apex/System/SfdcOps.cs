@@ -7,17 +7,17 @@ namespace Apex.System
             throw new global::System.NotImplementedException("SfdcOps");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SfdcOps.Clone");
         }
 
-        public static Map<String, String> GetCustomerInfo(string orgId, string userId)
+        public static Map<String, String> getCustomerInfo(string orgId, string userId)
         {
             throw new global::System.NotImplementedException("SfdcOps.GetCustomerInfo");
         }
 
-        public static Map<String, String> GetCustomerInfo(string userName)
+        public static Map<String, String> getCustomerInfo(string userName)
         {
             throw new global::System.NotImplementedException("SfdcOps.GetCustomerInfo");
         }

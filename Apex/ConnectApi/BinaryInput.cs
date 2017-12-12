@@ -9,27 +9,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("BinaryInput");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BinaryInput.Clone");
         }
 
-        public Blob GetBlobValue()
+        public Blob getBlobValue()
         {
             throw new global::System.NotImplementedException("BinaryInput.GetBlobValue");
         }
 
-        public string GetContentType()
+        public string getContentType()
         {
             throw new global::System.NotImplementedException("BinaryInput.GetContentType");
         }
 
-        public string GetFilename()
+        public string getFilename()
         {
             throw new global::System.NotImplementedException("BinaryInput.GetFilename");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("BinaryInput.ToString");
         }

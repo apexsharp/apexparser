@@ -4,17 +4,17 @@ namespace Apex.Search
 {
     public class SuggestionResults
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("SuggestionResults.Clone");
         }
 
-        public List<Search.SuggestionResult> GetSuggestionResults()
+        public List<Search.SuggestionResult> getSuggestionResults()
         {
             throw new global::System.NotImplementedException("SuggestionResults.GetSuggestionResults");
         }
 
-        public bool HasMoreResults()
+        public bool hasMoreResults()
         {
             throw new global::System.NotImplementedException("SuggestionResults.HasMoreResults");
         }

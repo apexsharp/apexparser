@@ -10,28 +10,28 @@ namespace Apex.Databinding
             throw new global::System.NotImplementedException("ObjectMapper");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ObjectMapper.Clone");
         }
 
-        public static List<SObject> Transform(string targetType, List<SObject> sourceRecords)
+        public static List<SObject> transform(string targetType, List<SObject> sourceRecords)
         {
             throw new global::System.NotImplementedException("ObjectMapper.Transform");
         }
 
-        public static List<SObject> Transform(string targetType, List<SObject> sourceRecords,
+        public static List<SObject> transform(string targetType, List<SObject> sourceRecords,
             Map<String, String> fieldMapping)
         {
             throw new global::System.NotImplementedException("ObjectMapper.Transform");
         }
 
-        public static SObject Transform(string targetType, SObject sourceRecord)
+        public static SObject transform(string targetType, SObject sourceRecord)
         {
             throw new global::System.NotImplementedException("ObjectMapper.Transform");
         }
 
-        public static SObject Transform(string targetType, SObject sourceRecord, Map<String, String> fieldMapping)
+        public static SObject transform(string targetType, SObject sourceRecord, Map<String, String> fieldMapping)
         {
             throw new global::System.NotImplementedException("ObjectMapper.Transform");
         }

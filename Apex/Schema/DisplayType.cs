@@ -4,22 +4,22 @@ namespace Apex.Schema
 {
     public class DisplayType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("DisplayType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("DisplayType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("DisplayType.Ordinal");
         }
 
-        public static List<Schema.DisplayType> Values()
+        public static List<Schema.DisplayType> values()
         {
             throw new global::System.NotImplementedException("DisplayType.Values");
         }

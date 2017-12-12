@@ -7,27 +7,27 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("LikeSocialPostIntent");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LikeSocialPostIntent.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("LikeSocialPostIntent.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("LikeSocialPostIntent.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("LikeSocialPostIntent.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("LikeSocialPostIntent.ToString");
         }

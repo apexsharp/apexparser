@@ -4,22 +4,22 @@ namespace Apex.Reports
 {
     public class BucketType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("BucketType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("BucketType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("BucketType.Ordinal");
         }
 
-        public static List<BucketType> Values()
+        public static List<BucketType> values()
         {
             throw new global::System.NotImplementedException("BucketType.Values");
         }

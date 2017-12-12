@@ -24,12 +24,12 @@ namespace Apex.Canvas
             throw new global::System.NotImplementedException("CanvasRenderException");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("CanvasRenderException.Clone");
         }
 
-        public string GetTypeName()
+        public string getTypeName()
         {
             throw new global::System.NotImplementedException("CanvasRenderException.GetTypeName");
         }

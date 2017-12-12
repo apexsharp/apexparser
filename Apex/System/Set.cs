@@ -12,88 +12,88 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Set");
         }
 
-        public bool Add(object element)
+        public bool add(object element)
         {
             throw new global::System.NotImplementedException("Set.Add");
         }
 
-        public bool AddAll(List<T> elements)
+        public bool addAll(List<T> elements)
         {
             throw new global::System.NotImplementedException("Set.AddAll");
         }
 
-        public bool AddAll(Set<T> elements)
+        public bool addAll(Set<T> elements)
         {
             throw new global::System.NotImplementedException("Set.AddAll");
         }
 
-        public void Clear()
+        public void clear()
         {
             throw new global::System.NotImplementedException("Set.Clear");
         }
 
-        public Set<String> Clone()
+        public Set<String> clone()
         {
             throw new global::System.NotImplementedException("Set.Clone");
         }
 
-        public bool Contains(object element)
+        public bool contains(object element)
         {
             throw new global::System.NotImplementedException("Set.Contains");
         }
 
-        public bool ContainsAll(List<T> elements)
+        public bool containsAll(List<T> elements)
         {
             throw new global::System.NotImplementedException("Set.ContainsAll");
         }
 
-        public bool ContainsAll(Set<T> elements)
+        public bool containsAll(Set<T> elements)
         {
             throw new global::System.NotImplementedException("Set.ContainsAll");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("Set.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("Set.HashCode");
         }
 
-        public bool IsEmpty()
+        public bool isEmpty()
         {
             throw new global::System.NotImplementedException("Set.IsEmpty");
         }
 
         //public ListIterator Iterator(){throw new global::System.NotImplementedException("Set.Iterator");}
-        public bool Remove(object element)
+        public bool remove(object element)
         {
             throw new global::System.NotImplementedException("Set.Remove");
         }
 
-        public bool RemoveAll(List<T> elements)
+        public bool removeAll(List<T> elements)
         {
             throw new global::System.NotImplementedException("Set.RemoveAll");
         }
 
-        public bool RemoveAll(Set<T> elements)
+        public bool removeAll(Set<T> elements)
         {
             throw new global::System.NotImplementedException("Set.RemoveAll");
         }
 
-        public bool RetainAll(List<T> elements)
+        public bool retainAll(List<T> elements)
         {
             throw new global::System.NotImplementedException("Set.RetainAll");
         }
 
-        public bool RetainAll(Set<T> elements)
+        public bool retainAll(Set<T> elements)
         {
             throw new global::System.NotImplementedException("Set.RetainAll");
         }
 
-        public int Size()
+        public int size()
         {
             throw new global::System.NotImplementedException("Set.Size");
         }

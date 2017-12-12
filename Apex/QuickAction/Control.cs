@@ -2,22 +2,22 @@ namespace Apex.QuickAction
 {
     public class Control
     {
-        public int GetDisplayLines()
+        public int getDisplayLines()
         {
             throw new global::System.NotImplementedException("Control.GetDisplayLines");
         }
 
-        public int GetTabOrder()
+        public int getTabOrder()
         {
             throw new global::System.NotImplementedException("Control.GetTabOrder");
         }
 
-        public string GetType()
+        public string getType()
         {
             throw new global::System.NotImplementedException("Control.GetType");
         }
 
-        public string GetValue()
+        public string getValue()
         {
             throw new global::System.NotImplementedException("Control.GetValue");
         }

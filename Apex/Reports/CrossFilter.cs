@@ -15,62 +15,62 @@ namespace Apex.Reports
             throw new global::System.NotImplementedException("CrossFilter");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("CrossFilter.Clone");
         }
 
-        public List<ReportFilter> GetCriteria()
+        public List<ReportFilter> getCriteria()
         {
             throw new global::System.NotImplementedException("CrossFilter.GetCriteria");
         }
 
-        public bool GetIncludesObject()
+        public bool getIncludesObject()
         {
             throw new global::System.NotImplementedException("CrossFilter.GetIncludesObject");
         }
 
-        public string GetPrimaryEntityField()
+        public string getPrimaryEntityField()
         {
             throw new global::System.NotImplementedException("CrossFilter.GetPrimaryEntityField");
         }
 
-        public string GetRelatedEntity()
+        public string getRelatedEntity()
         {
             throw new global::System.NotImplementedException("CrossFilter.GetRelatedEntity");
         }
 
-        public string GetRelatedEntityJoinField()
+        public string getRelatedEntityJoinField()
         {
             throw new global::System.NotImplementedException("CrossFilter.GetRelatedEntityJoinField");
         }
 
-        public void SetCriteria(List<ReportFilter> criteria)
+        public void setCriteria(List<ReportFilter> criteria)
         {
             throw new global::System.NotImplementedException("CrossFilter.SetCriteria");
         }
 
-        public void SetIncludesObject(bool includesObject)
+        public void setIncludesObject(bool includesObject)
         {
             throw new global::System.NotImplementedException("CrossFilter.SetIncludesObject");
         }
 
-        public void SetPrimaryEntityField(string primaryEntityField)
+        public void setPrimaryEntityField(string primaryEntityField)
         {
             throw new global::System.NotImplementedException("CrossFilter.SetPrimaryEntityField");
         }
 
-        public void SetRelatedEntity(string relatedEntity)
+        public void setRelatedEntity(string relatedEntity)
         {
             throw new global::System.NotImplementedException("CrossFilter.SetRelatedEntity");
         }
 
-        public void SetRelatedEntityJoinField(string relatedEntityJoinField)
+        public void setRelatedEntityJoinField(string relatedEntityJoinField)
         {
             throw new global::System.NotImplementedException("CrossFilter.SetRelatedEntityJoinField");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("CrossFilter.ToString");
         }

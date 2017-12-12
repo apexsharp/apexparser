@@ -9,37 +9,37 @@ namespace Apex.ConnectApi
             throw new global::System.NotImplementedException("BatchResult");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("BatchResult.Clone");
         }
 
-        public Exception GetError()
+        public Exception getError()
         {
             throw new global::System.NotImplementedException("BatchResult.GetError");
         }
 
-        public string GetErrorMessage()
+        public string getErrorMessage()
         {
             throw new global::System.NotImplementedException("BatchResult.GetErrorMessage");
         }
 
-        public string GetErrorTypeName()
+        public string getErrorTypeName()
         {
             throw new global::System.NotImplementedException("BatchResult.GetErrorTypeName");
         }
 
-        public object GetResult()
+        public object getResult()
         {
             throw new global::System.NotImplementedException("BatchResult.GetResult");
         }
 
-        public bool IsSuccess()
+        public bool isSuccess()
         {
             throw new global::System.NotImplementedException("BatchResult.IsSuccess");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("BatchResult.ToString");
         }

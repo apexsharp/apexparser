@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class FieldChangeValueType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("FieldChangeValueType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("FieldChangeValueType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("FieldChangeValueType.Ordinal");
         }
 
-        public static List<FieldChangeValueType> Values()
+        public static List<FieldChangeValueType> values()
         {
             throw new global::System.NotImplementedException("FieldChangeValueType.Values");
         }

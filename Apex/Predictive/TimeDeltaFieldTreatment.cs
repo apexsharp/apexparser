@@ -12,27 +12,27 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("TimeDeltaFieldTreatment");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("TimeDeltaFieldTreatment.Clone");
         }
 
-        public string GetFromField()
+        public string getFromField()
         {
             throw new global::System.NotImplementedException("TimeDeltaFieldTreatment.GetFromField");
         }
 
-        public FieldTreatmentType GetType()
+        public FieldTreatmentType getType()
         {
             throw new global::System.NotImplementedException("TimeDeltaFieldTreatment.GetType");
         }
 
-        public void SetFromField(string fromField)
+        public void setFromField(string fromField)
         {
             throw new global::System.NotImplementedException("TimeDeltaFieldTreatment.SetFromField");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("TimeDeltaFieldTreatment.ToString");
         }

@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class ManagedTopicType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("ManagedTopicType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("ManagedTopicType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("ManagedTopicType.Ordinal");
         }
 
-        public static List<ManagedTopicType> Values()
+        public static List<ManagedTopicType> values()
         {
             throw new global::System.NotImplementedException("ManagedTopicType.Values");
         }

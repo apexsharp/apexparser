@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class GroupMembershipType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("GroupMembershipType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("GroupMembershipType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("GroupMembershipType.Ordinal");
         }
 
-        public static List<GroupMembershipType> Values()
+        public static List<GroupMembershipType> values()
         {
             throw new global::System.NotImplementedException("GroupMembershipType.Values");
         }

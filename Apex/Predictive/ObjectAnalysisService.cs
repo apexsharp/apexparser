@@ -9,17 +9,17 @@ namespace Apex.Predictive
             throw new global::System.NotImplementedException("ObjectAnalysisService");
         }
 
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("ObjectAnalysisService.Clone");
         }
 
-        public static ObjectAnalysis Get(string objectName)
+        public static ObjectAnalysis get(string objectName)
         {
             throw new global::System.NotImplementedException("ObjectAnalysisService.Get");
         }
 
-        public static List<ObjectAnalysis> GetAll()
+        public static List<ObjectAnalysis> getAll()
         {
             throw new global::System.NotImplementedException("ObjectAnalysisService.GetAll");
         }

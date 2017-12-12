@@ -2,27 +2,27 @@ namespace Apex.ConnectApi
 {
     public class LabeledRecordField
     {
-        public object Clone()
+        public object clone()
         {
             throw new global::System.NotImplementedException("LabeledRecordField.Clone");
         }
 
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("LabeledRecordField.Equals");
         }
 
-        public double GetBuildVersion()
+        public double getBuildVersion()
         {
             throw new global::System.NotImplementedException("LabeledRecordField.GetBuildVersion");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("LabeledRecordField.HashCode");
         }
 
-        public string ToString()
+        public string toString()
         {
             throw new global::System.NotImplementedException("LabeledRecordField.ToString");
         }

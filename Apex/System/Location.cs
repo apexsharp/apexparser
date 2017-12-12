@@ -7,27 +7,27 @@ namespace Apex.System
             throw new global::System.NotImplementedException("Location");
         }
 
-        public static double GetDistance(Location loc1, Location loc2, string unit)
+        public static double getDistance(Location loc1, Location loc2, string unit)
         {
             throw new global::System.NotImplementedException("Location.GetDistance");
         }
 
-        public double GetDistance(Location other, string unit)
+        public double getDistance(Location other, string unit)
         {
             throw new global::System.NotImplementedException("Location.GetDistance");
         }
 
-        public double GetLatitude()
+        public double getLatitude()
         {
             throw new global::System.NotImplementedException("Location.GetLatitude");
         }
 
-        public double GetLongitude()
+        public double getLongitude()
         {
             throw new global::System.NotImplementedException("Location.GetLongitude");
         }
 
-        public static Location NewInstance(decimal latitude, decimal longitude)
+        public static Location newInstance(decimal latitude, decimal longitude)
         {
             throw new global::System.NotImplementedException("Location.NewInstance");
         }

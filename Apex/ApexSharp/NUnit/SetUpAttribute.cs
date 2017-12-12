@@ -1,4 +1,4 @@
-﻿using SetUp = NUnit.Framework.SetUpAttribute;
+using SetUp = NUnit.Framework.SetUpAttribute;
 
 namespace Apex.ApexSharp.NUnit
 {

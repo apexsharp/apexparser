@@ -4,22 +4,22 @@ namespace Apex.ConnectApi
 {
     public class CommunityFlagType
     {
-        public bool Equals(object obj)
+        public bool equals(object obj)
         {
             throw new global::System.NotImplementedException("CommunityFlagType.Equals");
         }
 
-        public int HashCode()
+        public int hashCode()
         {
             throw new global::System.NotImplementedException("CommunityFlagType.HashCode");
         }
 
-        public int Ordinal()
+        public int ordinal()
         {
             throw new global::System.NotImplementedException("CommunityFlagType.Ordinal");
         }
 
-        public static List<CommunityFlagType> Values()
+        public static List<CommunityFlagType> values()
         {
             throw new global::System.NotImplementedException("CommunityFlagType.Values");
         }
