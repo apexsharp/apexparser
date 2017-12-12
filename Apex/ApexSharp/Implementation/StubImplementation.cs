@@ -14,24 +14,24 @@ namespace Apex.ApexSharp.Implementation
     /// </remarks>
     public class StubImplementation : DynamicObject
     {
-        //public StubImplementation(string className) => ClassName = className;
+        public StubImplementation(string className) => ClassName = className;
 
-        //public string ClassName { get; }
+        public string ClassName { get; }
 
-        //public override bool tryGetMember(GetMemberBinder binder, out object result)
-        //{
-        //    throw new NotImplementedException($"get {ClassName}.{binder.Name}");
-        //}
+        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        {
+            throw new NotImplementedException($"get {ClassName}.{binder.Name}");
+        }
 
-        //public override bool trySetMember(SetMemberBinder binder, object value)
-        //{
-        //    throw new NotImplementedException($"set {ClassName}.{binder.Name}");
-        //}
+        public override bool TrySetMember(SetMemberBinder binder, object value)
+        {
+            throw new NotImplementedException($"set {ClassName}.{binder.Name}");
+        }
 
-        //public override bool tryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
-        //{
-        //    var argList = string.Join(", ", args.Select(a => a == null ? "null" : a.GetType().Name));
-        //    throw new NotImplementedException($"{ClassName}.{binder.Name}({argList})");
-        //}
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
+        {
+            var argList = string.Join(", ", args.Select(a => a == null ? "null" : a.GetType().Name));
+            throw new NotImplementedException($"{ClassName}.{binder.Name}({argList})");
+        }
     }
 }

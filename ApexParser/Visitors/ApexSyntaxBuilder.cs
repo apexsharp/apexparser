@@ -933,7 +933,7 @@ namespace ApexParser.Visitors
 
             if (node.Expression is InvocationExpressionSyntax runAs)
             {
-                if (Equals(runAs.Expression, "System.RunAs"))
+                if (Equals(runAs.Expression, "System.runAs"))
                 {
                     var argument = runAs.ArgumentList?.Arguments.EmptyIfNull().FirstOrDefault()?.Expression;
                     var runAsNode = new ApexRunAsStatementSyntax

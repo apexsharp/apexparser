@@ -588,7 +588,7 @@ namespace ApexParserTest.Visitors
                 Expression = new ExpressionSyntax("contactNew")
             };
 
-            Check(insertStatement, @"Soql.Insert(contactNew);");
+            Check(insertStatement, @"Soql.insert(contactNew);");
         }
 
         [Test]
@@ -599,7 +599,7 @@ namespace ApexParserTest.Visitors
                 Expression = new ExpressionSyntax("contacts")
             };
 
-            Check(updateStatement, @"Soql.Update(contacts);");
+            Check(updateStatement, @"Soql.update(contacts);");
         }
 
         [Test]
@@ -610,7 +610,7 @@ namespace ApexParserTest.Visitors
                 Expression = new ExpressionSyntax("contactOld")
             };
 
-            Check(deleteStatement, @"Soql.Delete(contactOld);");
+            Check(deleteStatement, @"Soql.delete(contactOld);");
         }
 
         [Test]
@@ -621,7 +621,7 @@ namespace ApexParserTest.Visitors
                 Body = "[SELECT Id, Name FROM Contact WHERE Email = :email]"
             };
 
-            Check(stmt, "Soql.Query<Contact>(\"SELECT Id, Name FROM Contact WHERE Email = :email\", email);");
+            Check(stmt, "Soql.query<Contact>(\"SELECT Id, Name FROM Contact WHERE Email = :email\", email);");
         }
 
         [Test]
@@ -697,7 +697,7 @@ namespace ApexParserTest.Visitors
             Check(acc,
                 @"set
                 {
-                    Soql.Insert(customer);
+                    Soql.insert(customer);
                 }");
         }
 
@@ -825,7 +825,7 @@ namespace ApexParserTest.Visitors
                         public void Test(string name, int age)
                         {
                             Contact c = new Contact(name, age);
-                            Soql.Insert(c);
+                            Soql.insert(c);
                         }
 
                         public float Size
@@ -1052,7 +1052,7 @@ namespace ApexParserTest.Visitors
                         public void Test(string name, int age)
                         {
                             Contact c = new Contact(name, age);
-                            Soql.Insert(c);
+                            Soql.insert(c);
                         }
 
                         public float Size
@@ -1221,7 +1221,7 @@ namespace ApexParserTest.Visitors
                     {
                         public void SomeMethod()
                         {
-                            using (System.RunAs(me))
+                            using (System.runAs(me))
                             {
                                 System.debug(""Hi there!"");
                             }

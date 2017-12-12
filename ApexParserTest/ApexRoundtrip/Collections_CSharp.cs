@@ -53,7 +53,7 @@ namespace ApexSharpDemo.ApexCode
         public void MapSoqlExample()
         {
             // Map<Id, Contact> m = new Map<Id, Contact>(Soql.Query<Contact>("SELECT Id FROM Jay__c"));
-            Map<ID, Contact> m = new Map<ID, Contact>(Soql.Query<Contact>("SELECT Id, Name FROM Contact LIMIT 10"));
+            Map<ID, Contact> m = new Map<ID, Contact>(Soql.query<Contact>("SELECT Id, Name FROM Contact LIMIT 10"));
             foreach (ID idKey in m.KeySet())
             {
                 Contact contact = m.Get(idKey);

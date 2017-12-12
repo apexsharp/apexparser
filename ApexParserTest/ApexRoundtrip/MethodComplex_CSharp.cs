@@ -11,7 +11,7 @@ namespace ApexSharpDemo.ApexCode
     {
         public static void MethodOne()
         {
-            foreach (Account a in Soql.Query<Account>("SELECT Id FROM Account"))
+            foreach (Account a in Soql.query<Account>("SELECT Id FROM Account"))
             {
                 System.Debug(a.Id);
             }
@@ -23,7 +23,7 @@ namespace ApexSharpDemo.ApexCode
 
         public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
         {
-            return Database.GetQueryLocator(Soql.Query<Contact>("SELECT Id FROM Contact"));
+            return Database.GetQueryLocator(Soql.query<Contact>("SELECT Id FROM Contact"));
         }
     }
 }

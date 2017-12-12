@@ -15,24 +15,24 @@
         public static void CrudExample()
         {
             Contact contactNew = new Contact { LastName = "Jay", EMail = "abc@abc.com" };
-            Soql.Insert(contactNew);
+            Soql.insert(contactNew);
             System.debug(contactNew.Id);
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            List<Contact> contacts = Soql.query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             foreach (Contact c in contacts)
             {
                 System.debug(c.Email);
                 c.Email = "new@new.com";
             }
 
-            Soql.Update(contacts);
-            contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            Soql.update(contacts);
+            contacts = Soql.query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             foreach (Contact c in contacts)
             {
                 System.debug(c.Email);
             }
 
-            Soql.Delete(contacts);
-            contacts = Soql.Query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            Soql.delete(contacts);
+            contacts = Soql.query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             if (contacts.isEmpty())
             {
                 System.debug("Delete Worked");

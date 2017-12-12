@@ -65,7 +65,7 @@ namespace ApexParser.Toolbox
         }
 
         private static Regex CSharpSoqlQueryRegex { get; } =
-            new Regex(@"Soql\s*\.\s*Query\s*\<[^>]+\>\s*\(\s*\""(?<Query>[^""]*)\""[^\)]*?\)",
+            new Regex(@"Soql\s*\.\s*[Qq]uery\s*\<[^>]+\>\s*\(\s*\""(?<Query>[^""]*)\""[^\)]*?\)",
                 RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
         public static string[] ExtractSoqlQueries(string expression)
@@ -80,7 +80,7 @@ namespace ApexParser.Toolbox
         }
 
         private static Regex CShaspSoqlInsertUpdateDeleteRegex { get; } =
-            new Regex(@"Soql\s*\.\s*(?<Operation>Insert|Update|Delete)\s*\(\s*(?<Expression>[^\)]*)\s*\)",
+            new Regex(@"Soql\s*\.\s*(?<Operation>[Ii]nsert|[Uu]pdate|[Dd]elete)\s*\(\s*(?<Expression>[^\)]*)\s*\)",
                 RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
         public static string ConvertSoqlStatementsToApex(string expression)

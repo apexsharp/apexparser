@@ -19,7 +19,7 @@
         {
             try
             {
-                Soql.Insert(contact);
+                Soql.insert(contact);
             }
             catch (DMLException e)
             {
@@ -46,19 +46,19 @@
 
         private static List<Contact> GetContactByEMail(string email)
         {
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = :email", email);
+            List<Contact> contacts = Soql.query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = :email", email);
             return contacts;
         }
 
         public static List<Contact> GetContacts()
         {
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id, Email, Phone FROM Contact");
+            List<Contact> contacts = Soql.query<Contact>("SELECT Id, Email, Phone FROM Contact");
             return contacts;
         }
 
         private static void UpdateContacts(List<Contact> contacts)
         {
-            Soql.Update(contacts);
+            Soql.update(contacts);
         }
     }
 }

@@ -400,7 +400,7 @@ namespace ApexParser.Visitors
         public override void VisitInsertStatement(InsertStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("{0}.Insert(", Soql);
+            AppendIndented("{0}.insert(", Soql);
             node.Expression.Accept(this);
             Append(");");
             AppendTrailingComments(node);
@@ -409,7 +409,7 @@ namespace ApexParser.Visitors
         public override void VisitUpdateStatement(UpdateStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("{0}.Update(", Soql);
+            AppendIndented("{0}.update(", Soql);
             node.Expression.Accept(this);
             Append(");");
             AppendTrailingComments(node);
@@ -418,7 +418,7 @@ namespace ApexParser.Visitors
         public override void VisitDeleteStatement(DeleteStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("{0}.Delete(", Soql);
+            AppendIndented("{0}.delete(", Soql);
             node.Expression.Accept(this);
             Append(");");
             AppendTrailingComments(node);
@@ -427,7 +427,7 @@ namespace ApexParser.Visitors
         public override void VisitRunAsStatement(RunAsStatementSyntax node)
         {
             AppendLeadingComments(node);
-            AppendIndented("using (System.RunAs(");
+            AppendIndented("using (System.runAs(");
             node.Expression.Accept(this);
             AppendLine("))");
             AppendStatementWithOptionalIndent(node.Statement);
@@ -457,7 +457,7 @@ namespace ApexParser.Visitors
                 paramList = ", " + string.Join(", ", parameters);
             }
 
-            Append("Soql.Query<{0}>(\"{1}\"{2})", tableName, queryText, paramList);
+            Append("Soql.query<{0}>(\"{1}\"{2})", tableName, queryText, paramList);
         }
 
         protected override void AppendExpressionPart(string part)

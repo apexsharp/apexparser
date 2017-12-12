@@ -20,7 +20,7 @@ namespace ApexSharpDemo.ApexCode
             RestContext.Request.RequestBody = Blob.ValueOf(JSON.Serialize(contact));
             ClassRest.Post();
             System.AssertEquals(200, RestContext.Response.StatusCode);
-            List<Contact> contacts = Soql.Query<Contact>("SELECT Id FROM Contact WHERE LastName = 'LastName'");
+            List<Contact> contacts = Soql.query<Contact>("SELECT Id FROM Contact WHERE LastName = 'LastName'");
             System.AssertEquals(1, contacts.Size());
         }
     }
