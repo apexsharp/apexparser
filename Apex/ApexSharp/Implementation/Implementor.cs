@@ -25,9 +25,11 @@ namespace Apex.ApexSharp.Implementation
             return impl;
         }
 
-        public static void SetImplementation(Type type, dynamic stub)
+        public static void SetImplementation<T>(dynamic impl) => SetImplementation(typeof(T), impl);
+
+        public static void SetImplementation(Type type, dynamic impl)
         {
-            ImplementationRepository[type] = stub;
+            ImplementationRepository[type] = impl;
         }
 
         public static void ResetToDefault()
