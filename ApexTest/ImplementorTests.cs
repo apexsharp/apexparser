@@ -41,7 +41,7 @@ namespace ApexTest
 
             private static dynamic Implementation
             {
-                get { return Apex.ApexSharp.Implementation.Implementor.GetImplementation(typeof(SomeApiClass)); }
+                get { return Implementor.GetImplementation<SomeApiClass>(); }
             }
 
             // API
@@ -178,7 +178,7 @@ namespace ApexTest
             try
             {
                 // register the implementation
-                Implementor.SetImplementation(typeof(SomeApiClass), new SomeApiClassImplementation());
+                Implementor.SetImplementation<SomeApiClass>(new SomeApiClassImplementation());
 
                 // check that the methods now don't throw exceptions
                 Assert.DoesNotThrow(() =>

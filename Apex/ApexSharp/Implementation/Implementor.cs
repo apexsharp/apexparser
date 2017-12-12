@@ -13,6 +13,8 @@ namespace Apex.ApexSharp.Implementation
         public static dynamic GetDefaultImplementation(Type type) =>
             new StubImplementation(type.FullName);
 
+        public static dynamic GetImplementation<T>() => GetImplementation(typeof(T));
+
         public static dynamic GetImplementation(Type type)
         {
             if (ImplementationRepository.TryGetValue(type, out var result))
