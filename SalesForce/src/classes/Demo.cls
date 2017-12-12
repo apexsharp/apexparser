@@ -7,7 +7,7 @@ public class Demo
         contact = new Contact();
     }
 
-    public PageReference Save()
+    public PageReference save()
     {
         try
         {
@@ -15,40 +15,40 @@ public class Demo
         }
         catch (DmlException e)
         {
-            ApexPages.AddMessages(e);
+            ApexPages.addMessages(e);
         }
 
         return null;
     }
 
-    public static String UpdatePhone(String email, String newPhone)
+    public static String updatePhone(String email, String newPhone)
     {
-        List<Contact> contacts = GetContactByEMail(email);
-        if (contacts.IsEmpty())
+        List<Contact> contacts = getContactByEMail(email);
+        if (contacts.isEmpty())
         {
             return 'Not Found';
         }
         else
         {
             contacts[0].Phone = newPhone;
-            UpdateContacts(contacts);
+            updateContacts(contacts);
             return 'Phone Number Updated';
         }
     }
 
-    public static List<Contact> GetContactByEMail(String email)
+    public static List<Contact> getContactByEMail(String email)
     {
         List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact WHERE Email = :email];
         return contacts;
     }
 
-    public static List<Contact> GetContacts()
+    public static List<Contact> getContacts()
     {
         List<Contact> contacts = [SELECT Id, Email, Phone FROM Contact];
         return contacts;
     }
 
-    public static void UpdateContacts(List<Contact> contacts)
+    public static void updateContacts(List<Contact> contacts)
     {
         update contacts;
     }

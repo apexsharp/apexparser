@@ -1,12 +1,12 @@
 public class PrimitiveTypes
 {
-    public Blob MyBlob = Blob.ValueOf('Jay');
+    public Blob MyBlob = Blob.valueOf('Jay');
 
     public Boolean IsWinner = true;
 
-    public Date MyDate = Date.Today();
+    public Date MyDate = Date.today();
 
-    public Datetime MyDateTime = Datetime.Now();
+    public Datetime MyDateTime = Datetime.now();
 
     // public Decimal MyDecimal = 12.4567;
     public Double d = 3.133433;
@@ -17,13 +17,13 @@ public class PrimitiveTypes
 
     public Long MyLong = 23432424242L;
 
-    public Time MyTime = Time.NewInstance(1, 2, 3, 4);
+    public Time MyTime = Time.newInstance(1, 2, 3, 4);
 
     public String MyString = 'Jay';
 
     public String abc, def, jkl;
 
-    public void DemoMethod()
+    public void demoMethod()
     {
         Object obj = 10;
         Integer i = (Integer)obj;

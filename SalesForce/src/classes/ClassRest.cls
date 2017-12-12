@@ -7,12 +7,12 @@ global class ClassRest
     }
 
     @HttpPost
-    global static void Post()
+    global static void post()
     {
         try
         {
-            ContactDTO contact = (ContactDTO)JSON.Deserialize(RestContext.Request.RequestBody.ToString(), ContactDTO.class);
-            InsertContact(contact);
+            ContactDTO contact = (ContactDTO)JSON.deserialize(RestContext.Request.RequestBody.ToString(), ContactDTO.class);
+            insertContact(contact);
             RestContext.Response.StatusCode = 200;
         }
         catch (Exception e)
@@ -21,7 +21,7 @@ global class ClassRest
         }
     }
 
-    public static void InsertContact(ContactDTO contactToSave)
+    public static void insertContact(ContactDTO contactToSave)
     {
         Contact contact = new Contact();
         contact.LastName = contactToSave.LastName;
@@ -29,23 +29,23 @@ global class ClassRest
     }
 
     @HttpGet
-    global static String Get()
+    global static String get()
     {
         return 'Jay';
     }
 
     @HttpPatch
-    global static void Patch()
+    global static void patch()
     {
     }
 
     @HttpPut
-    global static void Put()
+    global static void put()
     {
     }
 
     @HttpDelete
-    global static void DoDelete()
+    global static void doDelete()
     {
     }
 }

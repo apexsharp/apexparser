@@ -11,8 +11,8 @@ public class ClassInitialization
 
     static
     {
-        colorMap.Put('red', '255, 0, 0');
-        colorMap.Put('cyan', '0, 255, 255');
-        colorMap.Put('magenta', '255, 0, 255');
+        colorMap.put('red', '255, 0, 0');
+        colorMap.put('cyan', '0, 255, 255');
+        colorMap.put('magenta', '255, 0, 255');
     }
 }

@@ -1,22 +1,22 @@
 public class ExceptionDemo
 {
-    public static void CatchDemo()
+    public static void catchDemo()
     {
         try
         {
-            ThrowDemo();
+            throwDemo();
         }
         catch (MathException e)
         {
-            System.Debug(e.GetMessage());
+            System.debug(e.getMessage());
         }
         finally
         {
-            System.Debug('Finally');
+            System.debug('Finally');
         }
     }
 
-    public static void ThrowDemo()
+    public static void throwDemo()
     {
         throw new MathException('something bad happened!');
     }

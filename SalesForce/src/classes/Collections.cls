@@ -4,50 +4,50 @@ public with sharing class Collections
 
     public Integer[] IntegerArray = new Integer[]{1, 2, 3};
 
-    public void ArrayDemo()
+    public void arrayDemo()
     {
         List<String> stringListLocal = new List<String>{'one', 'two'};
         Integer[] integerArrayLocal = new Integer[]{1, 2, 3};
     }
 
-    public void ListExample()
+    public void listExample()
     {
         List<Integer> myList = new List<Integer>();
-        myList.Add(47);
-        Integer i = myList.Get(0);
-        myList.Set(0, 1);
-        myList.Clear();
+        myList.add(47);
+        Integer i = myList.get(0);
+        myList.set(0, 1);
+        myList.clear();
         List<SelectOption> options = new List<SelectOption>();
-        options.Add(new SelectOption('A','United States'));
-        options.Add(new SelectOption('C','Canada'));
-        options.Add(new SelectOption('A','Mexico'));
-        System.Debug('Before sorting: '+ options);
-        options.Sort();
-        System.Debug('After sorting: '+ options);
+        options.add(new SelectOption('A','United States'));
+        options.add(new SelectOption('C','Canada'));
+        options.add(new SelectOption('A','Mexico'));
+        System.debug('Before sorting: '+ options);
+        options.sort();
+        System.debug('After sorting: '+ options);
     }
 
-    public void SetExample()
+    public void setExample()
     {
         Set<Integer> s = new Set<Integer>();
-        s.Add(1);
-        s.Remove(1);
+        s.add(1);
+        s.remove(1);
     }
 
-    public void MapExample()
+    public void mapExample()
     {
         Map<Integer, String> m = new Map<Integer, String>();
-        m.Put(1, 'First entry');
-        m.Put(2, 'Second entry');
-        String value = m.Get(2);
+        m.put(1, 'First entry');
+        m.put(2, 'Second entry');
+        String value = m.get(2);
     }
 
-    public void MapSoqlExample()
+    public void mapSoqlExample()
     {
         // Map<Id, Contact> m = new Map<Id, Contact>(Soql.Query<Contact>("SELECT Id FROM Jay__c"));
         Map<ID, Contact> m = new Map<ID, Contact>([SELECT Id, Name FROM Contact LIMIT 10]);
-        for (ID idKey : m.KeySet())
+        for (ID idKey : m.keySet())
         {
-            Contact contact = m.Get(idKey);
+            Contact contact = m.get(idKey);
         }
     }
 }

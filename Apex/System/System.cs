@@ -16,6 +16,12 @@ namespace Apex.System
             return new System();
         }
 
+        public static System RunAs(SObject user)
+        {
+            return new System();
+        }
+
+
         public void Dispose()
         {
 

@@ -2,7 +2,7 @@
 public class DemoTest
 {
     @TestSetup
-    public static void Setup()
+    public static void setup()
     {
         Contact contactNew = new Contact();
         contactNew.LastName = 'Jay';
@@ -11,18 +11,18 @@ public class DemoTest
     }
 
     @IsTest
-    public static void UpdatePhoneTestValidEmail()
+    public static void updatePhoneTestValidEmail()
     {
-        Demo.UpdatePhone('jay@jay.com', '555-1212');
+        Demo.updatePhone('jay@jay.com', '555-1212');
         List<Contact> contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'];
-        System.AssertEquals(contacts[0].Phone, '555-1212');
+        System.assertEquals(contacts[0].Phone, '555-1212');
     }
 
     @IsTest
-    public static void UpdatePhoneTestNotValidEmail()
+    public static void updatePhoneTestNotValidEmail()
     {
-        Demo.UpdatePhone('nojay@jay.com', '555-1212');
+        Demo.updatePhone('nojay@jay.com', '555-1212');
         List<Contact> contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = 'nojay@jay.com'];
-        System.AssertEquals(contacts.Size(), 0);
+        System.assertEquals(contacts.size(), 0);
     }
 }

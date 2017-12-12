@@ -1,10 +1,10 @@
 public with sharing class MethodComplex
 {
-    public static void MethodOne()
+    public static void methodOne()
     {
         for (Account a : [SELECT Id FROM Account])
         {
-            System.Debug(a.Id);
+            System.debug(a.Id);
         }
 
         for (Integer i = 0; i<10; i++)
@@ -12,8 +12,8 @@ public with sharing class MethodComplex
         }
     }
 
-    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
+    public Database.QueryLocator queryLocator(Database.BatchableContext bc)
     {
-        return Database.GetQueryLocator([SELECT Id FROM Contact]);
+        return Database.getQueryLocator([SELECT Id FROM Contact]);
     }
 }

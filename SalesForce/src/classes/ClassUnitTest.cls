@@ -2,44 +2,44 @@
 public class ClassUnitTest
 {
     @TestSetup
-    public static void Setup()
+    public static void setup()
     {
-        System.Debug('One Time Setup Got Called');
+        System.debug('One Time Setup Got Called');
     }
 
     @IsTest
-    public static void Assert()
+    public static void assert()
     {
-        System.Assert(true, 'Assert True');
+        System.assert(true, 'Assert True');
     }
 
     @IsTest
-    public static void AssertTestMethod()
+    public static void assertTestMethod()
     {
-        System.Assert(true, 'Assert True');
+        System.assert(true, 'Assert True');
     }
 
     @IsTest
-    public static void AssertEquals()
+    public static void assertEquals()
     {
-        System.AssertEquals(5, 5, 'Assert Equal');
+        System.assertEquals(5, 5, 'Assert Equal');
     }
 
     @IsTest
-    public static void AssertEqualsTestMethod()
+    public static void assertEqualsTestMethod()
     {
-        System.AssertEquals(5, 5, 'Assert Equal');
+        System.assertEquals(5, 5, 'Assert Equal');
     }
 
     @IsTest
-    public static void AssertNotEquals()
+    public static void assertNotEquals()
     {
-        System.AssertNotEquals(5, 0, 'Assert Not Equal');
+        System.assertNotEquals(5, 0, 'Assert Not Equal');
     }
 
     @IsTest
-    public static void AssertNotTestMethod()
+    public static void assertNotTestMethod()
     {
-        System.AssertNotEquals(5, 0, 'Assert Not Equal');
+        System.assertNotEquals(5, 0, 'Assert Not Equal');
     }
 }

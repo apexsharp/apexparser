@@ -8,7 +8,7 @@ public class PropertyAndField
 
     public Datetime DateTimeEmpty;
 
-    public Datetime DateTimeInitialized = Datetime.Now();
+    public Datetime DateTimeInitialized = Datetime.now();
 
     public List<Datetime> DateTimeList = new List<Datetime>();
 
@@ -33,8 +33,8 @@ public class PropertyAndField
     public void MethodOne()
     {
         Datetime dateTimeEmpty;
-        dateTimeEmpty = Datetime.Now();
-        Datetime dateTimeInitilized = Datetime.Now();
+        dateTimeEmpty = Datetime.now();
+        Datetime dateTimeInitilized = Datetime.now();
         List<Datetime> dateTimeList = new List<Datetime>();
         Datetime[] dateTimeArrary = new Datetime[5];
         String name;

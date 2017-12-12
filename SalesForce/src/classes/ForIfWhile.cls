@@ -1,6 +1,6 @@
 public class ForIfWhile
 {
-    public void MethodIfClean(Integer place)
+    public void methodIfClean(Integer place)
     {
         String modelColor;
         if (place == 1)
@@ -21,62 +21,62 @@ public class ForIfWhile
         }
     }
 
-    public void MethodForTraditional()
+    public void methodForTraditional()
     {
         for (Integer i = 0; i < 10; i++)
         {
-            System.Debug (i + 1);
+            System.debug (i + 1);
         }
     }
 
-    public void MethodForIteration()
+    public void methodForIteration()
     {
         Integer[] myInts = new Integer[5];
         for (Integer myInt : myInts)
         {
-            System.Debug (myInt);
+            System.debug (myInt);
         }
     }
 
-    public void MethodDo()
+    public void methodDo()
     {
         Integer count = 1;
         do
         {
-            System.Debug (count);
+            System.debug (count);
             count++;
         }
         while (count < 11);
     }
 
-    public void MethodWhile()
+    public void methodWhile()
     {
         Integer count = 1;
         while (count < 11)
         {
-            System.Debug (count);
+            System.debug (count);
             count++;
         }
     }
 
-    public void ForLoopTest()
+    public void forLoopTest()
     {
         for (Integer i = 0; i < 10; i++)
         {
-            System.Debug (i + 1);
+            System.debug (i + 1);
         }
     }
 
     // Nested If
-    public static String GetContact(String nameString)
+    public static String getContact(String nameString)
     {
-        if (nameString.Length()> 0)
+        if (nameString.length()> 0)
         {
-            if (nameString.Length()== 1)
+            if (nameString.length()== 1)
             {
                 return 'Gold';
             }
-            else if (nameString.Length()== 2)
+            else if (nameString.length()== 2)
             {
                 return 'Silver';
             }
@@ -85,7 +85,7 @@ public class ForIfWhile
                 return 'Nothing';
             }
         }
-        else if (nameString.Length()> 0)
+        else if (nameString.length()> 0)
         {
             return nameString;
         }

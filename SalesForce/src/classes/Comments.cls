@@ -4,7 +4,7 @@
 public with sharing class Comments
 {
     // This comment belongs to the Method Syntax
-    public static void DemoMethod()
+    public static void demoMethod()
     {
         Integer demoValue = 5; // Side Line Comment
     }
