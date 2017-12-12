@@ -7,8 +7,12 @@ public class ClassNoApex
     }
 
     // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
-    //:NoApex public static void noApexMethodTwo()
-    //:NoApex {
-    //:NoApex      NoApex.Serilog.LogInfo("Jay");
-    //:NoApex }
+    public static void noApexMethodTwo()
+    {
+        {
+            //:NoApex NoApex.Serilog.LogInfo("Jay");
+        }
+
+        //:NoApex NoApex.Serilog.LogInfo("Jay");
+    }
 }
