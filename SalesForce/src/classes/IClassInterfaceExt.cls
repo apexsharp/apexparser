@@ -1,3 +1,4 @@
-public interface IClassInterfaceExt {
-//    ID GetId();
+public interface IClassInterfaceExt
+{
+    //    ID GetId();
 }

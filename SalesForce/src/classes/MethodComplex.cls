@@ -1,17 +1,19 @@
-public with sharing class MethodComplex {
-    public static void MethodOne() {
-
-        for (Account a : [SELECT Id FROM Account]) {
+public with sharing class MethodComplex
+{
+    public static void MethodOne()
+    {
+        for (Account a : [SELECT Id FROM Account])
+        {
             System.Debug(a.Id);
         }
 
-        for (Integer i=0;i<10;i++) {
-
+        for (Integer i = 0; i<10; i++)
+        {
         }
     }
 
     public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
     {
-         return Database.GetQueryLocator([SELECT Id FROM Contact]);
+        return Database.GetQueryLocator([SELECT Id FROM Contact]);
     }
 }

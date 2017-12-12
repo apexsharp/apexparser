@@ -14,20 +14,19 @@ namespace ApexSharpApi
         // Double Check For All These Values
         public ApexSharpConfig CreateSession()
         {
-            DirectoryInfo vsProjectLocation = new DirectoryInfo(_apexSharpConfigSettings.VsProjectLocation);
-            Console.WriteLine(vsProjectLocation.Exists);
-
-            DirectoryInfo salesForceLocation = new DirectoryInfo(_apexSharpConfigSettings.SalesForceLocation);
-            Console.WriteLine(salesForceLocation.Exists);
 
             FileInfo configLocation = new FileInfo(_apexSharpConfigSettings.ConfigLocation);
             DirectoryInfo configDirectory = configLocation.Directory;
-            Console.WriteLine(configDirectory.Exists);
+
+            DirectoryInfo vsProjectLocation = new DirectoryInfo(_apexSharpConfigSettings.VsProjectLocation);
+
+            DirectoryInfo salesForceLocation = new DirectoryInfo(_apexSharpConfigSettings.SalesForceLocation);
 
             Directory.CreateDirectory(_apexSharpConfigSettings.VsProjectLocation + "CSharpClasses");
             Directory.CreateDirectory(_apexSharpConfigSettings.VsProjectLocation + "NoApex");
             Directory.CreateDirectory(_apexSharpConfigSettings.VsProjectLocation + "Cache");
             Directory.CreateDirectory(_apexSharpConfigSettings.VsProjectLocation + "SObjects");
+
             return ConnectionUtil.CreateSession(_apexSharpConfigSettings);
         }
 
@@ -77,11 +76,6 @@ namespace ApexSharpApi
             return this;
         }
 
-        //public ApexSharp SetVsProjectName(string projectName)
-        //{
-        //    _apexSharpConfigSettings.VsProjectName = projectName;
-        //    return this;
-        //}
         public ApexSharp SaveConfigAt(string configFile)
         {
             _apexSharpConfigSettings.ConfigLocation = configFile;

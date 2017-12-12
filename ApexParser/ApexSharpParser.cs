@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using ApexParser.Parser;
 using ApexParser.Toolbox;
 using ApexParser.Visitors;
@@ -127,7 +128,7 @@ namespace ApexParser
             }
         }
 
-        public static void ConvertToApex(string cSharpDir, string apexDir)
+        public static void ConvertToApex(string cSharpDir, string apexDir, int salesForceVersion)
         {
             var apexDirInfo = new DirectoryInfo(apexDir);
             ValidateDir(apexDirInfo);
@@ -142,13 +143,22 @@ namespace ApexParser
 
                 foreach (var colleciton in ApexSharpParser.ConvertToApex(cSharpCode))
                 {
-                    var cSharpFileName = Path.ChangeExtension(colleciton.Key, ".cls");
-
-                    var apexFile = Path.Combine(apexDirInfo.FullName, cSharpFileName);
-
-                    Console.WriteLine(apexFile);
-
+                    var apexFileName = Path.ChangeExtension(colleciton.Key, ".cls");
+                    var apexFile = Path.Combine(apexDirInfo.FullName, apexFileName);
                     File.WriteAllText(apexFile, colleciton.Value);
+
+                    var metaFileName = Path.ChangeExtension(apexFile, ".cls-meta.xml");
+                    var metaFile = new StringBuilder();
+
+                    metaFile.AppendLine("<?xml version = \"1.0\" encoding = \"UTF-8\"?>");
+                    metaFile.AppendLine("<ApexClass xmlns = \"http://soap.sforce.com/2006/04/metadata\">");
+                    metaFile.AppendLine($"<apiVersion>{salesForceVersion}.0</apiVersion>");
+                    metaFile.AppendLine("<status>Active</status>");
+                    metaFile.AppendLine("</ApexClass>");
+
+                    File.WriteAllText(metaFileName, metaFile.ToString());
+
+                    Console.WriteLine(metaFileName);
                 }
             }
         }

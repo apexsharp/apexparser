@@ -9,6 +9,7 @@ public class DemoTest
         contactNew.Email = 'jay@jay.com';
         insert contactNew;
     }
+
     @IsTest
     public static void UpdatePhoneTestValidEmail()
     {
@@ -16,6 +17,7 @@ public class DemoTest
         List<Contact> contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = 'jay@jay.com'];
         System.AssertEquals(contacts[0].Phone, '555-1212');
     }
+
     @IsTest
     public static void UpdatePhoneTestNotValidEmail()
     {

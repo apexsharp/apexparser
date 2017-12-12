@@ -1,3 +1,4 @@
-public interface IClassInterface extends IClassInterfaceExt {
-    string GetName();
+public interface IClassInterface extends IClassInterfaceExt
+{
+    String GetName();
 }
