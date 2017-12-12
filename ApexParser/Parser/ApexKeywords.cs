@@ -34,11 +34,11 @@ namespace ApexParser.Parser
         // 1. Reserved keywords are declared as constants
         // 2. Non-reserved keywords are declared as static properties
 
-            // Reference:
-            // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_reserved_words.htm
-            // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_primitives.htm
+        // Reference:
+        // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_reserved_words.htm
+        // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_primitives.htm
 
-            // 1. Reserved words
+        // 1. Reserved words
         public const string Abstract = "abstract";
         ////public const string Activate = "activate"; // reserved for future use
         public const string And = "and";
@@ -49,7 +49,7 @@ namespace ApexParser.Parser
         ////public const string Autonomous = "autonomous"; // reserved for future use
         ////public const string Begin = "begin"; // reserved for future use
         ////public const string BigDecimal = "bigdecimal"; // reserved for future use
-        public const string Blob = "Blob"; // built-in type
+        ////public const string Blob = "Blob"; // hack, see below
         public const string Break = "break";
         public const string Bulk = "bulk";
         public const string By = "by";
@@ -64,9 +64,9 @@ namespace ApexParser.Parser
         ////public const string Const = "const"; // reserved for future use
         public const string Continue = "continue";
         ////public const string ConvertCurrency = "convertcurrency"; // hack, see below
-        public const string Decimal = "Decimal"; // built-int type
+        ////public const string Decimal = "Decimal"; // built-int type
         ////public const string Default = "default"; // reserved for future use
-        public const string Delete = "delete";
+        ////public const string Delete = "delete"; // hack, see below
         public const string Desc = "desc";
         public const string Do = "do";
         public const string Else = "else";
@@ -92,7 +92,7 @@ namespace ApexParser.Parser
         public const string Implements = "implements";
         ////public const string Import = "import"; // reserved for future use
         ////public const string Inner = "inner"; // reserved for future use
-        public const string Insert = "insert";
+        ////public const string Insert = "insert"; // hack, see below
         public const string InstanceOf = "instanceof";
         public const string Interface = "interface";
         ////public const string Into = "into"; // reserved for future use
@@ -103,12 +103,12 @@ namespace ApexParser.Parser
         public const string LastNDays = "last_n_days";
         public const string LastWeek = "last_week";
         public const string Like = "like";
-        public const string Limit = "limit";
-        public const string List = "List"; // List<...> is a built-in generic type
-        public const string Long = "Long"; // built-in type
+        ////public const string Limit = "limit"; // hack, see below
+        ////public const string List = "List"; // List<...> is a built-in generic type
+        ////public const string Long = "Long"; // built-in type
         ////public const string Loop = "loop"; // reserved for future use
-        public const string Map = "Map"; // Map<...> is a built-in generic type
-        public const string Merge = "merge";
+        ////public const string Map = "Map"; // Map<...> is a built-in generic type
+        ////public const string Merge = "merge"; // hack, see below
         public const string New = "new";
         public const string Next90Days = "next_90_days";
         public const string NextMonth = "next_month";
@@ -133,8 +133,8 @@ namespace ApexParser.Parser
         ////public const string Retrieve = "retrieve"; // reserved for future use
         public const string Return = "return";
         ////public const string Returning = "returning"; // reserved for future use
-        public const string Rollback = "rollback";
-        public const string Savepoint = "savepoint";
+        ////public const string Rollback = "rollback"; // hack, see below
+        ////public const string Savepoint = "savepoint"; // hack, see below
         ////public const string Search = "search"; // reserved for future use
         public const string Select = "select";
         ////public const string Set = "set"; // hack, see below
@@ -162,9 +162,9 @@ namespace ApexParser.Parser
         public const string True = "true";
         public const string Try = "try";
         ////public const string Type = "type"; // reserved for future use
-        public const string Undelete = "undelete";
-        public const string Update = "update";
-        public const string Upsert = "upsert";
+        ////public const string Undelete = "undelete"; // hack, see below
+        ////public const string Update = "update"; // hack, see below
+        ////public const string Upsert = "upsert"; // hack, see below
         public const string Using = "using";
         public const string Virtual = "virtual";
         ////public const string Webservice = "webservice";
@@ -177,27 +177,41 @@ namespace ApexParser.Parser
         public static string After => "after";
         public static string Before => "before";
         public static string Count => "count";
+        public static string Delete => "delete"; // System.Database class method
         public static string Excludes => "excludes";
         public static string Exception => "Exception"; // can be used as a class or method name
         public static string First => "first";
         public static string Includes => "includes";
+        public static string Insert => "insert"; // System.Database class method
         public static string Last => "last";
+        public static string Limit => "limit"; // SuggestionOption.setLimit(limit) parameter name
+        public static string Merge => "merge"; // System.Database class method
         public static string Order => "order";
+        public static string Rollback => "rollback"; // System.Database class method
+        public static string Savepoint => "savepoint"; // System.Savepoint class
         public static string Sharing => "sharing";
         public static string String => "String"; // built-in type
         public static string System => "System"; // used in qualified identifier: System.debug
+        public static string Undelete => "undelete"; // System.Database class method
+        public static string Update => "update"; // System.Database class method
+        public static string Upsert => "upsert"; // System.Database class method
         public static string With => "with";
 
         // 3. Not listed in the official documentation but apparently used
+        public static string Blob => "Blob"; // built-in type
         public static string Boolean => "Boolean"; // built-in type
         public static string ConvertCurrency => "convertcurrency"; // seems to be a valid method name
         ////public static string Database => "database"; // the status is unclear
         public static string Date => "Date"; // built-in type
         public static string Datetime => "Datetime"; // built-in type
+        public static string Decimal => "Decimal"; // built-int type
         public static string Double => "Double"; // built-in type
         public static string Get => "get"; // "get" seems to be a valid method name
         public static string ID => "ID"; // built-in type
         public static string Integer => "Integer"; // built-in type
+        public static string List => "List"; // List<...> is a built-in generic type
+        public static string Long => "Long"; // built-in type
+        public static string Map => "Map"; // Map<...> is a built-in generic type
         ////public const string Native = "native"; // the status is unclear
         public static string Object => "Object"; // built-in type
         ////public const string Throws = "throws"; // the status is unclear
