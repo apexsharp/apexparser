@@ -1,6 +1,5 @@
 ﻿namespace Demo
 {
-
     using ApexSharpApi;
     using NUnit.Framework;
 

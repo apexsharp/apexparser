@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ApexParser" Version="0.5.3-beta" />
+    <PackageReference Include="ApexParser" Version="0.6.0" />
     <PackageReference Include="NUnit" Version="3.9.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="Sprache" Version="2.1.0" />
@@ -23,12 +23,6 @@
   <ItemGroup>
     <Folder Include="CSharpClasses\" />
     <Folder Include="SObjects\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ApexParser">
-      <HintPath>..\..\DevSharp\ApexSharp\ApexParser\bin\Debug\netstandard2.0\ApexParser.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

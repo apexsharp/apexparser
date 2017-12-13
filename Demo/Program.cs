@@ -1,10 +1,10 @@
 ﻿namespace Demo
 {
     using System;
-    using System.IO;
     using System.Collections.Generic;
-    using ApexSharpApi;
+    using System.IO;
     using ApexParser;
+    using ApexSharpApi;
 
     public class Program
     {
@@ -65,9 +65,7 @@
             //// Convert APEX to C#
             if (apexLocation.Exists && cSharpLocation.Exists)
             {
-
                 ApexSharpParser.ConvertToCSharp(apexLocation.FullName, cSharpLocation.FullName, "Demo.CSharpClasses");
-
             }
             else
             {
@@ -84,9 +82,7 @@
             //// Convert to C# to Apex
             if (apexLocation.Exists && cSharpLocation.Exists)
             {
-
                 ApexSharpParser.ConvertToApex(cSharpLocation.FullName, apexLocation.FullName, 40);
-
             }
             else
             {
