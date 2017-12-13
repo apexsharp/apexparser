@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApexSharpApi\ApexSharpApi.csproj" />
     <ProjectReference Include="..\Apex\Apex.csproj" />
   </ItemGroup>
 
