@@ -5,7 +5,7 @@
     using Serilog;
     using System.IO;
 
-    class Setup
+    public class Setup
     {
         public static bool Init()
         {
@@ -22,24 +22,27 @@
                 // .WriteTo.Seq("http://localhost:9999")
                 .CreateLogger();
 
+            File.Delete(@"\ApexSharp\config.json");
+
             try
             {
                 // See if we have an existing connection
-                ConnectionUtil.Session = ConnectionUtil.GetSession(GetSolutionFolder() + @"\config.json");
+                ConnectionUtil.Session = ConnectionUtil.GetSession(@"\ApexSharp\config.json");
             }
+            // Else Create a new session
             catch (SalesForceNoFileFoundException)
             {
                 try
                 {
-                    // Else Create a new session
+                    // This example assumes you cloned your GIT repo to the root level.
                     ConnectionUtil.Session = new ApexSharp().SalesForceUrl("https://login.salesforce.com/")
                         .AndSalesForceApiVersion(40)
                         .WithUserId("You SF Id")
                         .AndPassword("You SF Password")
                         .AndToken("Token")
-                        .SalesForceLocation(Path.Combine(GetSolutionFolder(), @"SalesForce\src\"))
-                        .VsProjectLocation(GetProjectFolder())
-                        .SaveConfigAt(GetSolutionFolder() + @"\config.json")
+                        .SalesForceLocation(@"\ApexSharp\SalesForce\src\")
+                        .VsProjectLocation(@"\ApexSharp\Demo\")
+                        .SaveConfigAt(@"\ApexSharp\config.json")
                         .CreateSession();
                 }
                 catch (SalesForceInvalidLoginException ex)
@@ -50,21 +53,6 @@
             }
 
             return true;
-        }
-
-        // Assuming this code is running in VS, Get the Dir location of the Solution. 
-        public static string GetSolutionFolder()
-        {
-            DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
-            var parentDir = currentDir.Parent;
-            return parentDir.FullName;
-        }
-
-        // Assuming this code is running in VS, Get the Dir location of the Project. 
-        public static string GetProjectFolder()
-        {
-            DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
-            return currentDir.FullName;
         }
     }
 }

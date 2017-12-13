@@ -4,42 +4,33 @@
     using System.IO;
     using System.Collections.Generic;
     using ApexSharpApi;
-   // using ApexParser;
+    using ApexParser;
 
     public class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
+
             // Always Initialize your settings when ever you are connecting to SF
-            //Setup.Init();
+            Setup.Init();
 
             // Keep Track of the API Limits
-            //Console.WriteLine(Limits.GetApiLimits().DailyApiRequests.Remaining);
+            Console.WriteLine(Limits.GetApiLimits().DailyApiRequests.Remaining);
 
             // Create Offline classes for SObjects
-            //CreateOffLineClasses();
+            // CreateOffLineClasses();
 
-            //// Location of your APEX and C# Files that we will be converting
-            //var apexLocation = Path.Combine(Setup.GetSolutionFolder(), @"SalesForce\src\classes");
-            //var cSharpLocation = Path.Combine(Setup.GetProjectFolder(), @"CSharpClasses\");
-
-            //// Convert APEX to C#
-            //ApexSharpParser.ConvertToCSharp(apexLocation, cSharpLocation, "Demo.CSharpClasses");
-
-            //// Run a Class.
-            //CSharpClasses.RunAll.TestClassess();
-
-            // Convert C# to APEX
+            ConvertToCSharp();
+            Demo.CSharpClasses.RunAll.TestClassess();
             ConvertToApex();
 
             // Keep Track of the API Limits
-            //Console.WriteLine(Limits.GetApiLimits().DailyApiRequests.Remaining);
+            Console.WriteLine(Limits.GetApiLimits().DailyApiRequests.Remaining);
 
             Console.WriteLine("Done");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
-        // Used to generate the offline C# classes, one C# for each SObject
         public static void CreateOffLineClasses()
         {
             try
@@ -68,14 +59,14 @@
         public static void ConvertToCSharp()
         {
             // Location of your APEX and C# Files that we will be converting
-            DirectoryInfo apexLocation = new DirectoryInfo(@"\DevSharp\ApexSharp\SalesForce\src\classes\");
-            DirectoryInfo cSharpLocation = new DirectoryInfo(@"\DevSharp\ApexSharp\Demo\CSharpClasses\");
+            DirectoryInfo apexLocation = new DirectoryInfo(@"\ApexSharp\SalesForce\src\classes\");
+            DirectoryInfo cSharpLocation = new DirectoryInfo(@"\ApexSharp\Demo\CSharpClasses\");
 
             //// Convert APEX to C#
             if (apexLocation.Exists && cSharpLocation.Exists)
             {
 
-            //    ApexSharpParser.ConvertToCSharp(apexLocation.FullName, cSharpLocation.FullName, "Demo.CSharpClasses");
+                ApexSharpParser.ConvertToCSharp(apexLocation.FullName, cSharpLocation.FullName, "Demo.CSharpClasses");
 
             }
             else
@@ -87,13 +78,14 @@
         public static void ConvertToApex()
         {
             // Location of your APEX and C# Files that we will be converting
-            DirectoryInfo apexLocation = new DirectoryInfo(@"\DevSharp\ApexSharp\SalesForce\src\classes\");
-            DirectoryInfo cSharpLocation = new DirectoryInfo(@"\DevSharp\ApexSharp\Demo\CSharpClasses\");
+            DirectoryInfo apexLocation = new DirectoryInfo(@"\ApexSharp\SalesForce\src\classes\");
+            DirectoryInfo cSharpLocation = new DirectoryInfo(@"\ApexSharp\Demo\CSharpClasses\");
 
             //// Convert to C# to Apex
             if (apexLocation.Exists && cSharpLocation.Exists)
             {
-             //   ApexSharpParser.ConvertToApex(cSharpLocation.FullName, apexLocation.FullName, 40);
+
+                ApexSharpParser.ConvertToApex(cSharpLocation.FullName, apexLocation.FullName, 40);
 
             }
             else

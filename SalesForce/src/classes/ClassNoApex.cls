@@ -10,6 +10,14 @@ public class ClassNoApex
     public static void noApexMethodTwo()
     {
         {
+            {
+                {
+                    //:NoApex NoApex.Serilog.LogInfo("Jay");
+                }
+
+                //:NoApex NoApex.Serilog.LogInfo("Jay");
+            }
+
             //:NoApex NoApex.Serilog.LogInfo("Jay");
         }
 

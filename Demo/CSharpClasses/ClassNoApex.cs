@@ -17,7 +17,15 @@ namespace Demo.CSharpClasses
         // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
         public static void noApexMethodTwo()
         {
-             NoApex.Serilog.LogInfo("Jay");
+            {
+                {
+                    NoApex.Serilog.LogInfo("Jay");
+                }
+
+                NoApex.Serilog.LogInfo("Jay");
+            }
+
+            NoApex.Serilog.LogInfo("Jay");
         }
     }
 }

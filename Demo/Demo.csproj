@@ -26,4 +26,10 @@
     <Folder Include="SObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ApexParser">
+      <HintPath>..\..\DevSharp\ApexSharp\ApexParser\bin\Debug\netstandard2.0\ApexParser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

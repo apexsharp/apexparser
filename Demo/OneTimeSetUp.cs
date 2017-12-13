@@ -1,9 +1,9 @@
-﻿using System;
-using ApexSharpApi;
-using NUnit.Framework;
-
-namespace Demo
+﻿namespace Demo
 {
+
+    using ApexSharpApi;
+    using NUnit.Framework;
+
     [SetUpFixture]
     public class OneTimeSetUp
     {
