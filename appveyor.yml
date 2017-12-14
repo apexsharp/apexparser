@@ -5,14 +5,14 @@ init:
 - git config --global core.autocrlf true
 
 before_build:
-- nuget restore ApexSharp.sln
+- nuget restore ApexParser.sln
 - choco install opencover.portable
 - choco install codecov
 
 build:
-  project: ApexSharp.sln
+  project: ApexParser.sln
   verbosity: minimal
 
 test_script:
-- OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:".\ApexParserTest\bin\Debug\ApexParserTest.dll .\ApexSharpApi\bin\Debug\ApexSharpApi.dll .\ApexTest\bin\Debug\ApexTest.dll" -filter:"+[*]* -[Apex]* -[ApexSharpDemo]* -[ApexSharpApi]*" -output:".\ApexSharp_coverage.xml"
-- codecov -f "ApexSharp_coverage.xml" -t b5c5f914-ca2f-47fb-b891-81661c91fa04
+- OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:".\ApexParserTest\bin\Debug\ApexParserTest.dll" -filter:"+[*]* -[Apex]* -[ApexSharpDemo]* -[ApexSharpApi]*" -output:".\ApexParser_coverage.xml"
+- codecov -f "ApexParser_coverage.xml" -t 6c3f1e6e-b9a5-4bdc-9b8c-599c5984f557
