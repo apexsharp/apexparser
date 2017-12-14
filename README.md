@@ -5,28 +5,10 @@
 [![codecov](https://codecov.io/gh/yallie/apexsharp/branch/master/graph/badge.svg)](https://codecov.io/gh/yallie/apexsharp)
 [![NuGet](https://img.shields.io/nuget/v/ApexParser.svg)](https://nuget.org/packages/ApexParser)
 
-
-Apex <> C# - Two Way [Transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). A Quick 10 Min Video Intro can be found at https://vimeo.com/224927838
-
-I am working on a detail documentation, but for now I assume you are a C# developer who is working on Salesforce.
-
-#### Setting up and Running 
-
-0. Create a new SF Dev org, get your API Token
-1. Download the whole Git Repo
-2. Start the Demo Solution
-3. Demo Project is the project you want to work on
-4. On Setup.cs, set your SF Id, PW, Token
-
- ```csharp
-.WithUserId("You SF Id")
-.AndPassword("You SF Password")
-.AndToken("Token")
-```
-
+Apex <> C# - Two Way [Transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler).
 
 This is very early stage Beta Software use it at your own risk :-).
 
 Jay
-EMail: <Jay@JayOnSoftware.com>  
-[LinkedIn](https://www.linkedin.com/in/jayonsoftware/) 
+EMail: <Jay@JayOnSoftware.com>
+[LinkedIn](https://www.linkedin.com/in/jayonsoftware/)
