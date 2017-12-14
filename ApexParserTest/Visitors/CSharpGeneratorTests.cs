@@ -1009,7 +1009,9 @@ namespace ApexParserTest.Visitors
 
             Assert.AreEqual("string", Normalize(ApexKeywords.String));
             Assert.AreEqual("bool", Normalize(ApexKeywords.Boolean));
-            Assert.AreEqual(nameof(DateTime), Normalize(ApexKeywords.Datetime));
+
+            // not anymore: Apex.System.Datetime is used instead of System.DateTime
+            //Assert.AreEqual(nameof(DateTime), Normalize(ApexKeywords.Datetime));
         }
 
         [Test]
@@ -1107,7 +1109,7 @@ namespace ApexParserTest.Visitors
                     public Datetime SomeMethod() {
                         Type type = Sample.class;
                         AnotherMethod(String.class);
-                        return Datetime.Now();
+                        return Datetime.now();
                     }
                 }");
 
@@ -1122,11 +1124,11 @@ namespace ApexParserTest.Visitors
 
                     class Sample
                     {
-                        public DateTime SomeMethod()
+                        public Datetime SomeMethod()
                         {
                             Type type = typeof(Sample);
                             AnotherMethod(typeof(string));
-                            return DateTime.Now();
+                            return Datetime.now();
                         }
                     }
                 }");
@@ -1189,7 +1191,7 @@ namespace ApexParserTest.Visitors
                     {
                         [Future(CallOut=true)]
                         [Some(Name=""test"")]
-                        public DateTime SomeMethod()
+                        public Datetime SomeMethod()
                         {
                         }
                     }

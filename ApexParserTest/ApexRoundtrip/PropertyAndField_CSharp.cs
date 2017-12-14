@@ -8,19 +8,19 @@ namespace ApexSharpDemo.ApexCode
 
     public class PropertyAndField
     {
-        public DateTime DateTimeGetSet { get; set; }
+        public Datetime DateTimeGetSet { get; set; }
 
-        public List<DateTime> DateTimeGetSetGeneric { get; set; }
+        public List<Datetime> DateTimeGetSetGeneric { get; set; }
 
-        public DateTime[] DateTimeGetSetArray { get; set; }
+        public Datetime[] DateTimeGetSetArray { get; set; }
 
-        public DateTime DateTimeEmpty;
+        public Datetime DateTimeEmpty;
 
-        public DateTime DateTimeInitialized = DateTime.Now();
+        public Datetime DateTimeInitialized = Datetime.Now();
 
-        public List<DateTime> DateTimeList = new List<DateTime>();
+        public List<Datetime> DateTimeList = new List<Datetime>();
 
-        public DateTime[] DateTimeArray = new DateTime[5];
+        public Datetime[] DateTimeArray = new Datetime[5];
 
         public string Name = "jay";
 
@@ -45,11 +45,11 @@ namespace ApexSharpDemo.ApexCode
 
         public void MethodOne()
         {
-            DateTime dateTimeEmpty;
-            dateTimeEmpty = DateTime.Now();
-            DateTime dateTimeInitilized = DateTime.Now();
-            List<DateTime> dateTimeList = new List<DateTime>();
-            DateTime[] dateTimeArrary = new DateTime[5];
+            Datetime dateTimeEmpty;
+            dateTimeEmpty = Datetime.Now();
+            Datetime dateTimeInitilized = Datetime.Now();
+            List<Datetime> dateTimeList = new List<Datetime>();
+            Datetime[] dateTimeArrary = new Datetime[5];
             string name;
             name = "Jay";
         }

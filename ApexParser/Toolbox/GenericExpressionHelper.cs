@@ -228,7 +228,7 @@ namespace ApexParser.Toolbox
                 { ApexKeywords.Boolean, "bool" },
                 { ApexKeywords.Byte, "byte" },
                 { ApexKeywords.Char, "char" },
-                { ApexKeywords.Datetime, "DateTime" },
+                { ApexKeywords.Datetime, "Datetime" },
                 { ApexKeywords.Date, "Date" },
                 { ApexKeywords.Decimal, "decimal" },
                 { ApexKeywords.Double, "double" },

@@ -43,7 +43,7 @@ namespace ApexParser.Parser
         ////public const string Activate = "activate"; // reserved for future use
         public const string And = "and";
         ////public const string Any = "any"; // reserved for future use
-        public const string Array = "array";
+        ////public const string Array = "array"; // hack, see below
         public const string As = "as";
         public const string Asc = "asc";
         ////public const string Autonomous = "autonomous"; // reserved for future use
@@ -79,7 +79,7 @@ namespace ApexParser.Parser
         public const string False = "false";
         public const string Final = "final";
         public const string Finally = "finally";
-        public const string Float = "float"; // reserved for future use
+        ////public const string Float = "float"; // hack, see below
         public const string For = "for";
         public const string From = "from";
         ////public const string Future = "future"; // annotation, see below
@@ -109,7 +109,7 @@ namespace ApexParser.Parser
         ////public const string Loop = "loop"; // reserved for future use
         ////public const string Map = "Map"; // Map<...> is a built-in generic type
         ////public const string Merge = "merge"; // hack, see below
-        public const string New = "new";
+        ////public const string New = "new"; // hack, see below
         public const string Next90Days = "next_90_days";
         public const string NextMonth = "next_month";
         public const string NextNDays = "next_n_days";
@@ -124,7 +124,7 @@ namespace ApexParser.Parser
         public const string Or = "or";
         ////public const string Outer = "outer"; // reserved for future use
         public const string Override = "override";
-        public const string Package = "package";
+        ////public const string Package = "package"; // hack, see below
         ////public const string Parallel = "parallel"; // reserved for future use
         ////public const string Pragma = "pragma"; // reserved for future use
         public const string Private = "private";
@@ -158,7 +158,7 @@ namespace ApexParser.Parser
         public const string Tolabel = "tolabel";
         public const string Tomorrow = "tomorrow";
         ////public const string Transaction = "transaction"; // reserved for future use
-        public const string Trigger = "trigger";
+        ////public const string Trigger = "trigger"; // hack, see below
         public const string True = "true";
         public const string Try = "try";
         ////public const string Type = "type"; // reserved for future use
@@ -186,11 +186,12 @@ namespace ApexParser.Parser
         public static string Last => "last";
         public static string Limit => "limit"; // SuggestionOption.setLimit(limit) parameter name
         public static string Merge => "merge"; // System.Database class method
+        public static string New => "new"; // System.Trigger class property name
         public static string Order => "order";
+        public static string Package => "package"; // Package is a built-in namespace
         public static string Rollback => "rollback"; // System.Database class method
         public static string Savepoint => "savepoint"; // System.Savepoint class
         public static string Sharing => "sharing";
-        public static string String => "String"; // built-in type
         public static string System => "System"; // used in qualified identifier: System.debug
         public static string Undelete => "undelete"; // System.Database class method
         public static string Update => "update"; // System.Database class method
@@ -198,6 +199,7 @@ namespace ApexParser.Parser
         public static string With => "with";
 
         // 3. Not listed in the official documentation but apparently used
+        public static string Array => "array"; // used as SoapType enum member
         public static string Blob => "Blob"; // built-in type
         public static string Boolean => "Boolean"; // built-in type
         public static string ConvertCurrency => "convertcurrency"; // seems to be a valid method name
@@ -206,6 +208,7 @@ namespace ApexParser.Parser
         public static string Datetime => "Datetime"; // built-in type
         public static string Decimal => "Decimal"; // built-int type
         public static string Double => "Double"; // built-in type
+        public static string Float => "float"; // reserved for the future use, but is used as ParameterType enum member
         public static string Get => "get"; // "get" seems to be a valid method name
         public static string ID => "ID"; // built-in type
         public static string Integer => "Integer"; // built-in type
@@ -219,9 +222,11 @@ namespace ApexParser.Parser
         public static string Set => "set"; // "set" seems to be a valid method name
         public static string SetType => "Set"; // Set<...> is a built-in generic type
         public static string Sort => "sort"; // seems to be valid method name
+        public static string String => "String"; // built-in type
         public static string Time => "Time"; // built-in type
         public static string Today => "today"; // System.today() method
         public static string Transient => "transient"; // variable modifier
+        public static string Trigger => "trigger"; // built-in Trigger class
         public static string Void => "void";
         ////public const string Volatile = "volatile"; // the status is unclear
         public static string WebService => "webservice"; // method modifier

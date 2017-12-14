@@ -396,7 +396,7 @@ namespace ApexParserTest.Toolbox
 
             Assert.AreEqual(ApexKeywords.Integer, ToApex("int"));
             Assert.AreEqual(ApexKeywords.String, ToApex("string"));
-            Assert.AreEqual(ApexKeywords.Datetime, ToApex("DateTime"));
+            Assert.AreEqual(ApexKeywords.Datetime, ToApex("Datetime")); // not sure if we convert System.DateTime to Apex.System.Datetime?
             Assert.AreEqual(ApexKeywords.Time, ToApex("Time"));
         }
 
