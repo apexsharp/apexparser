@@ -15,4 +15,4 @@ build:
 
 test_script:
 - OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:".\ApexParserTest\bin\Debug\ApexParserTest.dll" -filter:"+[*]* -[Apex]* -[ApexSharpDemo]* -[ApexSharpApi]*" -output:".\ApexParser_coverage.xml"
-- codecov -f "ApexParser_coverage.xml" -t 6c3f1e6e-b9a5-4bdc-9b8c-599c5984f557
+- codecov -f "ApexParser_coverage.xml"
