@@ -6,8 +6,8 @@
         <title>ApexParser</title>
         <authors>ApexSharp.com</authors>
         <owners>ApexSharp.com</owners>
-        <licenseUrl>https://github.com/jayonsoftware/apexsharp/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/jayonsoftware/apexsharp/</projectUrl>
+        <licenseUrl>https://github.com/apexsharp/apexparser/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/apexsharp/apexparser/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A Roslyn-like parser for the Salesforce programming language APEX</description>
         <summary>A Roslyn-like parser for the Salesforce programming language APEX</summary>
