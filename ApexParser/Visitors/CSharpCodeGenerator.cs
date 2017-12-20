@@ -376,6 +376,7 @@ namespace ApexParser.Visitors
 
         public override void VisitForEachStatement(ForEachStatementSyntax node)
         {
+            AppendLeadingComments(node);
             AppendIndented("foreach (");
             using (SkipNewLines())
             {

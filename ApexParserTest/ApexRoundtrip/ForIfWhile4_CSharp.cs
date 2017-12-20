@@ -121,6 +121,7 @@ namespace ApexSharpDemo.ApexCode
 
         public static void ForSoql()
         {
+            // for soql
             foreach (Contact contactList in Soql.query<Contact>("SELECT Id, Name FROM Contact"))
             {
                 // do nothing

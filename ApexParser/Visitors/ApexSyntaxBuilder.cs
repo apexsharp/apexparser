@@ -107,6 +107,9 @@ namespace ApexParser.Visitors
             public static List<string> Leading(CSharpSyntaxNode node) =>
                 ToList(node.GetLeadingTrivia());
 
+            public static List<string> Leading(SyntaxToken token) =>
+                ToList(token.LeadingTrivia);
+
             public static List<string> Trailing(CSharpSyntaxNode node) =>
                 ToList(node.GetTrailingTrivia());
         }
@@ -717,7 +720,11 @@ namespace ApexParser.Visitors
 
         public override void VisitBlock(BlockSyntax node)
         {
-            var block = new ApexBlockSyntax();
+            var block = new ApexBlockSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
 
             foreach (var stmt in node.Statements.EmptyIfNull())
             {
@@ -729,7 +736,7 @@ namespace ApexParser.Visitors
                 }
             }
 
-            block.InnerComments = NoApexComments.ToList();
+            block.InnerComments = GetLeadingAndNoApexComments(node.CloseBraceToken );
             NoApexComments.Clear();
             LastStatement = block;
         }
@@ -756,6 +763,13 @@ namespace ApexParser.Visitors
             }
 
             LastStatement = ifStmt;
+        }
+
+        private List<string> GetLeadingAndNoApexComments(SyntaxToken token)
+        {
+            var result = NoApexComments.Concat(Comments.Leading(token)).ToList();
+            NoApexComments.Clear();
+            return result;
         }
 
         private List<string> GetLeadingAndNoApexComments(CSharpSyntaxNode node)
