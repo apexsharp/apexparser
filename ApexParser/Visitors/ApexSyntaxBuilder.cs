@@ -468,7 +468,7 @@ namespace ApexParser.Visitors
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
             // skip methods starting with the signature
-            if (node.Identifier.ValueText.StartsWith(NoApexSignature))
+            if (node.Identifier.ValueText.StartsWith(NoApexSignature, StringComparison.InvariantCultureIgnoreCase))
             {
                 NoApexComments = NoApexComments.Concat(Comments.Leading(node))
                     .Concat(CommentOutNoApexCode(node.ToString())).ToList();
@@ -758,7 +758,7 @@ namespace ApexParser.Visitors
         public override void VisitExpressionStatement(ExpressionStatementSyntax node)
         {
             // skip stateements starting with the signature
-            if (node.ToString().StartsWith(NoApexSignature))
+            if (node.ToString().StartsWith(NoApexSignature, StringComparison.InvariantCultureIgnoreCase))
             {
                 NoApexComments = CommentOutNoApexCode(node.ToString() + Environment.NewLine);
                 return;

@@ -34,6 +34,9 @@ _TeamCity*
 # DotCover is a Code Coverage Tool
 *.dotCover
 
+# axoCover is a Unit Test Runner / Code Coverage Tool
+.axoCover
+
 # NCrunch
 *.ncrunch*
 .*crunch*.local.xml
@@ -49,3 +52,4 @@ config.json
 .sfdx
 /JayPrivate
 ApexSharpPrivate.sln
+/Nuget/*.nupkg

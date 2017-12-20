@@ -557,6 +557,12 @@ namespace ApexParserTest.Visitors
                             Soql.Insert(contactNew);
                         }
 
+                        [OneTimeSetUp]
+                        public void noApexSetupAgain()
+                        {
+                            new ApexSharp().Connect(""C:\\DevSharp\\connect.json"");
+                        }
+
                         [Test]
                         public static void UpdatePhoneTestValidEmail()
                         {
@@ -595,6 +601,11 @@ namespace ApexParserTest.Visitors
                         insert contactNew;
                     }
 
+                    //:NoApex [OneTimeSetUp]
+                    //:NoApex public void noApexSetupAgain()
+                    //:NoApex {
+                    //:NoApex     new ApexSharp().Connect(""C:\\DevSharp\\connect.json"");
+                    //:NoApex }
                     @IsTest
                     public static void UpdatePhoneTestValidEmail()
                     {
