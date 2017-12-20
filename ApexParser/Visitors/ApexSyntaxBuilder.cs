@@ -436,7 +436,8 @@ namespace ApexParser.Visitors
             if (node.Body != null)
             {
                 node.Body.Accept(this);
-                method.Body = LastBlock;
+                method.Body = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
 
                 if (!method.TrailingComments.IsNullOrEmpty())
                 {
@@ -500,7 +501,8 @@ namespace ApexParser.Visitors
             if (node.Body != null)
             {
                 node.Body.Accept(this);
-                method.Body = LastBlock;
+                method.Body = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
 
                 if (!method.TrailingComments.IsNullOrEmpty())
                 {
@@ -706,13 +708,12 @@ namespace ApexParser.Visitors
             if (node.Body != null)
             {
                 node.Body.Accept(this);
-                accessor.Body = LastBlock;
+                accessor.Body = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
             }
 
             LastAccessor = accessor;
         }
-
-        private ApexBlockSyntax LastBlock { get; set; }
 
         public override void VisitBlock(BlockSyntax node)
         {
@@ -730,13 +731,15 @@ namespace ApexParser.Visitors
 
             block.InnerComments = NoApexComments.ToList();
             NoApexComments.Clear();
-            LastStatement = LastBlock = block;
+            LastStatement = block;
         }
 
         public override void VisitIfStatement(IfStatementSyntax node)
         {
             var ifStmt = new ApexIfStatementSyntax
             {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
                 Expression = ConvertExpression(node.Condition),
             };
 
@@ -755,6 +758,13 @@ namespace ApexParser.Visitors
             LastStatement = ifStmt;
         }
 
+        private List<string> GetLeadingAndNoApexComments(CSharpSyntaxNode node)
+        {
+            var result = NoApexComments.Concat(Comments.Leading(node)).ToList();
+            NoApexComments.Clear();
+            return result;
+        }
+
         public override void VisitExpressionStatement(ExpressionStatementSyntax node)
         {
             // skip stateements starting with the signature
@@ -767,7 +777,7 @@ namespace ApexParser.Visitors
             // also handles SOQL insert/update/delete statements
             LastStatement = new ApexStatementSyntax
             {
-                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
+                LeadingComments = GetLeadingAndNoApexComments(node),
                 TrailingComments = Comments.Trailing(node),
                 Body = ConvertExpression(node.Expression).Expression,
             };
@@ -777,6 +787,8 @@ namespace ApexParser.Visitors
         {
             LastStatement = new ApexReturnStatementSyntax
             {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
                 Expression = ConvertExpression(node.Expression),
             };
         }
@@ -785,20 +797,32 @@ namespace ApexParser.Visitors
         {
             LastStatement = new ApexThrowStatementSyntax
             {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
                 Expression = ConvertExpression(node.Expression),
             };
         }
 
         public override void VisitBreakStatement(BreakStatementSyntax node) =>
-            LastStatement = new ApexBreakStatementSyntax();
+            LastStatement = new ApexBreakStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
 
         public override void VisitContinueStatement(ContinueStatementSyntax node) =>
-            LastStatement = new ApexContinueStatementSyntax();
+            LastStatement = new ApexContinueStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
 
         public override void VisitDoStatement(DoStatementSyntax node)
         {
             var doStmt = new ApexDoStatementSyntax
             {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
                 Expression = ConvertExpression(node.Condition),
             };
 
@@ -815,6 +839,8 @@ namespace ApexParser.Visitors
         {
             var forStmt = new ApexForEachStatementSyntax
             {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
                 Type = ConvertType(node.Type),
                 Identifier = node.Identifier.ValueText,
                 Expression = ConvertExpression(node.Expression),
@@ -833,6 +859,8 @@ namespace ApexParser.Visitors
         {
             var forStmt = new ApexForStatementSyntax
             {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
                 Condition = ConvertExpression(node.Condition),
                 Incrementors = node.Incrementors.EmptyIfNull().Select(x => ConvertExpression(x)).ToList(),
             };
@@ -856,6 +884,8 @@ namespace ApexParser.Visitors
         {
             var whileStmt = new ApexWhileStatementSyntax
             {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
                 Expression = ConvertExpression(node.Condition),
             };
 
@@ -870,11 +900,17 @@ namespace ApexParser.Visitors
 
         public override void VisitTryStatement(TryStatementSyntax node)
         {
-            var tryStatement = new ApexTryStatementSyntax();
+            var tryStatement = new ApexTryStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
             if (node.Block != null)
             {
                 node.Block.Accept(this);
-                tryStatement.Block = LastBlock;
+                tryStatement.Block = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
             }
 
             foreach (var @catch in node.Catches.EmptyIfNull())
@@ -911,7 +947,8 @@ namespace ApexParser.Visitors
             }
 
             node.Block.Accept(this);
-            catchClause.Block = LastBlock;
+            catchClause.Block = LastStatement as ApexBlockSyntax;
+            LastStatement = null;
             LastCatch = catchClause;
         }
 
@@ -922,8 +959,10 @@ namespace ApexParser.Visitors
             node.Block.Accept(this);
             LastFinally = new ApexFinallyClauseSyntax
             {
-                Block = LastBlock,
+                Block = LastStatement as ApexBlockSyntax,
             };
+
+            LastStatement = null;
         }
 
         public override void VisitUsingStatement(UsingStatementSyntax node)
@@ -938,6 +977,8 @@ namespace ApexParser.Visitors
                     var argument = runAs.ArgumentList?.Arguments.EmptyIfNull().FirstOrDefault()?.Expression;
                     var runAsNode = new ApexRunAsStatementSyntax
                     {
+                        LeadingComments = GetLeadingAndNoApexComments(node),
+                        TrailingComments = Comments.Trailing(node),
                         Expression = ConvertExpression(argument),
                     };
 

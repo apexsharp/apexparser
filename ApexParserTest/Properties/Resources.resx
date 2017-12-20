@@ -709,4 +709,22 @@
   <data name="SoqlDemo_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexRoundtrip\SoqlDemo_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="ClassNoApex2_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassNoApex2_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassNoApex2_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassNoApex2_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ClassNoApex2_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ClassNoApex2_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile4_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ForIfWhile4_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile4_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ForIfWhile4_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ForIfWhile4_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\ForIfWhile4_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
 </root>

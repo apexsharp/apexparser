@@ -55,6 +55,10 @@ namespace ApexParserTest.Visitors
             Check(ClassNoApex_Original, ClassNoApex_Formatted, ClassNoApex_CSharp);
 
         [Test]
+        public void ClassNoApex2Roundtrip() =>
+            Check(ClassNoApex2_Original, ClassNoApex2_Formatted, ClassNoApex2_CSharp);
+
+        [Test]
         public void ClassRestRoundtrip() =>
             Check(ClassRest_Original, ClassRest_Formatted, ClassRest_CSharp);
 
@@ -114,6 +118,10 @@ namespace ApexParserTest.Visitors
         [Test]
         public void ForIfWhileRoundtrip() =>
             Check(ForIfWhile_Original, ForIfWhile_Formatted, ForIfWhile_CSharp);
+
+        [Test]
+        public void ForIfWhile4Roundtrip() =>
+            Check(ForIfWhile4_Original, ForIfWhile4_Formatted, ForIfWhile4_CSharp);
 
         [Test]
         public void GetSetDemoRoundtrip() =>

@@ -276,6 +276,7 @@
     <None Include="ApexRoundtrip\ClassInterface_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassInternal_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassNoApex_CSharp.cs" />
+    <None Include="ApexRoundtrip\ClassNoApex2_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassRest_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassRestTest_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassUnitTest_CSharp.cs" />
@@ -291,6 +292,7 @@
     <None Include="ApexRoundtrip\DemoTest_CSharp.cs" />
     <None Include="ApexRoundtrip\ExceptionDemo_CSharp.cs" />
     <None Include="ApexRoundtrip\ForIfWhile_CSharp.cs" />
+    <None Include="ApexRoundtrip\ForIfWhile4_CSharp.cs" />
     <None Include="ApexRoundtrip\GetSetDemo_CSharp.cs" />
     <None Include="ApexRoundtrip\IClassInterface_CSharp.cs" />
     <None Include="ApexRoundtrip\IClassInterfaceExt_CSharp.cs" />
@@ -317,6 +319,8 @@
     <None Include="ApexRoundtrip\ClassInternal_Original.cls" />
     <None Include="ApexRoundtrip\ClassNoApex_Formatted.cls" />
     <None Include="ApexRoundtrip\ClassNoApex_Original.cls" />
+    <None Include="ApexRoundtrip\ClassNoApex2_Formatted.cls" />
+    <None Include="ApexRoundtrip\ClassNoApex2_Original.cls" />
     <None Include="ApexRoundtrip\ClassRestTest_Formatted.cls" />
     <None Include="ApexRoundtrip\ClassRestTest_Original.cls" />
     <None Include="ApexRoundtrip\ClassRest_Formatted.cls" />
@@ -348,6 +352,8 @@
     <None Include="ApexRoundtrip\ExceptionDemo_Original.cls" />
     <None Include="ApexRoundtrip\ForIfWhile_Formatted.cls" />
     <None Include="ApexRoundtrip\ForIfWhile_Original.cls" />
+    <None Include="ApexRoundtrip\ForIfWhile4_Formatted.cls" />
+    <None Include="ApexRoundtrip\ForIfWhile4_Original.cls" />
     <None Include="ApexRoundtrip\GetSetDemo_Formatted.cls" />
     <None Include="ApexRoundtrip\GetSetDemo_Original.cls" />
     <None Include="ApexRoundtrip\IClassInterfaceExt_Formatted.cls" />

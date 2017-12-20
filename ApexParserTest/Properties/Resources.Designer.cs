@@ -114,7 +114,7 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            try
         ///            {
-        ///                Soql.Insert(contact);
+        ///                Soql.insert(contact);
         ///            }
         ///            catch (DMLExcepti [rest of string was truncated]&quot;;.
         /// </summary>
@@ -544,7 +544,7 @@ namespace ApexParserTest.Properties {
         ///
         ///        public ClassInitialization()
         ///        {
-        ///            contactList = Soql.Query&lt;Contact&gt;(&quot;SELECT ID FROM Contact LIMIT 1&quot;);
+        ///            contactList = Soql.query&lt;Contact&gt;(&quot;SELECT ID FROM Contact LIMIT 1&quot;);
         ///        }
         ///
         ///        public static Map&lt;string, string&gt; colorMap = new Map&lt;string, string&gt;();
@@ -857,6 +857,84 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using ApexSharpApi.ApexApi;
+        ///    using SObjects;
+        ///
+        ///    public class ClassNoApex
+        ///    {
+        ///        // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///        public static void MethodOne()
+        ///        {
+        ///            NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///        }
+        ///
+        ///        public static List&lt;Contact&gt; getContacts()
+        ///        {
+        ///            List&lt;Cont [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassNoApex2_CSharp {
+            get {
+                return ResourceManager.GetString("ClassNoApex2_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassNoApex
+        ///{
+        ///    // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///    public static void MethodOne()
+        ///    {
+        ///        //:NoApex NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    }
+        ///
+        ///    public static List&lt;Contact&gt; getContacts()
+        ///    {
+        ///        List&lt;Contact&gt; contacts = [SELECT Id, Email, Phone FROM Contact];
+        ///
+        ///        //:NoApex NoApex.Serilog.LogInfo(contacts.size().ToString());
+        ///        return contacts;
+        ///    }
+        ///
+        ///    public static void callingNonApexCode()
+        ///    {        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassNoApex2_Formatted {
+            get {
+                return ResourceManager.GetString("ClassNoApex2_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ClassNoApex {
+        ///    // Any classes in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///    public static void MethodOne()
+        ///    {
+        ///        //:NoApex NoApex.Serilog.LogInfo(&quot;Jay&quot;);
+        ///    }
+        ///
+        ///    public static List&lt;Contact&gt; getContacts()
+        ///    {
+        ///        List&lt;Contact&gt; contacts = [SELECT Id, Email, Phone FROM Contact];
+        ///        //:NoApex NoApex.Serilog.LogInfo(contacts.size().ToString());
+        ///        return contacts;
+        ///    }
+        ///
+        ///    public static void callingNonApexCode()
+        ///    {
+        ///   [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ClassNoApex2_Original {
+            get {
+                return ResourceManager.GetString("ClassNoApex2_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public with sharing class ClassOne {
         ///    public void CallClassTwo() {
         ///        ClassTwo classTwo = new ClassTwo();
@@ -1160,7 +1238,8 @@ namespace ApexParserTest.Properties {
         ///        System.Assert(true, &apos;Assert True&apos;);
         ///    }
         ///
-        ///    public static testMethod void AssertTestMethod()
+        ///    @IsTest
+        ///    public static void AssertTestMethod()
         ///    {
         ///        System.Assert(true, &apos;Assert True&apos;);
         ///    }
@@ -1171,8 +1250,7 @@ namespace ApexParserTest.Properties {
         ///        System.AssertEquals(5, 5, &apos;Assert Equal&apos;);
         ///    }
         ///
-        ///    @IsTest
-        ///  [rest of string was truncated]&quot;;.
+        ///    @IsTest        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassUnitTest_Converted {
             get {
@@ -1336,8 +1414,8 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        static void RunAsExample()
         ///        {
-        ///            User newUser = Soql.Query&lt;User&gt;(&quot;SELECT Id FROM User LIMIT 1&quot;);
-        ///            using (System.RunAs(newUser))
+        ///            User newUser = Soql.query&lt;User&gt;(&quot;SELECT Id FROM User LIMIT 1&quot;);
+        ///            using (System.runAs(newUser))
         ///            {
         ///            }
         ///        }
@@ -1357,12 +1435,12 @@ namespace ApexParserTest.Properties {
         ///    static void RunAsExample()
         ///    {
         ///        User newUser = [SELECT Id FROM User LIMIT 1];
-        ///        System.RunAs(newUser)
+        ///        System.runAs(newUser)
         ///        {
-        ///
         ///        }
         ///    }
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string ClassUnitTestRunAs_Formatted {
             get {
@@ -1425,7 +1503,7 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to @isTest(SeeAllData=true)
+        ///   Looks up a localized string similar to @IsTest(SeeAllData=true)
         ///public class ClassUnitTestSeeAllData
         ///{
         ///}.
@@ -1652,23 +1730,24 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public with sharing class Collections {
+        ///   Looks up a localized string similar to public with sharing class Collections
+        ///{
+        ///    public List&lt;String&gt; StringList = new List&lt;String&gt;{&apos;one&apos;, &apos;two&apos;};
         ///
-        ///    public List&lt;String&gt; StringList = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
         ///    public Integer[] IntegerArray = new Integer[]{1, 2, 3};
         ///
-        ///    public void ArrayDemo() {
-        ///        List&lt;String&gt; stringListLocal = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
+        ///    public void ArrayDemo()
+        ///    {
+        ///        List&lt;String&gt; stringListLocal = new List&lt;String&gt;{&apos;one&apos;, &apos;two&apos;};
         ///        Integer[] integerArrayLocal = new Integer[]{1, 2, 3};
         ///    }
-        ///
         ///
         ///    public void ListExample()
         ///    {
         ///        List&lt;Integer&gt; myList = new List&lt;Integer&gt;();
         ///        myList.Add(47);
-        ///
-        ///        Integer i = myList.Get(0);        /// [rest of string was truncated]&quot;;.
+        ///        Integer i = myList.Get(0);
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Collections_Formatted {
             get {
@@ -1774,17 +1853,14 @@ namespace ApexParserTest.Properties {
         /// * This comment belongs to the Class Syntax
         /// */
         ///public with sharing class Comments
-        ////**
-        ///  * This comment belongs to the Class Syntax
-        ///  */
-        ///// This comment belongs to the open bracket syntax
         ///{
-        ///
         ///    // This comment belongs to the Method Syntax
-        ///    public static void DemoMethod() {
+        ///    public static void DemoMethod()
+        ///    {
         ///        Integer demoValue = 5; // Side Line Comment
         ///    }
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string Comments_Formatted {
             get {
@@ -1928,7 +2004,7 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            try
         ///            {
-        ///                Soql.Insert(contact);
+        ///                Soql.insert(contact);
         ///            }
         ///            catch (DmlExcepti [rest of string was truncated]&quot;;.
         /// </summary>
@@ -1962,7 +2038,7 @@ namespace ApexParserTest.Properties {
         ///        return null;
         ///    }
         ///
-        ///    public static string UpdatePhone(string email, string newPhone)
+        ///    public static String UpdatePhone(String email, String newPhone)
         ///    {
         ///        List&lt;Contact&gt; contacts = GetContactByEMail(email);
         ///        if  [rest of string was truncated]&quot;;.
@@ -2072,21 +2148,23 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public with sharing class DemoController {
+        ///   Looks up a localized string similar to public with sharing class DemoController
+        ///{
         ///    /**
         ///     * An empty constructor for the testing
         ///     */
-        ///    public DemoController() {}
+        ///    public DemoController()
+        ///    {
+        ///    }
         ///
         ///    /**
         ///     * Set the contact for the page using the lastName parameter, if there is one
         ///     */
-        ///  //  public DemoController(ApexPages.StandardController controller) {
-        ///        // Get the last name from the url
-        /////        String lastName = ApexPages.currentPage().getParameters().get(&apos;lastName&apos;);
-        ///
-        /////        if (lastName != null) {
-        ///            // Query the object        /// [rest of string was truncated]&quot;;.
+        ///    //  public DemoController(ApexPages.StandardController controller) {
+        ///    // Get the last name from the url
+        ///    //        String lastName = ApexPages.currentPage().getParameters().get(&apos;lastName&apos;);
+        ///    //        if (lastName != null) {
+        ///    // Query the [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoController_Formatted {
             get {
@@ -2209,7 +2287,7 @@ namespace ApexParserTest.Properties {
         ///            Contact contactNew = new Contact();
         ///            contactNew.LastName = &quot;Jay&quot;;
         ///            contactNew.Email = &quot;jay@jay.com&quot;;
-        ///            Soql.Insert(contactNew);
+        ///            Soql.insert(contactNew);
         /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoTest_CSharp {
@@ -2230,12 +2308,13 @@ namespace ApexParserTest.Properties {
         ///        contactNew.Email = &apos;jay@jay.com&apos;;
         ///        insert contactNew;
         ///    }
+        ///
         ///    @IsTest
         ///    public static void UpdatePhoneTestValidEmail()
         ///    {
         ///        Demo.UpdatePhone(&apos;jay@jay.com&apos;, &apos;555-1212&apos;);
         ///        List&lt;Contact&gt; contacts = [SELECT ID, Email, Phone FROM Contact WHERE Email = &apos;jay@jay.com&apos;];
-        ///        System.AssertEquals(conta [rest of string was truncated]&quot;;.
+        ///        System.AssertEquals(con [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoTest_Formatted {
             get {
@@ -2353,7 +2432,8 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        throw new MathException(&apos;something bad happened!&apos;);
         ///    }
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string ExceptionDemo_Formatted {
             get {
@@ -3460,25 +3540,32 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class ForIfWhile {
-        ///    public void MethodIfClean(Integer place) {
+        ///   Looks up a localized string similar to public class ForIfWhile
+        ///{
+        ///    public void MethodIfClean(Integer place)
+        ///    {
         ///        String modelColor;
-        ///
-        ///        if (place == 1) {
-        ///            modelColor = &apos;Gold&apos; ;
-        ///        } else if (place == 2) {
-        ///            modelColor = &apos;Silver&apos; ;
-        ///        } else if (place == 3) {
-        ///            modelColor = &apos;Bronze&apos; ;
-        ///        } else {
-        ///            modelColor = null ;
+        ///        if (place == 1)
+        ///        {
+        ///            modelColor = &apos;Gold&apos;;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            modelColor = &apos;Silver&apos;;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            modelColor = &apos;Bronze&apos;;
+        ///        }
+        ///        else
+        ///        {
+        ///            modelColor = null;
         ///        }
         ///    }
-        ///    public void MethodForTraditional() {
-        ///        for (Integer i = 0; i &lt; 10; i++) {
-        ///            System.Debug (i + 1) ;
-        ///        }
-        ///  [rest of string was truncated]&quot;;.
+        ///
+        ///    public void MethodForTraditional()
+        ///    {
+        ///        for (Integer i [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ForIfWhile_Formatted {
             get {
@@ -3578,6 +3665,107 @@ namespace ApexParserTest.Properties {
         internal static string ForIfWhile3 {
             get {
                 return ResourceManager.GetString("ForIfWhile3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile
+        ///{
+        ///    public void MethodIfClean(Integer place)
+        ///    {
+        ///        String modelColor;
+        ///
+        ///        if (place == 1)
+        ///        {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        }
+        ///        else
+        ///        {
+        ///            modelColor = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional()
+        ///    {
+        ///        for (Integ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile4_CSharp {
+            get {
+                return ResourceManager.GetString("ForIfWhile4_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile
+        ///{
+        ///    public void MethodIfClean(Integer place)
+        ///    {
+        ///        String modelColor;
+        ///
+        ///        if (place == 1)
+        ///        {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        }
+        ///        else
+        ///        {
+        ///            modelColor = null ;
+        ///        }
+        ///    }
+        ///    public void MethodForTraditional()
+        ///    {
+        ///        for (Integ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile4_Formatted {
+            get {
+                return ResourceManager.GetString("ForIfWhile4_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class ForIfWhile
+        ///{
+        ///    public void MethodIfClean(Integer place)
+        ///    {
+        ///        // string model color
+        ///        String modelColor;
+        ///
+        ///        // if place equals 1
+        ///        if (place == 1)
+        ///        {
+        ///            modelColor = &apos;Gold&apos; ;
+        ///        }
+        ///        else if (place == 2)
+        ///        {
+        ///            modelColor = &apos;Silver&apos; ;
+        ///        }
+        ///        else if (place == 3)
+        ///        {
+        ///            modelColor = &apos;Bronze&apos; ;
+        ///        }
+        ///        else
+        ///        {
+        ///            modelColor = null ;
+        ///        } // else
+        ///    [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ForIfWhile4_Original {
+            get {
+                return ResourceManager.GetString("ForIfWhile4_Original", resourceCulture);
             }
         }
         
@@ -3699,29 +3887,36 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class GetSetDemo {
-        ///    public double MyReadWritePropPublic { get; set; }
+        ///   Looks up a localized string similar to public class GetSetDemo
+        ///{
+        ///    public Double MyReadWritePropPublic { get; set; }
+        ///
         ///    private Integer propPrvt;
-        ///    public Integer prop {
-        ///        get {
+        ///
+        ///    public Integer prop
+        ///    {
+        ///        get
+        ///        {
         ///            return propPrvt;
         ///        }
-        ///        set {
+        ///        set
+        ///        {
         ///            propPrvt = value;
         ///        }
         ///    }
-        ///    public Integer MyReadOnlyProp {
-        ///        get;
-        ///    }
+        ///
+        ///    public Integer MyReadOnlyProp { get; }
         ///
         ///    private static Integer myStaticPropPrvt;
-        ///    public static Integer MyStaticProp {
-        ///        get {
+        ///
+        ///    public static Integer MyStaticProp
+        ///    {
+        ///        get
+        ///        {
         ///            return myStaticPropPrvt;
         ///        }
         ///    }
-        ///
-        ///    Integer MyReadOnlyPropPrvt  [rest of string was truncated]&quot;;.
+        ///        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GetSetDemo_Formatted {
             get {
@@ -3795,8 +3990,9 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public interface IClassInterface extends IClassInterfaceExt {
-        ///    string GetName();
+        ///   Looks up a localized string similar to public interface IClassInterface extends IClassInterfaceExt
+        ///{
+        ///    String GetName();
         ///}
         ///.
         /// </summary>
@@ -3852,8 +4048,9 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public interface IClassInterfaceExt {
-        /////    ID GetId();
+        ///   Looks up a localized string similar to public interface IClassInterfaceExt
+        ///{
+        ///	//    ID GetId();
         ///}.
         /// </summary>
         internal static string IClassInterfaceExt_Formatted {
@@ -3925,11 +4122,11 @@ namespace ApexParserTest.Properties {
         ///        Contact contact = new Contact();
         ///        contact.LastName = &apos;Jay&apos;;
         ///        contact.Email = &apos;jay@jay.com&apos;;
-        ///
         ///        String jsonString = JSON.Serialize(contact);
-        ///        Contact newContact = (Contact)JSON.Deserialize(jsonString, String.class);
+        ///        Contact newContact = (Contact)JSON.Deserialize(jsonString, Contact.class);
         ///    }
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string JsonExample_Formatted {
             get {
@@ -3947,7 +4144,7 @@ namespace ApexParserTest.Properties {
         ///        contact.Email = &apos;jay@jay.com&apos;;
         ///
         ///        String jsonString = JSON.Serialize(contact);
-        ///        Contact newContact = (Contact)JSON.Deserialize(jsonString, String.class);
+        ///        Contact newContact = (Contact)JSON.Deserialize(jsonString, Contact.class);
         ///    }
         ///}.
         /// </summary>
@@ -4054,30 +4251,34 @@ namespace ApexParserTest.Properties {
         ///    MethodAndConstructor()
         ///    {
         ///    }
-        ///    public MethodAndConstructor(string demo)
+        ///
+        ///    public MethodAndConstructor(String demo)
         ///    {
         ///    }
+        ///
         ///    public virtual void VirtualMethod()
         ///    {
         ///    }
-        ///    @future
+        ///
+        ///    @Future
         ///    public static void FutureMethod()
         ///    {
         ///    }
         ///
-        ///    @future(callout=true)
+        ///    @Future(callOut=true)
         ///    public static void FutureMethodWithCallOut()
         ///    {
         ///    }
+        ///
         ///    void StringVoid()
         ///    {
         ///    }
         ///
         ///    private void StringPrivateVoid()
         ///    {
-        ///
         ///    }
-        ///    public vo [rest of string was truncated]&quot;;.
+        ///
+        ///    p [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MethodAndConstructor_Formatted {
             get {
@@ -4104,7 +4305,7 @@ namespace ApexParserTest.Properties {
         ///    {
         ///    }
         ///
-        ///    @future(callout=true)
+        ///    @future(callOut=true)
         ///    public static void FutureMethodWithCallOut()
         ///    {
         ///    }
@@ -4138,7 +4339,7 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        public static void MethodOne()
         ///        {
-        ///            foreach (Account a in Soql.Query&lt;Account&gt;(&quot;SELECT Id FROM Account&quot;))
+        ///            foreach (Account a in Soql.query&lt;Account&gt;(&quot;SELECT Id FROM Account&quot;))
         ///            {
         ///                System.Debug(a.Id);
         ///            }
@@ -4154,23 +4355,26 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public with sharing class MethodComplex {
-        ///    public static void MethodOne() {
-        ///
-        ///        for (Account a : [SELECT Id FROM Account]) {
+        ///   Looks up a localized string similar to public with sharing class MethodComplex
+        ///{
+        ///    public static void MethodOne()
+        ///    {
+        ///        for (Account a : [SELECT Id FROM Account])
+        ///        {
         ///            System.Debug(a.Id);
         ///        }
         ///
-        ///        for (Integer i=0;i&lt;10;i++) {
-        ///
+        ///        for (Integer i = 0; i&lt;10; i++)
+        ///        {
         ///        }
         ///    }
         ///
         ///    public Database.QueryLocator QueryLocator(Database.BatchableContext bc)
         ///    {
-        ///         return Database.GetQueryLocator([SELECT Id FROM Contact]);
+        ///        return Database.GetQueryLocator([SELECT Id FROM Contact]);
         ///    }
-        ///}.
+        ///}
+        ///.
         /// </summary>
         internal static string MethodComplex_Formatted {
             get {
@@ -4243,7 +4447,7 @@ namespace ApexParserTest.Properties {
         ///
         ///        public Date MyDate = Date.Today();
         ///
-        ///        public DateTime MyDateTime = DateTime.Now();
+        ///        public Datetime MyDateTime = Datetime.Now();
         ///
         ///        // public Decimal MyDecimal = 12.4567;
         ///        public double d = 3.133433;
@@ -4260,20 +4464,25 @@ namespace ApexParserTest.Properties {
         ///   Looks up a localized string similar to public class PrimitiveTypes
         ///{
         ///    public Blob MyBlob = Blob.ValueOf(&apos;Jay&apos;);
+        ///
         ///    public Boolean IsWinner = true;
         ///
         ///    public Date MyDate = Date.Today();
-        ///    public DateTime MyDateTime = DateTime.Now();
+        ///
+        ///    public Datetime MyDateTime = Datetime.Now();
         ///
         ///    // public Decimal MyDecimal = 12.4567;
-        ///    public Double d=3.133433;
-        ///    public Id MyId = &apos;006E0000004TquXIAS&apos;;
-        ///    public Integer MyInteger = 1;
-        ///    public Long MyLong = 23432424242L;
-        ///    public Time MyTime = Time.NewInstance(1, 2, 3, 4);
-        ///    public String MyString = &apos;Jay&apos;;
+        ///    public Double d = 3.133433;
         ///
-        ///    public st [rest of string was truncated]&quot;;.
+        ///    public ID MyId = &apos;006E0000004TquXIAS&apos;;
+        ///
+        ///    public Integer MyInteger = 1;
+        ///
+        ///    public Long MyLong = 23432424242L;
+        ///
+        ///    public Time MyTime = Time.NewInstance(1, 2, 3, 4);
+        ///
+        ///    public String MyString = &apos;Jay&apos;;        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PrimitiveTypes_Formatted {
             get {
@@ -4288,7 +4497,7 @@ namespace ApexParserTest.Properties {
         ///    public Boolean IsWinner = true;
         ///
         ///    public Date MyDate = Date.Today();
-        ///    public DateTime MyDateTime = DateTime.Now();
+        ///    public Datetime MyDateTime = Datetime.Now();
         ///
         ///    // public Decimal MyDecimal = 12.4567;
         ///    public Double d=3.133433;
@@ -4339,15 +4548,15 @@ namespace ApexParserTest.Properties {
         ///
         ///    public class PropertyAndField
         ///    {
-        ///        public DateTime DateTimeGetSet { get; set; }
+        ///        public Datetime DateTimeGetSet { get; set; }
         ///
-        ///        public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
+        ///        public List&lt;Datetime&gt; DateTimeGetSetGeneric { get; set; }
         ///
-        ///        public DateTime[] DateTimeGetSetArray { get; set; }
+        ///        public Datetime[] DateTimeGetSetArray { get; set; }
         ///
-        ///        public DateTime DateTimeEmpty;
+        ///        public Datetime DateTimeEmpty;
         ///
-        ///        public DateTime DateTimeInitialized = DateTime [rest of string was truncated]&quot;;.
+        ///        public Datetime DateTimeInitialized = Datetime [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PropertyAndField_CSharp {
             get {
@@ -4358,16 +4567,24 @@ namespace ApexParserTest.Properties {
         /// <summary>
         ///   Looks up a localized string similar to public class PropertyAndField
         ///{
-        ///    public DateTime DateTimeGetSet { get; set; }
-        ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
-        ///    public DateTime[] DateTimeGetSetArray { get; set; }
-        ///    public DateTime DateTimeEmpty;
-        ///    public DateTime DateTimeInitialized = DateTime.Now();
-        ///    public List&lt;DateTime&gt; DateTimeList = new List&lt;DateTime&gt;();
-        ///    public DateTime[] DateTimeArray = new DateTime[5];
-        ///    public string Name = &apos;jay&apos;;
-        ///    public final string nameFinal = &apos;jay&apos;;
-        ///    public stati [rest of string was truncated]&quot;;.
+        ///    public Datetime DateTimeGetSet { get; set; }
+        ///
+        ///    public List&lt;Datetime&gt; DateTimeGetSetGeneric { get; set; }
+        ///
+        ///    public Datetime[] DateTimeGetSetArray { get; set; }
+        ///
+        ///    public Datetime DateTimeEmpty;
+        ///
+        ///    public Datetime DateTimeInitialized = Datetime.Now();
+        ///
+        ///    public List&lt;Datetime&gt; DateTimeList = new List&lt;Datetime&gt;();
+        ///
+        ///    public Datetime[] DateTimeArray = new Datetime[5];
+        ///
+        ///    public String Name = &apos;jay&apos;;
+        ///
+        ///    public final String nameFinal = &apos;jay&apos;;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PropertyAndField_Formatted {
             get {
@@ -4380,9 +4597,9 @@ namespace ApexParserTest.Properties {
         ///{
         ///    public DateTime DateTimeGetSet { get; set; }
         ///    public List&lt;DateTime&gt; DateTimeGetSetGeneric { get; set; }
-        ///    public DateTime[] DateTimeGetSetArray { get; set; }
-        ///    public DateTime DateTimeEmpty;
-        ///    public DateTime DateTimeInitialized = DateTime.Now();
+        ///    public Datetime[] DateTimeGetSetArray { get; set; }
+        ///    public Datetime DateTimeEmpty;
+        ///    public Datetime DateTimeInitialized = Datetime.Now();
         ///    public List&lt;DateTime&gt; DateTimeList = new List&lt;DateTime&gt;();
         ///    public DateTime[] DateTimeArray = new DateTime[5];
         ///    public string Name = &apos;jay&apos;;
@@ -4485,21 +4702,20 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to @isTest
+        ///   Looks up a localized string similar to @IsTest
         ///public with sharing class RunAll
         ///{
-        ///    @isTest
-        ///    public static void TestClassess() {
+        ///    @IsTest
+        ///    public static void TestClassess()
+        ///    {
         ///        System.Debug(ClassEnum.America);
         ///        System.Debug(new ClassException());
         ///        System.Debug(new ClassGlobal());
-        ///
         ///        ClassInitialization newClassInitialization = new ClassInitialization();
         ///        System.Debug(ClassInitialization.colorMap);
         ///        System.Debug(newClassInitialization.contactList);
-        ///
         ///        ClassInterface classInterface = new ClassInterface();
-        ///        System.Debug(cl [rest of string was truncated]&quot;;.
+        ///        System.Debug(c [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunAll_Formatted {
             get {
@@ -4573,7 +4789,7 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            // Contact contactNew = new Contact(LastName = &apos;Jay&apos;, Email = &apos;abc@abc.com&apos;);
         ///            Contact contactNew = new Contact();
-        ///            Soql.Insert(contactNew);
+        ///            Soql.insert(contactNew);
         ///  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemo_CSharp {
@@ -4583,22 +4799,22 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class SoqlDemo {
-        ////**
-        /// * A simple CRUD Example
-        /// */
-        ///    public static void CrudExample() {
+        ///   Looks up a localized string similar to public class SoqlDemo
+        ///{
+        ///    /**
+        ///     * A simple CRUD Example
+        ///     */
+        ///    public static void CrudExample()
+        ///    {
         ///        // Contact contactNew = new Contact(LastName = &apos;Jay&apos;, Email = &apos;abc@abc.com&apos;);
         ///        Contact contactNew = new Contact();
         ///        insert contactNew;
-        ///
         ///        System.Debug(contactNew.Id);
-        ///
         ///        List&lt;Contact&gt; contacts = [SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id];
-        ///        for (Contact c : contacts) {
+        ///        for (Contact c : contacts)
+        ///        {
         ///            System.Debug(c.Email);
-        ///            c.Email = &apos;new@new.com&apos;;
-        ///     [rest of string was truncated]&quot;;.
+        ///            c.Email [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemo_Formatted {
             get {
@@ -4676,7 +4892,7 @@ namespace ApexParserTest.Properties {
         ///        public static void CrudExample()
         ///        {
         ///            Contact contactNew = new Contact { LastName = &quot;Jay&quot;, EMail = &quot;abc@abc.com&quot; };
-        ///            Soql.Insert(contactNew);
+        ///            Soql.insert(contactNew);
         ///            System.debug(contac [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemoCS {
