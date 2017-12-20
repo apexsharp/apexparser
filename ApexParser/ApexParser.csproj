@@ -7,6 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="2.6.0" />
     <PackageReference Include="Sprache" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
 
@@ -23,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.6.3</Version>
+    <Version>0.6.4</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>ApexSharp.com</Authors>
     <Company>ApexSharp.com</Company>
