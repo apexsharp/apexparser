@@ -9,6 +9,9 @@ before_build:
 - choco install opencover.portable
 - choco install codecov
 
+after_build:
+- dotnet pack -c Release ApexParser\ApexParser.csproj
+
 build:
   project: ApexParser.sln
   verbosity: minimal

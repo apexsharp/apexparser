@@ -264,7 +264,7 @@ namespace ApexParser.Toolbox
         public static string ConvertApexTypesToCSharp(string expression)
         {
             // replace Apex types with C# types
-            foreach (var r in CSharpTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))
+            foreach (var r in CSharpTypeRegex.Select(p => new { Regex = p.Key, p.Value }))
             {
                 expression = r.Regex.Replace(expression, r.Value);
             }
@@ -275,7 +275,7 @@ namespace ApexParser.Toolbox
         public static string ConvertCSharpTypesToApex(string expression)
         {
             // replace C# types with Apex types
-            foreach (var r in ApexTypeRegex.Select(p => (Regex: p.Key, Value: p.Value)))
+            foreach (var r in ApexTypeRegex.Select(p => new { Regex = p.Key, p.Value }))
             {
                 expression = r.Regex.Replace(expression, r.Value);
             }

@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="2.6.0" />
     <PackageReference Include="Sprache" Version="2.1.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +18,27 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\ApexSharp.ruleset</CodeAnalysisRuleSet>
+    <DebugInfo>full</DebugInfo>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.6.3</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>ApexSharp.com</Authors>
+    <Company>ApexSharp.com</Company>
+    <Product>ApexSharp</Product>
+    <Description>A Roslyn-like parser for the Salesforce programming language APEX</Description>
+    <Copyright>© 2017 ApexSharp.com</Copyright>
+    <PackageLicenseUrl>https://github.com/apexsharp/apexparser/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/apexsharp/apexparser/</PackageProjectUrl>
+    <PackageTags>Apex, Parser, Roslyn</PackageTags>
+    <PackageReleaseNotes>Beta release.</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RepositoryUrl>https://github.com/apexsharp/apexparser.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
