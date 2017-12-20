@@ -265,12 +265,12 @@ namespace ApexParser.Visitors
         public const string SpecialCommentSignature = ":NoApex ";
 
         protected override bool IsSpecialComment(string comment) =>
-            (comment ?? string.Empty).TrimStart().StartsWith(SpecialCommentSignature);
+            (comment ?? string.Empty).TrimStart().StartsWith(SpecialCommentSignature, StringComparison.InvariantCultureIgnoreCase);
 
         protected override string ProcessSpecialComment(string comment)
         {
             comment = (comment ?? string.Empty).TrimStart();
-            if (comment.StartsWith(SpecialCommentSignature))
+            if (comment.StartsWith(SpecialCommentSignature, StringComparison.InvariantCultureIgnoreCase))
             {
                 comment = comment.Substring(SpecialCommentSignature.Length);
             }

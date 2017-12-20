@@ -1026,8 +1026,8 @@ namespace ApexParserTest.Visitors
                 }
                 //:NoApex public float Size
                 //:NoApex {
-                //:NoApex     get;
-                //:NoApex     private set;
+                //:noApex     get;
+                //:noApex     private set;
                 //:NoApex }
             }");
 
