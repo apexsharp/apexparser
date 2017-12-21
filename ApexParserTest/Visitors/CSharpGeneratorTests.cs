@@ -1008,7 +1008,7 @@ namespace ApexParserTest.Visitors
         {
             var apex = Apex.ParseClass(@"
             public class MyDemo {
-                private MyDemo(float s) { Size = s;while(true){break;} }
+                private MyDemo(float s) { Size = s;while(true){ upsert s; break;} }
                 public void Test(string name, int age) {
                     Contact c = new Contact(name, age);
                     insert c;
@@ -1035,6 +1035,7 @@ namespace ApexParserTest.Visitors
                             Size = s;
                             while (true)
                             {
+                                Soql.upsert(s);
                                 break;
                             }
                         }

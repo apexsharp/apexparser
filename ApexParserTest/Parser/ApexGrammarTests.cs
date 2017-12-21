@@ -1719,6 +1719,11 @@ namespace ApexParserTest.Parser
             Assert.NotNull(upd);
             Assert.AreEqual("items", upd.Expression.Expression);
 
+            stmt = Apex.Statement.Parse("  upsert contact; ");
+            var ups = stmt as UpsertStatementSyntax;
+            Assert.NotNull(ups);
+            Assert.AreEqual("contact", ups.Expression.Expression);
+
             stmt = Apex.Statement.Parse(" throw new NotImplementedException('Oops');");
             var thr = stmt as ThrowStatementSyntax;
             Assert.NotNull(thr);

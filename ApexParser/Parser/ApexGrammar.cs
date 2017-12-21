@@ -239,6 +239,7 @@ namespace ApexParser.Parser
                 .Or(ThrowStatement)
                 .Or(InsertStatement)
                 .Or(UpdateStatement)
+                .Or(UpsertStatement)
                 .Or(DeleteStatement)
                 .Or(VariableDeclaration)
                 .Or(UnknownGenericStatement)
@@ -521,6 +522,15 @@ namespace ApexParser.Parser
             from expression in KeywordExpressionStatement(ApexKeywords.Update)
             where !string.IsNullOrWhiteSpace(expression)
             select new UpdateStatementSyntax
+            {
+                Expression = new ExpressionSyntax(expression),
+            };
+
+        // example: upsert items;
+        protected internal virtual Parser<UpsertStatementSyntax> UpsertStatement =>
+            from expression in KeywordExpressionStatement(ApexKeywords.Upsert)
+            where !string.IsNullOrWhiteSpace(expression)
+            select new UpsertStatementSyntax
             {
                 Expression = new ExpressionSyntax(expression),
             };

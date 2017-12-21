@@ -234,6 +234,10 @@ namespace ApexParserTest.Toolbox
             apex = GenericExpressionHelper.ConvertSoqlStatementsToApex(text);
             Assert.AreEqual("update contact;", apex);
 
+            text = "Soql.Upsert(contact);";
+            apex = GenericExpressionHelper.ConvertSoqlStatementsToApex(text);
+            Assert.AreEqual("upsert contact;", apex);
+
             text = "Soql.Delete(contact);";
             apex = GenericExpressionHelper.ConvertSoqlStatementsToApex(text);
             Assert.AreEqual("delete contact;", apex);

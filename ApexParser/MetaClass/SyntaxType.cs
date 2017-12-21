@@ -36,6 +36,7 @@
         TryStatement,
         Type,
         UpdateStatement,
+        UpsertStatement,
         VariableDeclaration,
         VariableDeclarator,
         WhileStatement,

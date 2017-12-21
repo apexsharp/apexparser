@@ -80,7 +80,7 @@ namespace ApexParser.Toolbox
         }
 
         private static Regex CShaspSoqlInsertUpdateDeleteRegex { get; } =
-            new Regex(@"Soql\s*\.\s*(?<Operation>[Ii]nsert|[Uu]pdate|[Dd]elete)\s*\(\s*(?<Expression>[^\)]*)\s*\)",
+            new Regex(@"Soql\s*\.\s*(?<Operation>[Ii]nsert|[Uu]pdate|[Uu]psert|[Dd]elete)\s*\(\s*(?<Expression>[^\)]*)\s*\)",
                 RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
         public static string ConvertSoqlStatementsToApex(string expression)

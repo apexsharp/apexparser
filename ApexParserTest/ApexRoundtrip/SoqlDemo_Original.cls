@@ -57,8 +57,9 @@ public class SoqlDemo {
 
     public static void ForSoql()
     {
-        for(Contact contactList : [SELECT Id, Name FROM Contact]) {
-
+        for(Contact contact : [SELECT Id, Name FROM Contact]) {
+            contact.Name = contact.Name + ' (upserted)';
+            upsert contact;
         }
     }
 }

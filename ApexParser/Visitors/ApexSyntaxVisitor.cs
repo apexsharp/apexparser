@@ -78,6 +78,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitUpdateStatement(UpdateStatementSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitUpsertStatement(UpsertStatementSyntax node) => DefaultVisit(node);
+
         public virtual void VisitVariableDeclaration(VariableDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitVariableDeclarator(VariableDeclaratorSyntax node) => DefaultVisit(node);

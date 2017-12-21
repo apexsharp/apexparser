@@ -69,8 +69,10 @@ namespace ApexSharpDemo.ApexCode
 
         public static void ForSoql()
         {
-            foreach (Contact contactList in Soql.query<Contact>("SELECT Id, Name FROM Contact"))
+            foreach (Contact contact in Soql.query<Contact>("SELECT Id, Name FROM Contact"))
             {
+                contact.Name = contact.Name + " (upserted)";
+                Soql.upsert(contact);
             }
         }
     }

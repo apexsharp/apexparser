@@ -415,6 +415,15 @@ namespace ApexParser.Visitors
             AppendTrailingComments(node);
         }
 
+        public override void VisitUpsertStatement(UpsertStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("{0}.upsert(", Soql);
+            node.Expression.Accept(this);
+            Append(");");
+            AppendTrailingComments(node);
+        }
+
         public override void VisitDeleteStatement(DeleteStatementSyntax node)
         {
             AppendLeadingComments(node);
