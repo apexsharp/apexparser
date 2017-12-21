@@ -23,7 +23,6 @@ namespace ApexParser.Visitors
             "Apex.ApexSharp",
             "Apex.ApexSharp.ApexAttributes",
             "Apex.System",
-            "ApexSharpApi.ApexApi",
             "SObjects",
         };
 

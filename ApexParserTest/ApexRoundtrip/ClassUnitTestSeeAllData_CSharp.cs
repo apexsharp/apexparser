@@ -4,7 +4,6 @@ namespace ApexSharpDemo.ApexCode
     using Apex.ApexSharp.ApexAttributes;
     using Apex.ApexSharp.NUnit;
     using Apex.System;
-    using ApexSharpApi.ApexApi;
     using SObjects;
 
     [TestFixture(SeeAllData=true)]

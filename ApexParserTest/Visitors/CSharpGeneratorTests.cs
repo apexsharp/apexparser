@@ -29,7 +29,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class TestClass
@@ -60,7 +59,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.NUnit;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     [TestFixture]
@@ -88,7 +86,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     enum TestEnum
@@ -126,7 +123,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.NUnit;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class TestClass
@@ -154,7 +150,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     // Test class
@@ -181,7 +176,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     /* Test class
@@ -808,7 +802,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     public class MyDemo
@@ -856,7 +849,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class SingleStaticInitializer
@@ -894,7 +886,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class MultipleStaticInitializers
@@ -939,7 +930,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     // unsupported modifiers
@@ -986,7 +976,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     // custom namespace
@@ -1037,7 +1026,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     public class MyDemo
@@ -1086,7 +1074,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class Sample
@@ -1119,7 +1106,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class Sample
@@ -1152,7 +1138,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class Sample
@@ -1184,7 +1169,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class Sample
@@ -1216,7 +1200,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class Sample
@@ -1247,7 +1230,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     [Global]
@@ -1277,7 +1259,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class Sample
@@ -1306,7 +1287,6 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using ApexSharpApi.ApexApi;
                     using SObjects;
 
                     class Sample
