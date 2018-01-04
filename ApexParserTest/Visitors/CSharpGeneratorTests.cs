@@ -615,7 +615,7 @@ namespace ApexParserTest.Visitors
                 Body = "[SELECT Id, Name FROM Contact WHERE Email = :email]"
             };
 
-            Check(stmt, "Soql.query<Contact>(\"SELECT Id, Name FROM Contact WHERE Email = :email\", email);");
+            Check(stmt, "Soql.query<Contact>(@\"SELECT Id, Name FROM Contact WHERE Email = :email\", email);");
         }
 
         [Test]

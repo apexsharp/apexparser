@@ -45,13 +45,13 @@
 
         private static List<Contact> GetContactByEMail(string email)
         {
-            List<Contact> contacts = Soql.query<Contact>("SELECT Id, Email, Phone FROM Contact WHERE Email = :email", email);
+            List<Contact> contacts = Soql.query<Contact>(@"SELECT Id, Email, Phone FROM Contact WHERE Email = :email", email);
             return contacts;
         }
 
         public static List<Contact> GetContacts()
         {
-            List<Contact> contacts = Soql.query<Contact>("SELECT Id, Email, Phone FROM Contact");
+            List<Contact> contacts = Soql.query<Contact>(@"SELECT Id, Email, Phone FROM Contact");
             return contacts;
         }
 

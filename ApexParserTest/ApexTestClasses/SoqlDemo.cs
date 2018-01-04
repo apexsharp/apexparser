@@ -16,7 +16,7 @@
             Contact contactNew = new Contact { LastName = "Jay", EMail = "abc@abc.com" };
             Soql.insert(contactNew);
             System.debug(contactNew.Id);
-            List<Contact> contacts = Soql.query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            List<Contact> contacts = Soql.query<Contact>(@"SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             foreach (Contact c in contacts)
             {
                 System.debug(c.Email);
@@ -24,14 +24,14 @@
             }
 
             Soql.update(contacts);
-            contacts = Soql.query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            contacts = Soql.query<Contact>(@"SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             foreach (Contact c in contacts)
             {
                 System.debug(c.Email);
             }
 
             Soql.delete(contacts);
-            contacts = Soql.query<Contact>("SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
+            contacts = Soql.query<Contact>(@"SELECT Id, Email FROM Contact WHERE Id = :contactNew.Id", contactNew.Id);
             if (contacts.isEmpty())
             {
                 System.debug("Delete Worked");

@@ -15,7 +15,7 @@ namespace ApexSharpDemo.ApexCode
 
         public static List<Contact> getContacts()
         {
-            List<Contact> contacts = Soql.query<Contact>("SELECT Id, Email, Phone FROM Contact");
+            List<Contact> contacts = Soql.query<Contact>(@"SELECT Id, Email, Phone FROM Contact");
 
             NoApex.Serilog.LogInfo(contacts.size().ToString());
             return contacts;

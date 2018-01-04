@@ -197,6 +197,8 @@ namespace ApexParserTest.Visitors
         {
             Check("class A { void T() { Customer c = Soql.Query<T>(\"SELECT Id FROM Customer\"); } }",
                 "class A { void T() { Customer c = [SELECT Id FROM Customer]; } }");
+            Check("class A { void T() { Customer c = Soql.Query<T>(@\"SELECT Id, Name FROM Customer\"); } }",
+                "class A { void T() { Customer c = [SELECT Id, Name FROM Customer]; } }");
         }
 
         [Test]

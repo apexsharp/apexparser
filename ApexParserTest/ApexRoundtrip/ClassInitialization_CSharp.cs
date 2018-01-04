@@ -11,7 +11,7 @@ namespace ApexSharpDemo.ApexCode
 
         public ClassInitialization()
         {
-            contactList = Soql.query<Contact>("SELECT ID FROM Contact LIMIT 1");
+            contactList = Soql.query<Contact>(@"SELECT ID FROM Contact LIMIT 1");
         }
 
         public static Map<string, string> colorMap = new Map<string, string>();

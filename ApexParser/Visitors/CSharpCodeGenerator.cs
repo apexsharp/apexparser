@@ -466,7 +466,7 @@ namespace ApexParser.Visitors
                 paramList = ", " + string.Join(", ", parameters);
             }
 
-            Append("Soql.query<{0}>(\"{1}\"{2})", tableName, queryText, paramList);
+            Append("Soql.query<{0}>(@\"{1}\"{2})", tableName, queryText, paramList);
         }
 
         protected override void AppendExpressionPart(string part)

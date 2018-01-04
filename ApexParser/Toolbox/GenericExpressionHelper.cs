@@ -65,7 +65,7 @@ namespace ApexParser.Toolbox
         }
 
         private static Regex CSharpSoqlQueryRegex { get; } =
-            new Regex(@"Soql\s*\.\s*[Qq]uery\s*\<[^>]+\>\s*\(\s*\""(?<Query>[^""]*)\""[^\)]*?\)",
+            new Regex(@"Soql\s*\.\s*[Qq]uery\s*\<[^>]+\>\s*\(\s*\@?\""(?<Query>[^""]*)\""[^\)]*?\)",
                 RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
         public static string[] ExtractSoqlQueries(string expression)
