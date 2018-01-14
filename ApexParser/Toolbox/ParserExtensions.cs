@@ -225,9 +225,15 @@ namespace ApexParser.Toolbox
             // parses any whitespace except for the new lines
             var whiteSpaceExceptForNewLine = Parse.WhiteSpace.Except(Parse.Chars("\r\n")).Many().Text();
 
+            // single comment span followed by a whitespace
+            var commentSpan =
+                from cs in provider.Comment.Span()
+                from ws in whiteSpaceExceptForNewLine
+                select cs;
+
             // returns true if the second span starts on the first span's last line
-            bool IsSameLine(ISourceSpan<T> first, IOption<ISourceSpan<string>> second) =>
-                first.End.Line == second.GetOrDefault()?.Start.Line;
+            bool IsSameLine(ISourceSpan<T> first, ISourceSpan<string> second) =>
+               first.End.Line == second.Start.Line;
 
             // add leading and trailing comments to the parser
             return
@@ -235,11 +241,11 @@ namespace ApexParser.Toolbox
                 from leadingComments in provider.Comment.Token().Many()
                 from valueSpan in parser.Span()
                 from trailingWhiteSpace in whiteSpaceExceptForNewLine
-                from trailingPreview in provider.Comment.Span().Preview()
-                from trailingComments in IsSameLine(valueSpan, trailingPreview) ?
-                    provider.Comment.Once() :
-                    whiteSpaceExceptForNewLine.Return(Enumerable.Empty<string>())
-                select new CommentedValue<T>(leadingComments, valueSpan.Value, trailingComments);
+                from trailingPreview in commentSpan.Many().Preview()
+                let trailingCount = trailingPreview.GetOrDefault().EmptyIfNull()
+                    .Where(c => IsSameLine(valueSpan, c)).Count()
+                from trailingComments in commentSpan.Repeat(trailingCount)
+                select new CommentedValue<T>(leadingComments, valueSpan.Value, trailingComments.Select(c => c.Value));
         }
     }
 }

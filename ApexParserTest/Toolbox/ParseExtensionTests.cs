@@ -248,6 +248,39 @@ namespace ApexParserTest.Toolbox
             Assert.False(result.TrailingComments.Any());
         }
 
+        [Test]
+        public void CommentedParserAcceptsMultipleTrailingCommentsAsLongAsTheyStartOnTheSameLine()
+        {
+            // trailing comments
+            var result = Identifier4.Parse("    \t hello123   /* one */ /* two */ /* " + @"
+                three */ // this is not a trailing comment
+                // neither this");
+            Assert.AreEqual("hello123", result.Value);
+            Assert.False(result.LeadingComments.Any());
+            Assert.True(result.TrailingComments.Any());
+
+            var trailing = result.TrailingComments.ToArray();
+            Assert.AreEqual(3, trailing.Length);
+            Assert.AreEqual("one", trailing[0].Trim());
+            Assert.AreEqual("two", trailing[1].Trim());
+            Assert.AreEqual("three", trailing[2].Trim());
+
+            // leading and trailing comments
+            result = Identifier4.Parse(@" // leading comments!
+            /* more leading comments! */
+            helloWorld /* one*/ // two!
+            // more trailing comments! (that don't belong to the parsed value)");
+            Assert.AreEqual("helloWorld", result.Value);
+            Assert.AreEqual(2, result.LeadingComments.Count());
+            Assert.AreEqual("leading comments!", result.LeadingComments.First().Trim());
+            Assert.AreEqual("more leading comments!", result.LeadingComments.Last().Trim());
+
+            trailing = result.TrailingComments.ToArray();
+            Assert.AreEqual(2, trailing.Length);
+            Assert.AreEqual("one", trailing[0].Trim());
+            Assert.AreEqual("two!", trailing[1].Trim());
+        }
+
         private Parser<string> OptionalTestParser =>
             from test in Parse.String("test").Text().Optional()
             from t in Parse.String("t").Text().Optional()
