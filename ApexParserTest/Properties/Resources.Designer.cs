@@ -98,7 +98,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class Demo
@@ -116,7 +115,9 @@ namespace ApexParserTest.Properties {
         ///            {
         ///                Soql.insert(contact);
         ///            }
-        ///            catch (DMLExcepti [rest of string was truncated]&quot;;.
+        ///            catch (DMLException e)
+        ///            {
+        ///            [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApexDemo_CSharp {
             get {
@@ -194,7 +195,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture]
@@ -209,7 +209,8 @@ namespace ApexParserTest.Properties {
         ///        [SetUp]
         ///        public static void Setup()
         ///        {
-        ///            Contact conta [rest of string was truncated]&quot;;.
+        ///            Contact contactNew = new Contact();
+        ///          [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApexDemoTest_CSharp {
             get {
@@ -290,7 +291,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    // sample abstract class
@@ -351,7 +351,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public enum ClassEnum
@@ -414,7 +413,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ClassException : Exception
@@ -468,7 +466,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [Global]
@@ -535,7 +532,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ClassInitialization
@@ -544,12 +540,13 @@ namespace ApexParserTest.Properties {
         ///
         ///        public ClassInitialization()
         ///        {
-        ///            contactList = Soql.query&lt;Contact&gt;(&quot;SELECT ID FROM Contact LIMIT 1&quot;);
+        ///            contactList = Soql.query&lt;Contact&gt;(@&quot;SELECT ID FROM Contact LIMIT 1&quot;);
         ///        }
         ///
         ///        public static Map&lt;string, string&gt; colorMap = new Map&lt;string, string&gt;();
         ///
-        ///        s [rest of string was truncated]&quot;;.
+        ///        static ClassInitialization()
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassInitialization_CSharp {
             get {
@@ -631,7 +628,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ClassInterface : IClassInterface
@@ -718,7 +714,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ClassInternal
@@ -735,7 +730,8 @@ namespace ApexParserTest.Properties {
         ///        {
         ///        }
         ///    }
-        ///}        /// [rest of string was truncated]&quot;;.
+        ///}
+        ///.
         /// </summary>
         internal static string ClassInternal_CSharp {
             get {
@@ -792,7 +788,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ClassNoApex
@@ -803,7 +798,8 @@ namespace ApexParserTest.Properties {
         ///            NoApex.Serilog.LogInfo(&quot;Jay&quot;);
         ///        }
         ///
-        ///        // Any method in NoApex name space will be commented out in Apex and uncomm [rest of string was truncated]&quot;;.
+        ///        // Any method in NoApex name space will be commented out in Apex and uncommented on c#.
+        ///        public stat [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassNoApex_CSharp {
             get {
@@ -862,7 +858,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ClassNoApex
@@ -875,7 +870,7 @@ namespace ApexParserTest.Properties {
         ///
         ///        public static List&lt;Contact&gt; getContacts()
         ///        {
-        ///            List&lt;Cont [rest of string was truncated]&quot;;.
+        ///            List&lt;Contact&gt; contacts = Soql.query&lt;Contac [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassNoApex2_CSharp {
             get {
@@ -1003,7 +998,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [RestResource(urlMapping=&quot;/api/RestDemo&quot;)]
@@ -1021,7 +1015,7 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            try
         ///            {
-        ///       [rest of string was truncated]&quot;;.
+        ///                ContactDTO contact = (C [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassRest_CSharp {
             get {
@@ -1088,7 +1082,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture]
@@ -1099,7 +1092,8 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            RestContext.Request = new RestRequest();
         ///            RestContext.Response = new RestResponse();
-        ///            ClassRest.ContactDTO contact = new ClassRest.Co [rest of string was truncated]&quot;;.
+        ///            ClassRest.ContactDTO contact = new ClassRest.ContactDTO();
+        ///            contact. [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassRestTest_CSharp {
             get {
@@ -1265,7 +1259,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture]
@@ -1280,7 +1273,10 @@ namespace ApexParserTest.Properties {
         ///        [Test]
         ///        public static void AssertTrue()
         ///        {
-        ///            System.Assert(true, &quot;A [rest of string was truncated]&quot;;.
+        ///            System.Assert(true, &quot;Assert True&quot;);
+        ///        }
+        ///
+        ///      [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassUnitTest_CSharp {
             get {
@@ -1295,7 +1291,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture]
@@ -1310,7 +1305,10 @@ namespace ApexParserTest.Properties {
         ///        [Test]
         ///        public static void Assert()
         ///        {
-        ///            System.Assert(true, &quot;Asser [rest of string was truncated]&quot;;.
+        ///            System.Assert(true, &quot;Assert True&quot;);
+        ///        }
+        ///
+        ///        [ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClassUnitTest_CSharp1 {
             get {
@@ -1407,14 +1405,13 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ClassUnitTestRunAs
         ///    {
         ///        static void RunAsExample()
         ///        {
-        ///            User newUser = Soql.query&lt;User&gt;(&quot;SELECT Id FROM User LIMIT 1&quot;);
+        ///            User newUser = Soql.query&lt;User&gt;(@&quot;SELECT Id FROM User LIMIT 1&quot;);
         ///            using (System.runAs(newUser))
         ///            {
         ///            }
@@ -1486,7 +1483,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture(SeeAllData=true)]
@@ -1609,7 +1605,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [WithoutSharing]
@@ -1664,7 +1659,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [WithSharing]
@@ -1708,7 +1702,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [WithSharing]
@@ -1721,7 +1714,7 @@ namespace ApexParserTest.Properties {
         ///        public void ArrayDemo()
         ///        {
         ///            List&lt;string&gt; stringListLocal = new List&lt;string&gt;{&quot;one&quot;, &quot;two&quot;};
-        ///            int [rest of string was truncated]&quot;;.
+        ///            int[] integerArrayLocal = new int[]{ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Collections_CSharp {
             get {
@@ -1824,7 +1817,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /**
@@ -1988,7 +1980,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class Demo
@@ -2006,7 +1997,9 @@ namespace ApexParserTest.Properties {
         ///            {
         ///                Soql.insert(contact);
         ///            }
-        ///            catch (DmlExcepti [rest of string was truncated]&quot;;.
+        ///            catch (DmlException e)
+        ///            {
+        ///            [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Demo_CSharp {
             get {
@@ -2123,7 +2116,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [WithSharing]
@@ -2139,7 +2131,7 @@ namespace ApexParserTest.Properties {
         ///        /**
         ///         * Set the contact for the page using the lastName parameter, if there is one
         ///         */
-        ///        //  public Dem [rest of string was truncated]&quot;;.
+        ///        //  public DemoController(ApexPages.StandardCon [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoController_CSharp {
             get {
@@ -2202,7 +2194,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture]
@@ -2214,7 +2205,7 @@ namespace ApexParserTest.Properties {
         ///            //  	Contact contact = new Contact(LastName=&apos;Smith&apos;);
         ///            //  	insert contact;
         ///            //  	Test.setCurrentPage(Page.DemoPage);
-        ///         [rest of string was truncated]&quot;;.
+        ///            //	ApexPages.currentPage().ge [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoControllerTests_CSharp {
             get {
@@ -2275,7 +2266,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture]
@@ -2288,7 +2278,10 @@ namespace ApexParserTest.Properties {
         ///            contactNew.LastName = &quot;Jay&quot;;
         ///            contactNew.Email = &quot;jay@jay.com&quot;;
         ///            Soql.insert(contactNew);
-        /// [rest of string was truncated]&quot;;.
+        ///        }
+        ///
+        ///        [Test]
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DemoTest_CSharp {
             get {
@@ -2384,7 +2377,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ExceptionDemo
@@ -2401,7 +2393,8 @@ namespace ApexParserTest.Properties {
         ///            }
         ///            finally
         ///            {
-        ///          [rest of string was truncated]&quot;;.
+        ///                System.Debug(&quot;Finally&quot;);
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ExceptionDemo_CSharp {
             get {
@@ -2504,7 +2497,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -2517,7 +2509,8 @@ namespace ApexParserTest.Properties {
         ///     */
         ///    public interface fflib_Answer
         ///    {
-        ///   [rest of string was truncated]&quot;;.
+        ///        /**
+        ///         *	Method to b [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_Answer_CSharp {
             get {
@@ -2585,7 +2578,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -2600,7 +2592,8 @@ namespace ApexParserTest.Properties {
         ///        private static fflib_InvocationOnMock actualInvocation = null;
         ///
         ///        [Test]
-        ///        static void [rest of string was truncated]&quot;;.
+        ///        static void thatAnswersWithException()
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnswerTest_CSharp {
             get {
@@ -2664,7 +2657,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -2675,7 +2667,7 @@ namespace ApexParserTest.Properties {
         ///     *	The order of method calls is not important.
         ///     *	@group Core
         ///     */
-        ///    public class ffl [rest of string was truncated]&quot;;.
+        ///    public class fflib_AnyOrder : fflib_MethodVerifie [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrder_CSharp {
             get {
@@ -2742,7 +2734,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -2754,7 +2745,9 @@ namespace ApexParserTest.Properties {
         ///    [TestFixture]
         ///    private class fflib_AnyOrderTest
         ///    {
-        ///        private static readonly string BASIC_VERIFY_ASSERTION_MESSAGE = &quot;Expected : {0}, Actual: {1} -- Wan [rest of string was truncated]&quot;;.
+        ///        private static readonly string BASIC_VERIFY_ASSERTION_MESSAGE = &quot;Expected : {0}, Actual: {1} -- Wanted but not invoked: &quot;;
+        ///
+        ///       [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrderTest_CSharp {
             get {
@@ -2822,7 +2815,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -2836,7 +2828,9 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        public static readonly int NEVER = 0;
         ///
-        ///        private readonly fflib_MethodCountRecorder methodCountR [rest of string was truncated]&quot;;.
+        ///        private readonly fflib_MethodCountRecorder methodCountRecorder;
+        ///
+        ///        private reado [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocks_CSharp {
             get {
@@ -2900,7 +2894,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -2911,7 +2904,7 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        /**
         ///         * When false, stubbed behaviour and invocation counts are shared among all test spies.
-        ///         * - See fflib_Ape [rest of string was truncated]&quot;;.
+        ///         * - See fflib_ApexMocksTest.thatMultipleInstancesC [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksConfig_CSharp {
             get {
@@ -2969,7 +2962,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -2980,7 +2972,7 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        private static readonly fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
         ///
-        ///        private static readonly fflib_MyList MY [rest of string was truncated]&quot;;.
+        ///        private static readonly fflib_MyList MY_MOCK_LIST = (fflib_MyList)MY_MOC [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksTest_CSharp {
             get {
@@ -3037,7 +3029,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /**
@@ -3047,7 +3038,8 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of source code must retain the above [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above copyright notice,
+        ///     *      t [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtils_CSharp {
             get {
@@ -3100,7 +3092,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /**
@@ -3110,7 +3101,7 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of  [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtilsTest_CSharp {
             get {
@@ -3162,7 +3153,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -3172,7 +3162,8 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of source code must retain the above  [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above copyright notice,
+        ///     *      th [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptor_CSharp {
             get {
@@ -3236,7 +3227,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /*
@@ -3251,7 +3241,8 @@ namespace ApexParserTest.Properties {
         ///        [Test]
         ///        static void thatArgumentValueIsCaptured()
         ///        {
-        ///            // G [rest of string was truncated]&quot;;.
+        ///            // Given
+        ///            fflib_ApexMocks [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptorTest_CSharp {
             get {
@@ -3313,7 +3304,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /**
@@ -3323,7 +3313,8 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of source code must retain the above [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above copyright notice,
+        ///     *      t [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IDGenerator_CSharp {
             get {
@@ -3376,7 +3367,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /**
@@ -3386,7 +3376,7 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of  [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IDGeneratorTest_CSharp {
             get {
@@ -3438,7 +3428,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    /**
@@ -3448,7 +3437,8 @@ namespace ApexParserTest.Properties {
         ///     * Redistribution and use in source and binary forms, with or without modification,
         ///     * are permitted provided that the following conditions are met:
         ///     *
-        ///     * - Redistributions of source code must retain the above [rest of string was truncated]&quot;;.
+        ///     * - Redistributions of source code must retain the above copyright notice,
+        ///     *      t [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IMatcher_CSharp {
             get {
@@ -3515,7 +3505,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class ForIfWhile
@@ -3531,7 +3520,7 @@ namespace ApexParserTest.Properties {
         ///            {
         ///                modelColor = &quot;Silver&quot;;
         ///            }
-        /// [rest of string was truncated]&quot;;.
+        ///            else if (place == 3)        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ForIfWhile_CSharp {
             get {
@@ -3669,32 +3658,28 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class ForIfWhile
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
         ///{
-        ///    public void MethodIfClean(Integer place)
-        ///    {
-        ///        String modelColor;
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using SObjects;
         ///
-        ///        if (place == 1)
-        ///        {
-        ///            modelColor = &apos;Gold&apos; ;
-        ///        }
-        ///        else if (place == 2)
-        ///        {
-        ///            modelColor = &apos;Silver&apos; ;
-        ///        }
-        ///        else if (place == 3)
-        ///        {
-        ///            modelColor = &apos;Bronze&apos; ;
-        ///        }
-        ///        else
-        ///        {
-        ///            modelColor = null ;
-        ///        }
-        ///    }
-        ///    public void MethodForTraditional()
+        ///    public class ForIfWhile
         ///    {
-        ///        for (Integ [rest of string was truncated]&quot;;.
+        ///        public void MethodIfClean(int place)
+        ///        {
+        ///            // string model color
+        ///            string modelColor;
+        ///
+        ///            // if place equals 1
+        ///            if (place == 1)
+        ///            {
+        ///                modelColor = &quot;Gold&quot;;
+        ///            }
+        ///            else if (place == 2)
+        ///            {
+        ///                m [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ForIfWhile4_CSharp {
             get {
@@ -3707,28 +3692,28 @@ namespace ApexParserTest.Properties {
         ///{
         ///    public void MethodIfClean(Integer place)
         ///    {
+        ///        // string model color
         ///        String modelColor;
         ///
+        ///        // if place equals 1
         ///        if (place == 1)
         ///        {
-        ///            modelColor = &apos;Gold&apos; ;
+        ///            modelColor = &apos;Gold&apos;;
         ///        }
         ///        else if (place == 2)
         ///        {
-        ///            modelColor = &apos;Silver&apos; ;
+        ///            modelColor = &apos;Silver&apos;;
         ///        }
         ///        else if (place == 3)
         ///        {
-        ///            modelColor = &apos;Bronze&apos; ;
+        ///            modelColor = &apos;Bronze&apos;;
         ///        }
         ///        else
         ///        {
-        ///            modelColor = null ;
-        ///        }
+        ///            modelColor = null;
+        ///        } // else
         ///    }
-        ///    public void MethodForTraditional()
-        ///    {
-        ///        for (Integ [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ForIfWhile4_Formatted {
             get {
@@ -3860,7 +3845,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class GetSetDemo
@@ -3878,7 +3862,10 @@ namespace ApexParserTest.Properties {
         ///            set
         ///            {
         ///                propPrvt = value;
-        ///             [rest of string was truncated]&quot;;.
+        ///            }
+        ///        }
+        ///
+        ///        public in [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GetSetDemo_CSharp {
             get {
@@ -3973,7 +3960,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public interface IClassInterface : IClassInterfaceExt
@@ -4031,7 +4017,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public interface IClassInterfaceExt
@@ -4095,7 +4080,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class JsonExample
@@ -4106,7 +4090,7 @@ namespace ApexParserTest.Properties {
         ///            contact.LastName = &quot;Jay&quot;;
         ///            contact.Email = &quot;jay@jay.com&quot;;
         ///            string jsonString = JSON.Serialize(contact);
-        ///            Contact newContact = (Contact)JSON.Des [rest of string was truncated]&quot;;.
+        ///            Contact newContact = (Contact)JSON.Deserialize(jsonString, typeof(Conta [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string JsonExample_CSharp {
             get {
@@ -4215,7 +4199,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public abstract class MethodAndConstructor
@@ -4235,7 +4218,7 @@ namespace ApexParserTest.Properties {
         ///        }
         ///
         ///        [Future]
-        ///        [rest of string was truncated]&quot;;.
+        ///        public static void FutureMethod( [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MethodAndConstructor_CSharp {
             get {
@@ -4331,7 +4314,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [WithSharing]
@@ -4339,14 +4321,17 @@ namespace ApexParserTest.Properties {
         ///    {
         ///        public static void MethodOne()
         ///        {
-        ///            foreach (Account a in Soql.query&lt;Account&gt;(&quot;SELECT Id FROM Account&quot;))
+        ///            foreach (Account a in Soql.query&lt;Account&gt;(@&quot;SELECT Id FROM Account&quot;))
         ///            {
         ///                System.Debug(a.Id);
         ///            }
         ///
         ///            for (int i = 0; i&lt;10; i++)
         ///            {
-        ///            [rest of string was truncated]&quot;;.
+        ///            }
+        ///        }
+        ///
+        ///        public  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MethodComplex_CSharp {
             get {
@@ -4436,7 +4421,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class PrimitiveTypes
@@ -4452,7 +4436,7 @@ namespace ApexParserTest.Properties {
         ///        // public Decimal MyDecimal = 12.4567;
         ///        public double d = 3.133433;
         ///
-        ///     [rest of string was truncated]&quot;;.
+        ///        public ID MyId = &quot;006E0000004 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PrimitiveTypes_CSharp {
             get {
@@ -4543,7 +4527,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class PropertyAndField
@@ -4556,7 +4539,9 @@ namespace ApexParserTest.Properties {
         ///
         ///        public Datetime DateTimeEmpty;
         ///
-        ///        public Datetime DateTimeInitialized = Datetime [rest of string was truncated]&quot;;.
+        ///        public Datetime DateTimeInitialized = Datetime.Now();
+        ///
+        ///        public List&lt;Da [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PropertyAndField_CSharp {
             get {
@@ -4680,7 +4665,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.ApexSharp.NUnit;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [TestFixture]
@@ -4693,7 +4677,7 @@ namespace ApexParserTest.Properties {
         ///            System.Debug(ClassEnum.America);
         ///            System.Debug(new ClassException());
         ///            System.Debug(new ClassGlobal());
-        ///             [rest of string was truncated]&quot;;.
+        ///            ClassInitialization newClassIniti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunAll_CSharp {
             get {
@@ -4777,7 +4761,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    public class SoqlDemo
@@ -4790,7 +4773,7 @@ namespace ApexParserTest.Properties {
         ///            // Contact contactNew = new Contact(LastName = &apos;Jay&apos;, Email = &apos;abc@abc.com&apos;);
         ///            Contact contactNew = new Contact();
         ///            Soql.insert(contactNew);
-        ///  [rest of string was truncated]&quot;;.
+        ///            System.Debug(contactNe [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemo_CSharp {
             get {
@@ -4880,7 +4863,6 @@ namespace ApexParserTest.Properties {
         ///    using Apex.ApexSharp;
         ///    using Apex.ApexSharp.ApexAttributes;
         ///    using Apex.System;
-        ///    using ApexSharpApi.ApexApi;
         ///    using SObjects;
         ///
         ///    [WithSharing]
@@ -4893,7 +4875,8 @@ namespace ApexParserTest.Properties {
         ///        {
         ///            Contact contactNew = new Contact { LastName = &quot;Jay&quot;, EMail = &quot;abc@abc.com&quot; };
         ///            Soql.insert(contactNew);
-        ///            System.debug(contac [rest of string was truncated]&quot;;.
+        ///            System.debug(contactNew.Id);
+        ///            List&lt;Conta [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SoqlDemoCS {
             get {
