@@ -171,7 +171,7 @@ namespace ApexParser.Parser
         ////public const string When = "when"; // reserved for future use
         public const string Where = "where";
         public const string While = "while";
-        public const string Yesterday = "yesterday";
+        ////public const string Yesterday = "yesterday"; // hack, see below
 
         // 2. Not reserved words
         public static string After => "after";
@@ -197,6 +197,7 @@ namespace ApexParser.Parser
         public static string Update => "update"; // System.Database class method
         public static string Upsert => "upsert"; // System.Database class method
         public static string With => "with";
+        public static string Yesterday => "yesterday"; // can be used as an identifier
 
         // 3. Not listed in the official documentation but apparently used
         public static string Array => "array"; // used as SoapType enum member

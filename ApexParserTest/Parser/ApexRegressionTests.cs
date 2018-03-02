@@ -719,5 +719,35 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, cd.InnerComments.Count);
             Assert.AreEqual(1, cd.TrailingComments.Count);
         }
+
+        [Test]
+        public void BatchCleanLandingZoneChartsIsCompiled()
+        {
+            var text = @"
+            global class BatchCleanLandingZoneCharts implements Database.Batchable<sObject> {
+                global String query;
+                global List<sObject> gllstScopeRecords;
+                global Datetime yesterday;
+
+                global BatchCleanLandingZoneCharts() {
+                    yesterday = System.now()-1;
+                    query = 'SELECT Id, CreatedDate FROM Landing_Zone_Chart__c WHERE CreatedDate < :yesterday';
+                }
+
+                global Database.QueryLocator start(Database.BatchableContext BC) {
+                    return Database.getQueryLocator(query);
+                }
+
+                global void execute(Database.BatchableContext BC, List<sObject> scope) {
+                    gllstScopeRecords = scope;
+                }
+
+                global void finish(Database.BatchableContext BC) {
+                }
+            }";
+
+            var cd = Apex.ClassDeclaration.Parse(text);
+            Assert.AreEqual("BatchCleanLandingZoneCharts", cd.Identifier);
+        }
     }
 }
