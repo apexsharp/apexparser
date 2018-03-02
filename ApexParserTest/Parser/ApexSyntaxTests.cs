@@ -118,7 +118,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(deleteWorked);
             Assert.AreEqual(1, deleteWorked.DescendantNodesAndSelf().Count());
 
-            var forEachOverSoql = nodes.OfType<ForEachStatementSyntax>().FirstOrDefault(n => n.Expression.Expression.Contains("SELECT"));
+            var forEachOverSoql = nodes.OfType<ForEachStatementSyntax>().FirstOrDefault(n => n.Expression.ExpressionString.Contains("SELECT"));
             Assert.NotNull(forEachOverSoql);
             Assert.AreEqual(6, forEachOverSoql.DescendantNodesAndSelf().Count());
 

@@ -446,7 +446,7 @@ namespace ApexParser.Visitors
         {
             // replace Apex-style constructor initializers:
             // new Class(Prop1=Value1, Prop2=Value2) => new Class { Prop1=Value1, Prop2=Value2 }
-            var expr = GenericExpressionHelper.ConvertApexConstructorInitializerToCSharp(node.Expression);
+            var expr = GenericExpressionHelper.ConvertApexConstructorInitializerToCSharp(node.ExpressionString);
 
             // split into portions and process one by one
             base.VisitExpression(new ExpressionSyntax(expr));

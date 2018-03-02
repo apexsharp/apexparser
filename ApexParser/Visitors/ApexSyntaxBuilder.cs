@@ -376,7 +376,7 @@ namespace ApexParser.Visitors
                 expr.AppendFormat("{0}=", node.NameEquals.Name);
             }
 
-            expr.Append(ConvertExpression(node.Expression).Expression);
+            expr.Append(ConvertExpression(node.Expression).ExpressionString);
             LastAttributeArgument = expr.ToString();
         }
 
@@ -793,7 +793,7 @@ namespace ApexParser.Visitors
             {
                 LeadingComments = GetLeadingAndNoApexComments(node),
                 TrailingComments = Comments.Trailing(node),
-                Body = ConvertExpression(node.Expression).Expression,
+                Body = ConvertExpression(node.Expression).ExpressionString,
             };
         }
 

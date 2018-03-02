@@ -36,7 +36,7 @@ namespace ApexParser.Visitors
 
         private void AddQueries(string expr) => SoqlQueries.AddRange(ExtractQueries(expr));
 
-        private void AddQueries(ExpressionSyntax expr) => AddQueries(expr?.Expression);
+        private void AddQueries(ExpressionSyntax expr) => AddQueries(expr?.ExpressionString);
 
         public override void DefaultVisit(BaseSyntax node)
         {

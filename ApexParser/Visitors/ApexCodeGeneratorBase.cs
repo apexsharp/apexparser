@@ -360,7 +360,7 @@ namespace ApexParser.Visitors
 
         public override void VisitExpression(ExpressionSyntax node)
         {
-            SplitAndAppendParts(node.Expression);
+            SplitAndAppendParts(node.ExpressionString);
         }
 
         private void SplitAndAppendParts(string expression)

@@ -14,7 +14,7 @@ namespace ApexParser.MetaClass
         {
         }
 
-        public ExpressionSyntax(string expr) => Expression = expr;
+        public ExpressionSyntax(string expr) => ExpressionString = expr;
 
         public static ExpressionSyntax CreateOrDefault(IOption<string> expression)
         {
@@ -32,6 +32,6 @@ namespace ApexParser.MetaClass
 
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitExpression(this);
 
-        public string Expression { get; set; }
+        public string ExpressionString { get; set; }
     }
 }

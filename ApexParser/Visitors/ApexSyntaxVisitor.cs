@@ -17,15 +17,25 @@ namespace ApexParser.Visitors
 
         public virtual void VisitAnnotation(AnnotationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitArrayCreationExpression(ArrayCreationExpressionSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitAssignmentExpression(AssignmentExpressionSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitBinaryExpression(BinaryExpressionSyntax node) => DefaultVisit(node);
+
         public virtual void VisitBlock(BlockSyntax node) => DefaultVisit(node);
 
         public virtual void VisitBreakStatement(BreakStatementSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitCastExpression(CastExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitCatch(CatchClauseSyntax node) => DefaultVisit(node);
 
         public virtual void VisitClassDeclaration(ClassDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitClassInitializer(ClassInitializerSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitConditionalExpression(ConditionalExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitConstructorDeclaration(ConstructorDeclarationSyntax node) => DefaultVisit(node);
 
@@ -34,6 +44,8 @@ namespace ApexParser.Visitors
         public virtual void VisitDeleteStatement(DeleteStatementSyntax node) => DefaultVisit(node);
 
         public virtual void VisitDoStatement(DoStatementSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitElementAccessExpression(ElementAccessExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitEnum(EnumDeclarationSyntax node) => DefaultVisit(node);
 
@@ -55,7 +67,11 @@ namespace ApexParser.Visitors
 
         public virtual void VisitInsertStatement(InsertStatementSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitInstanceOfExpression(InstanceOfExpressionSyntax node) => DefaultVisit(node);
+
         public virtual void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitInvocationExpression(InvocationExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitMethodDeclaration(MethodDeclarationSyntax node) => DefaultVisit(node);
 
@@ -69,6 +85,10 @@ namespace ApexParser.Visitors
 
         // Temporary method
         public virtual void VisitStatement(StatementSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitSuperExpression(SuperExpressionSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitThisExpression(ThisExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitThrowStatement(ThrowStatementSyntax node) => DefaultVisit(node);
 

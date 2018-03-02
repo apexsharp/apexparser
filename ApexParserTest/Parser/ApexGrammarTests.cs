@@ -392,14 +392,14 @@ namespace ApexParserTest.Parser
             var ret = block.Statements[1] as ReturnStatementSyntax;
             Assert.NotNull(ret);
             Assert.NotNull(ret.Expression);
-            Assert.AreEqual("true", ret.Expression.Expression);
+            Assert.AreEqual("true", ret.Expression.ExpressionString);
             Assert.NotNull(block.Statements[2] as ContinueStatementSyntax);
 
             block = Apex.Block.Parse("{ if (false) { } }");
             Assert.AreEqual(1, block.Statements.Count);
             var ifstmt = block.Statements[0] as IfStatementSyntax;
             Assert.NotNull(ifstmt);
-            Assert.AreEqual("false", ifstmt.Expression.Expression);
+            Assert.AreEqual("false", ifstmt.Expression.ExpressionString);
             Assert.NotNull(ifstmt.ThenStatement);
             Assert.Null(ifstmt.ElseStatement);
 
@@ -591,7 +591,7 @@ namespace ApexParserTest.Parser
             var block = get.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("myProperty", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("myProperty", (block.Statements[0] as ReturnStatementSyntax).Expression.ExpressionString);
 
             var set = Apex.PropertyAccessor.Parse(" set { myProperty = value; if (true) { value++; } } ");
             Assert.False(set.LeadingComments.Any());
@@ -628,7 +628,7 @@ namespace ApexParserTest.Parser
             var block = get.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("0", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("0", (block.Statements[0] as ReturnStatementSyntax).Expression.ExpressionString);
         }
 
         [Test]
@@ -705,7 +705,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("String", field.Type.Identifier);
             Assert.AreEqual(1, field.Fields.Count);
             Assert.AreEqual("name", field.Fields[0].Identifier);
-            Assert.AreEqual("'Bozo'", field.Fields[0].Expression.Expression);
+            Assert.AreEqual("'Bozo'", field.Fields[0].Expression.ExpressionString);
 
             field = Apex.FieldDeclaration.Parse("public Set<String> stringSet = new Set<String>{};");
             Assert.AreEqual(1, field.Modifiers.Count);
@@ -713,7 +713,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Set", field.Type.Identifier);
             Assert.AreEqual(1, field.Fields.Count);
             Assert.AreEqual("stringSet", field.Fields[0].Identifier);
-            Assert.AreEqual("new Set<String>{}", field.Fields[0].Expression.Expression);
+            Assert.AreEqual("new Set<String>{}", field.Fields[0].Expression.ExpressionString);
 
             // incomplete field declaration
             Assert.Throws<ParseException>(() => Apex.FieldDeclaration.Parse("int x ="));
@@ -728,7 +728,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Map", field.Type.Identifier);
             Assert.AreEqual(1, field.Fields.Count);
             Assert.AreEqual("stringMap", field.Fields[0].Identifier);
-            Assert.AreEqual("new Map<String, String>(){1, 2, 3}", field.Fields[0].Expression.Expression);
+            Assert.AreEqual("new Map<String, String>(){1, 2, 3}", field.Fields[0].Expression.ExpressionString);
         }
 
         [Test]
@@ -746,17 +746,17 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("String", field.Type.Identifier);
             Assert.AreEqual(2, field.Fields.Count);
             Assert.AreEqual("name", field.Fields[0].Identifier);
-            Assert.AreEqual(@"'a\'b'", field.Fields[0].Expression.Expression);
+            Assert.AreEqual(@"'a\'b'", field.Fields[0].Expression.ExpressionString);
             Assert.AreEqual("lastName", field.Fields[1].Identifier);
-            Assert.AreEqual("'b'", field.Fields[1].Expression.Expression);
+            Assert.AreEqual("'b'", field.Fields[1].Expression.ExpressionString);
 
             field = Apex.FieldDeclaration.Parse(" Map<string, string> map1 = new Map<string, string>(), map2 = null; ");
             Assert.AreEqual("Map", field.Type.Identifier);
             Assert.AreEqual(2, field.Fields.Count);
             Assert.AreEqual("map1", field.Fields[0].Identifier);
-            Assert.AreEqual(@"new Map<String, String>()", field.Fields[0].Expression.Expression);
+            Assert.AreEqual(@"new Map<String, String>()", field.Fields[0].Expression.ExpressionString);
             Assert.AreEqual("map2", field.Fields[1].Identifier);
-            Assert.AreEqual("null", field.Fields[1].Expression.Expression);
+            Assert.AreEqual("null", field.Fields[1].Expression.ExpressionString);
         }
 
         [Test]
@@ -1133,7 +1133,7 @@ namespace ApexParserTest.Parser
             var block = md.Body;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("null", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("null", (block.Statements[0] as ReturnStatementSyntax).Expression.ExpressionString);
 
             cm = Apex.ClassMemberDeclaration.Parse("@required Boolean flag { set { throw; } get; }");
             var pd = cm as PropertyDeclarationSyntax;
@@ -1219,18 +1219,18 @@ namespace ApexParserTest.Parser
         public void KeywordExpressionStatementHandlesInsertDeleteAndReturn()
         {
             var ret = Apex.ReturnStatement.Parse("  return contact; ");
-            Assert.AreEqual("contact", ret.Expression.Expression);
+            Assert.AreEqual("contact", ret.Expression.ExpressionString);
             ret = Apex.ReturnStatement.Parse("  return; ");
             Assert.IsNull(ret.Expression);
 
             var ins = Apex.InsertStatement.Parse("  insert contact; ");
-            Assert.AreEqual("contact", ins.Expression.Expression);
+            Assert.AreEqual("contact", ins.Expression.ExpressionString);
 
             var del = Apex.DeleteStatement.Parse("  delete\tuser;");
-            Assert.AreEqual("user", del.Expression.Expression);
+            Assert.AreEqual("user", del.Expression.ExpressionString);
 
             var upd = Apex.UpdateStatement.Parse("  update \r\n items;");
-            Assert.AreEqual("items", upd.Expression.Expression);
+            Assert.AreEqual("items", upd.Expression.ExpressionString);
 
             Assert.Throws<ParseException>(() => Apex.InsertStatement.Parse(" insert ;"));
             Assert.Throws<ParseException>(() => Apex.DeleteStatement.Parse(" delete ;"));
@@ -1324,8 +1324,8 @@ namespace ApexParserTest.Parser
         public void SimpleIfStatementCanCompileWithoutElseBranch()
         {
             var ifstmt = Apex.IfStatement.Parse("if (true) return null;");
-            Assert.AreEqual("true", ifstmt.Expression.Expression);
-            Assert.AreEqual("null", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("true", ifstmt.Expression.ExpressionString);
+            Assert.AreEqual("null", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.ExpressionString);
             Assert.IsNull(ifstmt.ElseStatement);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.Parse("if {}"));
@@ -1336,9 +1336,9 @@ namespace ApexParserTest.Parser
         public void IfStatementCanCompileWithElseBranch()
         {
             var ifstmt = Apex.IfStatement.Parse("if (false) return 'yes'; else return 'no';");
-            Assert.AreEqual("false", ifstmt.Expression.Expression);
-            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
-            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("false", ifstmt.Expression.ExpressionString);
+            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.ExpressionString);
+            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.ExpressionString);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else}"));
         }
@@ -1347,9 +1347,9 @@ namespace ApexParserTest.Parser
         public void IfStatementCanCompileWithACommentBeforeTheElseBranch()
         {
             var ifstmt = Apex.IfStatement.Parse("if (false) return 'yes'; /* oops */ else return 'no';");
-            Assert.AreEqual("false", ifstmt.Expression.Expression);
-            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
-            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("false", ifstmt.Expression.ExpressionString);
+            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.ExpressionString);
+            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.ExpressionString);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) return null; else"));
         }
@@ -1358,17 +1358,17 @@ namespace ApexParserTest.Parser
         public void IfStatementCanHaveBlocksForThenAndElseBranches()
         {
             var ifstmt = Apex.IfStatement.Parse("if (false) { return 'yes'; } else { return 'no'; }");
-            Assert.AreEqual("false", ifstmt.Expression.Expression);
+            Assert.AreEqual("false", ifstmt.Expression.ExpressionString);
 
             var block = ifstmt.ThenStatement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("'yes'", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("'yes'", (block.Statements[0] as ReturnStatementSyntax).Expression.ExpressionString);
 
             block = ifstmt.ElseStatement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
-            Assert.AreEqual("'no'", (block.Statements[0] as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("'no'", (block.Statements[0] as ReturnStatementSyntax).Expression.ExpressionString);
 
             Assert.Throws<ParseException>(() => Apex.IfStatement.End().Parse("if (true) {return null; else {}"));
         }
@@ -1384,7 +1384,7 @@ namespace ApexParserTest.Parser
 
             Assert.AreEqual("Contact", forStmt.Type.Identifier);
             Assert.AreEqual("c", forStmt.Identifier);
-            Assert.AreEqual("contacts", forStmt.Expression.Expression);
+            Assert.AreEqual("contacts", forStmt.Expression.ExpressionString);
 
             var blockStmt = forStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
@@ -1427,7 +1427,7 @@ namespace ApexParserTest.Parser
             while (list.isEmpty());");
 
             Assert.NotNull(doWhileStmt);
-            Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression.Expression);
+            Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression.ExpressionString);
 
             var blockStmt = doWhileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
@@ -1464,7 +1464,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("Datetime", variable.Type.TypeParameters[1].Identifier);
             Assert.AreEqual(3, variable.Variables.Count);
             Assert.AreEqual("dates", variable.Variables[0].Identifier);
-            Assert.AreEqual("GetDates()", variable.Variables[0].Expression.Expression);
+            Assert.AreEqual("GetDates()", variable.Variables[0].Expression.ExpressionString);
             Assert.AreEqual("temp", variable.Variables[1].Identifier);
             Assert.IsNull(variable.Variables[1].Expression);
             Assert.AreEqual("other", variable.Variables[2].Identifier);
@@ -1482,13 +1482,13 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("int", variable.Type.Identifier);
             Assert.AreEqual(1, variable.Variables.Count);
             Assert.AreEqual("a", variable.Variables[0].Identifier);
-            Assert.AreEqual("test(1,2,3)", variable.Variables[0].Expression.Expression);
+            Assert.AreEqual("test(1,2,3)", variable.Variables[0].Expression.ExpressionString);
 
             variable = Apex.VariableDeclaration.Parse("int x = new[] {1,2,3};");
             Assert.AreEqual("int", variable.Type.Identifier);
             Assert.AreEqual(1, variable.Variables.Count);
             Assert.AreEqual("x", variable.Variables[0].Identifier);
-            Assert.AreEqual("new[]{1,2,3}", variable.Variables[0].Expression.Expression);
+            Assert.AreEqual("new[]{1,2,3}", variable.Variables[0].Expression.ExpressionString);
         }
 
         [Test]
@@ -1496,7 +1496,7 @@ namespace ApexParserTest.Parser
         {
             var variable = Apex.VariableDeclarator.Parse(" name = 'Bozo'");
             Assert.AreEqual("name", variable.Identifier);
-            Assert.AreEqual("'Bozo'", variable.Expression.Expression);
+            Assert.AreEqual("'Bozo'", variable.Expression.ExpressionString);
 
             variable = Apex.VariableDeclarator.Parse(" date ");
             Assert.AreEqual("date", variable.Identifier);
@@ -1504,7 +1504,7 @@ namespace ApexParserTest.Parser
 
             variable = Apex.VariableDeclarator.Parse(" now = DateTime.Now()");
             Assert.AreEqual("now", variable.Identifier);
-            Assert.AreEqual("DateTime.Now()", variable.Expression.Expression);
+            Assert.AreEqual("DateTime.Now()", variable.Expression.ExpressionString);
 
             // incomplete variable declarator
             Assert.Throws<ParseException>(() => Apex.VariableDeclarator.End().Parse("x = "));
@@ -1521,7 +1521,7 @@ namespace ApexParserTest.Parser
             }");
 
             Assert.NotNull(whileStmt);
-            Assert.AreEqual("list.isEmpty()", whileStmt.Expression.Expression);
+            Assert.AreEqual("list.isEmpty()", whileStmt.Expression.ExpressionString);
 
             var blockStmt = whileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
@@ -1556,7 +1556,7 @@ namespace ApexParserTest.Parser
             System.RunAs(new Version(1, 0)) {
                 System.debug('wow!');
             }");
-            Assert.AreEqual("new Version(1, 0)", runAs.Expression.Expression);
+            Assert.AreEqual("new Version(1, 0)", runAs.Expression.ExpressionString);
             var block = runAs.Statement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
@@ -1565,7 +1565,7 @@ namespace ApexParserTest.Parser
             runAs = Apex.RunAsStatement.Parse(@"
             System.RunAs(new Version(1, 0))
                 System.debug('wow!');");
-            Assert.AreEqual("new Version(1, 0)", runAs.Expression.Expression);
+            Assert.AreEqual("new Version(1, 0)", runAs.Expression.ExpressionString);
             Assert.NotNull(runAs.Statement);
             Assert.AreEqual("System.debug('wow!')", runAs.Statement.Body);
         }
@@ -1575,7 +1575,7 @@ namespace ApexParserTest.Parser
         {
             var thr = Apex.ThrowStatement.Parse(" throw new NotImplementedException('Oops');");
             Assert.NotNull(thr);
-            Assert.AreEqual("new NotImplementedException('Oops')", thr.Expression.Expression);
+            Assert.AreEqual("new NotImplementedException('Oops')", thr.Expression.ExpressionString);
 
             thr = Apex.ThrowStatement.Parse(" throw;");
             Assert.NotNull(thr);
@@ -1588,15 +1588,15 @@ namespace ApexParserTest.Parser
             var stmt = Apex.Statement.Parse("if (false) return 'yes'; else return 'no';");
             var ifstmt = stmt as IfStatementSyntax;
             Assert.NotNull(ifstmt);
-            Assert.AreEqual("false", ifstmt.Expression.Expression);
+            Assert.AreEqual("false", ifstmt.Expression.ExpressionString);
             var ret = ifstmt.ThenStatement as ReturnStatementSyntax;
             Assert.NotNull(ret);
             Assert.NotNull(ret.Expression);
-            Assert.AreEqual("'yes'", ret.Expression.Expression);
+            Assert.AreEqual("'yes'", ret.Expression.ExpressionString);
             ret = ifstmt.ElseStatement as ReturnStatementSyntax;
             Assert.NotNull(ret);
             Assert.NotNull(ret.Expression);
-            Assert.AreEqual("'no'", ret.Expression.Expression);
+            Assert.AreEqual("'no'", ret.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("{ return x; }");
             var blockStmt = stmt as BlockSyntax;
@@ -1605,23 +1605,23 @@ namespace ApexParserTest.Parser
             ret = blockStmt.Statements[0] as ReturnStatementSyntax;
             Assert.NotNull(ret);
             Assert.NotNull(ret.Expression);
-            Assert.AreEqual("x", ret.Expression.Expression);
+            Assert.AreEqual("x", ret.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("return 'Hello World';");
             ret = stmt as ReturnStatementSyntax;
             Assert.NotNull(ret);
             Assert.NotNull(ret.Expression);
-            Assert.AreEqual("'Hello World'", ret.Expression.Expression);
+            Assert.AreEqual("'Hello World'", ret.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("insert something;");
             var ins = stmt as InsertStatementSyntax;
             Assert.NotNull(ins);
-            Assert.AreEqual("something", ins.Expression.Expression);
+            Assert.AreEqual("something", ins.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("return null;");
             ret = stmt as ReturnStatementSyntax;
             Assert.NotNull(ret);
-            Assert.AreEqual("null", ret.Expression.Expression);
+            Assert.AreEqual("null", ret.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse(@"
             for (Contact c : contacts)
@@ -1632,7 +1632,7 @@ namespace ApexParserTest.Parser
             Assert.NotNull(forEachStmt);
             Assert.AreEqual("Contact", forEachStmt.Type.Identifier);
             Assert.AreEqual("c", forEachStmt.Identifier);
-            Assert.AreEqual("contacts", forEachStmt.Expression.Expression);
+            Assert.AreEqual("contacts", forEachStmt.Expression.ExpressionString);
 
             blockStmt = forEachStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
@@ -1665,7 +1665,7 @@ namespace ApexParserTest.Parser
 
             var doWhileStmt = stmt as DoStatementSyntax;
             Assert.NotNull(doWhileStmt);
-            Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression.Expression);
+            Assert.AreEqual("list.isEmpty()", doWhileStmt.Expression.ExpressionString);
 
             blockStmt = doWhileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
@@ -1681,7 +1681,7 @@ namespace ApexParserTest.Parser
 
             var whileStmt = stmt as WhileStatementSyntax;
             Assert.NotNull(whileStmt);
-            Assert.AreEqual("list.isEmpty()", whileStmt.Expression.Expression);
+            Assert.AreEqual("list.isEmpty()", whileStmt.Expression.ExpressionString);
 
             blockStmt = whileStmt.Statement as BlockSyntax;
             Assert.NotNull(blockStmt);
@@ -1698,7 +1698,7 @@ namespace ApexParserTest.Parser
             }");
             var runAs = stmt as RunAsStatementSyntax;
             Assert.NotNull(runAs);
-            Assert.AreEqual("new Version(1, 0)", runAs.Expression.Expression);
+            Assert.AreEqual("new Version(1, 0)", runAs.Expression.ExpressionString);
             var block = runAs.Statement as BlockSyntax;
             Assert.NotNull(block);
             Assert.AreEqual(1, block.Statements.Count);
@@ -1707,27 +1707,27 @@ namespace ApexParserTest.Parser
             stmt = Apex.Statement.Parse("  insert contact; ");
             ins = stmt as InsertStatementSyntax;
             Assert.NotNull(ins);
-            Assert.AreEqual("contact", ins.Expression.Expression);
+            Assert.AreEqual("contact", ins.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("  delete\tuser;");
             var del = stmt as DeleteStatementSyntax;
             Assert.NotNull(del);
-            Assert.AreEqual("user", del.Expression.Expression);
+            Assert.AreEqual("user", del.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("  update \r\n items;");
             var upd = stmt as UpdateStatementSyntax;
             Assert.NotNull(upd);
-            Assert.AreEqual("items", upd.Expression.Expression);
+            Assert.AreEqual("items", upd.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("  upsert contact; ");
             var ups = stmt as UpsertStatementSyntax;
             Assert.NotNull(ups);
-            Assert.AreEqual("contact", ups.Expression.Expression);
+            Assert.AreEqual("contact", ups.Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse(" throw new NotImplementedException('Oops');");
             var thr = stmt as ThrowStatementSyntax;
             Assert.NotNull(thr);
-            Assert.AreEqual("new NotImplementedException('Oops')", thr.Expression.Expression);
+            Assert.AreEqual("new NotImplementedException('Oops')", thr.Expression.ExpressionString);
         }
 
         [Test]
@@ -1738,18 +1738,18 @@ namespace ApexParserTest.Parser
             if (false) return 'yes'; else return 'no';");
             var ifstmt = stmt as IfStatementSyntax;
             Assert.NotNull(ifstmt);
-            Assert.AreEqual("false", ifstmt.Expression.Expression);
-            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.Expression);
-            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("false", ifstmt.Expression.ExpressionString);
+            Assert.AreEqual("'yes'", (ifstmt.ThenStatement as ReturnStatementSyntax).Expression.ExpressionString);
+            Assert.AreEqual("'no'", (ifstmt.ElseStatement as ReturnStatementSyntax).Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("/* here goes the block statement */ { return x; }");
             var blockStmt = stmt as BlockSyntax;
             Assert.NotNull(blockStmt);
             Assert.AreEqual(1, blockStmt.Statements.Count);
-            Assert.AreEqual("x", (blockStmt.Statements[0] as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("x", (blockStmt.Statements[0] as ReturnStatementSyntax).Expression.ExpressionString);
 
             stmt = Apex.Statement.Parse("/* greeting //*/ return 'Hello World';");
-            Assert.AreEqual("'Hello World'", (stmt as ReturnStatementSyntax).Expression.Expression);
+            Assert.AreEqual("'Hello World'", (stmt as ReturnStatementSyntax).Expression.ExpressionString);
         }
 
         [Test]
@@ -1888,7 +1888,7 @@ namespace ApexParserTest.Parser
             var ret = stmt.Statements[1] as ReturnStatementSyntax;
             Assert.NotNull(ret);
             Assert.NotNull(ret.Expression);
-            Assert.AreEqual("new List<String>()", ret.Expression.Expression);
+            Assert.AreEqual("new List<String>()", ret.Expression.ExpressionString);
         }
 
         [Test]
@@ -1909,7 +1909,7 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(1, stmt.Statements[0].TrailingComments.Count);
             Assert.AreEqual("method contents might not be valid", stmt.Statements[0].TrailingComments[0].Trim());
             var ret = stmt.Statements[1] as ReturnStatementSyntax;
-            Assert.AreEqual("new List<String>()", ret.Expression.Expression);
+            Assert.AreEqual("new List<String>()", ret.Expression.ExpressionString);
             Assert.AreEqual(1, stmt.Statements[1].TrailingComments.Count);
             Assert.AreEqual("comments", stmt.Statements[1].TrailingComments[0].Trim());
             Assert.AreEqual(0, stmt.TrailingComments.Count);
