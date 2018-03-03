@@ -35,6 +35,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitClassInitializer(ClassInitializerSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitClassOfExpression(ClassOfExpressionSyntax node) => DefaultVisit(node);
+
         public virtual void VisitConditionalExpression(ConditionalExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitConstructorDeclaration(ConstructorDeclarationSyntax node) => DefaultVisit(node);
@@ -73,9 +75,21 @@ namespace ApexParser.Visitors
 
         public virtual void VisitInvocationExpression(InvocationExpressionSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitLiteralExpression(LiteralExpressionSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitMemberAccessExpression(MemberAccessExpressionSyntax node) => DefaultVisit(node);
+
         public virtual void VisitMethodDeclaration(MethodDeclarationSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node) => DefaultVisit(node);
+
         public virtual void VisitParameter(ParameterSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitParenthesizedExpression(ParenthesizedExpressionSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitPostfixUnaryExpression(PostfixUnaryExpressionSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitPrefixUnaryExpression(PrefixUnaryExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitPropertyDeclaration(PropertyDeclarationSyntax node) => DefaultVisit(node);
 
