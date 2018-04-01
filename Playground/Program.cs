@@ -18,10 +18,12 @@ namespace Playground
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = Settings.Default.UseDemoForm ?
-                new DemoForm() as Form : new ConvertorForm();
+            var mainForm = new DemoForm();
+
 
             Application.Run(mainForm);
+
+            
         }
     }
 }
