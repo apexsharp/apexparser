@@ -7,44 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Playground.Properties;
 
 namespace Playground
 {
     public partial class SetupForm : Form
     {
         private DemoForm _mainForm;
+
         public SetupForm(DemoForm mainForm)
         {
             InitializeComponent();
             _mainForm = mainForm;
-          
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
 
+            ApexDirectoryTextBox.Text = Settings.Default.ApexDirectory;
+            CSharpDirectoryTextBox.Text = Settings.Default.CSharpDirectory;
+            CSharpNamespaceTextBox.Text = Settings.Default.CSharpNamespace;
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void OpenApexDirectoryButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _mainForm.checkedListBox1.Items.Add("Test");
-            Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            FolderBrowserDialog.SelectedPath = ApexDirectoryTextBox.Text;
+            if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                System.IO.StreamReader sr = new
-                    System.IO.StreamReader(openFileDialog1.FileName);
-                MessageBox.Show(sr.ReadToEnd());
-                sr.Close();
+                ApexDirectoryTextBox.Text = FolderBrowserDialog.SelectedPath;
+                Settings.Default.ApexDirectory = FolderBrowserDialog.SelectedPath;
             }
+        }
+
+        private void OpenCSharpDirectoryButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog.SelectedPath = CSharpDirectoryTextBox.Text;
+            if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                CSharpDirectoryTextBox.Text = FolderBrowserDialog.SelectedPath;
+                Settings.Default.CSharpDirectory = FolderBrowserDialog.SelectedPath;
+            }
+        }
+
+        private void ApplyButton_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Save();
+            Close();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApexParser;
+using Playground.Properties;
 using Sprache;
 
 namespace Playground
@@ -18,14 +19,51 @@ namespace Playground
         public DemoForm()
         {
             InitializeComponent();
-            LeftBox.Text = LeftBox.Text;
+
+            // convert the code
+            ApexTextBox.Text = ApexTextBox.Text;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            LoadFiles();
+        }
+
+        private void LoadFiles()
+        {
+            ApexLabel.Text = "Apex";
+            if (!string.IsNullOrWhiteSpace(Settings.Default.ApexDirectory))
+            {
+                ApexLabel.Text += " — " + Settings.Default.ApexDirectory;
+            }
+
+            CSharpLabel.Text = "C#";
+            if (!string.IsNullOrWhiteSpace(Settings.Default.CSharpDirectory))
+            {
+                CSharpLabel.Text += " — " + Settings.Default.CSharpDirectory;
+            }
+
+            LoadFiles(ApexFilesBox, Settings.Default.ApexDirectory, "*.cls");
+            LoadFiles(CSharpFilesBox, Settings.Default.CSharpDirectory, "*.cs");
+        }
+
+        private void LoadFiles(ListBox listBox, string path, string mask)
+        {
+            var files =
+                from file in Directory.GetFiles(path, mask)
+                select Path.GetFileName(file);
+
+            listBox.Items.Clear();
+            listBox.Items.AddRange(files.ToArray());
         }
 
         private string ToCSharp(string s)
         {
             try
             {
-                return ApexSharpParser.ConvertApexToCSharp(s);
+                return ApexSharpParser.ConvertApexToCSharp(s, Settings.Default.CSharpNamespace);
             }
             catch (ParseException)
             {
@@ -48,9 +86,9 @@ namespace Playground
             ConvertLeftToRight = true;
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                LeftBox.Text = File.ReadAllText(OpenFileDialog.FileName);
-                LeftBox.SelectionStart = 0;
-                LeftBox.SelectionLength = 0;
+                ApexTextBox.Text = File.ReadAllText(OpenFileDialog.FileName);
+                ApexTextBox.SelectionStart = 0;
+                ApexTextBox.SelectionLength = 0;
             }
         }
 
@@ -59,9 +97,9 @@ namespace Playground
             ConvertLeftToRight = false;
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                RightBox.Text = File.ReadAllText(OpenFileDialog.FileName);
-                RightBox.SelectionStart = 0;
-                RightBox.SelectionLength = 0;
+                CSharpTextBox.Text = File.ReadAllText(OpenFileDialog.FileName);
+                CSharpTextBox.SelectionStart = 0;
+                CSharpTextBox.SelectionLength = 0;
             }
         }
 
@@ -72,10 +110,10 @@ namespace Playground
                 return;
             }
 
-            var result = ToCSharp(LeftBox.Text);
+            var result = ToCSharp(ApexTextBox.Text);
             if (!string.IsNullOrWhiteSpace(result))
             {
-                RightBox.Text = result;
+                CSharpTextBox.Text = result;
             }
         }
 
@@ -86,10 +124,10 @@ namespace Playground
                 return;
             }
 
-            var result = ToApex(RightBox.Text);
+            var result = ToApex(CSharpTextBox.Text);
             if (!string.IsNullOrWhiteSpace(result))
             {
-                LeftBox.Text = result;
+                ApexTextBox.Text = result;
             }
         }
 
@@ -97,7 +135,7 @@ namespace Playground
         {
             if (SaveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(SaveFileDialog.FileName, LeftBox.Text);
+                File.WriteAllText(SaveFileDialog.FileName, ApexTextBox.Text);
             }
         }
 
@@ -105,15 +143,17 @@ namespace Playground
         {
             if (SaveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(SaveFileDialog.FileName, RightBox.Text);
+                File.WriteAllText(SaveFileDialog.FileName, CSharpTextBox.Text);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SetupButton_Click(object sender, EventArgs e)
         {
-           
             SetupForm setup = new SetupForm(this);
-            setup.Show();
+            if (setup.ShowDialog() == DialogResult.OK)
+            {
+                LoadFiles();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -139,6 +179,11 @@ namespace Playground
         private void button5_Click(object sender, EventArgs e)
         {
             // Save all the files that are currently selected
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

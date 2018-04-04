@@ -31,95 +31,109 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DemoForm));
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.LeftBox = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.LeftPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.RightPanel = new System.Windows.Forms.Panel();
+            this.ApexSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.ApexFilesBox = new System.Windows.Forms.ListBox();
+            this.ApexTextBox = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.ApexLabel = new System.Windows.Forms.Label();
+            this.LeftButtonPanel = new System.Windows.Forms.Panel();
+            this.SaveApexFileButton = new System.Windows.Forms.Button();
+            this.SaveAllApexFilesButton = new System.Windows.Forms.Button();
+            this.CSharpSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.CSharpFilesBox = new System.Windows.Forms.ListBox();
+            this.CSharpTextBox = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.SaveCSharpFileButton = new System.Windows.Forms.Button();
+            this.SaveAllCSharpFilesButton = new System.Windows.Forms.Button();
+            this.CSharpLabel = new System.Windows.Forms.Label();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.RightBox = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.SaveAllCSharpFiles = new System.Windows.Forms.Button();
-            this.SaveCSharpFile = new System.Windows.Forms.Button();
-            this.SaveApexFile = new System.Windows.Forms.Button();
-            this.SaveAllApexFiles = new System.Windows.Forms.Button();
-            this.APEX = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveCurrentApexFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAllApexFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveCurrentCSharpFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAllCSharpFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LeftBox)).BeginInit();
-            this.LeftPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RightBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ApexSplitContainer)).BeginInit();
+            this.ApexSplitContainer.Panel1.SuspendLayout();
+            this.ApexSplitContainer.Panel2.SuspendLayout();
+            this.ApexSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ApexTextBox)).BeginInit();
+            this.LeftButtonPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CSharpSplitContainer)).BeginInit();
+            this.CSharpSplitContainer.Panel1.SuspendLayout();
+            this.CSharpSplitContainer.Panel2.SuspendLayout();
+            this.CSharpSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CSharpTextBox)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // SplitContainer
             // 
             this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.SplitContainer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SplitContainer.Location = new System.Drawing.Point(8, 8);
             this.SplitContainer.Name = "SplitContainer";
             // 
             // SplitContainer.Panel1
             // 
-            this.SplitContainer.Panel1.Controls.Add(this.APEX);
-            this.SplitContainer.Panel1.Controls.Add(this.splitContainer1);
-            this.SplitContainer.Panel1.Controls.Add(this.LeftPanel);
+            this.SplitContainer.Panel1.Controls.Add(this.ApexSplitContainer);
+            this.SplitContainer.Panel1.Controls.Add(this.ApexLabel);
+            this.SplitContainer.Panel1.Controls.Add(this.LeftButtonPanel);
+            this.SplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(4);
             // 
             // SplitContainer.Panel2
             // 
-            this.SplitContainer.Panel2.Controls.Add(this.label1);
-            this.SplitContainer.Panel2.Controls.Add(this.splitContainer2);
-            this.SplitContainer.Panel2.Controls.Add(this.RightPanel);
-            this.SplitContainer.Size = new System.Drawing.Size(1901, 1001);
-            this.SplitContainer.SplitterDistance = 982;
-            this.SplitContainer.SplitterWidth = 6;
+            this.SplitContainer.Panel2.Controls.Add(this.CSharpSplitContainer);
+            this.SplitContainer.Panel2.Controls.Add(this.panel1);
+            this.SplitContainer.Panel2.Controls.Add(this.CSharpLabel);
+            this.SplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(4);
+            this.SplitContainer.Size = new System.Drawing.Size(953, 609);
+            this.SplitContainer.SplitterDistance = 491;
             this.SplitContainer.TabIndex = 2;
             // 
-            // splitContainer1
+            // ApexSplitContainer
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(34, 107);
-            this.splitContainer1.Name = "splitContainer1";
+            this.ApexSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ApexSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.ApexSplitContainer.Location = new System.Drawing.Point(4, 25);
+            this.ApexSplitContainer.Margin = new System.Windows.Forms.Padding(2);
+            this.ApexSplitContainer.Name = "ApexSplitContainer";
             // 
-            // splitContainer1.Panel1
+            // ApexSplitContainer.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.SaveAllApexFiles);
-            this.splitContainer1.Panel1.Controls.Add(this.checkedListBox1);
+            this.ApexSplitContainer.Panel1.Controls.Add(this.ApexFilesBox);
             // 
-            // splitContainer1.Panel2
+            // ApexSplitContainer.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.SaveApexFile);
-            this.splitContainer1.Panel2.Controls.Add(this.LeftBox);
-            this.splitContainer1.Size = new System.Drawing.Size(929, 737);
-            this.splitContainer1.SplitterDistance = 355;
-            this.splitContainer1.TabIndex = 8;
+            this.ApexSplitContainer.Panel2.Controls.Add(this.ApexTextBox);
+            this.ApexSplitContainer.Size = new System.Drawing.Size(483, 542);
+            this.ApexSplitContainer.SplitterDistance = 170;
+            this.ApexSplitContainer.SplitterWidth = 3;
+            this.ApexSplitContainer.TabIndex = 8;
             // 
-            // checkedListBox1
+            // ApexFilesBox
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(9, 53);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(289, 571);
-            this.checkedListBox1.TabIndex = 3;
+            this.ApexFilesBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ApexFilesBox.FormattingEnabled = true;
+            this.ApexFilesBox.Location = new System.Drawing.Point(0, 0);
+            this.ApexFilesBox.Name = "ApexFilesBox";
+            this.ApexFilesBox.Size = new System.Drawing.Size(170, 542);
+            this.ApexFilesBox.TabIndex = 1;
             // 
-            // LeftBox
+            // ApexTextBox
             // 
-            this.LeftBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LeftBox.AutoCompleteBracketsList = new char[] {
+            this.ApexTextBox.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
         '{',
@@ -130,63 +144,205 @@
         '\"',
         '\'',
         '\''};
-            this.LeftBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
+            this.ApexTextBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
     "?<range>:)\\s*(?<range>[^;]+);\n";
-            this.LeftBox.AutoIndentExistingLines = false;
-            this.LeftBox.AutoScrollMinSize = new System.Drawing.Size(1163, 1210);
-            this.LeftBox.BackBrush = null;
-            this.LeftBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
-            this.LeftBox.CharHeight = 22;
-            this.LeftBox.CharWidth = 12;
-            this.LeftBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.LeftBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.LeftBox.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.LeftBox.IsReplaceMode = false;
-            this.LeftBox.Language = FastColoredTextBoxNS.Language.CSharp;
-            this.LeftBox.LeftBracket = '(';
-            this.LeftBox.LeftBracket2 = '{';
-            this.LeftBox.Location = new System.Drawing.Point(7, 49);
-            this.LeftBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.LeftBox.Name = "LeftBox";
-            this.LeftBox.Paddings = new System.Windows.Forms.Padding(0);
-            this.LeftBox.RightBracket = ')';
-            this.LeftBox.RightBracket2 = '}';
-            this.LeftBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.LeftBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("LeftBox.ServiceColors")));
-            this.LeftBox.Size = new System.Drawing.Size(556, 605);
-            this.LeftBox.TabIndex = 1;
-            this.LeftBox.Text = resources.GetString("LeftBox.Text");
-            this.LeftBox.Zoom = 100;
+            this.ApexTextBox.AutoIndentExistingLines = false;
+            this.ApexTextBox.AutoScrollMinSize = new System.Drawing.Size(779, 770);
+            this.ApexTextBox.BackBrush = null;
+            this.ApexTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ApexTextBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
+            this.ApexTextBox.CharHeight = 14;
+            this.ApexTextBox.CharWidth = 8;
+            this.ApexTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ApexTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.ApexTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ApexTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.ApexTextBox.IsReplaceMode = false;
+            this.ApexTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
+            this.ApexTextBox.LeftBracket = '(';
+            this.ApexTextBox.LeftBracket2 = '{';
+            this.ApexTextBox.Location = new System.Drawing.Point(0, 0);
+            this.ApexTextBox.Name = "ApexTextBox";
+            this.ApexTextBox.Paddings = new System.Windows.Forms.Padding(0);
+            this.ApexTextBox.RightBracket = ')';
+            this.ApexTextBox.RightBracket2 = '}';
+            this.ApexTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.ApexTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ApexTextBox.ServiceColors")));
+            this.ApexTextBox.Size = new System.Drawing.Size(310, 542);
+            this.ApexTextBox.TabIndex = 2;
+            this.ApexTextBox.Text = resources.GetString("ApexTextBox.Text");
+            this.ApexTextBox.Zoom = 100;
+            this.ApexTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.LeftBox_TextChangedDelayed);
             // 
-            // LeftPanel
+            // ApexLabel
             // 
-            this.LeftPanel.Controls.Add(this.button1);
-            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(982, 71);
-            this.LeftPanel.TabIndex = 1;
+            this.ApexLabel.AutoSize = true;
+            this.ApexLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ApexLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ApexLabel.Location = new System.Drawing.Point(4, 4);
+            this.ApexLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ApexLabel.Name = "ApexLabel";
+            this.ApexLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.ApexLabel.Size = new System.Drawing.Size(39, 21);
+            this.ApexLabel.TabIndex = 9;
+            this.ApexLabel.Text = "Apex";
             // 
-            // button1
+            // LeftButtonPanel
             // 
-            this.button1.Location = new System.Drawing.Point(34, 14);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(177, 35);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Setup";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.LeftButtonPanel.Controls.Add(this.SaveApexFileButton);
+            this.LeftButtonPanel.Controls.Add(this.SaveAllApexFilesButton);
+            this.LeftButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LeftButtonPanel.Location = new System.Drawing.Point(4, 567);
+            this.LeftButtonPanel.Name = "LeftButtonPanel";
+            this.LeftButtonPanel.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.LeftButtonPanel.Size = new System.Drawing.Size(483, 38);
+            this.LeftButtonPanel.TabIndex = 10;
             // 
-            // RightPanel
+            // SaveApexFileButton
             // 
-            this.RightPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RightPanel.Location = new System.Drawing.Point(0, 0);
-            this.RightPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RightPanel.Name = "RightPanel";
-            this.RightPanel.Size = new System.Drawing.Size(913, 71);
-            this.RightPanel.TabIndex = 1;
+            this.SaveApexFileButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SaveApexFileButton.Location = new System.Drawing.Point(363, 4);
+            this.SaveApexFileButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SaveApexFileButton.MaximumSize = new System.Drawing.Size(120, 30);
+            this.SaveApexFileButton.Name = "SaveApexFileButton";
+            this.SaveApexFileButton.Size = new System.Drawing.Size(120, 30);
+            this.SaveApexFileButton.TabIndex = 8;
+            this.SaveApexFileButton.Text = "Save Apex File";
+            this.SaveApexFileButton.UseVisualStyleBackColor = true;
+            this.SaveApexFileButton.Click += new System.EventHandler(this.SaveLeftButton_Click);
+            // 
+            // SaveAllApexFilesButton
+            // 
+            this.SaveAllApexFilesButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SaveAllApexFilesButton.Location = new System.Drawing.Point(0, 4);
+            this.SaveAllApexFilesButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SaveAllApexFilesButton.MaximumSize = new System.Drawing.Size(120, 30);
+            this.SaveAllApexFilesButton.Name = "SaveAllApexFilesButton";
+            this.SaveAllApexFilesButton.Size = new System.Drawing.Size(120, 30);
+            this.SaveAllApexFilesButton.TabIndex = 8;
+            this.SaveAllApexFilesButton.Text = "Save All Apex Files";
+            this.SaveAllApexFilesButton.UseVisualStyleBackColor = true;
+            // 
+            // CSharpSplitContainer
+            // 
+            this.CSharpSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CSharpSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.CSharpSplitContainer.Location = new System.Drawing.Point(4, 25);
+            this.CSharpSplitContainer.Margin = new System.Windows.Forms.Padding(2);
+            this.CSharpSplitContainer.Name = "CSharpSplitContainer";
+            // 
+            // CSharpSplitContainer.Panel1
+            // 
+            this.CSharpSplitContainer.Panel1.Controls.Add(this.CSharpFilesBox);
+            // 
+            // CSharpSplitContainer.Panel2
+            // 
+            this.CSharpSplitContainer.Panel2.Controls.Add(this.CSharpTextBox);
+            this.CSharpSplitContainer.Size = new System.Drawing.Size(450, 542);
+            this.CSharpSplitContainer.SplitterDistance = 157;
+            this.CSharpSplitContainer.SplitterWidth = 3;
+            this.CSharpSplitContainer.TabIndex = 12;
+            // 
+            // CSharpFilesBox
+            // 
+            this.CSharpFilesBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CSharpFilesBox.FormattingEnabled = true;
+            this.CSharpFilesBox.Location = new System.Drawing.Point(0, 0);
+            this.CSharpFilesBox.Name = "CSharpFilesBox";
+            this.CSharpFilesBox.Size = new System.Drawing.Size(157, 542);
+            this.CSharpFilesBox.TabIndex = 0;
+            // 
+            // CSharpTextBox
+            // 
+            this.CSharpTextBox.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.CSharpTextBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
+    "?<range>:)\\s*(?<range>[^;]+);\n";
+            this.CSharpTextBox.AutoIndentExistingLines = false;
+            this.CSharpTextBox.AutoScrollMinSize = new System.Drawing.Size(779, 770);
+            this.CSharpTextBox.BackBrush = null;
+            this.CSharpTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CSharpTextBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
+            this.CSharpTextBox.CharHeight = 14;
+            this.CSharpTextBox.CharWidth = 8;
+            this.CSharpTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.CSharpTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.CSharpTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CSharpTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.CSharpTextBox.IsReplaceMode = false;
+            this.CSharpTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
+            this.CSharpTextBox.LeftBracket = '(';
+            this.CSharpTextBox.LeftBracket2 = '{';
+            this.CSharpTextBox.Location = new System.Drawing.Point(0, 0);
+            this.CSharpTextBox.Name = "CSharpTextBox";
+            this.CSharpTextBox.Paddings = new System.Windows.Forms.Padding(0);
+            this.CSharpTextBox.RightBracket = ')';
+            this.CSharpTextBox.RightBracket2 = '}';
+            this.CSharpTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.CSharpTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("CSharpTextBox.ServiceColors")));
+            this.CSharpTextBox.Size = new System.Drawing.Size(290, 542);
+            this.CSharpTextBox.TabIndex = 1;
+            this.CSharpTextBox.Text = resources.GetString("CSharpTextBox.Text");
+            this.CSharpTextBox.Zoom = 100;
+            this.CSharpTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.RightBox_TextChangedDelayed);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.SaveCSharpFileButton);
+            this.panel1.Controls.Add(this.SaveAllCSharpFilesButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(4, 567);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.panel1.Size = new System.Drawing.Size(450, 38);
+            this.panel1.TabIndex = 11;
+            // 
+            // SaveCSharpFileButton
+            // 
+            this.SaveCSharpFileButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SaveCSharpFileButton.Location = new System.Drawing.Point(330, 4);
+            this.SaveCSharpFileButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SaveCSharpFileButton.MaximumSize = new System.Drawing.Size(120, 30);
+            this.SaveCSharpFileButton.Name = "SaveCSharpFileButton";
+            this.SaveCSharpFileButton.Size = new System.Drawing.Size(120, 30);
+            this.SaveCSharpFileButton.TabIndex = 8;
+            this.SaveCSharpFileButton.Text = "Save C# File";
+            this.SaveCSharpFileButton.UseVisualStyleBackColor = true;
+            this.SaveCSharpFileButton.Click += new System.EventHandler(this.SaveRightButton_Click);
+            // 
+            // SaveAllCSharpFilesButton
+            // 
+            this.SaveAllCSharpFilesButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SaveAllCSharpFilesButton.Location = new System.Drawing.Point(0, 4);
+            this.SaveAllCSharpFilesButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SaveAllCSharpFilesButton.MaximumSize = new System.Drawing.Size(120, 30);
+            this.SaveAllCSharpFilesButton.Name = "SaveAllCSharpFilesButton";
+            this.SaveAllCSharpFilesButton.Size = new System.Drawing.Size(120, 30);
+            this.SaveAllCSharpFilesButton.TabIndex = 8;
+            this.SaveAllCSharpFilesButton.Text = "Save All C# Files";
+            this.SaveAllCSharpFilesButton.UseVisualStyleBackColor = true;
+            // 
+            // CSharpLabel
+            // 
+            this.CSharpLabel.AutoSize = true;
+            this.CSharpLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CSharpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.CSharpLabel.Location = new System.Drawing.Point(4, 4);
+            this.CSharpLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CSharpLabel.Name = "CSharpLabel";
+            this.CSharpLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.CSharpLabel.Size = new System.Drawing.Size(25, 21);
+            this.CSharpLabel.TabIndex = 10;
+            this.CSharpLabel.Text = "C#";
             // 
             // OpenFileDialog
             // 
@@ -198,134 +354,106 @@
             // 
             this.SaveFileDialog.RestoreDirectory = true;
             // 
-            // splitContainer2
+            // menuStrip1
             // 
-            this.splitContainer2.Location = new System.Drawing.Point(50, 107);
-            this.splitContainer2.Name = "splitContainer2";
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileToolStripMenuItem,
+            this.SetupToolStripMenuItem,
+            this.AboutToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(969, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // splitContainer2.Panel1
+            // FileToolStripMenuItem
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.SaveCSharpFile);
-            this.splitContainer2.Panel1.Controls.Add(this.RightBox);
+            this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveCurrentApexFileToolStripMenuItem,
+            this.SaveAllApexFilesToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.SaveCurrentCSharpFileToolStripMenuItem,
+            this.SaveAllCSharpFilesToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.ExitToolStripMenuItem});
+            this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.FileToolStripMenuItem.Text = "File";
             // 
-            // splitContainer2.Panel2
+            // SaveCurrentApexFileToolStripMenuItem
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.SaveAllCSharpFiles);
-            this.splitContainer2.Panel2.Controls.Add(this.checkedListBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(796, 845);
-            this.splitContainer2.SplitterDistance = 490;
-            this.splitContainer2.TabIndex = 7;
+            this.SaveCurrentApexFileToolStripMenuItem.Name = "SaveCurrentApexFileToolStripMenuItem";
+            this.SaveCurrentApexFileToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.SaveCurrentApexFileToolStripMenuItem.Text = "Save current Apex file";
+            this.SaveCurrentApexFileToolStripMenuItem.Click += new System.EventHandler(this.SaveLeftButton_Click);
             // 
-            // RightBox
+            // SaveAllApexFilesToolStripMenuItem
             // 
-            this.RightBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RightBox.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.RightBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
-    "?<range>:)\\s*(?<range>[^;]+);\n";
-            this.RightBox.AutoScrollMinSize = new System.Drawing.Size(35, 22);
-            this.RightBox.BackBrush = null;
-            this.RightBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
-            this.RightBox.CharHeight = 22;
-            this.RightBox.CharWidth = 12;
-            this.RightBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.RightBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.RightBox.IsReplaceMode = false;
-            this.RightBox.Language = FastColoredTextBoxNS.Language.CSharp;
-            this.RightBox.LeftBracket = '(';
-            this.RightBox.LeftBracket2 = '{';
-            this.RightBox.Location = new System.Drawing.Point(0, 28);
-            this.RightBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RightBox.Name = "RightBox";
-            this.RightBox.Paddings = new System.Windows.Forms.Padding(0);
-            this.RightBox.RightBracket = ')';
-            this.RightBox.RightBracket2 = '}';
-            this.RightBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.RightBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("RightBox.ServiceColors")));
-            this.RightBox.Size = new System.Drawing.Size(511, 564);
-            this.RightBox.TabIndex = 1;
-            this.RightBox.Zoom = 100;
+            this.SaveAllApexFilesToolStripMenuItem.Name = "SaveAllApexFilesToolStripMenuItem";
+            this.SaveAllApexFilesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.SaveAllApexFilesToolStripMenuItem.Text = "Save all Apex files";
             // 
-            // checkedListBox2
+            // toolStripSeparator1
             // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(7, 44);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(289, 697);
-            this.checkedListBox2.TabIndex = 4;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
             // 
-            // SaveAllCSharpFiles
+            // SaveCurrentCSharpFileToolStripMenuItem
             // 
-            this.SaveAllCSharpFiles.Location = new System.Drawing.Point(3, 767);
-            this.SaveAllCSharpFiles.Name = "SaveAllCSharpFiles";
-            this.SaveAllCSharpFiles.Size = new System.Drawing.Size(289, 58);
-            this.SaveAllCSharpFiles.TabIndex = 7;
-            this.SaveAllCSharpFiles.Text = "Save All";
-            this.SaveAllCSharpFiles.UseVisualStyleBackColor = true;
+            this.SaveCurrentCSharpFileToolStripMenuItem.Name = "SaveCurrentCSharpFileToolStripMenuItem";
+            this.SaveCurrentCSharpFileToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.SaveCurrentCSharpFileToolStripMenuItem.Text = "Save current C# file";
+            this.SaveCurrentCSharpFileToolStripMenuItem.Click += new System.EventHandler(this.SaveRightButton_Click);
             // 
-            // SaveCSharpFile
+            // SaveAllCSharpFilesToolStripMenuItem
             // 
-            this.SaveCSharpFile.Location = new System.Drawing.Point(22, 753);
-            this.SaveCSharpFile.Name = "SaveCSharpFile";
-            this.SaveCSharpFile.Size = new System.Drawing.Size(153, 58);
-            this.SaveCSharpFile.TabIndex = 5;
-            this.SaveCSharpFile.Text = "Save File";
-            this.SaveCSharpFile.UseVisualStyleBackColor = true;
+            this.SaveAllCSharpFilesToolStripMenuItem.Name = "SaveAllCSharpFilesToolStripMenuItem";
+            this.SaveAllCSharpFilesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.SaveAllCSharpFilesToolStripMenuItem.Text = "Save all C# files";
             // 
-            // SaveApexFile
+            // toolStripSeparator2
             // 
-            this.SaveApexFile.Location = new System.Drawing.Point(35, 662);
-            this.SaveApexFile.Name = "SaveApexFile";
-            this.SaveApexFile.Size = new System.Drawing.Size(153, 58);
-            this.SaveApexFile.TabIndex = 8;
-            this.SaveApexFile.Text = "Save File";
-            this.SaveApexFile.UseVisualStyleBackColor = true;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(184, 6);
             // 
-            // SaveAllApexFiles
+            // ExitToolStripMenuItem
             // 
-            this.SaveAllApexFiles.Location = new System.Drawing.Point(9, 662);
-            this.SaveAllApexFiles.Name = "SaveAllApexFiles";
-            this.SaveAllApexFiles.Size = new System.Drawing.Size(289, 58);
-            this.SaveAllApexFiles.TabIndex = 8;
-            this.SaveAllApexFiles.Text = "Save All";
-            this.SaveAllApexFiles.UseVisualStyleBackColor = true;
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.ExitToolStripMenuItem.Text = "Exit";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // APEX
+            // SetupToolStripMenuItem
             // 
-            this.APEX.AutoSize = true;
-            this.APEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.APEX.Location = new System.Drawing.Point(37, 72);
-            this.APEX.Name = "APEX";
-            this.APEX.Size = new System.Drawing.Size(84, 32);
-            this.APEX.TabIndex = 9;
-            this.APEX.Text = "Apex";
+            this.SetupToolStripMenuItem.Name = "SetupToolStripMenuItem";
+            this.SetupToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.SetupToolStripMenuItem.Text = "Setup";
+            this.SetupToolStripMenuItem.Click += new System.EventHandler(this.SetupButton_Click);
             // 
-            // label1
+            // AboutToolStripMenuItem
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 32);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "C#";
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.AboutToolStripMenuItem.Text = "About";
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.Controls.Add(this.SplitContainer);
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 24);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Padding = new System.Windows.Forms.Padding(8);
+            this.MainPanel.Size = new System.Drawing.Size(969, 625);
+            this.MainPanel.TabIndex = 4;
             // 
             // DemoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1901, 1001);
-            this.Controls.Add(this.SplitContainer);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClientSize = new System.Drawing.Size(969, 649);
+            this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "DemoForm";
             this.Text = "ApexSharp UI";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -335,18 +463,23 @@
             this.SplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LeftBox)).EndInit();
-            this.LeftPanel.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RightBox)).EndInit();
+            this.ApexSplitContainer.Panel1.ResumeLayout(false);
+            this.ApexSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ApexSplitContainer)).EndInit();
+            this.ApexSplitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ApexTextBox)).EndInit();
+            this.LeftButtonPanel.ResumeLayout(false);
+            this.CSharpSplitContainer.Panel1.ResumeLayout(false);
+            this.CSharpSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CSharpSplitContainer)).EndInit();
+            this.CSharpSplitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CSharpTextBox)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.MainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -354,21 +487,32 @@
         private System.Windows.Forms.SplitContainer SplitContainer;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog;
-        private System.Windows.Forms.Panel LeftPanel;
-        private System.Windows.Forms.Panel RightPanel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        public System.Windows.Forms.CheckedListBox checkedListBox1;
-        private FastColoredTextBoxNS.FastColoredTextBox LeftBox;
-        private System.Windows.Forms.Label APEX;
-        private System.Windows.Forms.Button SaveAllApexFiles;
-        private System.Windows.Forms.Button SaveApexFile;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Button SaveCSharpFile;
-        private FastColoredTextBoxNS.FastColoredTextBox RightBox;
-        private System.Windows.Forms.Button SaveAllCSharpFiles;
-        public System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.SplitContainer ApexSplitContainer;
+        private System.Windows.Forms.Label ApexLabel;
+        private System.Windows.Forms.Button SaveAllApexFilesButton;
+        private System.Windows.Forms.Button SaveApexFileButton;
+        private System.Windows.Forms.Label CSharpLabel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveCurrentApexFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveAllApexFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem SaveCurrentCSharpFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveAllCSharpFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.Panel LeftButtonPanel;
+        private System.Windows.Forms.SplitContainer CSharpSplitContainer;
+        private System.Windows.Forms.ListBox CSharpFilesBox;
+        private FastColoredTextBoxNS.FastColoredTextBox CSharpTextBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button SaveCSharpFileButton;
+        private System.Windows.Forms.Button SaveAllCSharpFilesButton;
+        private System.Windows.Forms.ListBox ApexFilesBox;
+        private FastColoredTextBoxNS.FastColoredTextBox ApexTextBox;
+        private System.Windows.Forms.Panel MainPanel;
     }
 }
 
