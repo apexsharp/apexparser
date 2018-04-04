@@ -34,7 +34,7 @@
             this.ApexSplitContainer = new System.Windows.Forms.SplitContainer();
             this.ApexFilesBox = new System.Windows.Forms.ListBox();
             this.ApexTextBox = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.ApexLabel = new System.Windows.Forms.Label();
+            this.ApexLabel = new System.Windows.Forms.LinkLabel();
             this.LeftButtonPanel = new System.Windows.Forms.Panel();
             this.SaveApexFileButton = new System.Windows.Forms.Button();
             this.SaveAllApexFilesButton = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaveCSharpFileButton = new System.Windows.Forms.Button();
             this.SaveAllCSharpFilesButton = new System.Windows.Forms.Button();
-            this.CSharpLabel = new System.Windows.Forms.Label();
+            this.CSharpLabel = new System.Windows.Forms.LinkLabel();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -130,6 +130,8 @@
             this.ApexFilesBox.Name = "ApexFilesBox";
             this.ApexFilesBox.Size = new System.Drawing.Size(170, 542);
             this.ApexFilesBox.TabIndex = 1;
+            this.ApexFilesBox.Enter += new System.EventHandler(this.LeftBox_Enter);
+            this.ApexFilesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseDoubleClick);
             // 
             // ApexTextBox
             // 
@@ -156,7 +158,6 @@
             this.ApexTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ApexTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ApexTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ApexTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ApexTextBox.IsReplaceMode = false;
             this.ApexTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.ApexTextBox.LeftBracket = '(';
@@ -173,12 +174,14 @@
             this.ApexTextBox.Text = resources.GetString("ApexTextBox.Text");
             this.ApexTextBox.Zoom = 100;
             this.ApexTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.LeftBox_TextChangedDelayed);
+            this.ApexTextBox.Enter += new System.EventHandler(this.LeftBox_Enter);
             // 
             // ApexLabel
             // 
             this.ApexLabel.AutoSize = true;
             this.ApexLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ApexLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ApexLabel.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
             this.ApexLabel.Location = new System.Drawing.Point(4, 4);
             this.ApexLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ApexLabel.Name = "ApexLabel";
@@ -186,6 +189,7 @@
             this.ApexLabel.Size = new System.Drawing.Size(39, 21);
             this.ApexLabel.TabIndex = 9;
             this.ApexLabel.Text = "Apex";
+            this.ApexLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ApexLabel_LinkClicked);
             // 
             // LeftButtonPanel
             // 
@@ -251,6 +255,8 @@
             this.CSharpFilesBox.Name = "CSharpFilesBox";
             this.CSharpFilesBox.Size = new System.Drawing.Size(157, 542);
             this.CSharpFilesBox.TabIndex = 0;
+            this.CSharpFilesBox.Enter += new System.EventHandler(this.RightBox_Enter);
+            this.CSharpFilesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseDoubleClick);
             // 
             // CSharpTextBox
             // 
@@ -277,7 +283,6 @@
             this.CSharpTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.CSharpTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.CSharpTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CSharpTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.CSharpTextBox.IsReplaceMode = false;
             this.CSharpTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.CSharpTextBox.LeftBracket = '(';
@@ -294,6 +299,7 @@
             this.CSharpTextBox.Text = resources.GetString("CSharpTextBox.Text");
             this.CSharpTextBox.Zoom = 100;
             this.CSharpTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.RightBox_TextChangedDelayed);
+            this.CSharpTextBox.Enter += new System.EventHandler(this.RightBox_Enter);
             // 
             // panel1
             // 
@@ -336,6 +342,7 @@
             this.CSharpLabel.AutoSize = true;
             this.CSharpLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.CSharpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.CSharpLabel.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
             this.CSharpLabel.Location = new System.Drawing.Point(4, 4);
             this.CSharpLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CSharpLabel.Name = "CSharpLabel";
@@ -343,6 +350,7 @@
             this.CSharpLabel.Size = new System.Drawing.Size(25, 21);
             this.CSharpLabel.TabIndex = 10;
             this.CSharpLabel.Text = "C#";
+            this.CSharpLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CSharpLabel_LinkClicked);
             // 
             // OpenFileDialog
             // 
@@ -488,10 +496,10 @@
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog;
         private System.Windows.Forms.SplitContainer ApexSplitContainer;
-        private System.Windows.Forms.Label ApexLabel;
+        private System.Windows.Forms.LinkLabel ApexLabel;
         private System.Windows.Forms.Button SaveAllApexFilesButton;
         private System.Windows.Forms.Button SaveApexFileButton;
-        private System.Windows.Forms.Label CSharpLabel;
+        private System.Windows.Forms.LinkLabel CSharpLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveCurrentApexFileToolStripMenuItem;

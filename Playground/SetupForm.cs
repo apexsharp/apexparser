@@ -13,12 +13,9 @@ namespace Playground
 {
     public partial class SetupForm : Form
     {
-        private DemoForm _mainForm;
-
-        public SetupForm(DemoForm mainForm)
+        public SetupForm()
         {
             InitializeComponent();
-            _mainForm = mainForm;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -36,7 +33,6 @@ namespace Playground
             if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 ApexDirectoryTextBox.Text = FolderBrowserDialog.SelectedPath;
-                Settings.Default.ApexDirectory = FolderBrowserDialog.SelectedPath;
             }
         }
 
@@ -46,14 +42,17 @@ namespace Playground
             if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 CSharpDirectoryTextBox.Text = FolderBrowserDialog.SelectedPath;
-                Settings.Default.CSharpDirectory = FolderBrowserDialog.SelectedPath;
             }
         }
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
+            Settings.Default.ApexDirectory = ApexDirectoryTextBox.Text;
+            Settings.Default.CSharpDirectory = CSharpDirectoryTextBox.Text;
             Settings.Default.Save();
-            Close();
+
+            // close the form
+            DialogResult = DialogResult.OK;
         }
     }
 }

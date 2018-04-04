@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -34,15 +35,21 @@ namespace Playground
         private void LoadFiles()
         {
             ApexLabel.Text = "Apex";
+            ApexLabel.LinkArea = new LinkArea(0, 0);
             if (!string.IsNullOrWhiteSpace(Settings.Default.ApexDirectory))
             {
+                var position = ApexLabel.Text.Length + 3;
                 ApexLabel.Text += " — " + Settings.Default.ApexDirectory;
+                ApexLabel.LinkArea = new LinkArea(position, Settings.Default.ApexDirectory.Length);
             }
 
             CSharpLabel.Text = "C#";
+            CSharpLabel.LinkArea = new LinkArea(0, 0);
             if (!string.IsNullOrWhiteSpace(Settings.Default.CSharpDirectory))
             {
+                var position = CSharpLabel.Text.Length + 3;
                 CSharpLabel.Text += " — " + Settings.Default.CSharpDirectory;
+                CSharpLabel.LinkArea = new LinkArea(position, Settings.Default.CSharpDirectory.Length);
             }
 
             LoadFiles(ApexFilesBox, Settings.Default.ApexDirectory, "*.cls");
@@ -51,12 +58,24 @@ namespace Playground
 
         private void LoadFiles(ListBox listBox, string path, string mask)
         {
-            var files =
-                from file in Directory.GetFiles(path, mask)
-                select Path.GetFileName(file);
-
             listBox.Items.Clear();
-            listBox.Items.AddRange(files.ToArray());
+
+            try
+            {
+                var files =
+                    from file in Directory.GetFiles(path, mask)
+                    select Path.GetFileName(file);
+
+                listBox.Items.AddRange(files.ToArray());
+            }
+            catch (ArgumentException)
+            {
+                // empty path?
+            }
+            catch (DirectoryNotFoundException)
+            {
+                // bad path?
+            }
         }
 
         private string ToCSharp(string s)
@@ -149,7 +168,7 @@ namespace Playground
 
         private void SetupButton_Click(object sender, EventArgs e)
         {
-            SetupForm setup = new SetupForm(this);
+            SetupForm setup = new SetupForm();
             if (setup.ShowDialog() == DialogResult.OK)
             {
                 LoadFiles();
@@ -184,6 +203,49 @@ namespace Playground
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ApexLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                UseShellExecute = true,
+                FileName = Settings.Default.ApexDirectory
+            });
+        }
+
+        private void CSharpLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                UseShellExecute = true,
+                FileName = Settings.Default.CSharpDirectory
+            });
+        }
+
+        private void ListFilesBox_MouseDoubleClick(object sender, MouseEventArgs mouseArgs)
+        {
+            var listBox = sender as ListBox;
+            int index = listBox.IndexFromPoint(mouseArgs.Location);
+            if (index != ListBox.NoMatches)
+            {
+                LoadFile(listBox, index);
+            }
+        }
+
+        private void LoadFile(ListBox listBox, int index)
+        {
+            var rootPath = Settings.Default.ApexDirectory;
+            var targetTextBox = ApexTextBox;
+            if (listBox == CSharpFilesBox)
+            {
+                rootPath = Settings.Default.CSharpDirectory;
+                targetTextBox = CSharpTextBox;
+            }
+
+            var item = listBox.Items[index] as string;
+            var fileName = Path.Combine(rootPath, item);
+            targetTextBox.Text = File.ReadAllText(fileName);
         }
     }
 }
