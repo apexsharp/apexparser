@@ -108,5 +108,37 @@ namespace Playground
                 File.WriteAllText(SaveFileDialog.FileName, RightBox.Text);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+            SetupForm setup = new SetupForm(this);
+            setup.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // Save the file that is currently displayed
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            // Save all the files that are currently selected
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Save the file that is currently displayed
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Save all the files that are currently selected
+        }
     }
 }
