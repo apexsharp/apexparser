@@ -146,6 +146,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ApexDirectoryTextBox);
             this.Controls.Add(this.ApplyButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SetupForm";
             this.Text = "SetupForm";
