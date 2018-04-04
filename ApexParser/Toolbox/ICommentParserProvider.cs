@@ -9,6 +9,6 @@ namespace ApexParser.Toolbox
 {
     public interface ICommentParserProvider
     {
-        Parser<string> Comment { get; }
+        IComment CommentParser { get; }
     }
 }

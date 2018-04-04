@@ -26,148 +26,6 @@ namespace ApexParser.Toolbox
             throw new ParseExceptionCustom(message, lineNumber, lines);
         }
 
-        private class SourceSpan<T> : ISourceSpan<T>
-        {
-            public T Value { get; set; }
-            public Position Start { get; set; }
-            public Position End { get; set; }
-            public int Length { get; set; }
-        }
-
-        /// <summary>
-        /// Constructs a parser that returns the <see cref="ISourceSpan{T}"/> of the parsed value.
-        /// </summary>
-        /// <typeparam name="T">The result type of the given parser</typeparam>
-        /// <param name="parser">The parser to wrap</param>
-        /// <returns>A parser for the source span of the given parser.</returns>
-        public static Parser<ISourceSpan<T>> Span<T>(this Parser<T> parser)
-        {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
-
-            return i =>
-            {
-                var r = parser(i);
-                if (r.WasSuccessful)
-                {
-                    var span = new SourceSpan<T>
-                    {
-                        Value = r.Value,
-                        Start = Position.FromInput(i),
-                        End = Position.FromInput(r.Remainder),
-                        Length = r.Remainder.Position - i.Position,
-                    };
-
-                    return Result.Success(span, r.Remainder);
-                }
-
-                return Result.Failure<ISourceSpan<T>>(r.Remainder, r.Message, r.Expectations);
-            };
-        }
-
-        internal abstract class AbstractOption<T> : IOption<T>
-        {
-            public abstract bool IsEmpty { get; }
-            public bool IsDefined => !IsEmpty;
-            public T GetOrDefault() => IsEmpty ? default(T) : Get();
-            public abstract T Get();
-        }
-
-        internal sealed class Some<T> : AbstractOption<T>
-        {
-            public Some(T value) => Value = value;
-            private T Value { get; }
-            public override bool IsEmpty => false;
-            public override T Get() => Value;
-        }
-
-        internal sealed class None<T> : AbstractOption<T>
-        {
-            public override bool IsEmpty => true;
-            public override T Get() => throw new InvalidOperationException("Cannot get value from None.");
-        }
-
-        /// <summary>
-        /// Constructs a parser that will succeed if the given parser succeeds,
-        /// but won't consume any input. It's like a positive look-ahead in regex.
-        /// </summary>
-        /// <typeparam name="T">The result type of the given parser</typeparam>
-        /// <param name="parser">The parser to wrap</param>
-        /// <returns>A non-consuming version of the given parser.</returns>
-        public static Parser<IOption<T>> Preview<T>(this Parser<T> parser)
-        {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
-
-            return i =>
-            {
-                var result = parser(i);
-                if (result.WasSuccessful)
-                {
-                    return Result.Success(new Some<T>(result.Value), i);
-                }
-
-                return Result.Success(new None<T>(), i);
-            };
-        }
-
-        /// <summary>
-        /// Constructs the eXclusive version of the Optional{T} parser.
-        /// https://nblumhardt.com/2015/11/aggregate-queries-in-seq-part-3-an-opportunistic-parser/
-        /// </summary>
-        /// <typeparam name="T">The result type of the given parser</typeparam>
-        /// <param name="parser">The parser to wrap</param>
-        /// <returns>An eXclusive optional version of the given parser.</returns>
-        /// <seealso cref="XOr"/>
-        public static Parser<IOption<T>> XOptional<T>(this Parser<T> parser)
-        {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
-
-            return i =>
-            {
-                var result = parser(i);
-                if (result.WasSuccessful)
-                {
-                    return Result.Success(new Some<T>(result.Value), result.Remainder);
-                }
-
-                if (result.Remainder.Equals(i))
-                {
-                    return Result.Success(new None<T>(), i);
-                }
-
-                return Result.Failure<IOption<T>>(result.Remainder, result.Message, result.Expectations);
-            };
-        }
-
-        private class CommentedValue<T> : ICommented<T>
-        {
-            public CommentedValue(T value)
-            {
-                LeadingComments = TrailingComments = EmptyList;
-                Value = value;
-            }
-
-            public CommentedValue(IEnumerable<string> leading, T value, IEnumerable<string> trailing)
-            {
-                LeadingComments = leading ?? EmptyList;
-                Value = value;
-                TrailingComments = trailing ?? EmptyList;
-            }
-
-            public T Value { get; }
-            public IEnumerable<string> LeadingComments { get; }
-            public IEnumerable<string> TrailingComments { get; }
-            private static readonly string[] EmptyList = new string[0];
-        }
-
         /// <summary>
         /// Constructs a parser that consumes a whitespace and all comments
         /// parsed by the provider.Comment parser.
@@ -176,28 +34,18 @@ namespace ApexParser.Toolbox
         /// <param name="parser">The parser to wrap</param>
         /// <param name="provider">The provider for the Comment parser</param>
         /// <returns>An extended Token() version of the given parser.</returns>
-        public static Parser<ICommented<T>> Token<T>(this Parser<T> parser, ICommentParserProvider provider)
+        public static Parser<T> Token<T>(this Parser<T> parser, ICommentParserProvider provider)
         {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
+            // if comment provider is not specified, act like normal Token()
+            var trailingCommentParser =
+                provider?.CommentParser?.AnyComment?.Token() ??
+                Parse.WhiteSpace.Many().Text();
 
-            // the grammar has no support for comments, use the original Token combinator
-            if (provider == null)
-            {
-                return
-                    from p in parser.Token()
-                    select new CommentedValue<T>(p);
-            }
-
-            // add leading and trailing comments to the parser
+            // parse the value and as many trailing comments as possible
             return
-                from whiteSpace in Parse.WhiteSpace.Many()
-                from leadingComments in provider.Comment.Token().Many()
-                from value in parser
-                from trailingComments in provider.Comment.Token().Many()
-                select new CommentedValue<T>(leadingComments, value, trailingComments);
+                from value in parser.Commented(provider).Token()
+                from comment in trailingCommentParser.Many()
+                select value.Value;
         }
 
         /// <summary>
@@ -211,41 +59,7 @@ namespace ApexParser.Toolbox
         /// <returns>An extended Token() version of the given parser.</returns>
         public static Parser<ICommented<T>> Commented<T>(this Parser<T> parser, ICommentParserProvider provider)
         {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
-
-            if (provider == null)
-            {
-                // if the grammar has no support for comments, use the original Token combinator
-                throw new ArgumentNullException(nameof(provider));
-            }
-
-            // parses any whitespace except for the new lines
-            var whiteSpaceExceptForNewLine = Parse.WhiteSpace.Except(Parse.Chars("\r\n")).Many().Text();
-
-            // single comment span followed by a whitespace
-            var commentSpan =
-                from cs in provider.Comment.Span()
-                from ws in whiteSpaceExceptForNewLine
-                select cs;
-
-            // returns true if the second span starts on the first span's last line
-            bool IsSameLine(ISourceSpan<T> first, ISourceSpan<string> second) =>
-               first.End.Line == second.Start.Line;
-
-            // add leading and trailing comments to the parser
-            return
-                from leadingWhiteSpace in Parse.WhiteSpace.Many()
-                from leadingComments in provider.Comment.Token().Many()
-                from valueSpan in parser.Span()
-                from trailingWhiteSpace in whiteSpaceExceptForNewLine
-                from trailingPreview in commentSpan.Many().Preview()
-                let trailingCount = trailingPreview.GetOrDefault().EmptyIfNull()
-                    .Where(c => IsSameLine(valueSpan, c)).Count()
-                from trailingComments in commentSpan.Repeat(trailingCount)
-                select new CommentedValue<T>(leadingComments, valueSpan.Value, trailingComments.Select(c => c.Value));
+            return parser.Commented(provider?.CommentParser);
         }
     }
 }

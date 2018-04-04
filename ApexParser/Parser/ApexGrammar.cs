@@ -26,10 +26,7 @@ namespace ApexParser.Parser
                 .Named("QualifiedIdentifier");
 
         // examples: /* default settings are OK */ //
-        protected internal virtual CommentParser CommentParser { get; } = new CommentParser();
-
-        // used by the Token(this) modifier
-        Parser<string> ICommentParserProvider.Comment => CommentParser.AnyComment;
+        public IComment CommentParser { get; } = new CommentParser();
 
         // example: @isTest, returned as IsTest
         protected internal virtual Parser<AnnotationSyntax> Annotation =>
@@ -39,7 +36,7 @@ namespace ApexParser.Parser
             select new AnnotationSyntax
             {
                 Identifier = name,
-                Parameters = parameters.Value.GetOrDefault(),
+                Parameters = parameters.GetOrDefault(),
             };
 
         // returns the keyword normalized to its canonic representation

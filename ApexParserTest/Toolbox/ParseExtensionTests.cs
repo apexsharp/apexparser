@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ApexParser.MetaClass;
 using ApexParser.Parser;
 using ApexParser.Toolbox;
@@ -37,8 +34,8 @@ namespace ApexParserTest.Toolbox
         }
 
         private readonly Parser<string> Identifier1 =
-            from id in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).Token(null)
-            select id.Value;
+            from id in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).Token(null).End()
+            select id;
 
         [Test]
         public void ForStaticParserTokenNullModifierWorksLikeOrdinaryToken()
@@ -47,13 +44,11 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual("hello123", result);
         }
 
-        private CommentParser CommentParser { get; } = new CommentParser();
-
-        public Parser<string> Comment => CommentParser.AnyComment;
+        public IComment CommentParser { get; } = new CommentParser();
 
         private Parser<string> Identifier2 =>
-            from id in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).Token(this)
-            select id.Value;
+            from id in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).Token(this).End()
+            select id;
 
         [Test]
         public void ForParserOwnedByICommentParserProviderTokenThisStripsOutComments()
@@ -113,8 +108,8 @@ namespace ApexParserTest.Toolbox
         }
 
         private Parser<BreakStatementSyntax> BreakStatement2 =>
-            from @break in Parse.IgnoreCase(ApexKeywords.Break).Token(this)
-            from semicolon in Parse.Char(';').Token(this)
+            from @break in Parse.IgnoreCase(ApexKeywords.Break).Commented(this)
+            from semicolon in Parse.Char(';').Commented(this)
             select new BreakStatementSyntax
             {
                 LeadingComments = @break.LeadingComments.ToList(),
@@ -122,7 +117,7 @@ namespace ApexParserTest.Toolbox
             };
 
         [Test]
-        public void TokenThisModifierAllowsSavingCommentsAsNeeded()
+        public void CommentedThisModifierAllowsSavingCommentsAsNeeded()
         {
             // whitespace only
             var @break = BreakStatement2.Parse("    \t break;   \t\r\n  ");
@@ -158,9 +153,9 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual("a comment after the semicolon", @break.TrailingComments[0].Trim());
         }
 
-        private Parser<ISourceSpan<string>> IdentifierSpan =>
+        private Parser<ITextSpan<string>> IdentifierSpan =>
             from id in Parse.Identifier(Parse.Letter, Parse.LetterOrDigit).Span().Token(this)
-            select id.Value;
+            select id;
 
         [Test]
         public void SourceSpanOfIdentifierReturnsProperValues()
