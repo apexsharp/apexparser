@@ -49,6 +49,7 @@ namespace Playground
         {
             Settings.Default.ApexDirectory = ApexDirectoryTextBox.Text;
             Settings.Default.CSharpDirectory = CSharpDirectoryTextBox.Text;
+            Settings.Default.CSharpNamespace = CSharpNamespaceTextBox.Text;
             Settings.Default.Save();
 
             // close the form
