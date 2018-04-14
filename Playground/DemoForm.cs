@@ -227,10 +227,10 @@ namespace Playground
             });
         }
 
-        private void ListFilesBox_MouseClick(object sender, MouseEventArgs mouseArgs)
+        private void ListBox_SelectedValueChanged(object sender, EventArgs e)
         {
             var listBox = sender as ListBox;
-            int index = listBox.IndexFromPoint(mouseArgs.Location);
+            int index = listBox.SelectedIndex;
             if (index != ListBox.NoMatches)
             {
                 SelectFile(listBox, index);

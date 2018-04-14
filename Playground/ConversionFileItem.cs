@@ -75,6 +75,7 @@ namespace Playground
             var fileName = Path.Combine(Directory, FileName);
             File.WriteAllText(fileName, CurrentText);
             OriginalText = CurrentText;
+            IsNew = false;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OriginalText)));
         }
     }
