@@ -47,7 +47,11 @@ namespace Playground
 
             // display the files in the list boxes
             ApexFilesBox.DataSource = ConversionProject.ApexFiles;
+            ApexFilesBox.DataBindings.Clear();
+            ApexFilesBox.DataBindings.Add(new Binding(nameof(ApexFilesBox.SelectedItem), ConversionProject, nameof(ConversionProject.CurrentApexFile)));
             CSharpFilesBox.DataSource = ConversionProject.CSharpFiles;
+            CSharpFilesBox.DataBindings.Clear();
+            CSharpFilesBox.DataBindings.Add(new Binding(nameof(CSharpFilesBox.SelectedItem), ConversionProject, nameof(ConversionProject.CurrentCSharpFile)));
 
             // refresh the UI
             ApexLabel.Text = "Apex";
@@ -157,16 +161,30 @@ namespace Playground
             }
         }
 
-        private void SaveLeftButton_Click(object sender, EventArgs e)
+        private void SaveApexFileButton_Click(object sender, EventArgs e)
         {
+            if (ConversionProject.CurrentApexFile != null)
+            {
+                ConversionProject.CurrentApexFile.Save();
+                return;
+            }
+
+            // file not selected, Save as
             if (SaveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 File.WriteAllText(SaveFileDialog.FileName, ApexTextBox.Text);
             }
         }
 
-        private void SaveRightButton_Click(object sender, EventArgs e)
+        private void SaveCSharpFileButton_Click(object sender, EventArgs e)
         {
+            if (ConversionProject.CurrentCSharpFile != null)
+            {
+                ConversionProject.CurrentCSharpFile.Save();
+                return;
+            }
+
+            // file not selected, Save as
             if (SaveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 File.WriteAllText(SaveFileDialog.FileName, CSharpTextBox.Text);
@@ -256,6 +274,25 @@ namespace Playground
 
             ConversionProject.SetCurrentFileItem(item);
             targetTextBox.Text = item.CurrentText;
+
+            SaveApexFileButton.Text = "Save " + ConversionProject.CurrentApexFile.FileName;
+            SaveCSharpFileButton.Text = "Save " + ConversionProject.CurrentCSharpFile.FileName;
+        }
+
+        private void SaveAllApexFilesButton_Click(object sender, EventArgs e)
+        {
+            foreach (var file in ConversionProject.ApexFiles.Where(f => f.IsNew || f.IsModified))
+            {
+                file.Save();
+            }
+        }
+
+        private void SaveAllCSharpFilesButton_Click(object sender, EventArgs e)
+        {
+            foreach (var file in ConversionProject.CSharpFiles.Where(f => f.IsNew || f.IsModified))
+            {
+                file.Save();
+            }
         }
     }
 }

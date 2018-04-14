@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Playground
 {
-    public class ConversionProject
+    public class ConversionProject : INotifyPropertyChanged
     {
         public string ApexDirectoryName { get; set; }
 
@@ -22,17 +22,30 @@ namespace Playground
 
         public ConversionFileItem CurrentCSharpFile { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(params string[] properties)
+        {
+            foreach (var prop in properties)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
         public void SetCurrentFileItem(ConversionFileItem item)
         {
             if (item.IsApex)
             {
                 CurrentApexFile = item;
                 CurrentCSharpFile = FindOrCreateMatchingItem(item);
-                return;
+            }
+            else
+            {
+                CurrentCSharpFile = item;
+                CurrentApexFile = FindOrCreateMatchingItem(item);
             }
 
-            CurrentCSharpFile = item;
-            CurrentApexFile = FindOrCreateMatchingItem(item);
+            NotifyPropertyChanged(nameof(CurrentApexFile), nameof(CurrentCSharpFile));
         }
 
         private ConversionFileItem FindOrCreateMatchingItem(ConversionFileItem item)
@@ -54,6 +67,10 @@ namespace Playground
                 };
 
                 otherList.Add(matchingItem);
+            }
+            else if (!matchingItem.IsLoaded && !matchingItem.IsNew)
+            {
+                matchingItem.Load();
             }
 
             return matchingItem;

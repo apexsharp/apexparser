@@ -158,6 +158,7 @@
             this.ApexTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ApexTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ApexTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ApexTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ApexTextBox.IsReplaceMode = false;
             this.ApexTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.ApexTextBox.LeftBracket = '(';
@@ -205,16 +206,17 @@
             // 
             // SaveApexFileButton
             // 
+            this.SaveApexFileButton.AutoSize = true;
             this.SaveApexFileButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.SaveApexFileButton.Location = new System.Drawing.Point(363, 4);
             this.SaveApexFileButton.Margin = new System.Windows.Forms.Padding(2);
-            this.SaveApexFileButton.MaximumSize = new System.Drawing.Size(120, 30);
+            this.SaveApexFileButton.MaximumSize = new System.Drawing.Size(420, 30);
             this.SaveApexFileButton.Name = "SaveApexFileButton";
             this.SaveApexFileButton.Size = new System.Drawing.Size(120, 30);
             this.SaveApexFileButton.TabIndex = 8;
             this.SaveApexFileButton.Text = "Save Apex File";
             this.SaveApexFileButton.UseVisualStyleBackColor = true;
-            this.SaveApexFileButton.Click += new System.EventHandler(this.SaveLeftButton_Click);
+            this.SaveApexFileButton.Click += new System.EventHandler(this.SaveApexFileButton_Click);
             // 
             // SaveAllApexFilesButton
             // 
@@ -227,6 +229,7 @@
             this.SaveAllApexFilesButton.TabIndex = 8;
             this.SaveAllApexFilesButton.Text = "Save All Apex Files";
             this.SaveAllApexFilesButton.UseVisualStyleBackColor = true;
+            this.SaveAllApexFilesButton.Click += new System.EventHandler(this.SaveAllApexFilesButton_Click);
             // 
             // CSharpSplitContainer
             // 
@@ -285,6 +288,7 @@
             this.CSharpTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.CSharpTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.CSharpTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CSharpTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.CSharpTextBox.IsReplaceMode = false;
             this.CSharpTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.CSharpTextBox.LeftBracket = '(';
@@ -317,16 +321,17 @@
             // 
             // SaveCSharpFileButton
             // 
+            this.SaveCSharpFileButton.AutoSize = true;
             this.SaveCSharpFileButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SaveCSharpFileButton.Location = new System.Drawing.Point(330, 4);
+            this.SaveCSharpFileButton.Location = new System.Drawing.Point(333, 4);
             this.SaveCSharpFileButton.Margin = new System.Windows.Forms.Padding(2);
-            this.SaveCSharpFileButton.MaximumSize = new System.Drawing.Size(120, 30);
+            this.SaveCSharpFileButton.MaximumSize = new System.Drawing.Size(420, 30);
             this.SaveCSharpFileButton.Name = "SaveCSharpFileButton";
-            this.SaveCSharpFileButton.Size = new System.Drawing.Size(120, 30);
+            this.SaveCSharpFileButton.Size = new System.Drawing.Size(117, 30);
             this.SaveCSharpFileButton.TabIndex = 8;
             this.SaveCSharpFileButton.Text = "Save C# File";
             this.SaveCSharpFileButton.UseVisualStyleBackColor = true;
-            this.SaveCSharpFileButton.Click += new System.EventHandler(this.SaveRightButton_Click);
+            this.SaveCSharpFileButton.Click += new System.EventHandler(this.SaveCSharpFileButton_Click);
             // 
             // SaveAllCSharpFilesButton
             // 
@@ -339,6 +344,7 @@
             this.SaveAllCSharpFilesButton.TabIndex = 8;
             this.SaveAllCSharpFilesButton.Text = "Save All C# Files";
             this.SaveAllCSharpFilesButton.UseVisualStyleBackColor = true;
+            this.SaveAllCSharpFilesButton.Click += new System.EventHandler(this.SaveAllCSharpFilesButton_Click);
             // 
             // CSharpLabel
             // 
@@ -396,7 +402,7 @@
             this.SaveCurrentApexFileToolStripMenuItem.Name = "SaveCurrentApexFileToolStripMenuItem";
             this.SaveCurrentApexFileToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.SaveCurrentApexFileToolStripMenuItem.Text = "Save current Apex file";
-            this.SaveCurrentApexFileToolStripMenuItem.Click += new System.EventHandler(this.SaveLeftButton_Click);
+            this.SaveCurrentApexFileToolStripMenuItem.Click += new System.EventHandler(this.SaveApexFileButton_Click);
             // 
             // SaveAllApexFilesToolStripMenuItem
             // 
@@ -414,7 +420,7 @@
             this.SaveCurrentCSharpFileToolStripMenuItem.Name = "SaveCurrentCSharpFileToolStripMenuItem";
             this.SaveCurrentCSharpFileToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.SaveCurrentCSharpFileToolStripMenuItem.Text = "Save current C# file";
-            this.SaveCurrentCSharpFileToolStripMenuItem.Click += new System.EventHandler(this.SaveRightButton_Click);
+            this.SaveCurrentCSharpFileToolStripMenuItem.Click += new System.EventHandler(this.SaveCSharpFileButton_Click);
             // 
             // SaveAllCSharpFilesToolStripMenuItem
             // 
@@ -480,12 +486,14 @@
             this.ApexSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ApexTextBox)).EndInit();
             this.LeftButtonPanel.ResumeLayout(false);
+            this.LeftButtonPanel.PerformLayout();
             this.CSharpSplitContainer.Panel1.ResumeLayout(false);
             this.CSharpSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CSharpSplitContainer)).EndInit();
             this.CSharpSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CSharpTextBox)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.MainPanel.ResumeLayout(false);

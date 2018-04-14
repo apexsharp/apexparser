@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Playground
 {
-    public class ConversionFileItem
+    public class ConversionFileItem : INotifyPropertyChanged
     {
         public string Directory { get; set; }
 
@@ -30,12 +31,12 @@ namespace Playground
                 if (currentText != value)
                 {
                     currentText = value;
-                    CurrentTextChanged?.Invoke(this, EventArgs.Empty);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentText)));
                 }
             }
         }
 
-        public event EventHandler CurrentTextChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool IsNew { get; set; }
 
@@ -43,25 +44,38 @@ namespace Playground
 
         public bool IsLoaded => OriginalText != null;
 
-        public override string ToString()
-        {
-            var result = FileName;
-            if (IsNew)
-            {
-                result += " (new)";
-            }
-            else if (IsModified)
-            {
-                result += " (*)";
-            }
+        public override string ToString() => DisplayText;
 
-            return result;
+        public string DisplayText
+        {
+            get
+            {
+                var result = FileName;
+                if (IsNew)
+                {
+                    result += " (new)";
+                }
+                else if (IsModified)
+                {
+                    result += " (*)";
+                }
+
+                return result;
+            }
         }
 
         public void Load()
         {
             var fileName = Path.Combine(Directory, FileName);
             CurrentText = OriginalText = File.ReadAllText(fileName);
+        }
+
+        public void Save()
+        {
+            var fileName = Path.Combine(Directory, FileName);
+            File.WriteAllText(fileName, CurrentText);
+            OriginalText = CurrentText;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OriginalText)));
         }
     }
 }
