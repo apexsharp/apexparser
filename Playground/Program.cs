@@ -17,13 +17,7 @@ namespace Playground
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            var mainForm = new DemoForm();
-
-
-            Application.Run(mainForm);
-
-            
+            Application.Run(new DemoForm());
         }
     }
 }

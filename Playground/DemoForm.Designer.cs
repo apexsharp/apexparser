@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DemoForm));
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.ApexSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -130,8 +129,9 @@
             this.ApexFilesBox.Name = "ApexFilesBox";
             this.ApexFilesBox.Size = new System.Drawing.Size(170, 542);
             this.ApexFilesBox.TabIndex = 1;
+            this.ApexFilesBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseClick);
             this.ApexFilesBox.Enter += new System.EventHandler(this.LeftBox_Enter);
-            this.ApexFilesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseDoubleClick);
+            this.ApexFilesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseClick);
             // 
             // ApexTextBox
             // 
@@ -173,7 +173,8 @@
             this.ApexTextBox.TabIndex = 2;
             this.ApexTextBox.Text = resources.GetString("ApexTextBox.Text");
             this.ApexTextBox.Zoom = 100;
-            this.ApexTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.LeftBox_TextChangedDelayed);
+            this.ApexTextBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.ApexTextBox_TextChanged);
+            this.ApexTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.ApexTextBox_TextChangedDelayed);
             this.ApexTextBox.Enter += new System.EventHandler(this.LeftBox_Enter);
             // 
             // ApexLabel
@@ -255,8 +256,9 @@
             this.CSharpFilesBox.Name = "CSharpFilesBox";
             this.CSharpFilesBox.Size = new System.Drawing.Size(157, 542);
             this.CSharpFilesBox.TabIndex = 0;
+            this.CSharpFilesBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseClick);
             this.CSharpFilesBox.Enter += new System.EventHandler(this.RightBox_Enter);
-            this.CSharpFilesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseDoubleClick);
+            this.CSharpFilesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseClick);
             // 
             // CSharpTextBox
             // 
@@ -298,7 +300,8 @@
             this.CSharpTextBox.TabIndex = 1;
             this.CSharpTextBox.Text = resources.GetString("CSharpTextBox.Text");
             this.CSharpTextBox.Zoom = 100;
-            this.CSharpTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.RightBox_TextChangedDelayed);
+            this.CSharpTextBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.CSharpTextBox_TextChanged);
+            this.CSharpTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.CSharpTextBox_TextChangedDelayed);
             this.CSharpTextBox.Enter += new System.EventHandler(this.RightBox_Enter);
             // 
             // panel1

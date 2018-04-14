@@ -22,18 +22,34 @@ namespace Playground
             InitializeComponent();
 
             // convert the code
-            ApexTextBox.Text = ApexTextBox.Text;
+            // ApexTextBox.Text = ApexTextBox.Text;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
-            LoadFiles();
+            InitConversionProject();
         }
 
-        private void LoadFiles()
+        private ConversionProject ConversionProject { get; set; }
+
+        private void InitConversionProject()
         {
+            // recreate the conversion project
+            ConversionProject = new ConversionProject
+            {
+                ApexDirectoryName = Settings.Default.ApexDirectory,
+                CSharpDirectoryName = Settings.Default.CSharpDirectory
+            };
+
+            ConversionProject.LoadFiles();
+
+            // display the files in the list boxes
+            ApexFilesBox.DataSource = ConversionProject.ApexFiles;
+            CSharpFilesBox.DataSource = ConversionProject.CSharpFiles;
+
+            // refresh the UI
             ApexLabel.Text = "Apex";
             ApexLabel.LinkArea = new LinkArea(0, 0);
             if (!string.IsNullOrWhiteSpace(Settings.Default.ApexDirectory))
@@ -50,31 +66,6 @@ namespace Playground
                 var position = CSharpLabel.Text.Length + 3;
                 CSharpLabel.Text += " — " + Settings.Default.CSharpDirectory;
                 CSharpLabel.LinkArea = new LinkArea(position, Settings.Default.CSharpDirectory.Length);
-            }
-
-            LoadFiles(ApexFilesBox, Settings.Default.ApexDirectory, "*.cls");
-            LoadFiles(CSharpFilesBox, Settings.Default.CSharpDirectory, "*.cs");
-        }
-
-        private void LoadFiles(ListBox listBox, string path, string mask)
-        {
-            listBox.Items.Clear();
-
-            try
-            {
-                var files =
-                    from file in Directory.GetFiles(path, mask)
-                    select Path.GetFileName(file);
-
-                listBox.Items.AddRange(files.ToArray());
-            }
-            catch (ArgumentException)
-            {
-                // empty path?
-            }
-            catch (DirectoryNotFoundException)
-            {
-                // bad path?
             }
         }
 
@@ -122,7 +113,15 @@ namespace Playground
             }
         }
 
-        private void LeftBox_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        private void ApexTextBox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        {
+            if (ConversionProject?.CurrentApexFile != null)
+            {
+                ConversionProject.CurrentApexFile.CurrentText = ApexTextBox.Text;
+            }
+        }
+
+        private void ApexTextBox_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
             if (!ConvertLeftToRight)
             {
@@ -136,7 +135,15 @@ namespace Playground
             }
         }
 
-        private void RightBox_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        private void CSharpTextBox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        {
+            if (ConversionProject?.CurrentCSharpFile != null)
+            {
+                ConversionProject.CurrentCSharpFile.CurrentText = CSharpTextBox.Text;
+            }
+        }
+
+        private void CSharpTextBox_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
             if (!ConvertRightToLeft)
             {
@@ -171,7 +178,7 @@ namespace Playground
             SetupForm setup = new SetupForm();
             if (setup.ShowDialog() == DialogResult.OK)
             {
-                LoadFiles();
+                InitConversionProject();
             }
         }
 
@@ -223,29 +230,32 @@ namespace Playground
             });
         }
 
-        private void ListFilesBox_MouseDoubleClick(object sender, MouseEventArgs mouseArgs)
+        private void ListFilesBox_MouseClick(object sender, MouseEventArgs mouseArgs)
         {
             var listBox = sender as ListBox;
             int index = listBox.IndexFromPoint(mouseArgs.Location);
             if (index != ListBox.NoMatches)
             {
-                LoadFile(listBox, index);
+                SelectFile(listBox, index);
             }
         }
 
-        private void LoadFile(ListBox listBox, int index)
+        private void SelectFile(ListBox listBox, int index)
         {
-            var rootPath = Settings.Default.ApexDirectory;
             var targetTextBox = ApexTextBox;
             if (listBox == CSharpFilesBox)
             {
-                rootPath = Settings.Default.CSharpDirectory;
                 targetTextBox = CSharpTextBox;
             }
 
-            var item = listBox.Items[index] as string;
-            var fileName = Path.Combine(rootPath, item);
-            targetTextBox.Text = File.ReadAllText(fileName);
+            var item = listBox.Items[index] as ConversionFileItem;
+            if (!item.IsNew && !item.IsLoaded)
+            {
+                item.Load();
+            }
+
+            ConversionProject.SetCurrentFileItem(item);
+            targetTextBox.Text = item.CurrentText;
         }
     }
 }
