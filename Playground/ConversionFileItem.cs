@@ -57,7 +57,7 @@ namespace Playground
                 }
                 else if (IsModified)
                 {
-                    result += " (*)";
+                    result += " (changed)";
                 }
 
                 return result;

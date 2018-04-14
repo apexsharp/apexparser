@@ -130,6 +130,7 @@
             this.ApexFilesBox.Size = new System.Drawing.Size(170, 542);
             this.ApexFilesBox.TabIndex = 1;
             this.ApexFilesBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseClick);
+            this.ApexFilesBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ApexFilesBox_DrawItem);
             this.ApexFilesBox.Enter += new System.EventHandler(this.LeftBox_Enter);
             this.ApexFilesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListFilesBox_MouseClick);
             // 
@@ -149,7 +150,7 @@
             this.ApexTextBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
     "?<range>:)\\s*(?<range>[^;]+);\n";
             this.ApexTextBox.AutoIndentExistingLines = false;
-            this.ApexTextBox.AutoScrollMinSize = new System.Drawing.Size(779, 770);
+            this.ApexTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.ApexTextBox.BackBrush = null;
             this.ApexTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ApexTextBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
@@ -158,7 +159,6 @@
             this.ApexTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ApexTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ApexTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ApexTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ApexTextBox.IsReplaceMode = false;
             this.ApexTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.ApexTextBox.LeftBracket = '(';
@@ -172,7 +172,6 @@
             this.ApexTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ApexTextBox.ServiceColors")));
             this.ApexTextBox.Size = new System.Drawing.Size(310, 542);
             this.ApexTextBox.TabIndex = 2;
-            this.ApexTextBox.Text = resources.GetString("ApexTextBox.Text");
             this.ApexTextBox.Zoom = 100;
             this.ApexTextBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.ApexTextBox_TextChanged);
             this.ApexTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.ApexTextBox_TextChangedDelayed);
@@ -279,7 +278,7 @@
             this.CSharpTextBox.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
     "?<range>:)\\s*(?<range>[^;]+);\n";
             this.CSharpTextBox.AutoIndentExistingLines = false;
-            this.CSharpTextBox.AutoScrollMinSize = new System.Drawing.Size(779, 770);
+            this.CSharpTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.CSharpTextBox.BackBrush = null;
             this.CSharpTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CSharpTextBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
@@ -288,7 +287,6 @@
             this.CSharpTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.CSharpTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.CSharpTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CSharpTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.CSharpTextBox.IsReplaceMode = false;
             this.CSharpTextBox.Language = FastColoredTextBoxNS.Language.CSharp;
             this.CSharpTextBox.LeftBracket = '(';
@@ -302,7 +300,6 @@
             this.CSharpTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("CSharpTextBox.ServiceColors")));
             this.CSharpTextBox.Size = new System.Drawing.Size(290, 542);
             this.CSharpTextBox.TabIndex = 1;
-            this.CSharpTextBox.Text = resources.GetString("CSharpTextBox.Text");
             this.CSharpTextBox.Zoom = 100;
             this.CSharpTextBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.CSharpTextBox_TextChanged);
             this.CSharpTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.CSharpTextBox_TextChangedDelayed);
@@ -409,6 +406,7 @@
             this.SaveAllApexFilesToolStripMenuItem.Name = "SaveAllApexFilesToolStripMenuItem";
             this.SaveAllApexFilesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.SaveAllApexFilesToolStripMenuItem.Text = "Save all Apex files";
+            this.SaveAllApexFilesToolStripMenuItem.Click += new System.EventHandler(this.SaveAllApexFilesButton_Click);
             // 
             // toolStripSeparator1
             // 
@@ -427,6 +425,7 @@
             this.SaveAllCSharpFilesToolStripMenuItem.Name = "SaveAllCSharpFilesToolStripMenuItem";
             this.SaveAllCSharpFilesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.SaveAllCSharpFilesToolStripMenuItem.Text = "Save all C# files";
+            this.SaveAllCSharpFilesToolStripMenuItem.Click += new System.EventHandler(this.SaveAllCSharpFilesButton_Click);
             // 
             // toolStripSeparator2
             // 

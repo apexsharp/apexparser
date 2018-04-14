@@ -20,9 +20,6 @@ namespace Playground
         public DemoForm()
         {
             InitializeComponent();
-
-            // convert the code
-            // ApexTextBox.Text = ApexTextBox.Text;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -75,6 +72,11 @@ namespace Playground
 
         private string ToCSharp(string s)
         {
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return string.Empty;
+            }
+
             try
             {
                 return ApexSharpParser.ConvertApexToCSharp(s, Settings.Default.CSharpNamespace);
@@ -85,7 +87,9 @@ namespace Playground
             }
         }
 
-        private string ToApex(string s) => ApexSharpParser.ToApex(s).FirstOrDefault();
+        private string ToApex(string s) =>
+            string.IsNullOrWhiteSpace(s) ? string.Empty :
+            ApexSharpParser.ToApex(s).FirstOrDefault();
 
         private bool ConvertLeftToRight { get; set; } = true;
 
@@ -200,31 +204,6 @@ namespace Playground
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            // Save the file that is currently displayed
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            // Save all the files that are currently selected
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Save the file that is currently displayed
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            // Save all the files that are currently selected
-        }
-
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
@@ -293,6 +272,19 @@ namespace Playground
             {
                 file.Save();
             }
+        }
+
+        private void ApexFilesBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // we don't use that
+            e.DrawBackground();
+
+            Graphics g = e.Graphics;
+            g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+            ListBox lb = (ListBox)sender;
+            g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Black), new PointF(e.Bounds.X, e.Bounds.Y));
+
+            e.DrawFocusRectangle();
         }
     }
 }
