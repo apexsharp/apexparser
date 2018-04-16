@@ -14,5 +14,8 @@
     <Setting Name="CSharpNamespace" Type="System.String" Scope="User">
       <Value Profile="(Default)">Demo</Value>
     </Setting>
+    <Setting Name="TextEditorFont" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

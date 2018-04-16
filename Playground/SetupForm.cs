@@ -25,6 +25,7 @@ namespace Playground
             ApexDirectoryTextBox.Text = Settings.Default.ApexDirectory;
             CSharpDirectoryTextBox.Text = Settings.Default.CSharpDirectory;
             CSharpNamespaceTextBox.Text = Settings.Default.CSharpNamespace;
+            TextEditorFontTextBox.Text = Settings.Default.TextEditorFont;
         }
 
         private void OpenApexDirectoryButton_Click(object sender, EventArgs e)
@@ -50,10 +51,38 @@ namespace Playground
             Settings.Default.ApexDirectory = ApexDirectoryTextBox.Text;
             Settings.Default.CSharpDirectory = CSharpDirectoryTextBox.Text;
             Settings.Default.CSharpNamespace = CSharpNamespaceTextBox.Text;
+            Settings.Default.TextEditorFont = TextEditorFontTextBox.Text;
             Settings.Default.Save();
 
             // close the form
             DialogResult = DialogResult.OK;
+        }
+
+        private void SelectFontButton_Click(object sender, EventArgs e)
+        {
+            var fontSpec = TextEditorFontTextBox.Text;
+            var font = default(Font);
+            if (!string.IsNullOrWhiteSpace(fontSpec))
+            {
+                try
+                {
+                    font = new FontConverter().ConvertFromString(fontSpec) as Font;
+                }
+                catch
+                {
+                    // invalid font specification
+                }
+            }
+
+            if (font != null)
+            {
+                FontDialog.Font = font;
+            }
+
+            if (FontDialog.ShowDialog() == DialogResult.OK)
+            {
+                TextEditorFontTextBox.Text = new FontConverter().ConvertToString(FontDialog.Font);
+            }
         }
     }
 }

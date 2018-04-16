@@ -20,13 +20,41 @@ namespace Playground
         public DemoForm()
         {
             InitializeComponent();
+            DefaultTextFont = ApexTextBox.Font;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
+            ApplyFontSettings();
             InitConversionProject();
+        }
+
+        private Font DefaultTextFont { get; set; }
+
+        private void ApplyFontSettings()
+        {
+            if (string.IsNullOrWhiteSpace(Settings.Default.TextEditorFont))
+            {
+                ApexTextBox.Font = DefaultTextFont;
+                CSharpTextBox.Font = DefaultTextFont;
+                return;
+            }
+
+            try
+            {
+                var cvt = new FontConverter();
+                var font = cvt.ConvertFromString(Settings.Default.TextEditorFont) as Font;
+                ApexTextBox.Font = font;
+                CSharpTextBox.Font = font;
+            }
+            catch
+            {
+                // invalid font specification or font not found
+                ApexTextBox.Font = DefaultTextFont;
+                CSharpTextBox.Font = DefaultTextFont;
+            }
         }
 
         private ConversionProject ConversionProject { get; set; }
@@ -200,6 +228,7 @@ namespace Playground
             SetupForm setup = new SetupForm();
             if (setup.ShowDialog() == DialogResult.OK)
             {
+                ApplyFontSettings();
                 InitConversionProject();
             }
         }
