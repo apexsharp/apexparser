@@ -48,6 +48,7 @@
         RunAsStatement,
         Statement,
         SuperExpression,
+        SwitchStatement,
         ThisExpression,
         ThrowStatement,
         TryStatement,
@@ -56,6 +57,9 @@
         UpsertStatement,
         VariableDeclaration,
         VariableDeclarator,
+        WhenElseClause,
+        WhenExpressionsClause,
+        WhenTypeClause,
         WhileStatement,
     }
 }

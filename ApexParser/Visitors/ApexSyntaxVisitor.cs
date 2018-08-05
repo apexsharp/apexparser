@@ -102,6 +102,8 @@ namespace ApexParser.Visitors
 
         public virtual void VisitSuperExpression(SuperExpressionSyntax node) => DefaultVisit(node);
 
+        public virtual void VisitSwitchStatement(SwitchStatementSyntax node) => DefaultVisit(node);
+
         public virtual void VisitThisExpression(ThisExpressionSyntax node) => DefaultVisit(node);
 
         public virtual void VisitThrowStatement(ThrowStatementSyntax node) => DefaultVisit(node);
@@ -117,6 +119,12 @@ namespace ApexParser.Visitors
         public virtual void VisitVariableDeclaration(VariableDeclarationSyntax node) => DefaultVisit(node);
 
         public virtual void VisitVariableDeclarator(VariableDeclaratorSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitWhenElseClauseSyntax(WhenElseClauseSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitWhenExpressionsClauseSyntax(WhenExpressionsClauseSyntax node) => DefaultVisit(node);
+
+        public virtual void VisitWhenTypeClauseSyntax(WhenTypeClauseSyntax node) => DefaultVisit(node);
 
         public virtual void VisitWhileStatement(WhileStatementSyntax node) => DefaultVisit(node);
     }
