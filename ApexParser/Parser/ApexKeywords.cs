@@ -143,7 +143,7 @@ namespace ApexParser.Parser
         ////public const string Stat = "stat"; // reserved for future use
         public const string Static = "static";
         public const string Super = "super";
-        ////public const string Switch = "switch"; // reserved for future use
+        public const string Switch = "switch"; // switch on x { when ... }
         ////public const string Synchronized = "synchronized"; // reserved for future use
         ////public const string System = "system"; // hack, see below
         // note: testMethod modifier is written in camel case
@@ -196,6 +196,7 @@ namespace ApexParser.Parser
         public static string Undelete => "undelete"; // System.Database class method
         public static string Update => "update"; // System.Database class method
         public static string Upsert => "upsert"; // System.Database class method
+        public static string When => "when"; // switch on ... when
         public static string With => "with";
         public static string Yesterday => "yesterday"; // can be used as an identifier
 

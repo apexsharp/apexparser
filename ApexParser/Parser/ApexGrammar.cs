@@ -482,6 +482,74 @@ namespace ApexParser.Parser
                 Statement = loopBody,
             };
 
+        // example: switch on x { when 1 { return 0; } when else { return 1; } }
+        protected internal virtual Parser<SwitchStatementSyntax> SwitchStatement =>
+            from switchKeyword in Keyword(ApexKeywords.Switch).Token()
+            from onKeyword in Keyword(ApexKeywords.On).Token()
+            from name in Identifier.Token()
+            from open in Parse.Char('{').Commented(this).Token()
+            from whenCommented in WhenClause.Commented(this).Many()
+            let whenClauses =
+                from w in whenCommented
+                select w.Value
+                    .WithLeadingComments(w.LeadingComments)
+                    .WithTrailingComments(w.TrailingComments)
+            from close in Parse.Char('}').Token()
+            select new SwitchStatementSyntax
+            {
+                WhenClauses = whenClauses.ToList(),
+            };
+
+        // any acceptable when clause
+        protected internal virtual Parser<WhenClauseSyntax> WhenClause =>
+            WhenElseClause.Select(w => w as WhenClauseSyntax)
+            .Or(WhenTypeClause)
+            .Or(WhenExpressionsClause);
+
+        // examples: 1 or 'two' or Identifier
+        protected internal virtual Parser<string> WhenLiteralExpression =>
+            QualifiedIdentifier.Select(qi => string.Join(".", qi))
+                .Or(StringLiteral).Or(Parse.DecimalInvariant).Token();
+
+        // example: 1, 2, 3, 'one', 'two', SUNDAY, MONDAY
+        protected internal virtual Parser<IEnumerable<ExpressionSyntax>> WhenExpressions =>
+            from expr in WhenLiteralExpression.DelimitedBy(Parse.Char(',').Token())
+            select expr.Select(x => new ExpressionSyntax(x));
+
+        // examples: when 1, 2, 3 { ... }
+        protected internal virtual Parser<WhenExpressionsClauseSyntax> WhenExpressionsClause =>
+            from whenKeyword in Keyword(ApexKeywords.When).Token()
+            from expressions in WhenExpressions
+            from block in Block
+            select new WhenExpressionsClauseSyntax
+            {
+                Expressions = expressions.ToList(),
+                Block = block,
+            };
+
+        // examples: when Contract c { ... }
+        protected internal virtual Parser<WhenTypeClauseSyntax> WhenTypeClause =>
+            from whenKeyword in Keyword(ApexKeywords.When).Token()
+            from type in TypeReference
+            from name in Identifier
+            from block in Block
+            select new WhenTypeClauseSyntax
+            {
+                Type = type,
+                Identifier = name,
+                Block = block,
+            };
+
+        // examples: when else { ... }
+        protected internal virtual Parser<WhenElseClauseSyntax> WhenElseClause =>
+            from whenKeyword in Keyword(ApexKeywords.When).Token()
+            from elseKeyword in Keyword(ApexKeywords.Else).Token()
+            from blockStatement in Block
+            select new WhenElseClauseSyntax
+            {
+                Block = blockStatement,
+            };
+
         // examples: return x; insert y; delete z;
         protected internal virtual Parser<string> KeywordExpressionStatement(string keyword) =>
             from key in Keyword(keyword).Token()

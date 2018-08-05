@@ -1937,5 +1937,112 @@ namespace ApexParserTest.Parser
                 Assert.AreEqual(5, ex.LineNumber);
             }
         }
+
+        [Test]
+        public void WhenElseClause()
+        {
+            var stmt = Apex.WhenElseClause.Parse(@"
+                when else {
+                    // hello there
+                    delete x;
+                }");
+
+            Assert.NotNull(stmt);
+            Assert.NotNull(stmt.Block);
+            Assert.AreEqual(1, stmt.Block.Statements.Count);
+        }
+
+        [Test]
+        public void WhenTypeClause()
+        {
+            var stmt = Apex.WhenTypeClause.Parse(@"
+                when Agent x {
+                    insert x;
+                }");
+
+            Assert.NotNull(stmt);
+            Assert.NotNull(stmt.Block);
+            Assert.AreEqual(1, stmt.Block.Statements.Count);
+        }
+
+        [Test]
+        public void WhenLiteralExpression()
+        {
+            Assert.AreEqual("1", Apex.WhenLiteralExpression.Parse("  1 "));
+            Assert.AreEqual("'two'", Apex.WhenLiteralExpression.Parse("  'two' "));
+            Assert.AreEqual("SUNDAY", Apex.WhenLiteralExpression.Parse("  SUNDAY "));
+            Assert.AreEqual("WeekDays.Friday", Apex.WhenLiteralExpression.Parse("  WeekDays . Friday "));
+        }
+
+        [Test]
+        public void WhenExpressionListWithAFewItems()
+        {
+            var exprs = Apex.WhenExpressions.Parse("  1, 'two', 3.0 ");
+            Assert.NotNull(exprs);
+
+            var xl = exprs.ToList();
+            Assert.AreEqual(3, xl.Count);
+            Assert.AreEqual("1", xl[0].ExpressionString);
+            Assert.AreEqual("'two'", xl[1].ExpressionString);
+            Assert.AreEqual("3.0", xl[2].ExpressionString);
+        }
+
+        [Test]
+        public void WhenExpressionsClauseWithSingleExpression()
+        {
+            var stmt = Apex.WhenExpressionsClause.Parse(@"
+                when 0,1,2 {
+                    return null;
+                }");
+
+            Assert.NotNull(stmt);
+            Assert.NotNull(stmt.Block);
+            Assert.AreEqual(1, stmt.Block.Statements.Count);
+        }
+
+        [Test]
+        public void WhenClauses()
+        {
+            // valid samples
+            var samples = new[]
+            {
+                " when 1 {} ", " when else {} ", " when Account c {} "
+            };
+
+            foreach (var s in samples)
+            {
+                var stmt = Apex.WhenClause.Parse(s);
+                Assert.NotNull(stmt);
+                Assert.NotNull(stmt.Block);
+                Assert.AreEqual(0, stmt.Block.Statements.Count);
+            }
+
+            // invalid samples
+            Assert.Throws<ParseException>(() => Apex.WhenClause.Parse(" when else else {} "));
+            Assert.Throws<ParseException>(() => Apex.WhenClause.Parse(" when one two three {} "));
+            Assert.Throws<ParseException>(() => Apex.WhenClause.Parse(" when 1+2+3 {} "));
+            Assert.Throws<ParseException>(() => Apex.WhenClause.Parse(" when {} "));
+        }
+
+        [Test]
+        public void SwitchStatement()
+        {
+            var stmt = Apex.SwitchStatement.Parse(@"
+                switch on x {
+                    when 0,1,2 {
+                        return 'a few'; // 123
+                    }
+                    when string s {
+                        return s;
+                    }
+                    when else {
+                        return; // 123
+                    }
+                }");
+
+            Assert.NotNull(stmt);
+            Assert.NotNull(stmt.WhenClauses);
+            Assert.AreEqual(3, stmt.WhenClauses.Count);
+        }
     }
 }
