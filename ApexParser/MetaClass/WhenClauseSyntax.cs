@@ -9,8 +9,8 @@ namespace ApexParser.MetaClass
 {
     public abstract class WhenClauseSyntax : StatementSyntax
     {
-        public override IEnumerable<BaseSyntax> ChildNodes => GetNodes(Statement);
+        public override IEnumerable<BaseSyntax> ChildNodes => GetNodes(Block);
 
-        public StatementSyntax Statement { get; set; }
+        public BlockSyntax Block { get; set; }
     }
 }

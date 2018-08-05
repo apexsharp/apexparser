@@ -15,7 +15,7 @@ namespace ApexParser.MetaClass
         public override void Accept(ApexSyntaxVisitor visitor) => visitor.VisitWhenExpressionsClauseSyntax(this);
 
         public override IEnumerable<BaseSyntax> ChildNodes =>
-            Expressions.EmptyIfNull().Where(n => n != null).Concat(GetNodes(Statement));
+            Expressions.EmptyIfNull().Where(n => n != null).Concat(GetNodes(Block));
 
         // note: Apex only allows literals here
         public List<ExpressionSyntax> Expressions { get; set; }
