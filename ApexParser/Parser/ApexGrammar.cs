@@ -369,20 +369,29 @@ namespace ApexParser.Parser
             GenericExpressionCore(forbidden: ",;").Select(x => x.Trim());
 
         // creates dummy generic parser for expressions with matching braces allowing commas and semicolons by default
-        protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null) =>
-            from subExpressions in
-                GenericNewExpression.Select(x => $" {x}")
+        protected internal virtual Parser<string> GenericExpressionCore(string forbidden = null, bool allowCurlyBraces = true)
+        {
+            var subExpressionParser = GenericNewExpression.Select(x => $" {x}")
                 .Or(Parse.CharExcept("'/(){}[]" + forbidden).Except(GenericNewExpression).Many().Text().Token())
                 .Or(Parse.Char('/').Then(_ => Parse.Not(Parse.Chars('/', '*'))).Once().Return("/"))
                 .Or(CommentParser.AnyComment.Return(string.Empty))
                 .Or(StringLiteral)
                 .Or(GenericExpressionInBraces('(', ')').Select(x => $"({x})"))
-                .Or(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"))
-                .Or(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]"))
-                .Many()
-            let expr = string.Join(string.Empty, subExpressions)
-            where !string.IsNullOrWhiteSpace(expr)
-            select expr;
+                .Or(GenericExpressionInBraces('[', ']').Select(x => $"[{x}]"));
+
+            // optionally include support for curly braces
+            if (allowCurlyBraces)
+            {
+                subExpressionParser = subExpressionParser
+                    .Or(GenericExpressionInBraces('{', '}').Select(x => $"{{{x}}}"));
+            }
+
+            return
+                from subExpressions in subExpressionParser.Many()
+                let expr = string.Join(string.Empty, subExpressions)
+                where !string.IsNullOrWhiteSpace(expr)
+                select expr;
+        }
 
         // examples: new Map<string, string>
         protected internal virtual Parser<string> GenericNewExpression =>
@@ -486,7 +495,7 @@ namespace ApexParser.Parser
         protected internal virtual Parser<SwitchStatementSyntax> SwitchStatement =>
             from switchKeyword in Keyword(ApexKeywords.Switch).Token()
             from onKeyword in Keyword(ApexKeywords.On).Token()
-            from name in Identifier.Token()
+            from expression in SwitchExpression
             from open in Parse.Char('{').Commented(this).Token()
             from whenCommented in WhenClause.Commented(this).Many()
             let whenClauses =
@@ -497,8 +506,13 @@ namespace ApexParser.Parser
             from close in Parse.Char('}').Token()
             select new SwitchStatementSyntax
             {
+                Expression = new ExpressionSyntax(expression),
                 WhenClauses = whenClauses.ToList(),
             };
+
+        // examples: 1, 3+2, 'two', Identifier, etc. — can't have curly braces inside it
+        protected internal virtual Parser<string> SwitchExpression =>
+            GenericExpressionCore(forbidden: ",;", allowCurlyBraces: false).Select(x => x.Trim());
 
         // any acceptable when clause
         protected internal virtual Parser<WhenClauseSyntax> WhenClause =>
@@ -506,14 +520,9 @@ namespace ApexParser.Parser
             .Or(WhenTypeClause)
             .Or(WhenExpressionsClause);
 
-        // examples: 1 or 'two' or Identifier
-        protected internal virtual Parser<string> WhenLiteralExpression =>
-            QualifiedIdentifier.Select(qi => string.Join(".", qi))
-                .Or(StringLiteral).Or(Parse.DecimalInvariant).Token();
-
         // example: 1, 2, 3, 'one', 'two', SUNDAY, MONDAY
         protected internal virtual Parser<IEnumerable<ExpressionSyntax>> WhenExpressions =>
-            from expr in WhenLiteralExpression.DelimitedBy(Parse.Char(',').Token())
+            from expr in SwitchExpression.DelimitedBy(Parse.Char(',').Token())
             select expr.Select(x => new ExpressionSyntax(x));
 
         // examples: when 1, 2, 3 { ... }
