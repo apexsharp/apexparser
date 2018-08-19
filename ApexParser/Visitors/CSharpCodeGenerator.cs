@@ -482,5 +482,52 @@ namespace ApexParser.Visitors
 
         public override string NormalizeTypeName(string identifier) =>
             GenericExpressionHelper.ConvertApexTypeToCSharp(identifier);
+
+        public override void VisitSwitchStatement(SwitchStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("switch (");
+            node.Expression?.Accept(this);
+            AppendLine(")");
+
+            AppendIndentedLine("{{");
+            foreach (var whenClause in node.WhenClauses.EmptyIfNull())
+            {
+                whenClause.Accept(this);
+            }
+
+            AppendIndented("}}");
+            AppendTrailingComments(node);
+        }
+
+        public override void VisitWhenExpressionsClauseSyntax(WhenExpressionsClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+
+            foreach (var expression in node.Expressions.EmptyIfNull())
+            {
+                AppendIndented("case ");
+                expression.Accept(this);
+                AppendLine(":");
+            }
+
+            AppendStatementWithOptionalIndent(node.Block);
+        }
+
+        public override void VisitWhenTypeClauseSyntax(WhenTypeClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("case ");
+            node.Type.Accept(this);
+            AppendLine(" {0}:", node.Identifier);
+            AppendStatementWithOptionalIndent(node.Block);
+        }
+
+        public override void VisitWhenElseClauseSyntax(WhenElseClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndentedLine("default:");
+            AppendStatementWithOptionalIndent(node.Block);
+        }
     }
 }
