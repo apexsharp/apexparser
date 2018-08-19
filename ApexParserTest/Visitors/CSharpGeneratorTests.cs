@@ -1299,5 +1299,71 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void ApexSwitchOnWhenStatementIsConvertedToSwitchCase()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test {
+                    public void T() {
+                        // brand new switch statement
+                        switch on CalculateSomeValue() {
+                            // a bunch of expressions
+                            when 1, 2, Hello() {
+                                // oh, great
+                                return 0;
+                            }
+                            // sObject
+                            when Contact x {
+                                return -1;
+                            }
+                            /* nothing matched
+                             */
+                            when else {
+                                return 1; // no way
+                            } // when else
+                        } // switch
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Test
+                    {
+                        public void T()
+                        {
+                            // brand new switch statement
+                            switch (CalculateSomeValue())
+                            {
+                                // a bunch of expressions
+                                case 1:
+                                case 2:
+                                case Hello():
+                                {
+                                    // oh, great
+                                    return 0;
+                                }
+                                // sObject
+                                case Contact x:
+                                {
+                                    return -1;
+                                }
+                                /* nothing matched
+                                 */
+                                default:
+                                {
+                                    return 1; // no way
+                                } // when else
+                            } // switch
+                        }
+                    }
+                }");
+        }
     }
 }
