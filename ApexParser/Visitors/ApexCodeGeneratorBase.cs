@@ -623,6 +623,60 @@ namespace ApexParser.Visitors
             AppendStatementWithOptionalIndent(node.Statement);
         }
 
+        public override void VisitSwitchStatement(SwitchStatementSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("switch on ");
+            node.Expression?.Accept(this);
+            AppendLine();
+
+            AppendIndentedLine("{{");
+            foreach (var whenClause in node.WhenClauses.EmptyIfNull())
+            {
+                whenClause.Accept(this);
+            }
+
+            AppendIndented("}}");
+            AppendTrailingComments(node);
+        }
+
+        public override void VisitWhenExpressionsClauseSyntax(WhenExpressionsClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("when ");
+
+            foreach (var expression in node.Expressions.AsSmart())
+            {
+                expression.Value.Accept(this);
+                if (!expression.IsLast)
+                {
+                    Append(", ");
+                }
+            }
+
+            AppendLine();
+            AppendStatementWithOptionalIndent(node.Block);
+        }
+
+        public override void VisitWhenTypeClauseSyntax(WhenTypeClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndented("when ");
+
+            node.Type.Accept(this);
+            Append(" {0}", node.Identifier);
+
+            AppendLine();
+            AppendStatementWithOptionalIndent(node.Block);
+        }
+
+        public override void VisitWhenElseClauseSyntax(WhenElseClauseSyntax node)
+        {
+            AppendLeadingComments(node);
+            AppendIndentedLine("when else ");
+            AppendStatementWithOptionalIndent(node.Block);
+        }
+
         protected virtual void AppendStatementWithOptionalIndent(StatementSyntax node)
         {
             var optionalIndent = default(IDisposable);

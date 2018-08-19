@@ -46,11 +46,15 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(SyntaxType.Property, new PropertyDeclarationSyntax().Kind);
             Assert.AreEqual(SyntaxType.RunAsStatement, new RunAsStatementSyntax().Kind);
             Assert.AreEqual(SyntaxType.Statement, new StatementSyntax().Kind);
+            Assert.AreEqual(SyntaxType.SwitchStatement, new SwitchStatementSyntax().Kind);
             Assert.AreEqual(SyntaxType.TryStatement, new TryStatementSyntax().Kind);
             Assert.AreEqual(SyntaxType.Type, new TypeSyntax().Kind);
             Assert.AreEqual(SyntaxType.UpdateStatement, new UpdateStatementSyntax().Kind);
             Assert.AreEqual(SyntaxType.VariableDeclaration, new VariableDeclarationSyntax().Kind);
             Assert.AreEqual(SyntaxType.VariableDeclarator, new VariableDeclaratorSyntax().Kind);
+            Assert.AreEqual(SyntaxType.WhenElseClause, new WhenElseClauseSyntax().Kind);
+            Assert.AreEqual(SyntaxType.WhenExpressionsClause, new WhenExpressionsClauseSyntax().Kind);
+            Assert.AreEqual(SyntaxType.WhenTypeClause, new WhenTypeClauseSyntax().Kind);
             Assert.AreEqual(SyntaxType.WhileStatement, new WhileStatementSyntax().Kind);
         }
 
@@ -1728,6 +1732,12 @@ namespace ApexParserTest.Parser
             var thr = stmt as ThrowStatementSyntax;
             Assert.NotNull(thr);
             Assert.AreEqual("new NotImplementedException('Oops')", thr.Expression.ExpressionString);
+
+            stmt = Apex.Statement.Parse(" switch on x { when y { return; } when else { return; } }");
+            var swst = stmt as SwitchStatementSyntax;
+            Assert.NotNull(swst);
+            Assert.AreEqual("x", swst.Expression.ExpressionString);
+            Assert.AreEqual(2, swst.WhenClauses.Count);
         }
 
         [Test]
@@ -2037,23 +2047,51 @@ namespace ApexParserTest.Parser
 
                     /* second branch */
                     when string s {
+                        delete s;
                         return s;
-                    }
+                    } // 2nd
 
                     // default branch
                     when else {
-                        return; // 123
+                        return; // 1
+                        return; // 2
+                        return; // 3
                     }
                 }");
 
             Assert.NotNull(stmt);
             Assert.AreEqual("a + x[10]* 5 + 'two'", stmt.Expression.ExpressionString);
             Assert.NotNull(stmt.WhenClauses);
-
             Assert.AreEqual(3, stmt.WhenClauses.Count);
-            Assert.IsInstanceOf<WhenExpressionsClauseSyntax>(stmt.WhenClauses[0]);
-            Assert.IsInstanceOf<WhenTypeClauseSyntax>(stmt.WhenClauses[1]);
-            Assert.IsInstanceOf<WhenElseClauseSyntax>(stmt.WhenClauses[2]);
+
+            var wx = stmt.WhenClauses[0] as WhenExpressionsClauseSyntax;
+            Assert.IsNotNull(wx);
+            Assert.AreEqual(1, wx.LeadingComments.Count);
+            Assert.AreEqual(0, wx.TrailingComments.Count);
+            Assert.AreEqual(3, wx.Expressions.Count);
+            Assert.IsNotNull(wx.Block);
+            Assert.AreEqual(1, wx.Block.Statements.Count);
+            Assert.AreEqual(0, wx.Block.LeadingComments.Count);
+            Assert.AreEqual(0, wx.Block.TrailingComments.Count);
+
+            var wt = stmt.WhenClauses[1] as WhenTypeClauseSyntax;
+            Assert.IsNotNull(wt);
+            Assert.AreEqual(1, wt.LeadingComments.Count);
+            Assert.AreEqual(0, wt.TrailingComments.Count);
+            Assert.AreEqual("String", wt.Type.Identifier);
+            Assert.IsNotNull(wt.Block);
+            Assert.AreEqual(2, wt.Block.Statements.Count);
+            Assert.AreEqual(0, wt.Block.LeadingComments.Count);
+            Assert.AreEqual(1, wt.Block.TrailingComments.Count);
+
+            var we = stmt.WhenClauses[2] as WhenElseClauseSyntax;
+            Assert.IsNotNull(we);
+            Assert.AreEqual(1, we.LeadingComments.Count);
+            Assert.AreEqual(0, we.TrailingComments.Count);
+            Assert.IsNotNull(we.Block);
+            Assert.AreEqual(3, we.Block.Statements.Count);
+            Assert.AreEqual(0, we.Block.LeadingComments.Count);
+            Assert.AreEqual(0, we.Block.TrailingComments.Count);
         }
     }
 }

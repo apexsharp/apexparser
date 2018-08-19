@@ -239,6 +239,7 @@ namespace ApexParser.Parser
                 .Or(UpsertStatement)
                 .Or(DeleteStatement)
                 .Or(VariableDeclaration)
+                .Or(SwitchStatement)
                 .Or(UnknownGenericStatement)
                 .Commented(this)
             select statement.Value

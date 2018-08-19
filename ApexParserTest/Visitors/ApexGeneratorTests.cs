@@ -1213,5 +1213,61 @@ namespace ApexParserTest.Visitors
                     }
                 }");
         }
+
+        [Test]
+        public void SwitchStatementIsGenerated()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test {
+                    public void T() {
+                        // brand new switch statement
+                        switch on CalculateSomeValue() {
+                            // a bunch of expressions
+                            when 1, 2, Hello() {
+                                // oh, great
+                                return 0;
+                            }
+                            // sObject
+                            when Contact x {
+                                return -1;
+                            }
+                            /* nothing matched
+                             */
+                            when else {
+                                return 1; // no way
+                            } // when else
+                        } // switch
+                    }
+                }");
+
+            Check(apex,
+                @"class Test
+                {
+                    public void T()
+                    {
+                        // brand new switch statement
+                        switch on CalculateSomeValue()
+                        {
+                            // a bunch of expressions
+                            when 1, 2, Hello()
+                            {
+                                // oh, great
+                                return 0;
+                            }
+                            // sObject
+                            when Contact x
+                            {
+                                return -1;
+                            }
+                            /* nothing matched
+                             */
+                            when else
+                            {
+                                return 1; // no way
+                            } // when else
+                        } // switch
+                    }
+                }");
+        }
     }
 }
