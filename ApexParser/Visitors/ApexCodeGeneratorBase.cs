@@ -701,21 +701,7 @@ namespace ApexParser.Visitors
 
             using (Indented())
             {
-                foreach (var st in node.Statements.AsSmart())
-                {
-                    if (EmptyLineIsRequired)
-                    {
-                        AppendLine();
-                        EmptyLineIsRequired = false;
-                    }
-                    else if (!st.IsFirst && !st.Value.LeadingComments.IsNullOrEmpty())
-                    {
-                        AppendLine();
-                    }
-
-                    st.Value.Accept(this);
-                }
-
+                GenerateStatements(node.Statements);
                 if (!node.Statements.IsNullOrEmpty() && !node.InnerComments.IsNullOrEmpty())
                 {
                     AppendLine();
@@ -727,6 +713,24 @@ namespace ApexParser.Visitors
             AppendIndented("}}");
             AppendTrailingComments(node);
             EmptyLineIsRequired = true;
+        }
+
+        protected virtual void GenerateStatements(IEnumerable<StatementSyntax> statements)
+        {
+            foreach (var st in statements.AsSmart())
+            {
+                if (EmptyLineIsRequired)
+                {
+                    AppendLine();
+                    EmptyLineIsRequired = false;
+                }
+                else if (!st.IsFirst && !st.Value.LeadingComments.IsNullOrEmpty())
+                {
+                    AppendLine();
+                }
+
+                st.Value.Accept(this);
+            }
         }
 
         public override void VisitInsertStatement(InsertStatementSyntax node)
