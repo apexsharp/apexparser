@@ -26,13 +26,13 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.6.9</Version>
+    <Version>0.6.10</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>ApexSharp.com</Authors>
     <Company>ApexSharp.com</Company>
     <Product>ApexSharp</Product>
     <Description>A Roslyn-like parser for the Salesforce programming language APEX</Description>
-    <Copyright>© 2017 ApexSharp.com</Copyright>
+    <Copyright>© 2017-2018 ApexSharp.com</Copyright>
     <PackageLicenseUrl>https://github.com/apexsharp/apexparser/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/apexsharp/apexparser/</PackageProjectUrl>
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
