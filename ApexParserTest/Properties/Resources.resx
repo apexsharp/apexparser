@@ -727,4 +727,13 @@
   <data name="ForIfWhile4_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexRoundtrip\ForIfWhile4_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="SwitchDemo_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\SwitchDemo_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="SwitchDemo_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\SwitchDemo_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="SwitchDemo_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexRoundtrip\SwitchDemo_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
 </root>

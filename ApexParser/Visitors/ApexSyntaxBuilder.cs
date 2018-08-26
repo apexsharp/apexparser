@@ -1054,10 +1054,7 @@ namespace ApexParser.Visitors
 
             var lastWhen = LastWhen;
             lastWhen.LeadingComments = GetLeadingAndNoApexComments(node);
-            lastWhen.Block = new ApexBlockSyntax
-            {
-                TrailingComments = Comments.Trailing(node),
-            };
+            lastWhen.Block = new ApexBlockSyntax();
 
             foreach (var stmt in node.Statements.EmptyIfNull())
             {
@@ -1069,7 +1066,7 @@ namespace ApexParser.Visitors
                 }
             }
 
-            // remove C#'s break statement from the block
+            // remove C#'s break statement from the block keeping its trailing comments
             if (lastWhen.Block.Statements.LastOrDefault() is ApexBreakStatementSyntax @break)
             {
                 lastWhen.Block.Statements.Remove(@break);

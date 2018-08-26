@@ -4883,5 +4883,101 @@ namespace ApexParserTest.Properties {
                 return ResourceManager.GetString("SoqlDemoCS", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    public class SwitchDemo
+        ///    {
+        ///        public static void Method()
+        ///        {
+        ///            int x = 123;
+        ///            switch (x)
+        ///            {
+        ///            	case 5:
+        ///            	case 6:
+        ///            	case 7:
+        ///            		System.debug(&apos;Cool!&apos;); // 1
+        ///            		break;
+        ///
+        ///            	case string c:
+        ///            		switch (c)
+        ///            		{
+        ///      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SwitchDemo_CSharp {
+            get {
+                return ResourceManager.GetString("SwitchDemo_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class SwitchDemo
+        ///{
+        ///    public static void Method()
+        ///    {
+        ///        Integer x = 123;
+        ///        switch on x
+        ///        {
+        ///        	when 5, 6, 7
+        ///        	{
+        ///        		System.debug(&apos;Cool!&apos;); // 1
+        ///        	}
+        ///        	when String c
+        ///        	{
+        ///        		switch on c
+        ///        		{
+        ///        			// 2
+        ///        			when &apos;foo&apos;
+        ///        			{
+        ///        				System.debug(&apos;bar&apos;); // 3
+        ///        			}
+        ///        			when else
+        ///        			{
+        ///        				System.debug(&apos;baz&apos;); // 4
+        ///        			} // 5
+        ///        		}
+        ///        	} //  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SwitchDemo_Formatted {
+            get {
+                return ResourceManager.GetString("SwitchDemo_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public class SwitchDemo {
+        ///    public static void Method() {
+        ///        Integer x = 123;
+        ///        switch on x {
+        ///        	when 5, 6, 7 {
+        ///        		System.debug(&apos;Cool!&apos;); // 1
+        ///        	}
+        ///        	when String c {
+        ///        		switch on c {
+        ///        			// 2
+        ///        			when &apos;foo&apos; {
+        ///        				System.debug(&apos;bar&apos;); // 3
+        ///        			}
+        ///        			when else {
+        ///        				System.debug(&apos;baz&apos;); // 4
+        ///        			} // 5
+        ///        		}
+        ///        	} // 6
+        ///        	when else {
+        ///        		return; // 7
+        ///        	}
+        ///        } [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SwitchDemo_Original {
+            get {
+                return ResourceManager.GetString("SwitchDemo_Original", resourceCulture);
+            }
+        }
     }
 }

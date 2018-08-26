@@ -641,6 +641,7 @@ namespace ApexParser.Visitors
 
             AppendIndented("}}");
             AppendTrailingComments(node);
+            EmptyLineIsRequired = true;
         }
 
         public override void VisitWhenExpressionsClauseSyntax(WhenExpressionsClauseSyntax node)
@@ -694,7 +695,7 @@ namespace ApexParser.Visitors
             }
         }
 
-        private bool EmptyLineIsRequired { get; set; }
+        protected bool EmptyLineIsRequired { get; set; }
 
         public override void VisitBlock(BlockSyntax node)
         {

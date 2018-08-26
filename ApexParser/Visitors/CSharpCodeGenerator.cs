@@ -505,6 +505,7 @@ namespace ApexParser.Visitors
 
             AppendIndented("}}");
             AppendTrailingComments(node);
+            EmptyLineIsRequired = true;
         }
 
         public override void VisitWhenExpressionsClauseSyntax(WhenExpressionsClauseSyntax node)
@@ -541,18 +542,20 @@ namespace ApexParser.Visitors
         {
             using (Indented())
             {
-                GenerateStatements(block.Statements);
-
                 // check the last statement
-                var lastStatement = block.Statements.EmptyIfNull().LastOrDefault();
-                if (lastStatement is ReturnStatementSyntax || lastStatement is ThrowStatementSyntax)
+                var statements = new List<StatementSyntax>(block.Statements.EmptyIfNull());
+                var lastStatement = statements.LastOrDefault();
+
+                // break statement is needed when the last statement is neither "return" nor "throw"
+                var skipBreak = lastStatement is ReturnStatementSyntax || lastStatement is ThrowStatementSyntax;
+                if (!skipBreak)
                 {
-                    return;
+                    var breakStatement = new BreakStatementSyntax();
+                    breakStatement.TrailingComments = block.TrailingComments;
+                    statements.Add(breakStatement);
                 }
 
-                // emit "break" unless the last statement was either "return" or "throw"
-                AppendIndented("break;");
-                AppendTrailingComments(block);
+                GenerateStatements(statements);
             }
         }
     }

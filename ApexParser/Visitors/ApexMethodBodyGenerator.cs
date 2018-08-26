@@ -17,8 +17,6 @@ namespace ApexParser.Visitors
             return generator.Code.ToString();
         }
 
-        private bool EmptyLineIsRequired { get; set; }
-
         private BlockSyntax CurrentBlock { get; set; }
 
         public override void VisitBlock(BlockSyntax node)
