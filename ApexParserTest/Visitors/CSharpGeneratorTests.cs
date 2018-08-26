@@ -1301,26 +1301,26 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
-        public void ApexSwitchOnWhenStatementIsConvertedToSwitchCase()
+        public void ApexSwitchOnWhenStatementIsConvertedToSwitchCaseBreak()
         {
             var apex = Apex.ParseClass(
-                @"class Test {
+             @"class Test {
                     public void T() {
                         // brand new switch statement
                         switch on CalculateSomeValue() {
                             // a bunch of expressions
                             when 1, 2, Hello() {
                                 // oh, great
-                                return 0;
+                                delete x;
                             }
                             // sObject
                             when Contact x {
-                                return -1;
+                                update x;
                             }
                             /* nothing matched
                              */
                             when else {
-                                return 1; // no way
+                                insert x; // no way
                             } // when else
                         } // switch
                     }
@@ -1345,21 +1345,83 @@ namespace ApexParserTest.Visitors
                                 case 1:
                                 case 2:
                                 case Hello():
-                                {
                                     // oh, great
-                                    return 0;
-                                }
+                                    Soql.delete(x);
+                                    break;
+
                                 // sObject
                                 case Contact x:
-                                {
-                                    return -1;
-                                }
+                                    Soql.update(x);
+                                    break;
+
                                 /* nothing matched
                                  */
                                 default:
-                                {
-                                    return 1; // no way
-                                } // when else
+                                    Soql.insert(x); // no way
+                                    break; // when else
+                            } // switch
+                        }
+                    }
+                }");
+        }
+
+        [Test]
+        public void ApexSwitchOnWhenStatementIsConvertedToSwitchCaseWithoutBreak()
+        {
+            var apex = Apex.ParseClass(
+                @"class Test {
+                    public void T() {
+                        // brand new switch statement
+                        switch on CalculateSomeValue() {
+                            // a bunch of expressions
+                            when 1, 2, Hello() {
+                                // oh, great
+                                return 0;
+                            }
+                            // sObject
+                            when Contact x {
+                                throw new Exception('Not supported!');
+                            }
+                            /* nothing matched
+                             */
+                            when else {
+                                System.debug('Hello!'); // debugging
+                            } // when else
+                        } // switch
+                    }
+                }");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
+                    using Apex.System;
+                    using SObjects;
+
+                    class Test
+                    {
+                        public void T()
+                        {
+                            // brand new switch statement
+                            switch (CalculateSomeValue())
+                            {
+                                // a bunch of expressions
+                                case 1:
+                                case 2:
+                                case Hello():
+                                    // oh, great
+                                    return 0;
+
+                                // sObject
+                                case Contact x:
+                                    throw new Exception(""Not supported!"");
+
+                                /* nothing matched
+                                 */
+                                default:
+                                    System.debug(""Hello!""); // debugging
+                                    break; // when else
                             } // switch
                         }
                     }

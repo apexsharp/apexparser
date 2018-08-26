@@ -491,9 +491,16 @@ namespace ApexParser.Visitors
             AppendLine(")");
 
             AppendIndentedLine("{{");
-            foreach (var whenClause in node.WhenClauses.EmptyIfNull())
+            using (Indented())
             {
-                whenClause.Accept(this);
+                foreach (var whenClause in node.WhenClauses.AsSmart())
+                {
+                    whenClause.Value.Accept(this);
+                    if (!whenClause.IsLast)
+                    {
+                        AppendLine();
+                    }
+                }
             }
 
             AppendIndented("}}");
@@ -511,7 +518,7 @@ namespace ApexParser.Visitors
                 AppendLine(":");
             }
 
-            AppendStatementWithOptionalIndent(node.Block);
+            GenerateCaseBlock(node.Block);
         }
 
         public override void VisitWhenTypeClauseSyntax(WhenTypeClauseSyntax node)
@@ -520,14 +527,33 @@ namespace ApexParser.Visitors
             AppendIndented("case ");
             node.Type.Accept(this);
             AppendLine(" {0}:", node.Identifier);
-            AppendStatementWithOptionalIndent(node.Block);
+            GenerateCaseBlock(node.Block);
         }
 
         public override void VisitWhenElseClauseSyntax(WhenElseClauseSyntax node)
         {
             AppendLeadingComments(node);
             AppendIndentedLine("default:");
-            AppendStatementWithOptionalIndent(node.Block);
+            GenerateCaseBlock(node.Block);
+        }
+
+        private void GenerateCaseBlock(BlockSyntax block)
+        {
+            using (Indented())
+            {
+                GenerateStatements(block.Statements);
+
+                // check the last statement
+                var lastStatement = block.Statements.EmptyIfNull().LastOrDefault();
+                if (lastStatement is ReturnStatementSyntax || lastStatement is ThrowStatementSyntax)
+                {
+                    return;
+                }
+
+                // emit "break" unless the last statement was either "return" or "throw"
+                AppendIndented("break;");
+                AppendTrailingComments(block);
+            }
         }
     }
 }
