@@ -631,9 +631,12 @@ namespace ApexParser.Visitors
             AppendLine();
 
             AppendIndentedLine("{{");
-            foreach (var whenClause in node.WhenClauses.EmptyIfNull())
+            using (Indented())
             {
-                whenClause.Accept(this);
+                foreach (var whenClause in node.WhenClauses.EmptyIfNull())
+                {
+                    whenClause.Accept(this);
+                }
             }
 
             AppendIndented("}}");
