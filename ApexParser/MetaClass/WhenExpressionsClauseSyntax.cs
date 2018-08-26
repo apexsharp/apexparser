@@ -18,6 +18,6 @@ namespace ApexParser.MetaClass
             Expressions.EmptyIfNull().Where(n => n != null).Concat(GetNodes(Block));
 
         // note: Apex only allows literals here
-        public List<ExpressionSyntax> Expressions { get; set; }
+        public List<ExpressionSyntax> Expressions { get; set; } = new List<ExpressionSyntax>();
     }
 }

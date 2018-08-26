@@ -333,6 +333,15 @@ namespace ApexParserTest.Visitors
         }
 
         [Test]
+        public void SwitchStatementIsGenerated()
+        {
+            Check("class T { void F() { switch(1) { case 1: System.debug(0); break; default: System.debug(1); break; } } }",
+                "class T { void F() { switch on 1 { when 1 { System.debug(0); } when else { System.debug(1); } } } }");
+            Check("class T { void F() { switch(MyExpression(1+2)) { case 1: case 2: System.debug(0); break; case int x: return; default: System.debug(1); break; } } }",
+                "class T { void F() { switch on MyExpression(1+2) { when 1, 2 { System.debug(0); } when Integer x { return; } when else { System.debug(1); } } } }");
+        }
+
+        [Test]
         public void ClassLeadingAndTrailingCommentsAreConvertedToApex()
         {
             Check(@"// this is a comment

@@ -37,6 +37,7 @@ using ApexPropertyDeclarationSyntax = ApexParser.MetaClass.PropertyDeclarationSy
 using ApexReturnStatementSyntax = ApexParser.MetaClass.ReturnStatementSyntax;
 using ApexRunAsStatementSyntax = ApexParser.MetaClass.RunAsStatementSyntax;
 using ApexStatementSyntax = ApexParser.MetaClass.StatementSyntax;
+using ApexSwitchStatementSyntax = ApexParser.MetaClass.SwitchStatementSyntax;
 using ApexSyntaxType = ApexParser.MetaClass.SyntaxType;
 using ApexThrowStatementSyntax = ApexParser.MetaClass.ThrowStatementSyntax;
 using ApexTryStatementSyntax = ApexParser.MetaClass.TryStatementSyntax;
@@ -44,6 +45,10 @@ using ApexTypeSyntax = ApexParser.MetaClass.TypeSyntax;
 using ApexUpdateStatementSyntax = ApexParser.MetaClass.UpdateStatementSyntax;
 using ApexVariableDeclarationSyntax = ApexParser.MetaClass.VariableDeclarationSyntax;
 using ApexVariableDeclaratorSyntax = ApexParser.MetaClass.VariableDeclaratorSyntax;
+using ApexWhenClauseSyntax = ApexParser.MetaClass.WhenClauseSyntax;
+using ApexWhenElseClauseSyntax = ApexParser.MetaClass.WhenElseClauseSyntax;
+using ApexWhenExpressionsClauseSyntax = ApexParser.MetaClass.WhenExpressionsClauseSyntax;
+using ApexWhenTypeClauseSyntax = ApexParser.MetaClass.WhenTypeClauseSyntax;
 using ApexWhileStatementSyntax = ApexParser.MetaClass.WhileStatementSyntax;
 using IAnnotatedSyntax = ApexParser.MetaClass.IAnnotatedSyntax;
 
@@ -1009,6 +1014,99 @@ namespace ApexParser.Visitors
 
             // or perhaps better throw NotSupportedException?
             base.VisitUsingStatement(node);
+        }
+
+        public override void VisitSwitchStatement(SwitchStatementSyntax node)
+        {
+            var switchStatement = new ApexSwitchStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            switchStatement.Expression = ConvertExpression(node.Expression);
+            foreach (var section in node.Sections.EmptyIfNull())
+            {
+                section.Accept(this);
+                switchStatement.WhenClauses.Add(LastWhen);
+            }
+
+            LastStatement = switchStatement;
+        }
+
+        private ApexWhenClauseSyntax LastWhen { get; set; }
+
+        public override void VisitSwitchSection(SwitchSectionSyntax node)
+        {
+            // switch label should initialize the LastWhen clause
+            LastWhen = null;
+            foreach (var label in node.Labels.EmptyIfNull())
+            {
+                label.Accept(this);
+            }
+
+            // no labels per swith section? looks like the source file is broken
+            if (LastWhen == null)
+            {
+                throw new InvalidOperationException("Unsupported switch section format. " +
+                    "Case expression, pattern or default label is expected.");
+            }
+
+            var lastWhen = LastWhen;
+            lastWhen.LeadingComments = GetLeadingAndNoApexComments(node);
+            lastWhen.Block = new ApexBlockSyntax
+            {
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            foreach (var stmt in node.Statements.EmptyIfNull())
+            {
+                stmt.Accept(this);
+                if (LastStatement != null)
+                {
+                    lastWhen.Block.Statements.Add(LastStatement);
+                    LastStatement = null;
+                }
+            }
+
+            // remove C#'s break statement from the block
+            if (lastWhen.Block.Statements.LastOrDefault() is ApexBreakStatementSyntax @break)
+            {
+                lastWhen.Block.Statements.Remove(@break);
+                lastWhen.Block.TrailingComments = @break.TrailingComments;
+            }
+
+            LastWhen = lastWhen;
+        }
+
+        public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
+        {
+            var lastWhen = LastWhen as ApexWhenExpressionsClauseSyntax ?? new ApexWhenExpressionsClauseSyntax();
+            var expression = ConvertExpression(node.Value);
+            lastWhen.Expressions.Add(expression);
+            LastWhen = lastWhen;
+        }
+
+        public override void VisitCasePatternSwitchLabel(CasePatternSwitchLabelSyntax node)
+        {
+            var lastWhen = new ApexWhenTypeClauseSyntax();
+            var pattern = node.Pattern as DeclarationPatternSyntax;
+            var type = pattern?.Type;
+            var designation = pattern?.Designation as SingleVariableDesignationSyntax;
+            if (pattern == null || type == null || designation == null)
+            {
+                throw new InvalidOperationException("Unsupported switch pattern format. " +
+                    "Case type variable is expected.");
+            }
+
+            lastWhen.Type = ConvertType(type);
+            lastWhen.Identifier = designation.Identifier.ValueText;
+            LastWhen = lastWhen;
+        }
+
+        public override void VisitDefaultSwitchLabel(DefaultSwitchLabelSyntax node)
+        {
+            LastWhen = new ApexWhenElseClauseSyntax();
         }
     }
 }

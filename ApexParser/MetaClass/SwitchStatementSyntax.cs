@@ -19,6 +19,6 @@ namespace ApexParser.MetaClass
 
         public ExpressionSyntax Expression { get; set; }
 
-        public List<WhenClauseSyntax> WhenClauses { get; set; }
+        public List<WhenClauseSyntax> WhenClauses { get; set; } = new List<WhenClauseSyntax>();
     }
 }
