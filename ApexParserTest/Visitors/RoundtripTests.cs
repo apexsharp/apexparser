@@ -162,5 +162,9 @@ namespace ApexParserTest.Visitors
         [Test]
         public void SoqlDemoRoundtrip() =>
             Check(SoqlDemo_Original, SoqlDemo_Formatted, SoqlDemo_CSharp);
+
+        [Test]
+        public void SwitchDemoRoundtrip() =>
+            Check(SwitchDemo_Original, SwitchDemo_Formatted, SwitchDemo_CSharp);
     }
 }

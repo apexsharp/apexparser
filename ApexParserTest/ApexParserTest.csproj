@@ -304,6 +304,7 @@
     <None Include="ApexRoundtrip\PropertyAndField_CSharp.cs" />
     <None Include="ApexRoundtrip\RunAll_CSharp.cs" />
     <None Include="ApexRoundtrip\SoqlDemo_CSharp.cs" />
+    <None Include="ApexRoundtrip\SwitchDemo_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassAbstract_Formatted.cls" />
     <None Include="ApexRoundtrip\ClassAbstract_Original.cls" />
     <None Include="ApexRoundtrip\ClassEnum_Formatted.cls" />
@@ -375,6 +376,8 @@
     <None Include="ApexRoundtrip\RunAll_Original.cls" />
     <None Include="ApexRoundtrip\SoqlDemo_Formatted.cls" />
     <None Include="ApexRoundtrip\SoqlDemo_Original.cls" />
+    <None Include="ApexRoundtrip\SwitchDemo_Formatted.cls" />
+    <None Include="ApexRoundtrip\SwitchDemo_Original.cls" />
     <None Include="ApexTestClasses\ApplicationTest.apex" />
     <None Include="ApexTestClasses\ClassAbstract.cls" />
     <None Include="ApexTestClasses\ClassEnum.cls" />
