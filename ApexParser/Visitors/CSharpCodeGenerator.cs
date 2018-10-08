@@ -53,7 +53,7 @@ namespace ApexParser.Visitors
             {
                 IndentSize = options.TabSize,
                 Namespace = options.Namespace,
-                UseLocalSObjectsNamespace = options.UseLocalSObjectsNamespace
+                UseLocalSObjectsNamespace = options.UseLocalSObjectsNamespace,
             };
 
             ast.Accept(generator);
