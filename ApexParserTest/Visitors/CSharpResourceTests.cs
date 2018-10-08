@@ -8,6 +8,7 @@ using ApexParser.Parser;
 using ApexParser.Visitors;
 using NUnit.Framework;
 using Sprache;
+using Options = ApexParser.ApexSharpParserOptions;
 using static ApexParserTest.Properties.Resources;
 
 namespace ApexParserTest.Visitors
@@ -15,8 +16,10 @@ namespace ApexParserTest.Visitors
     [TestFixture]
     public class CSharpResourceTests : TestFixtureBase
     {
+        private Options Options => new Options { UseLocalSObjectsNamespace = false };
+
         private void Check(string apex, string csharp) =>
-            CompareLineByLine(ApexSharpParser.ConvertApexToCSharp(apex), csharp);
+            CompareLineByLine(ApexSharpParser.ConvertApexToCSharp(apex, Options), csharp);
 
         [Test]
         public void SoqlDemoIsGeneratedInCSharp() =>

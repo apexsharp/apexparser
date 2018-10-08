@@ -6,14 +6,17 @@ using ApexParser.MetaClass;
 using ApexParser.Parser;
 using ApexParser.Visitors;
 using NUnit.Framework;
+using Options = ApexParser.ApexSharpParserOptions;
 
 namespace ApexParserTest.Visitors
 {
     [TestFixture]
     public class CSharpGeneratorTests : TestFixtureBase
     {
+        private Options Options => new Options { UseLocalSObjectsNamespace = false };
+
         protected void Check(BaseSyntax node, string expected) =>
-            CompareLineByLine(node.ToCSharp(), expected);
+            CompareLineByLine(node.ToCSharp(Options), expected);
 
         [Test]
         public void EmptyClassDeclarationProducesTheRequiredNamespaceImports()
@@ -976,7 +979,7 @@ namespace ApexParserTest.Visitors
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.System;
-                    using SObjects;
+                    using MyNamespace.SObjects;
 
                     // custom namespace
                     [Global]
@@ -1426,6 +1429,29 @@ namespace ApexParserTest.Visitors
                         }
                     }
                 }");
+        }
+
+        [TestCase]
+        public void LocalizeSObjectsNamespaceIgnoresInvalidParameters()
+        {
+            Func<IEnumerable<string>, string, IEnumerable<string>> loc = CSharpCodeGenerator.LocalizeSObjectNamespace;
+
+            Assert.AreEqual(new string[0], loc(null, null));
+            Assert.AreEqual(new string[0], loc(new string[0], null));
+            Assert.AreEqual(new[] { "Hello" }, loc(new[] { "Hello" }, null));
+            Assert.AreEqual(new[] { "SObjects" }, loc(new[] { "SObjects" }, null));
+        }
+
+        [TestCase]
+        public void LocalizeSObjectsNamespaceAppendsTheFirstPartOfTheNamespaceBeforeTheSObjectsConstant()
+        {
+            Func<IEnumerable<string>, string, IEnumerable<string>> loc = CSharpCodeGenerator.LocalizeSObjectNamespace;
+
+            Assert.AreEqual(new string[0], loc(null, "Hello"));
+            Assert.AreEqual(new[] { "World" }, loc(new[] { "World" }, "Hello"));
+            Assert.AreEqual(new[] { "Hello.SObjects" }, loc(new[] { "SObjects" }, "Hello"));
+            Assert.AreEqual(new[] { "Something", "Hello.SObjects" }, loc(new[] { "Something", "SObjects" }, "Hello"));
+            Assert.AreEqual(new[] { "Something", "Hello.SObjects" }, loc(new[] { "Something", "SObjects" }, "Hello.There"));
         }
     }
 }

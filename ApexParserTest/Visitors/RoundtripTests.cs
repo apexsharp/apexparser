@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ApexParser;
 using NUnit.Framework;
+using Options = ApexParser.ApexSharpParserOptions;
 using static ApexParserTest.Properties.Resources;
 
 namespace ApexParserTest.Visitors
@@ -12,12 +13,14 @@ namespace ApexParserTest.Visitors
     [TestFixture]
     public class RoundtripTests : TestFixtureBase
     {
+        private Options Options => new Options { UseLocalSObjectsNamespace = false };
+
         private void Check(string apexOriginal, string apexFormatted, string csharp)
         {
             Assert.Multiple(() =>
             {
                 CompareLineByLine(ApexSharpParser.IndentApex(apexOriginal), apexFormatted);
-                CompareLineByLine(ApexSharpParser.ConvertApexToCSharp(apexOriginal), csharp);
+                CompareLineByLine(ApexSharpParser.ConvertApexToCSharp(apexOriginal, Options), csharp);
                 CompareLineByLine(ApexSharpParser.ToApex(csharp)[0], apexFormatted);
             });
         }
@@ -71,7 +74,7 @@ namespace ApexParserTest.Visitors
         {
             // formatted class doesn't match the converted class because of the testMethod modifiers
             CompareLineByLine(ApexSharpParser.IndentApex(ClassUnitTest_Original), ClassUnitTest_Formatted);
-            CompareLineByLine(ApexSharpParser.ConvertApexToCSharp(ClassUnitTest_Original), ClassUnitTest_CSharp1);
+            CompareLineByLine(ApexSharpParser.ConvertApexToCSharp(ClassUnitTest_Original, Options), ClassUnitTest_CSharp1);
             CompareLineByLine(ApexSharpParser.ToApex(ClassUnitTest_CSharp1)[0], ClassUnitTest_Converted);
         }
 

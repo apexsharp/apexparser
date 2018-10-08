@@ -16,6 +16,8 @@ namespace ApexParser.Visitors
 
         private bool HasRootNamespace => !string.IsNullOrWhiteSpace(Namespace);
 
+        public bool UseLocalSObjectsNamespace { get; set; } = true;
+
         public const string Soql = "Soql";
 
         public List<string> Usings { get; set; } = new List<string>
@@ -33,11 +35,26 @@ namespace ApexParser.Visitors
 
         public static string GenerateCSharp(BaseSyntax ast, int tabSize = 4, string @namespace = null)
         {
-            var generator = new CSharpCodeGenerator { IndentSize = tabSize };
+            var options = new ApexSharpParserOptions { TabSize = tabSize };
             if (!string.IsNullOrWhiteSpace(@namespace))
             {
-                generator.Namespace = @namespace;
+                options.Namespace = @namespace;
             }
+
+            return GenerateCSharp(ast, options);
+        }
+
+        public static string GenerateCSharp(BaseSyntax ast, ApexSharpParserOptions options)
+        {
+            // set default options
+            options = options ?? new ApexSharpParserOptions();
+
+            var generator = new CSharpCodeGenerator
+            {
+                IndentSize = options.TabSize,
+                Namespace = options.Namespace,
+                UseLocalSObjectsNamespace = options.UseLocalSObjectsNamespace
+            };
 
             ast.Accept(generator);
             return generator.Code.ToString();
@@ -110,8 +127,32 @@ namespace ApexParser.Visitors
             }
         }
 
+        internal static IEnumerable<string> LocalizeSObjectNamespace(IEnumerable<string> namespaces, string rootNamespace)
+        {
+            if (namespaces.IsNullOrEmpty())
+            {
+                return new string[0];
+            }
+
+            if (string.IsNullOrWhiteSpace(rootNamespace))
+            {
+                return namespaces;
+            }
+
+            var dot = rootNamespace.IndexOf(".");
+            if (dot > 0)
+            {
+                rootNamespace = rootNamespace.Substring(0, dot);
+            }
+
+            return namespaces.Select(ns => ns == "SObjects" ? $"{rootNamespace}.{ns}" : ns).ToArray();
+        }
+
         private IEnumerable<string> GetUsings(ClassDeclarationSyntax node)
         {
+            var usings = UseLocalSObjectsNamespace ?
+                LocalizeSObjectNamespace(Usings, Namespace) : Usings;
+
             if (node != null)
             {
                 var isTest = node.Annotations.EmptyIfNull().Any(a => a?.IsTest ?? false);
@@ -128,11 +169,11 @@ namespace ApexParser.Visitors
 
                 if (isTest)
                 {
-                    return Usings.Concat(UnitTestUsings);
+                    return usings.Concat(UnitTestUsings);
                 }
             }
 
-            return Usings;
+            return usings;
         }
 
         private class AnnotatedSyntax : IAnnotatedSyntax

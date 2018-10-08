@@ -24,6 +24,12 @@ namespace ApexParser
             return GetApexAst(apexCode).ToCSharp(@namespace: @namespace);
         }
 
+        // Convert Apex Code to C#
+        public static string ConvertApexToCSharp(string apexCode, ApexSharpParserOptions options)
+        {
+            return GetApexAst(apexCode).ToCSharp(options);
+        }
+
         // Get the AST for a given APEX File
         public static MemberDeclarationSyntax GetApexAst(string apexCode)
         {

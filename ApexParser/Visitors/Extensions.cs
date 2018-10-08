@@ -12,6 +12,9 @@ namespace ApexParser.Visitors
         public static string ToCSharp(this BaseSyntax node, int tabSize = 4, string @namespace = null) =>
             CSharpCodeGenerator.GenerateCSharp(node, tabSize, @namespace);
 
+        public static string ToCSharp(this BaseSyntax node, ApexSharpParserOptions options) =>
+            CSharpCodeGenerator.GenerateCSharp(node, options);
+
         public static string ToApex(this BaseSyntax node, int tabSize = 4) =>
             ApexCodeGenerator.GenerateApex(node, tabSize);
 

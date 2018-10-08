@@ -9,7 +9,7 @@ namespace ApexParser.Visitors
 {
     public class CodeGeneratorBase : ApexSyntaxVisitor
     {
-        protected StringBuilder Code { get; } = new StringBuilder();
+        protected internal StringBuilder Code { get; } = new StringBuilder();
 
         protected int IndentLevel { get; private set; }
 
