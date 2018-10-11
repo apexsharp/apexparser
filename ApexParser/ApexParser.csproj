@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.6.10</Version>
+    <Version>0.6.11</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>ApexSharp.com</Authors>
     <Company>ApexSharp.com</Company>
