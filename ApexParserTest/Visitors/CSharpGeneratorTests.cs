@@ -1431,7 +1431,7 @@ namespace ApexParserTest.Visitors
                 }");
         }
 
-        [TestCase]
+        [Test]
         public void LocalizeSObjectsNamespaceIgnoresInvalidParameters()
         {
             Func<IEnumerable<string>, string, IEnumerable<string>> loc = CSharpCodeGenerator.LocalizeSObjectNamespace;
@@ -1442,7 +1442,7 @@ namespace ApexParserTest.Visitors
             Assert.AreEqual(new[] { "SObjects" }, loc(new[] { "SObjects" }, null));
         }
 
-        [TestCase]
+        [Test]
         public void LocalizeSObjectsNamespaceAppendsTheFirstPartOfTheNamespaceBeforeTheSObjectsConstant()
         {
             Func<IEnumerable<string>, string, IEnumerable<string>> loc = CSharpCodeGenerator.LocalizeSObjectNamespace;
@@ -1452,6 +1452,25 @@ namespace ApexParserTest.Visitors
             Assert.AreEqual(new[] { "Hello.SObjects" }, loc(new[] { "SObjects" }, "Hello"));
             Assert.AreEqual(new[] { "Something", "Hello.SObjects" }, loc(new[] { "Something", "SObjects" }, "Hello"));
             Assert.AreEqual(new[] { "Something", "Hello.SObjects" }, loc(new[] { "Something", "SObjects" }, "Hello.There"));
+        }
+
+        [Test]
+        public void StringLiteralsShouldEscapeTheDoubleQuotes()
+        {
+            var decl = new VariableDeclarationSyntax
+            {
+                Type = new TypeSyntax("string"),
+                Variables = new List<VariableDeclaratorSyntax>
+                {
+                    new VariableDeclaratorSyntax
+                    {
+                        Identifier = "json",
+                        Expression = new ExpressionSyntax("'{ name: \"value\" }'")
+                    }
+                }
+            };
+
+            Check(decl, @"string json = ""{ name: \""value\"" }"";");
         }
     }
 }

@@ -494,7 +494,7 @@ namespace ApexParser.Visitors
         }
 
         protected override void AppendStringLiteral(string literal) =>
-            Append("\"{0}\"", literal.Substring(1, literal.Length - 2));
+            Append("\"{0}\"", literal.Substring(1, literal.Length - 2).Replace("\"", "\\\""));
 
         protected override void AppendSoqlQuery(string soqlQuery)
         {
