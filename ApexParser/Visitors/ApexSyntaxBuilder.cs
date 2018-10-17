@@ -262,6 +262,10 @@ namespace ApexParser.Visitors
             {
                 return ApexKeywords.Global;
             }
+            else if (node.Identifier == "Virtual")
+            {
+                return ApexKeywords.Virtual;
+            }
             else if (node.Identifier == "WithSharing")
             {
                 return $"{ApexKeywords.With} {ApexKeywords.Sharing}";

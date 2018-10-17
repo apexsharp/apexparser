@@ -922,6 +922,7 @@ namespace ApexParserTest.Visitors
             public global class TestClass {
                 private with sharing class Inner1 { }
                 public without sharing class Inner2 { }
+                public virtual class Inner3 { }
                 private testMethod void MyTest(final int x) { }
                 public webservice void MyService() { }
                 transient int TransientField = 0;
@@ -946,6 +947,11 @@ namespace ApexParserTest.Visitors
 
                         [WithoutSharing]
                         public class Inner2
+                        {
+                        }
+
+                        [Virtual]
+                        public class Inner3
                         {
                         }
 

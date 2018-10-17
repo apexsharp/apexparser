@@ -215,6 +215,10 @@ namespace ApexParser.Visitors
                     result.Annotations.Add(new AnnotationSyntax("Global"));
                     isGlobal = true;
                 }
+                else if (modifier == ApexKeywords.Virtual && ownerNode is ClassDeclarationSyntax)
+                {
+                    result.Annotations.Add(new AnnotationSyntax("Virtual"));
+                }
                 else if (modifier.StartsWith(ApexKeywords.Without))
                 {
                     result.Annotations.Add(new AnnotationSyntax("WithoutSharing"));

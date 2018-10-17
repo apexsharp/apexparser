@@ -295,6 +295,7 @@ namespace ApexParserTest.Visitors
             Check("[Global] public class X {}", "global class X {}");
             Check("[WithSharing] public class X {}", "public with sharing class X {}");
             Check("[WithoutSharing] public class X {}", "public without sharing class X {}");
+            Check("[Virtual] public class X {}", "public virtual class X {}");
         }
 
         [Test]
