@@ -1942,8 +1942,7 @@ namespace ApexParserTest.Properties {
         ///
         ///    public String UpdateContactEmailAddress(string firstName, string lastName, string email)
         ///    {
-        ///        Contact contact = dl.GetContactByName(firstName, lastName);
-        ///      [rest of string was truncated]&quot;;.
+        ///        Contact contact = dl.GetContactByName(firstName [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DataAccessDemo {
             get {
@@ -2483,7 +2482,7 @@ namespace ApexParserTest.Properties {
         ///	 *	@throws The exception to be thrown.
         ///	 *	@return The value to be returned.
         ///	 */
-        ///	Object answer(ff [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_Answer {
             get {
@@ -2563,7 +2562,7 @@ namespace ApexParserTest.Properties {
         ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
         ///
         ///		mocks.startStubbing();
-        ///		mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi hi&apos;)).thenAnswer(new fflib_AnswerTest.ExceptionForAnswer [rest of string was truncated]&quot;;.
+        ///		mocks.when(mockList.get2(0, &apos;Hi hi Hello Hi hi&apos;)).thenAnswer(new fflib_AnswerTe [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnswerTest {
             get {
@@ -2643,7 +2642,7 @@ namespace ApexParserTest.Properties {
         ///	/*
         ///	 * Verifies a method was invoked the expected number of times, with the expected arguments.
         ///	 * @param qualifiedMethod The method to be verified.
-        ///	 * @param methodArg The arguments  [rest of string was truncated]&quot;;.
+        ///	 * @param methodArg  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrder {
             get {
@@ -2719,7 +2718,7 @@ namespace ApexParserTest.Properties {
         ///	{
         ///		// Given
         ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockLi [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_AnyOrderTest {
             get {
@@ -2801,7 +2800,7 @@ namespace ApexParserTest.Properties {
         ///	private fflib_VerificationMode verificationMode;
         ///	private fflib_Answer myAnswer;
         ///
-        ///	public Boolean Verifying { [rest of string was truncated]&quot;;.
+        ///	public B [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocks {
             get {
@@ -2877,9 +2876,7 @@ namespace ApexParserTest.Properties {
         ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedDependently
         ///	 * - This is the default for backwards compatibility.
         ///	 * When true, each test spy instance has its own stubbed behaviour and invocations.
-        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependently
-        ///	 */
-        ///	p [rest of string was truncated]&quot;;.
+        ///	 * - See fflib_ApexMocksTest.thatMultipleInstancesCanBeMockedIndependen [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksConfig {
             get {
@@ -2947,7 +2944,7 @@ namespace ApexParserTest.Properties {
         ///	{
         ///		// Given
         ///		fflib_ApexMocks mocks = new fflib_ApexMocks();
-        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.clas [rest of string was truncated]&quot;;.
+        ///		fflib_MyList mockList = (fflib_MyList)mocks.mock(ffl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksTest {
             get {
@@ -3015,7 +3012,7 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtils {
             get {
@@ -3077,7 +3074,7 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ApexMocksUtilsTest {
             get {
@@ -3139,7 +3136,7 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in th [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discla [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptor {
             get {
@@ -3212,7 +3209,7 @@ namespace ApexParserTest.Properties {
         ///
         ///		// Then
         ///		fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(String.class);
-        ///		((fflib_MyList.IList) mocks.verify(mockList)).add( [rest of string was truncated]&quot;;.
+        ///		((fflib_MyList.IList) mocks.v [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_ArgumentCaptorTest {
             get {
@@ -3290,7 +3287,7 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IDGenerator {
             get {
@@ -3352,7 +3349,7 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IDGeneratorTest {
             get {
@@ -3414,7 +3411,7 @@ namespace ApexParserTest.Properties {
         /// * - Redistributions of source code must retain the above copyright notice,
         /// *      this list of conditions and the following disclaimer.
         /// * - Redistributions in binary form must reproduce the above copyright notice,
-        /// *      this list of conditions and the following disclaimer in t [rest of string was truncated]&quot;;.
+        /// *      this list of conditions and the following discl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fflib_IMatcher {
             get {
@@ -3489,9 +3486,7 @@ namespace ApexParserTest.Properties {
         ///            medal_color = null ;
         ///        }
         ///    }
-        ///    public void MethodForTraditional()
-        ///    {
-        ///        for (I [rest of string was truncated]&quot;;.
+        ///    public void MethodForTraditional [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ForIfWhile {
             get {
@@ -4139,6 +4134,120 @@ namespace ApexParserTest.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /*
+        ///MIT License
+        ///
+        ///Copyright (c) 2018 open-force
+        ///
+        ///Permission is hereby granted, free of charge, to any person obtaining a copy
+        ///of this software and associated documentation files (the &quot;Software&quot;), to deal
+        ///in the Software without restriction, including without limitation the rights
+        ///to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        ///copies of the Software, and to permit persons to whom the Software is
+        ///furnished to do so, subject to the following conditions:
+        ///
+        ///The above copyright notice and  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string JSONParse {
+            get {
+                return ResourceManager.GetString("JSONParse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        ///MIT License
+        ///
+        ///Copyright (c) 2018 open-force
+        ///
+        ///Permission is hereby granted, free of charge, to any person obtaining a copy
+        ///of this software and associated documentation files (the &quot;Software&quot;), to deal
+        ///in the Software without restriction, including without limitation the rights
+        ///to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        ///copies of the Software, and to permit persons to whom the Software is
+        ///furnished to do so, subject to the following conditions:
+        ///
+        ///The above copyright notice and  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string JSONParse_CSharp {
+            get {
+                return ResourceManager.GetString("JSONParse_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        ///MIT License
+        ///
+        ///Copyright (c) 2018 open-force
+        ///
+        ///Permission is hereby granted, free of charge, to any person obtaining a copy
+        ///of this software and associated documentation files (the &quot;Software&quot;), to deal
+        ///in the Software without restriction, including without limitation the rights
+        ///to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        ///copies of the Software, and to permit persons to whom the Software is
+        ///furnished to do so, subject to the following conditions:
+        ///
+        ///The above copyright notice and  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string JSONParse_Formatted {
+            get {
+                return ResourceManager.GetString("JSONParse_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * Exercises the JSONParse class.
+        /// */
+        ///@IsTest
+        ///private class JSONParseTests {
+        ///
+        ///	// Some JSON samples from https://json.org/example.html
+        ///	public static final String SAMPLE1 = &apos;{&quot;menu&quot;:{&quot;id&quot;:&quot;file&quot;,&quot;value&quot;:&quot;File&quot;,&quot;popup&quot;:{&quot;menuitem&quot;:[{&quot;value&quot;:&quot;New&quot;,&quot;onclick&quot;:&quot;CreateNewDoc()&quot;},{&quot;value&quot;:&quot;Open&quot;,&quot;onclick&quot;:&quot;OpenDoc()&quot;},{&quot;value&quot;:&quot;Close&quot;,&quot;onclick&quot;:&quot;CloseDoc()&quot;}]}}}&apos;;
+        ///	public static final String SAMPLE2 = &apos;{&quot;widget&quot;:{&quot;debug&quot;:&quot;on&quot;,&quot;window&quot;:{&quot;title&quot;:&quot;SampleKonfabulatorWidget&quot;,&quot;name&quot;:&quot;main_window&quot;,&quot;width&quot;:500,&quot;height [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string JSONParseTests {
+            get {
+                return ResourceManager.GetString("JSONParseTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * Exercises the JSONParse class.
+        /// */
+        ///@IsTest
+        ///private class JSONParseTests {
+        ///
+        ///	// Some JSON samples from https://json.org/example.html
+        ///	public static final String SAMPLE1 = &apos;{&quot;menu&quot;:{&quot;id&quot;:&quot;file&quot;,&quot;value&quot;:&quot;File&quot;,&quot;popup&quot;:{&quot;menuitem&quot;:[{&quot;value&quot;:&quot;New&quot;,&quot;onclick&quot;:&quot;CreateNewDoc()&quot;},{&quot;value&quot;:&quot;Open&quot;,&quot;onclick&quot;:&quot;OpenDoc()&quot;},{&quot;value&quot;:&quot;Close&quot;,&quot;onclick&quot;:&quot;CloseDoc()&quot;}]}}}&apos;;
+        ///	public static final String SAMPLE2 = &apos;{&quot;widget&quot;:{&quot;debug&quot;:&quot;on&quot;,&quot;window&quot;:{&quot;title&quot;:&quot;SampleKonfabulatorWidget&quot;,&quot;name&quot;:&quot;main_window&quot;,&quot;width&quot;:500,&quot;height [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string JSONParseTests_CSharp {
+            get {
+                return ResourceManager.GetString("JSONParseTests_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// * Exercises the JSONParse class.
+        /// */
+        ///@IsTest
+        ///private class JSONParseTests {
+        ///
+        ///	// Some JSON samples from https://json.org/example.html
+        ///	public static final String SAMPLE1 = &apos;{&quot;menu&quot;:{&quot;id&quot;:&quot;file&quot;,&quot;value&quot;:&quot;File&quot;,&quot;popup&quot;:{&quot;menuitem&quot;:[{&quot;value&quot;:&quot;New&quot;,&quot;onclick&quot;:&quot;CreateNewDoc()&quot;},{&quot;value&quot;:&quot;Open&quot;,&quot;onclick&quot;:&quot;OpenDoc()&quot;},{&quot;value&quot;:&quot;Close&quot;,&quot;onclick&quot;:&quot;CloseDoc()&quot;}]}}}&apos;;
+        ///	public static final String SAMPLE2 = &apos;{&quot;widget&quot;:{&quot;debug&quot;:&quot;on&quot;,&quot;window&quot;:{&quot;title&quot;:&quot;SampleKonfabulatorWidget&quot;,&quot;name&quot;:&quot;main_window&quot;,&quot;width&quot;:500,&quot;height [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string JSONParseTests_Formatted {
+            get {
+                return ResourceManager.GetString("JSONParseTests_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to public class ListAndArrayDemo {
         ///    public List&lt;String&gt; StringList = new List&lt;String&gt; { &apos;one&apos;, &apos;two&apos; };
         ///    public Integer[] IntegerArray = new Integer[]{1, 2, 3};
@@ -4513,7 +4622,7 @@ namespace ApexParserTest.Properties {
         ///    public DateTime DateTimeEmpty;
         ///    // FieldDeclarationSyntax
         ///    public DateTime DateTimeInitilized = DateTime.now();
-        ///    // FieldDeclarationSyntax [rest of string was truncated]&quot;;.
+        ///    // FieldDecl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PropertyAndField {
             get {
@@ -4902,7 +5011,7 @@ namespace ApexParserTest.Properties {
         ///            	case 5:
         ///            	case 6:
         ///            	case 7:
-        ///            		System.debug(&apos;Cool!&apos;); // 1
+        ///            		System.debug(&quot;Cool!&quot;); // 1
         ///            		break;
         ///
         ///            	case string c:
@@ -4942,7 +5051,8 @@ namespace ApexParserTest.Properties {
         ///        				System.debug(&apos;baz&apos;); // 4
         ///        			} // 5
         ///        		}
-        ///        	} //  [rest of string was truncated]&quot;;.
+        ///
+        ///        		Sy [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SwitchDemo_Formatted {
             get {
@@ -4968,11 +5078,11 @@ namespace ApexParserTest.Properties {
         ///        				System.debug(&apos;baz&apos;); // 4
         ///        			} // 5
         ///        		}
+        ///
+        ///        		System.debug(&apos;corge&apos;);
         ///        	} // 6
         ///        	when else {
-        ///        		return; // 7
-        ///        	}
-        ///        } [rest of string was truncated]&quot;;.
+        ///        	 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SwitchDemo_Original {
             get {

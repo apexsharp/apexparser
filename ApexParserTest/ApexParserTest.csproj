@@ -275,6 +275,12 @@
     <None Include="ApexCSharpClasses\fflib_IMatcher.cls" />
     <None Include="ApexCSharpClasses\fflib_IMatcher_CSharp.cs" />
     <None Include="ApexCSharpClasses\fflib_IMatcher_Formatted.cls" />
+    <None Include="ApexCSharpClasses\JSONParse.cls" />
+    <None Include="ApexCSharpClasses\JSONParse_CSharp.cs" />
+    <None Include="ApexCSharpClasses\JSONParse_Formatted.cls" />
+    <None Include="ApexCSharpClasses\JSONParseTests.cls" />
+    <None Include="ApexCSharpClasses\JSONParseTests_CSharp.cs" />
+    <None Include="ApexCSharpClasses\JSONParseTests_Formatted.cls" />
     <None Include="ApexRoundtrip\ClassAbstract_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassEnum_CSharp.cs" />
     <None Include="ApexRoundtrip\ClassException_CSharp.cs" />

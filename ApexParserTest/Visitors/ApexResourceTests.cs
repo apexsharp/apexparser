@@ -92,6 +92,14 @@ namespace ApexParserTest.Visitors
             Check(fflib_IMatcher, fflib_IMatcher_Formatted);
 
         [Test]
+        public void JSONParseIsFormattedUsingNewApexFormatter() =>
+            Check(JSONParse, JSONParse_Formatted);
+
+        [Test]
+        public void JSONParseTestsIsFormattedUsingNewApexFormatter() =>
+            Check(JSONParseTests, JSONParseTests_Formatted);
+
+        [Test]
         public void ApexDemoIsFormattedUsingNewApexFormatter() =>
             Check(ApexDemo, ApexDemo_Formatted);
 

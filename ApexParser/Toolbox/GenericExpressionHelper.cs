@@ -247,8 +247,8 @@ namespace ApexParser.Toolbox
         private static Dictionary<string, string> ApexTypes { get; } =
             CSharpTypes.Where(p => p.Key != ApexKeywords.Int).ToDictionary(p => p.Value, p => p.Key);
 
-        private static Dictionary<Regex, string> CSharpTypeRegex { get; } =
-            CSharpTypes.ToDictionary(p => new Regex($"\\b{p.Key}\\b",
+        private static Dictionary<Regex, string> CSharpTypeRegexExcludingMemberReferences { get; } =
+            CSharpTypes.ToDictionary(p => new Regex($"\\b{p.Key}\\b(?!\\s*\\.)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled), p => p.Value);
 
         private static Dictionary<Regex, string> ApexTypeRegex { get; } =
@@ -264,7 +264,7 @@ namespace ApexParser.Toolbox
         public static string ConvertApexTypesToCSharp(string expression)
         {
             // replace Apex types with C# types
-            foreach (var r in CSharpTypeRegex.Select(p => new { Regex = p.Key, p.Value }))
+            foreach (var r in CSharpTypeRegexExcludingMemberReferences.Select(p => new { Regex = p.Key, p.Value }))
             {
                 expression = r.Regex.Replace(expression, r.Value);
             }

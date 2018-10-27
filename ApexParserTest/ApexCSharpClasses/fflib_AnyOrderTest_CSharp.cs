@@ -305,7 +305,7 @@ namespace ApexSharpDemo.ApexCode
             catch (Exception exc)
             {
                 string exceptionMessage = exc.getMessage();
-                string expectedMessage = string.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<string>{"2", "3"})+ fflib_MyList.getStubClassName()+ ".add(String). "+ customAssertMessage + ".";
+                string expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<string>{"2", "3"})+ fflib_MyList.getStubClassName()+ ".add(String). "+ customAssertMessage + ".";
                 System.assertEquals(expectedMessage, exceptionMessage,
 				"The exception was caught, but the message was not as expected. "+
 				"Expected: ["+ expectedMessage + "],  Actual: ["+ exceptionMessage + "].");
@@ -1057,7 +1057,7 @@ namespace ApexSharpDemo.ApexCode
          */
         private static void assertFailMessage(string exceptionMessage, int expectedInvocations, int actualsInvocations)
         {
-            string expectedMessage = string.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<string>{expectedInvocations.ToString(), actualsInvocations.ToString()});
+            string expectedMessage = String.format(BASIC_VERIFY_ASSERTION_MESSAGE, new List<string>{expectedInvocations.ToString(), actualsInvocations.ToString()});
             System.assert(exceptionMessage.contains(expectedMessage),
 			"The exception was caught, but the message was not as expected. "+
 			"Expected: ["+ expectedMessage + "],  Actual: ["+ exceptionMessage + "].");

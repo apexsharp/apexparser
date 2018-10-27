@@ -86,6 +86,14 @@ namespace ApexParserTest.Visitors
             Check(fflib_IMatcher, fflib_IMatcher_CSharp);
 
         [Test]
+        public void JSONParseIsGeneratedInCSharp() =>
+            Check(JSONParse, JSONParse_CSharp);
+
+        [Test]
+        public void JSONParseTestsIsGeneratedInCSharp() =>
+            Check(JSONParseTests, JSONParseTests_CSharp);
+
+        [Test]
         public void ApexDemoIsGeneratedInCSharp() =>
             Check(ApexDemo, ApexDemo_CSharp);
 

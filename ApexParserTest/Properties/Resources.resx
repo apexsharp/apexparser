@@ -736,4 +736,22 @@
   <data name="SwitchDemo_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ApexRoundtrip\SwitchDemo_Original.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="JSONParse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\JSONParse.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JSONParseTests" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\JSONParseTests.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JSONParseTests_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\JSONParseTests_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JSONParseTests_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\JSONParseTests_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JSONParse_CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\JSONParse_CSharp.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="JSONParse_Formatted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ApexCSharpClasses\JSONParse_Formatted.cls;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
 </root>

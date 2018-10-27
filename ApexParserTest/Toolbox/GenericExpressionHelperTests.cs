@@ -413,5 +413,18 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual("Map<string, string>", ToCSharp("Map<String, String>"));
             Assert.AreEqual("Map<String, String>", ToApex("Map<string, string>"));
         }
+
+        [Test]
+        public void ApexPritimiveTypesStaticMethodsAreNotConvertedToCSharp()
+        {
+            string ToCSharp(string expr) => GenericExpressionHelper.ConvertApexTypesToCSharp(expr);
+            string ToApex(string expr) => GenericExpressionHelper.ConvertCSharpTypesToApex(expr);
+
+            Assert.AreEqual("a = (int)b", ToCSharp("a = (Integer)b"));
+            Assert.AreEqual("a = Integer.valueOf(b)", ToCSharp("a = Integer.valueOf(b)"));
+
+            Assert.AreEqual("a = (Integer)b", ToApex("a = (int)b"));
+            Assert.AreEqual("a = Integer.valueOf(b)", ToApex("a = Integer.valueOf(b)"));
+        }
     }
 }
