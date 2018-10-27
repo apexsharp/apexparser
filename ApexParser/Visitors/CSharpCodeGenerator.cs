@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using ApexParser.MetaClass;
 using ApexParser.Parser;
 using ApexParser.Toolbox;
@@ -24,6 +21,7 @@ namespace ApexParser.Visitors
         {
             "Apex.ApexSharp",
             "Apex.ApexSharp.ApexAttributes",
+            "Apex.ApexSharp.Extensions",
             "Apex.System",
             "SObjects",
         };

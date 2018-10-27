@@ -31,6 +31,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -60,6 +61,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.ApexSharp.NUnit;
                     using Apex.System;
                     using SObjects;
@@ -88,6 +90,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -124,6 +127,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.ApexSharp.NUnit;
                     using Apex.System;
                     using SObjects;
@@ -152,6 +156,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -178,6 +183,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -804,6 +810,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -851,6 +858,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -888,6 +896,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -933,6 +942,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -984,6 +994,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using MyNamespace.SObjects;
 
@@ -1034,6 +1045,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1083,6 +1095,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1115,6 +1128,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1147,6 +1161,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1178,6 +1193,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1209,6 +1225,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1239,6 +1256,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1268,6 +1286,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1296,6 +1315,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1340,6 +1360,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
@@ -1405,6 +1426,7 @@ namespace ApexParserTest.Visitors
                 {
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
                     using Apex.System;
                     using SObjects;
 
