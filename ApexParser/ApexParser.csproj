@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.6.12</Version>
+    <Version>0.6.13</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>ApexSharp.com</Authors>
     <Company>ApexSharp.com</Company>
@@ -38,16 +38,25 @@
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
     <PackageReleaseNotes>Beta release. What's new:
 
+      v0.6.13:
+      — Don't translate static member access expressions on primitive types
+      — Fixed an issue related to the field declarators
+      — Added Apex.ApexSharp.Extensions namespace to generated C# code
+      — Automatically add constructors to empty Apex exception classes
+
+      v0.6.12:
+      — Added support for the virtual class modifier
+
       v0.6.11:
-      - Fixed a bug with string literals
-      - Updated Sprache dependency to the stable v2.2.0
+      — Fixed a bug with string literals
+      — Updated Sprache dependency to the stable v2.2.0
 
       v0.6.10:
-      - Added switch statement support
-      - Updated Roslyn C# parser dependency to v2.9.0
+      — Added switch statement support
+      — Updated Roslyn C# parser dependency to v2.9.0
 
       v0.6.2:
-      - Updated the grammar to be able to parse the standard APIs
+      — Updated the grammar to be able to parse the standard APIs
     </PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <RepositoryUrl>https://github.com/apexsharp/apexparser.git</RepositoryUrl>
