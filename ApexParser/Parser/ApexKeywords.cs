@@ -156,7 +156,7 @@ namespace ApexParser.Parser
         public const string Throw = "throw";
         ////public const string Today = "today"; // hack, see below
         public const string Tolabel = "tolabel";
-        public const string Tomorrow = "tomorrow";
+        ////public const string Tomorrow = "tomorrow"; // hack, see below
         ////public const string Transaction = "transaction"; // reserved for future use
         ////public const string Trigger = "trigger"; // hack, see below
         public const string True = "true";
@@ -227,6 +227,7 @@ namespace ApexParser.Parser
         public static string String => "String"; // built-in type
         public static string Time => "Time"; // built-in type
         public static string Today => "today"; // System.today() method
+        public static string Tomorrow => "tomorrow"; // can be used as property name
         public static string Transient => "transient"; // variable modifier
         public static string Trigger => "trigger"; // built-in Trigger class
         public static string Void => "void";
