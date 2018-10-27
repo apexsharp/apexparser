@@ -282,18 +282,30 @@ namespace ApexSharpDemo.ApexCode
         // ---------------------------------------
         public class NotAnObjectException : Exception
         {
+            public NotAnObjectException(string message) : base(message)
+            {
+            }
         }
 
         public class NotAnArrayException : Exception
         {
+            public NotAnArrayException(string message) : base(message)
+            {
+            }
         }
 
         public class MissingKeyException : Exception
         {
+            public MissingKeyException(string message) : base(message)
+            {
+            }
         }
 
         public class InvalidConversionException : Exception
         {
+            public InvalidConversionException(string message) : base(message)
+            {
+            }
         }
     }
 }

@@ -1510,6 +1510,9 @@ namespace ApexSharpDemo.ApexCode
 
         private class MyException : Exception
         {
+            public MyException(string message) : base(message)
+            {
+            }
         }
 
         private class isOdd : fflib_IMatcher

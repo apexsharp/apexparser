@@ -1500,5 +1500,29 @@ namespace ApexParserTest.Visitors
 
             Check(decl, @"string json = ""{ name: \""value\"" }"";");
         }
+
+        [Test]
+        public void ApexExceptionsWithNoClassMembersAddMissingConstructors()
+        {
+            var apex = Apex.ParseClass(
+                @"class MyException extends Exception {}");
+
+            Check(apex,
+                @"namespace ApexSharpDemo.ApexCode
+                {
+                    using Apex.ApexSharp;
+                    using Apex.ApexSharp.ApexAttributes;
+                    using Apex.ApexSharp.Extensions;
+                    using Apex.System;
+                    using SObjects;
+
+                    class MyException : Exception
+                    {
+                        public MyException(string message) : base(message)
+                        {
+                        }
+                    }
+                }");
+        }
     }
 }

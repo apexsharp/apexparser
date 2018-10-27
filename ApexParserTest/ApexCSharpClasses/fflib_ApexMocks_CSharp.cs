@@ -286,6 +286,9 @@ namespace ApexSharpDemo.ApexCode
 
         public class ApexMocksException : Exception
         {
+            public ApexMocksException(string message) : base(message)
+            {
+            }
         }
 
         private object returnValue(fflib_InvocationOnMock invocation)

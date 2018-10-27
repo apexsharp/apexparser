@@ -86,6 +86,29 @@ namespace ApexParser.Visitors
             });
         }
 
+        protected override void AppendClassMembers(ClassDeclarationSyntax node)
+        {
+            // special case: emit constructors for empty classes derived from Expression
+            if (node.BaseType != null &&
+                node.BaseType.Identifier == ApexKeywords.Exception &&
+                node.Members.IsNullOrEmpty())
+            {
+                AppendIndentedLine("{{");
+                using (Indented())
+                {
+                    AppendIndentedLine("public {0}(string message) : base(message)", node.Identifier);
+                    AppendIndentedLine("{{");
+                    AppendIndentedLine("}}");
+                }
+
+                AppendIndented("}}");
+                AppendTrailingComments(node);
+                return;
+            }
+
+            base.AppendClassMembers(node);
+        }
+
         protected override void AppendEnumDeclaration(EnumDeclarationSyntax node)
         {
             AppendNamespacesForTopLevelDeclaration(node, () => base.AppendEnumDeclaration(node));

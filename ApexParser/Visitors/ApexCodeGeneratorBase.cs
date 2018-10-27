@@ -70,7 +70,7 @@ namespace ApexParser.Visitors
             Append("{0}", node.Identifier);
         }
 
-        protected void AppendClassMembers(ClassDeclarationSyntax node)
+        protected virtual void AppendClassMembers(ClassDeclarationSyntax node)
         {
             AppendIndentedLine("{{");
             using (Indented())

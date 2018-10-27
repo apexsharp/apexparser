@@ -8,5 +8,8 @@ namespace ApexSharpDemo.ApexCode
 
     public class ClassException : Exception
     {
+        public ClassException(string message) : base(message)
+        {
+        }
     }
 }
