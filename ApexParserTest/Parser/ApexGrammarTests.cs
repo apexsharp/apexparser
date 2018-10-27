@@ -1163,6 +1163,41 @@ namespace ApexParserTest.Parser
             Assert.NotNull(pd.Setter);
             Assert.True(pd.Getter.IsEmpty);
             Assert.True(pd.Setter.IsEmpty);
+
+            cm = Apex.ClassMemberDeclaration.Parse("int a;");
+            var fd = cm as FieldDeclarationSyntax;
+            Assert.NotNull(fd);
+            Assert.NotNull(fd.Type);
+            Assert.NotNull(fd.Fields);
+            Assert.AreEqual(1, fd.Fields.Count);
+
+            cm = Apex.ClassMemberDeclaration.Parse("int a = 1;");
+            fd = cm as FieldDeclarationSyntax;
+            Assert.NotNull(fd);
+            Assert.NotNull(fd.Type);
+            Assert.NotNull(fd.Fields);
+            Assert.AreEqual(1, fd.Fields.Count);
+
+            cm = Apex.ClassMemberDeclaration.Parse("int a, b;");
+            fd = cm as FieldDeclarationSyntax;
+            Assert.NotNull(fd);
+            Assert.NotNull(fd.Type);
+            Assert.NotNull(fd.Fields);
+            Assert.AreEqual(2, fd.Fields.Count);
+
+            cm = Apex.ClassMemberDeclaration.Parse("int a = 1, b = 2;");
+            fd = cm as FieldDeclarationSyntax;
+            Assert.NotNull(fd);
+            Assert.NotNull(fd.Type);
+            Assert.NotNull(fd.Fields);
+            Assert.AreEqual(2, fd.Fields.Count);
+
+            cm = Apex.ClassMemberDeclaration.Parse("int a = 1, /* comment */ b = 2;");
+            fd = cm as FieldDeclarationSyntax;
+            Assert.NotNull(fd);
+            Assert.NotNull(fd.Type);
+            Assert.NotNull(fd.Fields);
+            Assert.AreEqual(2, fd.Fields.Count);
         }
 
         [Test]

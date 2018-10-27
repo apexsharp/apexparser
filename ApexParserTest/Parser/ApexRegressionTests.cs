@@ -749,5 +749,18 @@ namespace ApexParserTest.Parser
             var cd = Apex.ClassDeclaration.Parse(text);
             Assert.AreEqual("BatchCleanLandingZoneCharts", cd.Identifier);
         }
+
+        [Test]
+        public void MultipleFieldDeclaratorsWithCommentsInBetween()
+        {
+            var cd = Apex.ClassDeclaration.Parse(@"
+                class Sample {
+                    final string a = '123',
+                        // a comment in between
+                        b = '321';
+                }");
+
+            Assert.AreEqual("Sample", cd.Identifier);
+        }
     }
 }

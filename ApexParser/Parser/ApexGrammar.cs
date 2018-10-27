@@ -212,12 +212,13 @@ namespace ApexParser.Parser
 
         // example: now = DateTime.Now()
         protected internal virtual Parser<FieldDeclaratorSyntax> FieldDeclarator =>
-            from identifier in Identifier
+            from identifier in Identifier.Commented(this)
             from expression in Parse.Char('=').Token().Then(c => GenericExpression).Optional()
             select new FieldDeclaratorSyntax
             {
-                Identifier = identifier,
+                Identifier = identifier.Value,
                 Expression = ExpressionSyntax.CreateOrDefault(expression),
+                LeadingComments = identifier.LeadingComments.ToList(),
             };
 
         // examples: return true; if (false) return; etc.
