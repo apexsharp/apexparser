@@ -43,6 +43,7 @@
       — Fixed an issue related to the field declarators
       — Added Apex.ApexSharp.Extensions namespace to generated C# code
       — Automatically add constructors to empty Apex exception classes
+      — Updated reserved words
 
       v0.6.12:
       — Added support for the virtual class modifier
