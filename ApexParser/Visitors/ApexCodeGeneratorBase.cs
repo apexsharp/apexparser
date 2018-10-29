@@ -70,13 +70,15 @@ namespace ApexParser.Visitors
             Append("{0}", node.Identifier);
         }
 
-        protected virtual void AppendClassMembers(ClassDeclarationSyntax node)
+        protected virtual void AppendClassMembers(ClassDeclarationSyntax node, IEnumerable<MemberDeclarationSyntax> classMembers = null)
         {
+            classMembers = classMembers ?? node.Members;
+
             AppendIndentedLine("{{");
             using (Indented())
             {
                 var isFirstMember = true;
-                foreach (var md in node.Members.EmptyIfNull())
+                foreach (var md in classMembers.EmptyIfNull())
                 {
                     // some class members may generate no code
                     var lastPosition = Code.Length;

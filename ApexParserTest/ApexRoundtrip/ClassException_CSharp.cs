@@ -8,7 +8,23 @@ namespace ApexSharpDemo.ApexCode
 
     public class ClassException : Exception
     {
-        public ClassException(string message) : base(message)
+        [ApexSharpGenerated]
+        public ClassException()
+        {
+        }
+
+        [ApexSharpGenerated]
+        public ClassException(string message)
+        {
+        }
+
+        [ApexSharpGenerated]
+        public ClassException(Exception e)
+        {
+        }
+
+        [ApexSharpGenerated]
+        public ClassException(string message, Exception e)
         {
         }
     }

@@ -282,28 +282,92 @@ namespace ApexSharpDemo.ApexCode
         // ---------------------------------------
         public class NotAnObjectException : Exception
         {
-            public NotAnObjectException(string message) : base(message)
+            [ApexSharpGenerated]
+            public NotAnObjectException()
+            {
+            }
+
+            [ApexSharpGenerated]
+            public NotAnObjectException(string message)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public NotAnObjectException(Exception e)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public NotAnObjectException(string message, Exception e)
             {
             }
         }
 
         public class NotAnArrayException : Exception
         {
-            public NotAnArrayException(string message) : base(message)
+            [ApexSharpGenerated]
+            public NotAnArrayException()
+            {
+            }
+
+            [ApexSharpGenerated]
+            public NotAnArrayException(string message)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public NotAnArrayException(Exception e)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public NotAnArrayException(string message, Exception e)
             {
             }
         }
 
         public class MissingKeyException : Exception
         {
-            public MissingKeyException(string message) : base(message)
+            [ApexSharpGenerated]
+            public MissingKeyException()
+            {
+            }
+
+            [ApexSharpGenerated]
+            public MissingKeyException(string message)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public MissingKeyException(Exception e)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public MissingKeyException(string message, Exception e)
             {
             }
         }
 
         public class InvalidConversionException : Exception
         {
-            public InvalidConversionException(string message) : base(message)
+            [ApexSharpGenerated]
+            public InvalidConversionException()
+            {
+            }
+
+            [ApexSharpGenerated]
+            public InvalidConversionException(string message)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public InvalidConversionException(Exception e)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public InvalidConversionException(string message, Exception e)
             {
             }
         }

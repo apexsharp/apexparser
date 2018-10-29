@@ -1510,7 +1510,23 @@ namespace ApexSharpDemo.ApexCode
 
         private class MyException : Exception
         {
-            public MyException(string message) : base(message)
+            [ApexSharpGenerated]
+            public MyException()
+            {
+            }
+
+            [ApexSharpGenerated]
+            public MyException(string message)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public MyException(Exception e)
+            {
+            }
+
+            [ApexSharpGenerated]
+            public MyException(string message, Exception e)
             {
             }
         }

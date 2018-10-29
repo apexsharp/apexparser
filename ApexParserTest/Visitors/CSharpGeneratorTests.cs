@@ -1505,7 +1505,11 @@ namespace ApexParserTest.Visitors
         public void ApexExceptionsWithNoClassMembersAddMissingConstructors()
         {
             var apex = Apex.ParseClass(
-                @"class MyException extends Exception {}");
+                @"class MyException extends Exception
+                {
+                    public MyException(string msg) { /* custom1 */ }
+                    public MyException(Exception x) { /* custom2 */ }
+                }");
 
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
@@ -1518,11 +1522,54 @@ namespace ApexParserTest.Visitors
 
                     class MyException : Exception
                     {
-                        public MyException(string message) : base(message)
+                        [ApexSharpGenerated]
+                        public MyException()
                         {
+                        }
+
+                        [ApexSharpGenerated]
+                        public MyException(string message, Exception e)
+                        {
+                        }
+
+                        public MyException(string msg)
+                        {
+                            // custom1
+                        }
+
+                        public MyException(Exception x)
+                        {
+                            // custom2
                         }
                     }
                 }");
+        }
+
+        [Test]
+        public void GetMissingConstructorsForExceptionClass()
+        {
+            var gen = new CSharpCodeGenerator();
+            var cls = new ClassDeclarationSyntax { Identifier = "MyEx" };
+            var all = gen.GetExceptionConstructors(cls);
+            Assert.AreEqual(4, all.Count());
+
+            var missing = gen.GetMissingConstructors(null, all);
+            Assert.AreEqual(4, missing.Count());
+
+            missing = gen.GetMissingConstructors(null, null);
+            Assert.AreEqual(0, missing.Count());
+
+            missing = gen.GetMissingConstructors(Enumerable.Empty<ConstructorDeclarationSyntax>(), all);
+            Assert.AreEqual(4, missing.Count());
+
+            missing = gen.GetMissingConstructors(all, all);
+            Assert.AreEqual(0, missing.Count());
+
+            missing = gen.GetMissingConstructors(all.Skip(1), all);
+            Assert.AreEqual(1, missing.Count());
+
+            missing = gen.GetMissingConstructors(all.Skip(2).Take(1), all);
+            Assert.AreEqual(3, missing.Count());
         }
     }
 }
