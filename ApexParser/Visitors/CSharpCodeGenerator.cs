@@ -122,6 +122,10 @@ namespace ApexParser.Visitors
                 ReturnType = returnType,
                 Body = emptyBody,
                 Parameters = new List<ParameterSyntax>(),
+                ChainedConstructorCall = new ExpressionSyntax
+                {
+                    ExpressionString = "super()",
+                },
             };
 
             // constructor with a message
@@ -135,6 +139,10 @@ namespace ApexParser.Visitors
                 Parameters = new List<ParameterSyntax>
                 {
                     new ParameterSyntax("string", "message"),
+                },
+                ChainedConstructorCall = new ExpressionSyntax
+                {
+                    ExpressionString = "super(message)",
                 },
             };
 
@@ -150,6 +158,10 @@ namespace ApexParser.Visitors
                 {
                     new ParameterSyntax("Exception", "e"),
                 },
+                ChainedConstructorCall = new ExpressionSyntax
+                {
+                    ExpressionString = "super(e)",
+                },
             };
 
             // constructor with a message and an exception
@@ -164,6 +176,10 @@ namespace ApexParser.Visitors
                 {
                     new ParameterSyntax("string", "message"),
                     new ParameterSyntax("Exception", "e"),
+                },
+                ChainedConstructorCall = new ExpressionSyntax
+                {
+                    ExpressionString = "super(message, e)",
                 },
             };
         }
@@ -523,6 +539,11 @@ namespace ApexParser.Visitors
 
             Append(")");
 
+            if (node is ConstructorDeclarationSyntax constr)
+            {
+                AppendChainedConstructorCall(constr);
+            }
+
             if (node.Body != null)
             {
                 // non-abstract method
@@ -534,6 +555,15 @@ namespace ApexParser.Visitors
                 // abstract method
                 Append(";");
                 AppendTrailingComments(node);
+            }
+        }
+
+        protected override void AppendChainedConstructorCall(ConstructorDeclarationSyntax node)
+        {
+            if (node.ChainedConstructorCall != null && !string.IsNullOrWhiteSpace(node.ChainedConstructorCall.ExpressionString))
+            {
+                Append(" : ");
+                node.ChainedConstructorCall.Accept(this);
             }
         }
 
@@ -640,6 +670,7 @@ namespace ApexParser.Visitors
             part = GenericExpressionHelper.ConvertStringValueofToString(part);
             part = GenericExpressionHelper.ConvertApexInstanceOfTypeExpressionToCSharp(part);
             part = GenericExpressionHelper.ConvertApexTypesToCSharp(part);
+            part = GenericExpressionHelper.ConvertSuperToBase(part);
 
             base.AppendExpressionPart(part);
         }

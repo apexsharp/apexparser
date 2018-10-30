@@ -282,5 +282,10 @@ namespace ApexParser.Toolbox
 
             return expression;
         }
+
+        public static string ConvertSuperToBase(string expression)
+        {
+            return Regex.Replace(expression, @"\bsuper\b", "base");
+        }
     }
 }

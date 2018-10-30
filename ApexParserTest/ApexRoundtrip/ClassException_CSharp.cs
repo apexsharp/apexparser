@@ -9,22 +9,22 @@ namespace ApexSharpDemo.ApexCode
     public class ClassException : Exception
     {
         [ApexSharpGenerated]
-        public ClassException()
+        public ClassException() : base()
         {
         }
 
         [ApexSharpGenerated]
-        public ClassException(string message)
+        public ClassException(string message) : base(message)
         {
         }
 
         [ApexSharpGenerated]
-        public ClassException(Exception e)
+        public ClassException(Exception e) : base(e)
         {
         }
 
         [ApexSharpGenerated]
-        public ClassException(string message, Exception e)
+        public ClassException(string message, Exception e) : base(message, e)
         {
         }
     }

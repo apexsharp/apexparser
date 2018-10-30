@@ -287,22 +287,22 @@ namespace ApexSharpDemo.ApexCode
         public class ApexMocksException : Exception
         {
             [ApexSharpGenerated]
-            public ApexMocksException()
+            public ApexMocksException() : base()
             {
             }
 
             [ApexSharpGenerated]
-            public ApexMocksException(string message)
+            public ApexMocksException(string message) : base(message)
             {
             }
 
             [ApexSharpGenerated]
-            public ApexMocksException(Exception e)
+            public ApexMocksException(Exception e) : base(e)
             {
             }
 
             [ApexSharpGenerated]
-            public ApexMocksException(string message, Exception e)
+            public ApexMocksException(string message, Exception e) : base(message, e)
             {
             }
         }

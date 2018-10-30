@@ -30,5 +30,7 @@ namespace ApexParser.MetaClass
             Identifier = typeAndName.Identifier ?? typeAndName.Type.Identifier;
             return this;
         }
+
+        public ExpressionSyntax ChainedConstructorCall { get; set; }
     }
 }

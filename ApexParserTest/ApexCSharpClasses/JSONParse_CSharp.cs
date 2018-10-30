@@ -283,22 +283,22 @@ namespace ApexSharpDemo.ApexCode
         public class NotAnObjectException : Exception
         {
             [ApexSharpGenerated]
-            public NotAnObjectException()
+            public NotAnObjectException() : base()
             {
             }
 
             [ApexSharpGenerated]
-            public NotAnObjectException(string message)
+            public NotAnObjectException(string message) : base(message)
             {
             }
 
             [ApexSharpGenerated]
-            public NotAnObjectException(Exception e)
+            public NotAnObjectException(Exception e) : base(e)
             {
             }
 
             [ApexSharpGenerated]
-            public NotAnObjectException(string message, Exception e)
+            public NotAnObjectException(string message, Exception e) : base(message, e)
             {
             }
         }
@@ -306,22 +306,22 @@ namespace ApexSharpDemo.ApexCode
         public class NotAnArrayException : Exception
         {
             [ApexSharpGenerated]
-            public NotAnArrayException()
+            public NotAnArrayException() : base()
             {
             }
 
             [ApexSharpGenerated]
-            public NotAnArrayException(string message)
+            public NotAnArrayException(string message) : base(message)
             {
             }
 
             [ApexSharpGenerated]
-            public NotAnArrayException(Exception e)
+            public NotAnArrayException(Exception e) : base(e)
             {
             }
 
             [ApexSharpGenerated]
-            public NotAnArrayException(string message, Exception e)
+            public NotAnArrayException(string message, Exception e) : base(message, e)
             {
             }
         }
@@ -329,22 +329,22 @@ namespace ApexSharpDemo.ApexCode
         public class MissingKeyException : Exception
         {
             [ApexSharpGenerated]
-            public MissingKeyException()
+            public MissingKeyException() : base()
             {
             }
 
             [ApexSharpGenerated]
-            public MissingKeyException(string message)
+            public MissingKeyException(string message) : base(message)
             {
             }
 
             [ApexSharpGenerated]
-            public MissingKeyException(Exception e)
+            public MissingKeyException(Exception e) : base(e)
             {
             }
 
             [ApexSharpGenerated]
-            public MissingKeyException(string message, Exception e)
+            public MissingKeyException(string message, Exception e) : base(message, e)
             {
             }
         }
@@ -352,22 +352,22 @@ namespace ApexSharpDemo.ApexCode
         public class InvalidConversionException : Exception
         {
             [ApexSharpGenerated]
-            public InvalidConversionException()
+            public InvalidConversionException() : base()
             {
             }
 
             [ApexSharpGenerated]
-            public InvalidConversionException(string message)
+            public InvalidConversionException(string message) : base(message)
             {
             }
 
             [ApexSharpGenerated]
-            public InvalidConversionException(Exception e)
+            public InvalidConversionException(Exception e) : base(e)
             {
             }
 
             [ApexSharpGenerated]
-            public InvalidConversionException(string message, Exception e)
+            public InvalidConversionException(string message, Exception e) : base(message, e)
             {
             }
         }

@@ -1523,12 +1523,12 @@ namespace ApexParserTest.Visitors
                     class MyException : Exception
                     {
                         [ApexSharpGenerated]
-                        public MyException()
+                        public MyException() : base()
                         {
                         }
 
                         [ApexSharpGenerated]
-                        public MyException(string message, Exception e)
+                        public MyException(string message, Exception e) : base(message, e)
                         {
                         }
 
@@ -1570,6 +1570,50 @@ namespace ApexParserTest.Visitors
 
             missing = gen.GetMissingConstructors(all.Skip(2).Take(1), all);
             Assert.AreEqual(3, missing.Count());
+        }
+
+        [Test]
+        public void ChainedThisConstructorCall()
+        {
+            var apex = new ConstructorDeclarationSyntax
+            {
+                Modifiers = new List<string> { "public" },
+                Identifier = "MyClass",
+                ReturnType = new TypeSyntax("MyClass"),
+                Parameters = new List<ParameterSyntax>(),
+                Body = new BlockSyntax(),
+                ChainedConstructorCall = new ExpressionSyntax
+                {
+                    ExpressionString = "this('Hello', 123)"
+                }
+            };
+
+            Check(apex,
+                @"public MyClass() : this(""Hello"", 123)
+                {
+                }");
+        }
+
+        [Test]
+        public void ChainedSuperConstructorCall()
+        {
+            var apex = new ConstructorDeclarationSyntax
+            {
+                Modifiers = new List<string> { "public" },
+                Identifier = "MyClass",
+                ReturnType = new TypeSyntax("MyClass"),
+                Parameters = new List<ParameterSyntax>(),
+                Body = new BlockSyntax(),
+                ChainedConstructorCall = new ExpressionSyntax
+                {
+                    ExpressionString = "super('Hello', 123)"
+                }
+            };
+
+            Check(apex,
+                @"public MyClass() : base(""Hello"", 123)
+                {
+                }");
         }
     }
 }

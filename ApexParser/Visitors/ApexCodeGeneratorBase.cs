@@ -279,6 +279,11 @@ namespace ApexParser.Visitors
 
             Append(")");
 
+            if (node is ConstructorDeclarationSyntax constr)
+            {
+                AppendChainedConstructorCall(constr);
+            }
+
             if (node.Body != null)
             {
                 // non-abstract method
@@ -291,6 +296,11 @@ namespace ApexParser.Visitors
                 Append(";");
                 AppendTrailingComments(node);
             }
+        }
+
+        protected virtual void AppendChainedConstructorCall(ConstructorDeclarationSyntax node)
+        {
+            // in Apex, constructor call should be the first statement of the body
         }
 
         public override void VisitParameter(ParameterSyntax pd)
