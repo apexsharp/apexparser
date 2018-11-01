@@ -1615,5 +1615,16 @@ namespace ApexParserTest.Visitors
                 {
                 }");
         }
+
+        [Test]
+        public void DoubleLiteralsConvertedToCSharpDecimals()
+        {
+            var apex = new ExpressionSyntax
+            {
+                ExpressionString = "x = 1.23 + Some('1.23') + 3.45"
+            };
+
+            Check(apex, @"x = 1.23m + Some(""1.23"") + 3.45m");
+        }
     }
 }

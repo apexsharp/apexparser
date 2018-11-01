@@ -671,6 +671,7 @@ namespace ApexParser.Visitors
             part = GenericExpressionHelper.ConvertApexInstanceOfTypeExpressionToCSharp(part);
             part = GenericExpressionHelper.ConvertApexTypesToCSharp(part);
             part = GenericExpressionHelper.ConvertSuperToBase(part);
+            part = GenericExpressionHelper.ConvertApexDoubleLiteralsToDecimals(part);
 
             base.AppendExpressionPart(part);
         }

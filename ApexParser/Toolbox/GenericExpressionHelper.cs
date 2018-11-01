@@ -283,9 +283,28 @@ namespace ApexParser.Toolbox
             return expression;
         }
 
+        private static Regex SuperRegex { get; } = new Regex(@"\bsuper\b",
+            RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+
         public static string ConvertSuperToBase(string expression)
         {
-            return Regex.Replace(expression, @"\bsuper\b", "base");
+            return SuperRegex.Replace(expression, "base");
+        }
+
+        private static Regex DoubleLiteralRegex { get; } = new Regex(@"(?<=^|\s|\W)(?<number>\d*\.\d+)",
+            RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+
+        private static Regex DecimalLiteralRegex { get; } = new Regex(@"(?<=^|\s|\W)(?<number>\d*\.\d+)[Mm]?",
+            RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+
+        public static string ConvertApexDoubleLiteralsToDecimals(string expression)
+        {
+            return DoubleLiteralRegex.Replace(expression, m => m.Groups["number"].Value + "m");
+        }
+
+        public static string ConvertCSharpDecimalLiteralsToDoubles(string expression)
+        {
+            return DecimalLiteralRegex.Replace(expression, m => m.Groups["number"].Value);
         }
     }
 }

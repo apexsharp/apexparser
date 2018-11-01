@@ -426,5 +426,24 @@ namespace ApexParserTest.Toolbox
             Assert.AreEqual("a = (Integer)b", ToApex("a = (int)b"));
             Assert.AreEqual("a = Integer.valueOf(b)", ToApex("a = Integer.valueOf(b)"));
         }
+
+        [Test]
+        public void DoubleLiteralsAreConvertedToDecimalLiterals()
+        {
+            string ToCSharp(string expr) => GenericExpressionHelper.ConvertApexDoubleLiteralsToDecimals(expr);
+            string ToApex(string expr) => GenericExpressionHelper.ConvertCSharpDecimalLiteralsToDoubles(expr);
+
+            Assert.AreEqual("a = 123.45m", ToCSharp("a = 123.45"));
+            Assert.AreEqual("a = .45m", ToCSharp("a = .45"));
+            Assert.AreEqual("a = 1.0m", ToCSharp("a = 1.0"));
+            Assert.AreEqual("a123.45", ToCSharp("a123.45"));
+            Assert.AreEqual("a.", ToCSharp("a."));
+
+            Assert.AreEqual("a = 123.45", ToApex("a = 123.45m"));
+            Assert.AreEqual("a = .45", ToApex("a = .45M"));
+            Assert.AreEqual("a = 1.0", ToApex("a = 1.0m"));
+            Assert.AreEqual("a123.45m", ToApex("a123.45m"));
+            Assert.AreEqual("a.m", ToCSharp("a.m"));
+        }
     }
 }

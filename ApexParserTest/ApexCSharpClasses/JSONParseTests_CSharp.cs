@@ -71,7 +71,7 @@ namespace ApexSharpDemo.ApexCode
             JSONParse parser = new JSONParse("17.22");
             System.assertEquals(false, parser.isObject());
             System.assertEquals(false, parser.isArray());
-            System.assertEquals(17.22, parser.getDecimalValue());
+            System.assertEquals(17.22m, parser.getDecimalValue());
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace ApexSharpDemo.ApexCode
             JSONParse parser = new JSONParse("1.2483e+2");
             System.assertEquals(false, parser.isObject());
             System.assertEquals(false, parser.isArray());
-            System.assertEquals(124.83, parser.getDecimalValue());
+            System.assertEquals(124.83m, parser.getDecimalValue());
         }
 
         [Test]
@@ -329,13 +329,13 @@ namespace ApexSharpDemo.ApexCode
         static void testGetDecimalValue()
         {
             JSONParse parser = new JSONParse("12");
-            System.assertEquals(12.0, parser.getDecimalValue());
+            System.assertEquals(12.0m, parser.getDecimalValue());
             parser = new JSONParse("12.5");
-            System.assertEquals(12.5, parser.getDecimalValue());
+            System.assertEquals(12.5m, parser.getDecimalValue());
             parser = new JSONParse("\"12.5\"");
-            System.assertEquals(12.5, parser.getDecimalValue());
+            System.assertEquals(12.5m, parser.getDecimalValue());
             parser = new JSONParse("1538783039073");
-            System.assertEquals(1538783039073.0, parser.getDecimalValue());
+            System.assertEquals(1538783039073.0m, parser.getDecimalValue());
             try
             {
                 parser = new JSONParse("[1,2,3]");
@@ -352,13 +352,13 @@ namespace ApexSharpDemo.ApexCode
         static void testGetDoubleValue()
         {
             JSONParse parser = new JSONParse("12");
-            System.assertEquals(12.0, parser.getDoubleValue());
+            System.assertEquals(12.0m, parser.getDoubleValue());
             parser = new JSONParse("12.5");
-            System.assertEquals(12.5, parser.getDoubleValue());
+            System.assertEquals(12.5m, parser.getDoubleValue());
             parser = new JSONParse("\"12.5\"");
-            System.assertEquals(12.5, parser.getDoubleValue());
+            System.assertEquals(12.5m, parser.getDoubleValue());
             parser = new JSONParse("1538783039073");
-            System.assertEquals(1538783039073.0, parser.getDoubleValue());
+            System.assertEquals(1538783039073.0m, parser.getDoubleValue());
             try
             {
                 parser = new JSONParse("[1,2,3]");

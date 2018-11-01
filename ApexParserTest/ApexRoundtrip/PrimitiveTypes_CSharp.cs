@@ -16,9 +16,9 @@ namespace ApexSharpDemo.ApexCode
 
         public Datetime MyDateTime = Datetime.Now();
 
-        // public Decimal MyDecimal = 12.4567;
-        public double d = 3.133433;
+        public decimal MyDecimal = 12.4567m;
 
+        //public Double d=3.133433;
         public ID MyId = "006E0000004TquXIAS";
 
         public int MyInteger = 1;

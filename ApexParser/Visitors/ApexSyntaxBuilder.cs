@@ -716,6 +716,7 @@ namespace ApexParser.Visitors
             apexExpr = GenericExpressionHelper.ConvertTypeofExpressionsToApex(apexExpr);
             apexExpr = GenericExpressionHelper.ConvertCSharpIsTypeExpressionToApex(apexExpr);
             apexExpr = GenericExpressionHelper.ConvertCSharpTypesToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertCSharpDecimalLiteralsToDoubles(apexExpr);
             apexExpr = apexExpr.Replace("\"", "'");
             return new ApexExpressionSyntax(apexExpr);
         }
