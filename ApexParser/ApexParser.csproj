@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.6.15</Version>
+    <Version>0.6.16</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>ApexSharp.com</Authors>
     <Company>ApexSharp.com</Company>
@@ -37,6 +37,10 @@
     <PackageProjectUrl>https://github.com/apexsharp/apexparser/</PackageProjectUrl>
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
     <PackageReleaseNotes>Beta release. What's new:
+
+      v0.6.16:
+      — Improved the typeof expression handling
+      — Added using Apex to the generated C# code
 
       v0.6.15:
       — All floating-point literals are now treated as decimals
