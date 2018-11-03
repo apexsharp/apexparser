@@ -29,6 +29,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -59,6 +60,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -88,6 +90,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -125,6 +128,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -154,6 +158,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -181,6 +186,7 @@ namespace ApexParserTest.Visitors
             Check(cd,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -808,6 +814,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -856,6 +863,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -894,6 +902,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -940,6 +949,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -992,6 +1002,7 @@ namespace ApexParserTest.Visitors
             CompareLineByLine(apex.ToCSharp(@namespace: "MyNamespace"),
                 @"namespace MyNamespace
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1043,6 +1054,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1093,6 +1105,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1126,6 +1139,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1159,6 +1173,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1191,6 +1206,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1223,6 +1239,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1254,6 +1271,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1284,6 +1302,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1313,6 +1332,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1358,6 +1378,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1424,6 +1445,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;
@@ -1514,6 +1536,7 @@ namespace ApexParserTest.Visitors
             Check(apex,
                 @"namespace ApexSharpDemo.ApexCode
                 {
+                    using Apex;
                     using Apex.ApexSharp;
                     using Apex.ApexSharp.ApexAttributes;
                     using Apex.ApexSharp.Extensions;

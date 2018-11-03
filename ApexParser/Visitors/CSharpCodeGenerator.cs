@@ -19,6 +19,7 @@ namespace ApexParser.Visitors
 
         public List<string> Usings { get; set; } = new List<string>
         {
+            "Apex",
             "Apex.ApexSharp",
             "Apex.ApexSharp.ApexAttributes",
             "Apex.ApexSharp.Extensions",
