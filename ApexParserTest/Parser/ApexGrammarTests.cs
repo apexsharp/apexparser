@@ -2128,5 +2128,91 @@ namespace ApexParserTest.Parser
             Assert.AreEqual(0, we.Block.LeadingComments.Count);
             Assert.AreEqual(0, we.Block.TrailingComments.Count);
         }
+
+        [Test]
+        public void DecimalLiteralExpression()
+        {
+            var expr = Apex.DecimalLiteralExpression.Parse("1.23");
+            Assert.NotNull(expr);
+            Assert.AreEqual("1.23", expr.Token);
+
+            expr = Apex.DecimalLiteralExpression.Parse(".234567890");
+            Assert.NotNull(expr);
+            Assert.AreEqual(".234567890", expr.Token);
+
+            Assert.Throws<ParseException>(() => Apex.DecimalLiteralExpression.Parse(""));
+            Assert.Throws<ParseException>(() => Apex.DecimalLiteralExpression.Parse("'123'"));
+            Assert.Throws<ParseException>(() => Apex.DecimalLiteralExpression.Parse("true"));
+        }
+
+        [Test]
+        public void StringLiteralExpression()
+        {
+            var expr = Apex.StringLiteralExpression.Parse("'hi there'");
+            Assert.NotNull(expr);
+            Assert.AreEqual("'hi there'", expr.Token);
+
+            expr = Apex.StringLiteralExpression.Parse("'oh great!\\r\\n'");
+            Assert.NotNull(expr);
+            Assert.AreEqual("'oh great!\\r\\n'", expr.Token);
+
+            Assert.Throws<ParseException>(() => Apex.StringLiteralExpression.Parse(""));
+            Assert.Throws<ParseException>(() => Apex.StringLiteralExpression.Parse("123"));
+            Assert.Throws<ParseException>(() => Apex.StringLiteralExpression.Parse("true"));
+        }
+
+        [Test]
+        public void BooleanLiteralExpression()
+        {
+            var expr = Apex.BooleanLiteralExpression.Parse("true");
+            Assert.NotNull(expr);
+            Assert.AreEqual("true", expr.Token);
+
+            expr = Apex.BooleanLiteralExpression.Parse("false");
+            Assert.NotNull(expr);
+            Assert.AreEqual("false", expr.Token);
+
+            // keywords are normalized
+            expr = Apex.BooleanLiteralExpression.Parse("True");
+            Assert.NotNull(expr);
+            Assert.AreEqual("true", expr.Token);
+
+            expr = Apex.BooleanLiteralExpression.Parse("FALSE");
+            Assert.NotNull(expr);
+            Assert.AreEqual("false", expr.Token);
+
+            Assert.Throws<ParseException>(() => Apex.BooleanLiteralExpression.Parse(""));
+            Assert.Throws<ParseException>(() => Apex.BooleanLiteralExpression.Parse("123"));
+            Assert.Throws<ParseException>(() => Apex.BooleanLiteralExpression.Parse("'true'"));
+        }
+
+        [Test]
+        public void LiteralExpression()
+        {
+            var expr = Apex.LiteralExpression.Parse("true");
+            Assert.NotNull(expr);
+            Assert.AreEqual("true", expr.Token);
+
+            expr = Apex.LiteralExpression.Parse("1.23");
+            Assert.NotNull(expr);
+            Assert.AreEqual("1.23", expr.Token);
+
+            expr = Apex.LiteralExpression.Parse("FALSE");
+            Assert.NotNull(expr);
+            Assert.AreEqual("false", expr.Token);
+
+            expr = Apex.LiteralExpression.Parse("'foo\\rbar\\n'");
+            Assert.NotNull(expr);
+            Assert.AreEqual("'foo\\rbar\\n'", expr.Token);
+
+            expr = Apex.LiteralExpression.Parse(@"// behold!
+                'cool' // a cool string");
+            Assert.NotNull(expr);
+            Assert.AreEqual("'cool'", expr.Token);
+            Assert.AreEqual(1, expr.LeadingComments.Count);
+            Assert.AreEqual("behold!", expr.LeadingComments.First().Trim());
+            Assert.AreEqual(1, expr.TrailingComments.Count);
+            Assert.AreEqual("a cool string", expr.TrailingComments.First().Trim());
+        }
     }
 }

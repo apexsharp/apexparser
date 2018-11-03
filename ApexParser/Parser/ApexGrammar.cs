@@ -408,6 +408,30 @@ namespace ApexParser.Parser
             from closeBrace in Parse.Char(close).Token()
             select expression.GetOrElse(string.Empty).Trim();
 
+        // example: 1.23
+        protected internal virtual Parser<LiteralExpressionSyntax> DecimalLiteralExpression =>
+            from token in Parse.DecimalInvariant
+            select new LiteralExpressionSyntax(token);
+
+        // example: 'hello'
+        protected internal virtual Parser<LiteralExpressionSyntax> StringLiteralExpression =>
+            from token in StringLiteral
+            select new LiteralExpressionSyntax(token);
+
+        // example: true, false
+        protected internal virtual Parser<LiteralExpressionSyntax> BooleanLiteralExpression =>
+            from token in Keyword(ApexKeywords.False).Or(Keyword(ApexKeywords.True))
+            select new LiteralExpressionSyntax(token);
+
+        // examples: 1, true, "hello"
+        protected internal virtual Parser<LiteralExpressionSyntax> LiteralExpression =>
+            from expr in DecimalLiteralExpression.XOr(
+                StringLiteralExpression).XOr(
+                BooleanLiteralExpression).Commented(this)
+            select expr.Value
+                .WithLeadingComments(expr.LeadingComments)
+                .WithTrailingComments(expr.TrailingComments);
+
         // example: break;
         protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>
             from @break in Keyword(ApexKeywords.Break).Token()
