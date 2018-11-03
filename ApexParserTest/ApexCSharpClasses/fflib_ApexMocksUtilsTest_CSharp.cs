@@ -61,7 +61,7 @@ namespace ApexSharpDemo.ApexCode
 			DoNotCall = false };
 
             //When
-            Account accWithRelationships = ((List<Account>)fflib_ApexMocksUtils.makeRelationship(List<Account>.class, new List<Account>{acc},
+            Account accWithRelationships = ((List<Account>)fflib_ApexMocksUtils.makeRelationship(typeof(List<Account>), new List<Account>{acc},
 			Contact.AccountId, new List<List<Contact>>{new List<Contact>{contact1, contact2}}))[0];
 
             //Then

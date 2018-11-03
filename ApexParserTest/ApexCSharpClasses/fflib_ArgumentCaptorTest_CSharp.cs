@@ -218,7 +218,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("3");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(List<string>.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(List<string>));
             ((fflib_MyList.IList)mocks.verify(mockList, fflib_ApexMocks.NEVER)).add((List<string>)argument.capture());
             List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(0, argsCaptured.size(), "expected 0 argument to be captured");
@@ -487,7 +487,7 @@ namespace ApexSharpDemo.ApexCode
             mockList.add("3");
 
             // Then
-            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(List<string>.class);
+            fflib_ArgumentCaptor argument = fflib_ArgumentCaptor.forClass(typeof(List<string>));
             ((fflib_MyList.IList)inOrder1.verify(mockList, mocks.never())).add((List<string>)argument.capture());
             List<object> argsCaptured = argument.getAllValues();
             System.assertEquals(0, argsCaptured.size(), "expected 0 argument to be captured");

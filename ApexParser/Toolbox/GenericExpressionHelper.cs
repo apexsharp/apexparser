@@ -89,8 +89,23 @@ namespace ApexParser.Toolbox
                 x => x.Groups["Operation"].Value.ToLower() + " " + x.Groups["Expression"].Value);
         }
 
-        private static Regex ApexTypeofRegex { get; } = new Regex(@"\b(?<Type>\w[\w\d]*)\b\s*\.\s*class",
-            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+        // simple regular expression: @"\b(?<Type>\w[\w\d]*)\b\s*\.\s*class"
+        // one level of generics: @"\b(?<Type>\w+(\.\w+)*(\<\w+(\.\w+)*(\,\s*\w+(\.\w+)*)*\>)?)\s*\.\s*class"
+        // for nested levels, the same expression is repeated inside the angle braces
+        // two levels of generics: @"\b(?<Type>\w+(\.\w+)*(\<\w+(\.\w+)*(\<\w+(\.\w+)*(\,\s*\w+(\.\w+)*)*\>)?(\,\s*\w+(\.\w+)*(\<\w+(\.\w+)*(\,\s*\w+(\.\w+)*)*\>)?)*\>)?)\s*\.\s*class"
+        private static Regex ApexTypeofRegex { get; } = new Regex(@"\b
+            (?<Type>
+                \w+(\.\w+)*
+                (
+                    \<
+                        \w+(\.\w+)* (\<\w+(\.\w+)*(\s*\,\s*\w+(\.\w+)*)*\>)?
+                        (\s*\,\s*\w+(\.\w+)*(\<\w+(\.\w+)*(\s*\,\s*\w+(\.\w+)*)*\>)?)*
+                    \>
+                )?
+            )
+            \s* \. \s*
+            class",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
 
         public static string ConvertTypeofExpressionsToCSharp(string expression)
         {

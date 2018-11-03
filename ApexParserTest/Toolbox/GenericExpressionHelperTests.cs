@@ -253,11 +253,59 @@ namespace ApexParserTest.Toolbox
             text = "mock(MyLittleClass.class)";
             csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
             Assert.AreEqual("mock(typeof(MyLittleClass))", csharp);
+        }
 
-            // not supported by regex-based expression helper
-            text = "Map<string, string>.class)";
+        [Test]
+        public void ComplexClassExpressionsAreConvertedToTypeof()
+        {
+            var text = "Map<string, string>.class";
+            var csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(Map<string, string>)", csharp);
+
+            text = "string12.class";
             csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
-            Assert.AreEqual("Map<string, string>.class)", csharp);
+            Assert.AreEqual("typeof(string12)", csharp);
+
+            text = "Some.New.Stuff.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(Some.New.Stuff)", csharp);
+
+            text = "List<string>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(List<string>)", csharp);
+
+            text = "List<System.string1>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(List<System.string1>)", csharp);
+
+            text = "System.List<string>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(System.List<string>)", csharp);
+
+            text = "System.Map<string, string, string>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(System.Map<string, string, string>)", csharp);
+
+            text = "Map<List<string>, string>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(Map<List<string>, string>)", csharp);
+
+            text = "Map<string, System.List<string>>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(Map<string, System.List<string>>)", csharp);
+
+            text = "Map<List<string>, System.List<string>>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(Map<List<string>, System.List<string>>)", csharp);
+
+            text = "Map<System.Map<int , string> , System.List<string, int>>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("typeof(Map<System.Map<int , string> , System.List<string, int>>)", csharp);
+
+            // more than two levels deep — cannot be supported by regular expressions
+            text = "Map<List<Set<string>>, System.List<string>>.class";
+            csharp = GenericExpressionHelper.ConvertTypeofExpressionsToCSharp(text);
+            Assert.AreEqual("Map<List<Set<string>>, System.List<string>>.class", csharp);
         }
 
         [Test]
