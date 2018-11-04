@@ -3,8 +3,9 @@ public class PrimitiveTypes
     public Blob MyBlob = Blob.ValueOf('Jay');
     public Boolean IsWinner = true;
 
-    public Date MyDate = Date.Today();
-    public Datetime MyDateTime = Datetime.Now();
+    public Date MyDate = Date.today();
+    public Datetime MyDateTime = Datetime.now();
+    private Date AnotherDate = Date.today().date();
 
     public Decimal MyDecimal = 12.4567;
     //public Double d=3.133433;

@@ -13,9 +13,11 @@ namespace ApexSharpDemo.ApexCode
 
         public bool IsWinner = true;
 
-        public Date MyDate = Date.Today();
+        public Date MyDate = Date.today();
 
-        public Datetime MyDateTime = Datetime.Now();
+        public Datetime MyDateTime = Datetime.now();
+
+        private Date AnotherDate = Date.today().date();
 
         public decimal MyDecimal = 12.4567m;
 

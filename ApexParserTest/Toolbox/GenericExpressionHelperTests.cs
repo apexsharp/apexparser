@@ -476,6 +476,20 @@ namespace ApexParserTest.Toolbox
         }
 
         [Test]
+        public void ApexMembersSpelledTheSameWayAsPrimitiveTypesAreNotConvertedToCSharp()
+        {
+            string ToCSharp(string expr) => GenericExpressionHelper.ConvertApexTypesToCSharp(expr);
+            string ToApex(string expr) => GenericExpressionHelper.ConvertCSharpTypesToApex(expr);
+
+            Assert.AreEqual("a = (Date)x", ToCSharp("a = (date)x"));
+            Assert.AreEqual("a = new Date(x)", ToCSharp("a = new date(x)"));
+            Assert.AreEqual("a = new Date(x).date()", ToCSharp("a = new Date(x).date()"));
+
+            Assert.AreEqual("a = new Date(x)", ToApex("a = new Date(x)"));
+            Assert.AreEqual("a = new Date(x).date()", ToApex("a = new Date(x).date()"));
+        }
+
+        [Test]
         public void DoubleLiteralsAreConvertedToDecimalLiterals()
         {
             string ToCSharp(string expr) => GenericExpressionHelper.ConvertApexDoubleLiteralsToDecimals(expr);
