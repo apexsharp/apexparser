@@ -5,9 +5,10 @@ namespace ApexParser.MetaClass
 {
     public class LiteralExpressionSyntax : ExpressionSyntax
     {
-        public LiteralExpressionSyntax(string token = null)
+        public LiteralExpressionSyntax(string token = null, LiteralType type = LiteralType.Null)
         {
             Token = token;
+            LiteralType = type;
         }
 
         public override SyntaxType Kind => SyntaxType.LiteralExpression;
@@ -17,5 +18,7 @@ namespace ApexParser.MetaClass
         public override IEnumerable<BaseSyntax> ChildNodes => NoChildren;
 
         public string Token { get; set; }
+
+        public LiteralType LiteralType { get; set; }
     }
 }

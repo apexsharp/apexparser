@@ -2196,10 +2196,17 @@ namespace ApexParserTest.Parser
             expr = Apex.LiteralExpression.Parse("1.23");
             Assert.NotNull(expr);
             Assert.AreEqual("1.23", expr.Token);
+            Assert.AreEqual(LiteralType.Numeric, expr.LiteralType);
 
             expr = Apex.LiteralExpression.Parse("FALSE");
             Assert.NotNull(expr);
             Assert.AreEqual("false", expr.Token);
+            Assert.AreEqual(LiteralType.Boolean, expr.LiteralType);
+
+            expr = Apex.LiteralExpression.Parse("NULL");
+            Assert.NotNull(expr);
+            Assert.AreEqual("null", expr.Token);
+            Assert.AreEqual(LiteralType.Null, expr.LiteralType);
 
             expr = Apex.LiteralExpression.Parse("'foo\\rbar\\n'");
             Assert.NotNull(expr);
@@ -2213,6 +2220,26 @@ namespace ApexParserTest.Parser
             Assert.AreEqual("behold!", expr.LeadingComments.First().Trim());
             Assert.AreEqual(1, expr.TrailingComments.Count);
             Assert.AreEqual("a cool string", expr.TrailingComments.First().Trim());
+
+            Assert.Throws<ParseException>(() => Apex.LiteralExpression.End().Parse(""));
+            Assert.Throws<ParseException>(() => Apex.LiteralExpression.End().Parse("123+345"));
+            Assert.Throws<ParseException>(() => Apex.LiteralExpression.End().Parse("true | false"));
+        }
+
+        [Test]
+        public void FactorExpression()
+        {
+            var expr = Apex.FactorExpression.Parse("true") as LiteralExpressionSyntax;
+            Assert.NotNull(expr);
+            Assert.AreEqual("true", expr.Token);
+            Assert.AreEqual(LiteralType.Boolean, expr.LiteralType);
+
+            var pexpr = Apex.FactorExpression.Parse("(1+2)");
+            Assert.NotNull(pexpr);
+            Assert.AreEqual("(1+2)", pexpr.ExpressionString);
+
+            Assert.Throws<ParseException>(() => Apex.FactorExpression.End().Parse(""));
+            Assert.Throws<ParseException>(() => Apex.FactorExpression.End().Parse("123+345"));
         }
     }
 }

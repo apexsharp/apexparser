@@ -411,26 +411,37 @@ namespace ApexParser.Parser
         // example: 1.23
         protected internal virtual Parser<LiteralExpressionSyntax> DecimalLiteralExpression =>
             from token in Parse.DecimalInvariant
-            select new LiteralExpressionSyntax(token);
+            select new LiteralExpressionSyntax(token, LiteralType.Numeric);
 
         // example: 'hello'
         protected internal virtual Parser<LiteralExpressionSyntax> StringLiteralExpression =>
             from token in StringLiteral
-            select new LiteralExpressionSyntax(token);
+            select new LiteralExpressionSyntax(token, LiteralType.String);
 
         // example: true, false
         protected internal virtual Parser<LiteralExpressionSyntax> BooleanLiteralExpression =>
             from token in Keyword(ApexKeywords.False).Or(Keyword(ApexKeywords.True))
-            select new LiteralExpressionSyntax(token);
+            select new LiteralExpressionSyntax(token, LiteralType.Boolean);
 
-        // examples: 1, true, "hello"
+        // example: null
+        protected internal virtual Parser<LiteralExpressionSyntax> NullLiteralExpression =>
+            from token in Keyword(ApexKeywords.Null)
+            select new LiteralExpressionSyntax(token, LiteralType.Null);
+
+        // examples: 1, true, 'hello'
         protected internal virtual Parser<LiteralExpressionSyntax> LiteralExpression =>
             from expr in DecimalLiteralExpression.XOr(
                 StringLiteralExpression).XOr(
+                NullLiteralExpression).XOr(
                 BooleanLiteralExpression).Commented(this)
             select expr.Value
                 .WithLeadingComments(expr.LeadingComments)
                 .WithTrailingComments(expr.TrailingComments);
+
+        // examples: (1+2*4), 'hello', (true == false ? 1 : 2), null
+        protected internal virtual Parser<ExpressionSyntax> FactorExpression =>
+            GenericExpressionInBraces().Select(expr => new ExpressionSyntax("(" + expr + ")"))
+                .XOr(LiteralExpression);
 
         // example: break;
         protected internal virtual Parser<BreakStatementSyntax> BreakStatement =>
