@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.6.17</Version>
+    <Version>0.6.18</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>ApexSharp.com</Authors>
     <Company>ApexSharp.com</Company>
@@ -37,6 +37,9 @@
     <PackageProjectUrl>https://github.com/apexsharp/apexparser/</PackageProjectUrl>
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
     <PackageReleaseNotes>Beta release. What's new:
+
+      v0.6.18:
+      — Fixed a parsing issue related to SOQL queries
 
       v0.6.17:
       — Minor improvement in the primitive type conversion
