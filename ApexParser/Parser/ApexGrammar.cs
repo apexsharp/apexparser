@@ -397,8 +397,9 @@ namespace ApexParser.Parser
 
         // examples: new Map<string, string>
         protected internal virtual Parser<string> GenericNewExpression =>
+            from prev in Toolbox.ParserExtensions.PrevChar(c => !char.IsLetterOrDigit(c), "non-alphanumeric")
             from @new in Parse.IgnoreCase(ApexKeywords.New).Then(_ => Parse.Not(Parse.LetterOrDigit)).Token()
-            from type in TypeReference
+            from type in TypeReference.Token()
             select $"new {type.AsString()}";
 
         // creates dummy generic parser for any expressions with matching braces

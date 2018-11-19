@@ -308,5 +308,31 @@ namespace ApexParserTest.Toolbox
 
             Assert.Throws<ParseException>(() => XOptionalTestParser.Parse("tmethod"));
         }
+
+        private Parser<string> DummyNewExpressionTestParser(bool failByDefault) =>
+            from z in ApexParser.Toolbox.ParserExtensions.PrevChar(c => !char.IsLetterOrDigit(c), "non-alphanumeric", failByDefault)
+            from n in Parse.String("new").Token().Text()
+            from c in Parse.LetterOrDigit.Many().Token().Text()
+            select $"{n} {c}";
+
+        private Parser<string> DummyNewExpressionTestParserWithLeadingChar =>
+            from x in Parse.AnyChar
+            from n in DummyNewExpressionTestParser(true)
+            select n;
+
+        [Test]
+        public void PrevCharParserTests()
+        {
+            var result = DummyNewExpressionTestParserWithLeadingChar.Parse(".new Ex");
+            Assert.AreEqual("new Ex", result);
+
+            result = DummyNewExpressionTestParserWithLeadingChar.Parse("?new    Ex    ");
+            Assert.AreEqual("new Ex", result);
+
+            Assert.Throws<ParseException>(() => DummyNewExpressionTestParserWithLeadingChar.Parse("xnew Ex"));
+            Assert.Throws<ParseException>(() => DummyNewExpressionTestParserWithLeadingChar.Parse("1new Ex"));
+            Assert.Throws<ParseException>(() => DummyNewExpressionTestParser(true).Parse("new Ex"));
+            Assert.DoesNotThrow(() => DummyNewExpressionTestParser(false).Parse("new Ex"));
+        }
     }
 }

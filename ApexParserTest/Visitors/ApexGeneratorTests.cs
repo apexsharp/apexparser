@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ApexParser;
 using ApexParser.MetaClass;
 using ApexParser.Parser;
 using ApexParser.Visitors;
@@ -1268,6 +1269,21 @@ namespace ApexParserTest.Visitors
                         } // switch
                     }
                 }");
+        }
+
+        [Test]
+        public void SoqlStatementFormattingDoesntMessUpParameters()
+        {
+            var apex = @"class SoqlDemo {
+                void soql() {
+                    list<r> rr = [select c, min(b) d from r WHERE
+                        c in :triggerNew AND b not in :triggerNew GROUP BY c HAVING count(b) > 1];
+                }
+            }";
+
+            var formatted = ApexSharpParser.IndentApex(apex);
+            Assert.IsFalse(formatted.Contains("trigger new"));
+            Assert.IsFalse(formatted.Contains("GROUPBY"));
         }
     }
 }
