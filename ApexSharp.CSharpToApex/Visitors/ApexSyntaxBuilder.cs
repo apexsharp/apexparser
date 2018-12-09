@@ -1,0 +1,1145 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ApexSharp.ApexParser.Parser;
+using ApexSharp.ApexParser.Toolbox;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ApexAccessorDeclarationSyntax = ApexSharp.ApexParser.Syntax.AccessorDeclarationSyntax;
+using ApexAnnotationSyntax = ApexSharp.ApexParser.Syntax.AnnotationSyntax;
+using ApexBaseSyntax = ApexSharp.ApexParser.Syntax.BaseSyntax;
+using ApexBlockSyntax = ApexSharp.ApexParser.Syntax.BlockSyntax;
+using ApexBreakStatementSyntax = ApexSharp.ApexParser.Syntax.BreakStatementSyntax;
+using ApexCatchClauseSyntax = ApexSharp.ApexParser.Syntax.CatchClauseSyntax;
+using ApexClassDeclarationSyntax = ApexSharp.ApexParser.Syntax.ClassDeclarationSyntax;
+using ApexClassInitializerSyntax = ApexSharp.ApexParser.Syntax.ClassInitializerSyntax;
+using ApexConstructorDeclarationSyntax = ApexSharp.ApexParser.Syntax.ConstructorDeclarationSyntax;
+using ApexContinueStatementSyntax = ApexSharp.ApexParser.Syntax.ContinueStatementSyntax;
+using ApexDeleteStatementSyntax = ApexSharp.ApexParser.Syntax.DeleteStatementSyntax;
+using ApexDoStatementSyntax = ApexSharp.ApexParser.Syntax.DoStatementSyntax;
+using ApexEnumDeclarationSyntax = ApexSharp.ApexParser.Syntax.EnumDeclarationSyntax;
+using ApexEnumMemberDeclarationSyntax = ApexSharp.ApexParser.Syntax.EnumMemberDeclarationSyntax;
+using ApexExpressionSyntax = ApexSharp.ApexParser.Syntax.ExpressionSyntax;
+using ApexFieldDeclarationSyntax = ApexSharp.ApexParser.Syntax.FieldDeclarationSyntax;
+using ApexFieldDeclaratorSyntax = ApexSharp.ApexParser.Syntax.FieldDeclaratorSyntax;
+using ApexFinallyClauseSyntax = ApexSharp.ApexParser.Syntax.FinallyClauseSyntax;
+using ApexForEachStatementSyntax = ApexSharp.ApexParser.Syntax.ForEachStatementSyntax;
+using ApexForStatementSyntax = ApexSharp.ApexParser.Syntax.ForStatementSyntax;
+using ApexIfStatementSyntax = ApexSharp.ApexParser.Syntax.IfStatementSyntax;
+using ApexInsertStatementSyntax = ApexSharp.ApexParser.Syntax.InsertStatementSyntax;
+using ApexInterfaceDeclarationSyntax = ApexSharp.ApexParser.Syntax.InterfaceDeclarationSyntax;
+using ApexMemberDeclarationSyntax = ApexSharp.ApexParser.Syntax.MemberDeclarationSyntax;
+using ApexMethodDeclarationSyntax = ApexSharp.ApexParser.Syntax.MethodDeclarationSyntax;
+using ApexParameterSyntax = ApexSharp.ApexParser.Syntax.ParameterSyntax;
+using ApexPropertyDeclarationSyntax = ApexSharp.ApexParser.Syntax.PropertyDeclarationSyntax;
+using ApexReturnStatementSyntax = ApexSharp.ApexParser.Syntax.ReturnStatementSyntax;
+using ApexRunAsStatementSyntax = ApexSharp.ApexParser.Syntax.RunAsStatementSyntax;
+using ApexStatementSyntax = ApexSharp.ApexParser.Syntax.StatementSyntax;
+using ApexSwitchStatementSyntax = ApexSharp.ApexParser.Syntax.SwitchStatementSyntax;
+using ApexSyntaxType = ApexSharp.ApexParser.Syntax.SyntaxType;
+using ApexThrowStatementSyntax = ApexSharp.ApexParser.Syntax.ThrowStatementSyntax;
+using ApexTryStatementSyntax = ApexSharp.ApexParser.Syntax.TryStatementSyntax;
+using ApexTypeSyntax = ApexSharp.ApexParser.Syntax.TypeSyntax;
+using ApexUpdateStatementSyntax = ApexSharp.ApexParser.Syntax.UpdateStatementSyntax;
+using ApexVariableDeclarationSyntax = ApexSharp.ApexParser.Syntax.VariableDeclarationSyntax;
+using ApexVariableDeclaratorSyntax = ApexSharp.ApexParser.Syntax.VariableDeclaratorSyntax;
+using ApexWhenClauseSyntax = ApexSharp.ApexParser.Syntax.WhenClauseSyntax;
+using ApexWhenElseClauseSyntax = ApexSharp.ApexParser.Syntax.WhenElseClauseSyntax;
+using ApexWhenExpressionsClauseSyntax = ApexSharp.ApexParser.Syntax.WhenExpressionsClauseSyntax;
+using ApexWhenTypeClauseSyntax = ApexSharp.ApexParser.Syntax.WhenTypeClauseSyntax;
+using ApexWhileStatementSyntax = ApexSharp.ApexParser.Syntax.WhileStatementSyntax;
+using IAnnotatedSyntax = ApexSharp.ApexParser.Syntax.IAnnotatedSyntax;
+
+namespace ApexSharp.CSharpToApex.Visitors
+{
+    public class ApexSyntaxBuilder : CSharpSyntaxWalker
+    {
+        public const string NoApexSignature = "NoApex";
+
+        public const string NoApexCommentSignature = ":NoApex ";
+
+        public static List<ApexMemberDeclarationSyntax> GetApexSyntaxNodes(CSharpSyntaxNode node)
+        {
+            var builder = new ApexSyntaxBuilder();
+            node?.Accept(builder);
+            return builder.ApexClasses;
+        }
+
+        public List<ApexMemberDeclarationSyntax> ApexClasses { get; set; } = new List<ApexMemberDeclarationSyntax>();
+
+        public override void VisitCompilationUnit(CompilationUnitSyntax node)
+        {
+            foreach (var member in node.Members.EmptyIfNull())
+            {
+                member.Accept(this);
+                ApexClasses.Add(LastClassMember);
+            }
+        }
+
+        private class Comments
+        {
+            private static bool Filter(SyntaxTrivia t) =>
+                t.Kind() == SyntaxKind.SingleLineCommentTrivia ||
+                t.Kind() == SyntaxKind.SingleLineDocumentationCommentTrivia ||
+                t.Kind() == SyntaxKind.MultiLineCommentTrivia ||
+                t.Kind() == SyntaxKind.MultiLineDocumentationCommentTrivia;
+
+            private static string ExtractText(SyntaxTrivia t)
+            {
+                if (t.Kind() == SyntaxKind.SingleLineCommentTrivia)
+                {
+                    return t.ToString().Trim().Substring(2);
+                }
+                else if (t.Kind() == SyntaxKind.MultiLineDocumentationCommentTrivia)
+                {
+                    // C# strips the starting sequence /** for these kinds of comments
+                    var text = "*" + Environment.NewLine + t.ToString().Trim();
+                    return text.Substring(0, text.Length - 4);
+                }
+                else
+                {
+                    // multi-line comments
+                    var text = t.ToString().Trim();
+                    return text.Substring(2, text.Length - 4);
+                }
+            }
+
+            public static List<string> ToList(SyntaxTriviaList trivias) =>
+                trivias.Where(Filter).Select(ExtractText).ToList();
+
+            public static List<string> Leading(CSharpSyntaxNode node) =>
+                ToList(node.GetLeadingTrivia());
+
+            public static List<string> Leading(SyntaxToken token) =>
+                ToList(token.LeadingTrivia);
+
+            public static List<string> Trailing(CSharpSyntaxNode node) =>
+                ToList(node.GetTrailingTrivia());
+        }
+
+        private ApexMemberDeclarationSyntax LastClassMember { get; set; }
+
+        public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+        {
+            // get base types
+            var baseTypes = (node.BaseList?.Types ?? Enumerable.Empty<BaseTypeSyntax>()).ToList();
+            var baseType = ConvertBaseType(baseTypes.FirstOrDefault());
+            var interfaces = new List<ApexTypeSyntax>();
+            if (baseTypes.Count > 1)
+            {
+                interfaces = ConvertBaseTypes(baseTypes.Skip(1).ToList());
+            }
+
+            // assume that types starting with the capital 'I' are interfaces
+            if (baseType?.Identifier?.StartsWith("I") ?? false)
+            {
+                interfaces.Insert(0, baseType);
+                baseType = null;
+            }
+
+            // create the class
+            var classDeclaration = new ApexClassDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                BaseType = baseType,
+                Interfaces = interfaces,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                LeadingComments = Comments.Leading(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(classDeclaration, ConvertClassAnnotation(LastAnnotation));
+            }
+
+            // skip members auto-generated by ApexParser
+            var members =
+                from member in node.Members.EmptyIfNull()
+                where member != null && !IsAutoGenerated(member)
+                select member;
+
+            foreach (var member in members)
+            {
+                member.Accept(this);
+                if (LastClassMember != null)
+                {
+                    classDeclaration.Members.Add(LastClassMember);
+                    LastClassMember = null;
+                }
+            }
+
+            classDeclaration.InnerComments = NoApexComments.Concat(
+                Comments.ToList(node.CloseBraceToken.LeadingTrivia)).ToList();
+            NoApexComments.Clear();
+            LastClassMember = classDeclaration;
+        }
+
+        internal bool IsAutoGenerated(MemberDeclarationSyntax member)
+        {
+            if (member is ConstructorDeclarationSyntax constr)
+            {
+                return constr.AttributeLists.Any(al => al.Attributes.Any(a => a.Name.ToString() == "ApexSharpGenerated"));
+            }
+
+            return false;
+        }
+
+        internal bool IsExceptionClassWithApexParserGeneratedConstructor(ClassDeclarationSyntax node)
+        {
+            if (node.BaseList?.Types.Count == 1 &&
+                node.BaseList.Types.ToString() == ApexKeywords.Exception &&
+                node.Members.Count == 1 &&
+                node.Members.OfType<ConstructorDeclarationSyntax>().Count() == 1)
+            {
+                var constructor = node.Members.OfType<ConstructorDeclarationSyntax>().Single();
+                return constructor.ParameterList.Parameters.Count == 1 &&
+                    constructor.Body.Statements.Count == 0;
+            }
+
+            return false;
+        }
+
+        private void AddAnnotationOrModifier(IAnnotatedSyntax member, object converted)
+        {
+            if (converted is ApexAnnotationSyntax annotation)
+            {
+                member.Annotations.Add(annotation);
+            }
+            else if (converted is string modifier)
+            {
+                if (modifier == ApexKeywords.Global)
+                {
+                    member.Modifiers.Insert(0, modifier);
+                }
+                else
+                {
+                    member.Modifiers.Add(modifier);
+                }
+            }
+
+            // public and global modifiers shouldn't be mixed
+            if (member.Modifiers.Any(m => m == ApexKeywords.Global))
+            {
+                member.Modifiers.RemoveAll(m => m == ApexKeywords.Public);
+            }
+        }
+
+        public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
+        {
+            // get base interfaces
+            var interfaces = (node.BaseList?.Types ?? Enumerable.Empty<BaseTypeSyntax>()).ToArray();
+
+            // create the interface
+            var interfaceDeclaration = new ApexInterfaceDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                BaseType = ConvertBaseType(interfaces.FirstOrDefault()),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(interfaceDeclaration, ConvertClassAnnotation(LastAnnotation));
+            }
+
+            foreach (var member in node.Members.EmptyIfNull())
+            {
+                member.Accept(this);
+                if (LastClassMember != null)
+                {
+                    interfaceDeclaration.Members.Add(LastClassMember);
+                    LastClassMember = null;
+                }
+            }
+
+            interfaceDeclaration.InnerComments = NoApexComments.Concat(
+                Comments.ToList(node.CloseBraceToken.LeadingTrivia)).ToList();
+            NoApexComments.Clear();
+            LastClassMember = interfaceDeclaration;
+        }
+
+        private ApexTypeSyntax ConvertBaseType(BaseTypeSyntax csharpType)
+        {
+            if (csharpType != null)
+            {
+                return new ApexTypeSyntax(csharpType.ToString());
+            }
+
+            return null;
+        }
+
+        private List<ApexTypeSyntax> ConvertBaseTypes(IEnumerable<BaseTypeSyntax> csharpTypes) =>
+            csharpTypes.EmptyIfNull().Select(ConvertBaseType).Where(t => t != null).ToList();
+
+        private object ConvertClassAnnotation(ApexAnnotationSyntax node)
+        {
+            // annotations
+            if (node.Identifier == "TestFixture")
+            {
+                return new ApexAnnotationSyntax
+                {
+                    Identifier = ApexKeywords.IsTest,
+                    Parameters = node.Parameters,
+                };
+            }
+
+            // modifiers
+            else if (node.Identifier == "Global")
+            {
+                return ApexKeywords.Global;
+            }
+            else if (node.Identifier == "Virtual")
+            {
+                return ApexKeywords.Virtual;
+            }
+            else if (node.Identifier == "WithSharing")
+            {
+                return $"{ApexKeywords.With} {ApexKeywords.Sharing}";
+            }
+            else if (node.Identifier == "WithoutSharing")
+            {
+                return $"{ApexKeywords.Without} {ApexKeywords.Sharing}";
+            }
+
+            return node;
+        }
+
+        private object ConvertMethodAnnotation(ApexAnnotationSyntax node)
+        {
+            // annotations
+            if (node.Identifier == "Test")
+            {
+                return new ApexAnnotationSyntax
+                {
+                    Identifier = ApexKeywords.IsTest,
+                    Parameters = node.Parameters,
+                };
+            }
+            else if (node.Identifier == "SetUp")
+            {
+                return new ApexAnnotationSyntax
+                {
+                    Identifier = ApexKeywords.TestSetup,
+                    Parameters = node.Parameters,
+                };
+            }
+
+            // modifiers
+            else if (node.Identifier == "WebService")
+            {
+                return ApexKeywords.WebService;
+            }
+            else if (node.Identifier == "Global")
+            {
+                return ApexKeywords.Global;
+            }
+
+            return node;
+        }
+
+        private object ConvertFieldAnnotation(ApexAnnotationSyntax node)
+        {
+            // modifiers
+            if (node.Identifier == "Transient")
+            {
+                return ApexKeywords.Transient;
+            }
+
+            return node;
+        }
+
+        private object ConvertParameterAnnotation(ApexAnnotationSyntax node)
+        {
+            // modifiers
+            if (node.Identifier == "Final")
+            {
+                return ApexKeywords.Final;
+            }
+
+            return node;
+        }
+
+        private ApexAnnotationSyntax LastAnnotation { get; set; }
+
+        public override void VisitAttribute(AttributeSyntax node)
+        {
+            var annotation = new ApexAnnotationSyntax
+            {
+                Identifier = node.Name.ToString(),
+            };
+
+            if (node.ArgumentList != null)
+            {
+                node.ArgumentList.Accept(this);
+                if (!LastAttributeArgumentList.IsNullOrEmpty())
+                {
+                    annotation.Parameters = string.Join(" ", LastAttributeArgumentList);
+                    LastAttributeArgumentList = null;
+                }
+            }
+
+            LastAnnotation = annotation;
+        }
+
+        private List<string> LastAttributeArgumentList { get; set; }
+
+        public override void VisitAttributeArgumentList(AttributeArgumentListSyntax node)
+        {
+            LastAttributeArgumentList = new List<string>();
+            foreach (var arg in node.Arguments.EmptyIfNull())
+            {
+                arg.Accept(this);
+                if (!string.IsNullOrWhiteSpace(LastAttributeArgument))
+                {
+                    LastAttributeArgumentList.Add(LastAttributeArgument);
+                    LastAttributeArgument = null;
+                }
+            }
+        }
+
+        private string LastAttributeArgument { get; set; }
+
+        public override void VisitAttributeArgument(AttributeArgumentSyntax node)
+        {
+            var expr = new StringBuilder();
+            if (node.NameColon != null)
+            {
+                expr.AppendFormat("{0}=", node.NameColon.Name);
+            }
+            else if (node.NameEquals != null)
+            {
+                expr.AppendFormat("{0}=", node.NameEquals.Name);
+            }
+
+            expr.Append(ConvertExpression(node.Expression).ExpressionString);
+            LastAttributeArgument = expr.ToString();
+        }
+
+        public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
+        {
+            var enumeration = new ApexEnumDeclarationSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            foreach (var member in node.Members.EmptyIfNull())
+            {
+                member.Accept(this);
+                enumeration.Members.Add(LastEnumMember);
+            }
+
+            enumeration.InnerComments = NoApexComments.Concat(
+                Comments.ToList(node.CloseBraceToken.LeadingTrivia)).ToList();
+            NoApexComments.Clear();
+            LastClassMember = enumeration;
+        }
+
+        private ApexEnumMemberDeclarationSyntax LastEnumMember { get; set; }
+
+        public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
+        {
+            LastEnumMember = new ApexEnumMemberDeclarationSyntax
+            {
+                LeadingComments = NoApexComments.ToList(),
+                Identifier = node.Identifier.ValueText,
+            };
+
+            NoApexComments.Clear();
+        }
+
+        public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
+        {
+            var method = new ApexConstructorDeclarationSyntax
+            {
+                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
+                Identifier = node.Identifier.ValueText,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            NoApexComments.Clear();
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(method, ConvertMethodAnnotation(LastAnnotation));
+            }
+
+            foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())
+            {
+                param.Accept(this);
+                method.Parameters.Add(LastParameter);
+            }
+
+            if (node.Body != null)
+            {
+                node.Body.Accept(this);
+                method.Body = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
+
+                if (!method.TrailingComments.IsNullOrEmpty())
+                {
+                    method.Body.TrailingComments = method.TrailingComments.ToList();
+                    method.TrailingComments.Clear();
+                }
+            }
+
+            if (method.Modifiers.All(m => m != "static"))
+            {
+                LastClassMember = method;
+            }
+            else
+            {
+                // static constructors are converted to the class initializers
+                LastClassMember = new ApexClassInitializerSyntax
+                {
+                    Modifiers = method.Modifiers,
+                    Annotations = method.Annotations,
+                    Body = method.Body,
+                    LeadingComments = method.LeadingComments,
+                    TrailingComments = method.TrailingComments,
+                };
+            }
+        }
+
+        private List<string> NoApexComments { get; set; } = new List<string>();
+
+        public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+        {
+            // skip methods starting with the signature
+            if (node.Identifier.ValueText.StartsWith(NoApexSignature, StringComparison.InvariantCultureIgnoreCase))
+            {
+                NoApexComments = NoApexComments.Concat(Comments.Leading(node))
+                    .Concat(CommentOutNoApexCode(node.ToString())).ToList();
+                return;
+            }
+
+            var method = new ApexMethodDeclarationSyntax
+            {
+                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
+                Identifier = node.Identifier.ValueText,
+                ReturnType = ConvertType(node.ReturnType),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            NoApexComments.Clear();
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(method, ConvertMethodAnnotation(LastAnnotation));
+            }
+
+            foreach (var param in node.ParameterList?.Parameters.EmptyIfNull())
+            {
+                param.Accept(this);
+                method.Parameters.Add(LastParameter);
+            }
+
+            if (node.Body != null)
+            {
+                node.Body.Accept(this);
+                method.Body = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
+
+                if (!method.TrailingComments.IsNullOrEmpty())
+                {
+                    method.Body.TrailingComments = method.TrailingComments.ToList();
+                    method.TrailingComments.Clear();
+                }
+            }
+
+            LastClassMember = method;
+        }
+
+        internal List<string> CommentOutNoApexCode(string code)
+        {
+            var lines = code.Trim().Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+            int CalcIndent(string line) =>
+                line.Length - line.TrimStart().Length;
+
+            // find out the minimal indent
+            var minIndent = 0;
+            var indents =
+                from line in lines
+                where !string.IsNullOrWhiteSpace(line)
+                let indent = CalcIndent(line)
+                where indent > 0
+                select indent;
+            if (indents.Any())
+            {
+                minIndent = indents.Min();
+            }
+
+            string TrimMinIndent(string line)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    return string.Empty;
+                }
+
+                if (minIndent > 0 && CalcIndent(line) >= minIndent)
+                {
+                    return line.Substring(minIndent);
+                }
+
+                return line;
+            }
+
+            // minimize indents and append the signatures
+            var processed = lines.Select(line => NoApexCommentSignature + TrimMinIndent(line));
+            return processed.ToList();
+        }
+
+        private ApexParameterSyntax LastParameter { get; set; }
+
+        public override void VisitParameter(ParameterSyntax node)
+        {
+            var param = new ApexParameterSyntax(ConvertType(node.Type), node.Identifier.ValueText);
+
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(param, ConvertParameterAnnotation(LastAnnotation));
+            }
+
+            LastParameter = param;
+        }
+
+        private ApexTypeSyntax ConvertType(TypeSyntax type)
+        {
+            if (type != null)
+            {
+                var apexType = GenericExpressionHelper.ConvertCSharpTypesToApex(type.ToString());
+                return new ApexTypeSyntax(apexType);
+            }
+
+            return null;
+        }
+
+        public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+        {
+            var field = new ApexFieldDeclarationSyntax
+            {
+                LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList(),
+                TrailingComments = Comments.Trailing(node),
+                Type = ConvertType(node.Declaration.Type),
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            // readonly modifier converted to final
+            var index = field.Modifiers.IndexOf("readonly");
+            if (index >= 0)
+            {
+                field.Modifiers[index] = ApexKeywords.Final;
+            }
+
+            NoApexComments.Clear();
+            foreach (var attr in node.AttributeLists.EmptyIfNull())
+            {
+                attr.Accept(this);
+                AddAnnotationOrModifier(field, ConvertFieldAnnotation(LastAnnotation));
+            }
+
+            if (node.Declaration != null)
+            {
+                node.Declaration.Accept(this);
+            }
+
+            if (LastVariableDeclaration != null)
+            {
+                field.Type = LastVariableDeclaration.Type;
+                field.Fields = LastVariableDeclaration.Variables.Select(v => new ApexFieldDeclaratorSyntax
+                {
+                    Identifier = v.Identifier,
+                    Expression = v.Expression,
+                }).ToList();
+            }
+
+            LastClassMember = field;
+        }
+
+        private ApexStatementSyntax LastStatement { get; set; }
+
+        public override void VisitLocalDeclarationStatement(LocalDeclarationStatementSyntax node)
+        {
+            node.Declaration.Accept(this);
+            LastStatement = LastVariableDeclaration;
+            LastStatement.LeadingComments = NoApexComments.Concat(Comments.Leading(node)).ToList();
+            LastStatement.TrailingComments = Comments.Trailing(node);
+        }
+
+        private ApexVariableDeclarationSyntax LastVariableDeclaration { get; set; }
+
+        public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
+        {
+            var variable = new ApexVariableDeclarationSyntax
+            {
+                Type = ConvertType(node.Type),
+            };
+
+            foreach (var var in node.Variables.EmptyIfNull())
+            {
+                var.Accept(this);
+                variable.Variables.Add(LastVariableDeclarator);
+            }
+
+            LastVariableDeclaration = variable;
+        }
+
+        private ApexVariableDeclaratorSyntax LastVariableDeclarator { get; set; }
+
+        public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
+        {
+            LastVariableDeclarator = new ApexVariableDeclaratorSyntax
+            {
+                Identifier = node.Identifier.ValueText,
+                Expression = ConvertExpression(node.Initializer?.Value),
+            };
+        }
+
+        private ApexExpressionSyntax ConvertExpression(ExpressionSyntax expression)
+        {
+            if (expression == null)
+            {
+                return null;
+            }
+
+            var apexExpr = expression.ToString();
+            apexExpr = GenericExpressionHelper.ConvertSoqlQueriesToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertSoqlStatementsToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertTypeofExpressionsToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertCSharpIsTypeExpressionToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertCSharpTypesToApex(apexExpr);
+            apexExpr = GenericExpressionHelper.ConvertCSharpDecimalLiteralsToDoubles(apexExpr);
+            apexExpr = apexExpr.Replace("\"", "'");
+            return new ApexExpressionSyntax(apexExpr);
+        }
+
+        public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
+        {
+            var property = new ApexPropertyDeclarationSyntax
+            {
+                Type = ConvertType(node.Type),
+                Identifier = node.Identifier.ValueText,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            foreach (var accessor in node.AccessorList?.Accessors.EmptyIfNull())
+            {
+                accessor.Accept(this);
+                property.Accessors.Add(LastAccessor);
+            }
+
+            LastClassMember = property;
+        }
+
+        private ApexAccessorDeclarationSyntax LastAccessor { get; set; }
+
+        public override void VisitAccessorDeclaration(AccessorDeclarationSyntax node)
+        {
+            var accessor = new ApexAccessorDeclarationSyntax
+            {
+                IsGetter = node.Kind() == SyntaxKind.GetAccessorDeclaration,
+                Modifiers = node.Modifiers.Select(m => m.ToString()).ToList(),
+            };
+
+            if (node.Body != null)
+            {
+                node.Body.Accept(this);
+                accessor.Body = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
+            }
+
+            LastAccessor = accessor;
+        }
+
+        public override void VisitBlock(BlockSyntax node)
+        {
+            var block = new ApexBlockSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            foreach (var stmt in node.Statements.EmptyIfNull())
+            {
+                stmt.Accept(this);
+                if (LastStatement != null)
+                {
+                    block.Statements.Add(LastStatement);
+                    LastStatement = null;
+                }
+            }
+
+            block.InnerComments = GetLeadingAndNoApexComments(node.CloseBraceToken );
+            NoApexComments.Clear();
+            LastStatement = block;
+        }
+
+        public override void VisitIfStatement(IfStatementSyntax node)
+        {
+            var ifStmt = new ApexIfStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Expression = ConvertExpression(node.Condition),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                ifStmt.ThenStatement = LastStatement;
+            }
+
+            if (node.Else != null)
+            {
+                node.Else.Accept(this);
+                ifStmt.ElseStatement = LastStatement;
+            }
+
+            LastStatement = ifStmt;
+        }
+
+        private List<string> GetLeadingAndNoApexComments(SyntaxToken token)
+        {
+            var result = NoApexComments.Concat(Comments.Leading(token)).ToList();
+            NoApexComments.Clear();
+            return result;
+        }
+
+        private List<string> GetLeadingAndNoApexComments(CSharpSyntaxNode node)
+        {
+            var result = NoApexComments.Concat(Comments.Leading(node)).ToList();
+            NoApexComments.Clear();
+            return result;
+        }
+
+        public override void VisitExpressionStatement(ExpressionStatementSyntax node)
+        {
+            // skip stateements starting with the signature
+            if (node.ToString().StartsWith(NoApexSignature, StringComparison.InvariantCultureIgnoreCase))
+            {
+                NoApexComments = CommentOutNoApexCode(node.ToString() + Environment.NewLine);
+                return;
+            }
+
+            // also handles SOQL insert/update/delete statements
+            LastStatement = new ApexStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Body = ConvertExpression(node.Expression).ExpressionString,
+            };
+        }
+
+        public override void VisitReturnStatement(ReturnStatementSyntax node)
+        {
+            LastStatement = new ApexReturnStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Expression = ConvertExpression(node.Expression),
+            };
+        }
+
+        public override void VisitThrowStatement(ThrowStatementSyntax node)
+        {
+            LastStatement = new ApexThrowStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Expression = ConvertExpression(node.Expression),
+            };
+        }
+
+        public override void VisitBreakStatement(BreakStatementSyntax node) =>
+            LastStatement = new ApexBreakStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+        public override void VisitContinueStatement(ContinueStatementSyntax node) =>
+            LastStatement = new ApexContinueStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+        public override void VisitDoStatement(DoStatementSyntax node)
+        {
+            var doStmt = new ApexDoStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Expression = ConvertExpression(node.Condition),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                doStmt.Statement = LastStatement;
+            }
+
+            LastStatement = doStmt;
+        }
+
+        public override void VisitForEachStatement(ForEachStatementSyntax node)
+        {
+            var forStmt = new ApexForEachStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Type = ConvertType(node.Type),
+                Identifier = node.Identifier.ValueText,
+                Expression = ConvertExpression(node.Expression),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                forStmt.Statement = LastStatement;
+            }
+
+            LastStatement = forStmt;
+        }
+
+        public override void VisitForStatement(ForStatementSyntax node)
+        {
+            var forStmt = new ApexForStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Condition = ConvertExpression(node.Condition),
+                Incrementors = node.Incrementors.EmptyIfNull().Select(x => ConvertExpression(x)).ToList(),
+            };
+
+            if (node.Declaration != null)
+            {
+                node.Declaration.Accept(this);
+                forStmt.Declaration = LastVariableDeclaration;
+            }
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                forStmt.Statement = LastStatement;
+            }
+
+            LastStatement = forStmt;
+        }
+
+        public override void VisitWhileStatement(WhileStatementSyntax node)
+        {
+            var whileStmt = new ApexWhileStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+                Expression = ConvertExpression(node.Condition),
+            };
+
+            if (node.Statement != null)
+            {
+                node.Statement.Accept(this);
+                whileStmt.Statement = LastStatement;
+            }
+
+            LastStatement = whileStmt;
+        }
+
+        public override void VisitTryStatement(TryStatementSyntax node)
+        {
+            var tryStatement = new ApexTryStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            if (node.Block != null)
+            {
+                node.Block.Accept(this);
+                tryStatement.Block = LastStatement as ApexBlockSyntax;
+                LastStatement = null;
+            }
+
+            foreach (var @catch in node.Catches.EmptyIfNull())
+            {
+                @catch.Accept(this);
+                tryStatement.Catches.Add(LastCatch);
+            }
+
+            if (node.Finally != null)
+            {
+                node.Finally.Accept(this);
+                tryStatement.Finally = LastFinally;
+            }
+
+            LastStatement = tryStatement;
+        }
+
+        private ApexCatchClauseSyntax LastCatch { get; set; }
+
+        public override void VisitCatchClause(CatchClauseSyntax node)
+        {
+            var catchClause = new ApexCatchClauseSyntax();
+            if (node.Declaration != null)
+            {
+                if (node.Declaration.Type != null)
+                {
+                    catchClause.Type = ConvertType(node.Declaration.Type);
+                }
+
+                if (node.Declaration.Identifier != null)
+                {
+                    catchClause.Identifier = node.Declaration.Identifier.ValueText;
+                }
+            }
+
+            node.Block.Accept(this);
+            catchClause.Block = LastStatement as ApexBlockSyntax;
+            LastStatement = null;
+            LastCatch = catchClause;
+        }
+
+        private ApexFinallyClauseSyntax LastFinally { get; set; }
+
+        public override void VisitFinallyClause(FinallyClauseSyntax node)
+        {
+            node.Block.Accept(this);
+            LastFinally = new ApexFinallyClauseSyntax
+            {
+                Block = LastStatement as ApexBlockSyntax,
+            };
+
+            LastStatement = null;
+        }
+
+        public override void VisitUsingStatement(UsingStatementSyntax node)
+        {
+            bool Equals(ExpressionSyntax left, string right) =>
+                StringComparer.InvariantCultureIgnoreCase.Compare(left.ToString(), right) == 0;
+
+            if (node.Expression is InvocationExpressionSyntax runAs)
+            {
+                if (Equals(runAs.Expression, "System.runAs"))
+                {
+                    var argument = runAs.ArgumentList?.Arguments.EmptyIfNull().FirstOrDefault()?.Expression;
+                    var runAsNode = new ApexRunAsStatementSyntax
+                    {
+                        LeadingComments = GetLeadingAndNoApexComments(node),
+                        TrailingComments = Comments.Trailing(node),
+                        Expression = ConvertExpression(argument),
+                    };
+
+                    if (node.Statement != null)
+                    {
+                        node.Statement.Accept(this);
+                        runAsNode.Statement = LastStatement;
+                    }
+
+                    LastStatement = runAsNode;
+                    return;
+                }
+            }
+
+            // or perhaps better throw NotSupportedException?
+            base.VisitUsingStatement(node);
+        }
+
+        public override void VisitSwitchStatement(SwitchStatementSyntax node)
+        {
+            var switchStatement = new ApexSwitchStatementSyntax
+            {
+                LeadingComments = GetLeadingAndNoApexComments(node),
+                TrailingComments = Comments.Trailing(node),
+            };
+
+            switchStatement.Expression = ConvertExpression(node.Expression);
+            foreach (var section in node.Sections.EmptyIfNull())
+            {
+                section.Accept(this);
+                switchStatement.WhenClauses.Add(LastWhen);
+            }
+
+            LastStatement = switchStatement;
+        }
+
+        private ApexWhenClauseSyntax LastWhen { get; set; }
+
+        public override void VisitSwitchSection(SwitchSectionSyntax node)
+        {
+            // switch label should initialize the LastWhen clause
+            LastWhen = null;
+            foreach (var label in node.Labels.EmptyIfNull())
+            {
+                label.Accept(this);
+            }
+
+            // no labels per swith section? looks like the source file is broken
+            if (LastWhen == null)
+            {
+                throw new InvalidOperationException("Unsupported switch section format. " +
+                    "Case expression, pattern or default label is expected.");
+            }
+
+            var lastWhen = LastWhen;
+            lastWhen.LeadingComments = GetLeadingAndNoApexComments(node);
+            lastWhen.Block = new ApexBlockSyntax();
+
+            foreach (var stmt in node.Statements.EmptyIfNull())
+            {
+                stmt.Accept(this);
+                if (LastStatement != null)
+                {
+                    lastWhen.Block.Statements.Add(LastStatement);
+                    LastStatement = null;
+                }
+            }
+
+            // remove C#'s break statement from the block keeping its trailing comments
+            if (lastWhen.Block.Statements.LastOrDefault() is ApexBreakStatementSyntax @break)
+            {
+                lastWhen.Block.Statements.Remove(@break);
+                lastWhen.Block.TrailingComments = @break.TrailingComments;
+            }
+
+            LastWhen = lastWhen;
+        }
+
+        public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
+        {
+            var lastWhen = LastWhen as ApexWhenExpressionsClauseSyntax ?? new ApexWhenExpressionsClauseSyntax();
+            var expression = ConvertExpression(node.Value);
+            lastWhen.Expressions.Add(expression);
+            LastWhen = lastWhen;
+        }
+
+        public override void VisitCasePatternSwitchLabel(CasePatternSwitchLabelSyntax node)
+        {
+            var lastWhen = new ApexWhenTypeClauseSyntax();
+            var pattern = node.Pattern as DeclarationPatternSyntax;
+            var type = pattern?.Type;
+            var designation = pattern?.Designation as SingleVariableDesignationSyntax;
+            if (pattern == null || type == null || designation == null)
+            {
+                throw new InvalidOperationException("Unsupported switch pattern format. " +
+                    "Case type variable is expected.");
+            }
+
+            lastWhen.Type = ConvertType(type);
+            lastWhen.Identifier = designation.Identifier.ValueText;
+            LastWhen = lastWhen;
+        }
+
+        public override void VisitDefaultSwitchLabel(DefaultSwitchLabelSyntax node)
+        {
+            LastWhen = new ApexWhenElseClauseSyntax();
+        }
+    }
+}

@@ -10,15 +10,17 @@ before_build:
 - choco install codecov
 
 after_build:
-- dotnet pack -c Release ApexParser\ApexParser.csproj
+- dotnet pack -c Release ApexSharp.ApexParser
+- dotnet pack -c Release ApexSharp.ApexToCSharp
+- dotnet pack -c Release ApexSharp.CSharpToApex
 
 build:
   project: ApexParser.sln
   verbosity: minimal
 
 test_script:
-- OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:".\ApexParserTest\bin\Debug\ApexParserTest.dll" -filter:"+[*]* -[Apex]* -[ApexSharpDemo]* -[ApexSharpApi]*" -output:".\ApexParser_coverage.xml"
+- OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:".\ApexSharp.ApexParser.Tests\bin\Debug\net462\ApexSharp.ApexParser.Tests.dll" -filter:"+[*]* -[Apex]* -[ApexSharpDemo]* -[ApexSharpApi]*" -output:".\ApexParser_coverage.xml"
 - codecov -f "ApexParser_coverage.xml"
 
 artifacts:
-- path: .\ApexParser\**\*.nupkg
+- path: .\ApexSharp.*\**\*.nupkg

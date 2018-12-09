@@ -53,3 +53,4 @@ config.json
 /JayPrivate
 ApexSharpPrivate.sln
 /Nuget/*.nupkg
+/TestResult.xml

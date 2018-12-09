@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>ApexSharp.ApexParser.Tests</Title>
+    <Version>0.7.0.0</Version>
+    <Authors>ApexSharp.com</Authors>
+    <Description>A Roslyn-like parser for the Salesforce programming language APEX</Description>
+    <Copyright>© 2017-2018 ApexSharp.com</Copyright>
+    <PackageLicenseUrl>https://github.com/apexsharp/apexparser/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/apexsharp/apexparser/</PackageProjectUrl>
+    <PackageTags>Apex, Parser, Roslyn</PackageTags>
+    <RepositoryUrl>https://github.com/ApexSharp/ApexParser</RepositoryUrl>
+    <PackageTags>Apex, Parser, Roslyn</PackageTags>
+    <TargetFrameworks>net462;netcoreapp2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RootNamespace>ApexSharp.ApexParser.Tests</RootNamespace>
+    <AssemblyName>ApexSharp.ApexParser.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>Full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApexCSharpClasses\**" />
+    <Compile Remove="ApexRoundtrip\**" />
+    <Compile Remove="ApexTestClasses\**" />
+    <Compile Remove="ApexTestLibraries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
+    <PackageReference Include="RestSharp" Version="106.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApexSharp.ApexParser\ApexSharp.ApexParser.csproj" />
+    <ProjectReference Include="..\ApexSharp.ApexToCSharp\ApexSharp.ApexToCSharp.csproj" />
+    <ProjectReference Include="..\ApexSharp.CSharpToApex\ApexSharp.CSharpToApex.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ApexTestLibraries\apex-lambda-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\apex-sobjectdataloader-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\Cumulus-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\ffhttp-core-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\fflib-apex-common-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\fflib-apex-common-samplecode-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\fflib-apex-mocks-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\salesforce-einstein-platform-apex-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\SalesForceApexSharp-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ApexTestLibraries\sfdx-dreamhouse-master.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="2.9.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApexSharp.ApexParser\ApexSharp.ApexParser.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\ApexSharp.ruleset</CodeAnalysisRuleSet>
+    <RootNamespace>ApexSharp.CSharpToApex</RootNamespace>
+    <AssemblyName>ApexSharp.CSharpToApex</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.7.0</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>ApexSharp.com</Authors>
+    <Company>ApexSharp.com</Company>
+    <Product>ApexSharp</Product>
+    <Description>A Roslyn-like parser for the Salesforce programming language APEX</Description>
+    <Copyright>© 2017-2018 ApexSharp.com</Copyright>
+    <PackageLicenseUrl>https://github.com/apexsharp/apexparser/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/apexsharp/apexparser/</PackageProjectUrl>
+    <PackageTags>Apex, Parser, Roslyn</PackageTags>
+    <PackageReleaseNotes>Beta release. What's new:
+      v0.7.0:
+      — Initial release of the ApexSharp.CSharpToApex class library.
+    </PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RepositoryUrl>https://github.com/apexsharp/apexparser.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>0.7.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+</Project>
