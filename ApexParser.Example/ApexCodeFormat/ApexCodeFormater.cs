@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApexSharp.ApexParser;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -30,7 +31,7 @@ namespace ApexSharpDemo.ApexCodeFormat
                 File.Move(sourceFile, backupFile);
 
                 var apexCode = File.ReadAllText(backupFile);
-                var formatted = ApexParser.ApexSharpParser.IndentApex(apexCode);
+                var formatted = ApexSharpParser.IndentApex(apexCode);
                 File.WriteAllText(sourceFile, formatted);
                 File.Delete(backupFile);
 

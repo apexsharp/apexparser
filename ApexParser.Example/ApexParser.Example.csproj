@@ -3,10 +3,32 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ApexApiAnalyzer\**" />
+    <EmbeddedResource Remove="ApexApiAnalyzer\**" />
+    <None Remove="ApexApiAnalyzer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\ApexClassDb.cs" />
+    <Compile Remove="Data\ApexClassDbTest.cs" />
+    <Compile Remove="ListClassesAndMethods\Demo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ApexSharp.ApexParser\ApexSharp.ApexParser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.3.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="2.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
   </ItemGroup>
 
 </Project>

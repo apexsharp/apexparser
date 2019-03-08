@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApexSharp.ApexParser;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace ApexSharpDemo.ApexCodeFormat
             foreach (var result in results)
             {
                 Console.WriteLine(result.ApexFileName);
-                var apexAst = ApexParser.ApexSharpParser.GetApexAst(result.ApexFileAfterFormat);
+                var apexAst = ApexSharpParser.GetApexAst(result.ApexFileAfterFormat);
             }
         }
     }

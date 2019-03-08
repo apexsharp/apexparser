@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using ApexParser;
-using ApexParser.MetaClass;
+using ApexSharp.ApexParser;
+using ApexSharp.ApexParser.Syntax;
 using ApexTestFind;
 using NUnit.Framework;
 
@@ -35,7 +35,7 @@ namespace ApexSharpDemo
 
         private ClassDeclarationSyntax ParseClass(string apexClass)
         {
-            var result = ApexParser.ApexSharpParser.GetApexAst(apexClass) as ClassDeclarationSyntax;
+            var result = ApexSharpParser.GetApexAst(apexClass) as ClassDeclarationSyntax;
             Assert.NotNull(result);
             return result;
         }

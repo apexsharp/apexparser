@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ApexSharp.ApexParser;
 using NUnit.Framework;
 
 namespace ApexSharpDemo.CaseClean
@@ -40,7 +41,7 @@ namespace ApexSharpDemo.CaseClean
                     }
                 }";
 
-            var parsed = ApexParser.ApexSharpParser.GetApexAst(apex);
+            var parsed = ApexSharpParser.GetApexAst(apex);
             var generated = ApexCleanCodeGen.GenerateApex(parsed);
             Assert.NotNull(generated);
             Assert.AreEqual(@"class Something

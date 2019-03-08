@@ -5,14 +5,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using ApexParser;
-using ApexParser.MetaClass;
+using ApexSharp.ApexParser;
+using ApexSharp.ApexParser.Syntax;
 
 namespace ApexTestFind
 {
     public class ApexTestFinder
     {
-		
+
         public static List<string> GetAllTestClasses(string apexClassName)
         {
             var executableLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -29,7 +29,7 @@ namespace ApexTestFind
             //{
             //        var apexFile = File.ReadAllText(apexFileName);
             //        var ast = ApexSharpParser.GetApexAst(apexFile);
-               
+
             //}
 
             var apexTexts = apexFileNames.Select(File.ReadAllText).ToArray();

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using ApexParser.MetaClass;
-using ApexParser.Toolbox;
-using ApexParser.Visitors;
+using ApexSharp.ApexParser;
+using ApexSharp.ApexParser.Syntax;
+using ApexSharp.ApexParser.Toolbox;
+using ApexSharp.ApexParser.Visitors;
 using Sprache;
 
 namespace ApexSharpDemo.FindRelatedClasses
@@ -26,7 +27,7 @@ namespace ApexSharpDemo.FindRelatedClasses
             try
             {
                 // try to parse and analyze the file
-                var ast = ApexParser.ApexSharpParser.GetApexAst(apexText);
+                var ast = ApexSharpParser.GetApexAst(apexText);
 
                 // ignore the class itself
                 if (ast is ClassDeclarationSyntax @class && Comparer.Equals(@class.Identifier, apexClassName))

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using ApexParser.MetaClass;
-using ApexParser.Visitors;
+using ApexSharp.ApexParser;
+using ApexSharp.ApexParser.Syntax;
+using ApexSharp.ApexParser.Visitors;
 
 namespace ApexSharpDemo.CaseClean
 {
@@ -11,7 +12,7 @@ namespace ApexSharpDemo.CaseClean
     {
         public static string NormalizeCode(string apexCode)
         {
-            var apexAst = ApexParser.ApexSharpParser.GetApexAst(apexCode);
+            var apexAst = ApexSharpParser.GetApexAst(apexCode);
             return GenerateApex(apexAst);
         }
 

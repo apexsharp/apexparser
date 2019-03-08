@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using ApexParser.MetaClass;
-using ApexParser.Visitors;
+using ApexSharp.ApexParser;
+using ApexSharp.ApexParser.Syntax;
+using ApexSharp.ApexParser.Visitors;
 
 namespace ApexSharpDemo.ApexCodeFormat
 {
@@ -16,7 +17,7 @@ namespace ApexSharpDemo.ApexCodeFormat
                 return string.Empty;
             }
 
-            var apexAst = ApexParser.ApexSharpParser.GetApexAst(apexCode);
+            var apexAst = ApexSharpParser.GetApexAst(apexCode);
             return GenerateApex(apexAst, settings);
         }
 

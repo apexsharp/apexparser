@@ -1,4 +1,4 @@
-﻿using ApexSharpDemo.ApexApiAnalyzer;
+﻿// using ApexSharpDemo.ApexApiAnalyzer; // Note: API analyzer requires Apex API
 using ApexSharpDemo.ApexCodeFormat;
 using ApexSharpDemo.CaseClean;
 using ApexSharpDemo.ListClassesAndMethods;
@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-
 
 namespace ApexSharpDemo
 {
@@ -23,6 +22,7 @@ namespace ApexSharpDemo
 
             [Option('d', "dir", Required = true, HelpText = "Directory where Apex classes are located")]
             public string ApexFolder { get; set; }
+
             [Option('o', "outputJson", Required = false, HelpText = "Output the Results as JSON")]
             public bool IsOutputJson { get; set; }
         }
@@ -40,9 +40,6 @@ namespace ApexSharpDemo
                 ClassesAndMethodsDemo.PrintDetails(classNameList);
             }
 
-
-
-
             //new CodeFormatTest();
             //var apexDirLocation = new DirectoryInfo(@"C:\DevSharp\ApexSharpFsb\FSB\ApexClasses\");
             //var apexClassName = new FileInfo(@"C:\DevSharp\ApexSharpFsb\FSB\ApexClasses\FS_AccountSetupController.cls");
@@ -50,7 +47,6 @@ namespace ApexSharpDemo
             //{
             //    Console.WriteLine(apexFile.Name);
             //}
-
 
             Console.WriteLine();
             Console.WriteLine("Done, Press Any Key To Exit");
@@ -98,8 +94,6 @@ namespace ApexSharpDemo
             Console.ReadLine();
         }
 
-
-
         private static void ApexTestFined(string apexFolderName, string apexFileName, bool returnJson)
         {
             int count = Directory.GetFiles(apexFolderName, "*.cls", SearchOption.TopDirectoryOnly).Length;
@@ -115,8 +109,9 @@ namespace ApexSharpDemo
 
         public static void ApexAnalyzer(Options opts)
         {
-            var analyzer = new Analyzer();
-            var results = analyzer.AnylyzDir(opts.ApexFolder);
+            // var analyzer = new Analyzer();
+            // var results = analyzer.AnylyzDir(opts.ApexFolder);
+            throw new NotSupportedException("ApexAnalyzer requires Apex API");
         }
 
         public static void CaseClean(string apexFolderName)
