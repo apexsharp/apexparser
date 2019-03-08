@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexSharp.ApexToCSharp", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexSharp.CSharpToApex", "ApexSharp.CSharpToApex\ApexSharp.CSharpToApex.csproj", "{68A3686A-696F-48B9-9E2F-9D77AF3ED031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexParser.Example", "ApexParser.Example\ApexParser.Example.csproj", "{B9233788-8015-4B04-929D-A6EDE124BF7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApexParser.Example", "ApexParser.Example\ApexParser.Example.csproj", "{94717895-6EF9-4B6B-AB5C-BC4486F9418D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,10 @@ Global
 		{68A3686A-696F-48B9-9E2F-9D77AF3ED031}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68A3686A-696F-48B9-9E2F-9D77AF3ED031}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68A3686A-696F-48B9-9E2F-9D77AF3ED031}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9233788-8015-4B04-929D-A6EDE124BF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9233788-8015-4B04-929D-A6EDE124BF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9233788-8015-4B04-929D-A6EDE124BF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9233788-8015-4B04-929D-A6EDE124BF7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94717895-6EF9-4B6B-AB5C-BC4486F9418D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94717895-6EF9-4B6B-AB5C-BC4486F9418D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94717895-6EF9-4B6B-AB5C-BC4486F9418D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94717895-6EF9-4B6B-AB5C-BC4486F9418D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

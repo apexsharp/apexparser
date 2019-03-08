@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ApexSharp.ApexParser\ApexSharp.ApexParser.csproj" />
+  </ItemGroup>
+
 </Project>
