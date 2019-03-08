@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ApexSharpDemo": {
+      "commandName": "Project",
+      "commandLineArgs": "-s apexcodeformat -d C:\\DevSharp\\ApexSharpFsb\\ApexSharpDemo\\ApexClasses  "
+    }
+  }
+}

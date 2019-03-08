@@ -7,6 +7,25 @@
 
 Apex ←→ C# - Two Way [Transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler).
 
+
+ApexSharp.ApexParser
+
+var ast = ApexSharpParser.GetApexAst(string apexCode) var apexCode = ApexSharpParser.GetApex(ast)
+
+ApexSharp.ApexToCSharp
+
+ApexToCSharp.convertToCSharp(apexparser ast)
+
+CSharpToApex
+
+SyntaxTree tree = CSharpSyntaxTree.ParseText(cSharpFile); var root = (CompilationUnitSyntax)tree.GetRoot(); var ast CSharpToApex.ConvertToApexAst(root)
+
+TApexSharp.CSharpToApex
+
+Var apexCode = ApexSharpParser.GetApex(ast)
+
+
+
 This is very early stage Beta Software use it at your own risk :-).
 
 Jay
