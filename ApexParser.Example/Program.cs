@@ -1,12 +1,10 @@
 ﻿// using ApexSharpDemo.ApexApiAnalyzer; // Note: API analyzer requires Apex API
 using ApexSharpDemo.ApexCodeFormat;
 using ApexSharpDemo.CaseClean;
-using ApexSharpDemo.ListClassesAndMethods;
 using CommandLine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 
 namespace ApexSharpDemo
 {
@@ -28,32 +26,6 @@ namespace ApexSharpDemo
         }
 
         public static void Main(string[] args)
-        {
-            var dirInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
-            var cSharpFileInfo = new FileInfo(Path.Combine(dirInfo.Parent.Parent.Parent.FullName, "ListClassesAndMethods", "Demo.cs"));
-            if (cSharpFileInfo.Exists)
-            {
-                Console.WriteLine(cSharpFileInfo.FullName);
-
-                var cSharpFile = File.ReadAllText(cSharpFileInfo.FullName);
-                var classNameList = ClassesAndMethodsDemo.GetClassMethodCount(cSharpFile);
-                ClassesAndMethodsDemo.PrintDetails(classNameList);
-            }
-
-            //new CodeFormatTest();
-            //var apexDirLocation = new DirectoryInfo(@"C:\DevSharp\ApexSharpFsb\FSB\ApexClasses\");
-            //var apexClassName = new FileInfo(@"C:\DevSharp\ApexSharpFsb\FSB\ApexClasses\FS_AccountSetupController.cls");
-            //foreach (var apexFile in FindRelatedClasses.FindRelatedClasses.GetAllRealatedApexFiles(apexDirLocation, apexClassName))
-            //{
-            //    Console.WriteLine(apexFile.Name);
-            //}
-
-            Console.WriteLine();
-            Console.WriteLine("Done, Press Any Key To Exit");
-            Console.ReadLine();
-        }
-
-        public static void Main1(string[] args)
         {
             Parser.Default.ParseArguments<Options>(args).WithParsed(o =>
             {

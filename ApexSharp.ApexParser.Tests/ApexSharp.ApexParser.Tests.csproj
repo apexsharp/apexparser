@@ -11,12 +11,13 @@
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
     <RepositoryUrl>https://github.com/ApexSharp/ApexParser</RepositoryUrl>
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
-    <TargetFrameworks>net462;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
     <RootNamespace>ApexSharp.ApexParser.Tests</RootNamespace>
     <AssemblyName>ApexSharp.ApexParser.Tests</AssemblyName>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -32,10 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="NUnit" Version="3.11.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
-    <PackageReference Include="RestSharp" Version="106.5.4" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="RestSharp" Version="106.6.9" />
   </ItemGroup>
 
   <ItemGroup>
