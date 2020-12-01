@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApexSharp.ApexParser.Toolbox
 {
-    public class Disposable : IDisposable
+    public sealed class Disposable : IDisposable
     {
         public Disposable()
         {

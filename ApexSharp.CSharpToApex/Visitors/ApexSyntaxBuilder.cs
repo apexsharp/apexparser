@@ -995,7 +995,7 @@ namespace ApexSharp.CSharpToApex.Visitors
                     catchClause.Type = ConvertType(node.Declaration.Type);
                 }
 
-                if (node.Declaration.Identifier != null)
+                if (node.Declaration.Identifier.ValueText != null)
                 {
                     catchClause.Identifier = node.Declaration.Identifier.ValueText;
                 }

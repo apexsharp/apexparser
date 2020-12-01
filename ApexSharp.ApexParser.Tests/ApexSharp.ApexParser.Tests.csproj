@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <Title>ApexSharp.ApexParser.Tests</Title>
-    <Version>0.7.0.0</Version>
+    <Version>0.7.1.0</Version>
     <Authors>ApexSharp.com</Authors>
     <Description>A Roslyn-like parser for the Salesforce programming language APEX</Description>
-    <Copyright>© 2017-2018 ApexSharp.com</Copyright>
+    <Copyright>© 2017-2020 ApexSharp.com</Copyright>
     <PackageLicenseUrl>https://github.com/apexsharp/apexparser/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/apexsharp/apexparser/</PackageProjectUrl>
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
     <RepositoryUrl>https://github.com/ApexSharp/ApexParser</RepositoryUrl>
     <PackageTags>Apex, Parser, Roslyn</PackageTags>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
