@@ -16,11 +16,11 @@ namespace ApexSharp.ApexParser.Tests.Visitors
     [TestFixture]
     public class ApexSyntaxBuilderTests : TestFixtureBase
     {
-        private static Regex NoWhitespaceRegex = new Regex(@"\s", RegexOptions.Compiled);
+        private static readonly Regex NoWhitespaceRegex = new Regex(@"\s", RegexOptions.Compiled);
 
         protected void Check(BaseSyntax node, string expected)
         {
-            string nows(string s) =>
+            static string nows(string s) =>
                 NoWhitespaceRegex.Replace(s, string.Empty);
 
             var nodeToApex = node.ToApex();

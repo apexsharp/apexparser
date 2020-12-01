@@ -3,6 +3,7 @@ using ApexSharp.ApexParser;
 using ApexSharp.ApexParser.Syntax;
 using ApexTestFind;
 using NUnit.Framework;
+using Array = System.Array;
 
 namespace ApexSharpDemo
 {
@@ -16,7 +17,7 @@ namespace ApexSharpDemo
             Assert.NotNull(result);
             Assert.IsEmpty(result);
 
-            result = ApexTestFinder.GetApexClassesReferencingAGivenClass(new string[0], "Something");
+            result = ApexTestFinder.GetApexClassesReferencingAGivenClass(Array.Empty<string>(), "Something");
             Assert.NotNull(result);
             Assert.IsEmpty(result);
         }
@@ -28,12 +29,12 @@ namespace ApexSharpDemo
             Assert.NotNull(result);
             Assert.IsEmpty(result);
 
-            result = ApexTestFinder.GetApexClassesReferencingAGivenClass(new MemberDeclarationSyntax[0], "Something");
+            result = ApexTestFinder.GetApexClassesReferencingAGivenClass(Array.Empty<MemberDeclarationSyntax>(), "Something");
             Assert.NotNull(result);
             Assert.IsEmpty(result);
         }
 
-        private ClassDeclarationSyntax ParseClass(string apexClass)
+        private static ClassDeclarationSyntax ParseClass(string apexClass)
         {
             var result = ApexSharpParser.GetApexAst(apexClass) as ClassDeclarationSyntax;
             Assert.NotNull(result);
@@ -202,15 +203,14 @@ namespace ApexSharpDemo
         public void GetAllTextClassesReturnsAllTextClassesAsExpected()
         {
             var location = Path.GetDirectoryName(typeof(ApexTestFinderTest).Assembly.Location);
-            var subfolder = Path.Combine(location, "Apex");
+            var subfolder = Path.Combine(location, "..", "..", "..", "ApexClasses");
             var classes = ApexTestFinder.GetAllTestClasses(subfolder, "Dx");
 
-            Assert.AreEqual(2, classes.Count);
-            Assert.IsTrue(classes.Contains("DxTestOne"));
+            Assert.AreEqual(1, classes.Count);
             Assert.IsTrue(classes.Contains("DxTestTwo"));
         }
 
-        public bool IsTestClass(MemberDeclarationSyntax ast)
+        private static bool IsTestClass(MemberDeclarationSyntax ast)
         {
             var cds = ast as ClassDeclarationSyntax;
             return ApexTestFinder.IsTestClass(cds);
