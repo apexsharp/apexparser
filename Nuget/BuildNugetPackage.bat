@@ -1,2 +1,2 @@
 @echo off
-dotnet pack -c Release ..\ApexParser\ApexParser.csproj -o ..\Nuget
+dotnet pack --include-symbols -c Release ..\ApexSharp.ApexParser\ApexSharp.ApexParser.csproj -o ..\Nuget
