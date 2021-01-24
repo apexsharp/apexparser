@@ -170,5 +170,9 @@ namespace ApexSharp.ApexParser.Tests.Visitors
         [Test]
         public void SwitchDemoRoundtrip() =>
             Check(SwitchDemo_Original, SwitchDemo_Formatted, SwitchDemo_CSharp);
+
+        [Test, Ignore("C# -> Apex string conversion fails on double quotes")]
+        public void CsvReaderTestRoundtrip() =>
+            Check(CsvReaderTest_Original, CsvReaderTest_Formatted, CsvReaderTest_CSharp);
     }
 }

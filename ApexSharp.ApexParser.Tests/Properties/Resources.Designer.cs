@@ -19,7 +19,7 @@ namespace ApexSharp.ApexParser.Tests.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -1909,6 +1909,76 @@ namespace ApexSharp.ApexParser.Tests.Properties {
         internal static string Comments_Original {
             get {
                 return ResourceManager.GetString("Comments_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace ApexSharpDemo.ApexCode
+        ///{
+        ///    using Apex;
+        ///    using Apex.ApexSharp;
+        ///    using Apex.ApexSharp.ApexAttributes;
+        ///    using Apex.ApexSharp.Extensions;
+        ///    using Apex.ApexSharp.NUnit;
+        ///    using Apex.System;
+        ///    using SObjects;
+        ///
+        ///    [TestFixture]
+        ///    class CsvReaderTest
+        ///    {
+        ///        [Test]
+        ///        static void testCSVReader1()
+        ///        {
+        ///            string csvString = &quot;fieldName1,fieldName2,fieldName3,fieldName4\r\n&quot;+
+        ///                &quot;\&quot;valu,e a1\&quot;,\&quot;value\nb1\&quot;,value c1,\n&quot;+
+        ///             [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CsvReaderTest_CSharp {
+            get {
+                return ResourceManager.GetString("CsvReaderTest_CSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @IsTest
+        ///class CsvReaderTest
+        ///{
+        ///    @IsTest
+        ///    static void testCSVReader1()
+        ///    {
+        ///        String csvString = &apos;fieldName1,fieldName2,fieldName3,fieldName4\r\n&apos;+
+        ///                &apos;&quot;valu,e a1&quot;,&quot;value\nb1&quot;,value c1,\n&apos;+
+        ///                &apos;value a2,&quot;value&quot;&quot;b2&quot;,&quot;valu&quot;&quot;e c2&quot;,\r\n&apos;+
+        ///                &apos;,value\&quot;b3,value\&apos;c3,\&apos;value d3\&apos;\n&apos;+
+        ///                &apos;&quot;value,a4&quot;,&quot;&quot;,,\&apos;value d4\&apos;&apos;;
+        ///        List&lt;List&lt;String&gt;&gt; data = CsvReader.read(csvString);
+        ///        System.assertEquals(&apos;valu,e a1&apos;, data[1][0]);
+        ///        Sy [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CsvReaderTest_Formatted {
+            get {
+                return ResourceManager.GetString("CsvReaderTest_Formatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @isTest class CsvReaderTest {
+        ///
+        ///    @isTest static void testCSVReader1() {
+        ///        String csvString = &apos;fieldName1,fieldName2,fieldName3,fieldName4\r\n&apos; +
+        ///                &apos;&quot;valu,e a1&quot;,&quot;value\nb1&quot;,value c1,\n&apos; +
+        ///                &apos;value a2,&quot;value&quot;&quot;b2&quot;,&quot;valu&quot;&quot;e c2&quot;,\r\n&apos; +
+        ///                &apos;,value\&quot;b3,value\&apos;c3,\&apos;value d3\&apos;\n&apos; +
+        ///                &apos;&quot;value,a4&quot;,&quot;&quot;,,\&apos;value d4\&apos;&apos;;
+        ///
+        ///        List&lt;List&lt;String&gt;&gt; data = CsvReader.read(csvString);
+        ///
+        ///        System.assertEquals(&apos;valu,e a1&apos;, data[1][0]);
+        ///        Syst [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CsvReaderTest_Original {
+            get {
+                return ResourceManager.GetString("CsvReaderTest_Original", resourceCulture);
             }
         }
         
