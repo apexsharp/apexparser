@@ -54,3 +54,4 @@ config.json
 ApexSharpPrivate.sln
 /Nuget/*.nupkg
 /TestResult.xml
+/.temp

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -320,6 +321,48 @@ namespace ApexSharp.ApexParser.Toolbox
         public static string ConvertCSharpDecimalLiteralsToDoubles(string expression)
         {
             return DecimalLiteralRegex.Replace(expression, m => m.Groups["number"].Value);
+        }
+
+        public static string ToCSharpStringLiteral(this string input)
+        {
+            // should be rougly the same as
+            // Microsoft.CodeAnalysis.CSharp.SymbolDisplay.FormatLiteral(input, false);
+            var literal = new StringBuilder(input.Length + 2);
+            literal.Append("\"");
+
+            foreach (var c in input)
+            {
+                switch (c)
+                {
+                    case '\'': literal.Append(@"\'"); break;
+                    case '\"': literal.Append("\\\""); break;
+                    case '\\': literal.Append(@"\\"); break;
+                    case '\0': literal.Append(@"\0"); break;
+                    case '\a': literal.Append(@"\a"); break;
+                    case '\b': literal.Append(@"\b"); break;
+                    case '\f': literal.Append(@"\f"); break;
+                    case '\n': literal.Append(@"\n"); break;
+                    case '\r': literal.Append(@"\r"); break;
+                    case '\t': literal.Append(@"\t"); break;
+                    case '\v': literal.Append(@"\v"); break;
+
+                    default:
+                        if (char.GetUnicodeCategory(c) != UnicodeCategory.Control)
+                        {
+                            literal.Append(c);
+                        }
+                        else
+                        {
+                            literal.Append(@"\u");
+                            literal.Append(((ushort)c).ToString("x4"));
+                        }
+
+                        break;
+                }
+            }
+
+            literal.Append("\"");
+            return literal.ToString();
         }
     }
 }

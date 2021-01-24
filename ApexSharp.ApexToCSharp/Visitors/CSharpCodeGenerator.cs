@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ApexSharp.ApexParser;
 using ApexSharp.ApexParser.Parser;
 using ApexSharp.ApexParser.Syntax;
@@ -649,8 +650,17 @@ namespace ApexSharp.ApexToCSharp.Visitors
             base.VisitExpression(new ExpressionSyntax(expr));
         }
 
-        protected override void AppendStringLiteral(string literal) =>
-            Append("\"{0}\"", literal.Substring(1, literal.Length - 2).Replace("\"", "\\\""));
+        // emulates Microsoft.CodeAnalysis.CSharp.SymbolDisplay.FormatLiteral(input, false)
+        protected override void AppendStringLiteral(string literal)
+        {
+            // remove the quotes and parse escape sequences
+            var unquoted = literal.Substring(1, literal.Length - 2);
+            var unescaped = Regex.Unescape(unquoted);
+
+            // convert to proper C# string
+            var quoted = unescaped.ToCSharpStringLiteral();
+            Append("{0}", quoted);
+        }
 
         protected override void AppendSoqlQuery(string soqlQuery)
         {

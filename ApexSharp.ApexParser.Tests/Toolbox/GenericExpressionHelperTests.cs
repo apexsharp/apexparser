@@ -507,5 +507,14 @@ namespace ApexSharp.ApexParser.Tests.Toolbox
             Assert.AreEqual("a123.45m", ToApex("a123.45m"));
             Assert.AreEqual("a.m", ToCSharp("a.m"));
         }
+
+        [Test]
+        public void ToCSharpStringLiteralTests()
+        {
+            Assert.AreEqual(@"""hello""", @"hello".ToCSharpStringLiteral());
+            Assert.AreEqual(@"""he\\llo""", @"he\llo".ToCSharpStringLiteral());
+            Assert.AreEqual(@"""hel\""lo""", @"hel""lo".ToCSharpStringLiteral());
+            Assert.AreEqual(@"""hel\n\r\t\vlo""", "hel\n\r\t\vlo".ToCSharpStringLiteral());
+        }
     }
 }

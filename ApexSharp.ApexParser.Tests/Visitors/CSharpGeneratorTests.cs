@@ -1649,5 +1649,61 @@ namespace ApexSharp.ApexParser.Tests.Visitors
 
             Check(apex, @"x = 1.23m + Some(""1.23"") + 3.45m");
         }
+
+        [Test]
+        public void StringWithSlashGetsConverted()
+        {
+            var apex = new ExpressionSyntax
+            {
+                ExpressionString = @"x = 'value\`b3'".Replace("`", "\"")
+            };
+
+            Check(apex, @"x = ""value\""b3""");
+        }
+
+        [Test]
+        public void ApexCsvReaderTestStringLiterals()
+        {
+            var apex = Apex.ParseClass(@"
+            @isTest class CsvReaderTest {
+
+                @isTest static void testCSVReader1() {
+                    String csvString = 'fieldName1,fieldName2,fieldName3,fieldName4\r\n' +
+                            '`valu,e a1`,`value\nb1`,value c1,\n' +
+                            'value a2,`value``b2`,`valu``e c2`,\r\n' +
+                            ',value\`b3,value\'c3,\'value d3\'\n' +
+                            '`value,a4`,``,,\'value d4\'';
+                }
+            }".Replace("`", "\""));
+
+            Check(apex, @"namespace ApexSharpDemo.ApexCode
+            {
+                using Apex;
+                using Apex.ApexSharp;
+                using Apex.ApexSharp.ApexAttributes;
+                using Apex.ApexSharp.Extensions;
+                using Apex.ApexSharp.NUnit;
+                using Apex.System;
+                using SObjects;
+
+                [TestFixture]
+                class CsvReaderTest
+                {
+                    [Test]
+                    static void testCSVReader1()
+                    {
+                        string csvString = `fieldName1,fieldName2,fieldName3,fieldName4\r\n`+
+                                        `\`valu,e a1\`,\`value\nb1\`,value c1,\n`+
+                                        `value a2,\`value\`\`b2\`,\`valu\`\`e c2\`,\r\n`+
+                                        `,value\`b3,value\'c3,\'value d3\'\n`+
+                                        `\`value,a4\`,\`\`,,\'value d4\'`;
+                    }
+                }
+            }
+            ".Replace("`", "\""));
+
+            var csharp = apex.ToCSharp();
+            Assert.NotNull(csharp);
+        }
     }
 }
